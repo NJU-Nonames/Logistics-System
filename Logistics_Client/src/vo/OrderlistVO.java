@@ -1,8 +1,13 @@
+/**
+ *2015年10月21日
+ *author:tdy
+ *discirption:订单的vo实体类
+ */
 package vo;
 
-public class OrderVO{
+public class OrderlistVO{
 	String id;
-	public OrderVO(String id){
+	public OrderlistVO(String id){
 		this.id=id;
 	}
 	public boolean print(){
