@@ -10,5 +10,5 @@ package vo;
  *
  */
 public class TransferCentreRecievelistVO {
-
+	boolean isInRepertory=false;
 }

@@ -19,7 +19,7 @@ public interface SellingAreaRecieveBLService {
 	 */
 	public DeparturelistVO findDeparturelist(String departurelistId);
 	/**
-	 * 前置条件：
+	 * 前置条件：	
 	 * 后置条件：
 	 * @param 	营业厅装车单或中转中心中转单的vo实体
 	 * @return	营业厅到达单的vo实体
