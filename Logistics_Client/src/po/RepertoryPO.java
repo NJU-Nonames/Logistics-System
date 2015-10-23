@@ -11,6 +11,6 @@ import java.io.Serializable;
  * @author 谭期友
  *
  */
-public class WarehousePO implements Serializable{
+public class RepertoryPO implements Serializable{
 
 }
