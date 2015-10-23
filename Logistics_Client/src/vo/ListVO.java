@@ -1,10 +1,8 @@
-/**
- *2015年10月22日
- *author:tqy
- *description:所有单据的父类 
- */
 package vo;
 
-public class ListVO{
-
-}
+/**
+ * 所有单的父类 抽象类
+ * @author 这菜咸了
+ *
+ */
+public abstract class ListVO {}

@@ -6,7 +6,7 @@
 package businesslogicservice.financeblservice;
 
 import vo.CountVO;
-import vo.PaylistVO;
+import vo.MoneyOutListVO;
 
 /**
  * @author 谭期友
@@ -22,6 +22,6 @@ public interface CostManagementBLService {
 	 * @param money付款金额
 	 * @return 付款单
 	 */
-	public PaylistVO createPaylist(String day, String name, CountVO c, double money);
+	public MoneyOutListVO createPaylist(String day, String name, CountVO c, double money);
 
 }

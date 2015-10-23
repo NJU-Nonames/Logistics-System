@@ -7,6 +7,4 @@ package po;
 
 import java.io.Serializable;
 
-public class ListPO implements Serializable{
-
-}
+public abstract class ListPO implements Serializable{}

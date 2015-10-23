@@ -5,6 +5,6 @@
  */
 package vo;
 
-public class RecieverVO {
+public class ReceiverVO {
 
 }

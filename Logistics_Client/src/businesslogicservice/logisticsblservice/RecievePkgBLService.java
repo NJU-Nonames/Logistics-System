@@ -6,7 +6,7 @@
 package businesslogicservice.logisticsblservice;
 
 import vo.OrderlistVO;
-import vo.RecieverVO;
+import vo.ReceiverVO;
 
 public interface RecievePkgBLService {
 	/**快递员进行的确定正在签收的订单的方法的接口
@@ -22,7 +22,7 @@ public interface RecievePkgBLService {
 	 * @param 	实际签收人
 	 * @return	签收是否成功
 	 */
-	public boolean confirmRecieve(RecieverVO reciever);
+	public boolean confirmRecieve(ReceiverVO reciever);
 	/**快递员取消签收的方法接口
 	 * 前置条件：	快递员点击取消按钮
 	 * 后置条件：	系统返回上一层界面

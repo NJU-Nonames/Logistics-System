@@ -7,7 +7,7 @@ package dataservice.financedataservice;
 
 import java.util.ArrayList;
 
-import po.GetlistPO;
+import po.MoneyOutListPO;
 
 
 /**
@@ -22,6 +22,6 @@ public interface SettlementManageDataService {
 	 * @param end_day
 	 * @return 收款单的集合
 	 */
-	public ArrayList<GetlistPO> search(String start_day, String end_day);
+	public ArrayList<MoneyOutListPO> search(String start_day, String end_day);
 
 }
