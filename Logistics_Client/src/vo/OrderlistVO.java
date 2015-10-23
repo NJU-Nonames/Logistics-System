@@ -5,7 +5,7 @@
  */
 package vo;
 
-public class OrderlistVO{
+public class OrderlistVO extends ListVO{
 	String id;
 	public OrderlistVO(String id){
 		this.id=id;

@@ -9,6 +9,6 @@ package vo;
  * @author Administrator
  *
  */
-public class DeliverlistVO {
+public class DeliverlistVO extends ListVO{
 
 }

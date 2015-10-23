@@ -3,8 +3,10 @@
  *author:tdy
  *discirption:中转中心的到达单 的vo实体类
  */
-package vo;
+package po;
 
-public class TransferCentreRecievelistVO extends ListVO{
+import java.io.Serializable;
+
+public class TransferCentreRecievelistPO extends ListPO implements Serializable{
 	boolean isInRepertory=false;
 }

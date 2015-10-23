@@ -5,6 +5,6 @@
  */
 package vo;
 
-public class DeparturelistVO {
+public class DeparturelistVO extends ListVO{
 	String id=new String();
 }

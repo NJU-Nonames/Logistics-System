@@ -5,6 +5,6 @@
  */
 package vo;
 
-public class RecieverVO extends DeparturelistVO{
+public class RecieverVO {
 
 }
