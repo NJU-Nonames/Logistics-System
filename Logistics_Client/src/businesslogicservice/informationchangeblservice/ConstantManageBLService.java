@@ -19,7 +19,7 @@ public interface ConstantManageBLService {
 	 */
 	public ResultMessage addCity(String name);
 	
-	/**显示城市价格距离情况表
+	/**显示城市距离情况表
 	 * @return
 	 */
 	public DistanceChartVO showDistanceChart();

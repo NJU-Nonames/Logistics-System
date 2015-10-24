@@ -7,6 +7,6 @@ package po;
 
 import java.io.Serializable;
 
-public class RecieverPO extends UserPO implements Serializable{
+public class ReceiverPO extends UserPO implements Serializable{
 
 }

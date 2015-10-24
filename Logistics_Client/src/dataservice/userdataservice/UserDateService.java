@@ -6,23 +6,43 @@
 package dataservice.userdataservice;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.UserPO;
 
 public interface UserDateService {
+	
+	/** 
+	 * 用户登录功能 
+	 * @param admin
+	 * @param password
+	 * @return 返回用户登录PO信息
+	 */
+	public UserPO login(String admin,String password);
+	
 	/**
 	 * 前置条件：无
 	 * 后置条件：按ID进行查找返回相应的UserPO结果
 	 * @param 	id
 	 * @return 	相应的UserPO结果
 	 */
-	public UserPO find(String id) throws RemoteException;
+	public UserPO findonId(String id) throws RemoteException;
+	
+	/**
+	 * 按照用户名查找用户信息
+	 * @param admin
+	 * @return
+	 * @throws RemoteException
+	 */
+	public UserPO findonAdmin(String admin) throws RemoteException;
+	
 	/**
 	 * 前置条件：不存在同样的UserPO
 	 * 后置条件：在数据库中增加UserPO结果
 	 * @param 	UserPO
 	 */
 	public void insert(UserPO user) throws RemoteException;
+	
 	/**
 	 * 前置条件：存在同样id的UserPO
 	 * 后置条件：在数据库中删除对应的UserPO
@@ -34,15 +54,11 @@ public interface UserDateService {
 	 * 后置条件：在数据库中更新对应的UserPO
 	 * @param 	UserPO
 	 */
-	public void update(UserPO user) throws RemoteException;
+	public void updata(UserPO user) throws RemoteException;
+	
 	/**
-	 * 前置条件：无
-	 * 后置条件：更新数据库
+	 * 返回所用用户信息
 	 */
-	public void init() throws RemoteException;
-	/**
-	 * 前置条件：无
-	 * 后置条件：结束使用
-	 */
-	public void finish() throws RemoteException;;
+	public ArrayList<UserPO> show() throws RemoteException;
+	
 }

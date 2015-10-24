@@ -2,41 +2,61 @@
  * 2015年10月23日
  *author:tqy
  *description:用户 管理
+ *2015-10-24 王家玮修改
  */
 package businesslogicservice.userblservice;
 
+import java.util.ArrayList;
+
+import businesslogic.utilitybl.ResultMessage;
 import vo.UserVO;
 
 public interface UserManageBLService {
+	
+	/**用户登录功能 
+	 * @param admin
+	 * @param password
+	 * @return 登录信息，包括是否登录成功 返回界面类型
+	 */
+	public ResultMessage login(String admin,String password);
+	
 	/**雇佣新员工
-	 * 前置条件：管理员已经登陆
-	 * 后置条件:系统增加员工
 	 * @param 用户名，姓名，密码，职位
 	 * @return	新员工信息
 	 */
-	public UserVO addUser(String admin, String name, String password, String position);
-	/**员工离职
-	 * 前置条件：管理员已经登陆
-	 * 后置条件:系统删除员工
+	public ResultMessage addUser(UserVO user);
+	
+	/**员工离职系统删除员工
 	 * @param 用户名
 	 */
-	public void removeUser(String admin);
-	/**更改员工职位
-	 * 前置条件：管理员已经登陆
-	 * 后置条件:系统更改员工职位
-	 * @param 用户名，职位
+	public ResultMessage removeUser(String admin);
+	
+	/**
+	 * 更新员工信息
+	 * @param user
+	 * @return
 	 */
-	public void changePosition(String admin, String position);
-	/**更改员工密码
-	 * 前置条件：管理员已经登陆
-	 * 后置条件:系统更改员工密码
-	 * @param 用户名，密码
+	public ResultMessage updataUser(UserVO user);
+	
+	/**
+	 * 显示所有可登陆员工的信息
+	 * @return
 	 */
-	public void changePassword(String admin, String password);
-	/**取消管理任务
-	 * 前置条件：	管理员已经登陆
-	 * 后置条件：	返回上一层界面
-	 * @return	取消操作是否成功
+	public ArrayList<UserVO> showAll();
+	
+	/**
+	 * 查找员工信息
+	 * @param admin
+	 * @return
 	 */
-	public boolean cancelManage();
+	public UserVO findonAdmin(String admin);
+	
+	/**
+	 * 查找员工信息
+	 * @param admin
+	 * @return
+	 */
+	public UserVO findonId(String id);
+	
+	
 }
