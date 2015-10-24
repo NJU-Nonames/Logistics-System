@@ -25,19 +25,19 @@ public interface RepertoryDataService {
 	/**
 	 * 前置条件：不存在同样的RepertoryPO
 	 * 后置条件：在数据库中增加RepertoryPO结果
-	 * @param 	RepertoryPO
+	 * @param 	RepertoryVO
 	 */
 	public void insert(RepertoryPO repertory) throws RemoteException;
 	/**
 	 * 前置条件：存在同样id的RepertoryPO
 	 * 后置条件：在数据库中删除对应的RepertoryPO
-	 * @param 	RepertoryPO
+	 * @param 	RepertoryVO
 	 */
 	public void delete(RepertoryPO repertory) throws RemoteException;
 	/**
 	 * 前置条件：存在同样id的RepertoryPO
 	 * 后置条件：在数据库中更新对应的RepertoryPO
-	 * @param 	RepertoryPO
+	 * @param 	RepertoryVO
 	 */
 	public void update(RepertoryPO repertory) throws RemoteException;
 	/**

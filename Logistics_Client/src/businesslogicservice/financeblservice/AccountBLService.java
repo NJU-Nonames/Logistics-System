@@ -5,14 +5,26 @@
  */
 package businesslogicservice.financeblservice;
 
-import vo.CountVO;
-import vo.LoadlistVO;
+import java.util.ArrayList;
+
+import vo.BankAccountVO;
+import businesslogic.utilitybl.ResultMessage;
+
 
 /**
  * @author 
  *
  */
-public interface CountBLService {
+public interface AccountBLService {
+	
+	/**
+	 * 账户登录 仅拥有最高权限的财务人员才能进行账户管理操作
+	 * @param admin
+	 * @param password
+	 * @return
+	 */
+	public boolean login(String admin,String password);
+	
 	/**
 	 * 前置条件：财务人员已经登陆
 	 * 后置条件:增加账户
@@ -21,15 +33,18 @@ public interface CountBLService {
 	 * @param money
 	 * @return 账户
 	 */
-	public CountVO createCount(String name, String password, double money);
+	public ResultMessage createCount(BankAccountVO countVo);
+	
 	/**
 	 * 前置条件：财务人员已经登陆
 	 * 后置条件:删除账户
 	 * @param name
 	 * @return 操作是否成功
 	 */
-	public boolean removeCount(String name);
+	public ResultMessage removeCount(String name);
+	
 	/**
+	 * 账户内的金额不允许进行修改！！！！
 	 * 前置条件：财务人员已经登陆
 	 * 后置条件:更改账户
 	 * @param name
@@ -37,18 +52,20 @@ public interface CountBLService {
 	 * @param money
 	 * @return 操作是否成功
 	 */
-	public boolean changeCount(String name, String password, double money);
+	public ResultMessage updadaCount(BankAccountVO countVo);
+	
 	/**
 	 * 前置条件：财务人员已经登陆
 	 * 后置条件:查询账户
 	 * @param name
 	 * @return 账户
 	 */
-	public CountVO searchCount(String name);
+	public BankAccountVO searchCount(String keyword);
+	
 	/**
-	 * 前置条件：财务人员已经登陆
-	 * 后置条件:返回上一级
-	 * @return 取消操作是否成功
+	 * 显示所有账户信息
+	 * @return
 	 */
-	public boolean cancelCount();
+	public ArrayList<BankAccountVO> show();
+	
 }

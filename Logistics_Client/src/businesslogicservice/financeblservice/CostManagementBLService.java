@@ -5,7 +5,7 @@
  */
 package businesslogicservice.financeblservice;
 
-import vo.CountVO;
+import businesslogic.utilitybl.ResultMessage;
 import vo.MoneyOutListVO;
 
 /**
@@ -22,6 +22,6 @@ public interface CostManagementBLService {
 	 * @param money付款金额
 	 * @return 付款单
 	 */
-	public MoneyOutListVO createPaylist(String day, String name, CountVO c, double money);
+	public ResultMessage createMoneyOutlist(MoneyOutListVO moneyOut);
 
 }

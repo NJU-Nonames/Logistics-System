@@ -22,6 +22,6 @@ public interface SettlementManageDataService {
 	 * @param end_day
 	 * @return 收款单的集合
 	 */
-	public ArrayList<MoneyOutListPO> search(String start_day, String end_day);
+	public ArrayList<MoneyOutListPO> search(String start_day, String end_day,String Hallid);
 
 }

@@ -9,6 +9,6 @@ package vo;
  * @author 谭期友
  *
  */
-public class RepertoryPO {
+public class RepertoryVO {
 
 }

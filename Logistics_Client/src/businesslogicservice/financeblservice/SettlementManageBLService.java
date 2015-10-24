@@ -7,7 +7,7 @@ package businesslogicservice.financeblservice;
 
 import java.util.ArrayList;
 
-import vo.GetlistVO;
+import vo.MoneyInListVO;
 
 
 /**
@@ -22,6 +22,6 @@ public interface SettlementManageBLService {
 	 * @param end_day
 	 * @return 收款单的集合
 	 */
-	public ArrayList<GetlistVO> search(String start_day, String end_day);
+	public ArrayList<MoneyInListVO> search(String start_day, String end_day,String hall_id);
 
 }
