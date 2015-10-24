@@ -2,29 +2,50 @@
  *2015年10月23日
  *author:tdy
  *description:距离价格常量变更 
+ *王家玮 2015-10-24 修改
  */
 package businesslogicservice.informationchangeblservice;
 
+import vo.PriceChartVO;
+import vo.DistanceChartVO;
+import businesslogic.utilitybl.ResultMessage;
+
 public interface ConstantManageBLService {
-	/**总经理对城市距离常量的管理
-	 * 前置条件：开启了距离常量管理任务
-	 * 后置条件：两个城市之间有了新的距离
+	
+	/**
+	 * 添加城市
+	 * @param name
+	 * @return
+	 */
+	public ResultMessage addCity(String name);
+	
+	/**显示城市价格距离情况表
+	 * @return
+	 */
+	public DistanceChartVO showDistanceChart();
+	
+	/**
+	 * 返回价格常量情况表
+	 * @return
+	 */
+	public PriceChartVO showPriceChart();
+	
+	/**
+	 * 若输入符合标准 则调入submit函数
 	 * @param newDistance
 	 * @param cityA
 	 * @param cityB
+	 * @return
 	 */
-	public void distanceManage(String newDistance,String cityA,String cityB);
-	/**总经理对价格常量的管理
-	 * 前置条件：开启了距离常量管理任务
-	 * 后置条件：新的距离常量
-	 * @param newDistance
+	public ResultMessage submitDistance(String newDistance,String cityA,String cityB);
+	
+	/**
+	 *  若输入符合标准 则调入submit函数
+	 * @param newPrice
 	 * @param otherInformation
+	 * @return
 	 */
-	public void priceManage(String newPrice,String otherInformation);
-	/**总经理取消管理
-	 * 前置条件：	点击取消按钮
-	 * 后置条件:	系统返回上一层界面
-	 * @return	取消操作是否成功
-	 */
-	public boolean cancelManage();
+	public ResultMessage submitPrice(String newPrice,String otherInformation);
+	
+
 }
