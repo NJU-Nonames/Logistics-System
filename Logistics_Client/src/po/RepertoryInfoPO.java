@@ -1,7 +1,7 @@
 /**
  * 2015年10月23日
  *author:
- *description:仓库类
+ *description:仓库信息类
  */
 package po;
 
@@ -11,6 +11,6 @@ import java.io.Serializable;
  * @author 谭期友
  *
  */
-public class RepertoryPO implements Serializable{
+public class RepertoryInfoPO implements Serializable{
 
 }

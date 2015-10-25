@@ -2,7 +2,7 @@ package businesslogicservice.financeblservice;
 
 import vo.AgencyVO;
 import vo.BankAccountVO;
-import vo.RepertoryVO;
+import vo.RepertoryInfoVO;
 import vo.TruckVO;
 import businesslogic.utilitybl.ResultMessage;
 
@@ -29,7 +29,7 @@ public interface BaseDataSettingBLService {
 	 * @param commodityInfoVO
 	 * @return
 	 */
-	public ResultMessage addCommodityInfo(RepertoryVO repertoryVO);
+	public ResultMessage addCommodityInfo(RepertoryInfoVO repertoryVO);
 	
 	/**
 	 * 期初建账，输入车辆信息

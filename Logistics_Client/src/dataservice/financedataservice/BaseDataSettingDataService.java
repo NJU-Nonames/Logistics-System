@@ -2,7 +2,7 @@ package dataservice.financedataservice;
 
 import po.AgencyPO;
 import po.BankAccountPO;
-import po.RepertoryPO;
+import po.RepertoryInfoPO;
 import po.TruckPO;
 
 
@@ -25,7 +25,7 @@ public interface BaseDataSettingDataService {
 	 * @param commodityInfoPO
 	 * @return
 	 */
-	public boolean addCommodityInfo(RepertoryPO repertoryPO);
+	public boolean addCommodityInfo(RepertoryInfoPO repertoryPO);
 	
 	/**
 	 * 期初建账，输入车辆信息

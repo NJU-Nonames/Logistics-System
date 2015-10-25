@@ -5,6 +5,6 @@
  */
 package vo;
 
-public class TransferCentreRecievelistVO extends ListVO{
+public class TransArrivalListVO extends ListVO{
 	boolean isInRepertory=false;
 }

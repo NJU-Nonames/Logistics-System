@@ -5,12 +5,19 @@ package businesslogic.utilitybl;
  * 系统逻辑层返回信息（包括输入输出是否合法化等）
  */
 public class ResultMessage {
-	private Object value;
-	String key;
-	public Object getValue(){
-		return this.value;
+	private boolean isPass;
+	private String message;
+	public ResultMessage(boolean isPass, String message) {
+		super();
+		this.isPass = isPass;
+		this.message = message;
 	}
-	public String getKey(){
-		return key;
+	public boolean isPass() {
+		return isPass;
 	}
+	public String getMessage() {
+		return message;
+	}
+	
+	
 }

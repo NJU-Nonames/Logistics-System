@@ -1,13 +1,8 @@
-/**
- *2015年10月21日
- *author:tdy
- *discirption:物流模块中查询订单详情提供的接口 
- */
-package businesslogicservice.logisticsblservice;
+package dataservice.logisticsdataservice;
 
-import vo.OrderListVO;
+import po.OrderListPO;
 
-public interface SearchPkgInformationBLService {
+public interface SerchPkgInformationDataService {
 	
 	/**用户查询订单信息的方法接口
 	 * 前置条件：	orderlistId输入符合规则
@@ -16,7 +11,5 @@ public interface SearchPkgInformationBLService {
 	 * @param 	订单编号
 	 * @return 	返回给展示层的一个订单的实体类
 	 */
-	public OrderListVO searchPkgInformation(String orderlistId);
-	
-	
+	public OrderListPO searchPkgInformation(String orderlistId);
 }

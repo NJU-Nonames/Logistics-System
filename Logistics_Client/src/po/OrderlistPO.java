@@ -2,6 +2,6 @@ package po;
 
 import java.io.Serializable;
 
-public class OrderlistPO extends ListPO implements Serializable{
+public class OrderListPO extends ListPO implements Serializable{
 
 }

@@ -5,9 +5,10 @@
  */
 package dataservice.logisticsdataservice;
 
-import java.rmi.RemoteException;
-
-import po.RepertoryPO;
+import po.RepertoryInPO;
+import po.RepertoryInfoPO;
+import po.RepertoryOutPO;
+;
 
 
 /**
@@ -15,40 +16,25 @@ import po.RepertoryPO;
  *
  */
 public interface RepertoryDataService {
-	/**
-	 * 前置条件：无
-	 * 后置条件：按ID进行查找返回相应的RepertoryPO结果
-	 * @param 	id
-	 * @return 	相应的RepertoryPO结果
+	/**仓库管理人员根据中转中心到达单进行入库管理
+	 * @param 	入库单
+	 * @return	入库是否成功
 	 */
-	public RepertoryPO find(String id) throws RemoteException;
-	/**
-	 * 前置条件：不存在同样的RepertoryPO
-	 * 后置条件：在数据库中增加RepertoryPO结果
-	 * @param 	RepertoryVO
+	public boolean inputRepertory(RepertoryInPO repertoryIn);
+	
+	/**仓库管理人员执行出库管理，生成出库单 同时从库存里删除信息
+	 * @param 	出库单
+	 * @return	出库是否成功
 	 */
-	public void insert(RepertoryPO repertory) throws RemoteException;
-	/**
-	 * 前置条件：存在同样id的RepertoryPO
-	 * 后置条件：在数据库中删除对应的RepertoryPO
-	 * @param 	RepertoryVO
+	public boolean outputRepertory(RepertoryOutPO repertoryOut);
+	
+	/**仓库管理人员进行查看库存操作
+	 * @param	时间段
+	 * @return	库存查看\库存盘点
 	 */
-	public void delete(RepertoryPO repertory) throws RemoteException;
-	/**
-	 * 前置条件：存在同样id的RepertoryPO
-	 * 后置条件：在数据库中更新对应的RepertoryPO
-	 * @param 	RepertoryVO
-	 */
-	public void update(RepertoryPO repertory) throws RemoteException;
-	/**
-	 * 前置条件：无
-	 * 后置条件：更新数据库
-	 */
-	public void init() throws RemoteException;
-	/**
-	 * 前置条件：无
-	 * 后置条件：结束使用
-	 */
-	public void finish() throws RemoteException;
+	public RepertoryInfoPO  showRepertory(String start_time,String end_time);
+	
+
+	//暂无 待修改
 
 }

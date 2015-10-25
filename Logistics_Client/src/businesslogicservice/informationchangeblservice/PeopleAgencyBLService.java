@@ -12,9 +12,8 @@ import businesslogic.utilitybl.ResultMessage;
 import vo.AgencyVO;
 
 public interface PeopleAgencyBLService {
+	
 	/**总经理进行的人员工资调整
-	 * 前置条件：开始了人员工资调整任务
-	 * 后置条件：相关人员有了新的工资方案
 	 * @param 要调整的用户编号
 	 * @param 新的工资方案
 	 * @return	调整是否成功

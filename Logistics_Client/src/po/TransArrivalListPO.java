@@ -7,6 +7,6 @@ package po;
 
 import java.io.Serializable;
 
-public class TransferCentreRecievelistPO extends ListPO implements Serializable{
+public class TransArrivalListPO extends ListPO implements Serializable{
 	boolean isInRepertory=false;
 }

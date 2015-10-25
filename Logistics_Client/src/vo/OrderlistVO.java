@@ -5,9 +5,9 @@
  */
 package vo;
 
-public class OrderlistVO extends ListVO{
+public class OrderListVO extends ListVO{
 	String id;
-	public OrderlistVO(String id){
+	public OrderListVO(String id){
 		this.id=id;
 	}
 	public boolean print(){
