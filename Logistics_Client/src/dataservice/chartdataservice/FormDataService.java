@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import po.ListPO;
 import po.MoneyInformationListPO;
-import vo.MoneyInfomationListVO;
+import vo.MoneyInformationListVO;
 
 
 /**

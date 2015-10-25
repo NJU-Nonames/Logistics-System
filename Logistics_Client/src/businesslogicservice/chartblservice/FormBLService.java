@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import businesslogic.utilitybl.ChartType;
 import vo.ListVO;
-import vo.MoneyInfomationListVO;
+import vo.MoneyInformationListVO;
 
 
 
@@ -36,7 +36,7 @@ public interface FormBLService {
 	 * @param end_day
 	 * @return 返回成本收益MoneyInfomationListVO
 	 */
-	public ArrayList<MoneyInfomationListVO> getCostandBenefitChart(String start_day, String end_day);
+	public ArrayList<MoneyInformationListVO> getCostandBenefitChart(String start_day, String end_day);
 	
 	/**
 	 * 该方法需要返回查看日期内的所有付款信息与收款信息

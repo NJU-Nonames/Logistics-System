@@ -7,14 +7,27 @@ import java.awt.List;
  * @author 这菜咸了
  *
  */
-public class MoneyInfomationListVO extends List{
+public class MoneyInformationListVO extends List{
 	
-	private String time;//成本收益日期
-	private double moneyIn;//当日收入
-	private double moneyOut;//当日支出
-	private double profit;//当日利润
+	/**
+	 * 成本收益日期
+	 */
+	private String time;
+	/**
+	 * 当日收入
+	 */
+	private double moneyIn;
+	/**
+	 * 当日支出
+	/**
+	 */
+	private double moneyOut;	
+	/**
+	 * 当日利润
+	 */
+	private double profit;
 	
-	public MoneyInfomationListVO(String time, double moneyIn, double moneyOut,double profit)
+	public MoneyInformationListVO(String time, double moneyIn, double moneyOut,double profit)
 	 {
 		super();
 		this.time = time;

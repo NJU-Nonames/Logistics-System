@@ -7,9 +7,18 @@ package vo;
 
 public class BankAccountVO {
 	
-	private String name;//账户名称
-	private String number;//账户账号
-	private double money;//账户余额
+	/**
+	 * 用户名
+	 */
+	private String name;
+	/**
+	 * 账户账号
+	 */
+	private String number;
+	/**
+	 * 用户余额
+	 */
+	private double money;
 	
 	public String getNumber() {
 		return number;

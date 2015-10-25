@@ -5,6 +5,32 @@
  */
 package vo;
 
+import java.util.ArrayList;
+
 public class AgencyVO {
+	
+	/**
+	 * 机构编号
+	 */
+	private String AgencyNum;
+	
+	/**
+	 * 机构中人员信息
+	 */
+	private ArrayList<StaffVO> staffList;
+
+	public AgencyVO(String agencyNum, ArrayList<StaffVO> staffList) {
+		super();
+		AgencyNum = agencyNum;
+		this.staffList = staffList;
+	}
+
+	public String getAgencyNum() {
+		return AgencyNum;
+	}
+
+	public ArrayList<StaffVO> getStaffList() {
+		return staffList;
+	}
 
 }
