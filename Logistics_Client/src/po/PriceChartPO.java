@@ -2,7 +2,7 @@ package po;
 
 public class PriceChartPO {
 	/**
-	 * 货车每公里运费
+	 * 火车每公里运费
 	 */
 	private double train_kilo;
 	/**
