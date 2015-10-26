@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import po.UserPO;
 
-public interface UserDateService {
+public interface UserDataService {
 	
 	/** 
 	 * 用户登录功能 
@@ -54,7 +54,7 @@ public interface UserDateService {
 	 * 后置条件：在数据库中更新对应的UserPO
 	 * @param 	UserPO
 	 */
-	public void updata(UserPO user) throws RemoteException;
+	public void update(UserPO user) throws RemoteException;
 	
 	/**
 	 * 返回所用用户信息
