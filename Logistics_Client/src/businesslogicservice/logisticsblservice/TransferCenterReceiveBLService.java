@@ -8,14 +8,14 @@ package businesslogicservice.logisticsblservice;
 import businesslogic.utilitybl.ResultMessage;
 import vo.TransArrivalListVO;
 
-public interface TransferCentreRecieveBLService {
+public interface TransferCenterReceiveBLService {
 	
 	/**
 	 * 生成中转中心到达单
 	 * @param transArrivalList
 	 * @return
 	 */
-	public ResultMessage creatTransArrivalList(TransArrivalListVO transArrivalList);
+	public ResultMessage createTransArrivalList(TransArrivalListVO transArrivalList);
 	
 	
 	

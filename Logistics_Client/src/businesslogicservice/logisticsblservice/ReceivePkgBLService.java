@@ -9,7 +9,7 @@ import businesslogic.utilitybl.ResultMessage;
 import vo.OrderListVO;
 import vo.ReceiverVO;
 
-public interface ReceiverPkgBLService {
+public interface ReceivePkgBLService {
 	/**快递员进行的确定正在签收的订单的方法的接口
 	 * 前置条件：	开始一个签收任务
 	 * 后置条件：	系统寻找到要签收的订单的vo实体类，并显示

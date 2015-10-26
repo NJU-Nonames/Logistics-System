@@ -9,11 +9,13 @@ public class DeliverAndReceiveBLService_Stub implements DeliverAndReceiveBLServi
 
 	@Override
 	public ResultMessage createHallArrivalList(HallArrivalListVO hallArrivalList) {
+		System.out.println("创建成功");
 		return new ResultMessage(true, "创建成功");
 	}
 
 	@Override
 	public ResultMessage createDeliveringList(DeliveringListVO deliveringList) {
+		System.out.println("创建成功");
 		return new ResultMessage(true, "创建成功");
 	}
 
