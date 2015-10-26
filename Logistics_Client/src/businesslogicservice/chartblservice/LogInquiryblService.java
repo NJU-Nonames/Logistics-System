@@ -8,7 +8,7 @@ import vo.SystemLogVO;
  * @author 这菜咸了
  * 查看系统日志
  */
-public interface LogInquiryblService {
+public interface LogInquiryBLService {
 
 	
 	/**
