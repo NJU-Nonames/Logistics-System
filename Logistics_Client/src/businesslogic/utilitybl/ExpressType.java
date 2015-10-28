@@ -4,6 +4,6 @@ public enum ExpressType {
  
 	
 	ECONOMIC,//经济快递
-	STANDARD,//标准
+	STANDARD,//标准快递
 	EXPRESS//次晨特快
 }

@@ -5,6 +5,8 @@
  */
 package vo;
 
+import java.io.File;
+
 public class TruckVO {
 	/**
 	 * 车辆代号
@@ -19,19 +21,25 @@ public class TruckVO {
 	/**
 	 * 服役时间
 	 */
-	private String serviceTimeLimit;
+	private String serviceTime;
+	
+	/**
+	 * 下次检修时间
+	 */
+	private String checkTime;
 	
 	
 	/**
 	 * 
 	 * @param vehiclecode
 	 * @param platenumber
-	 * @param serviceTimeLimit
+	 * @param serviceTime
 	 */
-	public TruckVO(String vehiclecode,String platenumber,String serviceTimeLimit){
+	public TruckVO(String vehiclecode,String platenumber,String serviceTime,File picture,String checkTime){
 		this.vehiclecode = vehiclecode;
 		this.platenumber = platenumber;
-		this.serviceTimeLimit =serviceTimeLimit;
+		this.serviceTime =serviceTime;
+		this.checkTime=checkTime;
 
 	}
 
@@ -43,8 +51,14 @@ public class TruckVO {
 		return platenumber;
 	}
 
-	public String getServiceTimeLimit() {
-		return serviceTimeLimit;
+	public String getServiceTime() {
+		return serviceTime;
+	}
+	public String getCheckTime(){
+		return checkTime;
+	}
+	public void setCheckTime(String checkTime){
+		this.checkTime=checkTime;
 	}
 	
 

@@ -24,19 +24,25 @@ public class TruckPO implements Serializable{
 	/**
 	 * 服役时间
 	 */
-	private String serviceTimeLimit;
+	private String serviceTime;
+	
+	/**
+	 * 下次检修时间
+	 */
+	private String checkTime;
 	
 	
 	/**
 	 * 
 	 * @param vehiclecode
 	 * @param platenumber
-	 * @param serviceTimeLimit
+	 * @param serviceTime
 	 */
-	public TruckPO(String vehiclecode,String platenumber,String serviceTimeLimit,File picture){
+	public TruckPO(String vehiclecode,String platenumber,String serviceTime,File picture,String checkTime){
 		this.vehiclecode = vehiclecode;
 		this.platenumber = platenumber;
-		this.serviceTimeLimit =serviceTimeLimit;
+		this.serviceTime =serviceTime;
+		this.checkTime=checkTime;
 
 	}
 
@@ -48,8 +54,14 @@ public class TruckPO implements Serializable{
 		return platenumber;
 	}
 
-	public String getServiceTimeLimit() {
-		return serviceTimeLimit;
+	public String getServiceTime() {
+		return serviceTime;
+	}
+	public String getCheckTime(){
+		return checkTime;
+	}
+	public void setCheckTime(String checkTime){
+		this.checkTime=checkTime;
 	}
 	
 

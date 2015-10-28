@@ -14,13 +14,13 @@ public class GoodsInfoPO {
 	/**
 	 * 货物出发地
 	 */
-	private String departurePlace;
+//	private String departurePlace;
 
 	public GoodsInfoPO(String barcode, String state, String departurePlace) {
 		super();
 		this.barcode = barcode;
 		this.state = state;
-		this.departurePlace = departurePlace;
+//		this.departurePlace = departurePlace;
 	}
 
 	public String getBarcode() {
@@ -31,7 +31,7 @@ public class GoodsInfoPO {
 		return state;
 	}
 
-	public String getDeparturePlace() {
-		return departurePlace;
-	}
+//	public String getDeparturePlace() {
+//		return departurePlace;
+//	}
 }
