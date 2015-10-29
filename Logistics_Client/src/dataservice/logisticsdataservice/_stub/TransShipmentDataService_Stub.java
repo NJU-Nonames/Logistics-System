@@ -17,7 +17,7 @@ public class TransShipmentDataService_Stub implements TransShipmentDataService{
 	/* （非 Javadoc）
 	 * @see dataservice.logisticsdataservice.TransShipmentDataService#createShiplist(po.TransShipmentListPO)
 	 */
-	public boolean createShiplist(TransShipmentListPO transShipment) {
+	public boolean addShiplist(TransShipmentListPO transShipment) {
 		System.out.println("创建成功！");
 		return true;
 	}

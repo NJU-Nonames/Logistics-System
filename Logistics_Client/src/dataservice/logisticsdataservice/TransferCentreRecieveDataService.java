@@ -10,5 +10,5 @@ public interface TransferCentreRecieveDataService {
 	 * @param transArrivalList
 	 * @return
 	 */
-	public boolean creatTransArrivalList(TransArrivalListPO transArrivalList);
+	public boolean addTransArrivalList(TransArrivalListPO transArrivalList);
 }

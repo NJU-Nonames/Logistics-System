@@ -9,14 +9,14 @@ import businesslogicservice.logisticsblservice.RepertoryManageBLService;
 public class RepertoryManageBLService_Stub implements RepertoryManageBLService{
 
 	@Override
-	public ResultMessage inputRepertory(RepertoryInVO repertoryIn) {
+	public ResultMessage createInputRepertory(RepertoryInVO repertoryIn) {
 		System.out.println("创建成功");
 		
 		return new ResultMessage(true,"input succeed");
 	}
 
 	@Override
-	public ResultMessage outputRepertory(RepertoryOutVO repertoryOut) {
+	public ResultMessage createOutputRepertory(RepertoryOutVO repertoryOut) {
 		System.out.println("创建成功");
 		
 		return new ResultMessage(true,"output succeed");

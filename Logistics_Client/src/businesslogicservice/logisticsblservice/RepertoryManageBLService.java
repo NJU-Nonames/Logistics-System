@@ -18,13 +18,13 @@ public interface RepertoryManageBLService {
 	 * @param 	入库单
 	 * @return	入库是否成功
 	 */
-	public ResultMessage inputRepertory(RepertoryInVO repertoryIn);
+	public ResultMessage createInputRepertory(RepertoryInVO repertoryIn);
 	
 	/**仓库管理人员执行出库管理
 	 * @param 	出库单
 	 * @return	出库是否成功
 	 */
-	public ResultMessage outputRepertory(RepertoryOutVO repertoryOut);
+	public ResultMessage createOutputRepertory(RepertoryOutVO repertoryOut);
 	
 	/**仓库管理人员进行查看库存操作
 	 * @param	时间段

@@ -17,7 +17,7 @@ public class TransferCentreRecieveDataService_Stub implements TransferCentreReci
 	/* （非 Javadoc）
 	 * @see dataservice.logisticsdataservice.TransferCentreRecieveDataService#creatTransArrivalList(po.TransArrivalListPO)
 	 */
-	public boolean creatTransArrivalList(TransArrivalListPO transArrivalList) {
+	public boolean addTransArrivalList(TransArrivalListPO transArrivalList) {
 		System.out.println("创建成功！");
 		return true;
 	}

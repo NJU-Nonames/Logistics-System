@@ -13,6 +13,6 @@ import dataservice.logisticsdataservice.TransShipmentDataService;
  */
 public class TransShipmentDataService_Driver {
 	public void drive(TransShipmentDataService transShipmentDataService){
-		transShipmentDataService.createShiplist(null);
+		transShipmentDataService.addShiplist(null);
 	}
 }

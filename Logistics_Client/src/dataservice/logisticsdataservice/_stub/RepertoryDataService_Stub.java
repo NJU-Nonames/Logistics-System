@@ -19,7 +19,7 @@ public class RepertoryDataService_Stub implements RepertoryDataService{
 	/* （非 Javadoc）
 	 * @see dataservice.logisticsdataservice.RepertoryDataService#inputRepertory(po.RepertoryInPO)
 	 */
-	public boolean inputRepertory(RepertoryInPO repertoryIn) {
+	public boolean addInputRepertory(RepertoryInPO repertoryIn) {
 		System.out.println("创建成功！");
 		return true;
 	}
@@ -27,7 +27,7 @@ public class RepertoryDataService_Stub implements RepertoryDataService{
 	/* （非 Javadoc）
 	 * @see dataservice.logisticsdataservice.RepertoryDataService#outputRepertory(po.RepertoryOutPO)
 	 */
-	public boolean outputRepertory(RepertoryOutPO repertoryOut) {
+	public boolean addOutputRepertory(RepertoryOutPO repertoryOut) {
 		System.out.println("创建成功！");
 		return true;
 	}

@@ -17,7 +17,7 @@ public class SendingPkgDataService_Stub implements SendingPkgDataService{
 	/* （非 Javadoc）
 	 * @see dataservice.logisticsdataservice.SendingPkgDataService#InputOrderList(po.OrderListPO)
 	 */
-	public boolean InputOrderList(OrderListPO orderList) {
+	public boolean addOrderList(OrderListPO orderList) {
 		System.out.println("创建成功！");
 		return true;
 	}

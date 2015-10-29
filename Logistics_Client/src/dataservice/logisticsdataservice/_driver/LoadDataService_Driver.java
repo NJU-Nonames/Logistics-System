@@ -15,6 +15,6 @@ import dataservice.logisticsdataservice.LoadDataService;
 public class LoadDataService_Driver{
 	public void drive(LoadDataService loadDataService){
 		loadDataService.addLoad(null);
-		loadDataService.createLoadlist(null);
+		loadDataService.addLoadlist(null);
 	}
 }

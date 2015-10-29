@@ -9,12 +9,12 @@ public interface DeliverAndReceiveDataService {
 	 * @param hallArrivalList
 	 * @return
 	 */
-	public boolean createHallArrivalList(HallArrivalListPO hallArrivalList);
+	public boolean addHallArrivalList(HallArrivalListPO hallArrivalList);
 	
 	/**
 	 * 营业厅生成派件单
 	 * @param deliveringList
 	 * @return
 	 */
-	public boolean createDeliveringList (DeliveringListPO deliveringList);
+	public boolean addDeliveringList (DeliveringListPO deliveringList);
 }

@@ -9,5 +9,5 @@ public interface SendingPkgDataService {
 	 * @param orderList
 	 * @return
 	 */
-	public boolean InputOrderList(OrderListPO orderList);
+	public boolean addOrderList(OrderListPO orderList);
 }

@@ -14,6 +14,6 @@ import dataservice.logisticsdataservice.TransferCentreRecieveDataService;
  */
 public class TransferCentreRecieveDataService_Driver {
 	public void drive(TransferCentreRecieveDataService transferCentreRecieveDataService){
-		transferCentreRecieveDataService.creatTransArrivalList(null);
+		transferCentreRecieveDataService.addTransArrivalList(null);
 	}
 }

@@ -16,8 +16,8 @@ import dataservice.logisticsdataservice.RepertoryDataService;
  */
 public class RepertoryDataService_Driver {
 	public void drive(RepertoryDataService repertoryDataService){
-		repertoryDataService.inputRepertory(null);
-		repertoryDataService.outputRepertory(null);
+		repertoryDataService.addInputRepertory(null);
+		repertoryDataService.addOutputRepertory(null);
 		repertoryDataService.showRepertory(null, null);
 	}
 }

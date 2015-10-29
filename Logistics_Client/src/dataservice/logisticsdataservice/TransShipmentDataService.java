@@ -9,5 +9,5 @@ public interface TransShipmentDataService {
 	 * @param transShipment
 	 * @return
 	 */
-	public boolean createShiplist(TransShipmentListPO transShipment);
+	public boolean addShiplist(TransShipmentListPO transShipment);
 }

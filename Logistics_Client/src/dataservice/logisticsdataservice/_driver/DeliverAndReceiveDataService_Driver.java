@@ -13,7 +13,7 @@ import dataservice.logisticsdataservice.DeliverAndReceiveDataService;
  */
 public class DeliverAndReceiveDataService_Driver {
 	public void drive(DeliverAndReceiveDataService deliverAndReceiveDataService){
-		deliverAndReceiveDataService.createDeliveringList(null);
-		deliverAndReceiveDataService.createHallArrivalList(null);
+		deliverAndReceiveDataService.addDeliveringList(null);
+		deliverAndReceiveDataService.addHallArrivalList(null);
 	}
 }

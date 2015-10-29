@@ -27,7 +27,7 @@ public class LoadDataService_Stub implements LoadDataService{
 	/* （非 Javadoc）
 	 * @see dataservice.logisticsdataservice.LoadDataService#createLoadlist(po.LoadListPO)
 	 */
-	public boolean createLoadlist(LoadListPO loadListPO) {
+	public boolean addLoadlist(LoadListPO loadListPO) {
 		System.out.println("创建成功！");
 		return true;
 	}

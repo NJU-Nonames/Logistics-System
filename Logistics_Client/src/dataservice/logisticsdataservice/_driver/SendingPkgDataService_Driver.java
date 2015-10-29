@@ -14,6 +14,6 @@ import dataservice.logisticsdataservice.SendingPkgDataService;
  */
 public class SendingPkgDataService_Driver {
 	public void drive(SendingPkgDataService sendingPkgDataService){
-		sendingPkgDataService.InputOrderList(null);
+		sendingPkgDataService.addOrderList(null);
 	}
 }
