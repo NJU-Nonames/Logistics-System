@@ -22,7 +22,7 @@ public class TruckPO implements Serializable{
 	private String platenumber;
 	
 	/**
-	 * 服役时间
+	 * 服役期限
 	 */
 	private String serviceTimeLimit;
 	

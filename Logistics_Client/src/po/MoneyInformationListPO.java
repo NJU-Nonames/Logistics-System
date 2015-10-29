@@ -14,18 +14,14 @@ public class MoneyInformationListPO extends ListPO{
 	/**
 	 */
 	private double moneyOut;	
-	/**
-	 * 当日利润
-	 */
-	private double profit;
 	
-	public MoneyInformationListPO(String time, double moneyIn, double moneyOut,double profit)
+	
+	public MoneyInformationListPO(String time, double moneyIn, double moneyOut)
 	 {
 		super();
 		this.time = time;
 		this.moneyIn = moneyIn;
 		this.moneyOut = moneyOut;
-		this.profit=profit;
 	}
 	public String getTime() {
 		return time;
@@ -52,11 +48,8 @@ public class MoneyInformationListPO extends ListPO{
 	}
 
 	public double getProfit() {
-		return profit;
+		return moneyIn-moneyOut;
 	}
 
-	public void setProfit(double profit) {
-		this.profit = profit;
-	}
-	
+
 }

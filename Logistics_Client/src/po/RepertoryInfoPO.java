@@ -30,15 +30,15 @@ public class RepertoryInfoPO implements Serializable{
 	/**
 	 * 库存情况 
 	 */
-	private String Repertory[][][][][][];
+	private String repertory[][][][][];
 
 	public RepertoryInfoPO(int repertory_in_num, int repertory_out_num,
-			int total_Num, String[][][][][][] repertory) {
+			int total_Num, String[][][][][] repertory) {
 		super();
 		this.repertory_in_num = repertory_in_num;
 		this.repertory_out_num = repertory_out_num;
 		this.total_Num = total_Num;
-		Repertory = repertory;
+		this.repertory = repertory;
 	}
 
 	public int getRepertory_in_num() {
@@ -53,8 +53,8 @@ public class RepertoryInfoPO implements Serializable{
 		return total_Num;
 	}
 
-	public String[][][][][][] getRepertory() {
-		return Repertory;
+	public String[][][][][] getRepertory() {
+		return repertory;
 	}
 	
 	

@@ -65,5 +65,23 @@ public class PriceChartPO {
 		this.economic = economic;
 		this.express = express;
 	}
+	public void setTrain_kilo(double train_kilo){
+		this.train_kilo=train_kilo;
+	}
+	public void setTruck_kilo(double truck_kilo){
+		this.truck_kilo=truck_kilo;
+	}
+	public void setAirplane_kilo(double airplane_kilo){
+		this.airplane_kilo=airplane_kilo;
+	}
+	public void setStandard(double standard){
+		this.standard=standard;
+	}
+	public void setEconomic(double economic){
+		this.economic=economic;
+	}
+	public void setExpress(double express){
+		this.express=express;
+	}
 	
 }

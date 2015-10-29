@@ -25,7 +25,7 @@ public class RepertoryInfoVO {
 	/**
 	 * 货物情况表
 	 */
-	private String RepertoryList [][][][][];
+	private String repertoryList [][][][][];
 	public int getTotal_num() {
 		return total_num;
 	}
@@ -36,7 +36,7 @@ public class RepertoryInfoVO {
 		return in_Num;
 	}
 	public String[][][][][] getRepertoryList() {
-		return RepertoryList;
+		return repertoryList;
 	}
 	public RepertoryInfoVO(int total_num, int out_Num, int in_Num,
 			String[][][][][] repertoryList) {
@@ -44,7 +44,7 @@ public class RepertoryInfoVO {
 		this.total_num = total_num;
 		this.out_Num = out_Num;
 		this.in_Num = in_Num;
-		RepertoryList = repertoryList;
+		this.repertoryList = repertoryList;
 	}
 
 }

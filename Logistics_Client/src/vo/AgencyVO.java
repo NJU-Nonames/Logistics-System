@@ -7,30 +7,39 @@ package vo;
 
 import java.util.ArrayList;
 
+import po.StaffPO;
+
 public class AgencyVO {
-	
+	/**
+	 * 机构名称
+	 */
+	private String agencyName;
 	/**
 	 * 机构编号
 	 */
-	private String AgencyNum;
+	private String agencyNum;
 	
 	/**
 	 * 机构中人员信息
 	 */
-	private ArrayList<StaffVO> staffList;
+	private ArrayList<StaffPO> staffList;
 
-	public AgencyVO(String agencyNum, ArrayList<StaffVO> staffList) {
+	public AgencyVO(String agencyName,String agencyNum, ArrayList<StaffPO> staffList) {
 		super();
-		AgencyNum = agencyNum;
+		this.agencyName=agencyName;
+		this.agencyNum = agencyNum;
 		this.staffList = staffList;
 	}
 
 	public String getAgencyNum() {
-		return AgencyNum;
+		return agencyNum;
 	}
 
-	public ArrayList<StaffVO> getStaffList() {
+	public ArrayList<StaffPO> getStaffList() {
 		return staffList;
+	}
+	public String getAgencyName(){
+		return agencyName;
 	}
 
 }

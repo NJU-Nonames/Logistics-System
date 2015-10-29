@@ -16,27 +16,35 @@ import java.util.ArrayList;
  */
 public class AgencyPO implements Serializable{
 	/**
+	 * 机构名称
+	 */
+	private String agencyName;
+	/**
 	 * 机构编号
 	 */
-	private String AgencyNum;
+	private String agencyNum;
 	
 	/**
 	 * 机构中人员信息
 	 */
 	private ArrayList<StaffPO> staffList;
 
-	public AgencyPO(String agencyNum, ArrayList<StaffPO> staffList) {
+	public AgencyPO(String agencyName,String agencyNum, ArrayList<StaffPO> staffList) {
 		super();
-		AgencyNum = agencyNum;
+		this.agencyName=agencyName;
+		this.agencyNum = agencyNum;
 		this.staffList = staffList;
 	}
 
 	public String getAgencyNum() {
-		return AgencyNum;
+		return agencyNum;
 	}
 
 	public ArrayList<StaffPO> getStaffList() {
 		return staffList;
+	}
+	public String getAgencyName(){
+		return agencyName;
 	}
 
 }

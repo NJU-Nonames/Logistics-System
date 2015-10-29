@@ -32,9 +32,7 @@ public class BankAccountPO implements Serializable{
 	public double getMoney() {
 		return money;
 	}
-	public void setMoney(double money) {
-		this.money = money;
-	}
+
 	public BankAccountPO(String name,String number, double money) {
 		super();
 		this.number=number;

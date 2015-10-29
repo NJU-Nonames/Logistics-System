@@ -20,17 +20,23 @@ public class UserVO {
 	 * 权限
 	 */
 	private String authority;
+	/**
+	 * 职位
+	 */
+	private String position;
 	
 	/**
 	 * 构造方法
 	 * @param userNum
 	 * @param initialPassword
 	 * @param authority
+	 * @param position
 	 */
-	public UserVO(String userNum,String initialPassword,String authority){
+	public UserVO(String userNum,String initialPassword,String position,String authority){
 		this.userNum = userNum;
 		this.initialPassword = initialPassword;
 		this.authority = authority;
+		this.position=position;
 	}
 
     public String getUserNum() {
@@ -44,6 +50,9 @@ public class UserVO {
     public String getAuthority() {
         return authority;
     }
+    public String getPosition(){
+    	return position;
+    }
 
 	public void setInitialPassword(String initialPassword) {
 		this.initialPassword = initialPassword;
@@ -52,6 +61,8 @@ public class UserVO {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-    
+	public void setPosition(String position){
+		this.position=position;
+	}
     
 }
