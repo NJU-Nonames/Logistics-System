@@ -32,6 +32,10 @@ public class MoneyOutListPO extends ListPO implements Serializable{
 	 */
 	private String accountNum;
 	
+	/**
+	 * 付款方式
+	 */
+	private String paymentMethod;
 	
 	/**
 	 * 构造方法
@@ -39,13 +43,15 @@ public class MoneyOutListPO extends ListPO implements Serializable{
 	 * @param money
 	 * @param payer
 	 * @param accountNum
+	 * @param paymentMethod
 	 */
-	public MoneyOutListPO(String date,double money,String payer,String accountNum
-			){
+	public MoneyOutListPO(String date,double money,String payer,String accountNum,
+			String paymentMethod){
 		this.date = date;
 		this.money = money;
 		this.payer = payer;
 		this.accountNum = accountNum;
+		this.paymentMethod = paymentMethod;
 	}
 
 	public String getDate() {
@@ -64,4 +70,7 @@ public class MoneyOutListPO extends ListPO implements Serializable{
 		return accountNum;
 	}
 
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
 }

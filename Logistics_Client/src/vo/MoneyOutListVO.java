@@ -28,6 +28,10 @@ public class MoneyOutListVO extends ListVO{
 	 */
 	private String accountNum;
 	
+	/**
+	 * 付款方式
+	 */
+	private String paymentMethod;
 	
 	/**
 	 * 构造方法
@@ -35,13 +39,15 @@ public class MoneyOutListVO extends ListVO{
 	 * @param money
 	 * @param payer
 	 * @param accountNum
+	 * @param paymentMethod
 	 */
-	public MoneyOutListVO(String date,double money,String payer,String accountNum
-			){
+	public MoneyOutListVO(String date,double money,String payer,String accountNum,
+			String paymentMethod){
 		this.date = date;
 		this.money = money;
 		this.payer = payer;
 		this.accountNum = accountNum;
+		this.paymentMethod = paymentMethod;
 	}
 
 	public String getDate() {
@@ -60,4 +66,7 @@ public class MoneyOutListVO extends ListVO{
 		return accountNum;
 	}
 
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
 }

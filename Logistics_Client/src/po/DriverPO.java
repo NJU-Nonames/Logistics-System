@@ -55,8 +55,8 @@ public class DriverPO implements Serializable{
 	 * @param sex
 	 * @param drvingLicencePeriod
 	 */
-     public DriverPO(String driverNum,String name,String sex,String birthday,
-    		 String IDNum,String phoneNum,String drvingLicencePeriod){
+     public DriverPO(String driverNum,String name,String birthday,
+    		 String IDNum,String phoneNum,String sex,String drvingLicencePeriod){
     	 this.driverNum = driverNum;
     	 this.name = name;
     	 this.IDNum = IDNum;

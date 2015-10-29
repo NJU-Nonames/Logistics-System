@@ -22,15 +22,21 @@ public class UserPO implements Serializable{
 	 */
 	private String initialPassword;
 	
+	/**
+	 * 权限
+	 */
+	private String authority;
 	
 	/**
 	 * 构造方法
 	 * @param userNum
 	 * @param initialPassword
+	 * @param authority
 	 */
-	public UserPO(String userNum,String initialPassword){
+	public UserPO(String userNum,String initialPassword,String authority){
 		this.userNum = userNum;
 		this.initialPassword = initialPassword;
+		this.authority = authority;
 	}
 
     public String getUserNum() {
@@ -41,9 +47,16 @@ public class UserPO implements Serializable{
         return initialPassword;
     }
 
+    public String getAuthority() {
+        return authority;
+    }
+
 	public void setInitialPassword(String initialPassword) {
 		this.initialPassword = initialPassword;
 	}
 
-
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+    
 }
