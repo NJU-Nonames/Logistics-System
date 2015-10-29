@@ -21,7 +21,6 @@ public class CheckBLService_Stub implements CheckBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.CheckBLService#getAll(businesslogic.utilitybl.DocType, java.lang.String)
 	 */
-	@Override
 	public ArrayList<ListVO> getAll(DocType docType, String time) {
 		// TODO 自动生成的方法存根
 		System.out.println("收取成功");
@@ -33,7 +32,6 @@ public class CheckBLService_Stub implements CheckBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.CheckBLService#passAllDoc(businesslogic.utilitybl.DocType, java.lang.String)
 	 */
-	@Override
 	public boolean passAllDoc(DocType docType, String time) {
 		// TODO 自动生成的方法存根
 		System.out.println("通过成功");
@@ -43,7 +41,6 @@ public class CheckBLService_Stub implements CheckBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.CheckBLService#passSelectedDoc(businesslogic.utilitybl.DocType, java.util.ArrayList)
 	 */
-	@Override
 	public boolean passSelectedDoc(DocType docType, ArrayList<ListVO> listVO) {
 		// TODO 自动生成的方法存根
 		System.out.println("通过成功");
@@ -53,7 +50,6 @@ public class CheckBLService_Stub implements CheckBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.CheckBLService#failSelectedDoc(businesslogic.utilitybl.DocType, java.util.ArrayList)
 	 */
-	@Override
 	public boolean failSelectedDoc(DocType docType, ArrayList<ListVO> listVO) {
 		// TODO 自动生成的方法存根
 		System.out.println("选择失败");
@@ -63,7 +59,6 @@ public class CheckBLService_Stub implements CheckBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.CheckBLService#ChangeDoc(businesslogic.utilitybl.DocType, vo.ListVO)
 	 */
-	@Override
 	public boolean ChangeDoc(DocType docType, ListVO listVO) {
 		// TODO 自动生成的方法存根
 		System.out.println("改变成功");

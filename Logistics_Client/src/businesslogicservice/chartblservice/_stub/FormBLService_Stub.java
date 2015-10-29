@@ -18,7 +18,6 @@ public class FormBLService_Stub implements FormBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.FormBLService#isFormatRight(java.lang.String, java.lang.String, businesslogic.utilitybl.ChartType)
 	 */
-	@Override
 	public boolean isFormatRight(String start_day, String end_day,
 			ChartType chartType) {
 		// TODO 自动生成的方法存根
@@ -29,20 +28,18 @@ public class FormBLService_Stub implements FormBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.FormBLService#getCostandBenefitChart(java.lang.String, java.lang.String)
 	 */
-	@Override
 	public ArrayList<MoneyInformationListVO> getCostandBenefitChart(
 			String start_day, String end_day) {
 		// TODO 自动生成的方法存根
 		System.out.println("获得成功");
 		ArrayList<MoneyInformationListVO> list = new ArrayList<MoneyInformationListVO>();
-		list.add(new MoneyInformationListVO(null, 0, 0, 0));
+		list.add(new MoneyInformationListVO(null, 0, 0));
 		return list;
 	}
 
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.FormBLService#getBusinessCircumstanceChart(java.lang.String, java.lang.String)
 	 */
-	@Override
 	public ArrayList<ListVO> getBusinessCircumstanceChart(String start_day,
 			String end_day) {
 		// TODO 自动生成的方法存根
@@ -55,7 +52,6 @@ public class FormBLService_Stub implements FormBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.FormBLService#exportChart(java.lang.String, java.lang.String, businesslogic.utilitybl.ChartType, java.lang.String)
 	 */
-	@Override
 	public void exportChart(String strat_day, String end_day,
 			ChartType chartType, String path) {
 		// TODO 自动生成的方法存根

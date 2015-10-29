@@ -18,9 +18,9 @@ public void drive(UserDataService userDataService){
 	try{
 	userDataService.findonId("admin");
 	userDataService.findonAdmin("张三");
-	userDataService.insert(new UserPO("admin","admin","高"));
-	userDataService.delete(new UserPO("admin","admin","高"));
-	userDataService.update(new UserPO("admin","admin","高"));
+	userDataService.insert(new UserPO("admin","admin","高", null));
+	userDataService.delete(new UserPO("admin","admin","高", null));
+	userDataService.update(new UserPO("admin","admin","高", null));
 	userDataService.show();
 	}
 	catch(RemoteException e){

@@ -11,7 +11,7 @@ public class SettlementManageDataService_Stub implements SettlementManageDataSer
 			String Hallid) {
 		// TODO 自动生成的方法存根
 		ArrayList<MoneyOutListPO> list=new ArrayList<MoneyOutListPO>();
-		list.add(new MoneyOutListPO(Hallid, 0, Hallid, Hallid, Hallid));
+		list.add(new MoneyOutListPO(Hallid, 0, Hallid, Hallid, Hallid, Hallid));
 		return list;
 	}
 

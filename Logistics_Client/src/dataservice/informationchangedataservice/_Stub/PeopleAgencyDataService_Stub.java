@@ -16,7 +16,7 @@ public class PeopleAgencyDataService_Stub implements PeopleAgencyDataService{
 	public ArrayList<AgencyPO> showAll() throws RemoteException {
 		// TODO 自动生成的方法存根
 		ArrayList<AgencyPO> list=new ArrayList<AgencyPO>();
-		list.add(new AgencyPO(null, null));
+		list.add(new AgencyPO(null, null, null));
 		return list;
 	}
 
@@ -37,7 +37,7 @@ public class PeopleAgencyDataService_Stub implements PeopleAgencyDataService{
 
 	public AgencyPO find(String id) throws RemoteException {
 		// TODO 自动生成的方法存根
-		return new AgencyPO(id, null);
+		return new AgencyPO(id, null, null);
 	}
 
 }

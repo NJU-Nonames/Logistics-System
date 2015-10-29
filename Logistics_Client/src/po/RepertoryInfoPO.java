@@ -33,12 +33,12 @@ public class RepertoryInfoPO implements Serializable{
 	private String repertory[][][][][];
 
 	public RepertoryInfoPO(int repertory_in_num, int repertory_out_num,
-			int total_Num, String[][][][][] repertory) {
+			int total_Num, String[][][][][] s) {
 		super();
 		this.repertory_in_num = repertory_in_num;
 		this.repertory_out_num = repertory_out_num;
 		this.total_Num = total_Num;
-		this.repertory = repertory;
+		this.repertory = s;
 	}
 
 	public int getRepertory_in_num() {

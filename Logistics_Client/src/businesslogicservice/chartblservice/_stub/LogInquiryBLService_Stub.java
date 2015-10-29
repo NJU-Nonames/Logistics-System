@@ -19,7 +19,6 @@ public class LogInquiryBLService_Stub implements  LogInquiryBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.LogInquiryBLService#getLogInfo(java.lang.String)
 	 */
-	@Override
 	public ArrayList<SystemLogVO> getLogInfo(String time) {
 		// TODO 自动生成的方法存根
 		System.out.println("获得成功");
