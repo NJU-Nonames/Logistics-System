@@ -18,7 +18,6 @@ public class CostManagementBLService_Stub implements CostManagementBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.financeblservice.CostManagementBLService#createMoneyOutlist(vo.MoneyOutListVO)
 	 */
-	@Override
 	public ResultMessage createMoneyOutlist(MoneyOutListVO moneyOut) {
 		// TODO 自动生成的方法存根
 		System.out.println("创建成功");

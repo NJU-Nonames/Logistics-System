@@ -16,7 +16,6 @@ public class AccountBLService_Stub implements AccountBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.financeblservice.AccountBLService#login(java.lang.String, java.lang.String)
 	 */
-	@Override
 	public boolean login(String admin, String password) {
 		// TODO 自动生成的方法存根
 		System.out.println("添加成功");
@@ -26,7 +25,6 @@ public class AccountBLService_Stub implements AccountBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.financeblservice.AccountBLService#createCount(vo.BankAccountVO)
 	 */
-	@Override
 	public ResultMessage createCount(BankAccountVO countVo) {
 		// TODO 自动生成的方法存根
 		System.out.println("创建成功");
@@ -36,7 +34,6 @@ public class AccountBLService_Stub implements AccountBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.financeblservice.AccountBLService#removeCount(java.lang.String)
 	 */
-	@Override
 	public ResultMessage removeCount(String name) {
 		// TODO 自动生成的方法存根
 		System.out.println("删除成功");
@@ -46,7 +43,6 @@ public class AccountBLService_Stub implements AccountBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.financeblservice.AccountBLService#updadaCount(vo.BankAccountVO)
 	 */
-	@Override
 	public ResultMessage updadaCount(BankAccountVO countVo) {
 		// TODO 自动生成的方法存根
 		System.out.println("更新成功");
@@ -56,7 +52,6 @@ public class AccountBLService_Stub implements AccountBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.financeblservice.AccountBLService#searchCount(java.lang.String)
 	 */
-	@Override
 	public BankAccountVO searchCount(String keyword) {
 		// TODO 自动生成的方法存根
 		System.out.println("查找成功");
@@ -66,7 +61,6 @@ public class AccountBLService_Stub implements AccountBLService{
 	/* （非 Javadoc）
 	 * @see businesslogicservice.financeblservice.AccountBLService#show()
 	 */
-	@Override
 	public ArrayList<BankAccountVO> show() {
 		// TODO 自动生成的方法存根
 		System.out.println("显示成功");

@@ -9,7 +9,6 @@ import businesslogicservice.logisticsblservice.LoadBLService;
 
 public class LoadBLService_Stub implements LoadBLService{
 
-	@Override
 	public OrderListVO addLoad(String num) {
 		System.out.println("添加成功");
 		return new OrderListVO("wjw", "大街2-13号",
@@ -18,7 +17,6 @@ public class LoadBLService_Stub implements LoadBLService{
 				PkgState.RECEIVER_CENTER_ARRIVAL, 15.5, "100000");
 	}
 
-	@Override
 	public ResultMessage createLoadlist(LoadListVO loadListVO) {
 		System.out.println("创建成功");
 		return new ResultMessage(true,"创建成功");

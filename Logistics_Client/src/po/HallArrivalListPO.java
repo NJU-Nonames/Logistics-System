@@ -28,16 +28,16 @@ public class HallArrivalListPO {
 	/**
 	 * 货物托运条形码
 	 */
-	private String barCode;
+	private ArrayList<String> barCodes;
 
 	public HallArrivalListPO(String date, String transferNumber, String from, GoodsState state,
-			String barCode) {
+			ArrayList<String> barCodes) {
 		super();
 		this.date = date;
 		TransferNumber = transferNumber;
 		this.from = from;
 		this.state = state;
-		this.barCode = barCode;
+		this.barCodes = barCodes;
 	}
 
 	public String getDate() {
@@ -56,8 +56,8 @@ public class HallArrivalListPO {
 		return state;
 	}
 
-	public String getBarCodes() {
-		return barCode;
+	public ArrayList<String> getBarCodes() {
+		return barCodes;
 	}
 
 }

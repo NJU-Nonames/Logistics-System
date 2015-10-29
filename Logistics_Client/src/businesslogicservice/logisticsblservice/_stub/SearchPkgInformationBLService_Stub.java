@@ -7,7 +7,6 @@ import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
 
 public class SearchPkgInformationBLService_Stub implements SearchPkgInformationBLService{
 
-	@Override
 	public OrderListVO searchPkgInformation(String orderlistId) {
 		System.out.println("查找成功");
 		return new OrderListVO("wjw", "大街2-13号",

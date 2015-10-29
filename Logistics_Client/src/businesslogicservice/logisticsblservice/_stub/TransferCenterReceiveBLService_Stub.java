@@ -6,7 +6,6 @@ import businesslogicservice.logisticsblservice.TransferCenterReceiveBLService;
 
 public class TransferCenterReceiveBLService_Stub implements TransferCenterReceiveBLService{
 
-	@Override
 	public ResultMessage createTransArrivalList(
 			TransArrivalListVO transArrivalList) {
         System.out.println("创建成功");

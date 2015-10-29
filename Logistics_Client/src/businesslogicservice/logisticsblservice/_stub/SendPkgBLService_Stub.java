@@ -8,7 +8,6 @@ import businesslogicservice.logisticsblservice.SendPkgBLService;
 
 public class SendPkgBLService_Stub implements SendPkgBLService{
 
-	@Override
 	public OrderListVO createMoneyInformation(OrderListVO orderList) {
 		System.out.println("创建成功");
 		return new OrderListVO("wjw", "大街2-13号",
@@ -17,7 +16,6 @@ public class SendPkgBLService_Stub implements SendPkgBLService{
 				PkgState.RECEIVER_CENTER_ARRIVAL, 15.5, "100000");
 	}
 
-	@Override
 	public ResultMessage createOrderList(OrderListVO orderListVO) {
 		System.out.println("提交成功");
 		return new ResultMessage(true,"创建成功");

@@ -10,7 +10,6 @@ import businesslogicservice.logisticsblservice.ReceivePkgBLService;
 public class ReceivePkgBLService_Stub implements ReceivePkgBLService{
 	
 
-	@Override
 	public OrderListVO findOrderlist(String orderlistId) {
           System.out.println("查找成功");
 		return new OrderListVO("wjw", "大街2-13号",
@@ -19,7 +18,6 @@ public class ReceivePkgBLService_Stub implements ReceivePkgBLService{
 				PkgState.RECEIVER_CENTER_ARRIVAL, 15.5, orderlistId);
 	}
 
-	@Override
 	public ResultMessage confirmRecieve(ReceiverVO receiver) {
 		System.out.println("确认接收");
 		return new ResultMessage(true,"确认接收") ;
