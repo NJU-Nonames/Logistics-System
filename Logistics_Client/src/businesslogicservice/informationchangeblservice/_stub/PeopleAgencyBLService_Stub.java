@@ -66,7 +66,7 @@ public class PeopleAgencyBLService_Stub implements PeopleAgencyBLService{
 		// TODO 自动生成的方法存根
 		System.out.println("显示成功");
 		ArrayList<AgencyVO> list = new ArrayList<AgencyVO>();
-		list.add(new AgencyVO(null, null));
+		list.add(new AgencyVO(null, null, null));
 		return list;
 	}
 
@@ -77,7 +77,7 @@ public class PeopleAgencyBLService_Stub implements PeopleAgencyBLService{
 	public AgencyVO findAgency(String id) {
 		// TODO 自动生成的方法存根
 		System.out.println("寻找成功");
-		return new AgencyVO(null, null);
+		return new AgencyVO(null, null, null);
 	}
 
 }

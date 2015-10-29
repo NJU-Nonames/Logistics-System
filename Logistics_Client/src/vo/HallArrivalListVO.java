@@ -37,7 +37,7 @@ public class HallArrivalListVO {
 	private String barCode;
 
 	public HallArrivalListVO(String date, String transferNumber, String from, GoodsState state,
-			String barCode) {
+			ArrayList<String> list) {
 		super();
 		this.date = date;
 		TransferNumber = transferNumber;

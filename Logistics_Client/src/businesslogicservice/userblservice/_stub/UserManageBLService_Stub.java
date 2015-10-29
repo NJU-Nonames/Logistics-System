@@ -45,7 +45,7 @@ public class UserManageBLService_Stub implements UserManageBLService{
 	public ArrayList<UserVO> showAll() {
 		// TODO 自动生成的方法存根
 		ArrayList<UserVO> list = new ArrayList<UserVO>();
-		list.add(new UserVO(null, null, null));
+		list.add(new UserVO(null, null, null, null));
 		System.out.println("显示成功");
 		return list;
 		
@@ -56,14 +56,14 @@ public class UserManageBLService_Stub implements UserManageBLService{
 	public UserVO findonAdmin(String admin) {
 		// TODO 自动生成的方法存根
 		System.out.println("寻找成功");
-		return new UserVO(null, null, null);
+		return new UserVO(null, null, null, admin);
 	}
 
 
 	@Override
 	public UserVO findonId(String id) {
 		System.out.println("寻找成功");
-		return new UserVO(null, null, null);
+		return new UserVO(null, null, null, id);
 	}
 
 }
