@@ -1,10 +1,13 @@
 package presentation.mainui;
 
 
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
+
+import presentation.img.Img;
 
 public class MainPanel extends JPanel implements MouseListener{
 	
@@ -25,6 +28,11 @@ public class MainPanel extends JPanel implements MouseListener{
 		
 		//this.add(comp)
 		
+	}
+	
+	public void paint(Graphics g){
+		super.paint(g);
+		g.drawImage(Img.MAINICON, 0,0, mainFrame.getX(), mainFrame.getY(),  0,0, mainFrame.getX(), mainFrame.getY(), null);
 	}
 
 

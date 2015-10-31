@@ -40,7 +40,7 @@ public class MainFrame extends JFrame{
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		this.setIconImage(Img.ICON);
+		this.setIconImage(Img.MAINICON);
 	}
 
 }
