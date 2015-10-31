@@ -25,7 +25,7 @@ public interface FormDataService {
 	 * @param end_day
 	 * @return 只能是MonryInlistPO和MoneyOutlistPO的集合
 	 */
-	public ArrayList<ListPO> getBusinessCircumstanceChart(String start_day, String end_day);
+	public ArrayList<? super ListPO> getBusinessCircumstanceChart(String start_day, String end_day);
 	
 	/**
 	 * 前置条件： 财务人员或总经理选择查看成本收益表

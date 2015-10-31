@@ -5,6 +5,8 @@
  */
 package vo;
 
+import businesslogic.utilitybl.UserType;
+
 public class UserVO {
 	/**
 	 * 账号
@@ -23,7 +25,7 @@ public class UserVO {
 	/**
 	 * 职位
 	 */
-	private String position;
+	private UserType position;
 	
 	/**
 	 * 构造方法
@@ -32,7 +34,7 @@ public class UserVO {
 	 * @param authority
 	 * @param position
 	 */
-	public UserVO(String userNum,String initialPassword,String position,String authority){
+	public UserVO(String userNum,String initialPassword,UserType position,String authority){
 		this.userNum = userNum;
 		this.initialPassword = initialPassword;
 		this.authority = authority;
@@ -50,7 +52,7 @@ public class UserVO {
     public String getAuthority() {
         return authority;
     }
-    public String getPosition(){
+    public UserType getPosition(){
     	return position;
     }
 
@@ -61,7 +63,7 @@ public class UserVO {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-	public void setPosition(String position){
+	public void setPosition(UserType position){
 		this.position=position;
 	}
     

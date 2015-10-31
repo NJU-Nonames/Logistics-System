@@ -5,6 +5,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import presentation.img.Img;
+
 /**
  * @author 这菜咸了
  * 系统总main函数
@@ -25,6 +27,8 @@ public class MainFrame extends JFrame{
 		//remain updating
 		this.setTitle("物流系统大作业——叫什么名字队");
 		
+		this.setUndecorated(true);
+		
 		this.setSize(MAINFRAME_WIDTH,MAINFRAME_HIGHT);
 		//不可随意移动
 		this.setResizable(false);
@@ -35,6 +39,8 @@ public class MainFrame extends JFrame{
 		this.setVisible(true);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		this.setIconImage(Img.ICON);
 	}
 
 }
