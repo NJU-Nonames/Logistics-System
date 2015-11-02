@@ -7,7 +7,7 @@ package dataservice.chartdataservice;
 
 import java.util.ArrayList;
 
-import po.ListPO;
+import po.list.ListPO;
 import utilitybl.DocType;
 
 
@@ -22,12 +22,12 @@ public interface CheckDataService {
 	 * @param time
 	 * @return
 	 */
-	public ArrayList<ListPO> getDoc(DocType docType,String time);
+	public ArrayList<? extends ListPO> getDoc(DocType docType,String time);
 	
 	/**
 	 * 修改选定的doc审批状态
 	 * @param listPO
 	 * @return
 	 */
-	public boolean changeDoc(ArrayList<ListPO> listPO);
+	public boolean updateDoc(ArrayList<? extends ListPO> listPO);
 }

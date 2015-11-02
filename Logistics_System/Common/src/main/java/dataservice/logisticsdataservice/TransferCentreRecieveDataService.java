@@ -1,6 +1,6 @@
 package dataservice.logisticsdataservice;
 
-import po.TransArrivalListPO;
+import po.list.TransArrivalListPO;
 
 
 public interface TransferCentreRecieveDataService {

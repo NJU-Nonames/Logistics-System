@@ -1,7 +1,8 @@
 package dataservice.logisticsdataservice;
 
 import java.util.ArrayList;
-import po.TruckPO;
+
+import po.agency.TruckPO;
 
 
 public interface TruckManagementDataService {

@@ -1,7 +1,7 @@
 package dataservice.logisticsdataservice;
 
-import po.DeliveringListPO;
-import po.HallArrivalListPO;
+import po.list.DeliveringListPO;
+import po.list.HallArrivalListPO;
 
 public interface DeliverAndReceiveDataService {
 	/**

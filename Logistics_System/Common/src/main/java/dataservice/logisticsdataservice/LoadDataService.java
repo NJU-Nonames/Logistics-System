@@ -1,7 +1,7 @@
 package dataservice.logisticsdataservice;
 
-import po.LoadListPO;
-import po.OrderListPO;
+import po.list.LoadListPO;
+import po.list.OrderListPO;
 
 
 public interface LoadDataService {

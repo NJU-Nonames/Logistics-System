@@ -1,7 +1,7 @@
 package dataservice.logisticsdataservice;
 
-import po.OrderListPO;
-import po.ReceiverPO;
+import po.list.OrderListPO;
+import po.receiver.ReceiverPO;
 
 public interface ReceiverPkgDataService {
 	

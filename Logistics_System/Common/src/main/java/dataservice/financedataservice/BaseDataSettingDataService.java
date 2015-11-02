@@ -1,9 +1,9 @@
 package dataservice.financedataservice;
 
-import po.AgencyPO;
-import po.BankAccountPO;
-import po.RepertoryInfoPO;
-import po.TruckPO;
+import po.agency.AgencyPO;
+import po.agency.BankAccountPO;
+import po.agency.TruckPO;
+import po.repertory.RepertoryInfoPO;
 
 
 

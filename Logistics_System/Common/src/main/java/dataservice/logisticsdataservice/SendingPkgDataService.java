@@ -1,6 +1,6 @@
 package dataservice.logisticsdataservice;
 
-import po.OrderListPO;
+import po.list.OrderListPO;
 
 public interface SendingPkgDataService {
 

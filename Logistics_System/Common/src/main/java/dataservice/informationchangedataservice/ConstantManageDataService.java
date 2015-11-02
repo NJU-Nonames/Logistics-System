@@ -1,7 +1,7 @@
 package dataservice.informationchangedataservice;
 
-import po.DistanceChartPO;
-import po.PriceChartPO;
+import po.constantinfo.DistanceChartPO;
+import po.constantinfo.PriceChartPO;
 
 
 /**

@@ -8,7 +8,7 @@ package dataservice.informationchangedataservice;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import po.AgencyPO;
+import po.agency.AgencyPO;
 
 
 public interface PeopleAgencyDataService {

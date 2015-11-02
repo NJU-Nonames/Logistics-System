@@ -8,7 +8,7 @@ package dataservice.userdataservice;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import po.UserPO;
+import po.system.UserPO;
 
 public interface UserDataService {
 	

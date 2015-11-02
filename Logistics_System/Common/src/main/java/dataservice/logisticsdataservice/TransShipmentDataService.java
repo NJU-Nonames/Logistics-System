@@ -1,6 +1,6 @@
 package dataservice.logisticsdataservice;
 
-import po.TransShipmentListPO;
+import po.list.TransShipmentListPO;
 
 
 public interface TransShipmentDataService {

@@ -5,9 +5,9 @@
  */
 package dataservice.logisticsdataservice;
 
-import po.RepertoryInPO;
-import po.RepertoryInfoPO;
-import po.RepertoryOutPO;
+import po.repertory.RepertoryInPO;
+import po.repertory.RepertoryInfoPO;
+import po.repertory.RepertoryOutPO;
 ;
 
 
