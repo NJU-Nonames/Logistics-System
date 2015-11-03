@@ -1,4 +1,4 @@
-package dataservice.chartdataservice;
+package dataservice.system;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -15,7 +15,7 @@ public interface SystemLogDataService extends Remote{
 	 * @param keywords
 	 * @return
 	 */
-	public ArrayList<SystemLogPO> getLogInfo(String time) throws RemoteException;
+	public ArrayList<SystemLogPO> showAll(String time1,String time2) throws RemoteException;
 	
 	/**
 	 * 添加一条系统日志

@@ -3,22 +3,38 @@
  *author:tdy
  *discirption:用户的数据层接口，规定了用户的增删改查初始化和结束操作 
  */
-package dataservice.userdataservice;
+package dataservice.system;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.system.UserPO;
 
-public interface UserDataService {
+public interface UserDataService extends Remote{
 	
-	/** 
-	 * 用户登录功能 
-	 * @param admin
-	 * @param password
-	 * @return 返回用户登录PO信息
+	public static final String NAME="userDataService";
+	
+	
+	/**
+	 * 前置条件：不存在同样的UserPO
+	 * 后置条件：在数据库中增加UserPO结果
+	 * @param 	UserPO
 	 */
-	public UserPO login(String admin,String password);
+	public void add(UserPO user) throws RemoteException;
+	
+	/**
+	 * 前置条件：存在同样id的UserPO
+	 * 后置条件：在数据库中删除对应的UserPO
+	 * @param 	UserPO
+	 */
+	public void delete(UserPO user) throws RemoteException;
+	/**
+	 * 前置条件：存在同样id的UserPO
+	 * 后置条件：在数据库中更新对应的UserPO
+	 * @param 	UserPO
+	 */
+	public void update(UserPO user) throws RemoteException;
 	
 	/**
 	 * 前置条件：无
@@ -37,28 +53,8 @@ public interface UserDataService {
 	public UserPO findonAdmin(String admin) throws RemoteException;
 	
 	/**
-	 * 前置条件：不存在同样的UserPO
-	 * 后置条件：在数据库中增加UserPO结果
-	 * @param 	UserPO
-	 */
-	public void insert(UserPO user) throws RemoteException;
-	
-	/**
-	 * 前置条件：存在同样id的UserPO
-	 * 后置条件：在数据库中删除对应的UserPO
-	 * @param 	UserPO
-	 */
-	public void delete(UserPO user) throws RemoteException;
-	/**
-	 * 前置条件：存在同样id的UserPO
-	 * 后置条件：在数据库中更新对应的UserPO
-	 * @param 	UserPO
-	 */
-	public void update(UserPO user) throws RemoteException;
-	
-	/**
 	 * 返回所用用户信息
 	 */
-	public ArrayList<UserPO> show() throws RemoteException;
+	public ArrayList<UserPO> showAll() throws RemoteException;
 	
 }

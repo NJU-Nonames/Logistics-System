@@ -1,8 +1,9 @@
-package dataservice.financedataservice;
+package dataservice.moneyInformation;
 
 import po.agency.AgencyPO;
 import po.agency.BankAccountPO;
 import po.agency.TruckPO;
+import po.moneyInfomation.BaseDataSettingPO;
 import po.repertory.RepertoryInfoPO;
 
 
@@ -41,4 +42,10 @@ public interface BaseDataSettingDataService {
 	 * @return
 	 */
 	public boolean addFinanceInfo(BankAccountPO bankAccountPO);
+	
+	/**
+	 * 显示最近一次期初建账信息
+	 * @return
+	 */
+	public BaseDataSettingPO show();
 }

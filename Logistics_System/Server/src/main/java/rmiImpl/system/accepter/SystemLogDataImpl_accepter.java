@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import rmiImpl.system.SystemLogDataImpl;
-import dataservice.chartdataservice.SystemLogDataService;
+import dataservice.system.SystemLogDataService;
 
 
 public class SystemLogDataImpl_accepter {

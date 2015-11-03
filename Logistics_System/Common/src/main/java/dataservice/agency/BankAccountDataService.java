@@ -3,8 +3,10 @@
  *author:
  *description:
  */
-package dataservice.financedataservice;
+package dataservice.agency;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.agency.BankAccountPO;
@@ -13,7 +15,9 @@ import po.agency.BankAccountPO;
  * @author 谭期友
  *
  */
-public interface AccountDataService {
+public interface BankAccountDataService extends Remote{
+	
+	public static final String NAME="bankAccountDataService";
 	/**
 	 * 添加账户
 	 * @param name
@@ -21,13 +25,13 @@ public interface AccountDataService {
 	 * @param money
 	 * @return 账户
 	 */
-	public boolean createCount(BankAccountPO countpo);
+	public boolean add(BankAccountPO countpo)throws RemoteException;
 	/**
 	 * 删除账户
 	 * @param name
 	 * @return 操作是否成功
 	 */
-	public boolean removeCount(String name);
+	public boolean delete(String name)throws RemoteException;
 	/**
 	 * 更新账户
 	 * @param name
@@ -35,17 +39,17 @@ public interface AccountDataService {
 	 * @param money
 	 * @return 操作是否成功
 	 */
-	public boolean updataCount(BankAccountPO countpo);
+	public boolean updata(BankAccountPO countpo)throws RemoteException;
 	/**
 	 * 查询账户
 	 * @param name
 	 * @return 账户
 	 */
-	public BankAccountPO searchCount(String keyword);
+	public BankAccountPO find(String keyword)throws RemoteException;
 	
 	/**
 	 * 显示所有账户信息
 	 * @return
 	 */
-	public ArrayList<BankAccountPO> show();
+	public ArrayList<BankAccountPO> showAll()throws RemoteException;
 }

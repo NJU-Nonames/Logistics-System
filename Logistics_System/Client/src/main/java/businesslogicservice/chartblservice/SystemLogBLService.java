@@ -19,7 +19,7 @@ public interface SystemLogBLService {
 	 * @param keywords
 	 * @return
 	 */
-	public ArrayList<SystemLogVO> getLogInfo(String time);
+	public ArrayList<SystemLogVO> showAll(String time1,String time2);
 	
 	/**
 	 * 创建新的系统日志

@@ -3,16 +3,18 @@
  *author:
  *description: 人员机构管理
  */
-package dataservice.informationchangedataservice;
+package dataservice.agency;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.agency.AgencyPO;
 
 
-public interface PeopleAgencyDataService {
+public interface PeopleAgencyDataService extends Remote{
 	
+	public static final String NAME="peopleAgencyDataService";
 	
 	/**
 	 * 薪水管理修改
@@ -20,14 +22,6 @@ public interface PeopleAgencyDataService {
 	 * @param salary
 	 */
 	public void salaryManage(String userID,String salary);
-	
-	/**
-	 * 前置条件：无
-	 * 后置条件：按ID进行查找返回相应的ListPO结果
-	 * @param 	id
-	 * @return 	所有机构PO结果
-	 */
-	public ArrayList<AgencyPO> showAll() throws RemoteException;
 	
 	/**
 	 * 前置条件：不存在同样的AgencyPO
@@ -57,5 +51,14 @@ public interface PeopleAgencyDataService {
 	 * @throws RemoteException
 	 */
 	public AgencyPO find(String id) throws RemoteException;
+	
+
+	/**
+	 * 前置条件：无
+	 * 后置条件：按ID进行查找返回相应的ListPO结果
+	 * @param 	id
+	 * @return 	所有机构PO结果
+	 */
+	public ArrayList<AgencyPO> showAll() throws RemoteException;
 	
 }

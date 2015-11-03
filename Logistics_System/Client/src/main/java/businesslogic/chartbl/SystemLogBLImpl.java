@@ -3,7 +3,7 @@ package businesslogic.chartbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import dataservice.chartdataservice.SystemLogDataService;
+import dataservice.system.SystemLogDataService;
 import po.system.SystemLogPO;
 import vo.SystemLogVO;
 import businesslogic.rmi.RMIHelper;
@@ -17,11 +17,11 @@ public class SystemLogBLImpl implements SystemLogBLService{
 //		ss.getLogInfo("2014-2-23");
 //	}
 	
-	public ArrayList<SystemLogVO> getLogInfo(String time) {
+	public ArrayList<SystemLogVO> showAll(String time1,String time2) {
         SystemLogDataService service=(SystemLogDataService) RMIHelper.find(SystemLogDataService.NAME);
         ArrayList<SystemLogPO> logs = null;
 		try {
-			logs = service.getLogInfo(time);
+			logs = service.showAll(time1,time2);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
