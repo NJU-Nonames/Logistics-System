@@ -4,8 +4,8 @@
  *discirption:订单的vo实体类
  */
 package vo;
-import utilitybl.ExpressType;
-import utilitybl.PkgState;
+import utility.ExpressType;
+import utility.PkgState;
 
 public class OrderListVO extends ListVO{
 	/**

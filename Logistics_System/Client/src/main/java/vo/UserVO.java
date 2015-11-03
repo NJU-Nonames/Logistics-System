@@ -5,7 +5,7 @@
  */
 package vo;
 
-import utilitybl.UserType;
+import utility.UserType;
 
 public class UserVO {
 	/**

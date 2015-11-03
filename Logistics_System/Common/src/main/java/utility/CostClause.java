@@ -1,4 +1,4 @@
-package utilitybl;
+package utility;
 
 public enum CostClause {
 rentfare,//租金

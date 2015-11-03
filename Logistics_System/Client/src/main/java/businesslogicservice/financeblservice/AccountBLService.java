@@ -7,7 +7,7 @@ package businesslogicservice.financeblservice;
 
 import java.util.ArrayList;
 
-import utilitybl.ResultMessage;
+import utility.ResultMessage;
 import vo.BankAccountVO;
 
 

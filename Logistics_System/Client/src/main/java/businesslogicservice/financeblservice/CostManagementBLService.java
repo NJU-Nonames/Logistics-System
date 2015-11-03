@@ -5,7 +5,7 @@
  */
 package businesslogicservice.financeblservice;
 
-import utilitybl.ResultMessage;
+import utility.ResultMessage;
 import vo.MoneyOutListVO;
 
 /**

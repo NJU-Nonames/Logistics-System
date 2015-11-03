@@ -5,7 +5,7 @@
  */
 package businesslogicservice.logisticsblservice;
 
-import utilitybl.ResultMessage;
+import utility.ResultMessage;
 import vo.OrderListVO;
 
 

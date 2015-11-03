@@ -1,4 +1,4 @@
-package utilitybl;
+package utility;
 
 /**
  * 统计报表类型，有两种分别为成本收益表和经营情况表

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 import dataservice.system.SystemLogDataService;
 import po.system.SystemLogPO;
+import utility.ResultMessage;
 import vo.SystemLogVO;
 import businesslogic.rmi.RMIHelper;
-import businesslogic.utilitybl.ResultMessage;
 import businesslogicservice.chartblservice.SystemLogBLService;
 
 public class SystemLogBLImpl implements SystemLogBLService{

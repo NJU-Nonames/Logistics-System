@@ -1,4 +1,4 @@
-package businesslogic.utilitybl;
+package utility;
 
 public enum DocState {
      DRAFT,//草稿

@@ -2,7 +2,7 @@ package po.list;
 
 import java.util.ArrayList;
 
-import utilitybl.GoodsState;
+import utility.GoodsState;
 
 public class HallArrivalListPO {
 	/**

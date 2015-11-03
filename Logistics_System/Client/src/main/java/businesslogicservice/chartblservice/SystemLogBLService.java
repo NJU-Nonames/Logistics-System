@@ -2,7 +2,7 @@ package businesslogicservice.chartblservice;
 
 import java.util.ArrayList;
 
-import businesslogic.utilitybl.ResultMessage;
+import utility.ResultMessage;
 import vo.SystemLogVO;
 
 /**

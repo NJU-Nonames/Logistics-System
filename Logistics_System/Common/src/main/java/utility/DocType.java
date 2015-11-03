@@ -1,4 +1,4 @@
-package utilitybl;
+package utility;
 
 public enum DocType {
 	MONEY_IN_NOTE,//收款单

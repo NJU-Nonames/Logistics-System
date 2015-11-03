@@ -2,7 +2,7 @@ package vo;
 
 import java.util.ArrayList;
 
-import utilitybl.GoodsState;
+import utility.GoodsState;
 
 
 

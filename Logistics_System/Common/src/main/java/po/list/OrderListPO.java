@@ -2,8 +2,8 @@ package po.list;
 
 import java.io.Serializable;
 
-import utilitybl.ExpressType;
-import utilitybl.PkgState;
+import utility.ExpressType;
+import utility.PkgState;
 
 /**
  * @author 这菜咸了

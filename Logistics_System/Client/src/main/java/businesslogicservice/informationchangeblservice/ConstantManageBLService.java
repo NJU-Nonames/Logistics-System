@@ -6,7 +6,7 @@
  */
 package businesslogicservice.informationchangeblservice;
 
-import utilitybl.ResultMessage;
+import utility.ResultMessage;
 import vo.PriceChartVO;
 import vo.DistanceChartVO;
 

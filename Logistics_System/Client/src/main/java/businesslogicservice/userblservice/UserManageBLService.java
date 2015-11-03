@@ -8,7 +8,7 @@ package businesslogicservice.userblservice;
 
 import java.util.ArrayList;
 
-import utilitybl.ResultMessage;
+import utility.ResultMessage;
 import vo.UserVO;
 
 public interface UserManageBLService {

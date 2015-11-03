@@ -8,7 +8,7 @@ package businesslogicservice.informationchangeblservice;
 
 import java.util.ArrayList;
 
-import utilitybl.ResultMessage;
+import utility.ResultMessage;
 import vo.AgencyVO;
 
 public interface PeopleAgencyBLService {

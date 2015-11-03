@@ -1,6 +1,6 @@
 package po.repertory;
 
-import utilitybl.TransportationType;
+import utility.TransportationType;
 
 /**
  * 出库单PO

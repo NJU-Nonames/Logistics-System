@@ -7,7 +7,7 @@ package businesslogicservice.logisticsblservice;
 
 import java.util.ArrayList;
 
-import utilitybl.ResultMessage;
+import utility.ResultMessage;
 import vo.TruckVO;
 
 public interface TruckManageBLService {

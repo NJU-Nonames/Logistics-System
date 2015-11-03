@@ -6,7 +6,7 @@ package businesslogicservice.chartblservice;
 
 import java.util.ArrayList;
 
-import utilitybl.ChartType;
+import utility.ChartType;
 import vo.ListVO;
 import vo.MoneyInformationListVO;
 
@@ -19,14 +19,6 @@ import vo.MoneyInformationListVO;
  */
 public interface FormBLService {
 	
-	/**
-	 * 前置条件：用户输入起始日期,终止日期,报表类型 申请查看报表
-	 * 后置条件：返回用户输入信息是否合法
-	 * @param start_day
-	 * @param end_day
-	 * @return
-	 */
-	public boolean isFormatRight(String start_day, String end_day,ChartType chartType);
 	
 	/**
 	 * 该方法需要实现对每天的成本监控，包括当天的总支出与总收入与净利润

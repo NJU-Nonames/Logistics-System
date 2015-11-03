@@ -1,6 +1,6 @@
 package vo;
 
-import utilitybl.TransportationType;
+import utility.TransportationType;
 
 /**
  * 出库单

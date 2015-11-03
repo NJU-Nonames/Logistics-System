@@ -1,4 +1,4 @@
-package businesslogic.utilitybl;
+package utility;
 
 public enum UserType {
     COURIER,//快递员

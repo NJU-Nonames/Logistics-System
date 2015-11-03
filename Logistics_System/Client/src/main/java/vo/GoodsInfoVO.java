@@ -1,6 +1,6 @@
 package vo;
 
-import utilitybl.GoodsState;
+import utility.GoodsState;
 
 public class GoodsInfoVO {
 	/**
