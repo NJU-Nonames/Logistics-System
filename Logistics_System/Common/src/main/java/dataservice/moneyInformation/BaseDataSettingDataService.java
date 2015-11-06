@@ -11,6 +11,8 @@ import po.repertory.RepertoryInfoPO;
 
 public interface BaseDataSettingDataService {
 	
+	public static final String NAME="baseDataSettingDataService";
+	
 	
 	/**
 	 * 财务人员开始期初建账操作，输入机构信息

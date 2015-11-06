@@ -18,6 +18,8 @@ import po.repertory.RepertoryOutPO;
  */
 public interface RepertoryInfoDataService {
 	
+	public static final String NAME="repertoryInfoDataService";
+	
 	/**
 	 * 入库修改库存信息
 	 * @param goods

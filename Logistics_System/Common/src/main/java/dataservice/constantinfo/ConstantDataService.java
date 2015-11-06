@@ -14,7 +14,7 @@ import po.constantinfo.PriceChartPO;
  */
 public interface ConstantDataService extends Remote{
 	
-	public static final String NAME="ConstantDataService";
+	public static final String NAME="constantDataService";
 	
 	/**
 	 * 修改城市距离数据
