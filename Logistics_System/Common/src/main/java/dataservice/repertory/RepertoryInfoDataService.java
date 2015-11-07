@@ -35,10 +35,5 @@ public interface RepertoryInfoDataService {
 	 * @return
 	 */
 	public boolean delete(GoodsInfoPO goods,RepertoryOutPO repertoryPO);
-	
-	/**
-	 * 显示库存信息
-	 * @return
-	 */
-	public RepertoryInfoPO show();
+
 }
