@@ -17,13 +17,7 @@ import vo.BankAccountVO;
  */
 public interface AccountBLService {
 	
-	/**
-	 * 账户登录 仅拥有最高权限的财务人员才能进行账户管理操作
-	 * @param admin
-	 * @param password
-	 * @return
-	 */
-	public boolean login(String admin,String password);
+
 	
 	/**
 	 * 前置条件：财务人员已经登陆
@@ -52,7 +46,7 @@ public interface AccountBLService {
 	 * @param money
 	 * @return 操作是否成功
 	 */
-	public ResultMessage updadaCount(BankAccountVO countVo);
+	public ResultMessage updateCount(BankAccountVO countVo);
 	
 	/**
 	 * 前置条件：财务人员已经登陆

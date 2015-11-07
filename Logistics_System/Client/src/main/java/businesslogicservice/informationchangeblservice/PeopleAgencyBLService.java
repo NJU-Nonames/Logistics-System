@@ -39,7 +39,7 @@ public interface PeopleAgencyBLService {
 	 * @param agency
 	 * @return 返回信息是否合理
 	 */
-	public ResultMessage updataAgency(AgencyVO agency);
+	public ResultMessage updateAgency(AgencyVO agency);
 	
 	/**
 	 * 机构信息全部显示

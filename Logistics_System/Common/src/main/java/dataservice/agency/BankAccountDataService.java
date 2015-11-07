@@ -39,7 +39,7 @@ public interface BankAccountDataService extends Remote{
 	 * @param money
 	 * @return 操作是否成功
 	 */
-	public boolean updata(BankAccountPO countpo)throws RemoteException;
+	public boolean update(BankAccountPO countpo)throws RemoteException;
 	/**
 	 * 查询账户
 	 * @param name

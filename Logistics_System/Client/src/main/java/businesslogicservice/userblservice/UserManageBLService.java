@@ -36,7 +36,7 @@ public interface UserManageBLService {
 	 * @param user
 	 * @return
 	 */
-	public ResultMessage updataUser(UserVO user);
+	public ResultMessage updateUser(UserVO user);
 	
 	/**
 	 * 显示所有可登陆员工的信息
