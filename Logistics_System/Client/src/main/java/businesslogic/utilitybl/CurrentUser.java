@@ -5,5 +5,5 @@ package businesslogic.utilitybl;
  * 当前使用者类
  */
 public class CurrentUser {
-
+	StaffVO stuff;
 }

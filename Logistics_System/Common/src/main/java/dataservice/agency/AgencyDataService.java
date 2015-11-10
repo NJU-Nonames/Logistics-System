@@ -12,16 +12,9 @@ import java.util.ArrayList;
 import po.agency.AgencyPO;
 
 
-public interface PeopleAgencyDataService extends Remote{
+public interface AgencyDataService extends Remote{
 	
-	public static final String NAME="peopleAgencyDataService";
-	
-	/**
-	 * 薪水管理修改
-	 * @param userID
-	 * @param salary
-	 */
-	public void salaryManage(String userID,String salary);
+	public static final String NAME="agencyDataService";
 	
 	/**
 	 * 前置条件：不存在同样的AgencyPO
