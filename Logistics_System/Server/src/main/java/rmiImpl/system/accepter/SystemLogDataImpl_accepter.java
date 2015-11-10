@@ -24,6 +24,8 @@ public class SystemLogDataImpl_accepter {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+		}finally{
+			
 		}
 	}
 }

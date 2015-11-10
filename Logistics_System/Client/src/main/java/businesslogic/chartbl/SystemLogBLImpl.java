@@ -12,12 +12,14 @@ import businesslogicservice.chartblservice.SystemLogBLService;
 
 public class SystemLogBLImpl implements SystemLogBLService{
 
-//	public static void main(String args[]){
-//		SystemLogBLImpl ss=new SystemLogBLImpl();
-//		ss.getLogInfo("2014-2-23");
-//	}
+	public static void main(String args[]){
+		SystemLogBLImpl ss=new SystemLogBLImpl();
+		ss.showAll("2014-2-23","2014-3-23");
+	}
 	
 	public ArrayList<SystemLogVO> showAll(String time1,String time2) {
+		//检查time
+		//SystemLogDataService service1 =new SystemLogDataServiceImpl();
         SystemLogDataService service=(SystemLogDataService) RMIHelper.find(SystemLogDataService.NAME);
         ArrayList<SystemLogPO> logs = null;
 		try {
@@ -25,7 +27,9 @@ public class SystemLogBLImpl implements SystemLogBLService{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		//PO---VO
         System.out.println(logs.get(0).getContent());
+        //添加进入系统日志
 		return null;
 	}
 
