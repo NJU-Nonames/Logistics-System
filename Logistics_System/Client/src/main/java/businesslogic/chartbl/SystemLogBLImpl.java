@@ -8,6 +8,7 @@ import po.system.SystemLogPO;
 import utility.ResultMessage;
 import vo.SystemLogVO;
 import businesslogic.rmi.RMIHelper;
+import businesslogic.utilitybl.CheckFormat;
 import businesslogicservice.chartblservice.SystemLogBLService;
 
 public class SystemLogBLImpl implements SystemLogBLService{
@@ -19,6 +20,8 @@ public class SystemLogBLImpl implements SystemLogBLService{
 	
 	public ArrayList<SystemLogVO> showAll(String time1,String time2) {
 		//检查time
+		//if(CheckFormat.check(time1,time2)){
+		
 		//SystemLogDataService service1 =new SystemLogDataServiceImpl();
         SystemLogDataService service=(SystemLogDataService) RMIHelper.find(SystemLogDataService.NAME);
         ArrayList<SystemLogPO> logs = null;
@@ -31,6 +34,10 @@ public class SystemLogBLImpl implements SystemLogBLService{
         System.out.println(logs.get(0).getContent());
         //添加进入系统日志
 		return null;
+		//}
+		//else{
+			//return null;
+		//}
 	}
 
 	public ResultMessage addLogInfo(SystemLogVO systemLogVO) {

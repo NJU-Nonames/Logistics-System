@@ -8,7 +8,6 @@ public class ResultMessage {
 	
 	private boolean isPass;
 	private String message;
-	
 	public ResultMessage(boolean isPass, String message) {
 		super();
 		this.isPass = isPass;
@@ -20,6 +19,10 @@ public class ResultMessage {
 	public String getMessage() {
 		return message;
 	}
-	
-	
+	public void setIsPass(boolean b){
+		this.isPass=b;
+	}
+	public void setMessage(String s){
+		this.message=s;
+	}
 }

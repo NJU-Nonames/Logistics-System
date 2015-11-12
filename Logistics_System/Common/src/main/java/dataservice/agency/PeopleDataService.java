@@ -5,10 +5,21 @@
  */
 package dataservice.agency;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import po.agency.StaffPO;
+
 /**
  * @author Administrator
  *
  */
-public class PeopleDataService {
-
+public interface PeopleDataService extends Remote{
+	public static final String NAME="peopleDataService";
+	public void add(StaffPO staff) throws RemoteException;
+	public void delete(StaffPO staff) throws RemoteException;
+	public void update(StaffPO staff) throws RemoteException;
+	public StaffPO find(String id) throws RemoteException;
+	public ArrayList<StaffPO> showAll()throws RemoteException;
 }
