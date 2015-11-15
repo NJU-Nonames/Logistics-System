@@ -18,13 +18,7 @@ public class SystemLogBLImpl implements SystemLogBLService{
 	public SystemLogBLImpl(){
 		this.dataFactory=(DataFactoryService)RMIHelper.find("dataFactory");
 	}
-//	public static void main(String args[]){
-//		SystemLogBLImpl ss=new SystemLogBLImpl();
-//		ss.showAll("2014-2-23","2014-2-24");
-//	}
-	/* （非 Javadoc）
-	 * @see businesslogicservice.chartblservice.SystemLogBLService#showAll(java.lang.String, java.lang.String)
-	 */
+
 	public ArrayList<SystemLogVO> showAll(String time1, String time2) {
 		// TODO 自动生成的方法存根
 		return null;

@@ -9,6 +9,12 @@ import businesslogicservice.chartblservice.FormBLService;
 
 public class FormBLImpl implements FormBLService{
 
+	MoneyInformation moneyList;
+	
+	public FormBLImpl(){
+		moneyList=new MoneyInformation();
+	}
+	
 	public ArrayList<MoneyInformationListVO> getCostandBenefitChart(
 			String start_day, String end_day) {
 		// TODO Auto-generated method stub
