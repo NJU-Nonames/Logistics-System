@@ -5,9 +5,10 @@
  */
 package dataservice.repertory;
 
+import java.io.Serializable;
+
 import po.repertory.GoodsInfoPO;
 import po.repertory.RepertoryInPO;
-import po.repertory.RepertoryInfoPO;
 import po.repertory.RepertoryOutPO;
 
 
@@ -16,9 +17,7 @@ import po.repertory.RepertoryOutPO;
  * @author 王家玮
  *
  */
-public interface RepertoryInfoDataService {
-	
-	public static final String NAME="repertoryInfoDataService";
+public interface RepertoryInfoDataService extends Serializable{
 	
 	/**
 	 * 入库修改库存信息

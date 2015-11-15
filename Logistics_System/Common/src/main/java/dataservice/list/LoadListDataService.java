@@ -1,25 +1,20 @@
 package dataservice.list;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import po.list.HallArrivalListPO;
 import po.list.LoadListPO;
-import po.list.OrderListPO;
 
 
-public interface LoadListDataService extends Remote{
-	
-	public static final String NAME="loadListDataService";
+public interface LoadListDataService extends Serializable{
 	
 	public boolean add(LoadListPO loadListPO);
 	
-     public boolean delete (LoadListPO loadListPO)throws RemoteException;
+     public boolean delete (LoadListPO loadListPO);
 	
-	public boolean update (LoadListPO loadListPO)throws RemoteException;
+	public boolean update (LoadListPO loadListPO);
 	
-	public LoadListPO find(String id)throws RemoteException;
+	public LoadListPO find(String id);
 	
-	public ArrayList<LoadListPO> showAll(String time1,String time2)throws RemoteException;
+	public ArrayList<LoadListPO> showAll(String time1,String time2);
 }

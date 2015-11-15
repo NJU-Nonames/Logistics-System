@@ -1,13 +1,10 @@
 package dataservice.receiver;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.io.Serializable;
+
 import po.receiver.ReceiverPO;
 
-public interface ReceiverDataService extends Remote{
-	
-
-	public static final String NAME="receiverDataService";
+public interface ReceiverDataService extends Serializable{
 	
 	/**快递员输入签收人相关信息，系统确认收件
 	 * 前置条件：	快递员输入签收人的相关信息，系统在生成签收人po类之后由快递员确认是否签收
@@ -15,9 +12,9 @@ public interface ReceiverDataService extends Remote{
 	 * @param 	实际签收人
 	 * @return	签收是否成功
 	 */
-	public boolean add(ReceiverPO receiver)throws RemoteException;
+	public boolean add(ReceiverPO receiver);
 	
-	public ReceiverPO findOnName(String name)throws RemoteException;
+	public ReceiverPO findOnName(String name);
 	
-	public ReceiverPO findOnTime(String time)throws RemoteException;
+	public ReceiverPO findOnTime(String time);
 }

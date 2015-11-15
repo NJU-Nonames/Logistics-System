@@ -4,19 +4,20 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
-import rmiImpl.system.SystemLogDataImpl;
-import dataservice.system.SystemLogDataService;
+import data.DataFactory;
+import dataservice.DataFactoryService;
 
 
 public class SystemLogDataImpl_accepter {
 
 	public static void main(String args[]){
 		try {
-			SystemLogDataService systemLogDataService=new SystemLogDataImpl();
 			//注册通讯端口
 			LocateRegistry.createRegistry(50000);
-			//注册通讯路径
-			Naming.rebind("rmi://127.0.0.1:50000/systemLogDataService", systemLogDataService);
+
+			//注册通讯路径;将datafactory共享掉；datafactory被赋予新名字dataFactory
+			DataFactoryService datafactory =new DataFactory();
+			Naming.rebind("rmi://127.0.0.1:50000/dataFactory", datafactory);
 			
 			System.out.println("Server start!");
 			

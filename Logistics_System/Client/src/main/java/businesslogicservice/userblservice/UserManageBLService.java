@@ -16,9 +16,9 @@ public interface UserManageBLService {
 	/**用户登录功能 
 	 * @param admin
 	 * @param password
-	 * @return 登录信息，包括是否登录成功 返回界面类型
+	 * @return 登录者VO
 	 */
-	public ResultMessage login(String admin,String password);
+	public UserVO login(String admin,String password);
 	
 	/**雇佣新员工
 	 * @param 用户名，姓名，密码，职位

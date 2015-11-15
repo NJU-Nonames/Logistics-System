@@ -1,13 +1,12 @@
 package dataservice.agency;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import po.agency.TruckPO;
 
 
-public interface TruckDataService {
-
-	public static final String NAME="truckDataService";
+public interface TruckDataService extends Serializable{
 	
 	/**营业厅业务员增加货车
 	 * 前置条件：开始添加货车

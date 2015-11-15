@@ -1,25 +1,23 @@
 package dataservice.system;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import po.system.SystemLogPO;
 
-
-public interface SystemLogDataService extends Remote{
+//远程接口DataFactoryService使用到的参数类型和返回值类型都必须可序列化。
+public interface SystemLogDataService extends Serializable {
 	
-	public static final String NAME="systemLogDataService";
 	/**
 	 * 返回系统日志列表 
 	 * @param keywords
 	 * @return
 	 */
-	public ArrayList<SystemLogPO> showAll(String time1,String time2) throws RemoteException;
+	public ArrayList<SystemLogPO> showAll(String time1,String time2);
 	
 	/**
 	 * 添加一条系统日志
 	 * @param systemLog
 	 */
-	public void add(SystemLogPO systemLog) throws RemoteException;
+	public void add(SystemLogPO systemLog);
 }

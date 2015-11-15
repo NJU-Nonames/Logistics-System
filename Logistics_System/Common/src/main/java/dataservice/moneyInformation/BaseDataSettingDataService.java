@@ -1,5 +1,7 @@
 package dataservice.moneyInformation;
 
+import java.io.Serializable;
+
 import po.agency.AgencyPO;
 import po.agency.BankAccountPO;
 import po.agency.TruckPO;
@@ -9,9 +11,7 @@ import po.repertory.RepertoryInfoPO;
 
 
 
-public interface BaseDataSettingDataService {
-	
-	public static final String NAME="baseDataSettingDataService";
+public interface BaseDataSettingDataService extends Serializable{
 	
 	
 	/**

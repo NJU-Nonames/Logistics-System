@@ -1,10 +1,14 @@
 package presentation.mainui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.CardLayout;
+import java.net.ConnectException;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+import businesslogic.userbl.UserManageBLImpl;
+import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
+import businesslogicservice.userblservice.UserManageBLService;
 import presentation.img.Img;
 
 /**
@@ -15,32 +19,87 @@ public class MainFrame extends JFrame{
 	
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9098438670455829981L;
+	/**
 	 * mainFrame 的宽
 	 */
-	private static final int MAINFRAME_WIDTH = 512;
+	public static final int w = 512;
 	/**
 	 * mainFrame的高
 	 */
-	private static final int MAINFRAME_HIGHT = 384;
+	public static final int h = 384;
+	private int state;//0表示主，1表示查询订单，2表示登陆
+	private int stated;//以前的状态
+	boolean changed;
+	public void setState(int x){
+		state=x;
+	}
+	public int getState(){
+		return state;
+	}
+	public void setStated(int x){
+		stated=x;
+	}
+	public void setChanged(boolean x){
+		changed=x;
+	}
+	JPanel j;
+	CardLayout card;
+	
+	MainPanel mainpanel;
+	SearchPanel searchpanel;
+	LoginPanel loginpanel;
+	
+	
+
+	SearchPkgInformationBLService bl1;
+	UserManageBLService bl2;
 	
 	public MainFrame(){
-		//remain updating
-		this.setTitle("物流系统大作业——叫什么名字队");
-		
 		this.setUndecorated(true);
-		
-		this.setSize(MAINFRAME_WIDTH,MAINFRAME_HIGHT);
-		//不可随意移动
-		this.setResizable(false);
-		//设置显示在中间
-		Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation((screen.width -this.getWidth())/2, (screen.height -this.getHeight())/2);
-		
+		this.setSize(w,h);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		state=0;
+		stated=0;
+		changed=false;
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		card=new CardLayout();
+		j = new JPanel();
+        j.setLayout(card);
+        add(j);
 		
 		this.setIconImage(Img.MAINICON);
-	}
+		
 
+		//bl1 = new SearchPkgInformationBLImpl();
+		bl1 = null;
+		bl2 = new UserManageBLImpl();
+		mainpanel = new MainPanel(this);
+		searchpanel = new SearchPanel(bl1);
+		loginpanel = new LoginPanel(this, bl2);
+		j.add(mainpanel);
+		j.add(searchpanel);
+		j.add(loginpanel);
+		
+		new Thread(new Runnable(){
+			public void run() {
+				while(true){
+					if(changed){
+						changed=false;
+						int a;
+						if(state-stated>0)
+							a=state-stated;
+						else
+							a=state+3-stated;
+						for(int i=0;i<a;i++)
+							card.next(j);
+						
+					}
+				}
+			}
+		}).start();
+	}
 }

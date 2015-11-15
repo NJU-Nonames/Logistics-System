@@ -1,22 +1,19 @@
 package dataservice.list;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import po.list.HallArrivalListPO;
 
-public interface HallArrivalListDataService extends Remote{
-
-	public static final String NAME="hallArrivalListDataService";
+public interface HallArrivalListDataService extends Serializable{
 	
-	public boolean add (HallArrivalListPO hallArrivalListPO)throws RemoteException;
+	public boolean add (HallArrivalListPO hallArrivalListPO);
 	
-	public boolean delete (HallArrivalListPO hallArrivalListPO)throws RemoteException;
+	public boolean delete (HallArrivalListPO hallArrivalListPO);
 	
-	public boolean update (HallArrivalListPO hallArrivalListPO)throws RemoteException;
+	public boolean update (HallArrivalListPO hallArrivalListPO);
 	
-	public HallArrivalListPO find(String id)throws RemoteException;
+	public HallArrivalListPO find(String id);
 	
-	public ArrayList<HallArrivalListPO> showAll(String time1,String time2)throws RemoteException;
+	public ArrayList<HallArrivalListPO> showAll(String time1,String time2);
 }

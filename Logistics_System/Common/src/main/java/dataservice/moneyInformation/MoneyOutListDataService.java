@@ -1,23 +1,21 @@
 package dataservice.moneyInformation;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.io.Serializable;
 import java.util.ArrayList;
+
 import po.moneyInfomation.MoneyOutListPO;
 
-public interface MoneyOutListDataService extends Remote{
+public interface MoneyOutListDataService extends Serializable{
 	
-	public static final String NAME="moneyOutListDataService";
+	public boolean add(MoneyOutListPO moneyOutList);
 	
-	public boolean add(MoneyOutListPO moneyOutList)throws RemoteException;
+	public boolean delete(MoneyOutListPO moneyOutList);
 	
-	public boolean delete(MoneyOutListPO moneyOutList)throws RemoteException;
+	public boolean update(MoneyOutListPO moneyOutList);
 	
-	public boolean update(MoneyOutListPO moneyOutList)throws RemoteException;
+	public MoneyOutListPO findOnID(String id);
 	
-	public MoneyOutListPO findOnID(String id)throws RemoteException;
-	
-	public MoneyOutListPO findOnTime(String time)throws RemoteException;
+	public MoneyOutListPO findOnTime(String time);
 	
 	/**
 	 * 返回付款单PO集合
@@ -25,6 +23,6 @@ public interface MoneyOutListDataService extends Remote{
 	 * @param end_day
 	 * @return MonryInlistPO
 	 */
-	public ArrayList<MoneyOutListPO> showAll(String start_day, String end_day) throws RemoteException;
+	public ArrayList<MoneyOutListPO> showAll(String start_day, String end_day);
 
 }

@@ -7,6 +7,8 @@ package po.system;
 
 import java.io.Serializable;
 
+import utility.UserType;
+
 /**
  * @author Administrator
  *
@@ -15,12 +17,12 @@ public class UserPO implements Serializable{
 	/**
 	 * 账号
 	 */
-	private String userNum;
+	private String admin;
 	
 	/**
 	 * 密码
 	 */
-	private String initialPassword;
+	private String password;
 	
 	/**
 	 * 权限
@@ -29,7 +31,7 @@ public class UserPO implements Serializable{
 	/**
 	 * 职位
 	 */
-	private String position;
+	private UserType position;
 	
 	/**
 	 * 构造方法
@@ -38,36 +40,36 @@ public class UserPO implements Serializable{
 	 * @param authority
 	 * @param position
 	 */
-	public UserPO(String userNum,String initialPassword,String position,String authority){
-		this.userNum = userNum;
-		this.initialPassword = initialPassword;
+	public UserPO(String userNum,String initialPassword,UserType position,String authority){
+		this.admin = userNum;
+		this.password = initialPassword;
 		this.authority = authority;
 		this.position=position;
 	}
 
-    public String getUserNum() {
-        return userNum;
+    public String getAdmin() {
+        return admin;
     }
 
-    public String getInitialPassword() {
-        return initialPassword;
+    public String getPassword() {
+        return password;
     }
 
     public String getAuthority() {
         return authority;
     }
-    public String getPosition(){
+    public UserType getPosition(){
     	return position;
     }
 
-	public void setInitialPassword(String initialPassword) {
-		this.initialPassword = initialPassword;
+	public void setPassword(String initialPassword) {
+		this.password = initialPassword;
 	}
 
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-	public void setPosition(String position){
+	public void setPosition(UserType position){
 		this.position=position;
 	}
     

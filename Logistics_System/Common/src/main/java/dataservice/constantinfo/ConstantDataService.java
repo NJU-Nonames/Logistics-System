@@ -1,7 +1,6 @@
 package dataservice.constantinfo;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.io.Serializable;
 
 import po.constantinfo.DistanceChartPO;
 import po.constantinfo.PriceChartPO;
@@ -12,9 +11,8 @@ import po.constantinfo.PriceChartPO;
  * @author 这菜咸了
  *
  */
-public interface ConstantDataService extends Remote{
+public interface ConstantDataService extends Serializable{
 	
-	public static final String NAME="constantDataService";
 	
 	/**
 	 * 修改城市距离数据
@@ -23,7 +21,7 @@ public interface ConstantDataService extends Remote{
 	 * @param cityB
 	 * @return
 	 */
-	public boolean setDistance(String newDistance,String cityA,String cityB)throws RemoteException;
+	public boolean setDistance(String newDistance,String cityA,String cityB);
 	
 	/**
 	 * 修改价格常量数据
@@ -31,26 +29,26 @@ public interface ConstantDataService extends Remote{
 	 * @param otherInformation
 	 * @return
 	 */
-	public boolean setPrice(String newPrice,String otherInformation)throws RemoteException;
+	public boolean setPrice(String newPrice,String otherInformation);
 	
 	/**
 	 * 添加城市
 	 * @param name
 	 * @return
 	 */
-	public boolean addCity(String name)throws RemoteException;
+	public boolean addCity(String name);
 	
 	/**
 	 * 返回城市距离情况表
 	 * @return
 	 */
-	public DistanceChartPO showDistanceChart()throws RemoteException;
+	public DistanceChartPO showDistanceChart();
 	
 	
 	/**
 	 * 返回城市距离情况表
 	 * @return
 	 */
-	public PriceChartPO showPriceChart()throws RemoteException;
+	public PriceChartPO showPriceChart();
 	
 }

@@ -11,12 +11,12 @@ public class UserVO {
 	/**
 	 * 账号
 	 */
-	private String userNum;
+	private String admin;
 	
 	/**
 	 * 密码
 	 */
-	private String initialPassword;
+	private String password;
 	
 	/**
 	 * 权限
@@ -34,19 +34,19 @@ public class UserVO {
 	 * @param authority
 	 * @param position
 	 */
-	public UserVO(String userNum,String initialPassword,UserType position,String authority){
-		this.userNum = userNum;
-		this.initialPassword = initialPassword;
+	public UserVO(String admin,String password,UserType position,String authority){
+		this.admin = admin;
+		this.password = password;
 		this.authority = authority;
 		this.position=position;
 	}
 
-    public String getUserNum() {
-        return userNum;
+    public String getAdmin() {
+        return admin;
     }
 
-    public String getInitialPassword() {
-        return initialPassword;
+    public String getPassword() {
+        return password;
     }
 
     public String getAuthority() {
@@ -56,8 +56,8 @@ public class UserVO {
     	return position;
     }
 
-	public void setInitialPassword(String initialPassword) {
-		this.initialPassword = initialPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setAuthority(String authority) {

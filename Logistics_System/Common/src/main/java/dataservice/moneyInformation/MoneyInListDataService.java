@@ -5,9 +5,9 @@
  */
 package dataservice.moneyInformation;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.io.Serializable;
 import java.util.ArrayList;
+
 import po.moneyInfomation.MoneyInListPO;
 
 
@@ -17,19 +17,17 @@ import po.moneyInfomation.MoneyInListPO;
  * 2015-10-23 王家玮修改
  *
  */
-public interface MoneyInListDataService extends Remote{
+public interface MoneyInListDataService extends Serializable{
 	
-	public static final String NAME="moneyInListDataService";
+	public boolean add(MoneyInListPO moneyInList);
 	
-	public boolean add(MoneyInListPO moneyInList)throws RemoteException;
+	public boolean delete(MoneyInListPO moneyInList);
 	
-	public boolean delete(MoneyInListPO moneyInList)throws RemoteException;
+	public boolean update(MoneyInListPO moneyInList);
 	
-	public boolean update(MoneyInListPO moneyInList)throws RemoteException;
+	public MoneyInListPO findOnID(String id);
 	
-	public MoneyInListPO findOnID(String id)throws RemoteException;
-	
-	public MoneyInListPO findOnTime(String time)throws RemoteException;
+	public MoneyInListPO findOnTime(String time);
 	
 	/**
 	 * 返回收款单PO集合
@@ -37,6 +35,6 @@ public interface MoneyInListDataService extends Remote{
 	 * @param end_day
 	 * @return MonryInlistPO
 	 */
-	public ArrayList<MoneyInListPO> showAll(String start_day, String end_day) throws RemoteException;
+	public ArrayList<MoneyInListPO> showAll(String start_day, String end_day);
 	
 }
