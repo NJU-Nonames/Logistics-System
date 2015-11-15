@@ -15,10 +15,17 @@ public class MainServer {
 	 */
 	private static final int PORT=50000;
 	
+	/**
+	 * 服务器ip地址
+	 */
 	private static final String IP="127.0.0.1";
 	
 	
 	
+	/**
+	 * 程序入口
+	 * @param args
+	 */
 	public static void main(String args[]){
 		try {
 			//注册通讯端口

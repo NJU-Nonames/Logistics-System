@@ -15,8 +15,7 @@ import po.agency.StaffPO;
  * @author Administrator
  *
  */
-public interface PeopleDataService extends Remote{
-	public static final String NAME="peopleDataService";
+public interface StaffDataService extends Remote{
 	public void add(StaffPO staff) throws RemoteException;
 	public void delete(StaffPO staff) throws RemoteException;
 	public void update(StaffPO staff) throws RemoteException;
