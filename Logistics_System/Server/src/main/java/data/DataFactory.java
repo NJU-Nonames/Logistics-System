@@ -1,7 +1,7 @@
 /**
  * 2015年11月12日
  *author:
- *description:
+ *description:数据工厂，用于实现RMI通信
  */
 package data;
 
@@ -9,6 +9,25 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import rmiImpl.agency.AgencyDataImpl;
+import rmiImpl.agency.BankAccountDataImpl;
+import rmiImpl.agency.DriverDataImpl;
+import rmiImpl.agency.StaffDataImpl;
+import rmiImpl.agency.TruckDataImpl;
+import rmiImpl.constantinfo.ConstantDataImpl;
+import rmiImpl.list.DeliveringListDataImpl;
+import rmiImpl.list.HallArrivalListDataImpl;
+import rmiImpl.list.LoadListDataImpl;
+import rmiImpl.list.OrderListDataImpl;
+import rmiImpl.list.TransArrivalListDataImpl;
+import rmiImpl.list.TransShipmentListDataImpl;
+import rmiImpl.moneyInformation.BaseDataSettingDataImpl;
+import rmiImpl.moneyInformation.MoneyInListDataImpl;
+import rmiImpl.moneyInformation.MoneyOutListDataImpl;
+import rmiImpl.receiver.ReceiverDataImpl;
+import rmiImpl.repertory.RepertoryInDataImpl;
+import rmiImpl.repertory.RepertoryInfoDataImpl;
+import rmiImpl.repertory.RepertoryOutDataImpl;
 import rmiImpl.system.SystemLogDataImpl;
 import rmiImpl.system.UserDataImpl;
 import dataservice.DataFactoryService;
@@ -58,110 +77,110 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	}
 
 	public AgencyDataService getAgencyDataService() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new AgencyDataImpl();
 	}
 
 	public BankAccountDataService getBankAccountDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return new BankAccountDataImpl();
 	}
 
 	public DriverDataService getDriverDataService() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new DriverDataImpl();
 	}
 
 	public StaffDataService getStaffDataService() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new StaffDataImpl();
 	}
 
 	public TruckDataService getTruckDataService() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new TruckDataImpl();
 	}
 
 	public ConstantDataService getConstantDataService() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new ConstantDataImpl();
 	}
 
 	public DeliveringListDataService getDeliveringDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return new DeliveringListDataImpl();
 	}
 
 	public HallArrivalListDataService getHallArrivalDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new HallArrivalListDataImpl();
 	}
 
 	public LoadListDataService getLoadListDataService() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new LoadListDataImpl();
 	}
 
 	public OrderListDataService getOrderListDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return new OrderListDataImpl();
 	}
 
 	public TransArrivalListDataService getTransArrivalListDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new TransArrivalListDataImpl();
 	}
 
 	public TransShipmentListDataService getTransShipmentDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new TransShipmentListDataImpl();
 	}
 
 	public BaseDataSettingDataService getBaseDataSettingDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new BaseDataSettingDataImpl();
 	}
 
 	public MoneyInListDataService getMoneyInListDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new MoneyInListDataImpl();
 	}
 
 	public MoneyOutListDataService getMoneyOutListDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new MoneyOutListDataImpl();
 	}
 
 	public ReceiverDataService getReceiverDataService() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new ReceiverDataImpl();
 	}
 
 	public RepertoryInDataService getRepertoryInDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return new RepertoryInDataImpl();
 	}
 
 	public RepertoryOutDataService getRepertoryDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new RepertoryOutDataImpl();
 	}
 
 	public RepertoryInfoDataService getRepertoryInfoDataService()
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new RepertoryInfoDataImpl();
 	}
 	
 }

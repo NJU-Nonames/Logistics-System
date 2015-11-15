@@ -1,6 +1,7 @@
 package businesslogic.logisticsbl;
 
 import utility.ResultMessage;
+import vo.GoodsInfoVO;
 import vo.RepertoryInVO;
 import vo.RepertoryInfoVO;
 import vo.RepertoryOutVO;
@@ -21,6 +22,11 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	public RepertoryInfoVO showRepertory(String start_time, String end_time) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public GoodsInfoVO find(String id){
+		return null;
+		
 	}
 
 	public ResultMessage repertoryAlarm() {
