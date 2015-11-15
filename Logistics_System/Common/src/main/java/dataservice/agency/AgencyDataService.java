@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import po.agency.AgencyPO;
 
 
-<<<<<<< HEAD:Logistics_System/Common/src/main/java/dataservice/agency/PeopleAgencyDataService.java
-public interface PeopleAgencyDataService extends Serializable{
+public interface AgencyDataService extends Serializable{
 	
 	
 	/**
@@ -22,11 +21,6 @@ public interface PeopleAgencyDataService extends Serializable{
 	 * @param salary
 	 */
 	public void salaryManage(String userID,String salary);
-=======
-public interface AgencyDataService extends Remote{
-	
-	public static final String NAME="agencyDataService";
->>>>>>> origin/master:Logistics_System/Common/src/main/java/dataservice/agency/AgencyDataService.java
 	
 	/**
 	 * 前置条件：不存在同样的AgencyPO

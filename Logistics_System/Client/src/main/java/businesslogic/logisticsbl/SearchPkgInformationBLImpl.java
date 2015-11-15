@@ -6,6 +6,7 @@
 package businesslogic.logisticsbl;
 
 
+import dataservice.DataFactoryService;
 import dataservice.list.OrderListDataService;
 import vo.OrderListVO;
 import businesslogic.rmi.RMIHelper;
@@ -16,14 +17,15 @@ import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
  *
  */
 public class SearchPkgInformationBLImpl implements SearchPkgInformationBLService{
+	private DataFactoryService dataFactory;//数据工厂
 
-	/* (non-Javadoc)
-	 * @see businesslogicservice.logisticsblservice.SearchPkgInformationBLService#searchPkgInformation(java.lang.String)
-	 */
+	//构造函数
+	public SearchPkgInformationBLImpl(){
+		this.dataFactory=(DataFactoryService)RMIHelper.find("dataFactory");
+	}
+
 	public OrderListVO searchPkgInformation(String orderlistId) {
-		// TODO Auto-generated method stub
-		OrderListDataService service=(OrderListDataService)RMIHelper.find(OrderListDataService.NAME);
-		
+		// TODO 自动生成的方法存根
 		return null;
 	}
 

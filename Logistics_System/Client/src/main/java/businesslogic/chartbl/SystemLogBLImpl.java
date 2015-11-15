@@ -14,8 +14,6 @@ import businesslogicservice.chartblservice.SystemLogBLService;
 
 public class SystemLogBLImpl implements SystemLogBLService{
 	private DataFactoryService dataFactory;//数据工厂
-
-<<<<<<< HEAD
 	//构造函数
 	public SystemLogBLImpl(){
 		this.dataFactory=(DataFactoryService)RMIHelper.find("dataFactory");
@@ -24,48 +22,18 @@ public class SystemLogBLImpl implements SystemLogBLService{
 //		SystemLogBLImpl ss=new SystemLogBLImpl();
 //		ss.showAll("2014-2-23","2014-2-24");
 //	}
-	
-	public ArrayList<SystemLogVO> showAll(String time1,String time2){
-		SystemLogDataService service = null;
-        try {
-			service=dataFactory.getSystemLogDataService();//远程方法调用
-=======
-	public static void main(String args[]){
-		SystemLogBLImpl ss=new SystemLogBLImpl();
-		ss.showAll("2014-2-23","2014-3-23");
-	}
-	
-	public ArrayList<SystemLogVO> showAll(String time1,String time2) {
-		//检查time
-		//if(CheckFormat.check(time1,time2)){
-		
-		//SystemLogDataService service1 =new SystemLogDataServiceImpl();
-        SystemLogDataService service=(SystemLogDataService) RMIHelper.find(SystemLogDataService.NAME);
-        ArrayList<SystemLogPO> logs = null;
-		try {
-			logs = service.showAll(time1,time2);
->>>>>>> origin/master
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-<<<<<<< HEAD
-		ArrayList<SystemLogPO> logs = service.showAll(time1,time2);
-=======
-		//PO---VO
->>>>>>> origin/master
-        System.out.println(logs.get(0).getContent());
-        //添加进入系统日志
+	/* （非 Javadoc）
+	 * @see businesslogicservice.chartblservice.SystemLogBLService#showAll(java.lang.String, java.lang.String)
+	 */
+	public ArrayList<SystemLogVO> showAll(String time1, String time2) {
+		// TODO 自动生成的方法存根
 		return null;
-		//}
-		//else{
-			//return null;
-		//}
 	}
-
+	/* （非 Javadoc）
+	 * @see businesslogicservice.chartblservice.SystemLogBLService#addLogInfo(vo.SystemLogVO)
+	 */
 	public ResultMessage addLogInfo(SystemLogVO systemLogVO) {
-		// TODO Auto-generated method stub
+		// TODO 自动生成的方法存根
 		return null;
 	}
-
 }
