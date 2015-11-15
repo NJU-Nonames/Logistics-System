@@ -23,15 +23,14 @@ public class SystemLogDataImpl extends UnicastRemoteObject implements SystemLogD
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<SystemLogPO> showAll(String time1,String time2)
-			throws RemoteException {
+	public ArrayList<SystemLogPO> showAll(String time1,String time2) {
 		// TODO Auto-generated method stub
 		ArrayList<SystemLogPO> systemLogs=new ArrayList<SystemLogPO>();
 		systemLogs.add(new SystemLogPO(time1, "捡了一分钱", "王大锤"));
 		return systemLogs;
 	}
 
-	public void add(SystemLogPO systemLog) throws RemoteException {
+	public void add(SystemLogPO systemLog) {
 		// TODO Auto-generated method stub
 		
 	}
