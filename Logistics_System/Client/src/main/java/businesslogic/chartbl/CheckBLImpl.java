@@ -16,7 +16,7 @@ public class CheckBLImpl implements CheckBLService {
 	public boolean passAllDoc(DocType docType, String time) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}		
 
 	public boolean passSelectedDoc(DocType docType, ArrayList<ListVO> listVO) {
 		// TODO Auto-generated method stub

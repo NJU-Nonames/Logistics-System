@@ -6,7 +6,7 @@ import businesslogicservice.logisticsblservice.SendPkgBLService;
 
 public class SendPkgBLImpl implements SendPkgBLService {
 
-	public OrderListVO createMoneyInformation(OrderListVO orderListVO) {
+	public OrderListVO createMoneyAndDate(OrderListVO orderListVO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

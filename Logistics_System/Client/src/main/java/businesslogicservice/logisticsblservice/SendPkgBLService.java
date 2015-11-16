@@ -16,7 +16,7 @@ public interface SendPkgBLService {
 	 * @param	订单的基本信息，如货物质量，尺寸大小，出发地目的地，寄件人收件人信息等等
 	 * @return	完整的某个订单实体
 	 */
-	public OrderListVO createMoneyInformation(OrderListVO orderListVO);
+	public OrderListVO createMoneyAndDate(OrderListVO orderListVO);
 	
 	/**
 	 * 提交订单 确认生成VO
