@@ -9,7 +9,6 @@ import po.system.SystemLogPO;
 import utility.ResultMessage;
 import vo.SystemLogVO;
 import businesslogic.rmi.RMIHelper;
-import businesslogic.utilitybl.CheckFormat;
 import businesslogicservice.chartblservice.SystemLogBLService;
 
 public class SystemLogBLImpl implements SystemLogBLService{

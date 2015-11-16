@@ -1,0 +1,4 @@
+Mock和Test类建在Client包下的test包中，以模块包划分。
+chartbl的mock类模仿了辅助类moneyInformation来生成成本收益表
+financebl的mock类模仿了createAccount来新建账户信息
+logisticbl的mock类模仿了使用者，订单价格和库存信息来生成快递信息和货物状态信息

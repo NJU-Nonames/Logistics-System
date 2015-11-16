@@ -22,13 +22,16 @@ public class MoneyInformationListVO extends List{
 	 */
 	private double moneyOut;	
 	
+	private double profit;
 	
-	public MoneyInformationListVO(String time, double moneyIn, double moneyOut)
+	
+	public MoneyInformationListVO(String time, double moneyIn, double moneyOut,double profit)
 	 {
 		super();
 		this.time = time;
 		this.moneyIn = moneyIn;
 		this.moneyOut = moneyOut;
+		this.profit=profit;
 	}
 	public String getTime() {
 		return time;
@@ -55,7 +58,7 @@ public class MoneyInformationListVO extends List{
 	}
 
 	public double getProfit() {
-		return moneyIn-moneyOut;
+		return profit;
 	}
 
 
