@@ -23,16 +23,11 @@ public class UserPO implements Serializable{
 	 * 密码
 	 */
 	private String password;
-	
-	/**
-	 * 权限
-	 */
-	private String authority;
 	/**
 	 * 职位
 	 */
 	private UserType position;
-	
+	private String id;
 	/**
 	 * 构造方法
 	 * @param userNum
@@ -40,11 +35,11 @@ public class UserPO implements Serializable{
 	 * @param authority
 	 * @param position
 	 */
-	public UserPO(String userNum,String initialPassword,UserType position,String authority){
+	public UserPO(String userNum,String initialPassword,UserType position,String id){
 		this.admin = userNum;
 		this.password = initialPassword;
-		this.authority = authority;
 		this.position=position;
+		this.id=id;
 	}
 
     public String getAdmin() {
@@ -54,10 +49,6 @@ public class UserPO implements Serializable{
     public String getPassword() {
         return password;
     }
-
-    public String getAuthority() {
-        return authority;
-    }
     public UserType getPosition(){
     	return position;
     }
@@ -66,11 +57,16 @@ public class UserPO implements Serializable{
 		this.password = initialPassword;
 	}
 
-	public void setAuthority(String authority) {
-		this.authority = authority;
-	}
 	public void setPosition(UserType position){
 		this.position=position;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
     
 }

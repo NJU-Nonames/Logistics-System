@@ -17,15 +17,15 @@ public class UserVO {
 	 * 密码
 	 */
 	private String password;
-	
-	/**
-	 * 权限
-	 */
-	private String authority;
 	/**
 	 * 职位
 	 */
 	private UserType position;
+	
+	/**
+	 * 工号
+	 */
+	private String id;
 	
 	/**
 	 * 构造方法
@@ -34,11 +34,11 @@ public class UserVO {
 	 * @param authority
 	 * @param position
 	 */
-	public UserVO(String admin,String password,UserType position,String authority){
+	public UserVO(String admin,String password,UserType position,String id){
 		this.admin = admin;
 		this.password = password;
-		this.authority = authority;
 		this.position=position;
+		this.id=id;
 	}
 
     public String getAdmin() {
@@ -48,10 +48,6 @@ public class UserVO {
     public String getPassword() {
         return password;
     }
-
-    public String getAuthority() {
-        return authority;
-    }
     public UserType getPosition(){
     	return position;
     }
@@ -59,12 +55,16 @@ public class UserVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public void setAuthority(String authority) {
-		this.authority = authority;
-	}
 	public void setPosition(UserType position){
 		this.position=position;
 	}
-    
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+   
 }
