@@ -9,6 +9,7 @@ package businesslogicservice.userblservice;
 import java.util.ArrayList;
 
 import utility.ResultMessage;
+import vo.StaffVO;
 import vo.UserVO;
 
 public interface UserManageBLService {
@@ -18,7 +19,7 @@ public interface UserManageBLService {
 	 * @param password
 	 * @return 登录者VO
 	 */
-	public UserVO login(String admin,String password);
+	public StaffVO login(String admin,String password);
 	
 	/**雇佣新员工
 	 * @param 用户名，姓名，密码，职位

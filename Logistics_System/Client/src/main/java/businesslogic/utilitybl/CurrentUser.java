@@ -7,5 +7,5 @@ import vo.StaffVO;
  * 当前使用者类
  */
 public class CurrentUser {
-	StaffVO stuff;
+
 }

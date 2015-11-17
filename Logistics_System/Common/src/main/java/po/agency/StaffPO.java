@@ -35,7 +35,8 @@ public class StaffPO {
 	 * 工资
 	 */
 	private double wage;
-	
+	private String agencyName;
+	private String id;
 	/**
 	 * @param name
 	 * @param sex
@@ -45,7 +46,7 @@ public class StaffPO {
 	 * @param phoneNum
 	 * @param wage
 	 */
-	public StaffPO(String name,String sex,String postion,String IDNum,int workingtime,String phoneNum,double wage){
+	public StaffPO(String name,String sex,String postion,String IDNum,int workingtime,String phoneNum,double wage,String agencyName,String id){
 		this.name = name;
 		this.sex = sex;
 		this.phoneNum = phoneNum;
@@ -54,6 +55,8 @@ public class StaffPO {
 		this.postion = postion;
 		this.wage = wage;
 		this.workingtime = workingtime;
+		this.agencyName=agencyName;
+		this.id=id;
 	}
 
 	public String getName() {
@@ -82,5 +85,21 @@ public class StaffPO {
 
 	public double getWage() {
 		return wage;
+	}
+
+	public String getAgencyName() {
+		return agencyName;
+	}
+
+	public void setAgencyPO(String agencyName) {
+		this.agencyName = agencyName;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

@@ -8,11 +8,14 @@ package businesslogic.userbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import po.agency.StaffPO;
 import po.system.UserPO;
 import dataservice.DataFactoryService;
+import dataservice.agency.StaffDataService;
 import dataservice.system.UserDataService;
 import utility.ResultMessage;
 import utility.UserType;
+import vo.StaffVO;
 import vo.UserVO;
 import businesslogic.chartbl.SystemLogBLImpl;
 import businesslogic.rmi.RMIHelper;
@@ -31,20 +34,23 @@ public class UserManageBLImpl implements UserManageBLService{
 	}
 
 	
-	public UserVO login(String admin, String password) {
-		UserDataService service = null;
-        try {
-			service=dataFactory.getUserDataService();//远程方法调用
+	public StaffVO login(String admin, String password) {
+		UserDataService service1 = null;
+		StaffDataService service2 = null;
+		try {
+			service1=dataFactory.getUserDataService();//远程方法调用
+			service2=dataFactory.getStaffDataService();
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-
-        UserVO uservo=null;
-        UserPO userpo=service.findonAdmin(admin);
-        if(userpo!=null && userpo.getPassword().compareTo(password)==0)
-        	uservo = new UserVO(userpo.getAdmin(), userpo.getPassword(), userpo.getPosition(), userpo.getAuthority());
-        return uservo;
+        UserPO userpo=service1.findonAdmin(admin);
+        StaffVO staffvo=null;
+        if(userpo!=null && userpo.getPassword().compareTo(password)==0){
+    		StaffPO staffpo=service2.find(admin);
+        	staffvo = new StaffVO(staffpo.getName(), staffpo.getSex(), staffpo.getPostion(), staffpo.getIDNum(), staffpo.getWorkingtime(), staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId());
+        }
+        return staffvo;
 	}
 
 	public ResultMessage addUser(UserVO user) {

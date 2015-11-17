@@ -2,6 +2,7 @@ package businesslogic.logisticsbl;
 
 import utility.ResultMessage;
 import vo.OrderListVO;
+import businesslogic.utilitybl.CurrentUser;
 import businesslogicservice.logisticsblservice.SendPkgBLService;
 
 public class SendPkgBLImpl implements SendPkgBLService {

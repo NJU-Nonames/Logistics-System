@@ -1,5 +1,7 @@
 package vo;
 
+import po.agency.StaffPO;
+
 public class StaffVO {
 	/**
 	 * 姓名
@@ -35,7 +37,7 @@ public class StaffVO {
 	 * 工资
 	 */
 	private double wage;
-	private AgencyVO agency;
+	private String agencyName;
 	private String id;
 	
 	/**
@@ -47,7 +49,7 @@ public class StaffVO {
 	 * @param phoneNum
 	 * @param wage
 	 */
-	public StaffVO(String name,String sex,String postion,String IDNum,int workingtime,String phoneNum,double wage,AgencyVO agency,String id){
+	public StaffVO(String name,String sex,String postion,String IDNum,int workingtime,String phoneNum,double wage,String agencyName,String id){
 		this.name = name;
 		this.sex = sex;
 		this.phoneNum = phoneNum;
@@ -56,7 +58,7 @@ public class StaffVO {
 		this.postion = postion;
 		this.wage = wage;
 		this.workingtime = workingtime;
-		this.agency=agency;
+		this.agencyName=agencyName;
 		this.id=id;
 	}
 
@@ -105,15 +107,15 @@ public class StaffVO {
 	/**
 	 * @return the agency
 	 */
-	public AgencyVO getAgency() {
-		return agency;
+	public String getAgencyName() {
+		return agencyName;
 	}
 
 	/**
 	 * @param agency the agency to set
 	 */
-	public void setAgency(AgencyVO agency) {
-		this.agency = agency;
+	public void setAgency(String agencyName) {
+		this.agencyName = agencyName;
 	}
 
 	/**
