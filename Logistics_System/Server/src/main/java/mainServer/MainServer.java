@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import data.DataFactory;
+import data.DataJDBCConnection;
 import dataservice.DataFactoryService;
 
 public class MainServer {
@@ -27,6 +28,7 @@ public class MainServer {
 	 * @param args
 	 */
 	public static void main(String args[]){
+		
 		try {
 			//注册通讯端口
 			LocateRegistry.createRegistry(PORT);
@@ -34,6 +36,8 @@ public class MainServer {
 			//注册通讯路径;将datafactory共享掉；datafactory被赋予新名字dataFactory
 			DataFactoryService datafactory =new DataFactory();
 			Naming.rebind("rmi://"+IP+":"+PORT+"/dataFactory", datafactory);
+			
+			DataJDBCConnection.init();
 			
 			System.out.println("Server start!");
 			

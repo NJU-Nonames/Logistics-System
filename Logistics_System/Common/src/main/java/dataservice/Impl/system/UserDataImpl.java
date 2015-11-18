@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import po.system.UserPO;
 import utility.UserType;
+import data.DataJDBCConnection;
 import dataservice.system.UserDataService;
 
 
@@ -23,8 +24,15 @@ public class UserDataImpl implements UserDataService{
 	 */
 	private static final long serialVersionUID = -2473929898619936668L;
 
+	public static void main(String args[]){
+		UserDataService userdata=new UserDataImpl();
+		userdata.add(new UserPO("wangjaiwei","1232321",UserType.ADMIN,"123332212"));
+	}
+	
 	public void add(UserPO user) {
 		
+		String operate="insert into User values"+user.getId()+" "+user.getAdmin()+" "+user.getPassword()+" "+user.getPosition();
+		DataJDBCConnection.getResultSet(operate);
 	}
 
 	public void delete(UserPO user) {
