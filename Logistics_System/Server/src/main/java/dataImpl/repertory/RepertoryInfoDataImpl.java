@@ -1,4 +1,4 @@
-package dataservice.Impl.repertory;
+package dataImpl.repertory;
 
 import po.repertory.GoodsInfoPO;
 import po.repertory.RepertoryInPO;

@@ -1,4 +1,4 @@
-package dataservice.Impl.constantinfo;
+package dataImpl.constantinfo;
 
 import po.constantinfo.DistanceChartPO;
 import po.constantinfo.PriceChartPO;

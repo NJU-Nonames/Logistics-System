@@ -1,4 +1,4 @@
-package dataservice.Impl.moneyInformation;
+package dataImpl.moneyInformation;
 
 import java.util.ArrayList;
 

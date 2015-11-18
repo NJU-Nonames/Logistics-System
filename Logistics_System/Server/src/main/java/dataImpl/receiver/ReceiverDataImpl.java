@@ -1,4 +1,4 @@
-package dataservice.Impl.receiver;
+package dataImpl.receiver;
 
 import po.receiver.ReceiverPO;
 import dataservice.receiver.ReceiverDataService;

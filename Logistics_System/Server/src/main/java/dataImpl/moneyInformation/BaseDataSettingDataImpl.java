@@ -1,4 +1,4 @@
-package dataservice.Impl.moneyInformation;
+package dataImpl.moneyInformation;
 
 import po.agency.AgencyPO;
 import po.agency.BankAccountPO;
