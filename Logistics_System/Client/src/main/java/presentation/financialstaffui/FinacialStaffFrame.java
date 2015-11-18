@@ -1,33 +1,155 @@
+/**
+ * 2015年11月15日
+ *author:
+ *description:
+ */
 package presentation.financialstaffui;
 
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+import presentation.img.Img;
+import presentation.mainui.LoginPanel;
+import presentation.mainui.MainPanel;
+import presentation.mainui.SearchPanel;
+import businesslogic.userbl.UserManageBLImpl;
+import businesslogicservice.financeblservice.AccountBLService;
+import businesslogicservice.financeblservice.BaseDataSettingBLService;
+import businesslogicservice.financeblservice.CostManagementBLService;
+import businesslogicservice.financeblservice.SettlementManageBLService;
+import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
+import businesslogicservice.userblservice.UserManageBLService;
+
+/**
+ * @author 谭期友
+ *
+ */
 public class FinacialStaffFrame extends JFrame{
-	/**
-	 * 主办公系统界面Frame 的宽
-	 */
-	private static final int SYSTEMDEFALUT_WIDTH = 1024;
-	/**
-	 * 主办公系统界面Frame的高
-	 */
-	private static final int SYSTEMDEFALUT_HIGHT = 768;
+	
+	private static final long serialVersionUID = 4881080784503653011L;
+	public static final int w = 1024;
+	public static final int h = 768;
+	
+	
+	private int state;//1表示账户管理，2表示成本管理,3表示结算管理，4表示统计报表，5表示期初建帐,6表示查看系统日志
+	private int stated;//以前的状态
+	boolean changed;
+	public void setState(int x){
+		state=x;
+	}
+	public int getState(){
+		return state;
+	}
+	public void setStated(int x){
+		stated=x;
+	}
+	public void setChanged(boolean x){
+		changed=x;
+	}
+	JPanel j;
+	CardLayout card;
+
+	//面板对象
+	AccountManage accountManage;//账户管理
+	CostManage costManage;//成本管理
+	SettlementManage settlementManage;//结算管理
+	Statistic statistic;//统计报表
+	BaseDataSetting baseDataSetting;//期初建账
+	SystemLog systemLog;//查看系统日志
+	
+	
+
+	AccountBLService accountBLService;
+	BaseDataSettingBLService baseDataSettingBLService;//期初建账
+	CostManagementBLService costManagementBLService;
+	SettlementManageBLService settlementManageBLService;
+
+	private boolean isDraging;//是否被拖住
+	private int xx;
+	private int yy;
 	
 	public FinacialStaffFrame(){
-		//remain updating
-		this.setTitle("物流系统大作业——系统管理员用户界面");
+		this.setUndecorated(true);
+		this.addMouseListener(new MouseAdapter() { 
+			public void mousePressed(MouseEvent e) { 
+				 isDraging = true; 
+				 xx = e.getX(); 
+				 yy = e.getY(); 
+			}
+
+			public void mouseReleased(MouseEvent e) { 
+				 isDraging = false; 
+			}
+		});
 		
-		this.setSize(SYSTEMDEFALUT_WIDTH,SYSTEMDEFALUT_HIGHT);
-		//不可随意移动
-		this.setResizable(false);
-		//设置显示在中间
-		Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation((screen.width -this.getWidth())/2, (screen.height -this.getHeight())/2);
 		
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent e) { 
+			if (isDraging) { 
+				 int left = getLocation().x; 
+				 int top = getLocation().y; 
+				 setLocation(left + e.getX() - xx, top + e.getY() - yy); 
+			}
+			}
+		});
+		this.setSize(w,h);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		state=0;
+		stated=0;
+		changed=false;
+		isDraging=false;
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		card=new CardLayout();
+		j = new JPanel();
+        j.setLayout(card);
+        add(j);
+		
+		this.setIconImage(Img.FinacialStaffICON);
+		
+
+		accountBLService=null;
+		baseDataSettingBLService=null;//期初建账
+		costManagementBLService=null;
+		settlementManageBLService=null;
+		
+		accountManage=new AccountManage(this, accountBLService);
+		baseDataSetting=new BaseDataSetting();
+		costManage=new CostManage();
+		settlementManage=new SettlementManage();
+		statistic=new Statistic();
+		systemLog=new SystemLog();
+
+		j.add(accountManage);
+		j.add(costManage);
+		j.add(settlementManage);
+		j.add(statistic);
+		j.add(baseDataSetting);
+		j.add(systemLog);
+		
+		new Thread(new Runnable(){
+			public void run() {
+				while(true){
+					if(changed){
+						changed=false;
+						int a;
+						if(state-stated>0)
+							a=state-stated;
+						else
+							a=state+6-stated;
+						for(int i=0;i<a;i++)
+							card.next(j);
+						
+					}
+				}
+			}
+		}).start();
 	}
 }

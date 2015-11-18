@@ -1,23 +1,25 @@
 package presentation.mainui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import presentation.financialstaffui.FinacialStaffFrame;
 import presentation.img.Img;
-import utility.ResultMessage;
+import vo.StaffVO;
 import vo.UserVO;
 import businesslogicservice.userblservice.UserManageBLService;
 
 public class LoginPanel extends JPanel{
 	
+	private static final long serialVersionUID = -42431647139763410L;
 	private UserManageBLService bl;
 	private MainFrame mf;
 	
@@ -28,16 +30,29 @@ public class LoginPanel extends JPanel{
 	
 	private JTextField userField;
 	private JTextField passwordField;
+	
+	private boolean Invalid;//输入是否非法
+	String result;
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
         g.drawImage(Img.BG, 0, 0, MainFrame.w, MainFrame.h/2, null);
+        
+        if(Invalid){
+        	g.drawImage(Img.BLACK_BG, 0, MainFrame.h-50, MainFrame.w, 50, null);
+        	
+            g.setColor(Color.RED);
+            g.setFont(new Font("楷体", Font.BOLD, 26));
+            g.drawString(result, -result.length()*13+MainFrame.w/2, 13+MainFrame.h-30);
+        }
 	}
 	
 	public LoginPanel(MainFrame mf, UserManageBLService bl){
 		this.mf=mf;
 		this.bl=bl;
+		Invalid=false;
+		result="";
 		this.setLayout(null);
 
 		//初始化组件
@@ -77,7 +92,7 @@ public class LoginPanel extends JPanel{
         _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
-				clear();//清空文本域
+				clear();//清空文本域和错误提示
 				mf.setStated(mf.getState());
 				mf.setState(0);
 				mf.setChanged(true);
@@ -89,9 +104,11 @@ public class LoginPanel extends JPanel{
         });
         JLabel userLabel = new JLabel("账号：");
         userLabel.setSize(60, 20);
+        userLabel.setFont(new Font("楷体", Font.BOLD, 18));
         userField = new JTextField();
         userField.setSize(100, 20);
         JLabel passwordLabel = new JLabel("密码：");
+        passwordLabel.setFont(new Font("楷体", Font.BOLD, 18));
         passwordLabel.setSize(60, 20);
         passwordField = new JTextField();
         passwordField.setSize(100, 20);
@@ -103,8 +120,8 @@ public class LoginPanel extends JPanel{
         passwordField.setLocation(MainFrame.w/2-50,MainFrame.h*3/4-30);
     	close.setLocation(MainFrame.w-30,0);
     	min.setLocation(MainFrame.w-80,0);
-    	login.setLocation(MainFrame.w-100,MainFrame.h*3/4);
-    	_return.setLocation(MainFrame.w-100,MainFrame.h*3/4+40);
+    	login.setLocation(MainFrame.w-100,MainFrame.h*3/4-60);
+    	_return.setLocation(MainFrame.w-100,MainFrame.h*3/4-30);
     	
     	
     	add(userLabel);
@@ -120,21 +137,65 @@ public class LoginPanel extends JPanel{
 	private void clear(){
 		userField.setText("");
 		passwordField.setText("");
+		Invalid=false;
+		repaint();
 	}
 	private void userlogin(){
-		String username = userField.getText();
-		String paw = passwordField.getText();
-
-		UserVO uservo = bl.login(username, paw);
-		if(uservo==null)
-			//showerror();
-			System.out.println("密码错误");
-		else
-			System.out.println("密码正确");
+//		String username = userField.getText();
+//		String paw = passwordField.getText();
+//
+//		result = CheckFormat.checkUserNum(username);
+//		if(result.compareTo("格式正确")!=0){
+//			Invalid=true;
+//			repaint();
+//			new Thread(new Runnable(){
+//				public void run() {
+//					try {
+//						Thread.sleep(3000);
+//					} catch (InterruptedException e) {
+//						// TODO 自动生成的 catch 块
+//						e.printStackTrace();
+//					}
+//					
+//					Invalid=false;
+//					repaint();
+//				}
+//			}).start();
+//			return;
+//		}
+//		
+//
+//		UserVO vo = bl.login(username, paw);
+//		if(vo==null){
+//			Invalid=true;
+//			result = "密码错误！";
+//			repaint();
+//			new Thread(new Runnable(){
+//				public void run() {
+//					try {
+//						Thread.sleep(3000);
+//					} catch (InterruptedException e) {
+//						// TODO 自动生成的 catch 块
+//						e.printStackTrace();
+//					}
+//
+//					Invalid=false;
+//					repaint();
+//				}
+//			}).start();
+//		}else{
+			mf.dispose();
+//			switch(uservo.getPosition()){
+//			case COURIER:break;
+//			case BUSINESS_OFFICE_CLERK:break;
+//			case CENTER_CLERK:break;
+//			case CENTER_REPERTORY_CLERK:break;
+//			case FINANCIAL_STAFF:
+				new FinacialStaffFrame();//break;
+//			case TOP_MANAGER:break;
+//			case ADMIN:break;
+//			}
+//		}
 	}
-//	private void showerror(){
-		//this.setBackground(Color.RED);
-		//JOptionPane.showMessageDialog(null, "查无此用户！","", JOptionPane.ERROR_MESSAGE);
-//	}
 }
 

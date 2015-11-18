@@ -1,5 +1,6 @@
 package presentation.mainui;
 
+
 /**
  * @author 这菜咸了
  * 检查格式类 
@@ -149,16 +150,16 @@ public class CheckFormat {
 //	}
 	//订单编号
 	public static String checkOrderNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=18){
-				return "订单输入有误";
+				return "请输入18位订单号！";
 			}
 			else{
 				return "格式正确";
 			}
 		}
 		else{
-			return "未输入订单编号";
+			return "未输入订单号！";
 		}
 	}
 //	//入库单编号
@@ -249,16 +250,16 @@ public class CheckFormat {
 	}
 	//用户编号
 	public static String checkUserNum(String num){
-		if(num!=null){
-			if(num.length()!=9){
-				return "员工编号输入有误";
+		if(num.compareTo("")!=0){
+			if(num.length()==5||num.length()==9){
+				return "格式正确";
 			}
 			else{
-				return "格式正确";
+				return "请输入5位或9位账号！";
 			}
 		}
 		else{
-			return "未输入员工编号";
+			return "未输入账号！";
 		}
 	}
 	//身份证号
