@@ -2,12 +2,15 @@ package mainServer;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import data.DataFactory;
 import data.DataJDBCConnection;
+import dataImpl.system.UserDataImpl;
 import dataservice.DataFactoryService;
+import dataservice.system.UserDataService;
 
 public class MainServer {
 	
@@ -34,8 +37,9 @@ public class MainServer {
 			LocateRegistry.createRegistry(PORT);
 
 			//注册通讯路径;将datafactory共享掉；datafactory被赋予新名字dataFactory
-			DataFactoryService datafactory =new DataFactory();
-			Naming.rebind("rmi://"+IP+":"+PORT+"/dataFactory", datafactory);
+			//DataFactoryService datafactory =new DataFactory();
+			UserDataService userDataService=new UserDataImpl();
+			Naming.rebind("rmi://"+IP+":"+PORT+"/UserDataService", userDataService);
 			
 			DataJDBCConnection.init();
 			

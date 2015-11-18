@@ -26,25 +26,35 @@ import businesslogicservice.userblservice.UserManageBLService;
  *
  */
 public class UserManageBLImpl implements UserManageBLService{
-	private DataFactoryService dataFactory;//数据工厂
+	//private DataFactoryService dataFactory;//数据工厂
 
+	UserDataService userDataService=null;
 	//构造函数
 	public UserManageBLImpl(){
-		this.dataFactory=(DataFactoryService)RMIHelper.find("dataFactory");
+	//	this.dataFactory=(DataFactoryService)RMIHelper.find("dataFactory");
+		this.userDataService=(UserDataService)RMIHelper.find("userDataService");
 	}
 
 	
 	public UserVO login(String admin, String password) {
-		UserDataService service1 = null;
+		//UserDataService service1 = null;
 		//StaffDataService service2 = null;
+//		try {
+//			//service1=dataFactory.getUserDataService();//远程方法调用
+//			//service2=dataFactory.getStaffDataService();
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
+		
+       // UserPO userpo=service1.findonAdmin(admin);
+		UserPO userpo = null;
 		try {
-			service1=dataFactory.getUserDataService();//远程方法调用
-			//service2=dataFactory.getStaffDataService();
+			userpo = userDataService.findonAdmin(admin);
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        UserPO userpo=service1.findonAdmin(admin);
         //StaffVO staffvo=null;
         UserVO vo=null;
         if(userpo!=null && userpo.getPassword().compareTo(password)==0){
