@@ -17,32 +17,34 @@ public class SystemLogBLImpl implements SystemLogBLService{
 	public SystemLogBLImpl(){
 		this.systemLogDataService=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
-	
-//	public static void main(String args[]){
-//		SystemLogBLImpl s=new SystemLogBLImpl();
-//		s.showAll("", "");
-//	}
 
-	
-	//TODO 方法测试 有待修改
 	public ArrayList<SystemLogVO> showAll(String time1, String time2) {
-		// TODO 方法实例！！！
 		
-		ArrayList<SystemLogPO> systemLog = null;
+		ArrayList<SystemLogPO> systempo = null;
 		try {
-			systemLog=systemLogDataService.showAll("2010-8", "2010-10");
+			systempo=systemLogDataService.showAll(time1,time2);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(systemLog.get(0).getContent());
-		return null;
+		ArrayList <SystemLogVO> systemvo=new ArrayList<SystemLogVO>();
+		for(SystemLogPO sys:systempo){
+			systemvo.add(new SystemLogVO(sys.getTime(),sys.getContent(),sys.getUser()));
+		}
+		return systemvo;
 	}
 	/* （非 Javadoc）
 	 * @see businesslogicservice.chartblservice.SystemLogBLService#addLogInfo(vo.SystemLogVO)
 	 */
 	public ResultMessage addLogInfo(SystemLogVO systemLogVO) {
 		// TODO 自动生成的方法存根
-		return null;
+		SystemLogPO sys=new SystemLogPO(systemLogVO.getTime(),systemLogVO.getContent(),systemLogVO.getUser());
+		try{
+			systemLogDataService.add(sys);
+		}catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ResultMessage(true,"更新系统日志!");
 	}
 }

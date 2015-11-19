@@ -35,4 +35,7 @@ public class SystemLogVO {
 	public String getContent() {
 		return content;
 	}
+	public String getUser(){
+		return user;
+	}
 }
