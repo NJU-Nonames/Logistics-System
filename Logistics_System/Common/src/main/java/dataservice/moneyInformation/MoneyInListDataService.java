@@ -23,7 +23,7 @@ public interface MoneyInListDataService extends Remote{
 	
 	public boolean add(MoneyInListPO moneyInList)throws RemoteException;
 	
-	public boolean delete(MoneyInListPO moneyInList)throws RemoteException;
+	public boolean delete(String moneyInListID)throws RemoteException;
 	
 	public boolean update(MoneyInListPO moneyInList)throws RemoteException;
 	

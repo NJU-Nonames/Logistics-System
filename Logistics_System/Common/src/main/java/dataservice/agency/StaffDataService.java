@@ -17,7 +17,7 @@ import po.agency.StaffPO;
  */
 public interface StaffDataService extends Remote{
 	public void add(StaffPO staff)throws RemoteException;
-	public void delete(StaffPO staff)throws RemoteException;
+	public void delete(String id)throws RemoteException;
 	public void update(StaffPO staff)throws RemoteException;
 	public StaffPO find(String id)throws RemoteException;
 	public ArrayList<StaffPO> showAll()throws RemoteException;

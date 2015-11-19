@@ -20,7 +20,7 @@ public class HallArrivalListDataImpl extends UnicastRemoteObject implements Hall
 		return false;
 	}
 
-	public boolean delete(HallArrivalListPO hallArrivalListPO) {
+	public boolean delete(String hallArrivalListID) {
 		// TODO Auto-generated method stub
 		return false;
 	}

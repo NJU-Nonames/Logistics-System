@@ -12,7 +12,7 @@ public interface TransShipmentListDataService extends Remote{
 	
 	public boolean add(TransShipmentListPO transShipmentListPO)throws RemoteException;
 	
-     public boolean delete (TransShipmentListPO transShipmentListPO)throws RemoteException;
+     public boolean delete (String transShipmentListID)throws RemoteException;
 	
 	public boolean update (TransShipmentListPO transShipmentListPO)throws RemoteException;
 	

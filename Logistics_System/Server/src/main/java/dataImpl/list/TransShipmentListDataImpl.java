@@ -20,7 +20,7 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 		return false;
 	}
 
-	public boolean delete(TransShipmentListPO transShipmentListPO) {
+	public boolean delete(String ID) {
 		// TODO Auto-generated method stub
 		return false;
 	}

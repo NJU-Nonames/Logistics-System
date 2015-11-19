@@ -20,7 +20,7 @@ public class DeliveringListDataImpl extends UnicastRemoteObject implements Deliv
 		return false;
 	}
 
-	public boolean delete(DeliveringListPO deliveringList) {
+	public boolean delete(String deliveringListID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -39,5 +39,7 @@ public class DeliveringListDataImpl extends UnicastRemoteObject implements Deliv
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

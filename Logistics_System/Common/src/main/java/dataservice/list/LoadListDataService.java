@@ -11,7 +11,7 @@ public interface LoadListDataService extends Remote{
 	
 	public boolean add(LoadListPO loadListPO)throws RemoteException;
 	
-     public boolean delete (LoadListPO loadListPO)throws RemoteException;
+     public boolean delete (String ID)throws RemoteException;
 	
 	public boolean update (LoadListPO loadListPO)throws RemoteException;
 	

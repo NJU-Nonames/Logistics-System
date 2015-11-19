@@ -20,7 +20,7 @@ public class TransArrivalListDataImpl extends UnicastRemoteObject implements Tra
 		return false;
 	}
 
-	public boolean delete(TransArrivalListPO transArrivalListPO) {
+	public boolean delete(String ID) {
 		// TODO Auto-generated method stub
 		return false;
 	}

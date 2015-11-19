@@ -20,7 +20,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements DriverDataSer
 		return false;
 	}
 
-	public boolean delete(DriverPO driver) {
+	public boolean delete(String driverid) {
 		// TODO Auto-generated method stub
 		return false;
 	}

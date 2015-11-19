@@ -10,7 +10,7 @@ public interface HallArrivalListDataService extends Remote{
 	
 	public boolean add (HallArrivalListPO hallArrivalListPO)throws RemoteException;
 	
-	public boolean delete (HallArrivalListPO hallArrivalListPO)throws RemoteException;
+	public boolean delete (String hallArrivalListID)throws RemoteException;
 	
 	public boolean update (HallArrivalListPO hallArrivalListPO)throws RemoteException;
 	

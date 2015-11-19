@@ -11,7 +11,7 @@ public interface MoneyOutListDataService extends Remote{
 	
 	public boolean add(MoneyOutListPO moneyOutList)throws RemoteException;
 	
-	public boolean delete(MoneyOutListPO moneyOutList)throws RemoteException;
+	public boolean delete(String moneyOutListID)throws RemoteException;
 	
 	public boolean update(MoneyOutListPO moneyOutList)throws RemoteException;
 	

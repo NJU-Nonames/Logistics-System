@@ -22,7 +22,7 @@ public interface TruckDataService extends Remote{
 	 * 后置条件:显示删除某货车
 	 * @param 货车实体类
 	 */
-	public boolean delete(TruckPO truck)throws RemoteException;
+	public boolean delete(String vehiclecode)throws RemoteException;
 	
 	/**营业厅业务员更改货车信息
 	 * @param 货车实体类

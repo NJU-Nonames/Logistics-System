@@ -25,7 +25,7 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 
 	}
 
-	public void delete(AgencyPO agency) {
+	public void delete(String agencyID) {
 		// TODO Auto-generated method stub
 
 	}

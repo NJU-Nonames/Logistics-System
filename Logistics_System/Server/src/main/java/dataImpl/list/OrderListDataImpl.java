@@ -20,7 +20,7 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 		return false;
 	}
 
-	public boolean delete(OrderListPO orderList) {
+	public boolean delete(String ID) {
 		// TODO Auto-generated method stub
 		return false;
 	}

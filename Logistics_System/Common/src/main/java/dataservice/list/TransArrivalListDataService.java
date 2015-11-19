@@ -11,7 +11,7 @@ public interface TransArrivalListDataService extends Remote{
 	
 	public boolean add(TransArrivalListPO transArrivalListPO)throws RemoteException;
 	
-     public boolean delete (TransArrivalListPO transArrivalListPO)throws RemoteException;
+     public boolean delete (String transArrivalListID)throws RemoteException;
 	
 	public boolean update (TransArrivalListPO transArrivalListPO)throws RemoteException;
 	

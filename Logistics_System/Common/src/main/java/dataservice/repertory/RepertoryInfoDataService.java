@@ -5,12 +5,12 @@
  */
 package dataservice.repertory;
 
-import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import po.repertory.GoodsInfoPO;
 import po.repertory.RepertoryInPO;
+import po.repertory.RepertoryInfoPO;
 import po.repertory.RepertoryOutPO;
 
 
@@ -35,6 +35,12 @@ public interface RepertoryInfoDataService extends Remote{
 	 * @param repertoryPO
 	 * @return
 	 */
-	public boolean delete(GoodsInfoPO goods,RepertoryOutPO repertoryPO)throws RemoteException;
+	public boolean delete(String barCode,RepertoryOutPO repertoryPO)throws RemoteException;
+	
+	/**
+	 * 获得库存信息情况
+	 * @return
+	 */
+	public RepertoryInfoPO show();
 
 }

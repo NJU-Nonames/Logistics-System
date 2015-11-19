@@ -20,7 +20,7 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 		return false;
 	}
 
-	public boolean delete(LoadListPO loadListPO) {
+	public boolean delete(String loadListID) {
 		// TODO Auto-generated method stub
 		return false;
 	}

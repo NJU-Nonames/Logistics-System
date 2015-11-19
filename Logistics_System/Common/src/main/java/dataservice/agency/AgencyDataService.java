@@ -34,7 +34,7 @@ public interface AgencyDataService extends Remote{
 	 * 后置条件：在数据库中删除对应的AgencyPO
 	 * @param 	AgencyPO
 	 */
-	public void delete(AgencyPO agency)throws RemoteException;
+	public void delete(String agencyNum)throws RemoteException;
 	
 	/**
 	 * 前置条件：存在同样id的AgencyPO

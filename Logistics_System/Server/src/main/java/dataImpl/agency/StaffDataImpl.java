@@ -22,7 +22,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements StaffDataServi
 
 	}
 
-	public void delete(StaffPO staff)  {
+	public void delete(String staffid)  {
 		// TODO Auto-generated method stub
 
 	}

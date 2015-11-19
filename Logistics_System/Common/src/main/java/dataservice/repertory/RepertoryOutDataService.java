@@ -10,7 +10,7 @@ public interface RepertoryOutDataService extends Remote{
 	
 	public boolean add(RepertoryOutPO repertoryOut)throws RemoteException;
 	
-	public boolean delete(RepertoryOutPO repertoryOut)throws RemoteException;
+	public boolean delete(String repertoryOutID)throws RemoteException;
 
 	public boolean update(RepertoryOutPO repertoryOut)throws RemoteException;
 	

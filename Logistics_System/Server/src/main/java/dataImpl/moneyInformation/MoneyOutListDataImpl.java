@@ -15,34 +15,36 @@ public class MoneyOutListDataImpl extends UnicastRemoteObject implements MoneyOu
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean add(MoneyOutListPO moneyOutList) {
+	public boolean add(MoneyOutListPO moneyOutList) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean delete(MoneyOutListPO moneyOutList) {
+	public boolean delete(String moneyOutListID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean update(MoneyOutListPO moneyOutList) {
+	public boolean update(MoneyOutListPO moneyOutList) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public MoneyOutListPO findOnID(String id) {
+	public MoneyOutListPO findOnID(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public MoneyOutListPO findOnTime(String time) {
+	public MoneyOutListPO findOnTime(String time) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ArrayList<MoneyOutListPO> showAll(String start_day, String end_day) {
+	public ArrayList<MoneyOutListPO> showAll(String start_day, String end_day)
+			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	
 }

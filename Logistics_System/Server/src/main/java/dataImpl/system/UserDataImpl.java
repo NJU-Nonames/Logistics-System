@@ -32,25 +32,25 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	 */
 	private static final long serialVersionUID = -2473929898619936668L;
 
-	public static void main(String args[]){
-		UserDataService userdata;
-		try {
-			userdata = new UserDataImpl();
-			userdata.add(new UserPO("wangjaiwei","1232321",UserType.ADMIN,"123332212"));
-			System.out.println("test chenggong");
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String args[]){
+//		UserDataService userdata;
+//		try {
+//			userdata = new UserDataImpl();
+//			userdata.add(new UserPO("wangjaiwei","1232321",UserType.ADMIN,"123332212"));
+//			System.out.println("test chenggong");
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public void add(UserPO user) {
 		
-		String operate="insert into User values ("+user.getId()+",'"+user.getAdmin()+"','"+user.getPassword()+"','"+user.getPosition()+"');";
+		String operate="insert into User values (?,?,?,?);";
 		DataJDBCConnection.insert(operate);
 	}
 
-	public void delete(UserPO user) {
+	public void delete(String userid) {
 		
 	}
 

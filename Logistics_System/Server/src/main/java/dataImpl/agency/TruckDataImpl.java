@@ -20,7 +20,7 @@ public class TruckDataImpl extends UnicastRemoteObject implements TruckDataServi
 		return false;
 	}
 
-	public boolean delete(TruckPO truck) {
+	public boolean delete(String vehicleCode) {
 		// TODO Auto-generated method stub
 		return false;
 	}

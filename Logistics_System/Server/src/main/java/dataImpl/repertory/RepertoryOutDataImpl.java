@@ -20,7 +20,7 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 		return false;
 	}
 
-	public boolean delete(RepertoryOutPO repertoryOut) {
+	public boolean delete(String repertoryOutID) {
 		// TODO Auto-generated method stub
 		return false;
 	}

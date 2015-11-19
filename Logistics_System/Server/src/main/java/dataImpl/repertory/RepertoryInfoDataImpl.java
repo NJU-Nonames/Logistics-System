@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import po.repertory.GoodsInfoPO;
 import po.repertory.RepertoryInPO;
+import po.repertory.RepertoryInfoPO;
 import po.repertory.RepertoryOutPO;
 import dataservice.repertory.RepertoryInfoDataService;
 
@@ -16,14 +17,23 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean add(GoodsInfoPO goods, RepertoryInPO repertoryPO) {
+	public boolean add(GoodsInfoPO goods, RepertoryInPO repertoryPO)
+			throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean delete(GoodsInfoPO goods, RepertoryOutPO repertoryPO) {
+	public boolean delete(String barCode, RepertoryOutPO repertoryPO)
+			throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public RepertoryInfoPO show() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

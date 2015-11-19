@@ -20,7 +20,7 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 		return false;
 	}
 
-	public boolean delete(RepertoryInPO repertoryIn) {
+	public boolean delete(String repertoryInID) {
 		// TODO Auto-generated method stub
 		return false;
 	}

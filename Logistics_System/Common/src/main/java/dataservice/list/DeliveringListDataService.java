@@ -10,7 +10,7 @@ public interface DeliveringListDataService extends Remote{
 	
 	public boolean add (DeliveringListPO deliveringList)throws RemoteException;
 	
-	public boolean delete (DeliveringListPO deliveringList)throws RemoteException;
+	public boolean delete (String deliveringListID)throws RemoteException;
 	
 	public boolean update (DeliveringListPO deliveringList)throws RemoteException;
 	
