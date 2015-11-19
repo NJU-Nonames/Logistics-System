@@ -8,7 +8,10 @@ package dataImpl.system;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.mysql.jdbc.ResultSet;
 
 import po.system.UserPO;
 import utility.UserType;
@@ -32,12 +35,15 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	 */
 	private static final long serialVersionUID = -2473929898619936668L;
 
+	//test 测试
 //	public static void main(String args[]){
 //		UserDataService userdata;
 //		try {
 //			userdata = new UserDataImpl();
-//			userdata.add(new UserPO("wangjaiwei","1232321",UserType.ADMIN,"123332212"));
-//			System.out.println("test chenggong");
+//			//userdata.add(new UserPO("tangdaye","1343223",UserType.CENTER_CLERK,"123332214"));
+//			//userdata.delete("123332212");
+//			//userdata.update(new UserPO("tangdaye","133323",UserType.CENTER_CLERK,"1000032214"));
+//			System.out.println(userdata.showAll().get(2).getId());
 //		} catch (RemoteException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -45,36 +51,72 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 //	}
 	
 	public void add(UserPO user) {
-		
-		String operate="insert into User values (?,?,?,?);";
-		DataJDBCConnection.insert(operate);
+		String operate="insert into User values ("+user.getId()+",'"+user.getAdmin()+"','"+user.getPassword()+"','"+user.getPosition()+"');";
+		DataJDBCConnection.update(operate);
 	}
 
 	public void delete(String userid) {
-		
+		String operate="delete from User where id="+userid;
+		DataJDBCConnection.update(operate);
 	}
 
+	/* (non-Javadoc)
+	 * @see dataservice.system.UserDataService#update(po.system.UserPO)
+	 *　需要默认id不被改变，即每个人的工号是固定的
+	 */
 	public void update(UserPO user) {
+		this.delete(user.getId());
+		this.add(user);
 		
 	}
 
 	public UserPO findonId(String id) {
-		return null;
+	   //数据库操作，如果不存在返回null，否则返回UserPO
+		UserPO user=null;
+		String sql="select * from User where id="+id;
+		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
+				
+		try {
+			rs.next();
+			user=new UserPO(rs.getString("admin"), rs.getString("pass"), UserType.valueOf(rs.getString("Idtype")),id);
+		} catch (SQLException e) {
+			return null;
+		}	
+				
+		return user;
 	}
 
 	public UserPO findonAdmin(String admin) {
 		//数据库操作，如果不存在返回null，否则返回UserPO
+		UserPO user=null;
+		String sql="select * from User where admin='"+admin+"'";
+		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		
-		//模拟，数据库中的po是“找”出来的不是new出来的
-		UserPO po=null;
-		if(admin.compareTo("admin")==0)
-			po = new UserPO("admin","admin",UserType.COURIER,"无权限汪");
-		
-		return po;
+		try {
+			rs.next();
+			user=new UserPO(admin, rs.getString("pass"), UserType.valueOf(rs.getString("Idtype")), rs.getString("id"));
+		} catch (SQLException e) {
+			return null;
+		}
+				
+		return user;
 	}
 
 	public ArrayList<UserPO> showAll() {
-		return null;
+		UserPO user=null;
+		ArrayList<UserPO> list=new ArrayList<UserPO>();
+		String sql="select * from User";
+		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
+		
+		try {
+			while(rs.next()){
+				user=new UserPO(rs.getString("admin"), rs.getString("pass"), UserType.valueOf(rs.getString("Idtype")), rs.getString("id"));
+				list.add(user);
+			}
+		} catch (SQLException e) {
+			return list;
+		}
+		return list;
 	}
 
 }

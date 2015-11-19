@@ -20,7 +20,7 @@ public interface AgencyDataService extends Remote{
 	 * @param userID
 	 * @param salary
 	 */
-	public void salaryManage(String userID,String salary)throws RemoteException;
+	public void salaryManage(String postion,String salary)throws RemoteException;
 	
 	/**
 	 * 前置条件：不存在同样的AgencyPO

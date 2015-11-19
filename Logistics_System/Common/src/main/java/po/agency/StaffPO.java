@@ -22,9 +22,9 @@ public class StaffPO {
 	private String IDNum;
 	
 	/**
-	 * 工作时长（按月）
+	 * 进入公司工作时间
 	 */
-	private int workingtime;
+	private String workingstarttime;
 	
 	/**
 	 * 手机
@@ -34,8 +34,8 @@ public class StaffPO {
 	/**
 	 * 工资
 	 */
-	private double wage;
-	private String agencyName;
+	private String wage;
+	private String agencyId;
 	private String id;
 	/**
 	 * @param name
@@ -46,7 +46,7 @@ public class StaffPO {
 	 * @param phoneNum
 	 * @param wage
 	 */
-	public StaffPO(String name,String sex,String postion,String IDNum,int workingtime,String phoneNum,double wage,String agencyName,String id){
+	public StaffPO(String name,String sex,String postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyId,String id){
 		this.name = name;
 		this.sex = sex;
 		this.phoneNum = phoneNum;
@@ -54,8 +54,8 @@ public class StaffPO {
 		this.phoneNum = phoneNum;
 		this.postion = postion;
 		this.wage = wage;
-		this.workingtime = workingtime;
-		this.agencyName=agencyName;
+		this.workingstarttime = workingstarttime;
+		this.agencyId=agencyId;
 		this.id=id;
 	}
 
@@ -75,31 +75,27 @@ public class StaffPO {
 		return IDNum;
 	}
 
-	public int getWorkingtime() {
-		return workingtime;
+	public String getWorkingstarttime() {
+		return workingstarttime;
 	}
 
 	public String getPhoneNum() {
 		return phoneNum;
 	}
 
-	public double getWage() {
+	public String getWage() {
 		return wage;
 	}
 
-	public String getAgencyName() {
-		return agencyName;
+	public String getAgencyId() {
+		return agencyId;
 	}
 
-	public void setAgencyPO(String agencyName) {
-		this.agencyName = agencyName;
-	}
+
 
 	public String getId() {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+
 }

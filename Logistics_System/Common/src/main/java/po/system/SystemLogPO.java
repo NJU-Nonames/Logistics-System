@@ -37,4 +37,8 @@ public class SystemLogPO implements Serializable{
 	public String getContent() {
 		return content;
 	}
+	
+	public String getUser(){
+		return user;
+	}
 }

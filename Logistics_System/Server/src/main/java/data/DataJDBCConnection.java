@@ -30,7 +30,11 @@ public class DataJDBCConnection {
 	
 	}
 	
-	public static void insert(String sql){
+	/**
+	 * 实现增删改功能
+	 * @param sql
+	 */
+	public static void update(String sql){
 		connect=DataJDBCConnection.getConnection();
 		try {
 			PreparedStatement prestmt=connect.prepareStatement(sql);
@@ -39,6 +43,20 @@ public class DataJDBCConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+	}
+	
+	public static ResultSet find(String sql){
+		connect=DataJDBCConnection.getConnection();
+		ResultSet rs=null;
+		try {
+			Statement stmt=connect.createStatement();
+			rs=stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return rs;
+		
 	}
 	
 	

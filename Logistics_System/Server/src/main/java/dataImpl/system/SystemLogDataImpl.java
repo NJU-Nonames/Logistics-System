@@ -3,9 +3,13 @@ package dataImpl.system;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.jdbc.ResultSet;
+
 import po.system.SystemLogPO;
+import data.DataJDBCConnection;
 import dataservice.system.SystemLogDataService;
 
 /**
@@ -19,21 +23,28 @@ public class SystemLogDataImpl extends UnicastRemoteObject implements SystemLogD
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 
 	public ArrayList<SystemLogPO> showAll(String time1,String time2) {
-		// TODO Auto-generated method stub
-		ArrayList<SystemLogPO> systemLogs=new ArrayList<SystemLogPO>();
-		systemLogs.add(new SystemLogPO(time1, "捡了一分钱", "王大锤"));
-		return systemLogs;
+	    String sql="select * from where logtime>='"+time1+"' and logtime<='"+time2+"'";
+	    ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
+	    ArrayList<SystemLogPO> list=new ArrayList<SystemLogPO>();
+	    SystemLogPO systemLog;
+	    try {
+			while(rs.next()){
+				systemLog=new SystemLogPO(rs.getString("logtime"), rs.getString("content"), rs.getString("admin"));
+				list.add(systemLog);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	    return list;
 	}
 
 	public void add(SystemLogPO systemLog) {
-		// TODO Auto-generated method stub
+		String sql="insert into systemlog values ('"+systemLog.getTime()+"','"+systemLog.getUser()+"','"+systemLog.getContent()+"')";
+		DataJDBCConnection.update(sql);
 		
 	}
 

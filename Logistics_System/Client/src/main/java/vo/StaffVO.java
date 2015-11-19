@@ -1,6 +1,6 @@
 package vo;
 
-import po.agency.StaffPO;
+
 
 public class StaffVO {
 	/**
@@ -16,7 +16,7 @@ public class StaffVO {
 	/**
 	 * 职位
 	 */
-	private String  postion;
+	private String postion;
 	
 	/**
 	 * 身份证
@@ -24,9 +24,9 @@ public class StaffVO {
 	private String IDNum;
 	
 	/**
-	 * 工作时长（按月）
+	 * 工作起始时间
 	 */
-	private int workingtime;
+	private String workingstarttime;
 	
 	/**
 	 * 手机
@@ -36,8 +36,8 @@ public class StaffVO {
 	/**
 	 * 工资
 	 */
-	private double wage;
-	private String agencyName;
+	private String wage;
+	private String agencyId;
 	private String id;
 	
 	/**
@@ -49,7 +49,7 @@ public class StaffVO {
 	 * @param phoneNum
 	 * @param wage
 	 */
-	public StaffVO(String name,String sex,String postion,String IDNum,int workingtime,String phoneNum,double wage,String agencyName,String id){
+	public StaffVO(String name,String sex,String postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyId,String id){
 		this.name = name;
 		this.sex = sex;
 		this.phoneNum = phoneNum;
@@ -57,8 +57,8 @@ public class StaffVO {
 		this.phoneNum = phoneNum;
 		this.postion = postion;
 		this.wage = wage;
-		this.workingtime = workingtime;
-		this.agencyName=agencyName;
+		this.workingstarttime = workingstarttime;
+		this.agencyId=agencyId;
 		this.id=id;
 	}
 
@@ -78,15 +78,15 @@ public class StaffVO {
 		return IDNum;
 	}
 
-	public int getWorkingtime() {
-		return workingtime;
+	public String getWorkingstarttime() {
+		return workingstarttime;
 	}
 
 	public String getPhoneNum() {
 		return phoneNum;
 	}
 
-	public double getWage() {
+	public String getWage() {
 		return wage;
 	}
 
@@ -107,15 +107,15 @@ public class StaffVO {
 	/**
 	 * @return the agency
 	 */
-	public String getAgencyName() {
-		return agencyName;
+	public String getAgencyId() {
+		return agencyId;
 	}
 
 	/**
 	 * @param agency the agency to set
 	 */
-	public void setAgency(String agencyName) {
-		this.agencyName = agencyName;
+	public void setAgency(String agencyId) {
+		this.agencyId = agencyId;
 	}
 
 	/**
