@@ -16,21 +16,21 @@ public interface DriverDataService extends Remote{
 	 * 后置条件:显示添加司机的详细信息，系统存储
 	 * @param 司机实体类
 	 */
-	public boolean add(DriverPO driver)throws RemoteException;
+	public void add(DriverPO driver)throws RemoteException;
 	
 	/**营业厅业务员删除司机
 	 * 前置条件：开始删除司机
 	 * 后置条件:显示删除某司机
 	 * @param 司机实体类
 	 */
-	public boolean delete(String driverID)throws RemoteException;
+	public void delete(String driverID)throws RemoteException;
 	
 	/**营业厅业务员更改司机信息
 	 * 前置条件：开始更改司机信息任务
 	 * 后置条件:更新司机的详细信息，系统存储
 	 * @param 司机实体类
 	 */
-	public boolean update(DriverPO driver)throws RemoteException;
+	public void update(DriverPO driver)throws RemoteException;
 	
 	
 	/**

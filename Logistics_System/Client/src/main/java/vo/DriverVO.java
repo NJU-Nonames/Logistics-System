@@ -15,10 +15,6 @@ public class DriverVO {
 	 */
 	private String name;
 	
-	/**
-	 * 出生日期
-	 */
-	private String birthday;
 	
 	/**
 	 * 身份证号
@@ -50,12 +46,11 @@ public class DriverVO {
 	 * @param sex
 	 * @param drvingLicencePeriod
 	 */
-     public DriverVO(String driverNum,String name,String sex,String birthday,
+     public DriverVO(String driverNum,String name,String sex,
     		 String IDNum,String phoneNum,String drvingLicencePeriod){
     	 this.driverNum = driverNum;
     	 this.name = name;
     	 this.IDNum = IDNum;
-    	 this.birthday = birthday;
     	 this.phoneNum = phoneNum;
     	 this.sex = sex;
     	 this.drvingLicencePeriod = drvingLicencePeriod;
@@ -69,9 +64,6 @@ public class DriverVO {
 		return name;
 	}
 
-	public String getBirthday() {
-		return birthday;
-	}
 
 	public String getIDNum() {
 		return IDNum;

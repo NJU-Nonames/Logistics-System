@@ -15,20 +15,26 @@ public class DriverDataImpl extends UnicastRemoteObject implements DriverDataSer
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean add(DriverPO driver) {
+	
+	public void add(DriverPO driver) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
-	public boolean delete(String driverid) {
+
+
+	public void delete(String driverID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
-	public boolean update(DriverPO driver) {
+
+
+	public void update(DriverPO driver) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
+	
 
 	public DriverPO find(String num) {
 		// TODO Auto-generated method stub

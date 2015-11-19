@@ -34,16 +34,17 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 		{
 			StaffPO staff=agency.getStaffList().get(i);
 			String sql="insert into staff values("+staff.getId()+",'"+staff.getName()+"','"+staff.getSex()+"','"+staff.getPostion()
-					+"','"+staff.getIDNum()+"','"+staff.getWorkingstarttime()+"','"+staff.getPhoneNum()+"','"+staff.getWage()+"',"+staff.getAgencyId()+")";
+					+"','"+staff.getIDNum()+"','"+staff.getWorkingstarttime()+"','"+staff.getPhoneNum()+"','"+staff.getWage()+"',"+staff.getAgencyName()+")";
 			DataJDBCConnection.update(sql);
 		}
 		
 	}
 
 	public void delete(String agencyNum) throws RemoteException {
+		AgencyPO agency=this.find(agencyNum);
 		String sql="delete from agency where agencyId="+agencyNum;
 		DataJDBCConnection.update(sql);
-		sql="delete from staff where agencyId="+agencyNum;
+		sql="delete from staff where agencyName="+agency.getAgencyName();
 		DataJDBCConnection.update(sql);
 		
 	}
@@ -62,11 +63,11 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 		try {
 			rs.next();
 			ArrayList<StaffPO> staffList=new ArrayList<StaffPO>();
-			sql="select from staff where agencyid="+id;
+			sql="select from staff where agencyName="+rs.getString("agencyName");
 			ResultSet rs2=(ResultSet) DataJDBCConnection.find(sql);
 			while(rs2.next())
 			{
-				staffList.add(new StaffPO(rs2.getString("name"), rs2.getString("sex"), rs2.getString("postion"), rs2.getString("idNumber"), rs2.getString("workingstarttime"), rs2.getString("phoneNum"), rs2.getString("wage"), rs2.getString("agencyId"), rs2.getString("id")));
+				staffList.add(new StaffPO(rs2.getString("name"), rs2.getString("sex"), rs2.getString("postion"), rs2.getString("idNumber"), rs2.getString("workingstarttime"), rs2.getString("phoneNum"), rs2.getString("wage"), rs2.getString("agencyName"), rs2.getString("id")));
 			}
 			agency=new AgencyPO(rs.getString("agencyName"), rs.getString("agencyId"), staffList);
 		} catch (SQLException e) {

@@ -25,13 +25,13 @@ public interface BankAccountDataService extends Remote{
 	 * @param money
 	 * @return 账户
 	 */
-	public boolean add(BankAccountPO countpo)throws RemoteException;
+	public void add(BankAccountPO countpo)throws RemoteException;
 	/**
 	 * 删除账户
 	 * @param name
 	 * @return 操作是否成功
 	 */
-	public boolean delete(String name)throws RemoteException;
+	public void delete(String name)throws RemoteException;
 	/**
 	 * 更新账户
 	 * @param name
@@ -39,7 +39,7 @@ public interface BankAccountDataService extends Remote{
 	 * @param money
 	 * @return 操作是否成功
 	 */
-	public boolean update(BankAccountPO countpo)throws RemoteException;
+	public void update(BankAccountPO countpo)throws RemoteException;
 	/**
 	 * 查询账户
 	 * @param name

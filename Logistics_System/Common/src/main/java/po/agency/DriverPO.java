@@ -20,10 +20,6 @@ public class DriverPO implements Serializable{
 	 */
 	private String name;
 	
-	/**
-	 * 出生日期
-	 */
-	private String birthday;
 	
 	/**
 	 * 身份证号
@@ -55,12 +51,11 @@ public class DriverPO implements Serializable{
 	 * @param sex
 	 * @param drvingLicencePeriod
 	 */
-     public DriverPO(String driverNum,String name,String sex,String birthday,
+     public DriverPO(String driverNum,String name,String sex,
     		 String IDNum,String phoneNum,String drvingLicencePeriod){
     	 this.driverNum = driverNum;
     	 this.name = name;
     	 this.IDNum = IDNum;
-    	 this.birthday = birthday;
     	 this.phoneNum = phoneNum;
     	 this.sex = sex;
     	 this.drvingLicencePeriod = drvingLicencePeriod;
@@ -72,10 +67,6 @@ public class DriverPO implements Serializable{
 
 	public String getName() {
 		return name;
-	}
-
-	public String getBirthday() {
-		return birthday;
 	}
 
 	public String getIDNum() {
