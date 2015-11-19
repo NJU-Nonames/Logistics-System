@@ -5,14 +5,14 @@
  */
 package dataservice.agency;
 
-import java.io.Serializable;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.agency.AgencyPO;
 
 
-public interface AgencyDataService extends Serializable{
+public interface AgencyDataService extends Remote{
 	
 	
 	/**
@@ -20,28 +20,28 @@ public interface AgencyDataService extends Serializable{
 	 * @param userID
 	 * @param salary
 	 */
-	public void salaryManage(String userID,String salary);
+	public void salaryManage(String userID,String salary)throws RemoteException;
 	
 	/**
 	 * 前置条件：不存在同样的AgencyPO
 	 * 后置条件：在数据库中增加AgencyPO结果
 	 * @param 	AgencyPO
 	 */
-	public void add(AgencyPO agency);
+	public void add(AgencyPO agency)throws RemoteException;
 	
 	/**
 	 * 前置条件：存在同样id的AgencyPO
 	 * 后置条件：在数据库中删除对应的AgencyPO
 	 * @param 	AgencyPO
 	 */
-	public void delete(AgencyPO agency);
+	public void delete(AgencyPO agency)throws RemoteException;
 	
 	/**
 	 * 前置条件：存在同样id的AgencyPO
 	 * 后置条件：在数据库中更新对应的AgencyPO
 	 * @param 	AgencyPO
 	 */
-	public void update(AgencyPO agency);
+	public void update(AgencyPO agency)throws RemoteException;
 	
 	/**
 	 * 对机构信息单独查找
@@ -49,7 +49,7 @@ public interface AgencyDataService extends Serializable{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public AgencyPO find(String id);
+	public AgencyPO find(String id)throws RemoteException;
 	
 
 	/**
@@ -58,6 +58,6 @@ public interface AgencyDataService extends Serializable{
 	 * @param 	id
 	 * @return 	所有机构PO结果
 	 */
-	public ArrayList<AgencyPO> showAll();
+	public ArrayList<AgencyPO> showAll()throws RemoteException;
 	
 }

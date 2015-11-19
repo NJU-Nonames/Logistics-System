@@ -26,43 +26,17 @@ import businesslogicservice.userblservice.UserManageBLService;
  *
  */
 public class UserManageBLImpl implements UserManageBLService{
-	//private DataFactoryService dataFactory;//数据工厂
-
 	UserDataService userDataService=null;
+	
 	//构造函数
 	public UserManageBLImpl(){
-	//	this.dataFactory=(DataFactoryService)RMIHelper.find("dataFactory");
-		this.userDataService=(UserDataService)RMIHelper.find("userDataService");
+		this.userDataService=(UserDataService)RMIHelper.find("UserDataService");
 	}
 
 	
 	public UserVO login(String admin, String password) {
-		//UserDataService service1 = null;
-		//StaffDataService service2 = null;
-//		try {
-//			//service1=dataFactory.getUserDataService();//远程方法调用
-//			//service2=dataFactory.getStaffDataService();
-//		} catch (RemoteException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
 		
-       // UserPO userpo=service1.findonAdmin(admin);
-		UserPO userpo = null;
-		try {
-			userpo = userDataService.findonAdmin(admin);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        //StaffVO staffvo=null;
-        UserVO vo=null;
-        if(userpo!=null && userpo.getPassword().compareTo(password)==0){
-        	vo=new UserVO(userpo.getAdmin(), userpo.getPassword(), userpo.getPosition(), userpo.getId());
-//    		StaffPO staffpo=service2.find(admin);
-//        	staffvo = new StaffVO(staffpo.getName(), staffpo.getSex(), staffpo.getPostion(), staffpo.getIDNum(), staffpo.getWorkingtime(), staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId());
-        }
-        return vo;
+        return null;
 	}
 
 	public ResultMessage addUser(UserVO user) {

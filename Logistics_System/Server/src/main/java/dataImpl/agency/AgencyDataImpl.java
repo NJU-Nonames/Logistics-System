@@ -1,11 +1,19 @@
 package dataImpl.agency;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.agency.AgencyPO;
 import dataservice.agency.AgencyDataService;
 
-public class AgencyDataImpl implements AgencyDataService {
+public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataService,Serializable {
+
+	public AgencyDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public void salaryManage(String userID, String salary) {
 		// TODO Auto-generated method stub

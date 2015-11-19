@@ -13,8 +13,9 @@ public class DataJDBCConnection {
 	
 	private static Connection connect;
 	
-	public static void init(){
+	public static Connection getConnection(){
 		 try {
+			 Class.forName("com.mysql.jdbc.Driver"); 
 	              //加载MYSQL JDBC驱动程序   
 	          
 	          connect = DriverManager.getConnection( "jdbc:mysql://localhost:"+PORT+"/"+NAME,ADMIN,PASSWORD);
@@ -25,38 +26,20 @@ public class DataJDBCConnection {
 	          System.out.print("Error loading Mysql Driver!");
 	          e.printStackTrace();
 	        }
+		return connect;
 	
 	}
 	
-	 public static ResultSet getResultSet(String operate)
-	 {
-		 
-		 Statement stmt = null;
-	    
-	     try {
-	    	 Class.forName("com.mysql.jdbc.Driver"); 
-	    	 connect=DriverManager.getConnection( "jdbc:mysql://localhost:"+PORT+"/"+NAME,ADMIN,PASSWORD);
-	     
-	      System.out.println("Success connect Mysql server!");
-	     stmt = connect.createStatement();
-	      
-		                                                           
-		   }catch(SQLException e){
-			   e.printStackTrace();
-		   } catch (ClassNotFoundException e) {
+	public static void insert(String sql){
+		connect=DataJDBCConnection.getConnection();
+		try {
+			PreparedStatement prestmt=connect.prepareStatement(sql);
+			prestmt.execute();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		    ResultSet rs = null;
-		    try {
-				rs=stmt.executeQuery(operate);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    
-	    return rs;
-	  
-	 }
+		} 
+	}
+	
 	
 }

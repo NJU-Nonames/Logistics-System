@@ -1,11 +1,19 @@
 package dataImpl.repertory;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.repertory.RepertoryInPO;
 import dataservice.repertory.RepertoryInDataService;
 
-public class RepertoryInDataImpl implements RepertoryInDataService {
+public class RepertoryInDataImpl extends UnicastRemoteObject implements RepertoryInDataService,Serializable {
+
+	public RepertoryInDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public boolean add(RepertoryInPO repertoryIn) {
 		// TODO Auto-generated method stub

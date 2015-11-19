@@ -1,6 +1,8 @@
 package dataservice.moneyInformation;
 
 import java.io.Serializable;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import po.agency.AgencyPO;
 import po.agency.BankAccountPO;
@@ -11,7 +13,7 @@ import po.repertory.RepertoryInfoPO;
 
 
 
-public interface BaseDataSettingDataService extends Serializable{
+public interface BaseDataSettingDataService extends Remote{
 	
 	
 	/**
@@ -20,7 +22,7 @@ public interface BaseDataSettingDataService extends Serializable{
 	 * @param institutionPO
 	 * @return
 	 */
-	public boolean addInstitutionInfo(AgencyPO agencyPO);
+	public boolean addInstitutionInfo(AgencyPO agencyPO)throws RemoteException;
 	
 	/**
 	 * 期初建账操作，输入库存信息
@@ -28,14 +30,14 @@ public interface BaseDataSettingDataService extends Serializable{
 	 * @param commodityInfoPO
 	 * @return
 	 */
-	public boolean addCommodityInfo(RepertoryInfoPO repertoryPO);
+	public boolean addCommodityInfo(RepertoryInfoPO repertoryPO)throws RemoteException;
 	
 	/**
 	 * 期初建账，输入车辆信息
 	 * @param truck
 	 * @return
 	 */
-	public boolean addTruckInfo(TruckPO truck);
+	public boolean addTruckInfo(TruckPO truck)throws RemoteException;
 	
 	/**
 	 * 无基础期初建账操作，输入财务信息
@@ -43,11 +45,11 @@ public interface BaseDataSettingDataService extends Serializable{
 	 * @param financeInfoPO
 	 * @return
 	 */
-	public boolean addFinanceInfo(BankAccountPO bankAccountPO);
+	public boolean addFinanceInfo(BankAccountPO bankAccountPO)throws RemoteException;
 	
 	/**
 	 * 显示最近一次期初建账信息
 	 * @return
 	 */
-	public BaseDataSettingPO show();
+	public BaseDataSettingPO show()throws RemoteException;
 }

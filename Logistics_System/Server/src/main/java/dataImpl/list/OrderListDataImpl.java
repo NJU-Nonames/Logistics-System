@@ -1,11 +1,19 @@
 package dataImpl.list;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.list.OrderListPO;
 import dataservice.list.OrderListDataService;
 
-public class OrderListDataImpl implements OrderListDataService {
+public class OrderListDataImpl extends UnicastRemoteObject implements OrderListDataService,Serializable {
+
+	public OrderListDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public boolean add(OrderListPO orderList) {
 		// TODO Auto-generated method stub

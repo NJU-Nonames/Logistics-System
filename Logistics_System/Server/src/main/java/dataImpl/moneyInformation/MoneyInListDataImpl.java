@@ -1,11 +1,19 @@
 package dataImpl.moneyInformation;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.moneyInfomation.MoneyInListPO;
 import dataservice.moneyInformation.MoneyInListDataService;
 
-public class MoneyInListDataImpl implements MoneyInListDataService {
+public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInListDataService,Serializable {
+
+	public MoneyInListDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public boolean add(MoneyInListPO moneyInList) {
 		// TODO Auto-generated method stub

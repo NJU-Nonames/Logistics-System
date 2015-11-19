@@ -1,11 +1,19 @@
 package dataImpl.agency;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.agency.BankAccountPO;
 import dataservice.agency.BankAccountDataService;
 
-public class BankAccountDataImpl implements BankAccountDataService {
+public class BankAccountDataImpl  extends UnicastRemoteObject implements BankAccountDataService,Serializable {
+
+	public BankAccountDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public boolean add(BankAccountPO countpo) {
 		// TODO Auto-generated method stub

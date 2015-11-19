@@ -12,14 +12,30 @@ import businesslogic.rmi.RMIHelper;
 import businesslogicservice.chartblservice.SystemLogBLService;
 
 public class SystemLogBLImpl implements SystemLogBLService{
-	private DataFactoryService dataFactory;//数据工厂
+	SystemLogDataService systemLogDataService=null;
 	//构造函数
 	public SystemLogBLImpl(){
-		this.dataFactory=(DataFactoryService)RMIHelper.find("dataFactory");
+		this.systemLogDataService=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
+	
+//	public static void main(String args[]){
+//		SystemLogBLImpl s=new SystemLogBLImpl();
+//		s.showAll("", "");
+//	}
 
+	
+	//TODO 方法测试 有待修改
 	public ArrayList<SystemLogVO> showAll(String time1, String time2) {
-		// TODO 自动生成的方法存根
+		// TODO 方法实例！！！
+		
+		ArrayList<SystemLogPO> systemLog = null;
+		try {
+			systemLog=systemLogDataService.showAll("2010-8", "2010-10");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(systemLog.get(0).getContent());
 		return null;
 	}
 	/* （非 Javadoc）

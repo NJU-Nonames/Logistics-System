@@ -1,11 +1,19 @@
 package dataImpl.list;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.list.HallArrivalListPO;
 import dataservice.list.HallArrivalListDataService;
 
-public class HallArrivalListDataImpl implements HallArrivalListDataService {
+public class HallArrivalListDataImpl extends UnicastRemoteObject implements HallArrivalListDataService,Serializable {
+
+	public HallArrivalListDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public boolean add(HallArrivalListPO hallArrivalListPO) {
 		// TODO Auto-generated method stub

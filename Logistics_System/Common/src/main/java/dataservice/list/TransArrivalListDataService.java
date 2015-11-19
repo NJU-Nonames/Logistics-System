@@ -1,22 +1,23 @@
 package dataservice.list;
 
-import java.io.Serializable;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.list.TransArrivalListPO;
 
 
-public interface TransArrivalListDataService extends Serializable{
+public interface TransArrivalListDataService extends Remote{
 	
-	public boolean add(TransArrivalListPO transArrivalListPO);
+	public boolean add(TransArrivalListPO transArrivalListPO)throws RemoteException;
 	
-     public boolean delete (TransArrivalListPO transArrivalListPO);
+     public boolean delete (TransArrivalListPO transArrivalListPO)throws RemoteException;
 	
-	public boolean update (TransArrivalListPO transArrivalListPO);
+	public boolean update (TransArrivalListPO transArrivalListPO)throws RemoteException;
 	
-	public TransArrivalListPO find(String id);
+	public TransArrivalListPO find(String id)throws RemoteException;
 	
-	public ArrayList<TransArrivalListPO> showAll(String time1,String time2);
+	public ArrayList<TransArrivalListPO> showAll(String time1,String time2)throws RemoteException;
 
 
 }

@@ -1,11 +1,19 @@
 package dataImpl.list;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.list.TransShipmentListPO;
 import dataservice.list.TransShipmentListDataService;
 
-public class TransShipmentListDataImpl implements TransShipmentListDataService {
+public class TransShipmentListDataImpl extends UnicastRemoteObject implements TransShipmentListDataService,Serializable {
+
+	public TransShipmentListDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public boolean add(TransShipmentListPO transShipmentListPO) {
 		// TODO Auto-generated method stub

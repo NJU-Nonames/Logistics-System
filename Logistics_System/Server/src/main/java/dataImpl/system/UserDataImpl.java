@@ -5,6 +5,9 @@
  */
 package dataImpl.system;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.system.UserPO;
@@ -17,7 +20,12 @@ import dataservice.system.UserDataService;
  * @author 谭期友
  *
  */
-public class UserDataImpl implements UserDataService{
+public class UserDataImpl extends UnicastRemoteObject implements UserDataService,Serializable{
+
+	public UserDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * 因为UserDataService接口继承了Serializable接口才有这个
@@ -25,14 +33,21 @@ public class UserDataImpl implements UserDataService{
 	private static final long serialVersionUID = -2473929898619936668L;
 
 	public static void main(String args[]){
-		UserDataService userdata=new UserDataImpl();
-		userdata.add(new UserPO("wangjaiwei","1232321",UserType.ADMIN,"123332212"));
+		UserDataService userdata;
+		try {
+			userdata = new UserDataImpl();
+			userdata.add(new UserPO("wangjaiwei","1232321",UserType.ADMIN,"123332212"));
+			System.out.println("test chenggong");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void add(UserPO user) {
 		
-		String operate="insert into User values"+user.getId()+" "+user.getAdmin()+" "+user.getPassword()+" "+user.getPosition();
-		DataJDBCConnection.getResultSet(operate);
+		String operate="insert into User values ("+user.getId()+",'"+user.getAdmin()+"','"+user.getPassword()+"','"+user.getPosition()+"');";
+		DataJDBCConnection.insert(operate);
 	}
 
 	public void delete(UserPO user) {

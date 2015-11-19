@@ -1,5 +1,8 @@
 
 package dataImpl.system;
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import po.system.SystemLogPO;
@@ -9,7 +12,12 @@ import dataservice.system.SystemLogDataService;
  * @author 这菜咸了
  * 该类为远程对象的实现类,需要继承unicastRemoteObject
  */
-public class SystemLogDataImpl implements SystemLogDataService{
+public class SystemLogDataImpl extends UnicastRemoteObject implements SystemLogDataService,Serializable{
+
+	public SystemLogDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * 
