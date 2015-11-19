@@ -6,8 +6,6 @@
 package presentation.financialstaffui;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -16,16 +14,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import presentation.img.Img;
-import presentation.mainui.LoginPanel;
-import presentation.mainui.MainPanel;
-import presentation.mainui.SearchPanel;
-import businesslogic.userbl.UserManageBLImpl;
+import presentation.mainui.CurrentUser;
 import businesslogicservice.financeblservice.AccountBLService;
 import businesslogicservice.financeblservice.BaseDataSettingBLService;
 import businesslogicservice.financeblservice.CostManagementBLService;
 import businesslogicservice.financeblservice.SettlementManageBLService;
-import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
-import businesslogicservice.userblservice.UserManageBLService;
 
 /**
  * @author 谭期友
@@ -38,6 +31,7 @@ public class FinacialStaffFrame extends JFrame{
 	public static final int h = 768;
 	
 	
+	private CurrentUser currentUser;
 	private int state;//1表示账户管理，2表示成本管理,3表示结算管理，4表示统计报表，5表示期初建帐,6表示查看系统日志
 	private int stated;//以前的状态
 	boolean changed;
@@ -76,6 +70,8 @@ public class FinacialStaffFrame extends JFrame{
 	private int yy;
 	
 	public FinacialStaffFrame(){
+		//this.currentUser=currentUser;
+		this.currentUser=new CurrentUser("王大锤");
 		this.setUndecorated(true);
 		this.addMouseListener(new MouseAdapter() { 
 			public void mousePressed(MouseEvent e) { 
@@ -102,8 +98,8 @@ public class FinacialStaffFrame extends JFrame{
 		this.setSize(w,h);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		state=0;
-		stated=0;
+		state=1;
+		stated=1;
 		changed=false;
 		isDraging=false;
 		
@@ -120,12 +116,12 @@ public class FinacialStaffFrame extends JFrame{
 		costManagementBLService=null;
 		settlementManageBLService=null;
 		
-		accountManage=new AccountManage(this, accountBLService);
-		baseDataSetting=new BaseDataSetting();
-		costManage=new CostManage();
-		settlementManage=new SettlementManage();
-		statistic=new Statistic();
-		systemLog=new SystemLog();
+		accountManage=new AccountManage(this, accountBLService, currentUser);
+		baseDataSetting=new BaseDataSetting(this, currentUser);
+		costManage=new CostManage(this, currentUser);
+		settlementManage=new SettlementManage(this, currentUser);
+		statistic=new Statistic(this, currentUser);
+		systemLog=new SystemLog(this, currentUser);
 
 		j.add(accountManage);
 		j.add(costManage);

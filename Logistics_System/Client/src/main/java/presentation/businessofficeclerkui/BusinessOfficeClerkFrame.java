@@ -1,33 +1,147 @@
+/**
+ * 2015年11月19日
+ *author:
+ *description:
+ */
 package presentation.businessofficeclerkui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.CardLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+import presentation.img.Img;
+import presentation.mainui.CurrentUser;
+
+/**
+ * @author 谭期友
+ *
+ */
 public class BusinessOfficeClerkFrame extends JFrame{
-	/**
-	 * 主办公系统界面Frame 的宽
-	 */
-	private static final int SYSTEMDEFALUT_WIDTH = 1024;
-	/**
-	 * 主办公系统界面Frame的高
-	 */
-	private static final int SYSTEMDEFALUT_HIGHT = 768;
+	
+	private static final long serialVersionUID = 4881080784503653011L;
+	public static final int w = 1024;
+	public static final int h = 768;
+	
+	
+	private CurrentUser currentUser;
+	private int state;
+	private int stated;
+	boolean changed;
+	public void setState(int x){
+		state=x;
+	}
+	public int getState(){
+		return state;
+	}
+	public void setStated(int x){
+		stated=x;
+	}
+	public void setChanged(boolean x){
+		changed=x;
+	}
+	JPanel j;
+	CardLayout card;
+
+	//面板对象
+	LoadManage loadManage;//车辆装车管理
+	Receive receive;//接收
+	Deliver deliver;//派件
+	CheckList checkList;//核对收款单
+	TruckManage truckManage;//车辆信息管理
+	DriverManage driverManage;//司机信息管理
+	
+	
+
+//	AccountBLService accountBLService;
+//	BaseDataSettingBLService baseDataSettingBLService;
+//	CostManagementBLService costManagementBLService;
+//	SettlementManageBLService settlementManageBLService;
+
+	private boolean isDraging;//是否被拖住
+	private int xx;
+	private int yy;
 	
 	public BusinessOfficeClerkFrame(){
-		//remain updating
-		this.setTitle("物流系统大作业——营业厅业务员用户界面");
+		//this.currentUser=currentUser;
+		this.currentUser=new CurrentUser("王大锤");
+		this.setUndecorated(true);
+		this.addMouseListener(new MouseAdapter() { 
+			public void mousePressed(MouseEvent e) { 
+				 isDraging = true; 
+				 xx = e.getX(); 
+				 yy = e.getY(); 
+			}
+
+			public void mouseReleased(MouseEvent e) { 
+				 isDraging = false; 
+			}
+		});
 		
-		this.setSize(SYSTEMDEFALUT_WIDTH,SYSTEMDEFALUT_HIGHT);
-		//不可随意移动
-		this.setResizable(false);
-		//设置显示在中间
-		Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation((screen.width -this.getWidth())/2, (screen.height -this.getHeight())/2);
 		
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent e) { 
+			if (isDraging) { 
+				 int left = getLocation().x; 
+				 int top = getLocation().y; 
+				 setLocation(left + e.getX() - xx, top + e.getY() - yy); 
+			}
+			}
+		});
+		this.setSize(w,h);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		state=1;
+		stated=1;
+		changed=false;
+		isDraging=false;
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		card=new CardLayout();
+		j = new JPanel();
+        j.setLayout(card);
+        add(j);
+		
+		this.setIconImage(Img.BusinessOfficeClerkICON);
+		
+
+//		accountBLService=null;
+//		baseDataSettingBLService=null;
+//		costManagementBLService=null;
+//		settlementManageBLService=null;
+		
+		loadManage=new LoadManage(this, currentUser);
+		receive=new Receive(this, currentUser);
+		deliver=new Deliver(this, currentUser);
+		checkList=new CheckList(this, currentUser);
+		truckManage=new TruckManage(this, currentUser);
+		driverManage=new DriverManage(this, currentUser);
+
+		j.add(loadManage);
+		j.add(receive);
+		j.add(deliver);
+		j.add(checkList);
+		j.add(truckManage);
+		j.add(driverManage);
+		
+		new Thread(new Runnable(){
+			public void run() {
+				while(true){
+					if(changed){
+						changed=false;
+						int a;
+						if(state-stated>0)
+							a=state-stated;
+						else
+							a=state+6-stated;
+						for(int i=0;i<a;i++)
+							card.next(j);
+						
+					}
+				}
+			}
+		}).start();
 	}
 }

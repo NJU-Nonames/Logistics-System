@@ -38,7 +38,7 @@ public class SearchPanel extends JPanel{
 	private JTextField orderField;
 	
 	private boolean Invalid;//输入是否非法
-	String result;
+	private String result;
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -138,7 +138,7 @@ public class SearchPanel extends JPanel{
 		repaint();
 	}
 	private void searchInf(){
-		String order = orderField.getText();
+		/*String order = orderField.getText();
 		result = CheckFormat.checkOrderNum(order);
 		if(result.compareTo("格式正确")!=0){
 			Invalid=true;
@@ -180,7 +180,8 @@ public class SearchPanel extends JPanel{
 			}).start();
 		}else{//有此订单
 			;
-		}
+		}*/
+		new PkgInformationFrame();
 	}
 }
 

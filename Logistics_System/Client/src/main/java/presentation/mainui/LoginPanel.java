@@ -11,8 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import presentation.adminui.AdminFrame;
+import presentation.businessofficeclerkui.BusinessOfficeClerkFrame;
+import presentation.centerclerkui.CenterClerkFrame;
+import presentation.centerrepertoryclerkui.CenterRepertoryClerkFrame;
+import presentation.courierui.CourierFrame;
 import presentation.financialstaffui.FinacialStaffFrame;
 import presentation.img.Img;
+import presentation.topmanagerui.TopManagerFrame;
 import vo.StaffVO;
 import vo.UserVO;
 import businesslogicservice.userblservice.UserManageBLService;
@@ -32,7 +38,7 @@ public class LoginPanel extends JPanel{
 	private JTextField passwordField;
 	
 	private boolean Invalid;//输入是否非法
-	String result;
+	private String result;
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -190,12 +196,18 @@ public class LoginPanel extends JPanel{
 //			case BUSINESS_OFFICE_CLERK:break;
 //			case CENTER_CLERK:break;
 //			case CENTER_REPERTORY_CLERK:break;
-//			case FINANCIAL_STAFF:
-				new FinacialStaffFrame();//break;
+//			case FINANCIAL_STAFF:new FinacialStaffFrame();break;
 //			case TOP_MANAGER:break;
 //			case ADMIN:break;
 //			}
 //		}
+			//new FinacialStaffFrame();
+			//new TopManagerFrame();
+			//new BusinessOfficeClerkFrame();
+			//new CenterRepertoryClerkFrame();
+			//new CourierFrame();
+			//new CenterClerkFrame();
+			new AdminFrame();
 	}
 }
 

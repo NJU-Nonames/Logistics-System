@@ -1,32 +1,79 @@
 package presentation.adminui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import presentation.img.Img;
+import presentation.mainui.CurrentUser;
 
 public class AdminFrame extends JFrame{
-	/**
-	 * 主办公系统界面Frame 的宽
-	 */
-	private static final int SYSTEMDEFALUT_WIDTH = 1024;
-	/**
-	 * 主办公系统界面Frame的高
-	 */
-	private static final int SYSTEMDEFALUT_HIGHT = 768;
+	
+	private static final long serialVersionUID = 4881080784503653011L;
+	public static final int w = 1024;
+	public static final int h = 768;
+	
+	
+	private CurrentUser currentUser;
+
+	//面板对象
+	UserManage userManage;//用户管理
+	
+	
+
+//	AccountBLService accountBLService;
+//	BaseDataSettingBLService baseDataSettingBLService;
+//	CostManagementBLService costManagementBLService;
+//	SettlementManageBLService settlementManageBLService;
+
+	private boolean isDraging;//是否被拖住
+	private int xx;
+	private int yy;
 	
 	public AdminFrame(){
-		//remain updating
-		this.setTitle("物流系统大作业——系统管理员用户界面");
+		//this.currentUser=currentUser;
+		this.currentUser=new CurrentUser("王大锤");
+		this.setUndecorated(true);
+		this.addMouseListener(new MouseAdapter() { 
+			public void mousePressed(MouseEvent e) { 
+				 isDraging = true; 
+				 xx = e.getX(); 
+				 yy = e.getY(); 
+			}
+
+			public void mouseReleased(MouseEvent e) { 
+				 isDraging = false; 
+			}
+		});
 		
-		this.setSize(SYSTEMDEFALUT_WIDTH,SYSTEMDEFALUT_HIGHT);
-		//不可随意移动
-		this.setResizable(false);
-		//设置显示在中间
-		Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation((screen.width -this.getWidth())/2, (screen.height -this.getHeight())/2);
 		
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent e) { 
+			if (isDraging) { 
+				 int left = getLocation().x; 
+				 int top = getLocation().y; 
+				 setLocation(left + e.getX() - xx, top + e.getY() - yy); 
+			}
+			}
+		});
+		this.setSize(w,h);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		isDraging=false;
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setIconImage(Img.AdminICON);
+		
+
+//		accountBLService=null;
+//		baseDataSettingBLService=null;
+//		costManagementBLService=null;
+//		settlementManageBLService=null;
+
+		userManage=new UserManage(this, currentUser);
+
+		add(userManage);
 	}
 }

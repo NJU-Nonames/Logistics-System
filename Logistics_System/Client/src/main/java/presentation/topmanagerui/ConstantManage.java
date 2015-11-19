@@ -1,9 +1,9 @@
 /**
- * 2015年11月15日
+ * 2015年11月19日
  *author:
  *description:
  */
-package presentation.financialstaffui;
+package presentation.topmanagerui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -20,15 +20,15 @@ import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
 
-/**期初建账
+/**
  * @author 谭期友
  *
  */
-public class BaseDataSetting extends JPanel{
+public class ConstantManage extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
 	//private AccountBLService bl;
-	private FinacialStaffFrame frame;
+	private TopManagerFrame frame;
 	private CurrentUser currentUser;
 	
 	//最基本按钮
@@ -36,12 +36,12 @@ public class BaseDataSetting extends JPanel{
 	private MyButton min;
 	private MyButton _return;
 	//功能按钮
-	private MyButton goto_AccountManage;//账户管理
-	private MyButton goto_CostManage;//成本管理
-	private MyButton goto_SettlementManage;//结算管理
-	private MyButton goto_Statistic;//统计报表
-	private MyButton goto_BaseDataSetting;//期初建账
-	private MyButton goto_SystemLog;//查看系统日志
+	private MyButton goto_Statistic;
+	private MyButton goto_Check;
+	private MyButton goto_PeopleAgencyManage;
+	private MyButton goto_SalaryStrategy;
+	private MyButton goto_ConstantManage;
+	private MyButton goto_SystemLog;
 	//详细操作按钮以及其他组件
 	
 	private boolean Invalid;//输入是否非法
@@ -50,19 +50,19 @@ public class BaseDataSetting extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawLine(FinacialStaffFrame.w/6, 10, FinacialStaffFrame.w/6, FinacialStaffFrame.h-10);
-        g.drawLine(FinacialStaffFrame.w/6+10, FinacialStaffFrame.h/6, FinacialStaffFrame.w, FinacialStaffFrame.h/6);
+        g.drawLine(TopManagerFrame.w/6, 10, TopManagerFrame.w/6, TopManagerFrame.h-10);
+        g.drawLine(TopManagerFrame.w/6+10, TopManagerFrame.h/6, TopManagerFrame.w, TopManagerFrame.h/6);
         
         if(Invalid){
-        	g.drawImage(Img.BLACK_BG, 0, FinacialStaffFrame.h-50, FinacialStaffFrame.w, 50, null);
+        	g.drawImage(Img.BLACK_BG, 0, TopManagerFrame.h-50, TopManagerFrame.w, 50, null);
         	
             g.setColor(Color.RED);
             g.setFont(new Font("宋体", Font.BOLD, 26));
-            g.drawString(result, -result.length()*13+FinacialStaffFrame.w/2, 13+FinacialStaffFrame.h-30);
+            g.drawString(result, -result.length()*13+TopManagerFrame.w/2, 13+TopManagerFrame.h-30);
         }
 	}
 	
-	public BaseDataSetting(FinacialStaffFrame frame, CurrentUser currentUser){
+	public ConstantManage(TopManagerFrame frame, CurrentUser currentUser){
 		this.frame=frame;
 		//this.bl=bl;
 		this.currentUser=currentUser;
@@ -107,8 +107,8 @@ public class BaseDataSetting extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_AccountManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        goto_AccountManage.addMouseListener(new MouseListener(){
+        goto_Statistic = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_Statistic.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
@@ -120,8 +120,8 @@ public class BaseDataSetting extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	goto_CostManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	goto_CostManage.addMouseListener(new MouseListener(){
+        goto_Check = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_Check.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
@@ -133,8 +133,8 @@ public class BaseDataSetting extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	goto_SettlementManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	goto_SettlementManage.addMouseListener(new MouseListener(){
+        goto_PeopleAgencyManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_PeopleAgencyManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
@@ -146,8 +146,8 @@ public class BaseDataSetting extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	goto_Statistic = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	goto_Statistic.addMouseListener(new MouseListener(){
+        goto_SalaryStrategy = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_SalaryStrategy.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
@@ -159,8 +159,8 @@ public class BaseDataSetting extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	goto_BaseDataSetting = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	goto_BaseDataSetting.addMouseListener(new MouseListener(){
+    	goto_ConstantManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	goto_ConstantManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
@@ -194,33 +194,33 @@ public class BaseDataSetting extends JPanel{
         titleLabel.setForeground(Color.BLUE);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
-        String func="期初建账";
+        String func="制定价格距离常量";
         JLabel funLabel = new JLabel(func);
         funLabel.setSize((int)(40*func.length()*1.07f), 40);
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
         
-        String s="财务人员";
+        String s="总经理";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(FinacialStaffFrame.w/6,128-30);
+        currentuserLabel.setLocation(TopManagerFrame.w/6,128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(FinacialStaffFrame.w/6+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(TopManagerFrame.w/6+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
-    	close.setLocation(FinacialStaffFrame.w-30,0);
-    	min.setLocation(FinacialStaffFrame.w-80,0);
+    	close.setLocation(TopManagerFrame.w-30,0);
+    	min.setLocation(TopManagerFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
-    	goto_AccountManage.setLocation(20,150);
-    	goto_CostManage.setLocation(20,200);
-    	goto_SettlementManage.setLocation(20,250);
-    	goto_Statistic.setLocation(20,300);
-    	goto_BaseDataSetting.setLocation(20,350);
+    	goto_Statistic.setLocation(20,150);
+    	goto_Check.setLocation(20,200);
+    	goto_PeopleAgencyManage.setLocation(20,250);
+    	goto_SalaryStrategy.setLocation(20,300);
+    	goto_ConstantManage.setLocation(20,350);
     	goto_SystemLog.setLocation(20,400);
     	
     	//其他组件
@@ -237,11 +237,11 @@ public class BaseDataSetting extends JPanel{
     	add(close);
     	add(min);
     	add(_return);
-    	add(goto_AccountManage);
-    	add(goto_CostManage);
-    	add(goto_SettlementManage);
     	add(goto_Statistic);
-    	add(goto_BaseDataSetting);
+    	add(goto_Check);
+    	add(goto_PeopleAgencyManage);
+    	add(goto_SalaryStrategy);
+    	add(goto_ConstantManage);
     	add(goto_SystemLog);
 
     	
