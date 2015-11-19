@@ -36,6 +36,18 @@ public class AgencyPO implements Serializable{
 		this.staffList = staffList;
 	}
 
+	public void setAgencyName(String agencyName) {
+		this.agencyName = agencyName;
+	}
+
+	public void setAgencyNum(String agencyNum) {
+		this.agencyNum = agencyNum;
+	}
+
+	public void setStaffList(ArrayList<StaffPO> staffList) {
+		this.staffList = staffList;
+	}
+
 	public String getAgencyNum() {
 		return agencyNum;
 	}

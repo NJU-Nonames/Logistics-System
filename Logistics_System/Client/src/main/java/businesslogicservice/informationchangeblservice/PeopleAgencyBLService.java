@@ -14,11 +14,11 @@ import vo.AgencyVO;
 public interface PeopleAgencyBLService {
 	
 	/**总经理进行的人员工资调整
-	 * @param 要调整的用户编号
+	 * @param 职位
 	 * @param 新的工资方案
 	 * @return	调整是否成功
 	 */             
-	public ResultMessage salaryManage(String userID,String salary);
+	public ResultMessage salaryManage(String position,String salary);
 	
 	/**
 	 * 总经理选择新建机构
