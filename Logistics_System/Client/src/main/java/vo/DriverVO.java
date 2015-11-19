@@ -34,11 +34,10 @@ public class DriverVO {
 	/**
 	 * 行驶证期限
 	 */
-	private String drvingLicencePeriod;
+	private String drivingLicencePeriod;
 	
 	/**
 	 * 构造方法
-	 * @param cityNum
 	 * @param name
 	 * @param birthday
 	 * @param IDNum
@@ -47,13 +46,13 @@ public class DriverVO {
 	 * @param drvingLicencePeriod
 	 */
      public DriverVO(String driverNum,String name,String sex,
-    		 String IDNum,String phoneNum,String drvingLicencePeriod){
+    		 String IDNum,String phoneNum,String drivingLicencePeriod){
     	 this.driverNum = driverNum;
     	 this.name = name;
     	 this.IDNum = IDNum;
     	 this.phoneNum = phoneNum;
     	 this.sex = sex;
-    	 this.drvingLicencePeriod = drvingLicencePeriod;
+    	 this.drivingLicencePeriod = drivingLicencePeriod;
      }
 
 	public String getDriverNum() {
@@ -77,7 +76,7 @@ public class DriverVO {
 		return sex;
 	}
 
-	public String getDrvingLicencePeriod() {
-		return drvingLicencePeriod;
+	public String getDrivingLicencePeriod() {
+		return drivingLicencePeriod;
 	}
 }

@@ -39,7 +39,7 @@ public class DriverPO implements Serializable{
 	/**
 	 * 行驶证期限
 	 */
-	private String drvingLicencePeriod;
+	private String drivingLicencePeriod;
 	
 	/**
 	 * 构造方法
@@ -52,13 +52,13 @@ public class DriverPO implements Serializable{
 	 * @param drvingLicencePeriod
 	 */
      public DriverPO(String driverNum,String name,String sex,
-    		 String IDNum,String phoneNum,String drvingLicencePeriod){
+    		 String IDNum,String phoneNum,String drivingLicencePeriod){
     	 this.driverNum = driverNum;
     	 this.name = name;
     	 this.IDNum = IDNum;
     	 this.phoneNum = phoneNum;
     	 this.sex = sex;
-    	 this.drvingLicencePeriod = drvingLicencePeriod;
+    	 this.drivingLicencePeriod = drivingLicencePeriod;
      }
 
 	public String getDriverNum() {
@@ -81,7 +81,7 @@ public class DriverPO implements Serializable{
 		return sex;
 	}
 
-	public String getDrvingLicencePeriod() {
-		return drvingLicencePeriod;
+	public String getDrivingLicencePeriod() {
+		return drivingLicencePeriod;
 	}
 }

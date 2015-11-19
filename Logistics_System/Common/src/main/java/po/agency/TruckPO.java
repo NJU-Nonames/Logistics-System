@@ -33,7 +33,7 @@ public class TruckPO implements Serializable{
 	 * @param platenumber
 	 * @param serviceTimeLimit
 	 */
-	public TruckPO(String vehiclecode,String platenumber,String serviceTimeLimit,File picture){
+	public TruckPO(String vehiclecode,String platenumber,String serviceTimeLimit){
 		this.vehiclecode = vehiclecode;
 		this.platenumber = platenumber;
 		this.serviceTimeLimit =serviceTimeLimit;

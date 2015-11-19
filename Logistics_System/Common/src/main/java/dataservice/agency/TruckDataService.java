@@ -15,19 +15,19 @@ public interface TruckDataService extends Remote{
 	 * 后置条件:显示添加货车的详细信息，系统存储
 	 * @param 货车实体类
 	 */
-	public boolean add(TruckPO truck)throws RemoteException;
+	public void add(TruckPO truck)throws RemoteException;
 	
 	/**营业厅业务员删除货车
 	 * 前置条件：开始删除货车
 	 * 后置条件:显示删除某货车
 	 * @param 货车实体类
 	 */
-	public boolean delete(String vehiclecode)throws RemoteException;
+	public void delete(String vehiclecode)throws RemoteException;
 	
 	/**营业厅业务员更改货车信息
 	 * @param 货车实体类
 	 */
-	public boolean update(TruckPO truck)throws RemoteException;
+	public void update(TruckPO truck)throws RemoteException;
 	
 	/**
 	 * 通过编号查找
