@@ -1,34 +1,32 @@
 package po.list;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import utility.ExpressType;
-import utility.PkgState;
+import utility.PkgType;
 
 /**
  * @author 这菜咸了
  * 订单类
  */
 public class OrderListPO extends ListPO implements Serializable{
-	/**
-	 * 客户姓名
-	 */
-	private String senderName;
+private String senderName;
 	
 	/**
 	 * 客户地址
 	 */
 	private String senderAddress;
-	
-	/**
-	 * 客户单位地址
-	 */
-	private String senderWorkPlace;
+
 	
 	/**
 	 * 客户电话（手机）号码
 	 */
 	private String senderTeleNumber;
+	
+	private String receiverName;
+	private String receiverAddress;
+	private String receiverTeleNumber;
 	
 	/**
 	 * 寄件件数
@@ -58,28 +56,35 @@ public class OrderListPO extends ListPO implements Serializable{
 	/**
 	 * 货物运送位置 运送状态
 	 */
-	private PkgState pkgState;
+	private ArrayList<String> pkgState;
 	
 	/**
-	 * 包装费用
+	 *运费（包括包装费用）
 	 */
 	private double packPrice;
-	
+	//包装种类（纸箱，木箱，纸袋）
+	private PkgType type;
 	/**
 	 * 货物条形码
 	 */
 	private String barCode;
+
+	private String departTime;
+
+	private String arriveTime;
 	
 	
 	public OrderListPO(String senderName, String senderAddress,
-			String senderWorkPlace, String senderTeleNumber, String number,
+			String senderTeleNumber, String receiverName,String receiverAddress,String receiverTeleNumber,String number,
 			double weight, double volume, String name, ExpressType category,
-			PkgState pkgState, double packPrice, String barCode) {
+			ArrayList<String> pkgState, double packPrice, String barCode,PkgType type,String time1,String time2) {
 		super();
 		this.senderName = senderName;
 		this.senderAddress = senderAddress;
-		this.senderWorkPlace = senderWorkPlace;
 		this.senderTeleNumber = senderTeleNumber;
+		this.receiverName=receiverName;
+		this.receiverAddress=receiverAddress;
+		this.receiverTeleNumber=receiverTeleNumber;
 		this.number = number;
 		this.weight = weight;
 		this.volume = volume;
@@ -88,13 +93,18 @@ public class OrderListPO extends ListPO implements Serializable{
 		this.pkgState = pkgState;
 		this.packPrice = packPrice;
 		this.barCode = barCode;
+		this.type=type;
+		this.departTime=time1;
+		this.arriveTime=time2;
 	}
-
+	public PkgType getPkgType(){
+		return type;
+	}
 	public ExpressType getCategory() {
 		return category;
 	}
 
-	public PkgState getPkgState() {
+	public ArrayList<String> getPkgState() {
 		return pkgState;
 	}
 
@@ -106,10 +116,15 @@ public class OrderListPO extends ListPO implements Serializable{
 		return senderAddress;
 	}
 
-	public String getSenderWorkPlace() {
-		return senderWorkPlace;
+	public String getReceiverName(){
+		return receiverName;
 	}
-
+	public String getReceiverAddress(){
+		return receiverAddress;
+	}
+	public String getReceiverTeleNumber(){
+		return receiverTeleNumber;
+	}
 	public String getSenderTeleNumber() {
 		return senderTeleNumber;
 	}
@@ -137,5 +152,13 @@ public class OrderListPO extends ListPO implements Serializable{
 
 	public String getBarCode() {
 		return barCode;
+	}
+	public String getDepartTime() {
+		// TODO 自动生成的方法存根
+		return departTime;
+	}
+	public String getArriveTime() {
+		// TODO 自动生成的方法存根
+		return arriveTime;
 	}
 }
