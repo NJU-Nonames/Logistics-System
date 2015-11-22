@@ -12,7 +12,6 @@ public class ConstantDataImpl extends UnicastRemoteObject implements ConstantDat
 
 	public ConstantDataImpl() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public boolean setDistance(String newDistance, String cityA, String cityB) {
