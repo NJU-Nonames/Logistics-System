@@ -11,7 +11,7 @@ import utility.PkgType;
  * 订单类
  */
 public class OrderListPO extends ListPO implements Serializable{
-private String senderName;
+	private String senderName;
 	
 	/**
 	 * 客户地址
@@ -160,5 +160,11 @@ private String senderName;
 	public String getArriveTime() {
 		// TODO 自动生成的方法存根
 		return arriveTime;
+	}
+	public void setArriveTime(String time){
+		this.arriveTime=time;
+	}
+	public void setReceiverName(String receiverName){
+		this.receiverName=receiverName;
 	}
 }

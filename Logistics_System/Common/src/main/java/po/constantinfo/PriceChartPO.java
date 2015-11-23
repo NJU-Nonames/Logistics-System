@@ -15,7 +15,7 @@ public class PriceChartPO {
 	private double airplane_kilo;
 	
 	/**
-	 * 标准快递标准价
+	 * 标准快递标准价,计算公式为：standard*距离（千米）/1000*重量（千克）
 	 */
 	private double standard;
 	
