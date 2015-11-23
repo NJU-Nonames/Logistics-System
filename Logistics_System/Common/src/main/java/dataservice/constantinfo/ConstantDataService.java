@@ -22,7 +22,7 @@ public interface ConstantDataService extends Remote{
 	 * @param cityB
 	 * @return
 	 */
-	public boolean setDistance(String newDistance,String cityA,String cityB)throws RemoteException;
+	public void setDistance(String newDistance,String cityA,String cityB)throws RemoteException;
 	
 	/**
 	 * 修改价格常量数据
@@ -30,14 +30,14 @@ public interface ConstantDataService extends Remote{
 	 * @param otherInformation
 	 * @return
 	 */
-	public boolean setPrice(String newPrice,String otherInformation)throws RemoteException;
+	public void setPrice(String newPrice,String otherInformation)throws RemoteException;
 	
 	/**
 	 * 添加城市
 	 * @param name
 	 * @return
 	 */
-	public boolean addCity(String name)throws RemoteException;
+	public void addCity(String name)throws RemoteException;
 	
 	/**
 	 * 返回城市距离情况表
