@@ -43,20 +43,21 @@ public class CheckList extends JPanel{
 	private MyButton goto_TruckManage;
 	private MyButton goto_DriverManage;
 	//详细操作按钮以及其他组件
-	
-	private boolean Invalid;//输入是否非法
-	private String result;
+
+	private boolean willprintMessage;//是否将要打印消息
+	private String result;//打印的消息
+	private Color co;//消息的颜色
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
         g.drawLine(BusinessOfficeClerkFrame.w/6, 10, BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h-10);
         g.drawLine(BusinessOfficeClerkFrame.w/6+10, BusinessOfficeClerkFrame.h/6, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h/6);
-        
-        if(Invalid){
+
+        if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, BusinessOfficeClerkFrame.h-50, BusinessOfficeClerkFrame.w, 50, null);
         	
-            g.setColor(Color.RED);
+            g.setColor(co);
             g.setFont(new Font("宋体", Font.BOLD, 26));
             g.drawString(result, -result.length()*13+BusinessOfficeClerkFrame.w/2, 13+BusinessOfficeClerkFrame.h-30);
         }
@@ -66,8 +67,9 @@ public class CheckList extends JPanel{
 		this.frame=frame;
 		//this.bl=bl;
 		this.currentUser=currentUser;
-		Invalid=false;
+		willprintMessage=false;
 		result="";
+		co=Color.RED;
 		this.setLayout(null);
 
 		//初始化组件
@@ -238,7 +240,30 @@ public class CheckList extends JPanel{
 	private void clear(){
 //		.setText("");
 //		.setText("");
-		Invalid=false;
+		willprintMessage=false;
 		repaint();
+	}
+	
+	
+	private void printMessage(String message, Color c){
+		result=message;
+		co=c;
+		if(!willprintMessage){
+			willprintMessage=true;
+			repaint();
+			new Thread(new Runnable(){
+				public void run() {
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+					}
+
+					willprintMessage=false;
+					repaint();
+				}
+			}).start();
+		}
 	}
 }

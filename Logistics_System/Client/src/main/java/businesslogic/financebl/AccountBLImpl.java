@@ -71,7 +71,10 @@ public class AccountBLImpl implements AccountBLService {
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return new BankAccountVO(bankpo.getName(),bankpo.getNumber(),bankpo.getMoney());
+		if(bankpo!=null)
+			return new BankAccountVO(bankpo.getName(),bankpo.getNumber(),bankpo.getMoney());
+		else
+			return null;
 	}
 
 	public ArrayList<BankAccountVO> show() {

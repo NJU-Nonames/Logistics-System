@@ -22,6 +22,9 @@ public class Img {
 	//图片
 	public static Image BG=new ImageIcon("img/Bg/bg.jpg").getImage();
 	public static Image BLACK_BG=new ImageIcon("img/Bg/black.png").getImage();
+	public static Image cao1=new ImageIcon("img/Bg/1099285.jpg").getImage();
+	public static Image cao2=new ImageIcon("img/Bg/1245103.jpg").getImage();
+	
 	
 	//按钮
 	public static Image CLOSE_0=new ImageIcon("img/Button/close_0.png").getImage();

@@ -30,7 +30,7 @@ public class CheckFormat {
 	//检查时间是否合法
 	public static String checkTime(String time){
 		String s="格式正确";
-		if(time==null){
+		if(time.compareTo("")==0){
 			return "时间未输入！";
 		}
 		else{
@@ -88,7 +88,7 @@ public class CheckFormat {
 	}
 	//检车营业厅编号
 	public static String checkHallNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=6){
 				return "营业厅编号输入错误";
 			}
@@ -107,7 +107,7 @@ public class CheckFormat {
 	}
 	//中转中心编号
 	public static String checkCentreNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=6){
 				return "中转中心编号输入错误";
 			}
@@ -126,7 +126,7 @@ public class CheckFormat {
 	}
 	//汽运编号
 	public static String checkTruckTransNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=19){
 				return "汽运编号输入有误";
 			}
@@ -179,7 +179,7 @@ public class CheckFormat {
 //	}
 	//中转中心中转单编号
 	public static String checkTransShipNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=21){
 				return "中转中心中转单输入有误";
 			}
@@ -208,7 +208,7 @@ public class CheckFormat {
 //	}
 	//手机号
 	public static String checkPhoneNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=11){
 				return "手机号输入有误";
 			}
@@ -222,7 +222,7 @@ public class CheckFormat {
 	}
 	//司机信息管理
 	public static String checkDriverNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=9){
 				return "司机编号输入有误";
 			}
@@ -236,7 +236,7 @@ public class CheckFormat {
 	}
 	//货车信息管理
 	public static String checkTruckNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=7){
 				return "货车编号输入有误";
 			}
@@ -264,7 +264,7 @@ public class CheckFormat {
 	}
 	//身份证号
 	public static String checkIDCardNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=18){
 				return "身份证号输入有误";
 			}
@@ -278,16 +278,16 @@ public class CheckFormat {
 	}
 	//银行账号
 	public static String checkBankAccountNum(String num){
-		if(num!=null){
+		if(num.compareTo("")!=0){
 			if(num.length()!=19){
-				return "银行账号输入有误";
+				return "请输入19位银行账号！";
 			}
 			else{
 				return "格式正确";
 			}
 		}
 		else{
-			return "未输入银行账号";
+			return "未输入银行账号！";
 		}
 	}
 }

@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
+import businesslogic.financebl.AccountBLImpl;
 import businesslogicservice.financeblservice.AccountBLService;
 import businesslogicservice.financeblservice.BaseDataSettingBLService;
 import businesslogicservice.financeblservice.CostManagementBLService;
@@ -111,7 +112,8 @@ public class FinacialStaffFrame extends JFrame{
 		this.setIconImage(Img.FinacialStaffICON);
 		
 
-		accountBLService=null;
+		//accountBLService=null;
+		accountBLService=new AccountBLImpl();
 		baseDataSettingBLService=null;//期初建账
 		costManagementBLService=null;
 		settlementManageBLService=null;

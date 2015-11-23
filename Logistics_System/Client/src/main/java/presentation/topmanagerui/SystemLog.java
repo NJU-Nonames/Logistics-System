@@ -43,20 +43,21 @@ public class SystemLog extends JPanel{
 	private MyButton goto_ConstantManage;
 	private MyButton goto_SystemLog;
 	//详细操作按钮以及其他组件
-	
-	private boolean Invalid;//输入是否非法
-	private String result;
+
+	private boolean willprintMessage;//是否将要打印消息
+	private String result;//打印的消息
+	private Color co;//消息的颜色
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
         g.drawLine(TopManagerFrame.w/6, 10, TopManagerFrame.w/6, TopManagerFrame.h-10);
         g.drawLine(TopManagerFrame.w/6+10, TopManagerFrame.h/6, TopManagerFrame.w, TopManagerFrame.h/6);
-        
-        if(Invalid){
+
+        if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, TopManagerFrame.h-50, TopManagerFrame.w, 50, null);
         	
-            g.setColor(Color.RED);
+            g.setColor(co);
             g.setFont(new Font("宋体", Font.BOLD, 26));
             g.drawString(result, -result.length()*13+TopManagerFrame.w/2, 13+TopManagerFrame.h-30);
         }
@@ -66,8 +67,9 @@ public class SystemLog extends JPanel{
 		this.frame=frame;
 		//this.bl=bl;
 		this.currentUser=currentUser;
-		Invalid=false;
+		willprintMessage=false;
 		result="";
+		co=Color.RED;
 		this.setLayout(null);
 
 		//初始化组件
@@ -250,7 +252,30 @@ public class SystemLog extends JPanel{
 	private void clear(){
 //		.setText("");
 //		.setText("");
-		Invalid=false;
+		willprintMessage=false;
 		repaint();
+	}
+	
+	
+	private void printMessage(String message, Color c){
+		result=message;
+		co=c;
+		if(!willprintMessage){
+			willprintMessage=true;
+			repaint();
+			new Thread(new Runnable(){
+				public void run() {
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+					}
+
+					willprintMessage=false;
+					repaint();
+				}
+			}).start();
+		}
 	}
 }

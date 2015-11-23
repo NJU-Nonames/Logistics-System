@@ -19,6 +19,8 @@ import presentation.courierui.CourierFrame;
 import presentation.financialstaffui.FinacialStaffFrame;
 import presentation.img.Img;
 import presentation.topmanagerui.TopManagerFrame;
+import utility.ExpressType;
+import utility.UserType;
 import vo.StaffVO;
 import vo.UserVO;
 import businesslogicservice.userblservice.UserManageBLService;
@@ -152,21 +154,23 @@ public class LoginPanel extends JPanel{
 //
 //		result = CheckFormat.checkUserNum(username);
 //		if(result.compareTo("格式正确")!=0){
-//			Invalid=true;
-//			repaint();
-//			new Thread(new Runnable(){
-//				public void run() {
-//					try {
-//						Thread.sleep(3000);
-//					} catch (InterruptedException e) {
-//						// TODO 自动生成的 catch 块
-//						e.printStackTrace();
+//			if(!Invalid){
+//				Invalid=true;
+//				repaint();
+//				new Thread(new Runnable(){
+//					public void run() {
+//						try {
+//							Thread.sleep(3000);
+//						} catch (InterruptedException e) {
+//							// TODO 自动生成的 catch 块
+//							e.printStackTrace();
+//						}
+//						
+//						Invalid=false;
+//						repaint();
 //					}
-//					
-//					Invalid=false;
-//					repaint();
-//				}
-//			}).start();
+//				}).start();
+//			}
 //			return;
 //		}
 //		
@@ -192,22 +196,23 @@ public class LoginPanel extends JPanel{
 //		}else{
 			mf.dispose();
 //			switch(uservo.getPosition()){
-//			case COURIER:break;
-//			case BUSINESS_OFFICE_CLERK:break;
-//			case CENTER_CLERK:break;
-//			case CENTER_REPERTORY_CLERK:break;
-//			case FINANCIAL_STAFF:new FinacialStaffFrame();break;
-//			case TOP_MANAGER:break;
-//			case ADMIN:break;
+//			case UserType.COURIER:break;
+//			case UserType.BUSINESS_OFFICE_CLERK:break;
+//			case UserType.CENTER_CLERK:break;
+//			case UserType.CENTER_REPERTORY_CLERK:break;
+//			case UserType.FINANCIAL_STAFF_LOW:
+//			case UserType.FINANCIAL_STAFF_HIGH:new FinacialStaffFrame();break;
+//			case UserType.TOP_MANAGER:break;
+//			case UserType.ADMIN:break;
 //			}
 //		}
-			//new FinacialStaffFrame();
+			new FinacialStaffFrame();
 			//new TopManagerFrame();
 			//new BusinessOfficeClerkFrame();
 			//new CenterRepertoryClerkFrame();
 			//new CourierFrame();
 			//new CenterClerkFrame();
-			new AdminFrame();
+			//new AdminFrame();
 	}
 }
 

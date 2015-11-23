@@ -13,22 +13,27 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 import presentation.img.Img;
+import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.ResultMessage;
 import vo.BankAccountVO;
-import vo.UserVO;
 import businesslogicservice.financeblservice.AccountBLService;
-import businesslogicservice.userblservice.UserManageBLService;
 
 /**账户管理
  * @author 谭期友
@@ -60,13 +65,15 @@ public class AccountManage extends JPanel{
 	
 	
 	private JTextField AccountField;//查找账户
+	private DefaultTableModel AccountTableModel;//账户表格模型
 	private JTable AccountTable;//账户表格
 	private JTextField newAccountField;//新账户
 	private JTextField newAccountBank;//新账户银行卡
 	private JTextField yueField;//余额
 	
-	private boolean Invalid;//输入是否非法
-	private String result;
+	private boolean willprintMessage;//是否将要打印消息
+	private String result;//打印的消息
+	private Color co;//消息的颜色
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -74,11 +81,11 @@ public class AccountManage extends JPanel{
         //g.drawImage(Img.BG, FinacialStaffFrame.w/6, 0, FinacialStaffFrame.w*5/6, FinacialStaffFrame.h, null);
         g.drawLine(FinacialStaffFrame.w/6, 10, FinacialStaffFrame.w/6, FinacialStaffFrame.h-10);
         g.drawLine(FinacialStaffFrame.w/6+10, FinacialStaffFrame.h/6, FinacialStaffFrame.w, FinacialStaffFrame.h/6);
-        
-        if(Invalid){
+
+        if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, FinacialStaffFrame.h-50, FinacialStaffFrame.w, 50, null);
         	
-            g.setColor(Color.RED);
+            g.setColor(co);
             g.setFont(new Font("宋体", Font.BOLD, 26));
             g.drawString(result, -result.length()*13+FinacialStaffFrame.w/2, 13+FinacialStaffFrame.h-30);
         }
@@ -88,8 +95,9 @@ public class AccountManage extends JPanel{
 		this.frame=frame;
 		this.bl=bl;
 		this.currentUser=currentUser;
-		Invalid=false;
+		willprintMessage=false;
 		result="";
+		co=Color.RED;
 		this.setLayout(null);
 
 		//初始化组件
@@ -296,32 +304,59 @@ public class AccountManage extends JPanel{
         
         search.setLocation(596+150,128+60);
         
+
         
-        Object[][] playerInfo={
-                {"阿呆","622202255560132",new Double(32.78)},
-                {"阿呆","622202255560133",new Double(32.34)}
-        };
-        String[] Names={"用户名","账户账号","余额"};
-        AccountTable=new JTable(playerInfo,Names);
-        AccountTable.setPreferredScrollableViewportSize(new Dimension(380,150));
-        JScrollPane scrollPane=new JScrollPane(AccountTable);
+		
+		//表头
+		Vector<String> vColumns = new Vector<String>();
+		vColumns.add("用户名");
+		vColumns.add("银行账号");
+		vColumns.add("余额");
+		//数据
+		Vector<BankAccountVO> vData = new Vector<BankAccountVO>();
+		//模型
+		AccountTableModel = new DefaultTableModel(vData, vColumns);
+		ArrayList<BankAccountVO> accountlist = bl.show();
+        for(int i =0 ; i<accountlist.size(); i++){
+    		Vector<String> v = new Vector<String>();
+    		v.add(accountlist.get(i).getName());
+    		v.add(accountlist.get(i).getNumber());
+    		v.add(""+accountlist.get(i).getMoney());
+        	AccountTableModel.addRow(v);
+        }
+		//表格
+        AccountTable = new JTable(AccountTableModel){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;//不能修改
+			}
+		};
+		AccountTable.setPreferredScrollableViewportSize(new Dimension(480,150));
+		AccountTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		AccountTable.setSelectionBackground(Color.YELLOW);
 		JPanel jp=new JPanel();
-		jp.setSize(400, 180);
-		jp.setLocation(596-400/2, 128+100);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.getViewport().add(AccountTable);
+		AccountTable.setFillsViewportHeight(true);
+		jp.setSize(500, 180);
+		jp.setLocation(596-500/2, 128+120);
 		jp.setOpaque(false);
 		jp.add(scrollPane,BorderLayout.CENTER);
 
 		JLabel l1 = new JLabel("新账户：");
 		l1.setFont(new Font("宋体", Font.BOLD, 15));
+        l1.setForeground(Color.BLACK);
 		newAccountField = new JTextField(4);
-		//newAccountField.setSize(600, 15);
 		
 		JLabel l2 = new JLabel("新卡号：");
 		l2.setFont(new Font("宋体", Font.BOLD, 15));
+        l2.setForeground(Color.BLACK);
 		newAccountBank = new JTextField(14);
 		
 		JLabel l3 = new JLabel("余额：");
 		l3.setFont(new Font("宋体", Font.BOLD, 15));
+        l3.setForeground(Color.BLACK);
 		yueField = new JTextField(8);
 		
 		JPanel jp2 = new JPanel();
@@ -334,11 +369,18 @@ public class AccountManage extends JPanel{
 		jp2.add(yueField);
 		jp2.setOpaque(false);
 		jp2.setSize(520, 30);
-		jp2.setLocation(596-520/2, 128+300);
+		jp2.setLocation(596-520/2, 128+340);
 
-    	add.setLocation(596-15-100,128+400);
-    	remove.setLocation(596-15,128+400);
-    	change.setLocation(596-15+100,128+400);
+    	add.setLocation(596-15-200,128+420);
+    	remove.setLocation(596-15,128+420);
+    	change.setLocation(596-15+200,128+420);
+    	
+    	String tip="提示：若要修改账户，先选中表格一行，再在“新账户”里填入新账户名，最后点击按钮即可修改。";
+        JLabel tipLabel = new JLabel(tip);
+        tipLabel.setSize((int)(16*tip.length()*1.07f), 16);
+        tipLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        tipLabel.setForeground(Color.RED);
+        tipLabel.setLocation(596-(int)(15*tip.length()*1.07f)/2,128+490);
 
 		
 		
@@ -366,20 +408,132 @@ public class AccountManage extends JPanel{
 		add(add);
 		add(remove);
 		add(change);
+		add(tipLabel);
 	}
 
 	private void clear(){
-//		.setText("");
-//		.setText("");
-		Invalid=false;
+		AccountField.setText("");
+		newAccountField.setText("");
+		newAccountBank.setText("");
+		yueField.setText("");
+		willprintMessage=false;
 		repaint();
 	}
 	private void _search(){
+		if(AccountField.getText().compareTo("")==0){
+			printMessage("未输入账户！", Color.RED);
+			return;
+		}
+		String Account = AccountField.getText();
+		BankAccountVO bankAccountVO = bl.searchCount(Account);
+		if(bankAccountVO==null){
+			printMessage("查无此账户！", Color.RED);
+			return;
+		}
+		int i=0;
+		String s=(String) AccountTable.getValueAt(0, 0);
+		while(s.compareTo(Account)!=0){
+			i++;
+			s=(String) AccountTable.getValueAt(i, 0);
+		}
+		AccountTable.setRowSelectionInterval(i, i);
 	}
 	private void _add(){
+		String new_Account = newAccountField.getText();
+		String new_AccountBank = newAccountBank.getText();
+		double yue;
+		try{
+			yue = Double.parseDouble(yueField.getText());
+		}catch(NumberFormatException e){
+			printMessage("请输入正确余额", Color.RED);
+			return;
+		}//接收数据完毕
+		
+		//格式检查
+		result = CheckFormat.checkBankAccountNum(new_AccountBank);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		
+		//ResultMessage检查
+		BankAccountVO bankAccountVO=new BankAccountVO(new_Account, new_AccountBank, yue);
+		ResultMessage resultMessage = bl.createCount(bankAccountVO);//已经写入数据库
+		if(!resultMessage.isPass()){
+			printMessage(resultMessage.getMessage(), Color.RED);
+			return;
+		}else{
+			printMessage(resultMessage.getMessage(), Color.BLUE);
+		}
+
+
+		Vector<String> v = new Vector<String>();
+		v.add(new_Account);
+		v.add(new_AccountBank);
+		v.add(yueField.getText());
+		AccountTableModel.addRow(v);
+		newAccountField.setText("");
+		newAccountBank.setText("");
+		yueField.setText("");
 	}
 	private void _remove(){
+		int index = AccountTable.getSelectedRow();
+		if(index == -1){
+			printMessage("请选中一个账户！", Color.RED);
+			return;
+		}
+		ResultMessage resultMessage = bl.removeCount((String) AccountTable.getValueAt(index, 0));
+		printMessage(resultMessage.getMessage(), Color.GREEN);
+		
+		AccountTableModel.removeRow(index);//肯定能成功==
 	}
 	private void _change(){
+		int index = AccountTable.getSelectedRow();
+		if(index == -1){
+			printMessage("请选中一个账户！", Color.RED);
+			return;
+		}
+		if(newAccountField.getText().compareTo("")==0){
+			printMessage("未输入新账户名！", Color.RED);
+			return;
+		}
+		BankAccountVO countVo=new BankAccountVO(
+				newAccountField.getText(),
+				(String) AccountTable.getValueAt(index, 1),
+				Double.parseDouble((String) AccountTable.getValueAt(index, 2)));
+		ResultMessage resultMessage = bl.updateCount(countVo);//已更改
+		printMessage(resultMessage.getMessage(), Color.GREEN);
+
+		AccountTable.setValueAt((String)newAccountField.getText(), index, 0);
+		newAccountField.setText("");
+		newAccountBank.setText("");
+		yueField.setText("");
+	}
+	
+	
+	
+	
+	
+	
+	private void printMessage(String message, Color c){
+		result=message;
+		co=c;
+		if(!willprintMessage){
+			willprintMessage=true;
+			repaint();
+			new Thread(new Runnable(){
+				public void run() {
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+					}
+
+					willprintMessage=false;
+					repaint();
+				}
+			}).start();
+		}
 	}
 }

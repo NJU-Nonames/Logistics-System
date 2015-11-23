@@ -8,6 +8,7 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import businesslogicservice.logisticsblservice.SendPkgBLService;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 
@@ -44,7 +45,7 @@ public class CourierFrame extends JFrame{
 	
 	
 
-//	AccountBLService accountBLService;
+	SendPkgBLService sendPkgBLService;
 //	BaseDataSettingBLService baseDataSettingBLService;
 //	CostManagementBLService costManagementBLService;
 //	SettlementManageBLService settlementManageBLService;
@@ -95,12 +96,12 @@ public class CourierFrame extends JFrame{
 		this.setIconImage(Img.CourierICON);
 		
 
-//		accountBLService=null;
+		sendPkgBLService=null;
 //		baseDataSettingBLService=null;
 //		costManagementBLService=null;
 //		settlementManageBLService=null;
 
-		sendPkg=new SendPkg(this, currentUser);
+		sendPkg=new SendPkg(this,sendPkgBLService, currentUser);
 		receivePkg=new ReceivePkg(this, currentUser);
 		searchPkgInformation=new SearchPkgInformation(this, currentUser);
 

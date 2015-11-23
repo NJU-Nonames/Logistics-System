@@ -10,10 +10,18 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
@@ -43,20 +51,34 @@ public class CostManage extends JPanel{
 	private MyButton goto_BaseDataSetting;//期初建账
 	private MyButton goto_SystemLog;//查看系统日志
 	//详细操作按钮以及其他组件
+	private MyButton confirm;
 	
-	private boolean Invalid;//输入是否非法
-	private String result;
+	private JTextField pay_man;
+	private JTextField pay_date;
+	private JTextField money;
+	private JTextField bankcard;
+	private JTextArea note;
+	private JRadioButton rent;
+	private JRadioButton deli_price;
+	private JRadioButton salary;
+	private JRadioButton reward;
+	private ButtonGroup buttonGroup;
+
+	private boolean willprintMessage;//是否将要打印消息
+	private String result;//打印的消息
+	private Color co;//消息的颜色
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
+        //g.drawImage(Img.cao2, -200, 0, 1366, 768, null);
         g.drawLine(FinacialStaffFrame.w/6, 10, FinacialStaffFrame.w/6, FinacialStaffFrame.h-10);
         g.drawLine(FinacialStaffFrame.w/6+10, FinacialStaffFrame.h/6, FinacialStaffFrame.w, FinacialStaffFrame.h/6);
-        
-        if(Invalid){
+
+        if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, FinacialStaffFrame.h-50, FinacialStaffFrame.w, 50, null);
         	
-            g.setColor(Color.RED);
+            g.setColor(co);
             g.setFont(new Font("宋体", Font.BOLD, 26));
             g.drawString(result, -result.length()*13+FinacialStaffFrame.w/2, 13+FinacialStaffFrame.h-30);
         }
@@ -66,8 +88,9 @@ public class CostManage extends JPanel{
 		this.frame=frame;
 		//this.bl=bl;
 		this.currentUser=currentUser;
-		Invalid=false;
+		willprintMessage=false;
 		result="";
+		co=Color.RED;
 		this.setLayout(null);
 
 		//初始化组件
@@ -186,6 +209,16 @@ public class CostManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
+        confirm = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_create();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
@@ -224,8 +257,87 @@ public class CostManage extends JPanel{
     	goto_SystemLog.setLocation(20,400);
     	
     	//其他组件
+    	JLabel l1 = new JLabel("付款人：");
+		l1.setSize((int)(16*4*1.07f), 16);
+		l1.setFont(new Font("宋体", Font.BOLD, 15));
+        l1.setLocation(FinacialStaffFrame.w/6+40, 128+80);
+        pay_man = new JTextField();
+        pay_man.setSize(110, 20);
+        pay_man.setLocation(FinacialStaffFrame.w/6+40+(int)(16*5*1.07f),128+80-3);
         
+		JLabel l2 = new JLabel("付款日期：");
+		l2.setSize((int)(16*5*1.07f), 16);
+		l2.setFont(new Font("宋体", Font.BOLD, 15));
+		l2.setLocation(FinacialStaffFrame.w/6+40, 128+80+50);
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String time=format.format(date_);
+		pay_date = new JTextField(time);
+		pay_date.setSize(110, 20);
+		pay_date.setLocation(FinacialStaffFrame.w/6+40+(int)(16*5*1.07f),128+80+50-3);
 
+		JLabel l3 = new JLabel("付款金额：");
+		l3.setSize((int)(16*5*1.07f), 16);
+		l3.setFont(new Font("宋体", Font.BOLD, 15));
+		l3.setLocation(FinacialStaffFrame.w/6+40, 128+80+100);
+		money = new JTextField();
+		money.setSize(110, 20);
+		money.setLocation(FinacialStaffFrame.w/6+40+(int)(16*5*1.07f),128+80+100-3);
+		
+		JLabel l4 = new JLabel("付款账号：");
+		l4.setSize((int)(16*5*1.07f), 16);
+		l4.setFont(new Font("宋体", Font.BOLD, 15));
+		l4.setLocation(FinacialStaffFrame.w/6+40, 128+80+150);
+		bankcard = new JTextField();
+		bankcard.setSize(110, 20);
+		bankcard.setLocation(FinacialStaffFrame.w/6+40+(int)(16*5*1.07f),128+80+150-3);
+		
+		JLabel l5 = new JLabel("备注：");
+		l5.setSize((int)(16*3*1.07f), 16);
+		l5.setFont(new Font("宋体", Font.BOLD, 15));
+		l5.setLocation(FinacialStaffFrame.w/6+40, 128+80+200);
+		note = new JTextArea();
+		note.setSize(200, 100);
+		note.setBorder(BorderFactory.createEtchedBorder());
+		note.setLocation(FinacialStaffFrame.w/6+40+(int)(16*5*1.07f),128+80+200-3);
+		
+		JLabel l6 = new JLabel("付款条目：");
+		l6.setSize((int)(16*5*1.07f), 16);
+		l6.setFont(new Font("宋体", Font.BOLD, 15));
+		l6.setLocation(600, 128+80);
+
+		rent=new JRadioButton("租金", true);
+		rent.setSize((int)(20*3*1.07f), 20);
+		rent.setFont(new Font("宋体", Font.BOLD, 16));
+		rent.setLocation(600+(int)(16*5*1.07f), 128+80);
+		rent.setOpaque(false);
+		
+		deli_price=new JRadioButton("运费", false);
+		deli_price.setSize((int)(20*3*1.07f), 20);
+		deli_price.setFont(new Font("宋体", Font.BOLD, 16));
+		deli_price.setLocation(600+(int)(16*5*1.07f), 128+80+30);
+		deli_price.setOpaque(false);
+		
+		salary=new JRadioButton("人员工资", false);
+		salary.setSize((int)(20*5*1.07f), 20);
+		salary.setFont(new Font("宋体", Font.BOLD, 16));
+		salary.setLocation(600+(int)(16*5*1.07f), 128+80+60);
+		salary.setOpaque(false);
+		
+		reward=new JRadioButton("奖励", false);
+		reward.setSize((int)(20*3*1.07f), 20);
+		reward.setFont(new Font("宋体", Font.BOLD, 16));
+		reward.setLocation(600+(int)(16*5*1.07f), 128+80+90);
+		reward.setOpaque(false);
+		
+		buttonGroup=new ButtonGroup();
+		buttonGroup.add(rent);
+		buttonGroup.add(deli_price);
+		buttonGroup.add(salary);
+		buttonGroup.add(reward);
+
+
+    	confirm.setLocation(596-30/2,600);
 		
 		
 		
@@ -244,13 +356,56 @@ public class CostManage extends JPanel{
     	add(goto_BaseDataSetting);
     	add(goto_SystemLog);
 
-    	
+    	add(l1);
+    	add(pay_man);
+    	add(l2);
+    	add(pay_date);
+    	add(l3);
+    	add(money);
+    	add(l4);
+    	add(bankcard);
+    	add(l5);
+    	add(note);
+    	add(l6);
+
+    	add(rent);
+		add(deli_price);
+		add(salary);
+		add(reward);
+		
+		add(confirm);
 	}
 
+	private void _create(){
+		
+	}
 	private void clear(){
 //		.setText("");
 //		.setText("");
-		Invalid=false;
+		willprintMessage=false;
 		repaint();
+	}
+	
+	
+	private void printMessage(String message, Color c){
+		result=message;
+		co=c;
+		if(!willprintMessage){
+			willprintMessage=true;
+			repaint();
+			new Thread(new Runnable(){
+				public void run() {
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+					}
+
+					willprintMessage=false;
+					repaint();
+				}
+			}).start();
+		}
 	}
 }

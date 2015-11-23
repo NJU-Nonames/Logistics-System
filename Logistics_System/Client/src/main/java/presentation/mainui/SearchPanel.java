@@ -138,24 +138,26 @@ public class SearchPanel extends JPanel{
 		repaint();
 	}
 	private void searchInf(){
-		/*String order = orderField.getText();
+		String order = orderField.getText();
 		result = CheckFormat.checkOrderNum(order);
 		if(result.compareTo("格式正确")!=0){
-			Invalid=true;
-			repaint();
-			new Thread(new Runnable(){
-				public void run() {
-					try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e) {
-						// TODO 自动生成的 catch 块
-						e.printStackTrace();
+			if(!Invalid){
+				Invalid=true;
+				repaint();
+				new Thread(new Runnable(){
+					public void run() {
+						try {
+							Thread.sleep(3000);
+						} catch (InterruptedException e) {
+							// TODO 自动生成的 catch 块
+							e.printStackTrace();
+						}
+						
+						Invalid=false;
+						repaint();
 					}
-					
-					Invalid=false;
-					repaint();
-				}
-			}).start();
+				}).start();
+			}
 			return;
 		}
 		
@@ -163,25 +165,26 @@ public class SearchPanel extends JPanel{
 		//OrderListVO orderListVO = bl.searchPkgInformation(order);
 		OrderListVO orderListVO = null;
 		if(orderListVO==null){//查无此订单
-			Invalid=true;
-			result = "查无此订单！";
-			repaint();
-			new Thread(new Runnable(){
-				public void run() {
-					try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e) {
-						// TODO 自动生成的 catch 块
-						e.printStackTrace();
+			if(!Invalid){
+				Invalid=true;
+				result = "查无此订单！";
+				repaint();
+				new Thread(new Runnable(){
+					public void run() {
+						try {
+							Thread.sleep(3000);
+						} catch (InterruptedException e) {
+							// TODO 自动生成的 catch 块
+							e.printStackTrace();
+						}
+						Invalid=false;
+						repaint();
 					}
-					Invalid=false;
-					repaint();
-				}
-			}).start();
+				}).start();
+			}
 		}else{//有此订单
-			;
-		}*/
-		new PkgInformationFrame();
+			new PkgInformationFrame();;
+		}
 	}
 }
 
