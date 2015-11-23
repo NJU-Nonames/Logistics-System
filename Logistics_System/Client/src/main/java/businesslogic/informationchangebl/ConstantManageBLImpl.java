@@ -53,12 +53,31 @@ public ConstantManageBLImpl(){
 	public ResultMessage submitDistance(String newDistance, String cityA,
 			String cityB) {
 		// TODO Auto-generated method stub
-		return null;
+		double distance=Double.parseDouble(newDistance);
+		if(cityA.equals(cityB)){
+			if(distance!=0)
+				return new ResultMessage(false,"相同城市之间的距离为0!");
+		}
+		else if(distance<0)
+			return new ResultMessage(false,"城市之间的距离不能为负数!");
+		try{
+			constantdataservice.setDistance(newDistance, cityA, cityB);
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		return new ResultMessage(true,"新的城市距离设定成功!");
 	}
-
+/**
+ * 展示层传入参数为修改的价格类型
+ */
 	public ResultMessage submitPrice(String newPrice, String otherInformation) {
 		// TODO Auto-generated method stub
-		return null;
+		try{
+			constantdataservice.setPrice(newPrice, otherInformation);
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		return new ResultMessage(true,otherInformation+"价格常量修改成功!");
 	}
 
 }
