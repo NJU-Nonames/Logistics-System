@@ -32,7 +32,7 @@ public class SearchPkgInformationBLImpl implements SearchPkgInformationBLService
 		try {
 			orderListPO=service.find(orderlistId);
 			if(orderListPO==null){
-				return null;
+				
 			}
 			else{
 				orderListVO=new OrderListVO(orderListPO);
