@@ -33,6 +33,7 @@ public class ReceivePkgBLImpl implements ReceivePkgBLService {
 				orderListPO.setArriveTime(receiver.getTime());
 				orderListPO.setReceiverName(receiver.getName());
 				orderListPO.getPkgState().add(orderListVO.getPkgState().get(orderListVO.getPkgState().size()-1));
+				service1.update(orderListPO);
 			}
 			} catch (RemoteException e) {
 			e.printStackTrace();
