@@ -5,22 +5,21 @@ package vo;
    价格常量表
  */
 public class PriceChartVO {
-
 	/**
-	 * 火车每公里运费
+	 * 火车每公里每吨运费
 	 */
-	private double train_kilo;
+	private double train_kilo_t;
 	/**
-	 * 货车每公里运费
+	 * 货车每公里每吨运费
 	 */
-	private double truck_kilo;
+	private double truck_kilo_t;
 	/**
-	 * 飞机每公里运费
+	 * 飞机每公里每吨运费
 	 */
-	private double airplane_kilo;
+	private double airplane_kilo_t;
 	
 	/**
-	 * 标准快递标准价
+	 * 标准快递标准价每公里/1000乘该值即是价格
 	 */
 	private double standard;
 	
@@ -35,58 +34,44 @@ public class PriceChartVO {
 	
 	private double express;
 
-	public double getTrain_kilo() {
-		return train_kilo;
+	public double getTrain_kilo_t() {
+		return train_kilo_t;
 	}
 
-	public double getTruck_kilo() {
-		return truck_kilo;
+
+	public double getTruck_kilo_t() {
+		return truck_kilo_t;
 	}
 
-	public double getAirplane_kilo() {
-		return airplane_kilo;
+
+	public double getAirplane_kilo_t() {
+		return airplane_kilo_t;
 	}
+
 
 	public double getStandard() {
 		return standard;
 	}
 
+
 	public double getEconomic() {
 		return economic;
 	}
+
 
 	public double getExpress() {
 		return express;
 	}
 
-	public PriceChartVO(double train_kilo, double truck_kilo,
-			double airplane_kilo, double standard, double economic,
+	public PriceChartVO(double train_kilo_t, double truck_kilo_t,
+			double airplane_kilo_t, double standard, double economic,
 			double express) {
 		super();
-		this.train_kilo = train_kilo;
-		this.truck_kilo = truck_kilo;
-		this.airplane_kilo = airplane_kilo;
+		this.train_kilo_t = train_kilo_t;
+		this.truck_kilo_t = truck_kilo_t;
+		this.airplane_kilo_t = airplane_kilo_t;
 		this.standard = standard;
 		this.economic = economic;
 		this.express = express;
 	}
-	public void setTrain_kilo(double train_kilo){
-		this.train_kilo=train_kilo;
-	}
-	public void setTruck_kilo(double truck_kilo){
-		this.truck_kilo=truck_kilo;
-	}
-	public void setAirplane_kilo(double airplane_kilo){
-		this.airplane_kilo=airplane_kilo;
-	}
-	public void setStandard(double standard){
-		this.standard=standard;
-	}
-	public void setEconomic(double economic){
-		this.economic=economic;
-	}
-	public void setExpress(double express){
-		this.express=express;
-	}
-	
 }

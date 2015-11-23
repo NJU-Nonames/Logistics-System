@@ -43,7 +43,7 @@ public ConstantManageBLImpl(){
 		PriceChartVO pricechartvo=null;
 		try{
 			PriceChartPO pricechartpo=constantdataservice.showPriceChart();
-			pricechartvo=new PriceChartVO(pricechartpo.getTrain_kilo(),pricechartpo.getTruck_kilo(),pricechartpo.getAirplane_kilo(),pricechartpo.getStandard(),pricechartpo.getEconomic(),pricechartpo.getExpress());
+			pricechartvo=new PriceChartVO(pricechartpo.getTrain_kilo_t(),pricechartpo.getTruck_kilo_t(),pricechartpo.getAirplane_kilo_t(),pricechartpo.getStandard(),pricechartpo.getEconomic(),pricechartpo.getExpress());
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
