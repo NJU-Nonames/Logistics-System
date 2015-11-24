@@ -4,6 +4,9 @@
  *description: 营业厅管理的司机vo实体类
  */
 package vo;
+
+import po.agency.DriverPO;
+
 public class DriverVO {
 	/**
 	 * 司机编号
@@ -54,6 +57,15 @@ public class DriverVO {
     	 this.sex = sex;
     	 this.drivingLicencePeriod = drivingLicencePeriod;
      }
+
+	public DriverVO(DriverPO po) {
+		this.driverNum=po.getDriverNum();
+		this.name=po.getName();
+		this.IDNum=po.getIDNum();
+		this.phoneNum=po.getPhoneNum();
+		this.sex=po.getSex();
+		this.drivingLicencePeriod=po.getDrivingLicencePeriod();
+	}
 
 	public String getDriverNum() {
 		return driverNum;
