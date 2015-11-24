@@ -8,5 +8,13 @@ import utility.CheckType;
  *
  */
 public abstract class ListVO {
-	public CheckType checkType=CheckType.UNDERCHECK; 
+	CheckType checkType;
+
+	public CheckType getCheckType() {
+		return checkType;
+	}
+
+	public void setCheckType(CheckType checkType) {
+		this.checkType = checkType;
+	}
 }
