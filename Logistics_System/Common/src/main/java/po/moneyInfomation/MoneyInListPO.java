@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import po.list.ListPO;
+import utility.CheckType;
 
 /**
  * @author 谭期友
@@ -38,7 +39,8 @@ public class MoneyInListPO extends ListPO implements Serializable{
 	 *条形码
 	 */
 	private ArrayList<String> barcode;
-	
+
+
 
 
 	public MoneyInListPO(String id,String date, double moneySum, String staffId,
@@ -49,10 +51,11 @@ public class MoneyInListPO extends ListPO implements Serializable{
 		this.moneySum = moneySum;
 		this.staffId=staffId;
 		this.barcode = barcode;
+
 	}
-public String getId(){
-	return id;
-}
+    public String getId(){
+	    return id;
+   }
 	public String getDate() {
 		return date;
 	}
@@ -68,6 +71,7 @@ public String getId(){
 	public ArrayList<String> getBarcode() {
 		return barcode;
 	}
+	
 	
 
 }

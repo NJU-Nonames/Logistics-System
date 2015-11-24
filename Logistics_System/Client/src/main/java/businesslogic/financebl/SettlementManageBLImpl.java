@@ -36,7 +36,7 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return null;
+		return moneyin;
 	}
 	public ArrayList<MoneyInListVO> search(String start_day, String end_day) {
 		// TODO 自动生成的方法存根
