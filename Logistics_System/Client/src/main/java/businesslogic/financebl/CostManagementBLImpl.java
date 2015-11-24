@@ -23,7 +23,7 @@ public class CostManagementBLImpl implements CostManagementBLService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return new ResultMessage(true,"添加支出信息成功!");
+		return new ResultMessage(true,"添加付款单成功!");
 	}
 	public ArrayList<MoneyOutListVO> serach(String start_day, String end_day) {
 		// TODO 自动生成的方法存根
