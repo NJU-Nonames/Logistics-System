@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import com.mysql.jdbc.ResultSet;
 
 import po.moneyInfomation.MoneyOutListPO;
+import utility.CheckType;
+import utility.CostClause;
 import data.DataJDBCConnection;
 import dataservice.moneyInformation.MoneyOutListDataService;
 
@@ -42,7 +44,7 @@ public class MoneyOutListDataImpl extends UnicastRemoteObject implements MoneyOu
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			moneyOutList=new MoneyOutListPO(id, rs.getString("timee"), rs.getDouble("money"), rs.getString("payer"), rs.getString(""), clause, note)
+			moneyOutList=new MoneyOutListPO(id, rs.getString("timee"), rs.getDouble("money"), rs.getString("payer"), rs.getString("accountNum"), CostClause.valueOf(rs.getString("clause")), rs.getString("note"),CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
 			return null;
 		}

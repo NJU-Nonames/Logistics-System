@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.mysql.jdbc.ResultSet;
 
 import po.list.OrderListPO;
+import utility.CheckType;
 import utility.ExpressType;
 import utility.PkgType;
 import data.DataJDBCConnection;
@@ -23,7 +24,7 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 	public void add(OrderListPO orderList) {
 		String sql="insert into orderlist values ('"+orderList.getSenderName()+"','"+orderList.getSenderTeleNumber()+"','"+orderList.getReceiverName()+"','"+
 	                orderList.getReceiverAddress()+"','"+orderList.getReceiverTeleNumber()+"',"+orderList.getNumber()+","+orderList.getWeight()+","+orderList.getVolume()+",'"+
-				    orderList.getName()+"','"+orderList.getCategory()+"',"+orderList.getPackPrice()+",'"+orderList.getPkgType()+"','"+orderList.getBarCode()+"','"+orderList.getDepartTime()+"','"+orderList.getArriveTime()+"')";
+				    orderList.getName()+"','"+orderList.getCategory()+"',"+orderList.getPackPrice()+",'"+orderList.getPkgType()+"','"+orderList.getBarCode()+"','"+orderList.getDepartTime()+"','"+orderList.getArriveTime()+"','"+orderList.getCheckType()+"')";
 		for(int i=0;i<orderList.getPkgState().size();i++)
 		{
 			String state=orderList.getPkgState().get(i);
@@ -52,7 +53,7 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			orderList=new OrderListPO(rs.getString("senderName"), rs.getString("senderAddress"), rs.getString("senderTeleNumber"), rs.getString("receiverName"), rs.getString("receiverAddress"), rs.getString("receiverTeleNumber"), rs.getString("number"), rs.getDouble("weight"), rs.getDouble("volume"), rs.getString("name"), ExpressType.valueOf(rs.getString("category")), null, rs.getDouble("packPrice"), rs.getString("barCode"),PkgType.valueOf( rs.getString("type")), rs.getString("departTime"), rs.getString("arriveTime"));
+			orderList=new OrderListPO(rs.getString("senderName"), rs.getString("senderAddress"), rs.getString("senderTeleNumber"), rs.getString("receiverName"), rs.getString("receiverAddress"), rs.getString("receiverTeleNumber"), rs.getString("number"), rs.getDouble("weight"), rs.getDouble("volume"), rs.getString("name"), ExpressType.valueOf(rs.getString("category")), null, rs.getDouble("packPrice"), rs.getString("barCode"),PkgType.valueOf( rs.getString("type")), rs.getString("departTime"), rs.getString("arriveTime"),CheckType.valueOf(rs.getString("checkstate")));
 			String sql2="select * from orderpath where barcode="+id;
 			ResultSet rs2=(ResultSet) DataJDBCConnection.find(sql2);
 			ArrayList<String> path=null;

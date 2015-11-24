@@ -53,7 +53,7 @@ public class DataJDBCConnection {
 		ResultSet rs=null;
 		try {
 			Statement stmt=connect.createStatement();
-			rs=stmt.executeQuery(sql);
+			rs=(ResultSet) stmt.executeQuery(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
