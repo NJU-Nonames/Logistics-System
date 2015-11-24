@@ -7,4 +7,17 @@ package po.list;
 
 import java.io.Serializable;
 
-public abstract class ListPO implements Serializable{}
+import utility.CheckType;
+
+public abstract class ListPO implements Serializable{
+	CheckType checkType;
+
+	public CheckType getCheckType() {
+		return checkType;
+	}
+
+	public void setCheckType(CheckType checkType) {
+		this.checkType = checkType;
+	}
+	
+}
