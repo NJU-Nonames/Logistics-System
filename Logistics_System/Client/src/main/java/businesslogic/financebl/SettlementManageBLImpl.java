@@ -36,7 +36,7 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 			e.printStackTrace();
 		}
 		for(MoneyInListPO po:moneyinpo){
-			moneyinvo.add(new MoneyInListVO(po.getDate(),po.getMoneySum(),po.getStaffId(),po.getBarcode()));
+			moneyinvo.add(new MoneyInListVO(po.getId(),po.getDate(),po.getMoneySum(),po.getStaffId(),po.getBarcode()));
 		}
 		
 		return moneyinvo;

@@ -16,6 +16,10 @@ import po.list.ListPO;
  */
 public class MoneyInListPO extends ListPO implements Serializable{
 	/**
+	 * 单号
+	 */
+	private String id;
+	/**
 	 * 收款日期
 	 */
 	private String date;
@@ -37,15 +41,18 @@ public class MoneyInListPO extends ListPO implements Serializable{
 	
 
 
-	public MoneyInListPO(String date, double moneySum, String staffId,
+	public MoneyInListPO(String id,String date, double moneySum, String staffId,
 			ArrayList<String> barcode) {
 		super();
+		this.id=id;
 		this.date = date;
 		this.moneySum = moneySum;
 		this.staffId=staffId;
 		this.barcode = barcode;
 	}
-
+public String getId(){
+	return id;
+}
 	public String getDate() {
 		return date;
 	}

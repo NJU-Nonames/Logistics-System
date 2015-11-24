@@ -12,6 +12,10 @@ import utility.CostClause;
 
 public class MoneyOutListVO extends ListVO{
 	/**
+	 * 单号
+	 */
+	private String id;
+	/**
 	 * 日期
 	 */
 	private String date;
@@ -48,8 +52,9 @@ public class MoneyOutListVO extends ListVO{
 	 * @param clause
 	 * @param note
 	 */
-	public MoneyOutListVO(String date,double money,String payer,String accountNum,
+	public MoneyOutListVO(String id,String date,double money,String payer,String accountNum,
 			CostClause clause,String note){
+		this.id=id;
 		this.date = date;
 		this.money = money;
 		this.payer = payer;
@@ -57,7 +62,9 @@ public class MoneyOutListVO extends ListVO{
 		this.clause=clause;
 		this.note=note;
 	}
-
+public String getId(){
+	return id;
+}
 	public String getDate() {
 		return date;
 	}

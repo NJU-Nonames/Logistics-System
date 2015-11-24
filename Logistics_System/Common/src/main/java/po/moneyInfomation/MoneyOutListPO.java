@@ -16,6 +16,10 @@ import utility.CostClause;
  */
 public class MoneyOutListPO extends ListPO implements Serializable{
 	/**
+	 * 单号
+	 */
+	private String id;
+	/**
 	 * 日期
 	 */
 	private String date;
@@ -52,14 +56,18 @@ public class MoneyOutListPO extends ListPO implements Serializable{
 	 * @param clause
 	 * @param note
 	 */
-	public MoneyOutListPO(String date,double money,String payer,String accountNum,
+	public MoneyOutListPO(String id,String date,double money,String payer,String accountNum,
 			CostClause clause,String note){
+		this.id=id;
 		this.date = date;
 		this.money = money;
 		this.payer = payer;
 		this.accountNum = accountNum;
 		this.clause=clause;
 		this.note=note;
+	}
+	public String getId(){
+		return id;
 	}
 
 	public String getDate() {

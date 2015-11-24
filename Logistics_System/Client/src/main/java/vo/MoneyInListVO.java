@@ -15,6 +15,10 @@ import java.util.ArrayList;
  */
 public class MoneyInListVO extends ListVO{
 	/**
+	 * 单号
+	 */
+	private String id;
+	/**
 	 * 收款日期
 	 */
 	private String date;
@@ -36,15 +40,18 @@ public class MoneyInListVO extends ListVO{
 	
 
 
-	public MoneyInListVO(String date, double moneySum, String staffId,
+	public MoneyInListVO(String id,String date, double moneySum, String staffId,
 			ArrayList<String> barcode) {
 		super();
+		this.id=id;
 		this.date = date;
 		this.moneySum = moneySum;
 		this.staffId = staffId;
 		this.barcode = barcode;
 	}
-
+public String getId(){
+	return id;
+}
 	public String getDate() {
 		return date;
 	}
