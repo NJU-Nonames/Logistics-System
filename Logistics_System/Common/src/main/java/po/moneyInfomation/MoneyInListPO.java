@@ -44,13 +44,14 @@ public class MoneyInListPO extends ListPO implements Serializable{
 
 
 	public MoneyInListPO(String id,String date, double moneySum, String staffId,
-			ArrayList<String> barcode) {
+			ArrayList<String> barcode,CheckType type) {
 		super();
 		this.id=id;
 		this.date = date;
 		this.moneySum = moneySum;
 		this.staffId=staffId;
 		this.barcode = barcode;
+		this.setCheckType(type);
 
 	}
     public String getId(){

@@ -8,6 +8,7 @@ package po.moneyInfomation;
 import java.io.Serializable;
 
 import po.list.ListPO;
+import utility.CheckType;
 import utility.CostClause;
 
 /**
@@ -57,7 +58,7 @@ public class MoneyOutListPO extends ListPO implements Serializable{
 	 * @param note
 	 */
 	public MoneyOutListPO(String id,String date,double money,String payer,String accountNum,
-			CostClause clause,String note){
+			CostClause clause,String note,CheckType type){
 		this.id=id;
 		this.date = date;
 		this.money = money;
@@ -65,6 +66,7 @@ public class MoneyOutListPO extends ListPO implements Serializable{
 		this.accountNum = accountNum;
 		this.clause=clause;
 		this.note=note;
+		this.setCheckType(type);
 	}
 	public String getId(){
 		return id;

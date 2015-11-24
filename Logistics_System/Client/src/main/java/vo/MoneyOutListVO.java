@@ -8,6 +8,7 @@
  */
 package vo;
 
+import utility.CheckType;
 import utility.CostClause;
 
 public class MoneyOutListVO extends ListVO{
@@ -53,7 +54,7 @@ public class MoneyOutListVO extends ListVO{
 	 * @param note
 	 */
 	public MoneyOutListVO(String id,String date,double money,String payer,String accountNum,
-			CostClause clause,String note){
+			CostClause clause,String note,CheckType type){
 		this.id=id;
 		this.date = date;
 		this.money = money;
@@ -61,10 +62,11 @@ public class MoneyOutListVO extends ListVO{
 		this.accountNum = accountNum;
 		this.clause=clause;
 		this.note=note;
+		this.setCheckType(type);
 	}
-public String getId(){
-	return id;
-}
+    public String getId(){
+	    return id;
+    }
 	public String getDate() {
 		return date;
 	}

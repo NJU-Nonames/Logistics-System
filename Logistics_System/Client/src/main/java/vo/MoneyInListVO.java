@@ -9,6 +9,8 @@ package vo;
 
 import java.util.ArrayList;
 
+import utility.CheckType;
+
 /**
  * @author 谭期友
  * 王家玮 2015-10-24
@@ -41,17 +43,18 @@ public class MoneyInListVO extends ListVO{
 
 
 	public MoneyInListVO(String id,String date, double moneySum, String staffId,
-			ArrayList<String> barcode) {
+			ArrayList<String> barcode,CheckType type) {
 		super();
 		this.id=id;
 		this.date = date;
 		this.moneySum = moneySum;
 		this.staffId = staffId;
 		this.barcode = barcode;
+		this.setCheckType(type);
 	}
-public String getId(){
-	return id;
-}
+    public String getId(){
+	    return id;
+    }
 	public String getDate() {
 		return date;
 	}

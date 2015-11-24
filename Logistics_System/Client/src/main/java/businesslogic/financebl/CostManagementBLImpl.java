@@ -17,7 +17,7 @@ public class CostManagementBLImpl implements CostManagementBLService{
     }
 	public ResultMessage createMoneyOutlist(MoneyOutListVO moneyOut) {
 		// TODO Auto-generated method stub
-		MoneyOutListPO moneyoutpo=new MoneyOutListPO(moneyOut.getId(),moneyOut.getDate(),moneyOut.getMoney(),moneyOut.getPayer(),moneyOut.getAccountNum(),moneyOut.getClause(),moneyOut.getNote());
+		MoneyOutListPO moneyoutpo=new MoneyOutListPO(moneyOut.getId(),moneyOut.getDate(),moneyOut.getMoney(),moneyOut.getPayer(),moneyOut.getAccountNum(),moneyOut.getClause(),moneyOut.getNote(),moneyOut.getCheckType());
 		try{
 			moneyoutlistdataservice.add(moneyoutpo);
 		}catch(RemoteException e){
@@ -35,7 +35,7 @@ public class CostManagementBLImpl implements CostManagementBLService{
 			e.printStackTrace();
 		}
 		for(MoneyOutListPO po:moneyoutpo){
-			moneyoutvo.add(new MoneyOutListVO(po.getId(),po.getDate(),po.getMoney(),po.getPayer(),po.getAccountNum(),po.getClause(),po.getNote()));
+			moneyoutvo.add(new MoneyOutListVO(po.getId(),po.getDate(),po.getMoney(),po.getPayer(),po.getAccountNum(),po.getClause(),po.getNote(),po.getCheckType()));
 		}
 		
 		return moneyoutvo;

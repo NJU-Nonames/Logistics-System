@@ -48,7 +48,7 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 			e.printStackTrace();
 		}
 		for(MoneyInListPO po:moneyinpo){
-			moneyinvo.add(new MoneyInListVO(po.getId(),po.getDate(),po.getMoneySum(),po.getStaffId(),po.getBarcode()));
+			moneyinvo.add(new MoneyInListVO(po.getId(),po.getDate(),po.getMoneySum(),po.getStaffId(),po.getBarcode(),po.getCheckType()));
 		}
 		
 		return moneyinvo;
@@ -56,7 +56,7 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 	}
 	public ResultMessage createMoneyInList(MoneyInListVO moneyin) {
 		// TODO 自动生成的方法存根
-		MoneyInListPO moneyinpo=new MoneyInListPO(moneyin.getId(),moneyin.getDate(),moneyin.getMoneySum(),moneyin.getStaffId(),moneyin.getBarcode());
+		MoneyInListPO moneyinpo=new MoneyInListPO(moneyin.getId(),moneyin.getDate(),moneyin.getMoneySum(),moneyin.getStaffId(),moneyin.getBarcode(),moneyin.getCheckType());
 		try{
 			moneyinlistdataservice.add(moneyinpo);
 		}catch(RemoteException e){
