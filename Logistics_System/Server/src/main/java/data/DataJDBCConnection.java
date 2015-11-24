@@ -1,5 +1,8 @@
 package data;
+
 import java.sql.*;
+
+import com.mysql.jdbc.ResultSet;
 
 public class DataJDBCConnection {
 	

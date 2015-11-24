@@ -7,6 +7,7 @@ package vo;
 import java.util.ArrayList;
 
 import po.list.OrderListPO;
+import utility.CheckType;
 import utility.ExpressType;
 import utility.PkgType;
 
@@ -78,7 +79,7 @@ public class OrderListVO extends ListVO{
 	public OrderListVO(String senderName, String senderAddress,
 			String senderTeleNumber, String receiverName,String receiverAddress,String receiverTeleNumber,String number,
 			double weight, double volume, String name, ExpressType category,
-			ArrayList<String> pkgState, double packPrice, String barCode,PkgType type,String time1,String time2) {
+			ArrayList<String> pkgState, double packPrice, String barCode,PkgType type,String time1,String time2,CheckType checktype) {
 		super();
 		this.senderName = senderName;
 		this.senderAddress = senderAddress;
@@ -97,6 +98,7 @@ public class OrderListVO extends ListVO{
 		this.type=type;
 		this.departTime=time1;
 		this.arriveTime=time2;
+		this.setCheckType(checktype);
 	}
 	public OrderListVO(OrderListPO orderListPO) {
 		// TODO 自动生成的构造函数存根

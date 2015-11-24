@@ -1,11 +1,15 @@
 package po.repertory;
 
+import po.list.ListPO;
+import utility.CheckType;
+
 /**
  * 入库单
  * @author 这菜咸了
  *
  */
-public class RepertoryInPO {
+public class RepertoryInPO extends ListPO{
+	private String id;
 	/**
 	 * 快递编号
 	 */
@@ -69,10 +73,11 @@ public class RepertoryInPO {
 		return placenumber;
 	}
 
-	public RepertoryInPO(String num, String time, String destnation,
+	public RepertoryInPO(String id,String num, String time, String destnation,
 			String areacode, String rownumber, String framenumber,
-			String placenumber) {
+			String placenumber,CheckType type) {
 		super();
+		this.id=id;
 		this.num = num;
 		this.time = time;
 		this.destnation = destnation;
@@ -80,6 +85,15 @@ public class RepertoryInPO {
 		this.rownumber = rownumber;
 		this.framenumber = framenumber;
 		this.placenumber = placenumber;
+		this.setCheckType(type);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

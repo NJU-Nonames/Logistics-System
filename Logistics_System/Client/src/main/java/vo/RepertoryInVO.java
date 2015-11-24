@@ -1,11 +1,14 @@
 package vo;
 
+import utility.CheckType;
+
 /**
  * 入库单
  * @author 这菜咸了
  *
  */
-public class RepertoryInVO {
+public class RepertoryInVO extends ListVO{
+	private String id;
 
 	/**
 	 * 快递编号
@@ -70,10 +73,11 @@ public class RepertoryInVO {
 		return placenumber;
 	}
 
-	public RepertoryInVO(String num, String time, String destnation,
+	public RepertoryInVO(String id,String num, String time, String destnation,
 			String areacode, String rownumber, String framenumber,
-			String placenumber) {
+			String placenumber,CheckType type) {
 		super();
+		this.id=id;
 		this.num = num;
 		this.time = time;
 		this.destnation = destnation;
@@ -81,6 +85,15 @@ public class RepertoryInVO {
 		this.rownumber = rownumber;
 		this.framenumber = framenumber;
 		this.placenumber = placenumber;
+		this.setCheckType(type);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

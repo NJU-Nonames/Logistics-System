@@ -9,9 +9,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import po.repertory.GoodsInfoPO;
+import utility.CheckType;
 
 
 public class TransArrivalListPO extends ListPO implements Serializable{
+	private String id;
 	/**
 	 * 中转单编号
 	 */
@@ -32,13 +34,15 @@ public class TransArrivalListPO extends ListPO implements Serializable{
 	 */
 	private ArrayList<GoodsInfoPO> GoodsInfoPOs;
 
-	public TransArrivalListPO(String transferNumber, String centerNumber, String date,
-			ArrayList<GoodsInfoPO> goodsInfoPOs) {
+	public TransArrivalListPO(String id,String transferNumber, String centerNumber, String date,
+			ArrayList<GoodsInfoPO> goodsInfoPOs,CheckType type) {
 		super();
+		this.setId(id);
 		this.transferNumber = transferNumber;
 		this.centerNumber = centerNumber;
 		this.date = date;
 		GoodsInfoPOs = goodsInfoPOs;
+		this.setCheckType(type);
 	}
 
 	public String getTransferNumber() {
@@ -55,5 +59,13 @@ public class TransArrivalListPO extends ListPO implements Serializable{
 
 	public ArrayList<GoodsInfoPO> getGoodsInfoPOs() {
 		return GoodsInfoPOs;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

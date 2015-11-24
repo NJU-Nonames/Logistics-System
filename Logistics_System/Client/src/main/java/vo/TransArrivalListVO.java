@@ -7,7 +7,10 @@ package vo;
 
 import java.util.ArrayList;
 
+import utility.CheckType;
+
 public class TransArrivalListVO extends ListVO{
+	private String id;
 	/**
 	 * 中转单编号
 	 */
@@ -28,13 +31,15 @@ public class TransArrivalListVO extends ListVO{
 	 */
 	private ArrayList<GoodsInfoVO> GoodsInfoVOs;
 
-	public TransArrivalListVO(String transferNumber, String centerNumber, String date,
-			ArrayList<GoodsInfoVO> goodsInfoVOs) {
+	public TransArrivalListVO(String id,String transferNumber, String centerNumber, String date,
+			ArrayList<GoodsInfoVO> goodsInfoVOs,CheckType type) {
 		super();
+		this.setId(id);
 		this.transferNumber = transferNumber;
 		this.centerNumber = centerNumber;
 		this.date = date;
 		GoodsInfoVOs = goodsInfoVOs;
+		this.setCheckType(type);
 	}
 
 	public String getTransferNumber() {
@@ -51,5 +56,13 @@ public class TransArrivalListVO extends ListVO{
 
 	public ArrayList<GoodsInfoVO> getGoodsInfoVOs() {
 		return GoodsInfoVOs;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

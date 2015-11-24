@@ -2,12 +2,14 @@ package vo;
 
 import java.util.ArrayList;
 
+import utility.CheckType;
+
 /**
  * 中转单
  * @author 这菜咸了
  *
  */
-public class TransShipmentListVO {
+public class TransShipmentListVO extends ListVO{
 	/**
 	 * 装车日期
 	 */
@@ -54,7 +56,7 @@ public class TransShipmentListVO {
 	private double price;
 
 	public TransShipmentListVO(String date, String transitDocNumber, String flightNumber, String departurePlace,
-			String desitination, String containerNumber, String supercargoMan, ArrayList<String> barcodes) {
+			String desitination, String containerNumber, String supercargoMan, ArrayList<String> barcodes,CheckType type) {
 		super();
 		this.date = date;
 		this.transitDocNumber = transitDocNumber;
@@ -64,6 +66,7 @@ public class TransShipmentListVO {
 		this.containerNumber = containerNumber;
 		this.supercargoMan = supercargoMan;
 		this.barcodes = barcodes;
+		this.setCheckType(type);
 	}
 
 	public String getDate() {

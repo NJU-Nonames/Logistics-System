@@ -1,5 +1,6 @@
 package vo;
 
+import utility.CheckType;
 import utility.TransportationType;
 
 /**
@@ -7,7 +8,8 @@ import utility.TransportationType;
  * @author 这菜咸了
  *
  */
-public class RepertoryOutVO {
+public class RepertoryOutVO extends ListVO{
+	private String id;
 	/**
 	 * 快递编号
 	 */
@@ -62,15 +64,25 @@ public class RepertoryOutVO {
 		return vehicleCode;
 	}
 
-	public RepertoryOutVO(String code, String time, String destnation,
+	public RepertoryOutVO(String id,String code, String time, String destnation,
 			TransportationType transportation, String transCode,
-			String vehicleCode) {
+			String vehicleCode,CheckType type) {
 		super();
+		this.id=id;
 		this.code = code;
 		this.time = time;
 		this.destnation = destnation;
 		this.transportation = transportation;
 		this.transCode = transCode;
 		this.vehicleCode = vehicleCode;
+		this.setCheckType(type);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

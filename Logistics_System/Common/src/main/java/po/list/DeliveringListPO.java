@@ -8,7 +8,10 @@ package po.list;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import utility.CheckType;
+
 public class DeliveringListPO extends ListPO implements Serializable{
+	private String id;
 	/**
 	 * 货物到达日期
 	 */
@@ -24,13 +27,19 @@ public class DeliveringListPO extends ListPO implements Serializable{
 	 */
 	private String DeliveryMan;
 
-	public DeliveringListPO(String date, ArrayList<String> barCode, String deliveryMan) {
+	public DeliveringListPO(String id,String date, ArrayList<String> barCode, String deliveryMan,CheckType type) {
 		super();
+		this.id=id;
 		this.date = date;
 		BarCode = barCode;
 		DeliveryMan = deliveryMan;
+		this.setCheckType(type);
 	}
 
+	public String getId(){
+		return id;
+	}
+	
     public String getDate() {
         return date;
     }

@@ -2,9 +2,12 @@ package po.list;
 
 import java.util.ArrayList;
 
+import utility.CheckType;
 import utility.GoodsState;
 
-public class HallArrivalListPO {
+public class HallArrivalListPO extends ListPO{
+	
+	private String id;
 	/**
 	 * 到达日期
 	 */
@@ -30,14 +33,17 @@ public class HallArrivalListPO {
 	 */
 	private ArrayList<String> barCodes;
 
-	public HallArrivalListPO(String date, String transferNumber, String from, GoodsState state,
-			ArrayList<String> barCodes) {
+	public HallArrivalListPO(String id,String date, String transferNumber, String from, GoodsState state,
+			ArrayList<String> barCodes,CheckType type) {
+		
 		super();
+		this.setId(id);
 		this.date = date;
 		TransferNumber = transferNumber;
 		this.from = from;
 		this.state = state;
 		this.barCodes = barCodes;
+		this.setCheckType(type);
 	}
 
 	public String getDate() {
@@ -58,6 +64,14 @@ public class HallArrivalListPO {
 
 	public ArrayList<String> getBarCodes() {
 		return barCodes;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

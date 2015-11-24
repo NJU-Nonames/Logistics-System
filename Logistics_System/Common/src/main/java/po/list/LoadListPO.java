@@ -2,11 +2,14 @@ package po.list;
 
 import java.util.ArrayList;
 
+import utility.CheckType;
+
 /**
  * @author 这菜咸了
  * 装车单
  */
-public class LoadListPO {
+public class LoadListPO extends ListPO{
+	private String id;
 	/**
 	 * 装车日期
 	 */
@@ -47,9 +50,10 @@ public class LoadListPO {
 	 */
 	private ArrayList<String> barcodes;
 
-	public LoadListPO(String date, String hallNumber, String transpotationNumber, String destination,
-			String carNumber, String guardMan, String supercargoMan, ArrayList<String> barcodes) {
+	public LoadListPO(String id,String date, String hallNumber, String transpotationNumber, String destination,
+			String carNumber, String guardMan, String supercargoMan, ArrayList<String> barcodes,CheckType type) {
 		super();
+		this.setId(id);
 		this.date = date;
 		this.hallNumber = hallNumber;
 		this.transpotationNumber = transpotationNumber;
@@ -58,6 +62,7 @@ public class LoadListPO {
 		this.guardMan = guardMan;
 		this.supercargoMan = supercargoMan;
 		this.barcodes = barcodes;
+		this.setCheckType(type);
 	}
 
 	public String getDate() {
@@ -90,5 +95,13 @@ public class LoadListPO {
 
 	public ArrayList<String> getBarcodes() {
 		return barcodes;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

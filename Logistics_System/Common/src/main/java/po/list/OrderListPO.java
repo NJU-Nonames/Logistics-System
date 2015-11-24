@@ -3,6 +3,7 @@ package po.list;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import utility.CheckType;
 import utility.ExpressType;
 import utility.PkgType;
 
@@ -80,7 +81,7 @@ public class OrderListPO extends ListPO implements Serializable{
 	public OrderListPO(String senderName, String senderAddress,
 			String senderTeleNumber, String receiverName,String receiverAddress,String receiverTeleNumber,String number,
 			double weight, double volume, String name, ExpressType category,
-			ArrayList<String> pkgState, double packPrice, String barCode,PkgType type,String time1,String time2) {
+			ArrayList<String> pkgState, double packPrice, String barCode,PkgType type,String time1,String time2,CheckType checktype) {
 		super();
 		this.senderName = senderName;
 		this.senderAddress = senderAddress;
@@ -99,6 +100,7 @@ public class OrderListPO extends ListPO implements Serializable{
 		this.type=type;
 		this.departTime=time1;
 		this.arriveTime=time2;
+		this.setCheckType(checktype);
 	}
 	public PkgType getPkgType(){
 		return type;
