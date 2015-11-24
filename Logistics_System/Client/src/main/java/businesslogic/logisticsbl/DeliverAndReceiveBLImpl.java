@@ -35,7 +35,7 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 			}
 			
 		}
-		HallArrivalListPO result=new HallArrivalListPO(hallArrivalList.getDate(),hallArrivalList.getTransferNumber(),hallArrivalList.getFrom(),hallArrivalList.getState(),hallArrivalList.getBarCodes());
+		HallArrivalListPO result=new HallArrivalListPO(hallArrivalList.getId(),hallArrivalList.getDate(),hallArrivalList.getTransferNumber(),hallArrivalList.getFrom(),hallArrivalList.getState(),hallArrivalList.getBarCodes(),hallArrivalList.getCheckType());
 		try {
 			service1.add(result);
 		} catch (RemoteException e) {
@@ -55,7 +55,7 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 			}
 			
 		}
-		DeliveringListPO result=new DeliveringListPO(deliveringList.getDate(),deliveringList.getBarCode(),deliveringList.getDeliveryMan());
+		DeliveringListPO result=new DeliveringListPO(deliveringList.getId(),deliveringList.getDate(),deliveringList.getBarCode(),deliveringList.getDeliveryMan(),deliveringList.getCheckType());
 		try {
 			service2.add(result);
 		} catch (RemoteException e) {

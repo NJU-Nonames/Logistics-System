@@ -34,6 +34,9 @@ public class DeliveringListVO extends ListVO{
 		DeliveryMan = deliveryMan;
 		this.setCheckType(type);
 	}
+	public String getId(){
+		return id;
+	}
 
     public String getDate() {
         return date;

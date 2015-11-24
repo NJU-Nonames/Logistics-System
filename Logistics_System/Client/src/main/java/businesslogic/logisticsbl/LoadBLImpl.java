@@ -29,8 +29,8 @@ public class LoadBLImpl implements LoadBLService {
 				e.printStackTrace();
 			}
 		}
-		LoadListPO loadListPO=new LoadListPO(loadListVO.getDate(),loadListVO.getHallNumber(),loadListVO.getTranspotationNumber(), 
-				loadListVO.getDestination(),loadListVO.getCarNumber(),loadListVO.getGuardMan(),loadListVO.getSupercargoMan(),loadListVO.getBarcodes());
+		LoadListPO loadListPO=new LoadListPO(loadListVO.getId(),loadListVO.getDate(),loadListVO.getHallNumber(),loadListVO.getTranspotationNumber(), 
+				loadListVO.getDestination(),loadListVO.getCarNumber(),loadListVO.getGuardMan(),loadListVO.getSupercargoMan(),loadListVO.getBarcodes(),loadListVO.getCheckType());
 		try{
 			service2.add(loadListPO);
 		}catch(RemoteException e){

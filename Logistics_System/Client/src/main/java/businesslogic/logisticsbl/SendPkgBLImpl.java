@@ -109,7 +109,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 		OrderListPO result=new OrderListPO(orderListVO.getSenderName(), orderListVO.getSenderAddress(), orderListVO.getSenderTeleNumber(),
 				orderListVO.getReceiverName(), orderListVO.getReceiverAddress(), orderListVO.getReceiverTeleNumber(),
 				orderListVO.getNumber(),orderListVO.getWeight(),orderListVO.getVolume(),orderListVO.getName(),orderListVO.getCategory()
-				,orderListVO.getPkgState(),orderListVO.getPackPrice(),orderListVO.getBarCode(),orderListVO.getPkgType(),orderListVO.getDepartTime(),orderListVO.getArriveTime());
+				,orderListVO.getPkgState(),orderListVO.getPackPrice(),orderListVO.getBarCode(),orderListVO.getPkgType(),orderListVO.getDepartTime(),orderListVO.getArriveTime(),orderListVO.getCheckType());
 		try{
 			service1.add(result);
 		}catch (RemoteException e) {
