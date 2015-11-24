@@ -13,7 +13,7 @@ public interface ReceiverDataService extends Remote{
 	 * @param 	实际签收人
 	 * @return	签收是否成功
 	 */
-	public boolean add(ReceiverPO receiver)throws RemoteException;
+	public void add(ReceiverPO receiver)throws RemoteException;
 	
 	public ReceiverPO findOnName(String name)throws RemoteException;
 	

@@ -27,7 +27,7 @@ public interface RepertoryInfoDataService extends Remote{
 	 * @param repertoryPO
 	 * @return
 	 */
-	public boolean add(GoodsInfoPO goods,RepertoryInPO repertoryPO)throws RemoteException;
+	public void add(GoodsInfoPO goods,RepertoryInPO repertoryPO)throws RemoteException;
 	
 	/**
 	 * 出库修改库存信息
@@ -35,7 +35,7 @@ public interface RepertoryInfoDataService extends Remote{
 	 * @param repertoryPO
 	 * @return
 	 */
-	public boolean delete(String barCode,RepertoryOutPO repertoryPO)throws RemoteException;
+	public void delete(String barCode,RepertoryOutPO repertoryPO)throws RemoteException;
 	
 	/**
 	 * 获得库存信息情况

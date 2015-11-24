@@ -17,16 +17,16 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean add(GoodsInfoPO goods, RepertoryInPO repertoryPO)
+	public void add(GoodsInfoPO goods, RepertoryInPO repertoryPO)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
-	public boolean delete(String barCode, RepertoryOutPO repertoryPO)
+	public void delete(String barCode, RepertoryOutPO repertoryPO)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	public RepertoryInfoPO show() {
@@ -34,6 +34,5 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 		return null;
 	}
 
-	
 
 }

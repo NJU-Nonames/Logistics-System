@@ -15,19 +15,18 @@ public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInL
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean add(MoneyInListPO moneyInList) throws RemoteException {
+	public void add(MoneyInListPO moneyInList) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
-	public boolean delete(String moneyInListID) throws RemoteException {
+	public void delete(String moneyInListID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+	
 	}
 
-	public boolean update(MoneyInListPO moneyInList) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public void update(MoneyInListPO moneyInList) throws RemoteException {
+		
 	}
 
 	public MoneyInListPO findOnID(String id) throws RemoteException {

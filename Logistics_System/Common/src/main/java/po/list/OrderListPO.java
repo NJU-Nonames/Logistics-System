@@ -58,6 +58,9 @@ public class OrderListPO extends ListPO implements Serializable{
 	 */
 	private ArrayList<String> pkgState;
 	
+	public void setPkgState(ArrayList<String> pkgState) {
+		this.pkgState = pkgState;
+	}
 	/**
 	 *运费（包括包装费用）
 	 */

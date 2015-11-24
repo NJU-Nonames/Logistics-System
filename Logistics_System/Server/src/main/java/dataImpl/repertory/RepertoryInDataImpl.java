@@ -15,19 +15,19 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean add(RepertoryInPO repertoryIn) {
+	public void add(RepertoryInPO repertoryIn) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
-	public boolean delete(String repertoryInID) {
+	public void delete(String repertoryInID) {
 		// TODO Auto-generated method stub
-		return false;
+	
 	}
 
-	public boolean update(RepertoryInPO repertoryIn) {
+	public void update(RepertoryInPO repertoryIn) {
 		// TODO Auto-generated method stub
-		return false;
+	
 	}
 
 	public RepertoryInPO findOnID(String id) {

@@ -8,11 +8,11 @@ import po.repertory.RepertoryOutPO;
 
 public interface RepertoryOutDataService extends Remote{
 	
-	public boolean add(RepertoryOutPO repertoryOut)throws RemoteException;
+	public void add(RepertoryOutPO repertoryOut)throws RemoteException;
 	
-	public boolean delete(String repertoryOutID)throws RemoteException;
+	public void delete(String repertoryOutID)throws RemoteException;
 
-	public boolean update(RepertoryOutPO repertoryOut)throws RemoteException;
+	public void update(RepertoryOutPO repertoryOut)throws RemoteException;
 	
 	public RepertoryOutPO findOnID(String id)throws RemoteException;
 	

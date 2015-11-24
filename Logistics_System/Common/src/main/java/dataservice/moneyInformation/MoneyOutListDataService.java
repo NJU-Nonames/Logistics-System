@@ -9,11 +9,11 @@ import po.moneyInfomation.MoneyOutListPO;
 
 public interface MoneyOutListDataService extends Remote{
 	
-	public boolean add(MoneyOutListPO moneyOutList)throws RemoteException;
+	public void add(MoneyOutListPO moneyOutList)throws RemoteException;
 	
-	public boolean delete(String moneyOutListID)throws RemoteException;
+	public void delete(String moneyOutListID)throws RemoteException;
 	
-	public boolean update(MoneyOutListPO moneyOutList)throws RemoteException;
+	public void update(MoneyOutListPO moneyOutList)throws RemoteException;
 	
 	public MoneyOutListPO findOnID(String id)throws RemoteException;
 	

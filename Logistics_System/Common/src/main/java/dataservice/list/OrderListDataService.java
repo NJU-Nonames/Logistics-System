@@ -8,11 +8,11 @@ import po.list.OrderListPO;
 
 public interface OrderListDataService extends Remote{
 	
-	public boolean add (OrderListPO orderList)throws RemoteException;
+	public void add (OrderListPO orderList)throws RemoteException;
 	
-	public boolean delete (String orderListID)throws RemoteException;
+	public void delete (String orderListID)throws RemoteException;
 	
-	public boolean update (OrderListPO orderList)throws RemoteException;
+	public void update (OrderListPO orderList)throws RemoteException;
 	
 	public OrderListPO find(String id)throws RemoteException;
 	

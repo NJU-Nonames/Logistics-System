@@ -21,11 +21,11 @@ import po.moneyInfomation.MoneyInListPO;
  */
 public interface MoneyInListDataService extends Remote{
 	
-	public boolean add(MoneyInListPO moneyInList)throws RemoteException;
+	public void add(MoneyInListPO moneyInList)throws RemoteException;
 	
-	public boolean delete(String moneyInListID)throws RemoteException;
+	public void delete(String moneyInListID)throws RemoteException;
 	
-	public boolean update(MoneyInListPO moneyInList)throws RemoteException;
+	public void update(MoneyInListPO moneyInList)throws RemoteException;
 	
 	public MoneyInListPO findOnID(String id)throws RemoteException;
 	
