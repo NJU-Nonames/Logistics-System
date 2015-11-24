@@ -5,6 +5,8 @@
  */
 package businesslogicservice.financeblservice;
 
+import java.util.ArrayList;
+
 import utility.ResultMessage;
 import vo.MoneyOutListVO;
 
@@ -23,5 +25,7 @@ public interface CostManagementBLService {
 	 * @return 付款单
 	 */
 	public ResultMessage createMoneyOutlist(MoneyOutListVO moneyOut);
+	
+	public ArrayList<MoneyOutListVO> serach(String start_day,String end_day);
 
 }

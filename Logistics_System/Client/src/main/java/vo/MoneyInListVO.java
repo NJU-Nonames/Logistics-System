@@ -25,9 +25,9 @@ public class MoneyInListVO extends ListVO{
 	private double moneySum;
 	
 	/**
-	 * 快递员姓名
+	 * 快递员工号
 	 */
-	private String CourierName;
+	private String staffId;
 	
 	/**
 	 *条形码
@@ -36,12 +36,12 @@ public class MoneyInListVO extends ListVO{
 	
 
 
-	public MoneyInListVO(String date, double moneySum, String courierName,
+	public MoneyInListVO(String date, double moneySum, String staffId,
 			ArrayList<String> barcode) {
 		super();
 		this.date = date;
 		this.moneySum = moneySum;
-		CourierName = courierName;
+		this.staffId = staffId;
 		this.barcode = barcode;
 	}
 
@@ -53,8 +53,8 @@ public class MoneyInListVO extends ListVO{
 		return moneySum;
 	}
 
-	public String getCourierName() {
-		return CourierName;
+	public String getStaffId() {
+		return staffId;
 	}
 
 	public ArrayList<String> getBarcode() {

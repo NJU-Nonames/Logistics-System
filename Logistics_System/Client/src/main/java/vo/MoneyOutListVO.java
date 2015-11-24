@@ -7,6 +7,9 @@
  *备注信息（租金年份、运单号、标注工资月份））
  */
 package vo;
+
+import utility.CostClause;
+
 public class MoneyOutListVO extends ListVO{
 	/**
 	 * 日期
@@ -31,7 +34,7 @@ public class MoneyOutListVO extends ListVO{
 	/**
 	 * 条目
 	 */
-	private String clause;
+	private CostClause clause;
 	/**
 	 * 备注
 	 */
@@ -46,7 +49,7 @@ public class MoneyOutListVO extends ListVO{
 	 * @param note
 	 */
 	public MoneyOutListVO(String date,double money,String payer,String accountNum,
-			String clause,String note){
+			CostClause clause,String note){
 		this.date = date;
 		this.money = money;
 		this.payer = payer;
@@ -71,7 +74,7 @@ public class MoneyOutListVO extends ListVO{
 		return accountNum;
 	}
 
-	public String getClause() {
+	public CostClause getClause() {
 		return clause;
 	}
 	public String getNote(){

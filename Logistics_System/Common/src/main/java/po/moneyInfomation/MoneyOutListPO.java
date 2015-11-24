@@ -8,6 +8,7 @@ package po.moneyInfomation;
 import java.io.Serializable;
 
 import po.list.ListPO;
+import utility.CostClause;
 
 /**
  * @author 谭期友
@@ -37,7 +38,7 @@ public class MoneyOutListPO extends ListPO implements Serializable{
 	/**
 	 * 条目
 	 */
-	private String clause;
+	private CostClause clause;
 	/**
 	 * 备注
 	 */
@@ -52,7 +53,7 @@ public class MoneyOutListPO extends ListPO implements Serializable{
 	 * @param note
 	 */
 	public MoneyOutListPO(String date,double money,String payer,String accountNum,
-			String clause,String note){
+			CostClause clause,String note){
 		this.date = date;
 		this.money = money;
 		this.payer = payer;
@@ -77,7 +78,7 @@ public class MoneyOutListPO extends ListPO implements Serializable{
 		return accountNum;
 	}
 
-	public String getClause() {
+	public CostClause getClause() {
 		return clause;
 	}
 	public String getNote(){
