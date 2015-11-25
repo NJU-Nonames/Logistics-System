@@ -39,6 +39,7 @@ public class StaffVO {
 	private String wage;
 	private String agencyName;
 	private String id;
+	private String agencyId;
 	
 	/**
 	 * @param name
@@ -49,7 +50,7 @@ public class StaffVO {
 	 * @param phoneNum
 	 * @param wage
 	 */
-	public StaffVO(String name,String sex,String postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyName,String id){
+	public StaffVO(String name,String sex,String postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyName,String id,String agencyId){
 		this.name = name;
 		this.sex = sex;
 		this.phoneNum = phoneNum;
@@ -60,8 +61,11 @@ public class StaffVO {
 		this.workingstarttime = workingstarttime;
 		this.agencyName=agencyName;
 		this.id=id;
+		this.agencyId=agencyId;
 	}
-
+	public String getAgencyId(){
+		return agencyId;
+	}
 	public String getName() {
 		return name;
 	}

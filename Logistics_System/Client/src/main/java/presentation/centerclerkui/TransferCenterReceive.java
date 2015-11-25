@@ -147,6 +147,7 @@ public class TransferCenterReceive extends JPanel{
         });
     	//详细操作按钮
     	
+        
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
@@ -171,6 +172,13 @@ public class TransferCenterReceive extends JPanel{
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
         currentusernameLabel.setLocation(CenterClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
+        
+        String agencyName = "本中转中心编号:";
+        JLabel agencyNameLabel = new JLabel(agencyName);
+        agencyNameLabel.setSize((int)(30*s.length()*1.07f), 30);
+        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 20));
+        agencyNameLabel.setLocation(CenterClerkFrame.w/6,128+50);
+        
     	//最基本按钮
     	close.setLocation(CenterClerkFrame.w-30,0);
     	min.setLocation(CenterClerkFrame.w-80,0);
@@ -190,6 +198,7 @@ public class TransferCenterReceive extends JPanel{
         add(funLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
+    	add(agencyNameLabel);
     	
     	add(close);
     	add(min);
