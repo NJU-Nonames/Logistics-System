@@ -43,7 +43,7 @@ public class UserManageBLImpl implements UserManageBLService{
 			userpo=userDataService.findonAdmin(admin);
 			if(userpo!=null && userpo.getPassword().compareTo(password)==0){
 				staffpo=staffDataService.find(userpo.getId());
-				StaffVO staffvo = new StaffVO(staffpo.getName(), staffpo.getSex(), staffpo.getPostion(), staffpo.getIDNum(), staffpo.getWorkingstarttime(), staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId());
+				StaffVO staffvo = new StaffVO(staffpo.getName(), staffpo.getSex(), staffpo.getPostion(), staffpo.getIDNum(), staffpo.getWorkingstarttime(), staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId(),staffpo.getAgencyId());
 				return staffvo;
 			}
 		}catch (RemoteException e) {
