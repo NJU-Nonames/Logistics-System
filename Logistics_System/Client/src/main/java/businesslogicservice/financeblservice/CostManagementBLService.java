@@ -26,6 +26,6 @@ public interface CostManagementBLService {
 	 */
 	public ResultMessage createMoneyOutlist(MoneyOutListVO moneyOut);
 	
-	public ArrayList<MoneyOutListVO> serach(String start_day,String end_day);
+	public ArrayList<MoneyOutListVO> search(String start_day,String end_day);
 
 }

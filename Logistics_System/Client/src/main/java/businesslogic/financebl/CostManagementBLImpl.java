@@ -25,7 +25,7 @@ public class CostManagementBLImpl implements CostManagementBLService{
 		}
 		return new ResultMessage(true,"添加付款单成功!");
 	}
-	public ArrayList<MoneyOutListVO> serach(String start_day, String end_day) {
+	public ArrayList<MoneyOutListVO> search(String start_day, String end_day) {
 		// TODO 自动生成的方法存根
 		ArrayList<MoneyOutListVO> moneyoutvo=new ArrayList<MoneyOutListVO>();
 		ArrayList<MoneyOutListPO> moneyoutpo=new ArrayList<MoneyOutListPO>();

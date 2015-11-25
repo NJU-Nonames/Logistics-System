@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import utility.ChartType;
 import vo.ListVO;
 import vo.MoneyInformationListVO;
+import vo.MoneyItemVO;
 
 
 
@@ -38,7 +39,7 @@ public interface FormBLService {
 	 * @param end_day
 	 * @return 内容为MoneyInlistVO和MoneyOutlistVO的集合
 	 */
-	public ArrayList<? super ListVO> getBusinessCircumstanceChart(String start_day, String end_day);
+	public ArrayList<MoneyItemVO> getBusinessCircumstanceChart(String start_day, String end_day);
 	
 	/**
 	 * 前置条件：用户已登录，申请打印导出报表
