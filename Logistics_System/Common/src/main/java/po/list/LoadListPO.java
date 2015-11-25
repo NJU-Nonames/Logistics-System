@@ -23,7 +23,7 @@ public class LoadListPO extends ListPO{
 	/**
 	 * 汽运编号
 	 */
-	private String transpotationNumber;
+	private String transportationNumber;
 
 	/**
 	 * 目的地
@@ -50,13 +50,13 @@ public class LoadListPO extends ListPO{
 	 */
 	private ArrayList<String> barcodes;
 
-	public LoadListPO(String id,String date, String hallNumber, String transpotationNumber, String destination,
+	public LoadListPO(String id,String date, String hallNumber, String transportationNumber, String destination,
 			String carNumber, String guardMan, String supercargoMan, ArrayList<String> barcodes,CheckType type) {
 		super();
 		this.setId(id);
 		this.date = date;
 		this.hallNumber = hallNumber;
-		this.transpotationNumber = transpotationNumber;
+		this.transportationNumber = transportationNumber;
 		Destination = destination;
 		this.carNumber = carNumber;
 		this.guardMan = guardMan;
@@ -73,8 +73,8 @@ public class LoadListPO extends ListPO{
 		return hallNumber;
 	}
 
-	public String getTranspotationNumber() {
-		return transpotationNumber;
+	public String getTransportationNumber() {
+		return transportationNumber;
 	}
 
 	public String getDestination() {

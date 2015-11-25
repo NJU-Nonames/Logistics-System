@@ -9,11 +9,11 @@ import po.list.LoadListPO;
 
 public interface LoadListDataService extends Remote{
 	
-	public boolean add(LoadListPO loadListPO)throws RemoteException;
+	public void add(LoadListPO loadListPO)throws RemoteException;
 	
-     public boolean delete (String ID)throws RemoteException;
+     public void delete (String ID)throws RemoteException;
 	
-	public boolean update (LoadListPO loadListPO)throws RemoteException;
+	public void update (LoadListPO loadListPO)throws RemoteException;
 	
 	public LoadListPO find(String id)throws RemoteException;
 	

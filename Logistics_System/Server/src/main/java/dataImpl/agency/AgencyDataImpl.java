@@ -33,19 +33,16 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 		for(int i=0;i<agency.getStaffList().size();i++)
 		{
 			StaffPO staff=agency.getStaffList().get(i);
-			String sql="insert into staff values("+staff.getId()+",'"+staff.getName()+"','"+staff.getSex()+"','"+staff.getPostion()
-					+"','"+staff.getIDNum()+"','"+staff.getWorkingstarttime()+"','"+staff.getPhoneNum()+"','"+staff.getWage()+"',"+staff.getAgencyName()+")";
-			DataJDBCConnection.update(sql);
+			new StaffDataImpl().add(staff);;
 		}
 		
 	}
 
 	public void delete(String agencyNum) throws RemoteException {
-		AgencyPO agency=this.find(agencyNum);
-		String sql="delete from agency where agencyId="+agencyNum;
+		String sql="delete from agency where agencyId='"+agencyNum+"'";
 		DataJDBCConnection.update(sql);
-		sql="delete from staff where agencyName="+agency.getAgencyName();
-		DataJDBCConnection.update(sql);
+		String sql2="delete from staff where agencyId='"+agencyNum+"'";
+		DataJDBCConnection.update(sql2);
 		
 	}
 
@@ -56,18 +53,18 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 	}
 
 	public AgencyPO find(String id) throws RemoteException {
-		String sql="select * from agency where agencyId="+id;
+		String sql="select * from agency where agencyId='"+id+"'";
 		AgencyPO agency=null;
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		
 		try {
 			rs.next();
 			ArrayList<StaffPO> staffList=new ArrayList<StaffPO>();
-			sql="select from staff where agencyName="+rs.getString("agencyName");
+			sql="select from staff where agencyId='"+id+"'";
 			ResultSet rs2=(ResultSet) DataJDBCConnection.find(sql);
 			while(rs2.next())
 			{
-				staffList.add(new StaffPO(rs2.getString("name"), rs2.getString("sex"), rs2.getString("postion"), rs2.getString("idNumber"), rs2.getString("workingstarttime"), rs2.getString("phoneNum"), rs2.getString("wage"), rs2.getString("agencyName"), rs2.getString("id")));
+				staffList.add(new StaffDataImpl().find(rs2.getString("id")));
 			}
 			agency=new AgencyPO(rs.getString("agencyName"), rs.getString("agencyId"), staffList);
 		} catch (SQLException e) {

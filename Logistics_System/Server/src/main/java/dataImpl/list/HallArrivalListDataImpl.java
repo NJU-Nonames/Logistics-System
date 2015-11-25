@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.ResultSet;
-
-import po.list.DeliveringListPO;
 import po.list.HallArrivalListPO;
 import utility.CheckType;
 import utility.GoodsState;

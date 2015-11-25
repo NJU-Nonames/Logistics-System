@@ -35,8 +35,19 @@ public class StaffPO {
 	 * 工资
 	 */
 	private String wage;
+	/**
+	 * 员工所属机构名称
+	 */
 	private String agencyName;
+	
+	/**
+	 * 员工编号
+	 */
 	private String id;
+	/**
+	 * 员工所属机构id
+	 */
+	private String agencyId;
 	/**
 	 * @param name
 	 * @param sex
@@ -46,7 +57,7 @@ public class StaffPO {
 	 * @param phoneNum
 	 * @param wage
 	 */
-	public StaffPO(String name,String sex,String postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyName,String id){
+	public StaffPO(String name,String sex,String postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyName,String id,String agencyId){
 		this.name = name;
 		this.sex = sex;
 		this.phoneNum = phoneNum;
@@ -57,6 +68,7 @@ public class StaffPO {
 		this.workingstarttime = workingstarttime;
 		this.agencyName=agencyName;
 		this.id=id;
+		this.agencyId=agencyId;
 	}
 
 	public String getName() {
@@ -95,6 +107,10 @@ public class StaffPO {
 
 	public String getId() {
 		return id;
+	}
+
+	public String getAgencyId() {
+		return agencyId;
 	}
 
 
