@@ -8,11 +8,11 @@ import po.list.HallArrivalListPO;
 
 public interface HallArrivalListDataService extends Remote{
 	
-	public boolean add (HallArrivalListPO hallArrivalListPO)throws RemoteException;
+	public void add (HallArrivalListPO hallArrivalListPO)throws RemoteException;
 	
-	public boolean delete (String hallArrivalListID)throws RemoteException;
+	public void delete (String hallArrivalListID)throws RemoteException;
 	
-	public boolean update (HallArrivalListPO hallArrivalListPO)throws RemoteException;
+	public void update (HallArrivalListPO hallArrivalListPO)throws RemoteException;
 	
 	public HallArrivalListPO find(String id)throws RemoteException;
 	

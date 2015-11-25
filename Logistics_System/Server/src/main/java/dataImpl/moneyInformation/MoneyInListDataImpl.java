@@ -31,9 +31,9 @@ public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInL
 	}
 
 	public void delete(String moneyInListID) throws RemoteException {
-		String sql="delete from moneyinlist where id="+moneyInListID;
+		String sql="delete from moneyinlist where id='"+moneyInListID+"'";
 		DataJDBCConnection.update(sql);
-		String sql2="delete from moneyinlist_barcode where id="+moneyInListID;
+		String sql2="delete from moneyinlist_barcode where id='"+moneyInListID+"'";
 		DataJDBCConnection.update(sql2);
 	
 	}
@@ -44,7 +44,7 @@ public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInL
 	}
 
 	public MoneyInListPO findOnID(String id) throws RemoteException {
-		String sql="select * from moneyinlist where id="+id;
+		String sql="select * from moneyinlist where id='"+id+"'";
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		MoneyInListPO moneyInList=null;
 		try {
@@ -65,7 +65,7 @@ public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInL
 	}
 
 	public MoneyInListPO findOnTime(String time) throws RemoteException {
-		String sql="select * from moneyinlist where timee="+time;
+		String sql="select * from moneyinlist where timee='"+time+"'";
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		MoneyInListPO moneyInList=null;
 		try {
