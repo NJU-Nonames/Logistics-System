@@ -23,7 +23,7 @@ public class RepertoryInPO extends ListPO{
 	/**
 	 * 目的地
 	 */
-	private String destnation;
+	private String destination;
 	
 	/**
 	 * 区号
@@ -53,8 +53,8 @@ public class RepertoryInPO extends ListPO{
 		return time;
 	}
 
-	public String getDestnation() {
-		return destnation;
+	public String getDestination() {
+		return destination;
 	}
 
 	public String getAreacode() {
@@ -73,14 +73,14 @@ public class RepertoryInPO extends ListPO{
 		return placenumber;
 	}
 
-	public RepertoryInPO(String id,String num, String time, String destnation,
+	public RepertoryInPO(String id,String num, String time, String destination,
 			String areacode, String rownumber, String framenumber,
 			String placenumber,CheckType type) {
 		super();
 		this.id=id;
 		this.num = num;
 		this.time = time;
-		this.destnation = destnation;
+		this.destination = destination;
 		this.areacode = areacode;
 		this.rownumber = rownumber;
 		this.framenumber = framenumber;

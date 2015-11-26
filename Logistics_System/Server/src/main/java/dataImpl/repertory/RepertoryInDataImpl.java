@@ -3,46 +3,72 @@ package dataImpl.repertory;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.jdbc.ResultSet;
+
 import po.repertory.RepertoryInPO;
+import utility.CheckType;
+import data.DataJDBCConnection;
 import dataservice.repertory.RepertoryInDataService;
 
 public class RepertoryInDataImpl extends UnicastRemoteObject implements RepertoryInDataService,Serializable {
 
 	public RepertoryInDataImpl() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void add(RepertoryInPO repertoryIn) {
-		// TODO Auto-generated method stub
+		String sql="insert into repertoryin values ('"+repertoryIn.getId()+"','"+repertoryIn.getNum()+"','"+repertoryIn.getTime()+"','"+repertoryIn.getDestination()+"','"+repertoryIn.getAreacode()+"','"+repertoryIn.getRownumber()+
+				"','"+repertoryIn.getFramenumber()+"','"+repertoryIn.getPlacenumber()+"','"+repertoryIn.getCheckType()+"')";
+		DataJDBCConnection.update(sql);
 		
 	}
 
 	public void delete(String repertoryInID) {
-		// TODO Auto-generated method stub
+		String sql="delete from repertoryin where id='"+repertoryInID+"'";
+		DataJDBCConnection.update(sql);
 	
 	}
 
 	public void update(RepertoryInPO repertoryIn) {
-		// TODO Auto-generated method stub
+		this.delete(repertoryIn.getId());
+		this.add(repertoryIn);
 	
 	}
 
 	public RepertoryInPO findOnID(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		RepertoryInPO repertoryin=null;
+		String sql="select * from repertoryin where id='"+id+"'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			rs.next();
+			repertoryin=new RepertoryInPO(id,rs.getString("orderid") , rs.getString("timee"), rs.getString("destination"), rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), CheckType.valueOf(rs.getString("checkstate")));
+			
+		} catch (SQLException e) {
+			System.out.println("出现问题,查找出错");
+			return null;
+		}
+		return repertoryin;
 	}
 
-	public ArrayList<RepertoryInPO> findOnTime(String time) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public ArrayList<RepertoryInPO> showAll(String start_day, String end_day) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<RepertoryInPO> repertoryin=new ArrayList<RepertoryInPO>();
+		String sql="select * from repertoryin where timee<='"+end_day+"' and timee>="+start_day+"'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next())
+			{
+				repertoryin.add(this.findOnID(rs.getString("id")));
+			}
+		} catch (SQLException e) {
+			System.out.println("操作未成功");
+			return null;
+		}
+		
+		return repertoryin;
 	}
 
 }

@@ -24,7 +24,7 @@ public class RepertoryOutPO extends ListPO{
 	/**
 	 * 目的地
 	 */
-	private String destnation;
+	private String destination;
 	
 	/**
 	 * 装运方式
@@ -49,8 +49,8 @@ public class RepertoryOutPO extends ListPO{
 		return time;
 	}
 
-	public String getDestnation() {
-		return destnation;
+	public String getDestination() {
+		return destination;
 	}
 
 	public TransportationType getTransportation() {
@@ -65,14 +65,14 @@ public class RepertoryOutPO extends ListPO{
 		return vehicleCode;
 	}
 
-	public RepertoryOutPO(String id,String code, String time, String destnation,
+	public RepertoryOutPO(String id,String code, String time, String destination,
 			TransportationType transportation, String transCode,
 			String vehicleCode,CheckType type) {
 		super();
 		this.id=id;
 		this.code = code;
 		this.time = time;
-		this.destnation = destnation;
+		this.destination = destination;
 		this.transportation = transportation;
 		this.transCode = transCode;
 		this.vehicleCode = vehicleCode;
@@ -83,7 +83,4 @@ public class RepertoryOutPO extends ListPO{
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
 }
