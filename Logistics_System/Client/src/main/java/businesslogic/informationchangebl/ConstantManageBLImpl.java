@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import po.constantinfo.DistanceChartPO;
 import po.constantinfo.PriceChartPO;
 import dataservice.constantinfo.ConstantDataService;
+import utility.PriceType;
 import utility.ResultMessage;
 import vo.DistanceChartVO;
 import vo.PriceChartVO;
@@ -70,14 +71,14 @@ public ConstantManageBLImpl(){
 /**
  * 展示层传入参数为修改的价格类型
  */
-	public ResultMessage submitPrice(String newPrice, String otherInformation) {
+	public ResultMessage submitPrice(double newPrice,PriceType type) {
 		// TODO Auto-generated method stub
 		try{
-			constantdataservice.setPrice(newPrice, otherInformation);
+			constantdataservice.setPrice(newPrice, type);
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return new ResultMessage(true,otherInformation+"价格常量修改成功!");
+		return new ResultMessage(true,type+"价格常量修改成功!");
 	}
 
 }

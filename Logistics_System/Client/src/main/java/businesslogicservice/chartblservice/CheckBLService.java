@@ -22,7 +22,7 @@ public interface CheckBLService {
 	 * @param arr
 	 * @return 操作是否成功
 	 */
-	public ArrayList<ListVO> getAll(DocType docType,String time);
+	public ArrayList<? extends ListVO> getAll(DocType docType,String time);
 	
 	/**总经理审批一个状态下全部单据
 	 * @param docType
@@ -36,7 +36,7 @@ public interface CheckBLService {
 	 * @param listVO
 	 * @return
 	 */
-	public boolean passSelectedDoc(DocType docType,ArrayList<ListVO> listVO);
+	public boolean passSelectedDoc(DocType docType,ArrayList<? extends ListVO> listVO);
 	
 	/**
 	 * 总经理审批部分单据未通过
@@ -44,7 +44,7 @@ public interface CheckBLService {
 	 * @param listVO
 	 * @return
 	 */
-	public boolean failSelectedDoc(DocType docType,ArrayList<ListVO> listVO);
+	public boolean failSelectedDoc(DocType docType,ArrayList<? extends ListVO> listVO);
 	
 	/**
 	 * 总经理修改订单数据

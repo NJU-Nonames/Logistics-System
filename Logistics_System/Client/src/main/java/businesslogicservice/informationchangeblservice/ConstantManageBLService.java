@@ -6,6 +6,7 @@
  */
 package businesslogicservice.informationchangeblservice;
 
+import utility.PriceType;
 import utility.ResultMessage;
 import vo.PriceChartVO;
 import vo.DistanceChartVO;
@@ -45,7 +46,7 @@ public interface ConstantManageBLService {
 	 * @param otherInformation
 	 * @return
 	 */
-	public ResultMessage submitPrice(String newPrice,String otherInformation);
+	public ResultMessage submitPrice(double newPrice,PriceType type);
 	
 
 }
