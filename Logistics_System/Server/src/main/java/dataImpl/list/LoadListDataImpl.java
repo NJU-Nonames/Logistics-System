@@ -61,6 +61,7 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 			}
 			loadlist=new LoadListPO(id, rs.getString("timee"), rs.getString("hallnumber"), rs.getString("transportationNumber"), rs.getString("destination"), rs.getString("carnumber"), rs.getString("guardman"), rs.getString("supercargoman"), barcode, CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
 			return null;
 		}
 		return loadlist;
@@ -78,6 +79,7 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 			}
 			
 		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
 			return null;
 		}
 		return loadList;

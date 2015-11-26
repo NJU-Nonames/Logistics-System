@@ -10,11 +10,11 @@ import po.list.TransShipmentListPO;
 
 public interface TransShipmentListDataService extends Remote{
 	
-	public boolean add(TransShipmentListPO transShipmentListPO)throws RemoteException;
+	public void add(TransShipmentListPO transShipmentListPO)throws RemoteException;
 	
-     public boolean delete (String transShipmentListID)throws RemoteException;
+     public void delete (String transShipmentListID)throws RemoteException;
 	
-	public boolean update (TransShipmentListPO transShipmentListPO)throws RemoteException;
+	public void update (TransShipmentListPO transShipmentListPO)throws RemoteException;
 	
 	public TransShipmentListPO find(String id)throws RemoteException;
 	

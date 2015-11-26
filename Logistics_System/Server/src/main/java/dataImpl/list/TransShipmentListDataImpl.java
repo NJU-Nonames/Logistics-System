@@ -15,27 +15,30 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean add(TransShipmentListPO transShipmentListPO) {
-		// TODO Auto-generated method stub
-		return false;
+	public void add(TransShipmentListPO transShipmentListPO)
+			throws RemoteException {
+		String sql="insert into";
+		
 	}
 
-	public boolean delete(String ID) {
+	public void delete(String transShipmentListID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
-	public boolean update(TransShipmentListPO transShipmentListPO) {
+	public void update(TransShipmentListPO transShipmentListPO)
+			throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
-	public TransShipmentListPO find(String id) {
+	public TransShipmentListPO find(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ArrayList<TransShipmentListPO> showAll(String time1, String time2) {
+	public ArrayList<TransShipmentListPO> showAll(String time1, String time2)
+			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

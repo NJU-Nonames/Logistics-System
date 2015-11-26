@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import po.constantinfo.DistanceChartPO;
 import po.constantinfo.PriceChartPO;
+import utility.PriceType;
 import dataservice.constantinfo.ConstantDataService;
 
 public class ConstantDataImpl extends UnicastRemoteObject implements ConstantDataService,Serializable {
@@ -79,9 +80,38 @@ public class ConstantDataImpl extends UnicastRemoteObject implements ConstantDat
 		
 	}
 
-	public void setPrice(String newPrice, String otherInformation) {
-		// TODO Auto-generated method stub
-	
+	public void setPrice(double newPrice, PriceType pricetype) {
+		PriceChartPO price=this.showPriceChart();
+		switch(pricetype)
+		{
+		case ECONOMIC:
+			price.setEconomic(newPrice);break;
+		case STANDARD:
+			price.setStandard(newPrice);break;
+		case EXPRESS:
+			price.setExpress(newPrice);break;
+		case TRAIN_KILO_T:
+			price.setTrain_kilo_t(newPrice);break;
+		case TRUCK_KILO_T:
+			price.setTruck_kilo_t(newPrice);break;
+		case AIRPLANE_KILO_T:
+			price.setAirplane_kilo_t(newPrice);break;
+		}
+		try{
+			FileWriter fw=new FileWriter(f2);
+			fw.write("");
+			fw.close();
+			fw=new FileWriter(f2,true);
+			fw.write("train_kilo "+price.getTrain_kilo_t()+"\n");
+			fw.write("truck_kilo "+price.getTruck_kilo_t()+"\n");
+			fw.write("airplane_kilo "+price.getAirplane_kilo_t()+"\n");
+			fw.write("standard "+price.getStandard()+"\n");
+			fw.write("economic "+price.getEconomic()+"\n");
+			fw.write("express "+price.getExpress());
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
 	}
 
 	public void addCity(String name) {

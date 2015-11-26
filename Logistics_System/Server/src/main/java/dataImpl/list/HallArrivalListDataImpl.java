@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.ResultSet;
+
 import po.list.HallArrivalListPO;
 import utility.CheckType;
 import utility.GoodsState;
@@ -59,6 +60,7 @@ public class HallArrivalListDataImpl extends UnicastRemoteObject implements Hall
 			}
 			hallarrivallist=new HallArrivalListPO(id, rs.getString("timee"), rs.getString("transfernumber"), rs.getString("fromplace"), GoodsState.valueOf(rs.getString("state")), barcode, CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
 			return null;
 		}
 		return hallarrivallist;
@@ -75,6 +77,7 @@ public class HallArrivalListDataImpl extends UnicastRemoteObject implements Hall
 				hallArrivalList.add(hallArrivallist);
 			}
 		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
 			return null;
 		}
 		return hallArrivalList;

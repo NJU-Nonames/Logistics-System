@@ -9,11 +9,11 @@ import po.list.TransArrivalListPO;
 
 public interface TransArrivalListDataService extends Remote{
 	
-	public boolean add(TransArrivalListPO transArrivalListPO)throws RemoteException;
+	public void add(TransArrivalListPO transArrivalListPO)throws RemoteException;
 	
-     public boolean delete (String transArrivalListID)throws RemoteException;
+     public void delete (String transArrivalListID)throws RemoteException;
 	
-	public boolean update (TransArrivalListPO transArrivalListPO)throws RemoteException;
+	public void update (TransArrivalListPO transArrivalListPO)throws RemoteException;
 	
 	public TransArrivalListPO find(String id)throws RemoteException;
 	

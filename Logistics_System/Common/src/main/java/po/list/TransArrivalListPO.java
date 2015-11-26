@@ -34,6 +34,7 @@ public class TransArrivalListPO extends ListPO implements Serializable{
 	 */
 	private ArrayList<GoodsInfoPO> GoodsInfoPOs;
 
+	
 	public TransArrivalListPO(String id,String transferNumber, String centerNumber, String date,
 			ArrayList<GoodsInfoPO> goodsInfoPOs,CheckType type) {
 		super();

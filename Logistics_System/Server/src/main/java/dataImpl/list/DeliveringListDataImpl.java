@@ -56,6 +56,7 @@ public class DeliveringListDataImpl extends UnicastRemoteObject implements Deliv
 			}
 			deliveringlist=new DeliveringListPO(id, rs.getString("timee"), barcode, rs.getString("deliveryman"), CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
 			return null;
 		}
 		return deliveringlist;
@@ -71,6 +72,7 @@ public class DeliveringListDataImpl extends UnicastRemoteObject implements Deliv
 				deliveringList.add(deliveringlist);
 			}
 		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
 			return null;
 		}
 		return deliveringList;

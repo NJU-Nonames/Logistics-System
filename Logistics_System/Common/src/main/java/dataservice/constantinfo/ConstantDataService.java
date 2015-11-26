@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 import po.constantinfo.DistanceChartPO;
 import po.constantinfo.PriceChartPO;
+import utility.PriceType;
 
 
 /**
@@ -30,7 +31,7 @@ public interface ConstantDataService extends Remote{
 	 * @param otherInformation
 	 * @return
 	 */
-	public void setPrice(String newPrice,String otherInformation)throws RemoteException;
+	public void setPrice(double newPrice,PriceType pricetype)throws RemoteException;
 	
 	/**
 	 * 添加城市

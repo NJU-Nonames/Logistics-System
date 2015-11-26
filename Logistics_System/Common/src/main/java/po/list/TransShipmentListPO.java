@@ -33,7 +33,7 @@ public class TransShipmentListPO extends ListPO{
 	/**
 	 * 到达地
 	 */
-	private String desitination;
+	private String destination;
 
 	/**
 	 * 货柜号
@@ -56,13 +56,13 @@ public class TransShipmentListPO extends ListPO{
 	private double price;
 
 	public TransShipmentListPO(String date, String transitDocNumber, String flightNumber, String departurePlace,
-			String desitination, String containerNumber, String supercargoMan, ArrayList<String> barcodes,CheckType type) {
+			String destination, String containerNumber, String supercargoMan, ArrayList<String> barcodes,CheckType type) {
 		super();
 		this.date = date;
 		this.transitDocNumber = transitDocNumber;
 		this.flightNumber = flightNumber;
 		this.departurePlace = departurePlace;
-		this.desitination = desitination;
+		this.destination = destination;
 		this.containerNumber = containerNumber;
 		this.supercargoMan = supercargoMan;
 		this.barcodes = barcodes;
@@ -85,8 +85,8 @@ public class TransShipmentListPO extends ListPO{
 		return departurePlace;
 	}
 
-	public String getDesitination() {
-		return desitination;
+	public String getDestination() {
+		return destination;
 	}
 
 	public String getContainerNumber() {

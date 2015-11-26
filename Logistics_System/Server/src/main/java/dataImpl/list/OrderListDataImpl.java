@@ -64,13 +64,14 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 			}
 			orderList.setPkgState(path);
 		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
 			return null;
 		}
 		return orderList;
 	}
 
 	public ArrayList<OrderListPO> showAll(String time1, String time2) {
-		String sql="select * from orderlist where receive_time>=time1 and receive_time<=time2";
+		String sql="select * from orderlist where receive_time>='"+time1+"' and receive_time<='"+time2+"'";
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		ArrayList<OrderListPO> orderlist=new ArrayList<OrderListPO>();
 		try {
@@ -80,6 +81,7 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 			}
 			
 		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
 			return null;
 		}
 		return orderlist;
