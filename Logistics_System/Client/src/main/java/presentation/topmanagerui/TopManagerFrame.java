@@ -58,7 +58,7 @@ public class TopManagerFrame extends JFrame{
 	
 	public TopManagerFrame(){
 		//this.currentUser=currentUser;
-		this.currentUser=new CurrentUser("王大锤");
+		this.currentUser=new CurrentUser("王大锤","南京中转中心","025000");
 		this.setUndecorated(true);
 		this.addMouseListener(new MouseAdapter() { 
 			public void mousePressed(MouseEvent e) { 

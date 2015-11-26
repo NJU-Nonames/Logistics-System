@@ -5,20 +5,33 @@
  */
 package presentation.financialstaffui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import vo.ListVO;
+import vo.MoneyInformationListVO;
 
 /**统计报表
  * @author 谭期友
@@ -43,6 +56,17 @@ public class Statistic extends JPanel{
 	private MyButton goto_BaseDataSetting;//期初建账
 	private MyButton goto_SystemLog;//查看系统日志
 	//详细操作按钮以及其他组件
+	private MyButton search;
+	private MyButton search2;
+	
+	private JTextField start_date;
+	private JTextField end_date;
+	private DefaultTableModel CostandBenefitChartTableModel;
+	private JTable CostandBenefitChartTable;//成本收益表
+	private JTextField start_date2;
+	private JTextField end_date2;
+	private DefaultTableModel BusinessCircumstanceChartTableModel;
+	private JTable BusinessCircumstanceChartTable;//经营情况表
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
@@ -188,6 +212,26 @@ public class Statistic extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
+    	search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	search.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_search();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	search2 = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	search2.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_search2();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
@@ -226,6 +270,106 @@ public class Statistic extends JPanel{
     	goto_SystemLog.setLocation(20,400);
     	
     	//其他组件
+		JLabel l1 = new JLabel("起始日期：");
+		l1.setSize((int)(16*5*1.07f), 16);
+		l1.setFont(new Font("宋体", Font.BOLD, 15));
+		l1.setLocation(596-220, 128+80);
+		start_date = new JTextField();
+		start_date.setSize(110, 20);
+		start_date.setLocation(596-220+(int)(16*5*1.07f),128+80-3);
+
+		JLabel l2 = new JLabel("终止日期：");
+		l2.setSize((int)(16*5*1.07f), 16);
+		l2.setFont(new Font("宋体", Font.BOLD, 15));
+		l2.setLocation(596+20, 128+80);
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String time=format.format(date_);
+		end_date = new JTextField(time);
+		end_date.setSize(110, 20);
+		end_date.setLocation(596+20+(int)(16*5*1.07f),128+80-3);
+
+		//表头
+		Vector<String> vColumns = new Vector<String>();
+		vColumns.add("日期");
+		vColumns.add("收入");
+		vColumns.add("支出");;
+		vColumns.add("利润");
+		//数据
+		Vector<MoneyInformationListVO> vData = new Vector<MoneyInformationListVO>();
+		//模型
+		CostandBenefitChartTableModel = new DefaultTableModel(vData, vColumns);
+		//表格
+		CostandBenefitChartTable = new JTable(CostandBenefitChartTableModel){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;//不能修改
+			}
+		};
+		CostandBenefitChartTable.setPreferredScrollableViewportSize(new Dimension(600,180));
+		CostandBenefitChartTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		CostandBenefitChartTable.setSelectionBackground(Color.YELLOW);
+		JPanel jp=new JPanel();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.getViewport().add(CostandBenefitChartTable);
+		CostandBenefitChartTable.setFillsViewportHeight(true);
+		jp.setSize(620, 210);
+		jp.setLocation(596-620/2, 128+80+20);
+		//jp.setOpaque(false);
+		jp.add(scrollPane,BorderLayout.CENTER);
+
+		
+
+		JLabel l3 = new JLabel("起始日期：");
+		l3.setSize((int)(16*5*1.07f), 16);
+		l3.setFont(new Font("宋体", Font.BOLD, 15));
+		l3.setLocation(596-220, 128+80+250);
+		start_date2 = new JTextField();
+		start_date2.setSize(110, 20);
+		start_date2.setLocation(596-220+(int)(16*5*1.07f),128+80+250-3);
+
+		JLabel l4 = new JLabel("终止日期：");
+		l4.setSize((int)(16*5*1.07f), 16);
+		l4.setFont(new Font("宋体", Font.BOLD, 15));
+		l4.setLocation(596+20, 128+80+250);
+		end_date2 = new JTextField(time);
+		end_date2.setSize(110, 20);
+		end_date2.setLocation(596+20+(int)(16*5*1.07f),128+80+250-3);
+
+		//表头
+		Vector<String> vColumns2 = new Vector<String>();
+		vColumns2.add("日期");
+		vColumns2.add("单号");
+		vColumns2.add("金额");
+		//数据
+		Vector<ListVO> vData2 = new Vector<ListVO>();
+		//模型
+		BusinessCircumstanceChartTableModel = new DefaultTableModel(vData2, vColumns2);
+		//表格
+		BusinessCircumstanceChartTable = new JTable(BusinessCircumstanceChartTableModel){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;//不能修改
+			}
+		};
+		BusinessCircumstanceChartTable.setPreferredScrollableViewportSize(new Dimension(600,180));
+		BusinessCircumstanceChartTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		BusinessCircumstanceChartTable.setSelectionBackground(Color.YELLOW);
+		JPanel jp2=new JPanel();
+		JScrollPane scrollPane2 = new JScrollPane();
+		scrollPane2.getViewport().add(BusinessCircumstanceChartTable);
+		BusinessCircumstanceChartTable.setFillsViewportHeight(true);
+		jp2.setSize(620, 210);
+		jp2.setLocation(596-620/2, 128+80+250+20);
+		//jp2.setOpaque(false);
+		jp2.add(scrollPane2,BorderLayout.CENTER);
+
+		
+
+    	search.setLocation(596+300, 128+80-10);
+    	search2.setLocation(596+300, 128+80+250-10);
         
 
 		
@@ -246,9 +390,27 @@ public class Statistic extends JPanel{
     	add(goto_BaseDataSetting);
     	add(goto_SystemLog);
 
+    	add(l1);
+    	add(start_date);
+    	add(l2);
+    	add(end_date);
+    	add(jp);
+    	add(search);
     	
+    	add(l3);
+    	add(start_date2);
+    	add(l4);
+    	add(end_date2);
+    	add(jp2);
+    	add(search2);
 	}
 
+	private void _search(){
+		
+	}
+	private void _search2(){
+		
+	}
 	private void clear(){
 //		.setText("");
 //		.setText("");

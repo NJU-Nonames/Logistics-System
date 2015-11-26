@@ -5,20 +5,32 @@
  */
 package presentation.financialstaffui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import vo.SystemLogVO;
 
 /**查看系统日志
  * @author 谭期友
@@ -43,6 +55,12 @@ public class SystemLog extends JPanel{
 	private MyButton goto_BaseDataSetting;//期初建账
 	private MyButton goto_SystemLog;//查看系统日志
 	//详细操作按钮以及其他组件
+	private MyButton search;
+	
+	private JTextField start_date;
+	private JTextField end_date;
+	private DefaultTableModel SystemLogTableModel;
+	private JTable SystemLogTable;
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
@@ -188,6 +206,16 @@ public class SystemLog extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
+    	search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	search.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_search();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
@@ -226,10 +254,58 @@ public class SystemLog extends JPanel{
     	goto_SystemLog.setLocation(20,400);
     	
     	//其他组件
-        
+		JLabel l1 = new JLabel("起始日期：");
+		l1.setSize((int)(16*5*1.07f), 16);
+		l1.setFont(new Font("宋体", Font.BOLD, 15));
+		l1.setLocation(596-220, 128+80+20);
+		start_date = new JTextField();
+		start_date.setSize(110, 20);
+		start_date.setLocation(596-220+(int)(16*5*1.07f),128+80+20-3);
+
+		JLabel l2 = new JLabel("终止日期：");
+		l2.setSize((int)(16*5*1.07f), 16);
+		l2.setFont(new Font("宋体", Font.BOLD, 15));
+		l2.setLocation(596+20, 128+80+20);
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String time=format.format(date_);
+		end_date = new JTextField(time);
+		end_date.setSize(110, 20);
+		end_date.setLocation(596+20+(int)(16*5*1.07f),128+80+20-3);
+
+		//表头
+		Vector<String> vColumns = new Vector<String>();
+		vColumns.add("日期");
+		vColumns.add("操作者");
+		vColumns.add("改动");
+		//数据
+		Vector<SystemLogVO> vData = new Vector<SystemLogVO>();
+		//模型
+		SystemLogTableModel = new DefaultTableModel(vData, vColumns);
+		//表格
+		SystemLogTable = new JTable(SystemLogTableModel){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;//不能修改
+			}
+		};
+		SystemLogTable.setPreferredScrollableViewportSize(new Dimension(600,360));
+		SystemLogTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		SystemLogTable.setSelectionBackground(Color.YELLOW);
+		JPanel jp=new JPanel();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.getViewport().add(SystemLogTable);
+		SystemLogTable.setFillsViewportHeight(true);
+		jp.setSize(620, 390);
+		jp.setLocation(596-620/2, 128+80+100);
+		jp.setOpaque(false);
+		jp.add(scrollPane,BorderLayout.CENTER);
 
 		
-		
+
+    	search.setLocation(596+300, 128+80+20);
+    	
 		
         add(titleLabel);
         add(funLabel);
@@ -246,9 +322,18 @@ public class SystemLog extends JPanel{
     	add(goto_BaseDataSetting);
     	add(goto_SystemLog);
 
+    	add(l1);
+    	add(start_date);
+    	add(l2);
+    	add(end_date);
+    	add(jp);
     	
+    	add(search);
 	}
 
+	private void _search(){
+		
+	}
 	private void clear(){
 //		.setText("");
 //		.setText("");

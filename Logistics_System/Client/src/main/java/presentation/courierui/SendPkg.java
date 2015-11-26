@@ -26,6 +26,7 @@ import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.CheckType;
 import utility.ExpressType;
 import utility.PkgType;
 import vo.OrderListVO;
@@ -481,7 +482,7 @@ public class SendPkg extends JPanel{
 				new OrderListVO(_name1, _address1, _phone1, 
 						_name2, _address2, _phone2, 
 						_num, _weight_, _volume_, _name, category, 
-						pkgState, 10.0, barCode, type, _date, _date);
+						pkgState, 10.0, barCode, type, _date, _date, CheckType.UNDERCHECK);
 	}
 	private void clear(){
 		name1.setText("");	
