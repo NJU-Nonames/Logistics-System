@@ -90,14 +90,14 @@ public class CheckBLImpl implements CheckBLService {
 				ArrayList<RepertoryInPO> repertoryinpo=repertoryin.showAll(time, time);
 				ArrayList<RepertoryInVO> repertoryinvo=new ArrayList<RepertoryInVO>();
 				for(RepertoryInPO po:repertoryinpo){
-					repertoryinvo.add(new RepertoryInVO(po.getId(), po.getNum(), po.getTime(), po.getDestnation(), po.getAreacode(), po.getRownumber(), po.getFramenumber(), po.getPlacenumber(), po.getCheckType()));
+					repertoryinvo.add(new RepertoryInVO(po.getId(), po.getNum(), po.getTime(), po.getDestination(), po.getAreacode(), po.getRownumber(), po.getFramenumber(), po.getPlacenumber(), po.getCheckType()));
 				}
 				return repertoryinvo;
 			case OUT_STOREAGE_NOTE:
 				ArrayList<RepertoryOutPO> repertoryoutpo=repertoryout.showAll(time, time);
 				ArrayList<RepertoryOutVO> repertoryoutvo=new ArrayList<RepertoryOutVO>();
 				for(RepertoryOutPO po:repertoryoutpo){
-					repertoryoutvo.add(new RepertoryOutVO(po.getId(), po.getCode(), po.getTime(), po.getDestnation(), po.getTransportation(), po.getTransCode(), po.getVehicleCode(), po.getCheckType()));
+					repertoryoutvo.add(new RepertoryOutVO(po.getId(), po.getCode(), po.getTime(), po.getDestination(), po.getTransportation(), po.getTransCode(), po.getVehicleCode(), po.getCheckType()));
 				}
 				return repertoryoutvo;
 			case SENDING_NOTE:
@@ -431,12 +431,12 @@ public class CheckBLImpl implements CheckBLService {
 				return true;
 			case IN_STOREAGE_NOTE:
 				RepertoryInVO repertoryinvo=(RepertoryInVO)listVO;
-				RepertoryInPO repertoryinpo=new RepertoryInPO(repertoryinvo.getId(),repertoryinvo.getNum(),repertoryinvo.getTime(),repertoryinvo.getDestnation(),repertoryinvo.getAreacode(),repertoryinvo.getRownumber(),repertoryinvo.getFramenumber(),repertoryinvo.getFramenumber(),repertoryinvo.getCheckType());
+				RepertoryInPO repertoryinpo=new RepertoryInPO(repertoryinvo.getId(),repertoryinvo.getNum(),repertoryinvo.getTime(),repertoryinvo.getDestination(),repertoryinvo.getAreacode(),repertoryinvo.getRownumber(),repertoryinvo.getFramenumber(),repertoryinvo.getFramenumber(),repertoryinvo.getCheckType());
 				repertoryin.update(repertoryinpo);
 				return true;
 			case OUT_STOREAGE_NOTE:
 				RepertoryOutVO repertoryoutvo=(RepertoryOutVO)listVO;
-				RepertoryOutPO repertoryoutpo=new RepertoryOutPO(repertoryoutvo.getId(),repertoryoutvo.getCode(),repertoryoutvo.getTime(),repertoryoutvo.getDestnation(),repertoryoutvo.getTransportation(),repertoryoutvo.getTransCode(),repertoryoutvo.getVehicleCode(),repertoryoutvo.getCheckType());
+				RepertoryOutPO repertoryoutpo=new RepertoryOutPO(repertoryoutvo.getId(),repertoryoutvo.getCode(),repertoryoutvo.getTime(),repertoryoutvo.getDestination(),repertoryoutvo.getTransportation(),repertoryoutvo.getTransCode(),repertoryoutvo.getVehicleCode(),repertoryoutvo.getCheckType());
 				repertoryout.update(repertoryoutpo);
 				return true;
 			case SENDING_NOTE:

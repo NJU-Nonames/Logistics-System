@@ -23,7 +23,7 @@ public class RepertoryOutVO extends ListVO{
 	/**
 	 * 目的地
 	 */
-	private String destnation;
+	private String destination;
 	
 	/**
 	 * 装运方式
@@ -48,8 +48,8 @@ public class RepertoryOutVO extends ListVO{
 		return time;
 	}
 
-	public String getDestnation() {
-		return destnation;
+	public String getDestination() {
+		return destination;
 	}
 
 	public TransportationType getTransportation() {
@@ -64,14 +64,14 @@ public class RepertoryOutVO extends ListVO{
 		return vehicleCode;
 	}
 
-	public RepertoryOutVO(String id,String code, String time, String destnation,
+	public RepertoryOutVO(String id,String code, String time, String destination,
 			TransportationType transportation, String transCode,
 			String vehicleCode,CheckType type) {
 		super();
 		this.id=id;
 		this.code = code;
 		this.time = time;
-		this.destnation = destnation;
+		this.destination = destination;
 		this.transportation = transportation;
 		this.transCode = transCode;
 		this.vehicleCode = vehicleCode;
