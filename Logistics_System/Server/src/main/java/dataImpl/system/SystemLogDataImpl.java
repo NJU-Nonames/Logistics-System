@@ -27,7 +27,7 @@ public class SystemLogDataImpl extends UnicastRemoteObject implements SystemLogD
 
 
 	public ArrayList<SystemLogPO> showAll(String time1,String time2) {
-	    String sql="select * from where logtime>='"+time1+"' and logtime<='"+time2+"'";
+	    String sql="select * from systemlog where logtime>='"+time1+"' and logtime<='"+time2+"'";
 	    ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 	    ArrayList<SystemLogPO> list=new ArrayList<SystemLogPO>();
 	    SystemLogPO systemLog;
@@ -43,6 +43,7 @@ public class SystemLogDataImpl extends UnicastRemoteObject implements SystemLogD
 	}
 
 	public void add(SystemLogPO systemLog) {
+		System.out.println("连接成功");
 		String sql="insert into systemlog values ('"+systemLog.getTime()+"','"+systemLog.getUser()+"','"+systemLog.getContent()+"')";
 		DataJDBCConnection.update(sql);
 		

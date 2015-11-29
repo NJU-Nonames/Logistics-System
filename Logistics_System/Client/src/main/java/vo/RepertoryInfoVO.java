@@ -1,7 +1,7 @@
 /**
  * 2015年10月23日
  *author:
- *description:仓库信息类 用于库存查看使用
+ *description:仓库信息类 用于库存盘点使用
  */
 package vo;
 
@@ -10,41 +10,59 @@ package vo;
  *
  */
 public class RepertoryInfoVO {
-	/**
-	 * 货物总数
-	 */
-	private int total_num;
-	/**
-	 * 出货量
-	 */
-	private int out_Num;
-	/**
-	 * 入货量
-	 */
-	private int in_Num;
-	/**
-	 * 货物情况表
-	 */
-	private String repertoryList [][][][][];
-	public int getTotal_num() {
-		return total_num;
-	}
-	public int getOut_Num() {
-		return out_Num;
-	}
-	public int getIn_Num() {
-		return in_Num;
-	}
-	public String[][][][][] getRepertoryList() {
-		return repertoryList;
-	}
-	public RepertoryInfoVO(int total_num, int out_Num, int in_Num,
-			String[][][][][] repertoryList) {
-		super();
-		this.total_num = total_num;
-		this.out_Num = out_Num;
-		this.in_Num = in_Num;
-		this.repertoryList = repertoryList;
-	}
+	 
+		/**
+		 * 仓库号
+		 */
+		private String id;
+		/**
+		 * 区
+		 */
+		private String areaNumber;
+		/**
+		 * 排
+		 */
+		private String rowNumber;
+		/**
+		 * 架
+		 */
+		private String frameNumber;
+		/**
+		 * 位
+		 */
+		private String placeNumber;
+		/**
+		 * 订单号
+		 */
+		private String orderId;
+		public String getId() {
+			return id;
+		}
+		public String getAreaNumber() {
+			return areaNumber;
+		}
+		public String getRowNumber() {
+			return rowNumber;
+		}
+		public String getFrameNumber() {
+			return frameNumber;
+		}
+		public String getPlaceNumber() {
+			return placeNumber;
+		}
+		public String getOrderId() {
+			return orderId;
+		}
+		public RepertoryInfoVO(String id, String areaNumber, String rowNumber,
+				String frameNumber, String placeNumber, String orderId) {
+			super();
+			this.id = id;
+			this.areaNumber = areaNumber;
+			this.rowNumber = rowNumber;
+			this.frameNumber = frameNumber;
+			this.placeNumber = placeNumber;
+			this.orderId = orderId;
+		}
+		
 
 }

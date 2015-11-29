@@ -7,6 +7,7 @@ package dataservice.repertory;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.repertory.GoodsInfoPO;
 import po.repertory.RepertoryInPO;
@@ -27,7 +28,7 @@ public interface RepertoryInfoDataService extends Remote{
 	 * @param repertoryPO
 	 * @return
 	 */
-	public void add(GoodsInfoPO goods,RepertoryInPO repertoryPO)throws RemoteException;
+	public void add(RepertoryInPO repertoryPO)throws RemoteException;
 	
 	/**
 	 * 出库修改库存信息
@@ -35,12 +36,12 @@ public interface RepertoryInfoDataService extends Remote{
 	 * @param repertoryPO
 	 * @return
 	 */
-	public void delete(String barCode,RepertoryOutPO repertoryPO)throws RemoteException;
+	public void delete(RepertoryOutPO repertoryPO)throws RemoteException;
 	
 	/**
 	 * 获得库存信息情况
 	 * @return
 	 */
-	public RepertoryInfoPO show();
+	public ArrayList<RepertoryInfoPO> show(String id)throws RemoteException;
 
 }

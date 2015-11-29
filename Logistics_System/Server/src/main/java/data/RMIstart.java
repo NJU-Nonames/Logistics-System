@@ -53,12 +53,12 @@ public class RMIstart {
 	/**
 	 * 端口号
 	 */
-	private static final int PORT=40000;
+	private static final int PORT=6060;
 	
 	/**
 	 * 服务器ip地址
 	 */
-	private static final String IP="localhost";
+	private static final String IP="114.212.43.215";
 	
 	
 	
@@ -66,6 +66,7 @@ public class RMIstart {
 
 		
 		try {
+			System.setProperty("java.rmi.server.hostname",IP);
 			//注册通讯端口
 			LocateRegistry.createRegistry(PORT);
 			//创建实现类
