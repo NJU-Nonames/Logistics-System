@@ -22,7 +22,7 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 	}
 
 	public void add(OrderListPO orderList) {
-		String sql="insert into orderlist values ('"+orderList.getSenderName()+"','"+orderList.getSenderTeleNumber()+"','"+orderList.getReceiverName()+"','"+
+		String sql="insert into orderlist values ('"+orderList.getSenderName()+"','"+orderList.getSenderAddress()+"','"+orderList.getSenderTeleNumber()+"','"+orderList.getReceiverName()+"','"+
 	                orderList.getReceiverAddress()+"','"+orderList.getReceiverTeleNumber()+"',"+orderList.getNumber()+","+orderList.getWeight()+","+orderList.getVolume()+",'"+
 				    orderList.getName()+"','"+orderList.getCategory()+"',"+orderList.getPackPrice()+",'"+orderList.getPkgType()+"','"+orderList.getBarCode()+"','"+orderList.getDepartTime()+"','"+orderList.getArriveTime()+"','"+orderList.getCheckType()+"')";
 		for(int i=0;i<orderList.getPkgState().size();i++)
@@ -35,9 +35,9 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 	}
 
 	public void delete(String ID) {
-		String sql="delete from orderlist where barCode="+ID;
+		String sql="delete from orderlist where barCode='"+ID+"'";
 		DataJDBCConnection.update(sql);
-		String sql2="delete from orderpath where barcode="+ID;
+		String sql2="delete from orderpath where barcode='"+ID+"'";
 		DataJDBCConnection.update(sql2);
 		
 	}
@@ -48,13 +48,13 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 	}
 
 	public OrderListPO find(String id) {
-		String sql="select * from orderlist where barCode="+id;
+		String sql="select * from orderlist where barCode='"+id+"'";
 		OrderListPO orderList=null; 
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			orderList=new OrderListPO(rs.getString("senderName"), rs.getString("senderAddress"), rs.getString("senderTeleNumber"), rs.getString("receiverName"), rs.getString("receiverAddress"), rs.getString("receiverTeleNumber"), rs.getString("number"), rs.getDouble("weight"), rs.getDouble("volume"), rs.getString("name"), ExpressType.valueOf(rs.getString("category")), null, rs.getDouble("packPrice"), rs.getString("barCode"),PkgType.valueOf( rs.getString("type")), rs.getString("departTime"), rs.getString("arriveTime"),CheckType.valueOf(rs.getString("checkstate")));
-			String sql2="select * from orderpath where barcode="+id;
+			orderList=new OrderListPO(rs.getString("senderName"), rs.getString("senderAddress"), rs.getString("senderTeleNumber"), rs.getString("receiverName"), rs.getString("receiverAddress"), rs.getString("receiverTeleNumber"), rs.getString("number"), rs.getDouble("weight"), rs.getDouble("volume"), rs.getString("name"), ExpressType.valueOf(rs.getString("category")), null, rs.getDouble("packPrice"), rs.getString("barCode"),PkgType.valueOf( rs.getString("PkgType")), rs.getString("departTime"), rs.getString("arriveTime"),CheckType.valueOf(rs.getString("checkstate")));
+			String sql2="select * from orderpath where barcode='"+id+"'";
 			ResultSet rs2=(ResultSet) DataJDBCConnection.find(sql2);
 			ArrayList<String> path=null;
 			while(rs2.next())
@@ -64,14 +64,15 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 			}
 			orderList.setPkgState(path);
 		} catch (SQLException e) {
-			System.out.println("操作失败 未找到");
-			return null;
+			e.printStackTrace();
+			//System.out.println("操作失败 未找到");
+			//return null;
 		}
 		return orderList;
 	}
 
 	public ArrayList<OrderListPO> showAll(String time1, String time2) {
-		String sql="select * from orderlist where receive_time>='"+time1+"' and receive_time<='"+time2+"'";
+		String sql="select * from orderlist where departTime>='"+time1+"' and departTime<='"+time2+"'";
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		ArrayList<OrderListPO> orderlist=new ArrayList<OrderListPO>();
 		try {
@@ -81,8 +82,9 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("操作失败 未找到");
-			return null;
+			e.printStackTrace();
+			//System.out.println("操作失败 未找到");
+			//return null;
 		}
 		return orderlist;
 	}

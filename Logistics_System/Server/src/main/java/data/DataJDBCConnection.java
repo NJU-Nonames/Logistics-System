@@ -21,7 +21,7 @@ public class DataJDBCConnection {
 			 Class.forName("com.mysql.jdbc.Driver"); 
 	              //加载MYSQL JDBC驱动程序   
 	          
-	          connect = DriverManager.getConnection( "jdbc:mysql://localhost:"+PORT+"/"+NAME,ADMIN,PASSWORD);
+	          connect = DriverManager.getConnection( "jdbc:mysql://localhost:"+PORT+"/"+NAME+"?useUnicode=true&characterEncoding=UTF-8",ADMIN,PASSWORD);
 	          
 	         System.out.println("Success loading Mysql Driver!");
 	        }

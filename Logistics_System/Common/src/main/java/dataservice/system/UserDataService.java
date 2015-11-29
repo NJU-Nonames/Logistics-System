@@ -26,7 +26,7 @@ public interface UserDataService extends Remote{
 	 * 后置条件：在数据库中删除对应的UserPO
 	 * @param 	UserPO
 	 */
-	public void delete(String id)throws RemoteException;
+	public void delete(String admin)throws RemoteException;
 	/**
 	 * 前置条件：存在同样id的UserPO
 	 * 后置条件：在数据库中更新对应的UserPO

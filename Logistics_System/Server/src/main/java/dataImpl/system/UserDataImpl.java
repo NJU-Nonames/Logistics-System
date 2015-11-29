@@ -55,8 +55,8 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		DataJDBCConnection.update(operate);
 	}
 
-	public void delete(String userid) {
-		String operate="delete from User where id="+userid;
+	public void delete(String admin) {
+		String operate="delete from User where admin='"+admin+"'";
 		DataJDBCConnection.update(operate);
 	}
 
@@ -65,7 +65,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	 *　需要默认id不被改变，即每个人的工号是固定的
 	 */
 	public void update(UserPO user) {
-		this.delete(user.getId());
+		this.delete(user.getAdmin());
 		this.add(user);
 		
 	}
