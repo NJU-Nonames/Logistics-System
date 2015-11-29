@@ -18,6 +18,12 @@ public class SystemLogBLImpl implements SystemLogBLService{
 		this.systemLogDataService=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
 
+	public static void main(String args[]){
+		SystemLogBLImpl s=new SystemLogBLImpl();
+		s.addLogInfo(new SystemLogVO("2015-11-2 11:23:22", "testxixi", "ysy"));
+		
+	}
+	
 	public ArrayList<SystemLogVO> showAll(String time1, String time2) {
 		
 		ArrayList<SystemLogPO> systempo = null;
@@ -39,6 +45,7 @@ public class SystemLogBLImpl implements SystemLogBLService{
 	public ResultMessage addLogInfo(SystemLogVO systemLogVO) {
 		// TODO 自动生成的方法存根
 		SystemLogPO sys=new SystemLogPO(systemLogVO.getTime(),systemLogVO.getContent(),systemLogVO.getUser());
+		
 		try{
 			systemLogDataService.add(sys);
 		}catch (RemoteException e) {

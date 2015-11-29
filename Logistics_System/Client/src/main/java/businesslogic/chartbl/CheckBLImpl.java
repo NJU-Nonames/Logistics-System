@@ -135,7 +135,7 @@ public class CheckBLImpl implements CheckBLService {
 				ArrayList<GoodsInfoVO> goodvo=new ArrayList<GoodsInfoVO>();
 					for(GoodsInfoPO goods:po.getGoodsInfoPOs())
 						goodvo.add(new GoodsInfoVO(goods.getBarcode(), goods.getState(),goods.getDeparturePlace()));
-					transarrivalvo.add(new TransArrivalListVO(po.getId(), po.getTransferNumber(), po.getCenterNumber(), po.getDate(), goodvo, po.getCheckType()));
+					transarrivalvo.add(new TransArrivalListVO( po.getTransferNumber(), po.getCenterNumber(), po.getDate(), goodvo, po.getCheckType()));
 				}
 				return transarrivalvo;
 			case TRANSIT_NOTE:
@@ -304,7 +304,7 @@ public class CheckBLImpl implements CheckBLService {
 			case CENTER_ARRIVAL_NOTE:
 				ArrayList<TransArrivalListVO> transarrivalvo=(ArrayList<TransArrivalListVO>)listVO;
 				for(TransArrivalListVO vo:transarrivalvo){
-					TransArrivalListPO po=transarrival.find(vo.getId());
+					TransArrivalListPO po=transarrival.find(vo.getTransferNumber());
 					po.setCheckType(CheckType.PASS);
 					transarrival.update(po);
 				}
@@ -395,7 +395,7 @@ public class CheckBLImpl implements CheckBLService {
 			case CENTER_ARRIVAL_NOTE:
 				ArrayList<TransArrivalListVO> transarrivalvo=(ArrayList<TransArrivalListVO>)listVO;
 				for(TransArrivalListVO vo:transarrivalvo){
-					TransArrivalListPO po=transarrival.find(vo.getId());
+					TransArrivalListPO po=transarrival.find(vo.getTransferNumber());
 					po.setCheckType(CheckType.NOTPASS);
 					transarrival.update(po);
 				}
@@ -465,7 +465,7 @@ public class CheckBLImpl implements CheckBLService {
 				for(GoodsInfoVO goodvo:transarrivalvo.getGoodsInfoVOs()){
 					goodpo.add(new GoodsInfoPO(goodvo.getBarcode(), goodvo.getState(), goodvo.getDeparturePlace()));
 				}
-				TransArrivalListPO transarrivalpo=new TransArrivalListPO(transarrivalvo.getId(),transarrivalvo.getTransferNumber(),transarrivalvo.getCenterNumber(),transarrivalvo.getDate(),goodpo,transarrivalvo.getCheckType());
+				TransArrivalListPO transarrivalpo=new TransArrivalListPO(transarrivalvo.getTransferNumber(),transarrivalvo.getCenterNumber(),transarrivalvo.getDate(),goodpo,transarrivalvo.getCheckType());
 				transarrival.update(transarrivalpo);
 				return true;
 			case TRANSIT_NOTE:

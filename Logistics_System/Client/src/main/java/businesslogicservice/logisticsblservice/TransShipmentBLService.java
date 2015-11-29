@@ -17,6 +17,6 @@ public interface TransShipmentBLService {
 	 * 前置条件：	开启了装运任务
 	 * 后置条件：	系统判定输入准确无误之后，保存装运单，修改订单的相关属性
 	 */
-	public ResultMessage createShiplist(TransShipmentListVO transShipment);
+	public ResultMessage createShiplist(TransShipmentListVO transShipment,String keywords);
 
 }
