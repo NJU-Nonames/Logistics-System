@@ -1,6 +1,8 @@
 package po.agency;
 
-public class StaffPO {
+import java.io.Serializable;
+
+public class StaffPO implements Serializable{
 	/**
 	 * 姓名
 	 */

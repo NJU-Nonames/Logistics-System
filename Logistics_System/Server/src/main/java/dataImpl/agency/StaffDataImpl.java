@@ -40,7 +40,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements StaffDataServi
 	}
 
 	public StaffPO find(String id) throws RemoteException {
-		String sql="select from staff where id='"+id+"'";
+		String sql="select * from staff where id='"+id+"'";
 		ResultSet rs2=(ResultSet) DataJDBCConnection.find(sql);
 		StaffPO staff=null;
 		try {
@@ -48,7 +48,9 @@ public class StaffDataImpl extends UnicastRemoteObject implements StaffDataServi
 			staff=new StaffPO(rs2.getString("name"), rs2.getString("sex"), rs2.getString("postion"), rs2.getString("idNumber"), rs2.getString("workingstarttime"), rs2.getString("phoneNum"), rs2.getString("wage"), rs2.getString("agencyName"), rs2.getString("id"),rs2.getString("agencyid"));
 			
 		} catch (SQLException e) {
-			return null;
+			e.printStackTrace();
+			//System.out.println("查询失败");
+			//return null;
 		}
 		return staff;
 	}
