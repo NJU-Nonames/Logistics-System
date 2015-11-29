@@ -39,7 +39,7 @@ public class TransferCenterReceiveBLImpl implements TransferCenterReceiveBLServi
 			transpo=transarrival.find(transArrivalList.getTransferNumber());
 			if(transpo!=null)
 				return new ResultMessage(false,"中转单已经存在!");
-			transpo=new TransArrivalListPO(transArrivalList.getTransferNumber(),transArrivalList.getCenterNumber(),transArrivalList.getDate(),goodpo,transArrivalList.getCheckType());
+			transpo=new TransArrivalListPO(transArrivalList.getId(),transArrivalList.getTransferNumber(),transArrivalList.getCenterNumber(),transArrivalList.getDate(),goodpo,transArrivalList.getCheckType());
 			transarrival.update(transpo);
 		}catch(RemoteException e){
 			e.printStackTrace();
