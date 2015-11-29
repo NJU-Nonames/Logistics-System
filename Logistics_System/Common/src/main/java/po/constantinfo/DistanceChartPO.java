@@ -1,6 +1,8 @@
 package po.constantinfo;
 
-public class DistanceChartPO {
+import java.io.Serializable;
+
+public class DistanceChartPO implements Serializable{
 	 /**
      * 距离表
      */

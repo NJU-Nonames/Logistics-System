@@ -12,7 +12,7 @@ import java.rmi.Naming;
  */
 public class RMIHelper {
 
-    private static final String IP = "127.0.0.1"; //Can be read from config file
+    private static final String IP = "172.26.192.54"; //Can be read from config file
     private static final String PORT="40000";//端口号
 
     public static Object find(String serviceName){

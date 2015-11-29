@@ -24,10 +24,11 @@ public class SendPkgBLImpl implements SendPkgBLService {
 			ArrayList<OrderListPO> list=service1.showAll("2015-9-1", "2015-12-31");
 			int days=0;
 			int count=0;
+			if(list!=null)
 			for(OrderListPO orderListPO:list){
-				if(orderListPO.getSenderAddress()==orderListVO.getSenderAddress()||
-						orderListPO.getReceiverAddress()==orderListVO.getReceiverAddress()||
-						orderListPO.getCategory()==orderListVO.getCategory()){
+				if(orderListPO.getSenderAddress().substring(0, 2).equals(orderListVO.getSenderAddress().substring(0,2))&&
+						orderListPO.getReceiverAddress().substring(0,2).equals(orderListVO.getReceiverAddress().substring(0, 2))&&
+						orderListPO.getCategory().equals(orderListVO.getCategory())){
 					count++;
 					String[] temp1=orderListPO.getDepartTime().split("-");
 					String[] temp2=orderListPO.getArriveTime().split("-");
@@ -40,7 +41,8 @@ public class SendPkgBLImpl implements SendPkgBLService {
 			if(count!=0){
 				days=days/count;
 			}
-			String[] temp=orderListVO.getDepartTime().split("-");
+			String[] temp2=orderListVO.getDepartTime().split(" ");
+			String[] temp=temp2[0].split("-");
 			int year=Integer.parseInt(temp[0]);
 			int month=Integer.parseInt(temp[1]);
 			int day=Integer.parseInt(temp[2]);
@@ -89,6 +91,8 @@ public class SendPkgBLImpl implements SendPkgBLService {
 			}
 			
 			double price=price_kiloGram*distance*orderListVO.getWeight()/1000;
+			price_kiloGram=service2.showPriceChart().getEconomic();
+			price+=price_kiloGram*60*orderListVO.getWeight()/1000;
 			switch(orderListVO.getPkgType()){
 				case WOODEN:price+=10;break;
 				case PAPER:price+=5;break;
@@ -115,7 +119,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, "成功保存订单！");
+		return new ResultMessage(true, "成功保存订单!");
 	}
 
 }
