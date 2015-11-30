@@ -1,10 +1,13 @@
 package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import po.agency.DriverPO;
+import presentation.mainui.CurrentUser;
 import dataservice.agency.DriverDataService;
+import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.DriverVO;
 import businesslogic.rmi.RMIHelper;
@@ -12,8 +15,14 @@ import businesslogicservice.logisticsblservice.DriverManageBLService;
 
 public class DriverManageBLImpl implements DriverManageBLService {
 	DriverDataService service=null;
-	public DriverManageBLImpl(){
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	public DriverManageBLImpl(CurrentUser currentuser){
 		service=(DriverDataService)RMIHelper.find("DriverDataService");
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
 	public ArrayList<DriverVO> show(String Hall_Num) {
 		// TODO Auto-generated method stub

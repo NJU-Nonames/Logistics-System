@@ -1,12 +1,15 @@
 package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import po.constantinfo.DistanceChartPO;
 import po.list.OrderListPO;
+import presentation.mainui.CurrentUser;
 import dataservice.constantinfo.ConstantDataService;
 import dataservice.list.OrderListDataService;
+import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.OrderListVO;
 import businesslogic.rmi.RMIHelper;
@@ -15,9 +18,16 @@ import businesslogicservice.logisticsblservice.SendPkgBLService;
 public class SendPkgBLImpl implements SendPkgBLService {
 	OrderListDataService service1=null;
 	ConstantDataService service2=null;
-	public SendPkgBLImpl(){
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	public SendPkgBLImpl(CurrentUser currentuser){
 		this.service1=(OrderListDataService)RMIHelper.find("OrderListDataService");
 		this.service2=(ConstantDataService)RMIHelper.find("ConstantDataService");
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
+		
 	}
 	public OrderListVO createMoneyAndDate(OrderListVO orderListVO) {
 		try {

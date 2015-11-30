@@ -16,6 +16,6 @@ public interface LoadBLService {
 	 * 前置条件：	输入无误，点击确认按钮
 	 * 后置条件：	系统补足缺省选项之后保存装车单并显示装车单详情
 	 */
-	public ResultMessage createLoadlist(LoadListVO loadListVO,String keywords);
+	public ResultMessage createLoadlist(LoadListVO loadListVO);
 	
 }

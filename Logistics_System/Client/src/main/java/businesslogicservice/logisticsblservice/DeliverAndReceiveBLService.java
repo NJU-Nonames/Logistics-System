@@ -18,13 +18,13 @@ public interface DeliverAndReceiveBLService {
 	 * @param hallArrivalList
 	 * @return
 	 */
-	public ResultMessage createHallArrivalList(HallArrivalListVO hallArrivalList,String keywords);
+	public ResultMessage createHallArrivalList(HallArrivalListVO hallArrivalList);
 	
 	/**
 	 * 营业厅生成派件单
 	 * @param deliveringList
 	 * @return
 	 */
-	public ResultMessage createDeliveringList (DeliveringListVO deliveringList,String keywords);
+	public ResultMessage createDeliveringList (DeliveringListVO deliveringList);
 
 }

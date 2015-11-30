@@ -10,6 +10,7 @@ import com.mysql.jdbc.ResultSet;
 
 import po.agency.AgencyPO;
 import po.agency.StaffPO;
+import utility.Position;
 import data.DataJDBCConnection;
 import dataservice.agency.AgencyDataService;
 
@@ -20,9 +21,9 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 		// TODO Auto-generated constructor stub
 	}
 
-	public void salaryManage(String postion, String salary)
+	public void salaryManage(Position position, String salary)
 			throws RemoteException {
-		String sql="update staff set wage='"+salary+"' where postion='"+postion+"'";
+		String sql="update staff set wage='"+salary+"' where postion='"+position+"'";
 		DataJDBCConnection.update(sql);
 		
 	}

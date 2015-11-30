@@ -15,7 +15,7 @@ public interface TransferCenterReceiveBLService {
 	 * @param transArrivalList
 	 * @return
 	 */
-	public ResultMessage createTransArrivalList(TransArrivalListVO transArrivalList,String keywords);
+	public ResultMessage createTransArrivalList(TransArrivalListVO transArrivalList);
 	
 	
 	

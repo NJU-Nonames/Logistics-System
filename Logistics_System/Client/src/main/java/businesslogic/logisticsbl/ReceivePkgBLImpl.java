@@ -1,9 +1,12 @@
 package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 
 import po.list.OrderListPO;
+import presentation.mainui.CurrentUser;
 import dataservice.list.OrderListDataService;
+import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.OrderListVO;
 import vo.ReceiverVO;
@@ -12,8 +15,15 @@ import businesslogicservice.logisticsblservice.ReceivePkgBLService;
 
 public class ReceivePkgBLImpl implements ReceivePkgBLService {
 	OrderListDataService service1=null;
-	public ReceivePkgBLImpl(){
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	public ReceivePkgBLImpl(CurrentUser currentuser){
 		service1=(OrderListDataService)RMIHelper.find("OrderListDataService");
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
+
 	}
 	public OrderListVO findOrderlist(String orderlistId) {
 		OrderListVO orderListVO=null;

@@ -1,13 +1,16 @@
 package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 
 import po.list.DeliveringListPO;
 import po.list.HallArrivalListPO;
 import po.list.OrderListPO;
+import presentation.mainui.CurrentUser;
 import dataservice.list.DeliveringListDataService;
 import dataservice.list.HallArrivalListDataService;
 import dataservice.list.OrderListDataService;
+import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.DeliveringListVO;
 import vo.HallArrivalListVO;
@@ -18,17 +21,24 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 	HallArrivalListDataService service1=null;
 	DeliveringListDataService service2=null;
 	OrderListDataService service3=null;
-	public DeliverAndReceiveBLImpl(){
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	public DeliverAndReceiveBLImpl(CurrentUser currentuser){
 		service1=(HallArrivalListDataService)RMIHelper.find("HallArrivalListDataService");
 		service2=(DeliveringListDataService)RMIHelper.find("DeliveringListDataService");
 		service3=(OrderListDataService)RMIHelper.find("OrderListDataService");
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
-	public ResultMessage createHallArrivalList(HallArrivalListVO hallArrivalList,String keywords) {
+	public ResultMessage createHallArrivalList(HallArrivalListVO hallArrivalList) {
 		// TODO Auto-generated method stub
 		for(String id:hallArrivalList.getBarCodes()){
 			try {
 				OrderListPO orderListPO=service3.find(id);
-				orderListPO.getPkgState().add(keywords);
+				//修改！！！！！！！！！！！！
+	//			orderListPO.getPkgState().add(keywords);
 				service3.update(orderListPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -41,14 +51,16 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		
 		return new ResultMessage(true, "营业厅到达单已生成！");
 	}
 
-	public ResultMessage createDeliveringList(DeliveringListVO deliveringList,String keywords) {
+	public ResultMessage createDeliveringList(DeliveringListVO deliveringList) {
 		for(String id:deliveringList.getBarCode()){
 			try {
 				OrderListPO orderListPO=service3.find(id);
-				orderListPO.getPkgState().add(keywords);
+		//修改！！！！！！！！！！！！！！！
+				//orderListPO.getPkgState().add(keywords);
 				service3.update(orderListPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();

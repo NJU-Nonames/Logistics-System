@@ -1,10 +1,13 @@
 package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import po.agency.TruckPO;
+import presentation.mainui.CurrentUser;
 import dataservice.agency.TruckDataService;
+import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.TruckVO;
 import businesslogic.rmi.RMIHelper;
@@ -12,8 +15,14 @@ import businesslogicservice.logisticsblservice.TruckManageBLService;
 
 public class TruckManagementBLImpl implements TruckManageBLService{
 	TruckDataService truckdataservice=null;
-	public TruckManagementBLImpl(){
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	public TruckManagementBLImpl(CurrentUser currentuser){
 		truckdataservice=(TruckDataService)RMIHelper.find("TruckDataService");
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
 
 	public ArrayList<TruckVO> show(String Hall_Num) {

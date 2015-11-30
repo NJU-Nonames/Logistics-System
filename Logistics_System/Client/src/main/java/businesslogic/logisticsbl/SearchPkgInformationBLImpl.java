@@ -7,9 +7,12 @@ package businesslogic.logisticsbl;
 
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 
 import po.list.OrderListPO;
+import presentation.mainui.CurrentUser;
 import dataservice.list.OrderListDataService;
+import dataservice.system.SystemLogDataService;
 import vo.OrderListVO;
 import businesslogic.rmi.RMIHelper;
 import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
@@ -20,9 +23,16 @@ import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
  */
 public class SearchPkgInformationBLImpl implements SearchPkgInformationBLService{
 	OrderListDataService service=null; 
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	
 	//构造函数
-	public SearchPkgInformationBLImpl(){
+	public SearchPkgInformationBLImpl(CurrentUser currentuser){
 		this.service=(OrderListDataService) RMIHelper.find("OrderListDataService");
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
 
 	public OrderListVO searchPkgInformation(String orderlistId) {

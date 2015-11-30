@@ -1,11 +1,14 @@
 package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 
 import po.list.LoadListPO;
 import po.list.OrderListPO;
+import presentation.mainui.CurrentUser;
 import dataservice.list.LoadListDataService;
 import dataservice.list.OrderListDataService;
+import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.LoadListVO;
 import vo.OrderListVO;
@@ -15,15 +18,23 @@ import businesslogicservice.logisticsblservice.LoadBLService;
 public class LoadBLImpl implements LoadBLService {
 	OrderListDataService service1=null; 
 	LoadListDataService service2=null;
-	public LoadBLImpl(){
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	public LoadBLImpl(CurrentUser currentuser){
 		this.service1= (OrderListDataService) RMIHelper.find("OrderListDataService");
 		this.service2= (LoadListDataService)RMIHelper.find("LoadListDataService");
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
+
 	}
-	public ResultMessage createLoadlist(LoadListVO loadListVO,String keywords) {
+	public ResultMessage createLoadlist(LoadListVO loadListVO) {
 		for(String id:loadListVO.getBarcodes()){
 			try{
 				OrderListPO orderListPO=service1.find(id);
-				orderListPO.getPkgState().add(keywords);
+				//待修改！！！！！！！！！！！！！
+				//orderListPO.getPkgState().add(keywords);
 				service1.update(orderListPO);
 			}catch(RemoteException e){
 				e.printStackTrace();

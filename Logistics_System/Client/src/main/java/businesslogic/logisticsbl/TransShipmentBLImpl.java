@@ -1,12 +1,15 @@
 package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 
 import po.list.OrderListPO;
 import po.list.TransShipmentListPO;
+import presentation.mainui.CurrentUser;
 import dataservice.list.HallArrivalListDataService;
 import dataservice.list.OrderListDataService;
 import dataservice.list.TransShipmentListDataService;
+import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.TransShipmentListVO;
 import businesslogic.rmi.RMIHelper;
@@ -15,17 +18,24 @@ import businesslogicservice.logisticsblservice.TransShipmentBLService;
 public class TransShipmentBLImpl implements TransShipmentBLService{
 	TransShipmentListDataService transshipment=null;
 	OrderListDataService orderlist=null;
-	public TransShipmentBLImpl(){
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	public TransShipmentBLImpl(CurrentUser currentuser){
 		transshipment=(TransShipmentListDataService)RMIHelper.find("TransShipmentListDataService");
 		orderlist=(OrderListDataService)RMIHelper.find("OrderListDataService");
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
 
-	public ResultMessage createShiplist(TransShipmentListVO transShipment,String keywords) {
+	public ResultMessage createShiplist(TransShipmentListVO transShipment) {
 		// TODO 自动生成的方法存根
 		try{
 			for(String barcode:transShipment.getBarcodes()){
 				OrderListPO orderpo=orderlist.find(barcode);
-				orderpo.getPkgState().add(keywords);
+				//待修改！！！！！！！！！！！！
+				//orderpo.getPkgState().add(keywords);
 				orderlist.update(orderpo);
 			 }
 			}catch(RemoteException e){

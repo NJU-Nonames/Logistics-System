@@ -53,7 +53,24 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 		return repertoryin;
 	}
 
-
+	public ArrayList<RepertoryInPO> showAllByAgency(String start_day, String end_day,String agencyID) {
+		ArrayList<RepertoryInPO> repertoryin=new ArrayList<RepertoryInPO>();
+		String sql="select * from repertoryin where timee<='"+end_day+"' and timee>="+start_day+"' and id like '%"+agencyID+"%";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next())
+			{
+				repertoryin.add(this.findOnID(rs.getString("id")));
+			}
+		} catch (SQLException e) {
+			System.out.println("操作未成功");
+			return null;
+		}
+		
+		return repertoryin;
+	}
+	
+	
 	public ArrayList<RepertoryInPO> showAll(String start_day, String end_day) {
 		ArrayList<RepertoryInPO> repertoryin=new ArrayList<RepertoryInPO>();
 		String sql="select * from repertoryin where timee<='"+end_day+"' and timee>="+start_day+"'";

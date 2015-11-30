@@ -2,6 +2,8 @@ package po.agency;
 
 import java.io.Serializable;
 
+import utility.Position;
+
 public class StaffPO implements Serializable{
 	/**
 	 * 姓名
@@ -16,7 +18,7 @@ public class StaffPO implements Serializable{
 	/**
 	 * 职位
 	 */
-	private String  postion;
+	private Position  position;
 	
 	/**
 	 * 身份证
@@ -59,13 +61,13 @@ public class StaffPO implements Serializable{
 	 * @param phoneNum
 	 * @param wage
 	 */
-	public StaffPO(String name,String sex,String postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyName,String id,String agencyId){
+	public StaffPO(String name,String sex,Position position,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyName,String id,String agencyId){
 		this.name = name;
 		this.sex = sex;
 		this.phoneNum = phoneNum;
 		this.IDNum = IDNum;
 		this.phoneNum = phoneNum;
-		this.postion = postion;
+		this.position = position;
 		this.wage = wage;
 		this.workingstarttime = workingstarttime;
 		this.agencyName=agencyName;
@@ -81,8 +83,8 @@ public class StaffPO implements Serializable{
 		return sex;
 	}
 
-	public String getPostion() {
-		return postion;
+	public Position getPostion() {
+		return position;
 	}
 
 	public String getIDNum() {

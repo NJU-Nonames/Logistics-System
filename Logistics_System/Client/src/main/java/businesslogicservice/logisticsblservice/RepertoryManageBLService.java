@@ -10,6 +10,7 @@ import utility.ResultMessage;
 import vo.RepertoryInVO;
 import vo.RepertoryInfoVO;
 import vo.RepertoryOutVO;
+import vo.RepertorySearch;
 
 
 public interface RepertoryManageBLService {
@@ -26,13 +27,20 @@ public interface RepertoryManageBLService {
 	 */
 	public ResultMessage createOutputRepertory(RepertoryOutVO repertoryOut);
 	
-	/**仓库管理人员进行查看库存操作
-	 * @param	时间段
-	 * @return	库存查看、库存盘点
+	/**仓库管理人员进行库存盘点
+	 * @return	返回一个库存信息的VO里面包含库存的信息类
 	 */
-	public RepertoryInfoVO  showRepertory(String start_time,String end_time);
+	public RepertoryInfoVO  showRepertory();
 	
 	
+	
+	/**
+	 * 库存查看
+	 * @param start_time
+	 * @param end_time
+	 * @return 返回一个库存查看的VO
+	 */
+	public RepertorySearch searchRepertory(String start_time,String end_time);
 	
 	//以下需要修改 内容暂定
 	/**实时监控
