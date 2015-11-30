@@ -1,7 +1,9 @@
 package businesslogic.chartbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.list.DeliveringListPO;
 import po.list.HallArrivalListPO;
@@ -15,6 +17,8 @@ import po.repertory.GoodsInfoPO;
 import po.repertory.RepertoryInPO;
 import po.repertory.RepertoryInfoPO;
 import po.repertory.RepertoryOutPO;
+import po.system.SystemLogPO;
+import presentation.mainui.CurrentUser;
 import dataservice.list.DeliveringListDataService;
 import dataservice.list.HallArrivalListDataService;
 import dataservice.list.LoadListDataService;
@@ -25,6 +29,7 @@ import dataservice.moneyInformation.MoneyInListDataService;
 import dataservice.moneyInformation.MoneyOutListDataService;
 import dataservice.repertory.RepertoryInDataService;
 import dataservice.repertory.RepertoryOutDataService;
+import dataservice.system.SystemLogDataService;
 import utility.CheckType;
 import utility.DocType;
 import vo.DeliveringListVO;
@@ -53,8 +58,11 @@ public class CheckBLImpl implements CheckBLService {
 	DeliveringListDataService deliver=null;
 	TransArrivalListDataService transarrival=null;
 	TransShipmentListDataService transshipment=null;
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
-	public CheckBLImpl(){
+	public CheckBLImpl(CurrentUser currentuser){
 		moneyin=(MoneyInListDataService)RMIHelper.find("MoneyInListDataService");
 		moneyout=(MoneyOutListDataService)RMIHelper.find("MoneyOutListDataService");
 		repertoryin=(RepertoryInDataService)RMIHelper.find("RepertoryInDataService");
@@ -64,7 +72,9 @@ public class CheckBLImpl implements CheckBLService {
 		hallarrival=(HallArrivalListDataService)RMIHelper.find("HallArrivalListDataService");
 		deliver=(DeliveringListDataService)RMIHelper.find("DeliveringListDataService");
 		transarrival=(TransArrivalListDataService)RMIHelper.find("TransArrivalListDataService");
-		transshipment=(TransShipmentListDataService)RMIHelper.find("TransShipmentListDataService");				
+		transshipment=(TransShipmentListDataService)RMIHelper.find("TransShipmentListDataService");	
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
 	
 
@@ -75,6 +85,8 @@ public class CheckBLImpl implements CheckBLService {
 			case MONEY_IN_NOTE:
 				ArrayList<MoneyInListPO> moneyinpo=moneyin.showAll(time, time);
 				ArrayList<MoneyInListVO> moneyinvo=new ArrayList<MoneyInListVO>();
+				if(moneyinpo==null)
+					return null;
 				for(MoneyInListPO po:moneyinpo){
 					moneyinvo.add(new MoneyInListVO(po.getId(), po.getDate(), po.getMoneySum(), po.getStaffId(), po.getBarcode(), po.getCheckType()));
 				}
@@ -82,6 +94,8 @@ public class CheckBLImpl implements CheckBLService {
 			case MONET_OUT_NOTE:
 				ArrayList<MoneyOutListPO> moneyoutpo=moneyout.showAll(time, time);
 				ArrayList<MoneyOutListVO> moneyoutvo=new ArrayList<MoneyOutListVO>();
+				if(moneyoutpo==null)
+					return null;
 				for(MoneyOutListPO po:moneyoutpo){
 					moneyoutvo.add(new MoneyOutListVO(po.getId(), po.getDate(), po.getMoney(), po.getPayer(), po.getAccountNum(), po.getClause(), po.getNote(), po.getCheckType()));
 				}
@@ -89,6 +103,8 @@ public class CheckBLImpl implements CheckBLService {
 			case IN_STOREAGE_NOTE:
 				ArrayList<RepertoryInPO> repertoryinpo=repertoryin.showAll(time, time);
 				ArrayList<RepertoryInVO> repertoryinvo=new ArrayList<RepertoryInVO>();
+				if(repertoryinpo==null)
+					return null;
 				for(RepertoryInPO po:repertoryinpo){
 					repertoryinvo.add(new RepertoryInVO(po.getId(), po.getNum(), po.getTime(), po.getDestination(), po.getAreacode(), po.getRownumber(), po.getFramenumber(), po.getPlacenumber(), po.getCheckType()));
 				}
@@ -96,6 +112,8 @@ public class CheckBLImpl implements CheckBLService {
 			case OUT_STOREAGE_NOTE:
 				ArrayList<RepertoryOutPO> repertoryoutpo=repertoryout.showAll(time, time);
 				ArrayList<RepertoryOutVO> repertoryoutvo=new ArrayList<RepertoryOutVO>();
+				if(repertoryoutpo==null)
+					return null;
 				for(RepertoryOutPO po:repertoryoutpo){
 					repertoryoutvo.add(new RepertoryOutVO(po.getId(), po.getCode(), po.getTime(), po.getDestination(), po.getTransportation(), po.getTransCode(), po.getVehicleCode(), po.getCheckType()));
 				}
@@ -103,6 +121,8 @@ public class CheckBLImpl implements CheckBLService {
 			case SENDING_NOTE:
 				ArrayList<OrderListPO> orderpo=order.showAll(time, time);
 				ArrayList<OrderListVO> ordervo=new ArrayList<OrderListVO>();
+				if(orderpo==null)
+					return null;
 				for(OrderListPO po:orderpo){
 					ordervo.add(new OrderListVO(po.getSenderName(), po.getSenderAddress(), po.getSenderTeleNumber(), po.getReceiverName(), po.getReceiverAddress(), po.getReceiverTeleNumber(), po.getNumber(), po.getWeight(), po.getVolume(), po.getName(), po.getCategory(), po.getPkgState(), po.getPackPrice(), po.getBarCode(), po.getPkgType(), po.getDepartTime(), po.getArriveTime(), po.getCheckType()));
 				}
@@ -110,6 +130,8 @@ public class CheckBLImpl implements CheckBLService {
 			case LOADING_NOTE:
 				ArrayList<LoadListPO> loadpo=load.showAll(time, time);
 				ArrayList<LoadListVO> loadvo=new ArrayList<LoadListVO>();
+				if(loadpo==null)
+					return null;
 				for(LoadListPO po:loadpo){
 					loadvo.add(new LoadListVO(po.getId(), po.getDate(), po.getHallNumber(), po.getTransportationNumber(), po.getDestination(), po.getCarNumber(), po.getGuardMan(), po.getSupercargoMan(), po.getBarcodes(), po.getCheckType()));
 				}
@@ -117,6 +139,8 @@ public class CheckBLImpl implements CheckBLService {
 			case BUSINESSHALL_ARRIVAL_NOTE:
 				ArrayList<HallArrivalListPO> hallarrivalpo=hallarrival.showAll(time, time);
 				ArrayList<HallArrivalListVO> hallarrivalvo=new ArrayList<HallArrivalListVO>();
+				if(hallarrivalpo==null)
+					return null;
 				for(HallArrivalListPO po:hallarrivalpo){
 					hallarrivalvo.add(new HallArrivalListVO(po.getId(), po.getDate(), po.getTransferNumber(), po.getFrom(), po.getState(), po.getBarCodes(),po.getCheckType()));
 				}
@@ -124,6 +148,8 @@ public class CheckBLImpl implements CheckBLService {
 			case DELIVERYING_NOTE:
 				ArrayList<DeliveringListPO> deliverlistpo=deliver.showAll(time, time);
 				ArrayList<DeliveringListVO> deliverlistvo=new ArrayList<DeliveringListVO>();
+				if(deliverlistpo==null)
+					return null;
 		        for(DeliveringListPO po:deliverlistpo){		
 		        	deliverlistvo.add(new DeliveringListVO(po.getId(), po.getDate(), po.getBarCode(), po.getDeliveryMan(), po.getCheckType()));
 		        }
@@ -131,6 +157,8 @@ public class CheckBLImpl implements CheckBLService {
 			case CENTER_ARRIVAL_NOTE:
 				ArrayList<TransArrivalListPO> transarrivalpo=transarrival.showAll(time, time);
 				ArrayList<TransArrivalListVO> transarrivalvo=new ArrayList<TransArrivalListVO>();
+				if(transarrivalpo==null)
+					return null;
 				for(TransArrivalListPO po:transarrivalpo){
 				ArrayList<GoodsInfoVO> goodvo=new ArrayList<GoodsInfoVO>();
 					for(GoodsInfoPO goods:po.getGoodsInfoPOs())
@@ -423,41 +451,49 @@ public class CheckBLImpl implements CheckBLService {
 				MoneyInListVO moneyinvo=(MoneyInListVO)listVO;
 				MoneyInListPO moneyinpo=new MoneyInListPO(moneyinvo.getId(),moneyinvo.getDate(),moneyinvo.getMoneySum(),moneyinvo.getStaffId(),moneyinvo.getBarcode(),moneyinvo.getCheckType());
 				moneyin.update(moneyinpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变收款单信息",user.getname()));
 				return true;
 			case MONET_OUT_NOTE:
 				MoneyOutListVO moneyoutvo=(MoneyOutListVO)listVO;
 				MoneyOutListPO moneyoutpo=new MoneyOutListPO(moneyoutvo.getId(), moneyoutvo.getDate(), moneyoutvo.getMoney(), moneyoutvo.getPayer(), moneyoutvo.getAccountNum(), moneyoutvo.getClause(), moneyoutvo.getNote(), moneyoutvo.getCheckType());
 				moneyout.update(moneyoutpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变付款单信息",user.getname()));
 				return true;
 			case IN_STOREAGE_NOTE:
 				RepertoryInVO repertoryinvo=(RepertoryInVO)listVO;
 				RepertoryInPO repertoryinpo=new RepertoryInPO(repertoryinvo.getId(),repertoryinvo.getNum(),repertoryinvo.getTime(),repertoryinvo.getDestination(),repertoryinvo.getAreacode(),repertoryinvo.getRownumber(),repertoryinvo.getFramenumber(),repertoryinvo.getFramenumber(),repertoryinvo.getCheckType());
 				repertoryin.update(repertoryinpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变入库单信息",user.getname()));
 				return true;
 			case OUT_STOREAGE_NOTE:
 				RepertoryOutVO repertoryoutvo=(RepertoryOutVO)listVO;
 				RepertoryOutPO repertoryoutpo=new RepertoryOutPO(repertoryoutvo.getId(),repertoryoutvo.getCode(),repertoryoutvo.getTime(),repertoryoutvo.getDestination(),repertoryoutvo.getTransportation(),repertoryoutvo.getTransCode(),repertoryoutvo.getVehicleCode(),repertoryoutvo.getCheckType());
 				repertoryout.update(repertoryoutpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变出库单信息",user.getname()));
 				return true;
 			case SENDING_NOTE:
 				OrderListVO ordervo=(OrderListVO)listVO;
 				OrderListPO orderpo=new OrderListPO(ordervo.getSenderName(),ordervo.getSenderAddress(),ordervo.getSenderTeleNumber(),ordervo.getReceiverName(),ordervo.getReceiverAddress(),ordervo.getReceiverTeleNumber(),ordervo.getNumber(),ordervo.getWeight(),ordervo.getVolume(),ordervo.getName(),ordervo.getCategory(),ordervo.getPkgState(),ordervo.getPackPrice(),ordervo.getBarCode(),ordervo.getPkgType(),ordervo.getDepartTime(),ordervo.getArriveTime(),ordervo.getCheckType());
 				order.update(orderpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变快递单信息",user.getname()));
 				return true;
 			case LOADING_NOTE:
 				LoadListVO loadvo=(LoadListVO)listVO;
 				LoadListPO loadpo=new LoadListPO(loadvo.getId(),loadvo.getDate(),loadvo.getHallNumber(),loadvo.getTranspotationNumber(),loadvo.getDestination(),loadvo.getCarNumber(),loadvo.getGuardMan(),loadvo.getSupercargoMan(),loadvo.getBarcodes(),loadvo.getCheckType());
 				load.update(loadpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变装车单信息",user.getname()));
 				return true;
 			case BUSINESSHALL_ARRIVAL_NOTE:
 				HallArrivalListVO hallarrivalvo=(HallArrivalListVO)listVO;
 				HallArrivalListPO hallarrivalpo=new HallArrivalListPO(hallarrivalvo.getId(),hallarrivalvo.getDate(),hallarrivalvo.getTransferNumber(),hallarrivalvo.getFrom(),hallarrivalvo.getState(),hallarrivalvo.getBarCodes(),hallarrivalvo.getCheckType());
 				hallarrival.update(hallarrivalpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变营业厅到达单信息",user.getname()));
 				return true;
 			case DELIVERYING_NOTE:
 				DeliveringListVO delivervo=(DeliveringListVO)listVO;
 				DeliveringListPO deliverpo=new DeliveringListPO(delivervo.getId(),delivervo.getDate(),delivervo.getBarCode(),delivervo.getDeliveryMan(),delivervo.getCheckType());
 				deliver.update(deliverpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变派件单信息",user.getname()));
 				return true;
 			case CENTER_ARRIVAL_NOTE:
 				TransArrivalListVO transarrivalvo=(TransArrivalListVO)listVO;
@@ -467,11 +503,13 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				TransArrivalListPO transarrivalpo=new TransArrivalListPO(transarrivalvo.getId(),transarrivalvo.getTransferNumber(),transarrivalvo.getCenterNumber(),transarrivalvo.getDate(),goodpo,transarrivalvo.getCheckType());
 				transarrival.update(transarrivalpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变中转中心到达单信息",user.getname()));
 				return true;
 			case TRANSIT_NOTE:
 				TransShipmentListVO transshipmentvo=(TransShipmentListVO)listVO;
 				TransShipmentListPO transshipmentpo=new TransShipmentListPO(transshipmentvo.getDate(),transshipmentvo.getTransitDocNumber(),transshipmentvo.getFlightNumber(),transshipmentvo.getDeparturePlace(),transshipmentvo.getDesitination(),transshipmentvo.getContainerNumber(),transshipmentvo.getSupercargoMan(),transshipmentvo.getBarcodes(),transshipmentvo.getCheckType());
 				transshipment.update(transshipmentpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变中转单信息",user.getname()));
 				return true;
 			}
 		}catch(RemoteException e){

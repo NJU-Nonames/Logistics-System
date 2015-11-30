@@ -14,6 +14,7 @@ import vo.MoneyItemVO;
 import vo.MoneyOutListVO;
 import businesslogic.financebl.CostManagementBLImpl;
 import businesslogic.financebl.SettlementManageBLImpl;
+import businesslogic.rmi.RMIHelper;
 import businesslogicservice.chartblservice.FormBLService;
 import businesslogicservice.financeblservice.CostManagementBLService;
 import businesslogicservice.financeblservice.SettlementManageBLService;
@@ -24,8 +25,8 @@ public class FormBLImpl implements FormBLService{
 	
 	
 	public FormBLImpl(){
-		service1=new CostManagementBLImpl();
-		service2=new SettlementManageBLImpl();
+		service1=(CostManagementBLService)RMIHelper.find("CostManagementBLService");
+		service2=(SettlementManageBLService)RMIHelper.find("SettlementManageBLService");
 	}
 	
 	public ArrayList<MoneyInformationListVO> getCostandBenefitChart(
@@ -33,8 +34,10 @@ public class FormBLImpl implements FormBLService{
 		// TODO Auto-generated method stub
 		ArrayList<MoneyItemVO> moneyitemvo=getBusinessCircumstanceChart(start_day, end_day);
 		ArrayList<MoneyInformationListVO> list=new ArrayList<MoneyInformationListVO>();
-		String[] array1=start_day.split("-");
-		String[] array2=end_day.split("-");
+		String[] array11=start_day.split(" ");
+		String[] array1=array11[0].split("-");
+		String[] array21=end_day.split(" ");
+		String[] array2=array21[0].split("-");
 		int[] intarray1=new int[3];
 		int[] intarray2=new int[3];
 		for(int i=0;i<3;i++){
