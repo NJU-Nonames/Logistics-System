@@ -1,5 +1,6 @@
 package mainServer;
 
+import data.DataJDBCConnection;
 import data.RMIstart;
 
 public class MainServer {
@@ -14,6 +15,8 @@ public class MainServer {
 			
 		//启动RMI服务
 		RMIstart.init();
+		
+		DataJDBCConnection.init();
 			
      	System.out.println("Server start!");
 			

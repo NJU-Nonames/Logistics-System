@@ -16,6 +16,17 @@ public class DataJDBCConnection {
 	
 	private static Connection connect;
 	
+	public static void init(){
+		connect=DataJDBCConnection.getConnection();
+		try {
+			PreparedStatement prestmt=connect.prepareStatement("set names gbk");
+			prestmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static Connection getConnection(){
 		 try {
 			 Class.forName("com.mysql.jdbc.Driver"); 

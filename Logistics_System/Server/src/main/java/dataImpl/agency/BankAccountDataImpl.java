@@ -19,7 +19,7 @@ public class BankAccountDataImpl  extends UnicastRemoteObject implements BankAcc
 	}
 
 	public void add(BankAccountPO countpo) {
-		String sql="insert into bankaccount values ("+countpo.getNumber()+",'"+countpo.getName()+"',"+countpo.getMoney()+")";
+		String sql="insert into bankaccount values ('"+countpo.getNumber()+"','"+countpo.getName()+"',"+countpo.getMoney()+")";
 		DataJDBCConnection.update(sql);
 	}
 
@@ -37,7 +37,7 @@ public class BankAccountDataImpl  extends UnicastRemoteObject implements BankAcc
 		BankAccountPO bankAccount=null;
 		String sql;
 		if(keyword.charAt(0)<='9'&&keyword.charAt(0)>='0')
-		     sql="select * from bankaccount where number="+keyword;
+		     sql="select * from bankaccount where number='"+keyword+"'";
 		else
 			sql="select * from bankaccount where name like '%"+keyword+"%'";
 		

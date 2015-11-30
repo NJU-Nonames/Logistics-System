@@ -20,8 +20,8 @@ public class DriverDataImpl extends UnicastRemoteObject implements DriverDataSer
 
 	
 	public void add(DriverPO driver) throws RemoteException {
-		String sql="insert into driver values ("+driver.getDriverNum()+",'"+driver.getName()+"',"+driver.getIDNum()
-				+",'"+driver.getPhoneNum()+"','"+driver.getSex()+"','"+driver.getDrivingLicencePeriod()+"')";
+		String sql="insert into driver values ('"+driver.getDriverNum()+"','"+driver.getName()+"','"+driver.getIDNum()
+				+"','"+driver.getPhoneNum()+"','"+driver.getSex()+"','"+driver.getDrivingLicencePeriod()+"')";
 		DataJDBCConnection.update(sql);
 		
 	}
@@ -29,7 +29,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements DriverDataSer
 
 
 	public void delete(String driverID) throws RemoteException {
-		String sql="delete from driver where driverNum="+driverID;
+		String sql="delete from driver where driverNum='"+driverID+"'";
 		DataJDBCConnection.update(sql);
 		
 	}
@@ -45,7 +45,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements DriverDataSer
 
 	public DriverPO find(String num) {
 		DriverPO driver=null;
-		String sql="select * from driver where driverNum="+num;
+		String sql="select * from driver where driverNum='"+num+"'";
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		try {
 			rs.next();
