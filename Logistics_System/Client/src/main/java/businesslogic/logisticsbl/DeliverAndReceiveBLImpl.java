@@ -2,10 +2,12 @@ package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import po.list.DeliveringListPO;
 import po.list.HallArrivalListPO;
 import po.list.OrderListPO;
+import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
 import dataservice.list.DeliveringListDataService;
 import dataservice.list.HallArrivalListDataService;
@@ -34,46 +36,57 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 	}
 	public ResultMessage createHallArrivalList(HallArrivalListVO hallArrivalList) {
 		// TODO Auto-generated method stub
+		HallArrivalListPO hallarrivallist=null;
+		try{
+			hallarrivallist=service1.find(hallArrivalList.getId());
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}	
+		if(hallarrivallist!=null)
+			return new ResultMessage(false,"营业厅到达单已经存在!");
 		for(String id:hallArrivalList.getBarCodes()){
 			try {
 				OrderListPO orderListPO=service3.find(id);
-				//修改！！！！！！！！！！！！
-	//			orderListPO.getPkgState().add(keywords);
+         		orderListPO.getPkgState().add((String)df.format(new Date())+" 快递到达"+user.getAgencyName());
 				service3.update(orderListPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();
-			}
-			
+			}		
 		}
-		HallArrivalListPO result=new HallArrivalListPO(hallArrivalList.getId(),hallArrivalList.getDate(),hallArrivalList.getTransferNumber(),hallArrivalList.getFrom(),hallArrivalList.getState(),hallArrivalList.getBarCodes(),hallArrivalList.getCheckType());
+		hallarrivallist=new HallArrivalListPO(hallArrivalList.getId(),hallArrivalList.getDate(),hallArrivalList.getTransferNumber(),hallArrivalList.getFrom(),hallArrivalList.getState(),hallArrivalList.getBarCodes(),hallArrivalList.getCheckType());
 		try {
-			service1.add(result);
+			service1.add(hallarrivallist);
+			system.add(new SystemLogPO((String)df.format(new Date()),"添加营业厅到达单,单号为"+hallarrivallist.getId(),user.getAdmin()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
-		}
-		
-		return new ResultMessage(true, "营业厅到达单已生成！");
+		}	
+		return new ResultMessage(true, "添加营业厅到达单成功!");
 	}
-
 	public ResultMessage createDeliveringList(DeliveringListVO deliveringList) {
+		DeliveringListPO deliverlistpo=null;
+		try{
+			deliverlistpo=service2.find(deliveringList.getId());
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		if(deliverlistpo!=null)
+			return new ResultMessage(false,"派件单已经存在!");
 		for(String id:deliveringList.getBarCode()){
 			try {
 				OrderListPO orderListPO=service3.find(id);
-		//修改！！！！！！！！！！！！！！！
-				//orderListPO.getPkgState().add(keywords);
+				orderListPO.getPkgState().add((String)df.format(new Date())+" 快递正在派件");
 				service3.update(orderListPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();
-			}
-			
+			}	
 		}
-		DeliveringListPO result=new DeliveringListPO(deliveringList.getId(),deliveringList.getDate(),deliveringList.getBarCode(),deliveringList.getDeliveryMan(),deliveringList.getCheckType());
+		deliverlistpo=new DeliveringListPO(deliveringList.getId(),deliveringList.getDate(),deliveringList.getBarCode(),deliveringList.getDeliveryMan(),deliveringList.getCheckType());
 		try {
-			service2.add(result);
+			service2.add(deliverlistpo);
+			system.add(new SystemLogPO((String)df.format(new Date()),"添加派件单,单号为"+deliverlistpo.getId(),user.getAdmin()));
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			e.printStackTrace();		
 		}
-		return new ResultMessage(true, "派件单已生成!");
+		return new ResultMessage(true, "添加派件单成功!");
 	}
-
 }

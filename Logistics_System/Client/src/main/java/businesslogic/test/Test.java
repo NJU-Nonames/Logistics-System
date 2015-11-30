@@ -2,6 +2,7 @@ package businesslogic.test;
 
 import java.util.ArrayList;
 
+import presentation.mainui.CurrentUser;
 import utility.CheckType;
 import utility.ExpressType;
 import utility.PkgType;
@@ -15,9 +16,9 @@ import businesslogic.userbl.UserManageBLImpl;
 
 public class Test {
 	
-	UserManageBLImpl usermanage=new UserManageBLImpl();
-	DeliverAndReceiveBLImpl deliver=new DeliverAndReceiveBLImpl();
-	SendPkgBLImpl send=new SendPkgBLImpl();
+	UserManageBLImpl usermanage=new UserManageBLImpl(new CurrentUser("小亮","南京市中转中心","025000","xiaoliang"));
+	DeliverAndReceiveBLImpl deliver=new DeliverAndReceiveBLImpl(new CurrentUser("小亮","南京市中转中心","025000","xiaoliang"));
+	SendPkgBLImpl send=new SendPkgBLImpl(new CurrentUser("小亮","南京市中转中心","025000","xiaoliang"));
 	public static void main(String []args){
 		Test t=new Test();
 		t.test();

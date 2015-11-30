@@ -33,7 +33,7 @@ public class CostManagementBLImpl implements CostManagementBLService{
 			if(moneyoutpo==null){
 				moneyoutpo=new MoneyOutListPO(moneyOut.getId(),moneyOut.getDate(),moneyOut.getMoney(),moneyOut.getPayer(),moneyOut.getAccountNum(),moneyOut.getClause(),moneyOut.getNote(),moneyOut.getCheckType());
 				moneyoutlistdataservice.add(moneyoutpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"创建付款单信息",user.getAdmin()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"创建付款单,单号为"+moneyOut.getId(),user.getAdmin()));
 				return new ResultMessage(true,"添加付款单成功!");
 			}
 		}catch(RemoteException e){

@@ -68,7 +68,7 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 			if(moneyinpo==null){
 				moneyinpo=new MoneyInListPO(moneyin.getId(),moneyin.getDate(),moneyin.getMoneySum(),moneyin.getStaffId(),moneyin.getBarcode(),moneyin.getCheckType());
 				moneyinlistdataservice.add(moneyinpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"创建收款单信息",user.getAdmin()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"创建收款单,单号为"+moneyin.getId(),user.getAdmin()));
 				return new ResultMessage(true,"添加收款单成功!");
 			}
 		}catch(RemoteException e){

@@ -31,7 +31,7 @@ public ConstantManageBLImpl(CurrentUser currentuser){
 		// TODO Auto-generated method stub
 		try{
 			constantdataservice.addCity(name);
-			system.add(new SystemLogPO((String)df.format(new Date()),"添加新城市",user.getAdmin()));
+			system.add(new SystemLogPO((String)df.format(new Date()),"添加新城市"+name,user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -74,7 +74,7 @@ public ConstantManageBLImpl(CurrentUser currentuser){
 			return new ResultMessage(false,"城市之间的距离不能为负数!");
 		try{
 			constantdataservice.setDistance(newDistance, cityA, cityB);
-			system.add(new SystemLogPO((String)df.format(new Date()),"修改"+cityA+"和"+cityB+"的距离",user.getAdmin()));
+			system.add(new SystemLogPO((String)df.format(new Date()),"修改"+cityA+"和"+cityB+"的距离为"+newDistance,user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -87,7 +87,7 @@ public ConstantManageBLImpl(CurrentUser currentuser){
 		// TODO Auto-generated method stub
 		try{
 			constantdataservice.setPrice(newPrice, type);
-			system.add(new SystemLogPO((String)df.format(new Date()),"修改"+type+"价格信息",user.getAdmin()));
+			system.add(new SystemLogPO((String)df.format(new Date()),"修改"+type+"价格为"+newPrice,user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}

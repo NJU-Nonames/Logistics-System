@@ -3,8 +3,10 @@ package businesslogic.logisticsbl;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.agency.DriverPO;
+import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
 import dataservice.agency.DriverDataService;
 import dataservice.system.SystemLogDataService;
@@ -32,6 +34,8 @@ public class DriverManageBLImpl implements DriverManageBLService {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(poList==null)
+			return null;
 		ArrayList<DriverVO> voList=new ArrayList<DriverVO>();
 		for(DriverPO po:poList){
 			voList.add(new DriverVO(po));
@@ -44,19 +48,20 @@ public class DriverManageBLImpl implements DriverManageBLService {
 		DriverPO temp=null;
 		try {
 			temp = service.find(driver.getDriverNum());
-		} catch (RemoteException e1) {
-			e1.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
 		if(temp==null){
-			return new ResultMessage(false, "该司机不存在！");
+			return new ResultMessage(false, "该司机不存在!");
 		}
 		else{
 			try {
 				service.update(new DriverPO(driver.getDriverNum(),driver.getName(),driver.getIDNum(),driver.getPhoneNum(),driver.getSex(),driver.getDrivingLicencePeriod()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"更改司机信息,编号为"+driver.getDriverNum(),user.getAdmin()));
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
-			return new ResultMessage(true, "更新司机信息成功！");
+			return new ResultMessage(true, "更新司机信息成功!");
 		}
 	}
 
@@ -69,15 +74,16 @@ public class DriverManageBLImpl implements DriverManageBLService {
 			e1.printStackTrace();
 		}
 		if(temp==null){
-			return new ResultMessage(false, "该司机不存在！");
+			return new ResultMessage(false, "该司机不存在!");
 		}
 		else{
 			try {
 				service.delete(driver.getDriverNum());
+				system.add(new SystemLogPO((String)df.format(new Date()),"删除司机信息,编号为"+driver.getDriverNum(),user.getAdmin()));
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
-			return new ResultMessage(true, "删除司机成功！");
+			return new ResultMessage(true, "删除司机成功!");
 		}
 	}
 
@@ -90,14 +96,15 @@ public class DriverManageBLImpl implements DriverManageBLService {
 			e1.printStackTrace();
 		}
 		if(temp!=null){
-			return new ResultMessage(false, "该司机编号已经存在！");
+			return new ResultMessage(false, "该司机编号已经存在!");
 		}
 		try {
 			service.add(new DriverPO(driver.getDriverNum(),driver.getName(),driver.getIDNum(),driver.getPhoneNum(),driver.getSex(),driver.getDrivingLicencePeriod()));
+			system.add(new SystemLogPO((String)df.format(new Date()),"添加司机信息,编号为"+driver.getDriverNum(),user.getAdmin()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, "添加司机成功！");
+		return new ResultMessage(true, "添加司机成功!");
 	}
 
 	public DriverVO find(String num) {
@@ -108,6 +115,8 @@ public class DriverManageBLImpl implements DriverManageBLService {
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 		}
+		if(temp==null)
+			return null;
 		return new DriverVO(temp);
 	}
 

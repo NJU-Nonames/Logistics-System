@@ -2,9 +2,11 @@ package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import po.list.OrderListPO;
 import po.list.TransShipmentListPO;
+import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
 import dataservice.list.HallArrivalListDataService;
 import dataservice.list.OrderListDataService;
@@ -28,14 +30,12 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 		user=currentuser;
 		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
-
 	public ResultMessage createShiplist(TransShipmentListVO transShipment) {
 		// TODO 自动生成的方法存根
 		try{
 			for(String barcode:transShipment.getBarcodes()){
 				OrderListPO orderpo=orderlist.find(barcode);
-				//待修改！！！！！！！！！！！！
-				//orderpo.getPkgState().add(keywords);
+				orderpo.getPkgState().add(df.format(new Date())+" 快递运出"+user.getAgencyName());
 				orderlist.update(orderpo);
 			 }
 			}catch(RemoteException e){
@@ -48,6 +48,7 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 					return new ResultMessage(false,"该中转单已经存在!");
 				transpo=new TransShipmentListPO(transShipment.getDate(),transShipment.getTransitDocNumber(),transShipment.getFlightNumber(),transShipment.getDeparturePlace(),transShipment.getDesitination(),transShipment.getContainerNumber(),transShipment.getSupercargoMan(),transShipment.getBarcodes(),transShipment.getCheckType());
 				transshipment.add(transpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"添加中转单,单号为"+transShipment.getTransitDocNumber(),user.getAdmin()));
 			}catch(RemoteException e){
 				e.printStackTrace();			
 		}

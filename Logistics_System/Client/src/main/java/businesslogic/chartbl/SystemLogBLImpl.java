@@ -17,13 +17,6 @@ public class SystemLogBLImpl implements SystemLogBLService{
 	public SystemLogBLImpl(){
 		this.systemLogDataService=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
-
-	public static void main(String args[]){
-		SystemLogBLImpl s=new SystemLogBLImpl();
-		s.addLogInfo(new SystemLogVO("2015-11-2 11:23:22", "杨", "ysy"));
-		
-	}
-	
 	public ArrayList<SystemLogVO> showAll(String time1, String time2) {
 		
 		ArrayList<SystemLogPO> systempo = null;

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import presentation.mainui.CurrentUser;
 import utility.ChartType;
 import vo.ListVO;
 import vo.MoneyInListVO;
@@ -22,11 +23,12 @@ import businesslogicservice.financeblservice.SettlementManageBLService;
 public class FormBLImpl implements FormBLService{
 	CostManagementBLService service1=null;
 	SettlementManageBLService service2=null;
+	CurrentUser user=null;
 	
-	
-	public FormBLImpl(){
+	public FormBLImpl(CurrentUser currentuser){
 		service1=(CostManagementBLService)RMIHelper.find("CostManagementBLService");
 		service2=(SettlementManageBLService)RMIHelper.find("SettlementManageBLService");
+		user=currentuser;
 	}
 	
 	public ArrayList<MoneyInformationListVO> getCostandBenefitChart(
