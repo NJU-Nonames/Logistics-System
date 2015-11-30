@@ -25,10 +25,10 @@ public class Test2 {
 	}
 	
 	public void test(){
-		cost.createMoneyOutlist(new MoneyOutListVO("02500100001", "2015-11-29 19:46:00", 159.4, "杨三羊", "100002", CostClause.shipmentfare, "无", CheckType.UNDERCHECK));
-		System.out.println(cost.search("2015-11-29", "2015-11-30").get(0).getMoney());
+		//cost.createMoneyOutlist(new MoneyOutListVO("02500100001", "2015-11-29 19:46:00", 159.4, "杨三羊", "100002", CostClause.shipmentfare, "无", CheckType.UNDERCHECK));
+	//System.out.println(cost.search("2015-11-29", "2015-11-30").get(0).getMoney());
 		
-		st.createMoneyInList(new MoneyInListVO("02500100001", "2015-11-29 19:57:00", 300, "025001201", barcodes, CheckType.UNDERCHECK));
-		st.searchbyhall("2015-11-29", "2015-11-30", "025001");
+		//st.createMoneyInList(new MoneyInListVO("02500100001", "2015-11-29 19:57:00", 300, "025001201", barcodes, CheckType.UNDERCHECK));
+		System.out.println(st.searchbyhall("2015-11-29", "2015-11-30", "025001").get(0).getMoneySum());
 	}
 }

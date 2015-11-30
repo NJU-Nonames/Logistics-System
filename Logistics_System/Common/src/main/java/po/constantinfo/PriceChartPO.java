@@ -1,6 +1,8 @@
 package po.constantinfo;
 
-public class PriceChartPO {
+import java.io.Serializable;
+
+public class PriceChartPO implements Serializable {
 	/**
 	 * 火车每公里每吨运费
 	 */

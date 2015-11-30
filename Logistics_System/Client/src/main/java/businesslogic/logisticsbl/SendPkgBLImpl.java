@@ -30,8 +30,10 @@ public class SendPkgBLImpl implements SendPkgBLService {
 						orderListPO.getReceiverAddress().substring(0,2).equals(orderListVO.getReceiverAddress().substring(0, 2))&&
 						orderListPO.getCategory().equals(orderListVO.getCategory())){
 					count++;
-					String[] temp1=orderListPO.getDepartTime().split("-");
-					String[] temp2=orderListPO.getArriveTime().split("-");
+					String[] temp=orderListPO.getDepartTime().split(" ");
+					String[] temp1=temp[0].split("-");
+					String[] temp0=orderListPO.getArriveTime().split(" ");
+					String[] temp2=temp0[0].split("-");
 					days+=((Integer.parseInt(temp2[0])-Integer.parseInt(temp1[0]))*360
 							+(Integer.parseInt(temp2[1])-Integer.parseInt(temp1[1]))*30
 							+Integer.parseInt(temp2[2])-Integer.parseInt(temp1[2]));
@@ -41,6 +43,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 			if(count!=0){
 				days=days/count;
 			}
+			System.out.println(count);
 			String[] temp2=orderListVO.getDepartTime().split(" ");
 			String[] temp=temp2[0].split("-");
 			int year=Integer.parseInt(temp[0]);
@@ -48,7 +51,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 			int day=Integer.parseInt(temp[2]);
 			year+=days/360;
 			month+=(days%360)/30;
-			days+=((days%360)%30);
+			day+=((days%360)%30);
 			orderListVO.setArriveTime(year+"-"+month+"-"+day);
 			//估计时间完成
 			
