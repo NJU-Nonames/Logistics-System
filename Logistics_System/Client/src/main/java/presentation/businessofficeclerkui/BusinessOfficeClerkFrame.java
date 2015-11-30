@@ -13,6 +13,18 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import businesslogic.financebl.SettlementManageBLImpl;
+import businesslogic.logisticsbl.DeliverAndReceiveBLImpl;
+import businesslogic.logisticsbl.DriverManageBLImpl;
+import businesslogic.logisticsbl.LoadBLImpl;
+import businesslogic.logisticsbl.SearchPkgInformationBLImpl;
+import businesslogic.logisticsbl.TruckManagementBLImpl;
+import businesslogicservice.financeblservice.SettlementManageBLService;
+import businesslogicservice.logisticsblservice.DeliverAndReceiveBLService;
+import businesslogicservice.logisticsblservice.DriverManageBLService;
+import businesslogicservice.logisticsblservice.LoadBLService;
+import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
+import businesslogicservice.logisticsblservice.TruckManageBLService;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 
@@ -55,11 +67,12 @@ public class BusinessOfficeClerkFrame extends JFrame{
 	DriverManage driverManage;//司机信息管理
 	
 	
-
-//	AccountBLService accountBLService;
-//	BaseDataSettingBLService baseDataSettingBLService;
-//	CostManagementBLService costManagementBLService;
-//	SettlementManageBLService settlementManageBLService;
+	SettlementManageBLService settlementManageBLService;
+	SearchPkgInformationBLService searchPkgInformationBLService;
+	DeliverAndReceiveBLService deliverAndReceiveBLService;
+	LoadBLService loadBLService;
+	TruckManageBLService truckManageBLService;
+	DriverManageBLService driverManageBLService;
 
 	private boolean isDraging;//是否被拖住
 	private int xx;
@@ -67,7 +80,7 @@ public class BusinessOfficeClerkFrame extends JFrame{
 	
 	public BusinessOfficeClerkFrame(){
 		//this.currentUser=currentUser;
-		this.currentUser=new CurrentUser("王大锤","南京营业厅","025001");
+		this.currentUser=new CurrentUser("王大锤","南京营业厅","025001","admin");
 		this.setUndecorated(true);
 		this.addMouseListener(new MouseAdapter() { 
 			public void mousePressed(MouseEvent e) { 
@@ -106,18 +119,20 @@ public class BusinessOfficeClerkFrame extends JFrame{
 		
 		this.setIconImage(Img.BusinessOfficeClerkICON);
 		
-
-//		accountBLService=null;
-//		baseDataSettingBLService=null;
-//		costManagementBLService=null;
-//		settlementManageBLService=null;
 		
-		loadManage=new LoadManage(this, currentUser);
-		receive=new Receive(this, currentUser);
-		deliver=new Deliver(this, currentUser);
-		checkList=new CheckList(this, currentUser);
-		truckManage=new TruckManage(this, currentUser);
-		driverManage=new DriverManage(this, currentUser);
+		settlementManageBLService=new SettlementManageBLImpl(this.currentUser);
+		searchPkgInformationBLService=new SearchPkgInformationBLImpl(this.currentUser);
+		deliverAndReceiveBLService=new DeliverAndReceiveBLImpl(this.currentUser);
+		loadBLService=new LoadBLImpl(this.currentUser);
+		truckManageBLService=new TruckManagementBLImpl(this.currentUser);
+		driverManageBLService=new DriverManageBLImpl(this.currentUser);
+		
+		loadManage=new LoadManage(this, loadBLService, searchPkgInformationBLService, currentUser);
+		receive=new Receive(this, deliverAndReceiveBLService, searchPkgInformationBLService, currentUser);
+		deliver=new Deliver(this, deliverAndReceiveBLService, searchPkgInformationBLService, currentUser);
+		checkList=new CheckList(this, settlementManageBLService, searchPkgInformationBLService, currentUser);
+		truckManage=new TruckManage(this, truckManageBLService, currentUser);
+		driverManage=new DriverManage(this, driverManageBLService, currentUser);
 
 		j.add(loadManage);
 		j.add(receive);

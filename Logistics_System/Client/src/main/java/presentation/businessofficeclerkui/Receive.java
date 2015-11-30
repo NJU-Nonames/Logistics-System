@@ -5,20 +5,44 @@
  */
 package presentation.businessofficeclerkui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Vector;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
+import businesslogicservice.logisticsblservice.DeliverAndReceiveBLService;
+import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
 import presentation.img.Img;
+import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.CheckType;
+import utility.GoodsState;
+import utility.PkgType;
+import utility.ResultMessage;
+import vo.HallArrivalListVO;
+import vo.OrderListVO;
 
 /**
  * @author 谭期友
@@ -27,7 +51,8 @@ import presentation.mainui.MyButton;
 public class Receive extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private DeliverAndReceiveBLService bl;
+	private SearchPkgInformationBLService bl2;
 	private BusinessOfficeClerkFrame frame;
 	private CurrentUser currentUser;
 	
@@ -43,6 +68,18 @@ public class Receive extends JPanel{
 	private MyButton goto_TruckManage;
 	private MyButton goto_DriverManage;
 	//详细操作按钮以及其他组件
+	private MyButton add;
+	private MyButton remove;
+	private MyButton confirm;
+
+	private JTextField date;
+	private JTextField TransferNumber;
+	private JTextField from;
+	private JComboBox<String> state;
+	private JTextField barCode;
+	private DefaultTableModel barCodeTableModel;
+	private JTable barCodeTable;
+	
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
@@ -63,9 +100,10 @@ public class Receive extends JPanel{
         }
 	}
 	
-	public Receive(BusinessOfficeClerkFrame frame, CurrentUser currentUser){
+	public Receive(BusinessOfficeClerkFrame frame, DeliverAndReceiveBLService bl, SearchPkgInformationBLService bl2, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=bl;
+		this.bl2=bl2;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -123,6 +161,18 @@ public class Receive extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         goto_Receive = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_Receive.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				clear();
+				frame.setStated(frame.getState());
+				frame.setState(2);
+				frame.setChanged(true);
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
         goto_Deliver = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
         goto_Deliver.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
@@ -176,6 +226,39 @@ public class Receive extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
+    	add = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	add.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_add();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	add.setLocation(170+20+330,128+80+40+40+40+40-7);
+    	remove = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	remove.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_remove();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	remove.setLocation(596+220,128+80+40+40+40+40-7);
+    	confirm = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	confirm.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_confirm();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	confirm.setLocation(596-15,128+80+40+40+40+160);
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
@@ -214,7 +297,91 @@ public class Receive extends JPanel{
     	goto_DriverManage.setLocation(20,400);
     	
     	//其他组件
-        
+		JLabel l5 = new JLabel("到达日期：");
+		l5.setSize((int)(16*5*1.07f), 16);
+		l5.setFont(new Font("宋体", Font.BOLD, 15));
+		l5.setLocation(170+20, 128+80);
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String time=format.format(date_);
+		date = new JTextField(time);
+		date.setSize(150, 20);
+		date.setLocation(170+20+(int)(16*7*1.07f),128+80-3);
+
+		JLabel l3 = new JLabel("中转单编号：");
+		l3.setSize((int)(16*7*1.07f), 16);
+		l3.setFont(new Font("宋体", Font.BOLD, 15));
+		l3.setLocation(170+20, 128+80+40);
+		TransferNumber = new JTextField();
+		TransferNumber.setSize(150, 20);
+		TransferNumber.setLocation(170+20+(int)(16*7*1.07f),128+80+40-3);
+
+		JLabel l4 = new JLabel("出发地：");
+		l4.setSize((int)(16*5*1.07f), 16);
+		l4.setFont(new Font("宋体", Font.BOLD, 15));
+		l4.setLocation(170+20, 128+80+40+40);
+		from = new JTextField();
+		from.setSize(150, 20);
+		from.setLocation(170+20+(int)(16*7*1.07f),128+80+40+40-3);
+
+		JLabel l6 = new JLabel("货物到达状态：");
+		l6.setSize((int)(16*7*1.07f), 16);
+		l6.setFont(new Font("宋体", Font.BOLD, 15));
+		l6.setLocation(170+20, 128+80+40+40+40);
+		state=new JComboBox<String>();
+		state.addItem("完整");
+		state.addItem("损坏");
+		state.addItem("丢失");
+		state.setSize(150, 20);
+		state.setLocation(170+20+(int)(16*7*1.07f), 128+80+40+40+40-3);
+		state.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
+		
+		JLabel l7 = new JLabel("订单条形码：");
+		l7.setSize((int)(16*6*1.07f), 16);
+		l7.setFont(new Font("宋体", Font.BOLD, 15));
+		l7.setLocation(170+20, 128+80+40+40+40+40);
+		barCode = new JTextField();
+		barCode.setSize(150, 20);
+		barCode.setLocation(170+20+(int)(16*7*1.07f),128+80+40+40+40+40-3);
+		
+
+		//表头
+		Vector<String> vColumns = new Vector<String>();
+		vColumns.add("所包含的所有订单编号");
+		//数据
+		Vector<String> vData = new Vector<String>();
+		//模型
+		barCodeTableModel = new DefaultTableModel(vData, vColumns);
+		//表格
+		barCodeTable = new JTable(barCodeTableModel){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;//不能修改
+			}
+		};
+		barCodeTable.setPreferredScrollableViewportSize(new Dimension(380,120));
+		barCodeTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		barCodeTable.setSelectionBackground(Color.YELLOW);
+		JPanel jp=new JPanel();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.getViewport().add(barCodeTable);
+		barCodeTable.setFillsViewportHeight(true);
+		jp.setSize(400, 150);
+		jp.setLocation(596+20, 128+80);
+		jp.setOpaque(false);
+		jp.add(scrollPane,BorderLayout.CENTER);
+
+
+		JLabel l8 = new JLabel("生成营业厅到达单：");
+		l8.setSize((int)(16*9*1.07f), 16);
+		l8.setFont(new Font("宋体", Font.BOLD, 15));
+		l8.setLocation(596-250,128+80+40+40+40+160+7);
 
 		
 		
@@ -234,12 +401,126 @@ public class Receive extends JPanel{
     	add(goto_TruckManage);
     	add(goto_DriverManage);
 
+    	add(l5);
+    	add(date);
+    	add(l3);
+    	add(TransferNumber);
+    	add(l4);
+    	add(from);
+    	add(l6);
+    	add(state);
+    	add(l7);
+    	add(barCode);
     	
+    	add(jp);
+    	add(l8);
+
+		add(add);
+		add(remove);
+		add(confirm);
 	}
 
+	private void _add(){
+		String barCode_s = barCode.getText();
+
+		result = CheckFormat.checkOrderNum(barCode_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		
+		OrderListVO orderListVO = bl2.searchPkgInformation(barCode_s);
+		if(orderListVO==null){
+			printMessage("此订单不存在！", Color.RED);
+			return;
+		}
+
+		int i;
+		String s;
+		for(i=0;i<barCodeTable.getRowCount();i++){
+			s=(String) barCodeTable.getValueAt(i, 0);
+			if(s.compareTo(barCode_s)==0){
+				printMessage("不能包含重复订单！", Color.RED);
+				return;
+			}
+		}
+		
+		
+		Vector<String> v = new Vector<String>();
+		v.add(barCode_s);
+		barCodeTableModel.addRow(v);
+		
+		barCode.setText("");
+	}
+	private void _remove(){
+		int index = barCodeTable.getSelectedRow();
+		if(index == -1){
+			printMessage("请选中一个订单！", Color.RED);
+			return;
+		}
+		barCodeTableModel.removeRow(index);
+	}
+	private void _confirm(){
+		String date_s = date.getText();
+		String TransferNumber_s = TransferNumber.getText();
+		String from_s = from.getText();
+
+		if(CheckFormat.checkTime(date_s).compareTo("格式正确")!=0){
+			printMessage(CheckFormat.checkTime(date_s), Color.RED);
+			return;
+		}
+		if(CheckFormat.checkTransShipNum(TransferNumber_s).compareTo("格式正确")!=0){
+			printMessage(CheckFormat.checkTransShipNum(TransferNumber_s), Color.RED);
+			return;
+		}
+		if(from_s.compareTo("")==0){
+			printMessage("没有输入出发地！", Color.RED);
+			return;
+		}
+		if(barCodeTable.getRowCount()==0){
+			printMessage("未包含订单！", Color.RED);
+			return;
+		}
+
+		String s1 = (String) state.getSelectedItem();
+		GoodsState goodsState = null;
+		if(s1.compareTo("完整")==0){
+			goodsState=GoodsState.COMPLETE;
+		}else if(s1.compareTo("损坏")==0){
+			goodsState=GoodsState.BREAK;
+		}else if(s1.compareTo("丢失")==0){
+			goodsState=GoodsState.LOST;
+		}
+		
+		ArrayList<String> _barcodes=new ArrayList<String>();
+		for(int i=0;i<barCodeTable.getRowCount();i++){
+			String s=(String) barCodeTable.getValueAt(i, 0)+"";
+			_barcodes.add(s);
+		}
+		
+		HallArrivalListVO hallArrivalList = new HallArrivalListVO("?", date_s, TransferNumber_s, from_s, goodsState, _barcodes, CheckType.UNDERCHECK);
+		ResultMessage resultMessage = bl.createHallArrivalList(hallArrivalList);
+		if(!resultMessage.isPass()){
+			printMessage(resultMessage.getMessage(), Color.RED);
+			return;
+		}else{
+			printMessage(resultMessage.getMessage(), Color.BLUE);
+		}
+
+		TransferNumber.setText("");
+		from.setText("");
+		state.setSelectedItem("完整");
+		barCode.setText("");
+		while(barCodeTable.getRowCount()!=0)
+			barCodeTableModel.removeRow(0);
+	}
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		TransferNumber.setText("");
+		from.setText("");
+		state.setSelectedItem("完整");
+		barCode.setText("");
+		while(barCodeTable.getRowCount()!=0)
+			barCodeTableModel.removeRow(0);
 		willprintMessage=false;
 		repaint();
 	}

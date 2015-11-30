@@ -8,6 +8,11 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import businesslogic.logisticsbl.ReceivePkgBLImpl;
+import businesslogic.logisticsbl.SearchPkgInformationBLImpl;
+import businesslogic.logisticsbl.SendPkgBLImpl;
+import businesslogicservice.logisticsblservice.ReceivePkgBLService;
+import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
 import businesslogicservice.logisticsblservice.SendPkgBLService;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
@@ -46,9 +51,8 @@ public class CourierFrame extends JFrame{
 	
 
 	SendPkgBLService sendPkgBLService;
-//	BaseDataSettingBLService baseDataSettingBLService;
-//	CostManagementBLService costManagementBLService;
-//	SettlementManageBLService settlementManageBLService;
+	ReceivePkgBLService receivePkgBLService;
+	SearchPkgInformationBLService searchPkgInformationBLService;
 
 	private boolean isDraging;//是否被拖住
 	private int xx;
@@ -56,7 +60,7 @@ public class CourierFrame extends JFrame{
 	
 	public CourierFrame(){
 		//this.currentUser=currentUser;
-		this.currentUser=new CurrentUser("王大锤","南京营业厅","025001");
+		this.currentUser=new CurrentUser("王大锤","南京营业厅","025001","admin");
 		this.setUndecorated(true);
 		this.addMouseListener(new MouseAdapter() { 
 			public void mousePressed(MouseEvent e) { 
@@ -96,14 +100,13 @@ public class CourierFrame extends JFrame{
 		this.setIconImage(Img.CourierICON);
 		
 
-		sendPkgBLService=null;
-//		baseDataSettingBLService=null;
-//		costManagementBLService=null;
-//		settlementManageBLService=null;
+		sendPkgBLService=new SendPkgBLImpl(this.currentUser);
+		receivePkgBLService=new ReceivePkgBLImpl(this.currentUser);
+		searchPkgInformationBLService=new SearchPkgInformationBLImpl(this.currentUser);
 
 		sendPkg=new SendPkg(this,sendPkgBLService, currentUser);
-		receivePkg=new ReceivePkg(this, currentUser);
-		searchPkgInformation=new SearchPkgInformation(this, currentUser);
+		receivePkg=new ReceivePkg(this, receivePkgBLService, currentUser);
+		searchPkgInformation=new SearchPkgInformation(this, searchPkgInformationBLService, currentUser);
 
 		j.add(sendPkg);
 		j.add(receivePkg);

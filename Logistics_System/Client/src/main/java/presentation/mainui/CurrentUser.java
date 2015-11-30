@@ -11,9 +11,6 @@ public class CurrentUser {
 	private String agencyName;
 	private String agencyNum;
 	private String admin;
-	public String getAdmin(){
-		return admin;
-	}
 	
 	public String getname(){
 		return this.name;
@@ -23,6 +20,9 @@ public class CurrentUser {
 	}
 	public String getAgencyNum(){
 		return agencyNum;
+	}
+	public String getAdmin(){
+		return admin;
 	}
 	public CurrentUser(String name,String agencyName,String agencyNum,String admin){
 		this.name = name;

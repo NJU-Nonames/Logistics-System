@@ -23,12 +23,14 @@ import javax.swing.JTextField;
 
 import businesslogicservice.logisticsblservice.SendPkgBLService;
 import presentation.img.Img;
+import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
 import utility.CheckType;
 import utility.ExpressType;
 import utility.PkgType;
+import utility.ResultMessage;
 import vo.OrderListVO;
 
 /**
@@ -412,6 +414,17 @@ public class SendPkg extends JPanel{
 	}
 
 	private void _create(){
+		/*String orderlistId="123456789012345678";
+		ArrayList<String> a=new ArrayList<String>();
+		a.add("2015-10-10 17:10 南京大学离开");
+		a.add("2015-10-11 8:20 到达北京市海淀区");
+		OrderListVO orderListVO=new OrderListVO("张三", "地址1", "15278313639", "李四", "地址2", "15278313638", "1", 50.12, 50.13, "联想笔记本电脑", ExpressType.STANDARD, a, 12.3, orderlistId, PkgType.PLASTIC, "2015-10-10", "2015-10-12", CheckType.UNDERCHECK);
+
+		System.out.println(orderListVO.getPackPrice());
+		System.out.println(orderListVO.getArriveTime());
+		bl.createMoneyAndDate(orderListVO);
+		System.out.println(orderListVO.getPackPrice());
+		System.out.println(orderListVO.getArriveTime());*/
 		String _name1 = name1.getText();
 		String _phone1 = phone1.getText();
 		String _address1 = address1.getText();
@@ -424,19 +437,57 @@ public class SendPkg extends JPanel{
 		String _num = num.getText();
 		String _name = name.getText();
 		if(_name1.compareTo("")==0
-				||_phone1.compareTo("")==0
 				||_address1.compareTo("")==0
 				||_name2.compareTo("")==0
-				||_phone2.compareTo("")==0
 				||_address2.compareTo("")==0
 				||_weight.compareTo("")==0
 				||_volume.compareTo("")==0
-				||_date.compareTo("")==0
 				||_num.compareTo("")==0
 				||_name.compareTo("")==0){
 			printMessage("寄件单输入不完整！", Color.RED);
 			return;
 		}
+
+		result = CheckFormat.checkPhoneNum(_phone1);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		result = CheckFormat.checkPhoneNum(_phone2);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		result = CheckFormat.checkTime(_date);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+
+		double _weight_double;
+		try{
+			_weight_double = Double.parseDouble(_weight);
+		}catch(NumberFormatException e){
+			printMessage("请输入正确重量！", Color.RED);
+			return;
+		}
+		double _volume_double;
+		try{
+			_volume_double = Double.parseDouble(_volume);
+		}catch(NumberFormatException e){
+			printMessage("请输入正确体积！", Color.RED);
+			return;
+		}
+		int _num_int;
+		try{
+			_num_int = Integer.parseInt(_num);
+		}catch(NumberFormatException e){
+			printMessage("请输入正确寄件件数！", Color.RED);
+			return;
+		}
+		
+		
+		
 		String s1 = (String) pkgType.getSelectedItem();
 		PkgType type = null;
 		if(s1.compareTo("木箱")==0){
@@ -457,21 +508,13 @@ public class SendPkg extends JPanel{
 			category=ExpressType.EXPRESS;
 		}
 		
-
-		double _weight_, _volume_;
-		try{
-			_weight_ = Double.parseDouble(_weight);
-			_volume_ = Double.parseDouble(_volume);
-		}catch(NumberFormatException e){
-			printMessage("请输入正确重量或体积", Color.RED);
-			return;
-		}
-
+		//生成条形码
 		Date date_=new Date();
 		DateFormat format=new SimpleDateFormat("yyyy:MM:dd:HH:mm");
 		String time=format.format(date_);
 	    String[] times=time.split(":");
-	    String barCode=025001+times[0]+times[1]+times[2]+times[3]+times[4];
+	    String barCode=currentUser.getAgencyNum()+times[0]+times[1]+times[2]+times[3]+times[4];
+	    System.out.println(barCode);
 		
 		
 		ArrayList<String> pkgState=new ArrayList<String>();//历史轨迹
@@ -481,8 +524,34 @@ public class SendPkg extends JPanel{
 		OrderListVO orderListVO = 
 				new OrderListVO(_name1, _address1, _phone1, 
 						_name2, _address2, _phone2, 
-						_num, _weight_, _volume_, _name, category, 
+						_num, _weight_double, _volume_double, _name, category, 
 						pkgState, 10.0, barCode, type, _date, _date, CheckType.UNDERCHECK);
+						
+		ResultMessage resultMessage = bl.createOrderList(orderListVO);
+		if(!resultMessage.isPass()){
+			printMessage(resultMessage.getMessage(), Color.RED);
+			return;
+		}else{
+			printMessage(resultMessage.getMessage(), Color.BLUE);
+		}
+						
+
+		name1.setText("");	
+		phone1.setText("");	
+		address1.setText("");
+		name2.setText("");	
+		phone2.setText("");
+		address2.setText("");
+		weight.setText("");
+		volume.setText("");
+		DateFormat format2=new SimpleDateFormat("yyyy-MM-dd");
+		String time2=format2.format(date_);
+		date.setText(time2);
+		num.setText(1+"");
+		name.setText("");
+		pre_date.setText("");
+		money.setText("");
+						
 	}
 	private void clear(){
 		name1.setText("");	
@@ -499,7 +568,7 @@ public class SendPkg extends JPanel{
 		date.setText(time);
 		num.setText(1+"");
 		name.setText("");
-		pre_date.setText("");//标签也设为空
+		pre_date.setText("");
 		money.setText("");
 		willprintMessage=false;
 		repaint();

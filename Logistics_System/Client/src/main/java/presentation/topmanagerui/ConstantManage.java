@@ -8,12 +8,16 @@ package presentation.topmanagerui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
@@ -43,6 +47,16 @@ public class ConstantManage extends JPanel{
 	private MyButton goto_ConstantManage;
 	private MyButton goto_SystemLog;
 	//详细操作按钮以及其他组件
+	private MyButton changePrice;
+	private MyButton changeDistance;
+	private MyButton addcity;
+
+	private JComboBox<String> Price;
+	private JTextField priceField;
+	private JTextField newcity;
+	private JComboBox<String> city1;
+	private JComboBox<String> city2;
+	private JTextField distanceField;
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
@@ -188,6 +202,39 @@ public class ConstantManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
+    	changePrice = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	changePrice.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_changePrice();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	changeDistance = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	changeDistance.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_changeDistance();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	addcity = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	addcity.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_addcity();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	changePrice.setLocation(720, 128+80-3);
+    	changeDistance.setLocation(720,128+80+250-3);
+    	addcity.setLocation(170+10+(int)(16*4*1.07f)+70,128+80+210-3);
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
@@ -226,9 +273,100 @@ public class ConstantManage extends JPanel{
     	goto_SystemLog.setLocation(20,400);
     	
     	//其他组件
+    	priceField = new JTextField("00");
+    	priceField.setSize(60, 20);
+    	priceField.setLocation(450, 128+80-3);
+    	distanceField = new JTextField("00");
+    	distanceField.setSize(60, 20);
+    	distanceField.setLocation(450, 128+80+250-3);
+		
+    	Price=new JComboBox<String>();
+    	Price.addItem("经济快递");
+    	Price.addItem("标准快递");
+    	Price.addItem("次晨特快");
+    	Price.addItem("火车每公里每吨运费价格");
+    	Price.addItem("货车每公里每吨运费价格");
+    	Price.addItem("飞机每公里每吨运费价格");
+    	Price.setSize(150, 20);
+    	Price.setLocation(170+100, 128+80-3);
+    	Price.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				if(Price.getSelectedItem().toString().compareTo("经济快递")==0)
+					priceField.setText("11");
+				else if(Price.getSelectedItem().toString().compareTo("标准快递")==0)
+					priceField.setText("22");
+				else if(Price.getSelectedItem().toString().compareTo("次晨特快")==0)
+					priceField.setText("33");
+				else if(Price.getSelectedItem().toString().compareTo("火车每公里每吨运费价格")==0)
+					priceField.setText("44");
+				else if(Price.getSelectedItem().toString().compareTo("货车每公里每吨运费价格")==0)
+					priceField.setText("55");
+				else if(Price.getSelectedItem().toString().compareTo("飞机每公里每吨运费价格")==0)
+					priceField.setText("66");
+			}
+		});
+
+    	JLabel l1 = new JLabel("单位：元每公里每吨");
+		l1.setSize((int)(16*9*1.07f), 16);
+		l1.setFont(new Font("宋体", Font.BOLD, 15));
+		l1.setLocation(520, 128+80);
+		
+    	JLabel l2 = new JLabel("新城市：");
+		l2.setSize((int)(16*4*1.07f), 16);
+		l2.setFont(new Font("宋体", Font.BOLD, 15));
+		l2.setLocation(170+10, 128+80+210);
+		newcity = new JTextField();
+		newcity.setSize(60, 20);
+		newcity.setLocation(170+10+(int)(16*4*1.07f),128+80+210-3);
+
+    	JLabel l3 = new JLabel("城市1：");
+		l3.setSize((int)(16*4*1.07f), 16);
+		l3.setFont(new Font("宋体", Font.BOLD, 15));
+		l3.setLocation(170+100, 128+80+250);
+		city1=new JComboBox<String>();
+		city1.addItem("北京");
+		city1.addItem("北京");
+		city1.addItem("黑龙江");
+		city1.addItem("江苏");
+		city1.addItem("江苏是大大撒环保部");
+		city1.setSize(100, 20);
+		city1.setLocation(170+100+(int)(16*4*1.07f), 128+80+250-3);
+		city1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
+    	JLabel l4 = new JLabel("城市2：");
+		l4.setSize((int)(16*4*1.07f), 16);
+		l4.setFont(new Font("宋体", Font.BOLD, 15));
+		l4.setLocation(170+100, 128+80+250+30);
+		city2=new JComboBox<String>();
+		city2.addItem("快递员");
+		city2.setSize(100, 20);
+		city2.setLocation(170+100+(int)(16*4*1.07f), 128+80+250-3+30);
+		city2.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
+    	JLabel l5 = new JLabel("单位：公里");
+		l5.setSize((int)(16*9*1.07f), 16);
+		l5.setFont(new Font("宋体", Font.BOLD, 15));
+		l5.setLocation(520, 128+80+250);
         
 
-		
+
+		JLabel ll1 = new JLabel("价格常量：");
+		ll1.setSize((int)(16*5*1.07f), 16);
+		ll1.setFont(new Font("宋体", Font.BOLD, 15));
+		ll1.setLocation(170+10, 128+80);
+		JLabel ll2 = new JLabel("距离常量：");
+		ll2.setSize((int)(16*5*1.07f), 16);
+		ll2.setFont(new Font("宋体", Font.BOLD, 15));
+		ll2.setLocation(170+10, 128+80+250);
 		
 		
         add(titleLabel);
@@ -246,9 +384,35 @@ public class ConstantManage extends JPanel{
     	add(goto_ConstantManage);
     	add(goto_SystemLog);
 
+    	add(Price);
+    	add(priceField);
+    	add(l1);
+    	add(l2);
+    	add(newcity);
     	
+    	add(l3);
+    	add(city1);
+    	add(l4);
+    	add(city2);
+    	add(distanceField);
+    	add(l5);
+    	
+    	add(ll1);
+    	add(ll2);
+    	add(changePrice);
+    	add(changeDistance);
+    	add(addcity);
 	}
 
+	private void _changePrice(){
+		
+	}
+	private void _changeDistance(){
+		
+	}
+	private void _addcity(){
+		
+	}
 	private void clear(){
 //		.setText("");
 //		.setText("");

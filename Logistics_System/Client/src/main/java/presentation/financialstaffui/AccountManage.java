@@ -18,7 +18,6 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -313,7 +312,7 @@ public class AccountManage extends JPanel{
 		vColumns.add("银行账号");
 		vColumns.add("余额");
 		//数据
-		Vector<BankAccountVO> vData = new Vector<BankAccountVO>();
+		Vector<String> vData = new Vector<String>();
 		//模型
 		AccountTableModel = new DefaultTableModel(vData, vColumns);
 		ArrayList<BankAccountVO> accountlist = bl.show();
@@ -445,7 +444,7 @@ public class AccountManage extends JPanel{
 		try{
 			yue = Double.parseDouble(yueField.getText());
 		}catch(NumberFormatException e){
-			printMessage("请输入正确余额", Color.RED);
+			printMessage("请输入正确余额！", Color.RED);
 			return;
 		}//接收数据完毕
 		
@@ -472,6 +471,7 @@ public class AccountManage extends JPanel{
 		v.add(new_AccountBank);
 		v.add(yueField.getText());
 		AccountTableModel.addRow(v);
+		
 		newAccountField.setText("");
 		newAccountBank.setText("");
 		yueField.setText("");

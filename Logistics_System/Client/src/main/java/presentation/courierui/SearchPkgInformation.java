@@ -12,7 +12,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -24,10 +23,13 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
 import presentation.img.Img;
+import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import vo.OrderListVO;
 
 /**
  * @author 谭期友
@@ -36,7 +38,7 @@ import presentation.mainui.MyButton;
 public class SearchPkgInformation extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private SearchPkgInformationBLService bl;
 	private CourierFrame frame;
 	private CurrentUser currentUser;
 	
@@ -86,9 +88,9 @@ public class SearchPkgInformation extends JPanel{
         }
 	}
 	
-	public SearchPkgInformation(CourierFrame frame, CurrentUser currentUser){
+	public SearchPkgInformation(CourierFrame frame, SearchPkgInformationBLService bl, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=bl;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -222,7 +224,7 @@ public class SearchPkgInformation extends JPanel{
 		ordernum.setFont(new Font("宋体", Font.BOLD, 15));
 		ordernum.setLocation(CourierFrame.w/6+40, 128+80);
         order = new JTextField();
-        order.setSize(110, 20);
+        order.setSize(150, 20);
         order.setLocation(CourierFrame.w/6+40+(int)(16*5*1.07f),128+80-3);
 
 
@@ -235,7 +237,7 @@ public class SearchPkgInformation extends JPanel{
 		l21.setSize((int)(16*6*1.07f), 16);
 		l21.setFont(new Font("宋体", Font.BOLD, 15));
         l21.setLocation(CourierFrame.w/6+40, 128+80+100);
-        name1Label = new JLabel("实打实的");
+        name1Label = new JLabel();
         name1Label.setSize((int)(16*6*1.07f), 16);
         name1Label.setFont(new Font("宋体", Font.BOLD, 15));
         name1Label.setForeground(Color.RED);
@@ -245,7 +247,7 @@ public class SearchPkgInformation extends JPanel{
 		l22.setSize((int)(16*6*1.07f), 16);
 		l22.setFont(new Font("宋体", Font.BOLD, 15));
 		l22.setLocation(CourierFrame.w/6+40, 128+80+120);
-		phone1Label = new JLabel("15278313639");
+		phone1Label = new JLabel();
 		phone1Label.setSize((int)(16*6*1.07f), 16);
 		phone1Label.setFont(new Font("宋体", Font.BOLD, 15));
 		phone1Label.setForeground(Color.RED);
@@ -255,7 +257,7 @@ public class SearchPkgInformation extends JPanel{
 		l23.setSize((int)(16*6*1.07f), 16);
 		l23.setFont(new Font("宋体", Font.BOLD, 15));
 		l23.setLocation(CourierFrame.w/6+40, 128+80+140);
-        add1Label = new JLabel("飒飒大苏打实打实大苏打大大大撒大大");
+        add1Label = new JLabel();
         add1Label.setSize((int)(16*44*1.07f), 16);
         add1Label.setFont(new Font("宋体", Font.BOLD, 15));
         add1Label.setForeground(Color.RED);
@@ -265,7 +267,7 @@ public class SearchPkgInformation extends JPanel{
 		l24.setSize((int)(16*6*1.07f), 16);
 		l24.setFont(new Font("宋体", Font.BOLD, 15));
         l24.setLocation(CourierFrame.w/6+40, 128+80+180);
-        name2Label = new JLabel("实打实的");
+        name2Label = new JLabel();
         name2Label.setSize((int)(16*6*1.07f), 16);
         name2Label.setFont(new Font("宋体", Font.BOLD, 15));
         name2Label.setForeground(Color.RED);
@@ -275,7 +277,7 @@ public class SearchPkgInformation extends JPanel{
 		l25.setSize((int)(16*6*1.07f), 16);
 		l25.setFont(new Font("宋体", Font.BOLD, 15));
 		l25.setLocation(CourierFrame.w/6+40, 128+80+200);
-		phone2Label = new JLabel("15278313639");
+		phone2Label = new JLabel();
 		phone2Label.setSize((int)(16*6*1.07f), 16);
 		phone2Label.setFont(new Font("宋体", Font.BOLD, 15));
 		phone2Label.setForeground(Color.RED);
@@ -285,7 +287,7 @@ public class SearchPkgInformation extends JPanel{
 		l26.setSize((int)(16*6*1.07f), 16);
 		l26.setFont(new Font("宋体", Font.BOLD, 15));
 		l26.setLocation(CourierFrame.w/6+40, 128+80+220);
-        add2Label = new JLabel("飒飒大苏打实打实大苏打大大大撒大大");
+        add2Label = new JLabel();
         add2Label.setSize((int)(16*44*1.07f), 16);
         add2Label.setFont(new Font("宋体", Font.BOLD, 15));
         add2Label.setForeground(Color.RED);
@@ -296,7 +298,7 @@ public class SearchPkgInformation extends JPanel{
 		l7.setSize((int)(16*5*1.07f), 16);
 		l7.setFont(new Font("宋体", Font.BOLD, 15));
 		l7.setLocation(CourierFrame.w/6+40, 128+80+260);
-		nameLabel = new JLabel("大保健");
+		nameLabel = new JLabel();
 		nameLabel.setSize((int)(16*8*1.07f), 16);
 		nameLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		nameLabel.setForeground(Color.RED);
@@ -306,7 +308,7 @@ public class SearchPkgInformation extends JPanel{
 		l8.setSize((int)(16*5*1.07f), 16);
 		l8.setFont(new Font("宋体", Font.BOLD, 15));
 		l8.setLocation(CourierFrame.w/6+40, 128+80+280);
-		weightLabel = new JLabel("135.5");
+		weightLabel = new JLabel();
 		weightLabel.setSize((int)(16*6*1.07f), 16);
 		weightLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		weightLabel.setForeground(Color.RED);
@@ -316,27 +318,27 @@ public class SearchPkgInformation extends JPanel{
 		ll.setSize((int)(16*6*1.07f), 16);
 		ll.setFont(new Font("宋体", Font.BOLD, 15));
 		ll.setLocation(CourierFrame.w/6+40, 128+80+300);
-		vLabel = new JLabel("135.5");
+		vLabel = new JLabel();
 		vLabel.setSize((int)(16*6*1.07f), 16);
 		vLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		vLabel.setForeground(Color.RED);
 		vLabel.setLocation(CourierFrame.w/6+40+(int)(16*6*1.07f), 128+80+300);
 
-		JLabel l9 = new JLabel("运费：");
-		l9.setSize((int)(16*3*1.07f), 16);
+		JLabel l9 = new JLabel("运费（元）：");
+		l9.setSize((int)(16*6*1.07f), 16);
 		l9.setFont(new Font("宋体", Font.BOLD, 15));
 		l9.setLocation(CourierFrame.w/6+40, 128+80+320);
-		priceLabel = new JLabel(135.5+"元");
+		priceLabel = new JLabel();
 		priceLabel.setSize((int)(16*6*1.07f), 16);
 		priceLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		priceLabel.setForeground(Color.RED);
-		priceLabel.setLocation(CourierFrame.w/6+40+(int)(16*3*1.07f), 128+80+320);
+		priceLabel.setLocation(CourierFrame.w/6+40+(int)(16*6*1.07f), 128+80+320);
 
 		JLabel l10 = new JLabel("寄件日期：");
 		l10.setSize((int)(16*5*1.07f), 16);
 		l10.setFont(new Font("宋体", Font.BOLD, 15));
 		l10.setLocation(CourierFrame.w/6+40, 128+80+360);
-		senddateLabel = new JLabel("大保健");
+		senddateLabel = new JLabel();
 		senddateLabel.setSize((int)(16*8*1.07f), 16);
 		senddateLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		senddateLabel.setForeground(Color.RED);
@@ -352,20 +354,8 @@ public class SearchPkgInformation extends JPanel{
 		vColumns.add("物流详情");
 		//数据
 		Vector<String> vData = new Vector<String>();
-		ArrayList<String> sss= new ArrayList<String>();
-		sss.add("2015-10-10 江苏南京撒大苏打大大撒十四说四十的撒大大大大大大大");
-		sss.add("2015-10-10 江苏南京");
-		sss.add("2015-10-10 江苏南京");
 		//模型
 		detailTableModel = new DefaultTableModel(vData, vColumns);
-//		ArrayList<BankAccountVO> accountlist = bl.show();
-//      for(int i =0 ; i<accountlist.size(); i++){
-      for(int i =0 ; i<40; i++){
-		Vector<String> v = new Vector<String>();
-		String ss=sss.get(0);
-		v.add(ss);
-		detailTableModel.addRow(v);
-        }
 		//表格
 		detailTable = new JTable(detailTableModel){
 			private static final long serialVersionUID = 1L;
@@ -437,7 +427,43 @@ public class SearchPkgInformation extends JPanel{
 	}
 
 	private void _search(){
+		String order_s = order.getText();
+
+		result = CheckFormat.checkOrderNum(order_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+
+		OrderListVO orderListVO = bl.searchPkgInformation(order_s);
+		if(orderListVO==null){
+			printMessage("此订单不存在！", Color.RED);
+			return;
+		}
+
+		//先清空原来的轨迹123456789012345678
+		while(detailTable.getRowCount()!=0)
+			detailTableModel.removeRow(0);
+		willprintMessage=false;
+		repaint();
 		
+		name1Label.setText(orderListVO.getSenderName());
+		phone1Label.setText(orderListVO.getSenderTeleNumber());
+		add1Label.setText(orderListVO.getSenderAddress());
+		name2Label.setText(orderListVO.getReceiverName());
+		phone2Label.setText(orderListVO.getReceiverTeleNumber());
+		add2Label.setText(orderListVO.getReceiverAddress());
+		nameLabel.setText(orderListVO.getName());
+		weightLabel.setText(""+orderListVO.getWeight());
+		vLabel.setText(""+orderListVO.getVolume());
+		priceLabel.setText(""+orderListVO.getPackPrice());
+		senddateLabel.setText(orderListVO.getDepartTime());
+		
+		for(int i = 0 ; i<orderListVO.getPkgState().size(); i++){
+			Vector<String> v = new Vector<String>();
+    		v.add(orderListVO.getPkgState().get(i));
+    		detailTableModel.addRow(v);
+        }
 	}
 	private void clear(){
 		order.setText("");
@@ -452,6 +478,8 @@ public class SearchPkgInformation extends JPanel{
 		vLabel.setText("");
 		priceLabel.setText("");
 		senddateLabel.setText("");
+		while(detailTable.getRowCount()!=0)
+			detailTableModel.removeRow(0);
 		willprintMessage=false;
 		repaint();
 	}

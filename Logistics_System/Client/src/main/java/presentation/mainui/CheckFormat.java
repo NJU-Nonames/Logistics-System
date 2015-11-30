@@ -17,13 +17,13 @@ public class CheckFormat {
 		int month2=Integer.parseInt(temp2[1]);
 		int day2=Integer.parseInt(temp2[2]);
 		if(year1>year2){
-			return "时间顺序错误";
+			return "时间顺序错误！";
 		}
 		else if(month1>month2&&year1==year2){
-			return "时间顺序错误";
+			return "时间顺序错误！";
 		}
 		else if(day1>day2&&year1==year2&&month1==month2){
-			return "时间顺序错误";
+			return "时间顺序错误！";
 		}
 		return "格式正确";
 	}
@@ -34,9 +34,9 @@ public class CheckFormat {
 			return "时间未输入！";
 		}
 		else{
-			String[] temp=s.split("-");
+			String[] temp=time.split("-");
 			if(temp.length!=3){
-				return "时间格式输入有误";
+				return "时间格式输入有误！";
 			}
 			else{
 				int year,month,day;
@@ -45,39 +45,39 @@ public class CheckFormat {
 				day=Integer.parseInt(temp[2]);
 				boolean isR =(year%400==0)||((year%4==0)&&(year%100!=0));
 				if(month>12||month<=0){
-					return "月份输入有误";
+					return "月份输入有误！";
 				}
 				if(isR){
 					if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
 						if(day>31||day<0){
-							return "日期输入有误";
+							return "日期输入有误！";
 						}
 					}
 					else if(month==2){
 						if(day>29||day<0){
-							return "日期输入有误";
+							return "日期输入有误！";
 						}
 					}
 					else{
 						if(day>30||day<0){
-							return "日期输入有误";
+							return "日期输入有误！";
 						}
 					}
 				}
 				else{
 					if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
 						if(day>31||day<0){
-							return "日期输入有误";
+							return "日期输入有误！";
 						}
 					}
 					else if(month==2){
 						if(day>28||day<0){
-							return "日期输入有误";
+							return "日期输入有误！";
 						}
 					}
 					else{
 						if(day>30||day<0){
-							return "日期输入有误";
+							return "日期输入有误！";
 						}
 					}
 				}
@@ -90,52 +90,52 @@ public class CheckFormat {
 	public static String checkHallNum(String num){
 		if(num.compareTo("")!=0){
 			if(num.length()!=6){
-				return "营业厅编号输入错误";
+				return "请输入6位营业厅编号！";
 			}
 			else{
-				if(num.substring(3,6)!="000"){
+				if(num.substring(3,6).compareTo("000")!=0){
 					return "格式正确";
 				}
 				else{
-					return "营业厅编号输入错误";
+					return "营业厅编号输入错误！";
 				}
 			}
 		}
 		else{
-			return "未输入营业厅编号";
+			return "未输入营业厅编号！";
 		}
 	}
 	//中转中心编号
 	public static String checkCentreNum(String num){
 		if(num.compareTo("")!=0){
 			if(num.length()!=6){
-				return "中转中心编号输入错误";
+				return "请输入6位中转中心编号！";
 			}
 			else{
-				if(num.substring(3,6)=="000"){
+				if(num.substring(3,6).compareTo("000")==0){
 					return "格式正确";
 				}
 				else{
-					return "中转中心编号输入错误";
+					return "中转中心编号输入错误！";
 				}
 			}
 		}
 		else{
-			return "未输入中转中心编号";
+			return "未输入中转中心编号！";
 		}
 	}
 	//汽运编号
 	public static String checkTruckTransNum(String num){
 		if(num.compareTo("")!=0){
 			if(num.length()!=19){
-				return "汽运编号输入有误";
+				return "请输入19位汽运编号！";
 			}
 			else{
 				return "格式正确";
 			}
 		}
 		else{
-			return "未输入汽运编号编号";
+			return "未输入汽运编号！";
 		}
 	}
 	//列车编号
@@ -181,14 +181,14 @@ public class CheckFormat {
 	public static String checkTransShipNum(String num){
 		if(num.compareTo("")!=0){
 			if(num.length()!=21){
-				return "中转中心中转单输入有误";
+				return "请输入21位中转单编号！";
 			}
 			else{
 				return "格式正确";
 			}
 		}
 		else{
-			return "未输入中转中心中转单编号";
+			return "未输入中转中心中转单编号！";
 		}
 	}
 //	//营业厅到达单编号
@@ -210,42 +210,42 @@ public class CheckFormat {
 	public static String checkPhoneNum(String num){
 		if(num.compareTo("")!=0){
 			if(num.length()!=11){
-				return "手机号输入有误";
+				return "请输入11位手机号！";
 			}
 			else{
 				return "格式正确";
 			}
 		}
 		else{
-			return "未输入手机号";
+			return "未输入手机号！";
 		}
 	}
 	//司机信息管理
 	public static String checkDriverNum(String num){
 		if(num.compareTo("")!=0){
 			if(num.length()!=9){
-				return "司机编号输入有误";
+				return "请输入9位司机编号！";
 			}
 			else{
 				return "格式正确";
 			}
 		}
 		else{
-			return "未输入司机编号";
+			return "未输入司机编号！";
 		}
 	}
 	//货车信息管理
 	public static String checkTruckNum(String num){
 		if(num.compareTo("")!=0){
 			if(num.length()!=7){
-				return "货车编号输入有误";
+				return "请输入7位货车编号！";
 			}
 			else{
 				return "格式正确";
 			}
 		}
 		else{
-			return "未输入货车编号";
+			return "未输入货车编号！";
 		}
 	}
 	//用户编号
@@ -266,14 +266,14 @@ public class CheckFormat {
 	public static String checkIDCardNum(String num){
 		if(num.compareTo("")!=0){
 			if(num.length()!=18){
-				return "身份证号输入有误";
+				return "请输入18位身份证号！";
 			}
 			else{
 				return "格式正确";
 			}
 		}
 		else{
-			return "未输入身份证号";
+			return "未输入身份证号！";
 		}
 	}
 	//银行账号

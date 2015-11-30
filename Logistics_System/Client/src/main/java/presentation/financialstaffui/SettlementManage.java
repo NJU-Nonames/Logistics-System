@@ -289,7 +289,7 @@ public class SettlementManage extends JPanel{
 		vColumns.add("收款日期");
 		vColumns.add("收款金额");
 		//数据
-		Vector<MoneyInListVO> vData = new Vector<MoneyInListVO>();
+		Vector<String> vData = new Vector<String>();
 		//模型
 		MoneyInListTableModel = new DefaultTableModel(vData, vColumns);
 		//表格

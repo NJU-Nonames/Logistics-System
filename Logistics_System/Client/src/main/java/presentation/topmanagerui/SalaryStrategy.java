@@ -8,12 +8,16 @@ package presentation.topmanagerui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
@@ -43,6 +47,11 @@ public class SalaryStrategy extends JPanel{
 	private MyButton goto_ConstantManage;
 	private MyButton goto_SystemLog;
 	//详细操作按钮以及其他组件
+	private MyButton change;
+	
+	private JComboBox<String> position;
+	private JTextField meiri;
+	private JTextField ticheng;
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
@@ -188,6 +197,17 @@ public class SalaryStrategy extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
+    	change = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	change.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_change();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	change.setLocation(170+20,128+80+40+40+40);
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
@@ -226,8 +246,44 @@ public class SalaryStrategy extends JPanel{
     	goto_SystemLog.setLocation(20,400);
     	
     	//其他组件
+		JLabel l5 = new JLabel("职位：");
+		l5.setSize((int)(16*3*1.07f), 16);
+		l5.setFont(new Font("宋体", Font.BOLD, 15));
+		l5.setLocation(170+20, 128+80);
+		position=new JComboBox<String>();
+		position.addItem("快递员");
+		position.addItem("营业厅业务员");
+		position.addItem("中转中心业务员");
+		position.addItem("中转中心仓库管理员");
+		position.addItem("低权限财务人员");
+		position.addItem("高权限财务人员");
+		position.addItem("总经理");
+		position.addItem("系统管理员");
+		position.addItem("司机");
+		position.setSize(150, 20);
+		position.setLocation(170+20+(int)(16*3*1.07f), 128+80-3);
+		position.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
         
+		JLabel l3 = new JLabel("每日工资：");
+		l3.setSize((int)(16*5*1.07f), 16);
+		l3.setFont(new Font("宋体", Font.BOLD, 15));
+		l3.setLocation(170+20, 128+80+40);
+		meiri = new JTextField();
+		meiri.setSize(60, 20);
+		meiri.setLocation(170+20+(int)(16*5*1.07f),128+80+40-3);
 
+		JLabel l4 = new JLabel("提成比例：");
+		l4.setSize((int)(16*5*1.07f), 16);
+		l4.setFont(new Font("宋体", Font.BOLD, 15));
+		l4.setLocation(170+20, 128+80+40+40);
+		ticheng = new JTextField();
+		ticheng.setSize(60, 20);
+		ticheng.setLocation(170+20+(int)(16*5*1.07f),128+80+40+40-3);
 		
 		
 		
@@ -246,9 +302,19 @@ public class SalaryStrategy extends JPanel{
     	add(goto_ConstantManage);
     	add(goto_SystemLog);
 
+    	add(l5);
+    	add(position);
+    	add(l3);
+    	add(meiri);
+    	add(l4);
+    	add(ticheng);
+		add(change);
     	
 	}
 
+	private void _change(){
+		
+	}
 	private void clear(){
 //		.setText("");
 //		.setText("");

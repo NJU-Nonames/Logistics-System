@@ -296,7 +296,7 @@ public class Statistic extends JPanel{
 		vColumns.add("支出");;
 		vColumns.add("利润");
 		//数据
-		Vector<MoneyInformationListVO> vData = new Vector<MoneyInformationListVO>();
+		Vector<String> vData = new Vector<String>();
 		//模型
 		CostandBenefitChartTableModel = new DefaultTableModel(vData, vColumns);
 		//表格
@@ -316,7 +316,7 @@ public class Statistic extends JPanel{
 		CostandBenefitChartTable.setFillsViewportHeight(true);
 		jp.setSize(620, 210);
 		jp.setLocation(596-620/2, 128+80+20);
-		//jp.setOpaque(false);
+		jp.setOpaque(false);
 		jp.add(scrollPane,BorderLayout.CENTER);
 
 		
@@ -343,7 +343,7 @@ public class Statistic extends JPanel{
 		vColumns2.add("单号");
 		vColumns2.add("金额");
 		//数据
-		Vector<ListVO> vData2 = new Vector<ListVO>();
+		Vector<String> vData2 = new Vector<String>();
 		//模型
 		BusinessCircumstanceChartTableModel = new DefaultTableModel(vData2, vColumns2);
 		//表格
@@ -363,16 +363,24 @@ public class Statistic extends JPanel{
 		BusinessCircumstanceChartTable.setFillsViewportHeight(true);
 		jp2.setSize(620, 210);
 		jp2.setLocation(596-620/2, 128+80+250+20);
-		//jp2.setOpaque(false);
+		jp2.setOpaque(false);
 		jp2.add(scrollPane2,BorderLayout.CENTER);
 
 		
 
     	search.setLocation(596+300, 128+80-10);
-    	search2.setLocation(596+300, 128+80+250-10);
+    	search2.setLocation(596+300, 128+80+250+20+210/2);
         
 
-		
+
+		JLabel ll1 = new JLabel("成本收益表：");
+		ll1.setSize((int)(16*6*1.07f), 16);
+		ll1.setFont(new Font("宋体", Font.BOLD, 15));
+		ll1.setLocation(170+10, 128+80+20+210/2);
+		JLabel ll2 = new JLabel("经营情况表：");
+		ll2.setSize((int)(16*6*1.07f), 16);
+		ll2.setFont(new Font("宋体", Font.BOLD, 15));
+		ll2.setLocation(170+10, 128+80+250+20+210/2);
 		
 		
         add(titleLabel);
@@ -403,6 +411,9 @@ public class Statistic extends JPanel{
     	add(end_date2);
     	add(jp2);
     	add(search2);
+    	
+    	add(ll1);
+    	add(ll2);
 	}
 
 	private void _search(){

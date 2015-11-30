@@ -279,7 +279,7 @@ public class SystemLog extends JPanel{
 		vColumns.add("操作者");
 		vColumns.add("改动");
 		//数据
-		Vector<SystemLogVO> vData = new Vector<SystemLogVO>();
+		Vector<String> vData = new Vector<String>();
 		//模型
 		SystemLogTableModel = new DefaultTableModel(vData, vColumns);
 		//表格

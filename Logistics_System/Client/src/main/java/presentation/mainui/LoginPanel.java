@@ -206,13 +206,13 @@ public class LoginPanel extends JPanel{
 //			case UserType.ADMIN:break;
 //			}
 //		}
-			new FinacialStaffFrame();
-			//new TopManagerFrame();
-			//new BusinessOfficeClerkFrame();
-			//new CenterRepertoryClerkFrame();
-			//new CourierFrame();
-			//new CenterClerkFrame();
-			//new AdminFrame();
+//			new FinacialStaffFrame();
+//			new TopManagerFrame();
+//			new BusinessOfficeClerkFrame();
+//			new CenterRepertoryClerkFrame();
+			new CourierFrame();
+//			new CenterClerkFrame();
+//			new AdminFrame();
 	}
 }
 

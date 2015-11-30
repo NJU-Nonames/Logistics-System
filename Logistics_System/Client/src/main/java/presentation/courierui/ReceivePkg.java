@@ -16,10 +16,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businesslogicservice.logisticsblservice.ReceivePkgBLService;
 import presentation.img.Img;
+import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.ResultMessage;
+import vo.OrderListVO;
+import vo.ReceiverVO;
 
 /**
  * @author 谭期友
@@ -28,7 +33,7 @@ import presentation.mainui.MyButton;
 public class ReceivePkg extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private ReceivePkgBLService bl;
 	private CourierFrame frame;
 	private CurrentUser currentUser;
 	
@@ -58,6 +63,7 @@ public class ReceivePkg extends JPanel{
 	private JLabel weightLabel;
 	private JLabel priceLabel;
 	private JLabel senddateLabel;
+	private String orderlist;
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
@@ -81,12 +87,13 @@ public class ReceivePkg extends JPanel{
         }
 	}
 	
-	public ReceivePkg(CourierFrame frame, CurrentUser currentUser){
+	public ReceivePkg(CourierFrame frame, ReceivePkgBLService bl, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=bl;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
+		orderlist="";
 		co=Color.RED;
 		this.setLayout(null);
 
@@ -227,7 +234,7 @@ public class ReceivePkg extends JPanel{
 		ordernum.setFont(new Font("宋体", Font.BOLD, 15));
 		ordernum.setLocation(CourierFrame.w/6+40, 128+80);
         order = new JTextField();
-        order.setSize(110, 20);
+        order.setSize(150, 20);
         order.setLocation(CourierFrame.w/6+40+(int)(16*5*1.07f),128+80-3);
         
 		JLabel l1 = new JLabel("收件人姓名：");
@@ -265,7 +272,7 @@ public class ReceivePkg extends JPanel{
 		l21.setSize((int)(16*6*1.07f), 16);
 		l21.setFont(new Font("宋体", Font.BOLD, 15));
         l21.setLocation(CourierFrame.w/6+40, 128+80+150+50);
-        name1Label = new JLabel("实打实的");
+        name1Label = new JLabel();
         name1Label.setSize((int)(16*6*1.07f), 16);
         name1Label.setFont(new Font("宋体", Font.BOLD, 15));
         name1Label.setForeground(Color.RED);
@@ -275,7 +282,7 @@ public class ReceivePkg extends JPanel{
 		l22.setSize((int)(16*6*1.07f), 16);
 		l22.setFont(new Font("宋体", Font.BOLD, 15));
 		l22.setLocation(CourierFrame.w/6+40, 128+80+150+100);
-		phone1Label = new JLabel("15278313639");
+		phone1Label = new JLabel();
 		phone1Label.setSize((int)(16*6*1.07f), 16);
 		phone1Label.setFont(new Font("宋体", Font.BOLD, 15));
 		phone1Label.setForeground(Color.RED);
@@ -285,7 +292,7 @@ public class ReceivePkg extends JPanel{
 		l23.setSize((int)(16*6*1.07f), 16);
 		l23.setFont(new Font("宋体", Font.BOLD, 15));
 		l23.setLocation(CourierFrame.w/6+40, 128+80+150+150);
-        add1Label = new JLabel("飒飒大苏打实打实大苏打大大大撒大大");
+        add1Label = new JLabel();
         add1Label.setSize((int)(16*44*1.07f), 16);
         add1Label.setFont(new Font("宋体", Font.BOLD, 15));
         add1Label.setForeground(Color.RED);
@@ -295,7 +302,7 @@ public class ReceivePkg extends JPanel{
 		l24.setSize((int)(16*6*1.07f), 16);
 		l24.setFont(new Font("宋体", Font.BOLD, 15));
         l24.setLocation(620, 128+80+150+50);
-        name2Label = new JLabel("实打实的");
+        name2Label = new JLabel();
         name2Label.setSize((int)(16*6*1.07f), 16);
         name2Label.setFont(new Font("宋体", Font.BOLD, 15));
         name2Label.setForeground(Color.RED);
@@ -305,7 +312,7 @@ public class ReceivePkg extends JPanel{
 		l25.setSize((int)(16*6*1.07f), 16);
 		l25.setFont(new Font("宋体", Font.BOLD, 15));
 		l25.setLocation(620, 128+80+150+100);
-		phone2Label = new JLabel("15278313639");
+		phone2Label = new JLabel();
 		phone2Label.setSize((int)(16*6*1.07f), 16);
 		phone2Label.setFont(new Font("宋体", Font.BOLD, 15));
 		phone2Label.setForeground(Color.RED);
@@ -315,7 +322,7 @@ public class ReceivePkg extends JPanel{
 		l26.setSize((int)(16*6*1.07f), 16);
 		l26.setFont(new Font("宋体", Font.BOLD, 15));
 		l26.setLocation(CourierFrame.w/6+40, 128+80+150+200);
-        add2Label = new JLabel("飒飒大苏打实打实大苏打大大大撒大大");
+        add2Label = new JLabel();
         add2Label.setSize((int)(16*44*1.07f), 16);
         add2Label.setFont(new Font("宋体", Font.BOLD, 15));
         add2Label.setForeground(Color.RED);
@@ -326,7 +333,7 @@ public class ReceivePkg extends JPanel{
 		l7.setSize((int)(16*5*1.07f), 16);
 		l7.setFont(new Font("宋体", Font.BOLD, 15));
 		l7.setLocation(CourierFrame.w/6+40, 128+80+150+250);
-		nameLabel = new JLabel("大保健");
+		nameLabel = new JLabel();
 		nameLabel.setSize((int)(16*8*1.07f), 16);
 		nameLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		nameLabel.setForeground(Color.RED);
@@ -336,27 +343,27 @@ public class ReceivePkg extends JPanel{
 		l8.setSize((int)(16*5*1.07f), 16);
 		l8.setFont(new Font("宋体", Font.BOLD, 15));
 		l8.setLocation(450, 128+80+150+250);
-		weightLabel = new JLabel("135.5");
+		weightLabel = new JLabel();
 		weightLabel.setSize((int)(16*6*1.07f), 16);
 		weightLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		weightLabel.setForeground(Color.RED);
 		weightLabel.setLocation(450+(int)(16*5*1.07f), 128+80+150+250);
 
-		JLabel l9 = new JLabel("运费：");
-		l9.setSize((int)(16*3*1.07f), 16);
+		JLabel l9 = new JLabel("运费（元）：");
+		l9.setSize((int)(16*6*1.07f), 16);
 		l9.setFont(new Font("宋体", Font.BOLD, 15));
 		l9.setLocation(720, 128+80+150+250);
-		priceLabel = new JLabel(135.5+"元");
+		priceLabel = new JLabel();
 		priceLabel.setSize((int)(16*6*1.07f), 16);
 		priceLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		priceLabel.setForeground(Color.RED);
-		priceLabel.setLocation(720+(int)(16*3*1.07f), 128+80+150+250);
+		priceLabel.setLocation(720+(int)(16*6*1.07f), 128+80+150+250);
 
 		JLabel l10 = new JLabel("寄件日期：");
 		l10.setSize((int)(16*5*1.07f), 16);
 		l10.setFont(new Font("宋体", Font.BOLD, 15));
 		l10.setLocation(CourierFrame.w/6+40, 128+80+150+300);
-		senddateLabel = new JLabel("大保健");
+		senddateLabel = new JLabel();
 		senddateLabel.setSize((int)(16*8*1.07f), 16);
 		senddateLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		senddateLabel.setForeground(Color.RED);
@@ -416,10 +423,77 @@ public class ReceivePkg extends JPanel{
 	}
 	
 	private void selecte(){
+		String order_s = order.getText();
+
+		result = CheckFormat.checkOrderNum(order_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+
+		OrderListVO orderListVO = bl.findOrderlist(order_s);
+		if(orderListVO==null){
+			printMessage("此订单不存在！", Color.RED);
+			return;
+		}
+
+		orderlist=order.getText();
 		
+		name1Label.setText(orderListVO.getSenderName());
+		phone1Label.setText(orderListVO.getSenderTeleNumber());
+		add1Label.setText(orderListVO.getSenderAddress());
+		name2Label.setText(orderListVO.getReceiverName());
+		phone2Label.setText(orderListVO.getReceiverTeleNumber());
+		add2Label.setText(orderListVO.getReceiverAddress());
+		nameLabel.setText(orderListVO.getName());
+		weightLabel.setText(""+orderListVO.getWeight());
+		priceLabel.setText(""+orderListVO.getPackPrice());
+		senddateLabel.setText(orderListVO.getDepartTime());
 	}
 	private void receive(){
+		if(orderlist.compareTo("")==0){
+			printMessage("没有选择一个订单！", Color.RED);
+			return;
+		}
 		
+		String r_name_s = r_name.getText();
+		String r_date_s = r_date.getText();
+		
+		if(r_name_s.compareTo("")==0){
+			printMessage("没有输入收件人姓名！", Color.RED);
+			return;
+		}
+		result = CheckFormat.checkTime(r_date_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		
+		ReceiverVO receiverVO = new ReceiverVO(r_name_s, r_date_s);
+		OrderListVO orderListVO = bl.findOrderlist(orderlist);
+		
+		ResultMessage resultMessage = bl.confirmRecieve(receiverVO, orderListVO);
+		if(!resultMessage.isPass()){
+			printMessage(resultMessage.getMessage(), Color.RED);
+			return;
+		}else{
+			printMessage(resultMessage.getMessage(), Color.GREEN);
+		}
+		
+		order.setText("");
+		r_name.setText("");	
+		r_phone.setText("");	
+		r_date.setText("");
+		name1Label.setText("");
+		phone1Label.setText("");
+		add1Label.setText("");
+		name2Label.setText("");
+		phone2Label.setText("");
+		add2Label.setText("");
+		nameLabel.setText("");
+		weightLabel.setText("");
+		priceLabel.setText("");
+		senddateLabel.setText("");
 	}
 	private void clear(){
 		order.setText("");
