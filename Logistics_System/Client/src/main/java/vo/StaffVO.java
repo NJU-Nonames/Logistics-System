@@ -1,5 +1,7 @@
 package vo;
 
+import utility.Position;
+
 
 
 public class StaffVO {
@@ -16,7 +18,7 @@ public class StaffVO {
 	/**
 	 * 职位
 	 */
-	private String postion;
+	private Position postion;
 	
 	/**
 	 * 身份证
@@ -50,7 +52,7 @@ public class StaffVO {
 	 * @param phoneNum
 	 * @param wage
 	 */
-	public StaffVO(String name,String sex,String postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyName,String id,String agencyId){
+	public StaffVO(String name,String sex,Position postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyName,String id,String agencyId){
 		this.name = name;
 		this.sex = sex;
 		this.phoneNum = phoneNum;
@@ -74,7 +76,7 @@ public class StaffVO {
 		return sex;
 	}
 
-	public String getPostion() {
+	public Position getPostion() {
 		return postion;
 	}
 
