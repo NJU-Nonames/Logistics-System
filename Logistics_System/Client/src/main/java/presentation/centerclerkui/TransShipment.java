@@ -10,10 +10,19 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
@@ -39,17 +48,32 @@ public class TransShipment extends JPanel{
 	private MyButton goto_TransferCenterReceive;
 	private MyButton goto_TransShipment;
 	private MyButton goto_InputRepertory;
-	//详细操作按钮以及其他组件
+	private JRadioButton _plane;
+	private JRadioButton _trains;
+	private JRadioButton _truck;
+	private JTextField _transId=new JTextField() ;
+	private JTextField _arrivePlace=new JTextField() ;
+	private JTextField _counterId=new JTextField() ;
+	private JTextField _supervisor=new JTextField() ;
+	
+//	private DefaultTableModel orderIdTableModel;//订单表格模型
+//	private JTable orderIdTable;//订单表格
+	//详细操作按钮以及其他组件=
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
+
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
         g.drawLine(CenterClerkFrame.w/6, 10, CenterClerkFrame.w/6, CenterClerkFrame.h-10);
         g.drawLine(CenterClerkFrame.w/6+10, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h/6);
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+90, CenterClerkFrame.w-100, CenterClerkFrame.h/6+90);
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+178, CenterClerkFrame.w-100, CenterClerkFrame.h/6+178);
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+228, CenterClerkFrame.w-100, CenterClerkFrame.h/6+228);
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+278, CenterClerkFrame.w-100, CenterClerkFrame.h/6+278);
 
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterClerkFrame.h-50, CenterClerkFrame.w, 50, null);
@@ -171,7 +195,59 @@ public class TransShipment extends JPanel{
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
         currentusernameLabel.setLocation(CenterClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-    	//最基本按钮
+    	
+        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
+        JLabel agencyNameLabel = new JLabel(str);
+        agencyNameLabel.setSize((int)(30*str.length()*1.07f), 30);
+        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 20));
+        agencyNameLabel.setLocation(CenterClerkFrame.w/6,128+50);
+        
+        Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String time_="时间:   "+format.format(date_);
+		JLabel timeLabel = new JLabel(time_);
+        timeLabel.setSize((int)(30*time_.length()*1.07f), 30);
+        timeLabel.setFont(new Font("宋体", Font.BOLD, 20));
+        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()/2,128+50);
+       
+        JLabel transWays=new JLabel("装运方式: ");
+        transWays.setSize((int)(30*"装运方式： ".length()*1.07f), 30);
+        transWays.setFont(new Font("宋体", Font.BOLD, 20));
+        transWays.setLocation(CenterClerkFrame.w/6,128+100);
+        
+        JLabel transId=new JLabel("运输编号: ");
+        transId.setSize((int)(30*"运输编号： ".length()*1.07f), 30);
+        transId.setFont(new Font("宋体", Font.BOLD, 20));
+        transId.setLocation(CenterClerkFrame.w/6,128+140);
+        
+        String _tip1="提示：请在此输入相应的运输编号，如航运则输入航运编号";
+        JLabel tip1=new JLabel(_tip1);
+        tip1.setSize((int)(16*_tip1.length()*1.07f), 16);
+        tip1.setFont(new Font("宋体", Font.BOLD, 15));
+        tip1.setForeground(Color.RED);
+        tip1.setLocation(CenterClerkFrame.w-tip1.getWidth(),128+148);
+        
+        String _departPlace="出发地:"+currentUser.getAgencyName();
+        JLabel departPlace=new JLabel(_departPlace);
+        departPlace.setSize((int)(30*_departPlace.length()*1.07f), 30);
+        departPlace.setFont(new Font("宋体", Font.BOLD, 20));
+        departPlace.setLocation(CenterClerkFrame.w/6,128+188);
+        
+        JLabel arrivePlace = new JLabel("到达地：");
+        arrivePlace.setSize((int)(30*"到达地：".length()*1.07f), 30);
+        arrivePlace.setFont(new Font("宋体", Font.BOLD, 20));
+        arrivePlace.setLocation(CenterClerkFrame.w/6+departPlace.getWidth()+10,128+188);
+        
+        JLabel counterId = new JLabel("货柜号：");
+        counterId.setSize((int)(30*"货柜号：".length()*1.07f), 30);
+        counterId.setFont(new Font("宋体", Font.BOLD, 20));
+        counterId.setLocation(CenterClerkFrame.w/6,128+238);
+        
+        JLabel supervisor = new JLabel("监装员：");
+        supervisor.setSize((int)(30*"监装员".length()*1.07f), 30);
+        supervisor.setFont(new Font("宋体", Font.BOLD, 20));
+        supervisor.setLocation(arrivePlace.getX(),128+238);
+        //最基本按钮
     	close.setLocation(CenterClerkFrame.w-30,0);
     	min.setLocation(CenterClerkFrame.w-80,0);
     	_return.setLocation(20,50);
@@ -181,15 +257,68 @@ public class TransShipment extends JPanel{
     	goto_InputRepertory.setLocation(20,250);
     	
     	//其他组件
+        _plane=new JRadioButton("航运",true);
+        _plane.setSize((int)(100*1.07f), 30);
+        _plane.setFont(new Font("宋体", Font.BOLD, 20));
+        _plane.setLocation(transWays.getX()+transWays.getWidth()/2+50,128+100);
+        _trains=new JRadioButton("铁运",true);
+        _trains.setSize((int)(100*1.07f), 30);
+        _trains.setFont(new Font("宋体", Font.BOLD, 20));
+        _trains.setLocation(_plane.getX()+_plane.getWidth()+50,128+100);
+        _truck=new JRadioButton("汽运",true);
+        _truck.setSize((int)(100*1.07f), 30);
+        _truck.setFont(new Font("宋体", Font.BOLD, 20));
+        _truck.setLocation(_trains.getX()+_trains.getWidth()+50,128+100);
+        ButtonGroup group1 = new ButtonGroup();
+        group1.add(_plane);group1.add(_trains);group1.add(_truck);
+		
+        _transId.setSize((int)(170*1.07f), 30);
+        _transId.setFont(new Font("宋体", Font.BOLD, 20));
+        _transId.setLocation(transId.getX()+transId.getWidth()/2+50,transId.getY());
+		
+        _arrivePlace.setSize((int)(210*1.07f), 30);
+        _arrivePlace.setFont(new Font("宋体", Font.BOLD, 20));
+        _arrivePlace.setLocation(arrivePlace.getX()+arrivePlace.getWidth()/2+50,arrivePlace.getY());
         
-
-		
-		
-		
+        _counterId.setSize((int)(120*1.07f), 30);
+        _counterId.setFont(new Font("宋体", Font.BOLD, 20));
+        _counterId.setLocation(counterId.getX()+counterId.getWidth()/2+50,counterId.getY());
+        
+        _supervisor.setSize((int)(120*1.07f), 30);
+        _supervisor.setFont(new Font("宋体", Font.BOLD, 20));
+        _supervisor.setLocation(supervisor.getX()+supervisor.getWidth()/2+50,supervisor.getY());
+        
+        /*
+         *可复用，画出可以添加删改的订单序列表格
+         */
+//        Vector<String> vColumns = new Vector<String>();
+//        vColumns.add("订单号");
+//        
+//        Vector<String> vColumns = new Vector<String>(); 
+        
         add(titleLabel);
         add(funLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
+        add(agencyNameLabel);
+        add(timeLabel);
+        add(transWays);
+        add(transId);
+        add(tip1);
+        add(departPlace);
+        add(arrivePlace);
+        add(counterId);
+        add(supervisor);
+        
+        
+        add(_plane);
+        add(_trains);
+        add(_truck);
+        
+        add(_transId);
+        add(_arrivePlace);
+        add(_counterId);
+        add(_supervisor);
     	
     	add(close);
     	add(min);

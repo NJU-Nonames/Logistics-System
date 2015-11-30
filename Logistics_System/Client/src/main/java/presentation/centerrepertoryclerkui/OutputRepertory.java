@@ -10,11 +10,18 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
+import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
@@ -40,7 +47,17 @@ public class OutputRepertory extends JPanel{
 	private MyButton goto_OutputRepertory;
 	private MyButton goto_ViewRepertory;
 	private MyButton goto_Inventory;
+	private JRadioButton _plane;
+	private JRadioButton _trains;
+	private JRadioButton _truck;
 	//详细操作按钮以及其他组件
+	private JTextField _orderId=new JTextField();
+	private JTextField _destiPlace=new JTextField();
+	private JTextField _transId=new JTextField() ;
+	
+	private MyButton confirm;
+	private MyButton cancel;
+	
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
@@ -51,7 +68,8 @@ public class OutputRepertory extends JPanel{
         setBackground(Color.WHITE);
         g.drawLine(CenterRepertoryClerkFrame.w/6, 10, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h-10);
         g.drawLine(CenterRepertoryClerkFrame.w/6+10, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
-
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+90, CenterClerkFrame.w-100, CenterClerkFrame.h/6+90);
+        
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterRepertoryClerkFrame.h-50, CenterRepertoryClerkFrame.w, 50, null);
         	
@@ -185,7 +203,42 @@ public class OutputRepertory extends JPanel{
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
         currentusernameLabel.setLocation(CenterRepertoryClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-    	//最基本按钮
+        
+        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
+        JLabel agencyNameLabel = new JLabel(str);
+        agencyNameLabel.setSize((int)(30*str.length()*1.07f), 30);
+        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 20));
+        agencyNameLabel.setLocation(CenterClerkFrame.w/6,128+50);
+        
+        Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String time_="出库时间:  "+format.format(date_);
+		JLabel timeLabel = new JLabel(time_);
+        timeLabel.setSize((int)(30*time_.length()*1.07f), 30);
+        timeLabel.setFont(new Font("宋体", Font.BOLD, 20));
+        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()/2,128+50); 
+        
+        JLabel orderId=new JLabel("出库订单编号：");
+        orderId.setSize((int)(30*"出库订单编号：".length()*1.07f), 30);
+        orderId.setFont(new Font("宋体", Font.BOLD, 20));
+        orderId.setLocation(agencyNameLabel.getX(),128+100);
+        
+        JLabel destiPlace=new JLabel("目的地：");
+        destiPlace.setSize((int)(30*"目的地：".length()*1.07f), 30);
+        destiPlace.setFont(new Font("宋体", Font.BOLD, 20));
+        destiPlace.setLocation(orderId.getX(),orderId.getY()+100);
+        
+        JLabel transWays=new JLabel("装运方式: ");
+        transWays.setSize((int)(30*"装运方式： ".length()*1.07f), 30);
+        transWays.setFont(new Font("宋体", Font.BOLD, 20));
+        transWays.setLocation(CenterClerkFrame.w/6,destiPlace.getY()+100);
+        
+        JLabel transId=new JLabel("中转单编号：");
+        transId.setSize((int)(30*"中转订单编号".length()*1.07f), 30);
+        transId.setFont(new Font("宋体", Font.BOLD, 20));
+        transId.setLocation(orderId.getX(),transWays.getY()+100);
+    	
+        //最基本按钮
     	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
     	_return.setLocation(20,50);
@@ -196,15 +249,73 @@ public class OutputRepertory extends JPanel{
     	goto_Inventory.setLocation(20,300);
     	
     	//其他组件
+    	_plane=new JRadioButton("航运",true);
+        _plane.setSize((int)(100*1.07f), 30);
+        _plane.setFont(new Font("宋体", Font.BOLD, 20));
+        _plane.setLocation(transWays.getX()+transWays.getWidth()/2+50,transWays.getY());
+        _trains=new JRadioButton("铁运",true);
+        _trains.setSize((int)(100*1.07f), 30);
+        _trains.setFont(new Font("宋体", Font.BOLD, 20));
+        _trains.setLocation(_plane.getX()+_plane.getWidth()+50,transWays.getY());
+        _truck=new JRadioButton("汽运",true);
+        _truck.setSize((int)(100*1.07f), 30);
+        _truck.setFont(new Font("宋体", Font.BOLD, 20));
+        _truck.setLocation(_trains.getX()+_trains.getWidth()+50,transWays.getY());
+        ButtonGroup group1 = new ButtonGroup();
+        group1.add(_plane);group1.add(_trains);group1.add(_truck);
         
+        _transId.setSize((int)(170*1.07f), 30);
+        _transId.setFont(new Font("宋体", Font.BOLD, 20));
+        _transId.setLocation(transId.getX()+transId.getWidth()/2+50,transId.getY());
 
+        _destiPlace.setSize((int)(170*1.07f), 30);
+        _destiPlace.setFont(new Font("宋体", Font.BOLD, 20));
+        _destiPlace.setLocation(destiPlace.getX()+destiPlace.getWidth()/2+50,destiPlace.getY());
+        
+        _orderId.setSize((int)(170*1.07f), 30);
+        _orderId.setFont(new Font("宋体", Font.BOLD, 20));
+        _orderId.setLocation(orderId.getX()+orderId.getWidth()/2+50,orderId.getY());
 		
-		
-		
+        confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm.setLocation(CenterClerkFrame.w/2,transId.getY()+transId.getHeight()+100);
+    	confirm.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_confirm();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	
+    	cancel=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	cancel.setLocation(CenterClerkFrame.w/3*2,confirm.getY());
+     	cancel.addMouseListener(new MouseListener(){
+ 			public void mouseClicked(MouseEvent arg0) {
+ 				_cancel();
+ 			}
+ 			public void mouseEntered(MouseEvent arg0) {}
+ 			public void mouseExited(MouseEvent arg0) {}
+ 			public void mousePressed(MouseEvent arg0) {}
+ 			public void mouseReleased(MouseEvent arg0) {}
+         });
+     	
+     	
         add(titleLabel);
         add(funLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
+        add(agencyNameLabel);
+        add(timeLabel);
+        add(orderId);
+        add(orderId);
+        add(destiPlace);
+        add(transWays);
+        add(transId);
+        
+        add(_plane);
+        add(_trains);
+        add(_truck);
     	
     	add(close);
     	add(min);
@@ -213,8 +324,13 @@ public class OutputRepertory extends JPanel{
     	add(goto_OutputRepertory);
     	add(goto_ViewRepertory);
     	add(goto_Inventory);
-
+    	add(_orderId);
+    	add(_destiPlace);
+    	add(_transId);
     	
+    	add(confirm);
+    	add(cancel);
+ 
 	}
 
 	private void clear(){
@@ -245,5 +361,16 @@ public class OutputRepertory extends JPanel{
 				}
 			}).start();
 		}
+	}
+	public void _confirm(){
+		
+	}
+	public void _cancel(){
+		_orderId.setText("");
+		_destiPlace.setText("");
+		_transId.setText("");
+		_plane.setSelected(true);
+		_trains.setSelected(false);
+		_truck.setSelected(false);
 	}
 }
