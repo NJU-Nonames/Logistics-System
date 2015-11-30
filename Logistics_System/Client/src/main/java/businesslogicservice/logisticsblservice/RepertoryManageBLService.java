@@ -32,8 +32,6 @@ public interface RepertoryManageBLService {
 	 */
 	public RepertoryInfoVO  showRepertory();
 	
-	
-	
 	/**
 	 * 库存查看
 	 * @param start_time

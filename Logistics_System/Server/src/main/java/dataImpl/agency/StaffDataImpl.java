@@ -10,6 +10,7 @@ import com.mysql.jdbc.ResultSet;
 
 import po.agency.StaffPO;
 import po.system.UserPO;
+import utility.Position;
 import utility.UserType;
 import data.DataJDBCConnection;
 import dataservice.agency.StaffDataService;
@@ -45,7 +46,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements StaffDataServi
 		StaffPO staff=null;
 		try {
 			rs2.next();
-			staff=new StaffPO(rs2.getString("name"), rs2.getString("sex"), rs2.getString("postion"), rs2.getString("idNumber"), rs2.getString("workingstarttime"), rs2.getString("phoneNum"), rs2.getString("wage"), rs2.getString("agencyName"), rs2.getString("id"),rs2.getString("agencyid"));
+			staff=new StaffPO(rs2.getString("name"), rs2.getString("sex"),Position.valueOf(rs2.getString("position")), rs2.getString("idNumber"), rs2.getString("workingstarttime"), rs2.getString("phoneNum"), rs2.getString("wage"), rs2.getString("agencyName"), rs2.getString("id"),rs2.getString("agencyid"));
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -3,10 +3,12 @@ package businesslogic.logisticsbl;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.repertory.RepertoryInPO;
 import po.repertory.RepertoryInfoPO;
 import po.repertory.RepertoryOutPO;
+import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
 import dataservice.repertory.RepertoryInDataService;
 import dataservice.repertory.RepertoryInfoDataService;
@@ -47,6 +49,9 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 				return new ResultMessage(false,"入库单已经存在!");
 				repertoryinpo=new RepertoryInPO(repertoryIn.getId(),repertoryIn.getNum(),repertoryIn.getTime(),repertoryIn.getDestination(),repertoryIn.getAreacode(),repertoryIn.getRownumber(),repertoryIn.getFramenumber(),repertoryIn.getPlacenumber(),repertoryIn.getCheckType());
 				repertoryin.add(repertoryinpo);
+				repertoryinfo.add(repertoryinpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"添加一条入库单"+repertoryIn.getId(),user.getAdmin()));
+				
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -63,6 +68,8 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 				return new ResultMessage(false,"出库单已经存在!");
 				repertoryoutpo=new RepertoryOutPO(repertoryOut.getId(),repertoryOut.getCode(),repertoryOut.getTime(),repertoryOut.getDestination(),repertoryOut.getTransportation(),repertoryOut.getTransCode(),repertoryOut.getVehicleCode(),repertoryOut.getCheckType());
 				repertoryout.add(repertoryoutpo);
+				repertoryinfo.delete(repertoryoutpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"添加一条出库单"+repertoryOut.getId(),user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -98,6 +105,12 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		return repertoryInfo;
 	}
 
+	//库存查看
+	public RepertorySearch searchRepertory(String start_time, String end_time) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	public ResultMessage repertoryAlarm() {
 		// TODO 自动生成的方法存根
 		return null;
@@ -110,11 +123,6 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 
 	public ResultMessage repertoryUpdate() {
 		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public RepertorySearch searchRepertory(String start_time, String end_time) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
