@@ -34,7 +34,7 @@ public class AccountBLImpl implements AccountBLService {
 			if(bankpo==null){
 				bankpo=new BankAccountPO(countVo.getName(),countVo.getNumber(),countVo.getMoney());
 				bankaccountdataservice.add(bankpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"添加账户信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"添加银行账户信息",user.getAdmin()));
 				return new ResultMessage(true,"添加账户成功!");
 			}
 		}catch(RemoteException e){
@@ -50,7 +50,7 @@ public class AccountBLImpl implements AccountBLService {
 			bankpo=bankaccountdataservice.find(name);
 			if(bankpo!=null){
 				bankaccountdataservice.delete(name);
-				system.add(new SystemLogPO((String)df.format(new Date()),"删除账户信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"删除银行账户信息",user.getAdmin()));
 				return new ResultMessage(true,"账户删除成功!");
 			}
 		}catch(RemoteException e){
@@ -67,7 +67,7 @@ public class AccountBLImpl implements AccountBLService {
 			if(bankpo!=null){
 				bankpo.setName(countVo.getName());
 				bankaccountdataservice.update(bankpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变账户信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变银行账户信息",user.getAdmin()));
 				return new ResultMessage(true,"更新账户信息成功!");
 			}
 		}catch(RemoteException e){
@@ -99,6 +99,8 @@ public class AccountBLImpl implements AccountBLService {
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
+		if(bankpo==null)
+			return null;
 		for(BankAccountPO po:bankpo){
 			bankvo.add(new BankAccountVO(po.getName(),po.getNumber(),po.getMoney()));
 		}

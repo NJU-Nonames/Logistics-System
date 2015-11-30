@@ -169,6 +169,8 @@ public class CheckBLImpl implements CheckBLService {
 			case TRANSIT_NOTE:
 				ArrayList<TransShipmentListPO> transshipmentpo=transshipment.showAll(time, time);
 				ArrayList<TransShipmentListVO> transshipmentvo=new ArrayList<TransShipmentListVO>();
+				if(transshipmentpo==null)
+					return null;
 				for(TransShipmentListPO po:transshipmentpo){
 					transshipmentvo.add(new TransShipmentListVO(po.getDate(), po.getTransitDocNumber(), po.getFlightNumber(), po.getDeparturePlace(), po.getDestination(), po.getContainerNumber(), po.getSupercargoMan(), po.getBarcodes(), po.getCheckType()));
 				}
@@ -186,73 +188,103 @@ public class CheckBLImpl implements CheckBLService {
 			switch(docType){
 			case MONEY_IN_NOTE:
 				ArrayList<MoneyInListPO> moneyinpo=moneyin.showAll(time, time);
+				if(moneyinpo==null)
+					return false;
 				for(MoneyInListPO po:moneyinpo){
 					po.setCheckType(CheckType.PASS);
 					moneyin.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过收款单",user.getAdmin()));
 				return true;
 			case MONET_OUT_NOTE:
 				ArrayList<MoneyOutListPO> moneyoutpo=moneyout.showAll(time, time);
+				if(moneyoutpo==null)
+					return false;
 				for(MoneyOutListPO po:moneyoutpo){
 					po.setCheckType(CheckType.PASS);
 					moneyout.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过付款单",user.getAdmin()));
 				return true;
 			case IN_STOREAGE_NOTE:
 				ArrayList<RepertoryInPO> repertoryinpo=repertoryin.showAll(time, time);
+				if(repertoryinpo==null)
+					return false;
 				for(RepertoryInPO po:repertoryinpo){
 					po.setCheckType(CheckType.PASS);
 					repertoryin.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过入库单",user.getAdmin()));
 				return true;
 			case OUT_STOREAGE_NOTE:
 				ArrayList<RepertoryOutPO> repertoryoutpo=repertoryout.showAll(time, time);
+				if(repertoryoutpo==null)
+					return false;
 				for(RepertoryOutPO po:repertoryoutpo){
 					po.setCheckType(CheckType.PASS);
 					repertoryout.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过出库单",user.getAdmin()));
 				return true;
 			case SENDING_NOTE:
 				ArrayList<OrderListPO> orderpo=order.showAll(time, time);
+				if(orderpo==null)
+					return false;
 				for(OrderListPO po:orderpo){
 					po.setCheckType(CheckType.PASS);
 					order.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过快递单",user.getAdmin()));
 				return true;
 			case LOADING_NOTE:
 				ArrayList<LoadListPO> loadpo=load.showAll(time, time);
+				if(loadpo==null)
+					return false;
 				for(LoadListPO po:loadpo){
 					po.setCheckType(CheckType.PASS);
 					load.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过装车单",user.getAdmin()));
 				return true;
 			case BUSINESSHALL_ARRIVAL_NOTE:
 				ArrayList<HallArrivalListPO> hallarrivalpo=hallarrival.showAll(time, time);
+				if(hallarrivalpo==null)
+					return false;
 				for(HallArrivalListPO po:hallarrivalpo){
 					po.setCheckType(CheckType.PASS);
 					hallarrival.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过营业厅到达单",user.getAdmin()));
 				return true;
 			case DELIVERYING_NOTE:
 				ArrayList<DeliveringListPO> deliverlistpo=deliver.showAll(time, time);
+				if(deliverlistpo==null)
+					return false;
 				for(DeliveringListPO po:deliverlistpo){
 					po.setCheckType(CheckType.PASS);
 					deliver.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过派件单",user.getAdmin()));
 				return true;
 			case CENTER_ARRIVAL_NOTE:
 				ArrayList<TransArrivalListPO> transarrivalpo=transarrival.showAll(time, time);
+				if(transarrivalpo==null)
+					return false;
 				for(TransArrivalListPO po:transarrivalpo){
 					po.setCheckType(CheckType.PASS);
 					transarrival.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过中转中心到达单",user.getAdmin()));
 				return true;
 			case TRANSIT_NOTE:
 				ArrayList<TransShipmentListPO> transshipmentpo=transshipment.showAll(time, time);
+				if(transshipmentpo==null)
+					return false;
 				for(TransShipmentListPO po:transshipmentpo){
 					po.setCheckType(CheckType.PASS);
 					transshipment.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过中转单",user.getAdmin()));
 				return true;
 			}
 		}catch(RemoteException e){
@@ -272,6 +304,7 @@ public class CheckBLImpl implements CheckBLService {
 				po.setCheckType(CheckType.PASS);
 				moneyin.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过收款单",user.getAdmin()));
 				return true;
 			case MONET_OUT_NOTE:
 				ArrayList<MoneyOutListVO> moneyoutvo=(ArrayList<MoneyOutListVO>)listVO;
@@ -280,6 +313,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.PASS);
 					moneyout.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过付款单",user.getAdmin()));
 				return true;
 			case IN_STOREAGE_NOTE:
 				ArrayList<RepertoryInVO> repertoryinvo=(ArrayList<RepertoryInVO>)listVO;
@@ -288,6 +322,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.PASS);
 					repertoryin.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过入库单",user.getAdmin()));
 				return true;
 			case OUT_STOREAGE_NOTE:
 				ArrayList<RepertoryOutVO> repertoryoutvo=(ArrayList<RepertoryOutVO>)listVO;
@@ -296,6 +331,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.PASS);
 					repertoryout.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过出库单",user.getAdmin()));
 				return true;
 			case SENDING_NOTE:
 				ArrayList<OrderListVO> ordervo=(ArrayList<OrderListVO>)listVO;
@@ -304,6 +340,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.PASS);
 					order.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过快递单",user.getAdmin()));
 				return true;
 			case LOADING_NOTE:
 				ArrayList<LoadListVO> loadvo=(ArrayList<LoadListVO>)listVO;
@@ -312,6 +349,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.PASS);
 					load.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过装车单",user.getAdmin()));
 				return true;
 			case BUSINESSHALL_ARRIVAL_NOTE:
 				ArrayList<HallArrivalListVO> hallarrivalvo=(ArrayList<HallArrivalListVO>)listVO;
@@ -320,6 +358,7 @@ public class CheckBLImpl implements CheckBLService {
 				    po.setCheckType(CheckType.PASS);
 				    hallarrival.update(po);	
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过营业厅到达单",user.getAdmin()));
 				return true;
 			case DELIVERYING_NOTE:
 				ArrayList<DeliveringListVO> delivervo=(ArrayList<DeliveringListVO>)listVO;
@@ -328,6 +367,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.PASS);
 					deliver.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过收款单",user.getAdmin()));
 				return true;
 			case CENTER_ARRIVAL_NOTE:
 				ArrayList<TransArrivalListVO> transarrivalvo=(ArrayList<TransArrivalListVO>)listVO;
@@ -336,6 +376,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.PASS);
 					transarrival.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过中转中心到达单",user.getAdmin()));
 				return true;
 			case TRANSIT_NOTE:
 				ArrayList<TransShipmentListVO> transshipmentvo=(ArrayList<TransShipmentListVO> )listVO;
@@ -344,6 +385,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.PASS);
 					transshipment.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过中转单",user.getAdmin()));
 				return true;
 			}
 		}catch(RemoteException e){
@@ -363,6 +405,7 @@ public class CheckBLImpl implements CheckBLService {
 				po.setCheckType(CheckType.NOTPASS);
 				moneyin.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过收款单",user.getAdmin()));
 				return true;
 			case MONET_OUT_NOTE:
 				ArrayList<MoneyOutListVO> moneyoutvo=(ArrayList<MoneyOutListVO>)listVO;
@@ -371,6 +414,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.NOTPASS);
 					moneyout.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过付款单",user.getAdmin()));
 				return true;
 			case IN_STOREAGE_NOTE:
 				ArrayList<RepertoryInVO> repertoryinvo=(ArrayList<RepertoryInVO>)listVO;
@@ -379,6 +423,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.NOTPASS);
 					repertoryin.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过入库单",user.getAdmin()));
 				return true;
 			case OUT_STOREAGE_NOTE:
 				ArrayList<RepertoryOutVO> repertoryoutvo=(ArrayList<RepertoryOutVO>)listVO;
@@ -387,6 +432,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.NOTPASS);
 					repertoryout.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过出库单",user.getAdmin()));
 				return true;
 			case SENDING_NOTE:
 				ArrayList<OrderListVO> ordervo=(ArrayList<OrderListVO>)listVO;
@@ -395,6 +441,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.NOTPASS);
 					order.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过快递单",user.getAdmin()));
 				return true;
 			case LOADING_NOTE:
 				ArrayList<LoadListVO> loadvo=(ArrayList<LoadListVO>)listVO;
@@ -403,6 +450,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.NOTPASS);
 					load.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过装车单",user.getAdmin()));
 				return true;
 			case BUSINESSHALL_ARRIVAL_NOTE:
 				ArrayList<HallArrivalListVO> hallarrivalvo=(ArrayList<HallArrivalListVO>)listVO;
@@ -411,6 +459,7 @@ public class CheckBLImpl implements CheckBLService {
 				    po.setCheckType(CheckType.NOTPASS);
 				    hallarrival.update(po);	
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过营业厅到达单",user.getAdmin()));
 				return true;
 			case DELIVERYING_NOTE:
 				ArrayList<DeliveringListVO> delivervo=(ArrayList<DeliveringListVO>)listVO;
@@ -419,6 +468,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.NOTPASS);
 					deliver.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过派件单",user.getAdmin()));
 				return true;
 			case CENTER_ARRIVAL_NOTE:
 				ArrayList<TransArrivalListVO> transarrivalvo=(ArrayList<TransArrivalListVO>)listVO;
@@ -427,6 +477,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.NOTPASS);
 					transarrival.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过中转中心到达单",user.getAdmin()));
 				return true;
 			case TRANSIT_NOTE:
 				ArrayList<TransShipmentListVO> transshipmentvo=(ArrayList<TransShipmentListVO> )listVO;
@@ -435,6 +486,7 @@ public class CheckBLImpl implements CheckBLService {
 					po.setCheckType(CheckType.NOTPASS);
 					transshipment.update(po);
 				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过中转单",user.getAdmin()));
 				return true;
 			}
 		}catch(RemoteException e){
@@ -451,49 +503,49 @@ public class CheckBLImpl implements CheckBLService {
 				MoneyInListVO moneyinvo=(MoneyInListVO)listVO;
 				MoneyInListPO moneyinpo=new MoneyInListPO(moneyinvo.getId(),moneyinvo.getDate(),moneyinvo.getMoneySum(),moneyinvo.getStaffId(),moneyinvo.getBarcode(),moneyinvo.getCheckType());
 				moneyin.update(moneyinpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变收款单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变收款单信息",user.getAdmin()));
 				return true;
 			case MONET_OUT_NOTE:
 				MoneyOutListVO moneyoutvo=(MoneyOutListVO)listVO;
 				MoneyOutListPO moneyoutpo=new MoneyOutListPO(moneyoutvo.getId(), moneyoutvo.getDate(), moneyoutvo.getMoney(), moneyoutvo.getPayer(), moneyoutvo.getAccountNum(), moneyoutvo.getClause(), moneyoutvo.getNote(), moneyoutvo.getCheckType());
 				moneyout.update(moneyoutpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变付款单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变付款单信息",user.getAdmin()));
 				return true;
 			case IN_STOREAGE_NOTE:
 				RepertoryInVO repertoryinvo=(RepertoryInVO)listVO;
 				RepertoryInPO repertoryinpo=new RepertoryInPO(repertoryinvo.getId(),repertoryinvo.getNum(),repertoryinvo.getTime(),repertoryinvo.getDestination(),repertoryinvo.getAreacode(),repertoryinvo.getRownumber(),repertoryinvo.getFramenumber(),repertoryinvo.getFramenumber(),repertoryinvo.getCheckType());
 				repertoryin.update(repertoryinpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变入库单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变入库单信息",user.getAdmin()));
 				return true;
 			case OUT_STOREAGE_NOTE:
 				RepertoryOutVO repertoryoutvo=(RepertoryOutVO)listVO;
 				RepertoryOutPO repertoryoutpo=new RepertoryOutPO(repertoryoutvo.getId(),repertoryoutvo.getCode(),repertoryoutvo.getTime(),repertoryoutvo.getDestination(),repertoryoutvo.getTransportation(),repertoryoutvo.getTransCode(),repertoryoutvo.getVehicleCode(),repertoryoutvo.getCheckType());
 				repertoryout.update(repertoryoutpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变出库单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变出库单信息",user.getAdmin()));
 				return true;
 			case SENDING_NOTE:
 				OrderListVO ordervo=(OrderListVO)listVO;
 				OrderListPO orderpo=new OrderListPO(ordervo.getSenderName(),ordervo.getSenderAddress(),ordervo.getSenderTeleNumber(),ordervo.getReceiverName(),ordervo.getReceiverAddress(),ordervo.getReceiverTeleNumber(),ordervo.getNumber(),ordervo.getWeight(),ordervo.getVolume(),ordervo.getName(),ordervo.getCategory(),ordervo.getPkgState(),ordervo.getPackPrice(),ordervo.getBarCode(),ordervo.getPkgType(),ordervo.getDepartTime(),ordervo.getArriveTime(),ordervo.getCheckType());
 				order.update(orderpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变快递单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变快递单信息",user.getAdmin()));
 				return true;
 			case LOADING_NOTE:
 				LoadListVO loadvo=(LoadListVO)listVO;
 				LoadListPO loadpo=new LoadListPO(loadvo.getId(),loadvo.getDate(),loadvo.getHallNumber(),loadvo.getTranspotationNumber(),loadvo.getDestination(),loadvo.getCarNumber(),loadvo.getGuardMan(),loadvo.getSupercargoMan(),loadvo.getBarcodes(),loadvo.getCheckType());
 				load.update(loadpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变装车单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变装车单信息",user.getAdmin()));
 				return true;
 			case BUSINESSHALL_ARRIVAL_NOTE:
 				HallArrivalListVO hallarrivalvo=(HallArrivalListVO)listVO;
 				HallArrivalListPO hallarrivalpo=new HallArrivalListPO(hallarrivalvo.getId(),hallarrivalvo.getDate(),hallarrivalvo.getTransferNumber(),hallarrivalvo.getFrom(),hallarrivalvo.getState(),hallarrivalvo.getBarCodes(),hallarrivalvo.getCheckType());
 				hallarrival.update(hallarrivalpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变营业厅到达单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变营业厅到达单信息",user.getAdmin()));
 				return true;
 			case DELIVERYING_NOTE:
 				DeliveringListVO delivervo=(DeliveringListVO)listVO;
 				DeliveringListPO deliverpo=new DeliveringListPO(delivervo.getId(),delivervo.getDate(),delivervo.getBarCode(),delivervo.getDeliveryMan(),delivervo.getCheckType());
 				deliver.update(deliverpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变派件单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变派件单信息",user.getAdmin()));
 				return true;
 			case CENTER_ARRIVAL_NOTE:
 				TransArrivalListVO transarrivalvo=(TransArrivalListVO)listVO;
@@ -503,13 +555,13 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				TransArrivalListPO transarrivalpo=new TransArrivalListPO(transarrivalvo.getId(),transarrivalvo.getTransferNumber(),transarrivalvo.getCenterNumber(),transarrivalvo.getDate(),goodpo,transarrivalvo.getCheckType());
 				transarrival.update(transarrivalpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变中转中心到达单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变中转中心到达单信息",user.getAdmin()));
 				return true;
 			case TRANSIT_NOTE:
 				TransShipmentListVO transshipmentvo=(TransShipmentListVO)listVO;
 				TransShipmentListPO transshipmentpo=new TransShipmentListPO(transshipmentvo.getDate(),transshipmentvo.getTransitDocNumber(),transshipmentvo.getFlightNumber(),transshipmentvo.getDeparturePlace(),transshipmentvo.getDesitination(),transshipmentvo.getContainerNumber(),transshipmentvo.getSupercargoMan(),transshipmentvo.getBarcodes(),transshipmentvo.getCheckType());
 				transshipment.update(transshipmentpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"改变中转单信息",user.getname()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"改变中转单信息",user.getAdmin()));
 				return true;
 			}
 		}catch(RemoteException e){

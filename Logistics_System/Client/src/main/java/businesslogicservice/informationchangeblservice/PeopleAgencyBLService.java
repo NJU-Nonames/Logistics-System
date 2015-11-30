@@ -8,6 +8,7 @@ package businesslogicservice.informationchangeblservice;
 
 import java.util.ArrayList;
 
+import utility.Position;
 import utility.ResultMessage;
 import vo.AgencyVO;
 
@@ -18,7 +19,7 @@ public interface PeopleAgencyBLService {
 	 * @param 新的工资方案
 	 * @return	调整是否成功
 	 */             
-	public ResultMessage salaryManage(String position,String salary);
+	public ResultMessage salaryManage(Position position,String salary);
 	
 	/**
 	 * 总经理选择新建机构

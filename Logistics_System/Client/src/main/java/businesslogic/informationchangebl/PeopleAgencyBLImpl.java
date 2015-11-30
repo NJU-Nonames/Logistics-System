@@ -1,11 +1,17 @@
 package businesslogic.informationchangebl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.agency.AgencyPO;
 import po.agency.StaffPO;
+import po.system.SystemLogPO;
+import presentation.mainui.CurrentUser;
 import dataservice.agency.AgencyDataService;
+import dataservice.system.SystemLogDataService;
+import utility.Position;
 import utility.ResultMessage;
 import vo.AgencyVO;
 import vo.StaffVO;
@@ -14,13 +20,19 @@ import businesslogicservice.informationchangeblservice.PeopleAgencyBLService;
 
 public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
     AgencyDataService agencydataservice=null;
-    public PeopleAgencyBLImpl(){
+    CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public PeopleAgencyBLImpl(CurrentUser currentuser){
     	this.agencydataservice=(AgencyDataService)RMIHelper.find("AgencyDataService");
+    	user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
     }
-	public ResultMessage salaryManage(String position, String salary) {
+	public ResultMessage salaryManage(Position position, String salary) {
 		// TODO Auto-generated method stub
 		try{
 			agencydataservice.salaryManage(position, salary);
+			system.add(new SystemLogPO((String)df.format(new Date()),"修改"+position+"工资信息",user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -39,6 +51,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 				}
 				agencypo=new AgencyPO(agency.getAgencyName(),agency.getAgencyNum(),list);
 				agencydataservice.add(agencypo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"增加机构信息",user.getAdmin()));
 				return new ResultMessage(true,"增加机构信息成功!");
 			}
 		}catch(RemoteException e){
@@ -54,6 +67,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 		agencypo=agencydataservice.find(agencyId);
 		if(agencypo!=null){
 			agencydataservice.delete(agencyId);
+			system.add(new SystemLogPO((String)df.format(new Date()),"删除机构信息",user.getAdmin()));
 			return new ResultMessage(true,"删除机构成功!");
 		}
 		}catch(RemoteException e){
@@ -74,6 +88,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 			}
 			agencypo=new AgencyPO(agency.getAgencyName(),agency.getAgencyNum(),list);
 			agencydataservice.update(agencypo);
+			system.add(new SystemLogPO((String)df.format(new Date()),"更新机构信息",user.getAdmin()));
 			return new ResultMessage(true,"更新机构成功!");
 		}
 		}catch(RemoteException e){
@@ -88,6 +103,8 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 		ArrayList<AgencyPO> agencypolist=new ArrayList<AgencyPO>();
 		try{
 			agencypolist=agencydataservice.showAll();
+			if(agencypolist==null)
+				return null;
 			for(AgencyPO agencypo:agencypolist){
 				AgencyVO agencyvo;
 				ArrayList<StaffVO> list=new ArrayList<StaffVO>();
@@ -111,7 +128,9 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		AgencyVO agencyvo;
+		if(agencypo==null)
+			return null;
+		AgencyVO agencyvo=null;
 		ArrayList<StaffVO> list=new ArrayList<StaffVO>();
 		for(StaffPO staffpo:agencypo.getStaffList()){
 			list.add(new StaffVO(staffpo.getName(),staffpo.getSex(),staffpo.getPostion(),staffpo.getIDNum(),staffpo.getWorkingstarttime(),staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId(),staffpo.getAgencyId()));

@@ -1,10 +1,15 @@
 package businesslogic.informationchangebl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import po.constantinfo.DistanceChartPO;
 import po.constantinfo.PriceChartPO;
+import po.system.SystemLogPO;
+import presentation.mainui.CurrentUser;
 import dataservice.constantinfo.ConstantDataService;
+import dataservice.system.SystemLogDataService;
 import utility.PriceType;
 import utility.ResultMessage;
 import vo.DistanceChartVO;
@@ -14,13 +19,19 @@ import businesslogicservice.informationchangeblservice.ConstantManageBLService;
 
 public class ConstantManageBLImpl implements ConstantManageBLService {
 ConstantDataService constantdataservice=null;
-public ConstantManageBLImpl(){
+CurrentUser user=null;
+SystemLogDataService system=null;
+SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+public ConstantManageBLImpl(CurrentUser currentuser){
 	constantdataservice=(ConstantDataService)RMIHelper.find("ConstantDataService");
+	user=currentuser;
+	system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 }
 	public ResultMessage addCity(String name) {
 		// TODO Auto-generated method stub
 		try{
 			constantdataservice.addCity(name);
+			system.add(new SystemLogPO((String)df.format(new Date()),"添加新城市",user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -63,6 +74,7 @@ public ConstantManageBLImpl(){
 			return new ResultMessage(false,"城市之间的距离不能为负数!");
 		try{
 			constantdataservice.setDistance(newDistance, cityA, cityB);
+			system.add(new SystemLogPO((String)df.format(new Date()),"修改"+cityA+"和"+cityB+"的距离",user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -75,6 +87,7 @@ public ConstantManageBLImpl(){
 		// TODO Auto-generated method stub
 		try{
 			constantdataservice.setPrice(newPrice, type);
+			system.add(new SystemLogPO((String)df.format(new Date()),"修改"+type+"价格信息",user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}

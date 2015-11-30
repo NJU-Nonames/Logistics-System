@@ -10,6 +10,11 @@ public class CurrentUser {
 	private String name;
 	private String agencyName;
 	private String agencyNum;
+	private String admin;
+	public String getAdmin(){
+		return admin;
+	}
+	
 	public String getname(){
 		return this.name;
 	}
@@ -19,9 +24,10 @@ public class CurrentUser {
 	public String getAgencyNum(){
 		return agencyNum;
 	}
-	public CurrentUser(String name,String agencyName,String agencyNum){
+	public CurrentUser(String name,String agencyName,String agencyNum,String admin){
 		this.name = name;
 		this.agencyName=agencyName;
 		this.agencyNum=agencyNum;
+		this.admin=admin;
 	}
 }

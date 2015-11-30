@@ -1,13 +1,18 @@
 package businesslogic.financebl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.agency.StaffPO;
 import po.moneyInfomation.MoneyInListPO;
 import po.moneyInfomation.MoneyOutListPO;
+import po.system.SystemLogPO;
+import presentation.mainui.CurrentUser;
 import dataservice.agency.StaffDataService;
 import dataservice.moneyInformation.MoneyInListDataService;
+import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.MoneyInListVO;
 import vo.MoneyOutListVO;
@@ -16,26 +21,26 @@ import businesslogicservice.financeblservice.SettlementManageBLService;
 
 public class SettlementManageBLImpl implements SettlementManageBLService {
     MoneyInListDataService moneyinlistdataservice=null;
-    StaffDataService staffdataservice=null;
-    public SettlementManageBLImpl(){
+    CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public SettlementManageBLImpl(CurrentUser currentuser){
     	this.moneyinlistdataservice=(MoneyInListDataService)RMIHelper.find("MoneyInListDataService");
+    	user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
     }
 
 	public ArrayList<MoneyInListVO> searchbyhall(String start_day,
 			String end_day, String hall_id) {
 		// TODO 自动生成的方法存根
-		staffdataservice=(StaffDataService)RMIHelper.find("StaffDataService");
 		ArrayList<MoneyInListVO> moneyinvo=search(start_day,end_day);
+		if(moneyinvo==null)
+			return null;
 		ArrayList<MoneyInListVO> moneyin=new ArrayList<MoneyInListVO>();
-		try{
 			for(MoneyInListVO vo:moneyinvo){
-				StaffPO staff=staffdataservice.find(vo.getStaffId());
-				if(staff.getId().substring(0,6).equals(hall_id))
+				if(vo.getStaffId().substring(0,6).equals(hall_id))
 					moneyin.add(vo);
 			}
-		}catch(RemoteException e){
-			e.printStackTrace();
-		}
 		return moneyin;
 	}
 	public ArrayList<MoneyInListVO> search(String start_day, String end_day) {
@@ -47,22 +52,29 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
+		if(moneyinpo==null)
+			return null;
 		for(MoneyInListPO po:moneyinpo){
 			moneyinvo.add(new MoneyInListVO(po.getId(),po.getDate(),po.getMoneySum(),po.getStaffId(),po.getBarcode(),po.getCheckType()));
 		}
-		
 		return moneyinvo;
 	
 	}
 	public ResultMessage createMoneyInList(MoneyInListVO moneyin) {
 		// TODO 自动生成的方法存根
-		MoneyInListPO moneyinpo=new MoneyInListPO(moneyin.getId(),moneyin.getDate(),moneyin.getMoneySum(),moneyin.getStaffId(),moneyin.getBarcode(),moneyin.getCheckType());
+		MoneyInListPO moneyinpo=null;
 		try{
-			moneyinlistdataservice.add(moneyinpo);
+			moneyinpo=moneyinlistdataservice.findOnID(moneyin.getId());
+			if(moneyinpo==null){
+				moneyinpo=new MoneyInListPO(moneyin.getId(),moneyin.getDate(),moneyin.getMoneySum(),moneyin.getStaffId(),moneyin.getBarcode(),moneyin.getCheckType());
+				moneyinlistdataservice.add(moneyinpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"创建收款单信息",user.getAdmin()));
+				return new ResultMessage(true,"添加收款单成功!");
+			}
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return new ResultMessage(true,"添加收款单成功!");
+		return new ResultMessage(false,"收款单已存在!");
 	}
 
 }

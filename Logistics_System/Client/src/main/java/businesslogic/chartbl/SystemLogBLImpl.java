@@ -33,15 +33,15 @@ public class SystemLogBLImpl implements SystemLogBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(systempo==null)
+			return null;
 		ArrayList <SystemLogVO> systemvo=new ArrayList<SystemLogVO>();
 		for(SystemLogPO sys:systempo){
 			systemvo.add(new SystemLogVO(sys.getTime(),sys.getContent(),sys.getUser()));
 		}
 		return systemvo;
 	}
-	/* （非 Javadoc）
-	 * @see businesslogicservice.chartblservice.SystemLogBLService#addLogInfo(vo.SystemLogVO)
-	 */
+
 	public ResultMessage addLogInfo(SystemLogVO systemLogVO) {
 		// TODO 自动生成的方法存根
 		SystemLogPO sys=new SystemLogPO(systemLogVO.getTime(),systemLogVO.getContent(),systemLogVO.getUser());

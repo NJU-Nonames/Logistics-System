@@ -34,6 +34,8 @@ public class FormBLImpl implements FormBLService{
 		// TODO Auto-generated method stub
 		ArrayList<MoneyItemVO> moneyitemvo=getBusinessCircumstanceChart(start_day, end_day);
 		ArrayList<MoneyInformationListVO> list=new ArrayList<MoneyInformationListVO>();
+		if(moneyitemvo==null)
+			return null;
 		String[] array11=start_day.split(" ");
 		String[] array1=array11[0].split("-");
 		String[] array21=end_day.split(" ");
@@ -78,9 +80,11 @@ public class FormBLImpl implements FormBLService{
 	   ArrayList<MoneyOutListVO> list1=service1.search(start_day, end_day);
 	   ArrayList<MoneyInListVO> list2=service2.search(start_day, end_day);
 	   ArrayList<MoneyItemVO> list=new ArrayList<MoneyItemVO>();
+	   if(list1!=null)
 	   for(MoneyOutListVO vo:list1){
 		   list.add(new MoneyItemVO("付款单",vo.getDate(),vo.getId(),vo.getMoney()));
 	   }
+	   if(list2!=null)
 	   for(MoneyInListVO vo:list2){
 		   list.add(new MoneyItemVO("收款单",vo.getDate(),vo.getId(),vo.getMoneySum()));
 	   }
