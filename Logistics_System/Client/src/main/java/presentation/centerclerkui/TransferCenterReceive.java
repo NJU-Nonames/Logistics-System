@@ -68,7 +68,7 @@ public class TransferCenterReceive extends JPanel{
         setBackground(Color.WHITE);
         g.drawLine(CenterClerkFrame.w/6, 10, CenterClerkFrame.w/6, CenterClerkFrame.h-10);
         g.drawLine(CenterClerkFrame.w/6+10, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h/6);
-        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+90, CenterClerkFrame.w-100, CenterClerkFrame.h/6+90);
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
         
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterClerkFrame.h-50, CenterClerkFrame.w, 50, null);
@@ -194,28 +194,30 @@ public class TransferCenterReceive extends JPanel{
         
         String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
         JLabel agencyNameLabel = new JLabel(str);
-        agencyNameLabel.setSize((int)(30*str.length()*1.07f), 30);
-        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 20));
-        agencyNameLabel.setLocation(CenterClerkFrame.w/6,128+50);
+        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
+        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
         
         Date date_=new Date();
 		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		String time_="时间:   "+format.format(date_);
 		JLabel timeLabel = new JLabel(time_);
-        timeLabel.setSize((int)(30*time_.length()*1.07f), 30);
-        timeLabel.setFont(new Font("宋体", Font.BOLD, 20));
-        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()/2,128+50);
+        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
+        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
         
 
         
         jb1 = new JRadioButton("货物中转单号：",true);
         jb2 = new JRadioButton("货物装车单号：",false);
-        jb1.setSize((int)(170*1.07f), 30);
-        jb1.setFont(new Font("宋体", Font.BOLD, 20));
-        jb1.setLocation(CenterClerkFrame.w/6+10,128+100);
-        jb2.setSize((int)(170*1.07f), 30);
-        jb2.setFont(new Font("宋体", Font.BOLD, 20));
-        jb2.setLocation(CenterClerkFrame.w/6+10,128+150);
+        jb1.setSize((int)(170*1.07f), 20);
+        jb1.setFont(new Font("宋体", Font.BOLD, 17));
+        jb1.setLocation(agencyNameLabel.getX(),128+100);
+        jb1.setOpaque(false);
+        jb2.setSize((int)(170*1.07f), 20);
+        jb2.setFont(new Font("宋体", Font.BOLD, 17));
+        jb2.setLocation(agencyNameLabel.getX(),128+150);
+        jb2.setOpaque(false);
         ButtonGroup group = new ButtonGroup();
         group.add(jb1);group.add(jb2);
         jb1.addMouseListener(new MouseListener(){
@@ -241,31 +243,32 @@ public class TransferCenterReceive extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         
-        id1.setSize((int)(170*1.07f), 30);
-        id1.setFont(new Font("宋体", Font.BOLD, 20));
+        id1.setSize((int)(170*1.07f), 20);
         id1.setLocation(jb1.getX()+jb1.getWidth(),128+100);
         
-        id2.setSize((int)(170*1.07f), 30);
-        id2.setFont(new Font("宋体", Font.BOLD, 20));
+        id2.setSize((int)(170*1.07f), 20);
         id2.setLocation(jb2.getX()+jb2.getWidth(),128+150);
         
         JLabel pkgState = new JLabel("货物到达状态："); 
-    	pkgState.setSize((int)(180*1.07f), 30);
-    	pkgState.setFont(new Font("宋体", Font.BOLD, 20));
-    	pkgState.setLocation(CenterClerkFrame.w/6+10,128+300);
+    	pkgState.setSize((int)(180*1.07f), 16);
+    	pkgState.setFont(new Font("宋体", Font.BOLD, 15));
+    	pkgState.setLocation(agencyNameLabel.getX(),128+300);
 		
     	j1 = new JRadioButton("完好",true);
         j2 = new JRadioButton("缺损",false);
         j3 = new JRadioButton("丢失",false);
-        j1.setSize((int)(100*1.07f), 30);
-        j1.setFont(new Font("宋体", Font.BOLD, 20));
-        j1.setLocation(pkgState.getX()+pkgState.getWidth()+10,pkgState.getY());
-        j2.setSize((int)(100*1.07f), 30);
-        j2.setFont(new Font("宋体", Font.BOLD, 20));
-        j2.setLocation(pkgState.getX()+pkgState.getWidth()+j1.getWidth()+10,pkgState.getY());
-        j3.setSize((int)(100*1.07f), 30);
-        j3.setFont(new Font("宋体", Font.BOLD, 20));
-        j3.setLocation(pkgState.getX()+pkgState.getWidth()+j1.getWidth()+j2.getWidth()+10,pkgState.getY());
+        j1.setSize((int)(100*1.07f), 20);
+        j1.setFont(new Font("宋体", Font.BOLD, 17));
+        j1.setLocation(pkgState.getX()+pkgState.getWidth()-20,pkgState.getY()-3);
+        j1.setOpaque(false);
+        j2.setSize((int)(100*1.07f), 20);
+        j2.setFont(new Font("宋体", Font.BOLD, 17));
+        j2.setLocation(j1.getX()+j1.getWidth(),pkgState.getY()-3);
+        j2.setOpaque(false);
+        j3.setSize((int)(100*1.07f), 20);
+        j3.setFont(new Font("宋体", Font.BOLD, 17));
+        j3.setLocation(j2.getX()+j2.getWidth(),pkgState.getY()-3);
+        j3.setOpaque(false);
         ButtonGroup group2 = new ButtonGroup();
         group2.add(j1);group2.add(j2);group2.add(j3);
         

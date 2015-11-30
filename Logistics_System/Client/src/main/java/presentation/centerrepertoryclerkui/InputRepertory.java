@@ -57,12 +57,15 @@ public class InputRepertory extends JPanel{
 	private String result;//打印的消息
 	private Color co;//消息的颜色
 
+	private MyButton confirm;
+	private MyButton cancel;
+	
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
         g.drawLine(CenterRepertoryClerkFrame.w/6, 10, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h-10);
         g.drawLine(CenterRepertoryClerkFrame.w/6+10, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
-        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+90, CenterClerkFrame.w-100, CenterClerkFrame.h/6+90);
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
         
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterRepertoryClerkFrame.h-50, CenterRepertoryClerkFrame.w, 50, null);
@@ -200,68 +203,89 @@ public class InputRepertory extends JPanel{
     	
         String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
         JLabel agencyNameLabel = new JLabel(str);
-        agencyNameLabel.setSize((int)(30*str.length()*1.07f), 30);
-        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 20));
-        agencyNameLabel.setLocation(CenterClerkFrame.w/6,128+50);
+        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
+        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
         
         Date date_=new Date();
 		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		String time_="入库时间:  "+format.format(date_);
 		JLabel timeLabel = new JLabel(time_);
-        timeLabel.setSize((int)(30*time_.length()*1.07f), 30);
-        timeLabel.setFont(new Font("宋体", Font.BOLD, 20));
-        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()/2,128+50);
+        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
+        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
         
         JLabel orderId=new JLabel("入库订单编号：");
-        orderId.setSize((int)(30*"入库订单编号：".length()*1.07f), 30);
-        orderId.setFont(new Font("宋体", Font.BOLD, 20));
+        orderId.setSize((int)(16*"入库订单编号：".length()*1.07f), 16);
+        orderId.setFont(new Font("宋体", Font.BOLD, 15));
         orderId.setLocation(agencyNameLabel.getX(),128+120);
         
         JLabel destiPlace=new JLabel("目的地:");
-        destiPlace.setSize((int)(30*"目的地:".length()*1.07f), 30);
-        destiPlace.setFont(new Font("宋体", Font.BOLD, 20));
-        destiPlace.setLocation(agencyNameLabel.getX(),128+220);
+        destiPlace.setSize((int)(16*"目的地:".length()*1.07f), 16);
+        destiPlace.setFont(new Font("宋体", Font.BOLD, 15));
+        destiPlace.setLocation(agencyNameLabel.getX(),128+215);
         
         JLabel location=new JLabel("库存位置：");
-        location.setSize((int)(30*"库存位置：".length()*1.07f), 30);
-        location.setFont(new Font("宋体", Font.BOLD, 20));
+        location.setSize((int)(16*"库存位置：".length()*1.07f), 16);
+        location.setFont(new Font("宋体", Font.BOLD, 15));
         location.setLocation(agencyNameLabel.getX(),128+320);
         
-        _q.setSize((int)(30*1.07f), 30);
-        _q.setFont(new Font("宋体", Font.BOLD, 20));
-        _q.setLocation(location.getX()+location.getWidth()/2+50,location.getY());
+        _q.setSize((int)(20*1.07f), 20);
+        _q.setLocation(location.getX()+location.getWidth(),location.getY()-3);
         
         JLabel q=new JLabel("区");
-        q.setSize((int)(30*1.07f), 30);
-        q.setFont(new Font("宋体", Font.BOLD, 20));
-        q.setLocation(_q.getX()+_q.getWidth()/2+30,location.getY());
+        q.setSize((int)(16*1.07f),16);
+        q.setFont(new Font("宋体", Font.BOLD, 15));
+        q.setLocation(_q.getX()+_q.getWidth()+10,location.getY());
         
-        _p.setSize((int)(30*1.07f), 30);
-        _p.setFont(new Font("宋体", Font.BOLD, 20));
-        _p.setLocation(q.getX()+q.getWidth()/2+50,location.getY());
+        _p.setSize((int)(20*1.07f), 20);
+        _p.setLocation(q.getX()+q.getWidth()+30,location.getY()-3);
         
         JLabel p=new JLabel("排");
-        p.setSize((int)(30*1.07f), 30);
-        p.setFont(new Font("宋体", Font.BOLD, 20));
-        p.setLocation(_p.getX()+_p.getWidth()/2+30,location.getY());
+        p.setSize((int)(16*1.07f), 16);
+        p.setFont(new Font("宋体", Font.BOLD, 15));
+        p.setLocation(_p.getX()+_p.getWidth()+10,location.getY());
         
-        _j.setSize((int)(30*1.07f), 30);
-        _j.setFont(new Font("宋体", Font.BOLD, 20));
-        _j.setLocation(p.getX()+p.getWidth()/2+50,location.getY());
+        _j.setSize((int)(20*1.07f), 20);
+        _j.setLocation(p.getX()+p.getWidth()+30,location.getY()-3);
         
         JLabel j=new JLabel("架");
-        j.setSize((int)(30*1.07f), 30);
-        j.setFont(new Font("宋体", Font.BOLD, 20));
-        j.setLocation(_j.getX()+_j.getWidth()/2+30,location.getY());
+        j.setSize((int)(16*1.07f), 16);
+        j.setFont(new Font("宋体", Font.BOLD, 15));
+        j.setLocation(_j.getX()+_j.getWidth()+10,location.getY());
         
-        _w.setSize((int)(30*1.07f), 30);
-        _w.setFont(new Font("宋体", Font.BOLD, 20));
-        _w.setLocation(j.getX()+j.getWidth()/2+50,location.getY());
+        _w.setSize((int)(20*1.07f), 20);
+        _w.setLocation(j.getX()+j.getWidth()+30,location.getY()-3);
         
         JLabel w=new JLabel("位");
-        w.setSize((int)(30*1.07f), 30);
-        w.setFont(new Font("宋体", Font.BOLD, 20));
-        w.setLocation(_w.getX()+_w.getWidth()/2+30,location.getY());
+        w.setSize((int)(16*1.07f), 16);
+        w.setFont(new Font("宋体", Font.BOLD, 15));
+        w.setLocation(_w.getX()+_w.getWidth()+10,location.getY());
+        
+        confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm.setLocation(CenterClerkFrame.w/2,location.getY()+location.getHeight()+100);
+    	confirm.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_confirm();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	
+    	cancel=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	cancel.setLocation(CenterClerkFrame.w/3*2,confirm.getY());
+     	cancel.addMouseListener(new MouseListener(){
+ 			public void mouseClicked(MouseEvent arg0) {
+ 				_cancel();
+ 			}
+ 			public void mouseEntered(MouseEvent arg0) {}
+ 			public void mouseExited(MouseEvent arg0) {}
+ 			public void mousePressed(MouseEvent arg0) {}
+ 			public void mouseReleased(MouseEvent arg0) {}
+         });
+     	
         //最基本按钮
     	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
@@ -273,13 +297,11 @@ public class InputRepertory extends JPanel{
     	goto_Inventory.setLocation(20,300);
     	
     	//其他组件
-    	_orderId.setSize((int)(170*1.07f), 30);
-        _orderId.setFont(new Font("宋体", Font.BOLD, 20));
-        _orderId.setLocation(orderId.getX()+orderId.getWidth()/2+50,orderId.getY());
+    	_orderId.setSize((int)(170*1.07f), 20);
+        _orderId.setLocation(orderId.getX()+orderId.getWidth(),orderId.getY()-3);
 
-        _destiPlace.setSize((int)(170*1.07f), 30);
-        _destiPlace.setFont(new Font("宋体", Font.BOLD, 20));
-        _destiPlace.setLocation(destiPlace.getX()+destiPlace.getWidth()/2+50,destiPlace.getY());
+        _destiPlace.setSize((int)(170*1.07f), 20);
+        _destiPlace.setLocation(destiPlace.getX()+destiPlace.getWidth(),destiPlace.getY()-3);
 		
         
         
@@ -314,7 +336,8 @@ public class InputRepertory extends JPanel{
     	add(goto_ViewRepertory);
     	add(goto_Inventory);
 
-    	
+    	add(confirm);
+    	add(cancel);
 	}
 
 	private void clear(){
@@ -345,5 +368,16 @@ public class InputRepertory extends JPanel{
 				}
 			}).start();
 		}
+	}
+	void _confirm(){
+		
+	}
+	void _cancel(){
+		_orderId.setText("");
+		_destiPlace.setText("");
+		_q.setText("");
+		_p.setText("");
+		_j.setText("");
+		_w.setText("");
 	}
 }

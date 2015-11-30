@@ -68,7 +68,7 @@ public class OutputRepertory extends JPanel{
         setBackground(Color.WHITE);
         g.drawLine(CenterRepertoryClerkFrame.w/6, 10, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h-10);
         g.drawLine(CenterRepertoryClerkFrame.w/6+10, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
-        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+90, CenterClerkFrame.w-100, CenterClerkFrame.h/6+90);
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
         
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterRepertoryClerkFrame.h-50, CenterRepertoryClerkFrame.w, 50, null);
@@ -206,37 +206,37 @@ public class OutputRepertory extends JPanel{
         
         String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
         JLabel agencyNameLabel = new JLabel(str);
-        agencyNameLabel.setSize((int)(30*str.length()*1.07f), 30);
-        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 20));
-        agencyNameLabel.setLocation(CenterClerkFrame.w/6,128+50);
+        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
+        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
         
         Date date_=new Date();
 		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		String time_="出库时间:  "+format.format(date_);
 		JLabel timeLabel = new JLabel(time_);
-        timeLabel.setSize((int)(30*time_.length()*1.07f), 30);
-        timeLabel.setFont(new Font("宋体", Font.BOLD, 20));
-        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()/2,128+50); 
+        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
+        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50); 
         
         JLabel orderId=new JLabel("出库订单编号：");
-        orderId.setSize((int)(30*"出库订单编号：".length()*1.07f), 30);
-        orderId.setFont(new Font("宋体", Font.BOLD, 20));
+        orderId.setSize((int)(16*"出库订单编号：".length()*1.07f), 16);
+        orderId.setFont(new Font("宋体", Font.BOLD, 15));
         orderId.setLocation(agencyNameLabel.getX(),128+100);
         
         JLabel destiPlace=new JLabel("目的地：");
-        destiPlace.setSize((int)(30*"目的地：".length()*1.07f), 30);
-        destiPlace.setFont(new Font("宋体", Font.BOLD, 20));
-        destiPlace.setLocation(orderId.getX(),orderId.getY()+100);
+        destiPlace.setSize((int)(16*"目的地：".length()*1.07f), 16);
+        destiPlace.setFont(new Font("宋体", Font.BOLD, 15));
+        destiPlace.setLocation(agencyNameLabel.getX(),orderId.getY()+100);
         
         JLabel transWays=new JLabel("装运方式: ");
-        transWays.setSize((int)(30*"装运方式： ".length()*1.07f), 30);
-        transWays.setFont(new Font("宋体", Font.BOLD, 20));
-        transWays.setLocation(CenterClerkFrame.w/6,destiPlace.getY()+100);
+        transWays.setSize((int)(16*"装运方式： ".length()*1.07f), 16);
+        transWays.setFont(new Font("宋体", Font.BOLD, 15));
+        transWays.setLocation(agencyNameLabel.getX(),destiPlace.getY()+100);
         
-        JLabel transId=new JLabel("中转单编号：");
-        transId.setSize((int)(30*"中转订单编号".length()*1.07f), 30);
-        transId.setFont(new Font("宋体", Font.BOLD, 20));
-        transId.setLocation(orderId.getX(),transWays.getY()+100);
+        JLabel transId=new JLabel("中转单编号:");
+        transId.setSize((int)(16*"中转订单编号:".length()*1.07f), 16);
+        transId.setFont(new Font("宋体", Font.BOLD, 15));
+        transId.setLocation(agencyNameLabel.getX(),transWays.getY()+100);
     	
         //最基本按钮
     	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
@@ -250,31 +250,31 @@ public class OutputRepertory extends JPanel{
     	
     	//其他组件
     	_plane=new JRadioButton("航运",true);
-        _plane.setSize((int)(100*1.07f), 30);
-        _plane.setFont(new Font("宋体", Font.BOLD, 20));
-        _plane.setLocation(transWays.getX()+transWays.getWidth()/2+50,transWays.getY());
+        _plane.setSize((int)(100*1.07f), 20);
+        _plane.setFont(new Font("宋体", Font.BOLD, 17));
+        _plane.setLocation(transWays.getX()+transWays.getWidth(),transWays.getY()-3);
+        _plane.setOpaque(false);
         _trains=new JRadioButton("铁运",true);
-        _trains.setSize((int)(100*1.07f), 30);
-        _trains.setFont(new Font("宋体", Font.BOLD, 20));
-        _trains.setLocation(_plane.getX()+_plane.getWidth()+50,transWays.getY());
+        _trains.setSize((int)(100*1.07f), 20);
+        _trains.setFont(new Font("宋体", Font.BOLD, 17));
+        _trains.setLocation(_plane.getX()+_plane.getWidth(),transWays.getY()-3);
+        _trains.setOpaque(false);
         _truck=new JRadioButton("汽运",true);
-        _truck.setSize((int)(100*1.07f), 30);
-        _truck.setFont(new Font("宋体", Font.BOLD, 20));
-        _truck.setLocation(_trains.getX()+_trains.getWidth()+50,transWays.getY());
+        _truck.setSize((int)(100*1.07f), 20);
+        _truck.setFont(new Font("宋体", Font.BOLD, 17));
+        _truck.setLocation(_trains.getX()+_trains.getWidth(),transWays.getY()-3);
+        _truck.setOpaque(false);
         ButtonGroup group1 = new ButtonGroup();
         group1.add(_plane);group1.add(_trains);group1.add(_truck);
         
-        _transId.setSize((int)(170*1.07f), 30);
-        _transId.setFont(new Font("宋体", Font.BOLD, 20));
-        _transId.setLocation(transId.getX()+transId.getWidth()/2+50,transId.getY());
+        _transId.setSize((int)(170*1.07f), 20);
+        _transId.setLocation(transId.getX()+transId.getWidth(),transId.getY()-3);
 
-        _destiPlace.setSize((int)(170*1.07f), 30);
-        _destiPlace.setFont(new Font("宋体", Font.BOLD, 20));
-        _destiPlace.setLocation(destiPlace.getX()+destiPlace.getWidth()/2+50,destiPlace.getY());
+        _destiPlace.setSize((int)(170*1.07f), 20);
+        _destiPlace.setLocation(destiPlace.getX()+destiPlace.getWidth(),destiPlace.getY());
         
-        _orderId.setSize((int)(170*1.07f), 30);
-        _orderId.setFont(new Font("宋体", Font.BOLD, 20));
-        _orderId.setLocation(orderId.getX()+orderId.getWidth()/2+50,orderId.getY());
+        _orderId.setSize((int)(170*1.07f), 20);
+        _orderId.setLocation(orderId.getX()+orderId.getWidth(),orderId.getY());
 		
         confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
         confirm.setLocation(CenterClerkFrame.w/2,transId.getY()+transId.getHeight()+100);
