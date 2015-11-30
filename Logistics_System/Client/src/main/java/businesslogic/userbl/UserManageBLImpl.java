@@ -6,12 +6,17 @@
 package businesslogic.userbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.agency.StaffPO;
+import po.system.SystemLogPO;
 import po.system.UserPO;
+import presentation.mainui.CurrentUser;
 import dataservice.DataFactoryService;
 import dataservice.agency.StaffDataService;
+import dataservice.system.SystemLogDataService;
 import dataservice.system.UserDataService;
 import utility.ResultMessage;
 import utility.UserType;
@@ -28,10 +33,15 @@ import businesslogicservice.userblservice.UserManageBLService;
 public class UserManageBLImpl implements UserManageBLService{
 	UserDataService userDataService=null;
 	StaffDataService staffDataService=null;
+	CurrentUser user=null;
+	SystemLogDataService system=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	//构造函数
-	public UserManageBLImpl(){
-		this.userDataService=(UserDataService)RMIHelper.find("UserDataService");	
+	public UserManageBLImpl(CurrentUser currentuser){
+		this.userDataService=(UserDataService)RMIHelper.find("UserDataService");
+		user=currentuser;
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
 	}
 
 	
@@ -52,10 +62,7 @@ public class UserManageBLImpl implements UserManageBLService{
 		}
         return null;
 	}
-    /**
-     * 方法中已经判断输入的账号或者工号是否存在
-     * 传入数据层中的po可以直接添加
-     */
+
 	public ResultMessage addUser(UserVO user) {
 		// TODO 自动生成的方法存根
 		UserPO userpo=null;
@@ -68,6 +75,7 @@ public class UserManageBLImpl implements UserManageBLService{
 				return new ResultMessage(false,"存在一致的工号!");
 			 userpo=new UserPO(user.getAdmin(),user.getPassword(),user.getPosition(),user.getId());
 			 userDataService.add(userpo);
+			 system.add(new SystemLogPO((String)df.format(new Date()),"添加账户信息",user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -82,6 +90,7 @@ public class UserManageBLImpl implements UserManageBLService{
 			userpo=userDataService.findonAdmin(admin);
 			if(userpo!=null){
 			userDataService.delete(admin);
+			system.add(new SystemLogPO((String)df.format(new Date()),"删除账户信息",user.getAdmin()));
 			return new ResultMessage(true,"删除账号成功!");
 			}
 		}catch(RemoteException e){
@@ -101,6 +110,7 @@ public class UserManageBLImpl implements UserManageBLService{
 				userpo.setPassword(user.getPassword());
 				userpo.setPosition(user.getPosition());
 				userDataService.update(userpo);
+				system.add(new SystemLogPO((String)df.format(new Date()),"更新账户信息",user.getAdmin()));
 				return new ResultMessage(true,"更新账户信息成功!");
 			}
 		}catch(RemoteException e){
@@ -119,6 +129,8 @@ public class UserManageBLImpl implements UserManageBLService{
 		  }catch(RemoteException e){
 				e.printStackTrace();
 			}
+		  if(userpo==null)
+			  return null;
 		  for(UserPO po:userpo){
 		    	uservo.add(new UserVO(po.getAdmin(),po.getPassword(),po.getPosition(),po.getId()));
 		    }
@@ -134,6 +146,8 @@ public class UserManageBLImpl implements UserManageBLService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
+		if(userpo==null)
+			return null;
 		UserVO uservo=new UserVO(userpo.getAdmin(),userpo.getPassword(),userpo.getPosition(),userpo.getId());
 		return uservo;
 	}
@@ -147,6 +161,8 @@ public class UserManageBLImpl implements UserManageBLService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
+		if(userpo==null)
+			return null;         
 		UserVO uservo=new UserVO(userpo.getAdmin(),userpo.getPassword(),userpo.getPosition(),userpo.getId());
 		return uservo;
 	}
