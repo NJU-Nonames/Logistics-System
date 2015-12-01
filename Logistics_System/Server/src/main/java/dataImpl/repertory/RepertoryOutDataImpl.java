@@ -71,4 +71,21 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 		return repertoryout;
 	}
 
+	public ArrayList<RepertoryOutPO> showByAgency(String start_day,
+			String end_day, String id) throws RemoteException {
+		ArrayList<RepertoryOutPO> repertoryout=new ArrayList<RepertoryOutPO>();
+		String sql="select * from repertoryout where timee<='"+end_day+"' and timee>='"+start_day+"' and id like '%"+id+"%'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next())
+			{
+				repertoryout.add(this.findOnID(rs.getString("id")));
+			}
+		} catch (SQLException e) {
+			System.out.println("操作失败");
+		}
+		
+		return repertoryout;
+	}
+
 }

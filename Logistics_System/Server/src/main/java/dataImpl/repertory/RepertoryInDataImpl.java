@@ -55,7 +55,7 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 
 	public ArrayList<RepertoryInPO> showAllByAgency(String start_day, String end_day,String agencyID) {
 		ArrayList<RepertoryInPO> repertoryin=new ArrayList<RepertoryInPO>();
-		String sql="select * from repertoryin where timee<='"+end_day+"' and timee>="+start_day+"' and id like '%"+agencyID+"%";
+		String sql="select * from repertoryin where timee<='"+end_day+"' and timee>="+start_day+"' and id like '%"+agencyID+"%'";
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			while(rs.next())

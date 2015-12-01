@@ -41,13 +41,6 @@ public interface RepertoryManageBLService {
 	public RepertorySearch searchRepertory(String start_time,String end_time);
 	
 	//以下需要修改 内容暂定
-	/**实时监控
-	 * 前置条件：无
-	 * 后置条件：若报警则返回报警信息，否则返回安全信息
-	 * @return	库存中的某一个区是否报警（存储量超出容量的90%）
-	 */
-	public ResultMessage repertoryAlarm();
-	
 	/**仓库管理人员进行库存管理操作
 	 * 前置条件：库存中某一个区已经报警
 	 * 后置条件：库存中的某区不再报警

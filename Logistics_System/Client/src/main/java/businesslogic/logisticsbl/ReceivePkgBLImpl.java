@@ -43,8 +43,9 @@ public class ReceivePkgBLImpl implements ReceivePkgBLService {
 				return new ResultMessage(false, "无此单号!");
 			if(orderListPO!=null){
 				orderListPO.setArriveTime(receiver.getTime());
-				orderListPO.setReceiverName(receiver.getName());
-				orderListPO.getPkgState().add(receiver.getTime()+" 订单已经签收");
+				orderListPO.setRealreceiver(receiver.getName());
+				orderListPO.setRealreceivertelenumber(receiver.telenumber);
+				orderListPO.getPkgState().add(receiver.getTime()+" 订单已经签收,签收人是"+receiver.getName());
 				service1.update(orderListPO);
 			}
 			} catch (RemoteException e) {

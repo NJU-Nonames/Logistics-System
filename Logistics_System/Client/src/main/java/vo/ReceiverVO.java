@@ -19,6 +19,8 @@ public class ReceiverVO {
 	 * 收件时间
 	 */
 	private String time;
+	
+	public String telenumber;
 
 	public String getName() {
 		return name;
@@ -28,10 +30,11 @@ public class ReceiverVO {
 		return time;
 	}
 
-	public ReceiverVO(String name, String time) {
+	public ReceiverVO(String name, String time,String tele) {
 		super();
 		this.name = name;
 		this.time = time;
+		this.telenumber=tele;
 	}
 	
 	

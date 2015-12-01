@@ -75,11 +75,15 @@ public class OrderListVO extends ListVO{
 	private String departTime;
 	private String arriveTime;
 	
+    public String realreceiver;
+	
+	public String realreceivertelenumber;
+	
 	
 	public OrderListVO(String senderName, String senderAddress,
 			String senderTeleNumber, String receiverName,String receiverAddress,String receiverTeleNumber,String number,
 			double weight, double volume, String name, ExpressType category,
-			ArrayList<String> pkgState, double packPrice, String barCode,PkgType type,String time1,String time2,CheckType checktype) {
+			ArrayList<String> pkgState, double packPrice, String barCode,PkgType type,String time1,String time2,CheckType checktype,String realreceiver,String realreceivertelenumber) {
 		super();
 		this.senderName = senderName;
 		this.senderAddress = senderAddress;
@@ -99,6 +103,8 @@ public class OrderListVO extends ListVO{
 		this.departTime=time1;
 		this.arriveTime=time2;
 		this.setCheckType(checktype);
+		this.realreceiver=realreceiver;
+		this.realreceivertelenumber=realreceivertelenumber;
 	}
 	public OrderListVO(OrderListPO orderListPO) {
 		// TODO 自动生成的构造函数存根

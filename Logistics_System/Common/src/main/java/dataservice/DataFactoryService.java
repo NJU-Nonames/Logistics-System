@@ -18,7 +18,6 @@ import dataservice.list.TransShipmentListDataService;
 import dataservice.moneyInformation.BaseDataSettingDataService;
 import dataservice.moneyInformation.MoneyInListDataService;
 import dataservice.moneyInformation.MoneyOutListDataService;
-import dataservice.receiver.ReceiverDataService;
 import dataservice.repertory.RepertoryInDataService;
 import dataservice.repertory.RepertoryInfoDataService;
 import dataservice.repertory.RepertoryOutDataService;
@@ -44,7 +43,6 @@ public interface DataFactoryService extends Remote{
 	public BaseDataSettingDataService getBaseDataSettingDataService() throws RemoteException;
 	public MoneyInListDataService getMoneyInListDataService()throws RemoteException;
 	public MoneyOutListDataService getMoneyOutListDataService()throws RemoteException;
-	public ReceiverDataService getReceiverDataService()throws RemoteException;
 	public RepertoryInDataService getRepertoryInDataService()throws RemoteException;
 	public RepertoryOutDataService getRepertoryDataService()throws RemoteException;
 	public RepertoryInfoDataService getRepertoryInfoDataService()throws RemoteException;

@@ -124,7 +124,7 @@ public class CheckBLImpl implements CheckBLService {
 				if(orderpo==null)
 					return null;
 				for(OrderListPO po:orderpo){
-					ordervo.add(new OrderListVO(po.getSenderName(), po.getSenderAddress(), po.getSenderTeleNumber(), po.getReceiverName(), po.getReceiverAddress(), po.getReceiverTeleNumber(), po.getNumber(), po.getWeight(), po.getVolume(), po.getName(), po.getCategory(), po.getPkgState(), po.getPackPrice(), po.getBarCode(), po.getPkgType(), po.getDepartTime(), po.getArriveTime(), po.getCheckType()));
+					ordervo.add(new OrderListVO(po.getSenderName(), po.getSenderAddress(), po.getSenderTeleNumber(), po.getReceiverName(), po.getReceiverAddress(), po.getReceiverTeleNumber(), po.getNumber(), po.getWeight(), po.getVolume(), po.getName(), po.getCategory(), po.getPkgState(), po.getPackPrice(), po.getBarCode(), po.getPkgType(), po.getDepartTime(), po.getArriveTime(), po.getCheckType(),po.getRealreceiver(),po.getRealreceivertelenumber()));
 				}
 				return ordervo;
 			case LOADING_NOTE:
@@ -525,7 +525,7 @@ public class CheckBLImpl implements CheckBLService {
 				return true;
 			case SENDING_NOTE:
 				OrderListVO ordervo=(OrderListVO)listVO;
-				OrderListPO orderpo=new OrderListPO(ordervo.getSenderName(),ordervo.getSenderAddress(),ordervo.getSenderTeleNumber(),ordervo.getReceiverName(),ordervo.getReceiverAddress(),ordervo.getReceiverTeleNumber(),ordervo.getNumber(),ordervo.getWeight(),ordervo.getVolume(),ordervo.getName(),ordervo.getCategory(),ordervo.getPkgState(),ordervo.getPackPrice(),ordervo.getBarCode(),ordervo.getPkgType(),ordervo.getDepartTime(),ordervo.getArriveTime(),ordervo.getCheckType());
+				OrderListPO orderpo=new OrderListPO(ordervo.getSenderName(),ordervo.getSenderAddress(),ordervo.getSenderTeleNumber(),ordervo.getReceiverName(),ordervo.getReceiverAddress(),ordervo.getReceiverTeleNumber(),ordervo.getNumber(),ordervo.getWeight(),ordervo.getVolume(),ordervo.getName(),ordervo.getCategory(),ordervo.getPkgState(),ordervo.getPackPrice(),ordervo.getBarCode(),ordervo.getPkgType(),ordervo.getDepartTime(),ordervo.getArriveTime(),ordervo.getCheckType(),ordervo.realreceiver,ordervo.realreceivertelenumber);
 				order.update(orderpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"改变快递单信息",user.getAdmin()));
 				return true;

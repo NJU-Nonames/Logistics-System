@@ -16,6 +16,7 @@ public interface RepertoryOutDataService extends Remote{
 	
 	public RepertoryOutPO findOnID(String id)throws RemoteException;
 	
+	public ArrayList<RepertoryOutPO> showByAgency(String start_day, String end_day,String id)throws RemoteException;
 	/**
 	 * 返回出库单PO集合
 	 * @param start_day

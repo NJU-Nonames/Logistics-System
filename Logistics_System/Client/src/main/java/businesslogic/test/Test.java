@@ -32,7 +32,7 @@ public class Test {
 //		deliver.createDeliveringList(new DeliveringListVO("111111000", "2015-9-11", barCode, "ysy", CheckType.UNDERCHECK), keywords)
 		ArrayList<String> state=new ArrayList<String>();
 		state.add("订单已经出发");
-	OrderListVO order=	send.createMoneyAndDate(new OrderListVO("王家玮","南京市仙林","11100011100","杨三洋","南京市鼓楼","18260065267","2",10,100,"货物",ExpressType.ECONOMIC,state,0,"025001201509101025",PkgType.PAPER,"2015-9-10 10:25:00",0+"",CheckType.UNDERCHECK
+	OrderListVO order=	send.createMoneyAndDate(new OrderListVO("王家玮","南京市仙林","11100011100","杨三洋","南京市鼓楼","18260065267","2",10,100,"货物",ExpressType.ECONOMIC,state,0,"025001201509101025",PkgType.PAPER,"2015-9-10 10:25:00",0+"",CheckType.UNDERCHECK,"",""
 				));
 	 send.createOrderList(order);
 	}

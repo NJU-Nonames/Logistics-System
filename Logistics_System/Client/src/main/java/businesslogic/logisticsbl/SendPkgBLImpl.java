@@ -115,7 +115,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 		OrderListPO result=new OrderListPO(orderListVO.getSenderName(), orderListVO.getSenderAddress(), orderListVO.getSenderTeleNumber(),
 				orderListVO.getReceiverName(), orderListVO.getReceiverAddress(), orderListVO.getReceiverTeleNumber(),
 				orderListVO.getNumber(),orderListVO.getWeight(),orderListVO.getVolume(),orderListVO.getName(),orderListVO.getCategory()
-				,orderListVO.getPkgState(),orderListVO.getPackPrice(),orderListVO.getBarCode(),orderListVO.getPkgType(),orderListVO.getDepartTime(),orderListVO.getArriveTime(),orderListVO.getCheckType());
+				,orderListVO.getPkgState(),orderListVO.getPackPrice(),orderListVO.getBarCode(),orderListVO.getPkgType(),orderListVO.getDepartTime(),orderListVO.getArriveTime(),orderListVO.getCheckType(),orderListVO.realreceiver,orderListVO.realreceivertelenumber);
 		try{
 			service1.add(result);
 			system.add(new SystemLogPO((String)df.format(new Date()),"添加快递单,单号为"+orderListVO.getBarCode(),user.getAdmin()));

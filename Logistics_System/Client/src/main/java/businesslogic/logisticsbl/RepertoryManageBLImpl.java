@@ -10,6 +10,7 @@ import po.repertory.RepertoryInfoPO;
 import po.repertory.RepertoryOutPO;
 import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
+import dataservice.list.OrderListDataService;
 import dataservice.repertory.RepertoryInDataService;
 import dataservice.repertory.RepertoryInfoDataService;
 import dataservice.repertory.RepertoryOutDataService;
@@ -28,11 +29,13 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	RepertoryInDataService repertoryin=null;
 	RepertoryOutDataService repertoryout=null;
 	RepertoryInfoDataService repertoryinfo=null;
+	OrderListDataService orderlist=null;
 	CurrentUser user=null;
 	SystemLogDataService system=null;
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public RepertoryManageBLImpl(CurrentUser currentuser){
+		orderlist=(OrderListDataService) RMIHelper.find("OrderListDataService");
 		repertoryin=(RepertoryInDataService)RMIHelper.find("RepertoryInDataService");
 		repertoryout=(RepertoryOutDataService)RMIHelper.find("RepertoryOutDataService");
 		repertoryinfo=(RepertoryInfoDataService)RMIHelper.find("RepertoryInfoDataService");
@@ -55,8 +58,11 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		
-		return new ResultMessage(true,"创建入库单成功!");
+		ResultMessage rs=this.repertoryAlarm(Integer.parseInt(repertoryinpo.getAreacode()));
+		if(rs.isPass())
+		   return new ResultMessage(true,"创建入库单成功!");
+		else 
+			return new ResultMessage(true,"创建入库单成功!仓位到达报警线，请进行库存调整修改位置。");
 	}
 
 	public ResultMessage createOutputRepertory(RepertoryOutVO repertoryOut) {
@@ -77,6 +83,11 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		return new ResultMessage(true,"创建出库单成功!");
 	}
 
+	
+	/* (non-Javadoc)
+	 * 库存盘点
+	 * @see businesslogicservice.logisticsblservice.RepertoryManageBLService#showRepertory()
+	 */
 	public RepertoryInfoVO showRepertory() {
 		RepertoryInfoVO repertoryInfo=new RepertoryInfoVO();
 		try {
@@ -105,15 +116,66 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		return repertoryInfo;
 	}
 
-	//库存查看
+	
+	/* (non-Javadoc)
+	 * 库存查看
+	 * @see businesslogicservice.logisticsblservice.RepertoryManageBLService#searchRepertory(java.lang.String, java.lang.String)
+	 */
 	public RepertorySearch searchRepertory(String start_time, String end_time) {
-		// TODO Auto-generated method stub
-		return null;
+		RepertorySearch repertorySearch=new RepertorySearch();
+		try {
+			ArrayList<RepertoryInPO> arrayin=repertoryin.showAllByAgency(start_time, end_time, user.getAgencyNum());
+			ArrayList<RepertoryOutPO> arrayout=repertoryout.showByAgency(start_time, end_time, user.getAgencyNum());
+		    repertorySearch.numberIn=arrayin.size()+"";
+		    repertorySearch.numberOut=arrayout.size()+"";
+		    ArrayList<RepertoryInVO> repertoryin=new ArrayList<RepertoryInVO>();
+		    ArrayList<RepertoryOutVO> repertoryout=new ArrayList<RepertoryOutVO>();
+		    double moneyin=0;
+		    double moneyout=0;
+		    for(int i=0;i<arrayin.size();i++)
+		    {
+		    	repertoryin.add(new RepertoryInVO(arrayin.get(i).getId(), arrayin.get(i).getNum(), arrayin.get(i).getTime(), arrayin.get(i).getDestination(), arrayin.get(i).getAreacode(), arrayin.get(i).getRownumber(), arrayin.get(i).getFramenumber(), arrayin.get(i).getPlacenumber(), arrayin.get(i).getCheckType()));
+		        moneyin+=orderlist.find(arrayin.get(i).getNum()).getPackPrice();
+		    }
+		    
+		    for(int i=0;i<arrayout.size();i++)
+		    {
+		    	repertoryout.add(new RepertoryOutVO(arrayout.get(i).getId(), arrayout.get(i).getCode(), arrayout.get(i).getTime(), arrayout.get(i).getDestination(), arrayout.get(i).getTransportation(), arrayout.get(i).getTransCode(), arrayout.get(i).getVehicleCode(), arrayout.get(i).getCheckType()));
+		        moneyout+=orderlist.find(arrayout.get(i).getCode()).getPackPrice();
+		    }
+		    
+		    repertorySearch.repertoryin=repertoryin;
+		    repertorySearch.repertoryout=repertoryout;
+		    repertorySearch.moneyIn=moneyin+"";
+		    repertorySearch.moneyOut=moneyout+"";
+		    
+		    
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return repertorySearch;
 	}
 	
-	public ResultMessage repertoryAlarm() {
-		// TODO 自动生成的方法存根
-		return null;
+	/* (non-Javadoc)
+	 * 库存报警
+	 * @see businesslogicservice.logisticsblservice.RepertoryManageBLService#repertoryAlarm()
+	 */
+	public ResultMessage repertoryAlarm(int num) {
+		double percent=0;
+		switch(num)
+		{
+		case 1: percent=Double.parseDouble(this.showRepertory().percentA);break;
+		case 2: percent=Double.parseDouble(this.showRepertory().percentB);break;
+		case 3: percent=Double.parseDouble(this.showRepertory().percentC);break;
+		case 4: percent=Double.parseDouble(this.showRepertory().percentD);break;
+		
+		}
+		boolean isdanger=CaculateRepertory.isdangerous(percent);
+		if(isdanger)
+			return new ResultMessage(isdanger,"仓位已经到达警告线，请调整仓位");
+		else
+		    return new ResultMessage(isdanger,"仓位预存正常，未到达警戒线");
 	}
 
 	public ResultMessage repertoryAdjust() {

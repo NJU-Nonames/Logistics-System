@@ -16,6 +16,7 @@ public interface RepertoryInDataService extends Remote{
 		
 		public RepertoryInPO findOnID(String id)throws RemoteException;
 		
+		public ArrayList<RepertoryInPO> showAllByAgency(String start_day, String end_day,String agencyID)throws RemoteException;
 		/**
 		 * 返回入库单PO集合
 		 * @param start_day
