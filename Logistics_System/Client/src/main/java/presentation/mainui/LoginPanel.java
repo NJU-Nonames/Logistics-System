@@ -21,6 +21,7 @@ import presentation.img.Img;
 import presentation.topmanagerui.TopManagerFrame;
 import utility.ExpressType;
 import utility.UserType;
+import utility.Position;
 import vo.StaffVO;
 import vo.UserVO;
 import businesslogicservice.userblservice.UserManageBLService;
@@ -149,9 +150,9 @@ public class LoginPanel extends JPanel{
 		repaint();
 	}
 	private void userlogin(){
-//		String username = userField.getText();
-//		String paw = passwordField.getText();
-//
+		String username = userField.getText();
+		String paw = passwordField.getText();
+
 //		result = CheckFormat.checkUserNum(username);
 //		if(result.compareTo("格式正确")!=0){
 //			if(!Invalid){
@@ -173,44 +174,45 @@ public class LoginPanel extends JPanel{
 //			}
 //			return;
 //		}
-//		
-//
-//		UserVO vo = bl.login(username, paw);
-//		if(vo==null){
-//			Invalid=true;
-//			result = "密码错误！";
-//			repaint();
-//			new Thread(new Runnable(){
-//				public void run() {
-//					try {
-//						Thread.sleep(3000);
-//					} catch (InterruptedException e) {
-//						// TODO 自动生成的 catch 块
-//						e.printStackTrace();
-//					}
-//
-//					Invalid=false;
-//					repaint();
-//				}
-//			}).start();
-//		}else{
+		
+
+		StaffVO vo = bl.login(username, paw);
+		if(vo==null){
+			Invalid=true;
+			result = "密码错误！";
+			repaint();
+			new Thread(new Runnable(){
+				public void run() {
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+					}
+
+					Invalid=false;
+					repaint();
+				}
+			}).start();
+		}else{
 			mf.dispose();
-//			switch(uservo.getPosition()){
-//			case UserType.COURIER:break;
-//			case UserType.BUSINESS_OFFICE_CLERK:break;
-//			case UserType.CENTER_CLERK:break;
-//			case UserType.CENTER_REPERTORY_CLERK:break;
-//			case UserType.FINANCIAL_STAFF_LOW:
-//			case UserType.FINANCIAL_STAFF_HIGH:new FinacialStaffFrame();break;
-//			case UserType.TOP_MANAGER:break;
-//			case UserType.ADMIN:break;
-//			}
-//		}
+			switch(vo.getPostion()){
+			case COURIER:new CourierFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
+			case BUSINESS_OFFICE_CLERK:break;
+			case CENTER_CLERK:break;
+			case CENTER_REPERTORY_CLERK:break;
+			case FINANCIAL_STAFF_LOW:
+			case FINANCIAL_STAFF_HIGH:new FinacialStaffFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
+			case TOP_MANAGER:break;
+			case ADMIN:break;
+			case DRIVER:break;
+			}
+		}
 //			new FinacialStaffFrame();
 //			new TopManagerFrame();
 //			new BusinessOfficeClerkFrame();
 //			new CenterRepertoryClerkFrame();
-			new CourierFrame();
+//			new CourierFrame();
 //			new CenterClerkFrame();
 //			new AdminFrame();
 	}

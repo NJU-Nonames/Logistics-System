@@ -97,8 +97,8 @@ public class MainFrame extends JFrame{
 
 		//bl1 = new SearchPkgInformationBLImpl();
 		bl1 = null;
-		//bl2 = new UserManageBLImpl();
-		bl2 = null;
+		bl2 = new UserManageBLImpl(null);
+		//bl2 = null;
 		mainpanel = new MainPanel(this);
 		searchpanel = new SearchPanel(this, bl1);
 		loginpanel = new LoginPanel(this, bl2);

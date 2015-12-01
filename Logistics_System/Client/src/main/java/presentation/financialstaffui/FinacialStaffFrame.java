@@ -70,9 +70,9 @@ public class FinacialStaffFrame extends JFrame{
 	private int xx;
 	private int yy;
 	
-	public FinacialStaffFrame(){
-		//this.currentUser=currentUser;
-		this.currentUser=new CurrentUser("王大锤","南京中转中心","025000","admin");
+	public FinacialStaffFrame(CurrentUser currentUser){
+		this.currentUser=currentUser;
+//		this.currentUser=new CurrentUser("王大锤","南京中转中心","025000","admin");
 		this.setUndecorated(true);
 		this.addMouseListener(new MouseAdapter() { 
 			public void mousePressed(MouseEvent e) { 

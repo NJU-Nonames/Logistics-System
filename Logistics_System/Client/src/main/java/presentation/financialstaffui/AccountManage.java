@@ -435,7 +435,8 @@ public class AccountManage extends JPanel{
 			i++;
 			s=(String) AccountTable.getValueAt(i, 0);
 		}
-		AccountTable.setRowSelectionInterval(i, i);
+		AccountTable.setRowSelectionInterval(i, i+2);
+		AccountTable.setRowSelectionInterval(i+1, i+1);
 	}
 	private void _add(){
 		String new_Account = newAccountField.getText();

@@ -58,9 +58,9 @@ public class CourierFrame extends JFrame{
 	private int xx;
 	private int yy;
 	
-	public CourierFrame(){
-		//this.currentUser=currentUser;
-		this.currentUser=new CurrentUser("王大锤","南京营业厅","025001","admin");
+	public CourierFrame(CurrentUser currentUser){
+		this.currentUser=currentUser;
+		//this.currentUser=new CurrentUser("王大锤","南京营业厅","025001","admin");
 		this.setUndecorated(true);
 		this.addMouseListener(new MouseAdapter() { 
 			public void mousePressed(MouseEvent e) { 
