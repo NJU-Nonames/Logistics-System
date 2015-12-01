@@ -75,7 +75,7 @@ public class UserManageBLImpl implements UserManageBLService{
 				return new ResultMessage(false,"存在一致的工号!");
 			 userpo=new UserPO(user.getAdmin(),user.getPassword(),user.getPosition(),user.getId());
 			 userDataService.add(userpo);
-			 system.add(new SystemLogPO((String)df.format(new Date()),"添加账户信息",user.getAdmin()));
+			 system.add(new SystemLogPO((String)df.format(new Date()),"添加账户,账号为"+user.getAdmin(),this.user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -90,7 +90,7 @@ public class UserManageBLImpl implements UserManageBLService{
 			userpo=userDataService.findonAdmin(admin);
 			if(userpo!=null){
 			userDataService.delete(admin);
-			system.add(new SystemLogPO((String)df.format(new Date()),"删除账户信息",user.getAdmin()));
+			system.add(new SystemLogPO((String)df.format(new Date()),"删除账户,账号为"+admin,user.getAdmin()));
 			return new ResultMessage(true,"删除账号成功!");
 			}
 		}catch(RemoteException e){
@@ -110,7 +110,7 @@ public class UserManageBLImpl implements UserManageBLService{
 				userpo.setPassword(user.getPassword());
 				userpo.setPosition(user.getPosition());
 				userDataService.update(userpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"更新账户信息",user.getAdmin()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"更新账户,账号为"+user.getAdmin(),this.user.getAdmin()));
 				return new ResultMessage(true,"更新账户信息成功!");
 			}
 		}catch(RemoteException e){

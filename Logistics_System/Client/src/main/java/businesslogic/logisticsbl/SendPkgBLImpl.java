@@ -3,9 +3,11 @@ package businesslogic.logisticsbl;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.constantinfo.DistanceChartPO;
 import po.list.OrderListPO;
+import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
 import dataservice.constantinfo.ConstantDataService;
 import dataservice.list.OrderListDataService;
@@ -26,8 +28,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 		this.service1=(OrderListDataService)RMIHelper.find("OrderListDataService");
 		this.service2=(ConstantDataService)RMIHelper.find("ConstantDataService");
 		user=currentuser;
-		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
-		
+		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");	
 	}
 	public OrderListVO createMoneyAndDate(OrderListVO orderListVO) {
 		try {
@@ -53,19 +54,8 @@ public class SendPkgBLImpl implements SendPkgBLService {
 			if(count!=0){
 				days=days/count;
 			}
-			System.out.println(count);
-			String[] temp2=orderListVO.getDepartTime().split(" ");
-			String[] temp=temp2[0].split("-");
-			int year=Integer.parseInt(temp[0]);
-			int month=Integer.parseInt(temp[1]);
-			int day=Integer.parseInt(temp[2]);
-			year+=days/360;
-			month+=(days%360)/30;
-			day+=((days%360)%30);
-			orderListVO.setArriveTime(year+"-"+month+"-"+day);
+			orderListVO.setArriveTime(days+"");
 			//估计时间完成
-			
-			
 			String cityName1=orderListVO.getSenderAddress();
 			String cityName2=orderListVO.getReceiverAddress();
 			for(int i=0;i<cityName1.length();i++){
@@ -116,8 +106,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 			//计算价格完成
 		} catch (RemoteException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 		return orderListVO;
 	}
 
@@ -129,10 +118,10 @@ public class SendPkgBLImpl implements SendPkgBLService {
 				,orderListVO.getPkgState(),orderListVO.getPackPrice(),orderListVO.getBarCode(),orderListVO.getPkgType(),orderListVO.getDepartTime(),orderListVO.getArriveTime(),orderListVO.getCheckType());
 		try{
 			service1.add(result);
+			system.add(new SystemLogPO((String)df.format(new Date()),"添加快递单,单号为"+orderListVO.getBarCode(),user.getAdmin()));
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return new ResultMessage(true, "成功保存订单!");
 	}
-
 }

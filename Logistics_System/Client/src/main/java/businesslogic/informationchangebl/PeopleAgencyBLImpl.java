@@ -32,7 +32,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 		// TODO Auto-generated method stub
 		try{
 			agencydataservice.salaryManage(position, salary);
-			system.add(new SystemLogPO((String)df.format(new Date()),"修改"+position+"工资信息",user.getAdmin()));
+			system.add(new SystemLogPO((String)df.format(new Date()),"修改"+position+"工资信息为"+salary,user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 				}
 				agencypo=new AgencyPO(agency.getAgencyName(),agency.getAgencyNum(),list);
 				agencydataservice.add(agencypo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"增加机构信息",user.getAdmin()));
+				system.add(new SystemLogPO((String)df.format(new Date()),"增加机构信息,编号为"+agency.getAgencyNum(),user.getAdmin()));
 				return new ResultMessage(true,"增加机构信息成功!");
 			}
 		}catch(RemoteException e){
@@ -67,7 +67,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 		agencypo=agencydataservice.find(agencyId);
 		if(agencypo!=null){
 			agencydataservice.delete(agencyId);
-			system.add(new SystemLogPO((String)df.format(new Date()),"删除机构信息",user.getAdmin()));
+			system.add(new SystemLogPO((String)df.format(new Date()),"删除机构信息,编号为"+agencyId,user.getAdmin()));
 			return new ResultMessage(true,"删除机构成功!");
 		}
 		}catch(RemoteException e){
@@ -88,7 +88,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 			}
 			agencypo=new AgencyPO(agency.getAgencyName(),agency.getAgencyNum(),list);
 			agencydataservice.update(agencypo);
-			system.add(new SystemLogPO((String)df.format(new Date()),"更新机构信息",user.getAdmin()));
+			system.add(new SystemLogPO((String)df.format(new Date()),"更新机构信息,编号为"+agency.getAgencyNum(),user.getAdmin()));
 			return new ResultMessage(true,"更新机构成功!");
 		}
 		}catch(RemoteException e){

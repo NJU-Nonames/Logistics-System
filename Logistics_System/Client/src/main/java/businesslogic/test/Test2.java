@@ -2,6 +2,7 @@ package businesslogic.test;
 
 import java.util.ArrayList;
 
+import presentation.mainui.CurrentUser;
 import utility.CheckType;
 import utility.CostClause;
 import vo.MoneyInListVO;
@@ -11,8 +12,8 @@ import businesslogic.financebl.SettlementManageBLImpl;
 
 public class Test2 {
 	ArrayList<String> barcodes=new ArrayList<String>();
-	CostManagementBLImpl cost=new CostManagementBLImpl();
-	SettlementManageBLImpl st=new SettlementManageBLImpl();
+	CostManagementBLImpl cost=new CostManagementBLImpl(new CurrentUser("小亮","南京市中转中心","025000","xiaoliang"));
+	SettlementManageBLImpl st=new SettlementManageBLImpl(new CurrentUser("小亮","南京市中转中心","025000","xiaoliang"));
 	public static void main(String args[]){
 		Test2 test=new Test2();
 		test.barcodes.add("025001201410210020");

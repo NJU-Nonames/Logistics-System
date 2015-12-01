@@ -24,6 +24,6 @@ public interface ReceivePkgBLService {
 	 * @param 	实际签收人
 	 * @return	签收是否成功
 	 */
-	public ResultMessage confirmRecieve(ReceiverVO receiver,OrderListVO orderListVO);
+	public ResultMessage confirmRecieve(ReceiverVO receiver,String barcode);
 
 }

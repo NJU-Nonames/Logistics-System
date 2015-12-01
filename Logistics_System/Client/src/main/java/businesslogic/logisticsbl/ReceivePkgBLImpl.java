@@ -23,32 +23,34 @@ public class ReceivePkgBLImpl implements ReceivePkgBLService {
 		service1=(OrderListDataService)RMIHelper.find("OrderListDataService");
 		user=currentuser;
 		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
-
 	}
 	public OrderListVO findOrderlist(String orderlistId) {
-		OrderListVO orderListVO=null;
+		OrderListPO orderlistpo=null;
 		try{
-			orderListVO=new OrderListVO(service1.find(orderlistId));
+			orderlistpo=service1.find(orderlistId);
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return orderListVO;
+		if(orderlistpo==null)
+			return null;
+		return new OrderListVO(orderlistpo);
 	}
-
-	public ResultMessage confirmRecieve(ReceiverVO receiver,OrderListVO orderListVO) {
+	public ResultMessage confirmRecieve(ReceiverVO receiver,String barcode) {
 		OrderListPO orderListPO=null;
 		try {
-			orderListPO=service1.find(orderListVO.getBarCode());
+			orderListPO=service1.find(barcode);
+			if(orderListPO==null)
+				return new ResultMessage(false, "无此单号!");
 			if(orderListPO!=null){
 				orderListPO.setArriveTime(receiver.getTime());
 				orderListPO.setReceiverName(receiver.getName());
-				orderListPO.getPkgState().add(orderListVO.getPkgState().get(orderListVO.getPkgState().size()-1));
+				orderListPO.getPkgState().add(receiver.getTime()+" 订单已经签收");
 				service1.update(orderListPO);
 			}
 			} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return new ResultMessage(true,"已成功收件！");
+		return new ResultMessage(true,"已成功收件!");
 	}
 
 }

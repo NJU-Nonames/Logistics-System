@@ -2,9 +2,11 @@ package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import po.list.LoadListPO;
 import po.list.OrderListPO;
+import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
 import dataservice.list.LoadListDataService;
 import dataservice.list.OrderListDataService;
@@ -27,27 +29,33 @@ public class LoadBLImpl implements LoadBLService {
 		this.service2= (LoadListDataService)RMIHelper.find("LoadListDataService");
 		user=currentuser;
 		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
-
 	}
 	public ResultMessage createLoadlist(LoadListVO loadListVO) {
+		LoadListPO loadlistpo=null;
+		try{
+			loadlistpo=service2.find(loadListVO.getId());
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		if(loadlistpo!=null)
+			return new ResultMessage(false,"装车单编号已存在!");
 		for(String id:loadListVO.getBarcodes()){
 			try{
 				OrderListPO orderListPO=service1.find(id);
-				//待修改！！！！！！！！！！！！！
-				//orderListPO.getPkgState().add(keywords);
+				orderListPO.getPkgState().add((String)df.format(new Date())+" 快递已经装车");
 				service1.update(orderListPO);
 			}catch(RemoteException e){
 				e.printStackTrace();
 			}
 		}
-		LoadListPO loadListPO=new LoadListPO(loadListVO.getId(),loadListVO.getDate(),loadListVO.getHallNumber(),loadListVO.getTranspotationNumber(), 
+		loadlistpo=new LoadListPO(loadListVO.getId(),loadListVO.getDate(),loadListVO.getHallNumber(),loadListVO.getTranspotationNumber(), 
 				loadListVO.getDestination(),loadListVO.getCarNumber(),loadListVO.getGuardMan(),loadListVO.getSupercargoMan(),loadListVO.getBarcodes(),loadListVO.getCheckType());
 		try{
-			service2.add(loadListPO);
+			service2.add(loadlistpo);
+			system.add(new SystemLogPO((String)df.format(new Date()),"添加装车单,单号为"+loadListVO.getId(),user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, "装车成功！");
+		return new ResultMessage(true, "添加装车单成功!");
 	}
-
 }
