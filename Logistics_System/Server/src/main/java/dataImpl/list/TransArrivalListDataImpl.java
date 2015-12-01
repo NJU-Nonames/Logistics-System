@@ -28,7 +28,7 @@ public class TransArrivalListDataImpl extends UnicastRemoteObject implements Tra
 		int num=transArrivalListPO.getGoodsInfoPOs().size();
 		for(int i=0;i<num;i++){
 			GoodsInfoPO good=transArrivalListPO.getGoodsInfoPOs().get(i);
-			String sql2="insert into transarrivallist_goodinfo values ('"+good.getBarcode()+"','"+good.getState()+"','"+good.getDeparturePlace()+"','"+transArrivalListPO.getId();
+			String sql2="insert into transarrivallist_goodinfo values (primarykey,'"+good.getBarcode()+"','"+good.getState()+"','"+good.getDeparturePlace()+"','"+transArrivalListPO.getId()+"')";
 			DataJDBCConnection.update(sql2);
 		
 		}
@@ -37,7 +37,7 @@ public class TransArrivalListDataImpl extends UnicastRemoteObject implements Tra
 	public void delete(String transArrivalListID) throws RemoteException {
 		String sql="delete from transarrivallist where id='"+transArrivalListID+"'";
 		DataJDBCConnection.update(sql);
-		String sql2="delete from transarrivallist_goodsinfo where id='"+transArrivalListID+"'";
+		String sql2="delete from transarrivallist_goodinfo where id='"+transArrivalListID+"'";
 		DataJDBCConnection.update(sql2);
 		
 	}
@@ -53,7 +53,7 @@ public class TransArrivalListDataImpl extends UnicastRemoteObject implements Tra
 		TransArrivalListPO transarrivallist=null;
 		String sql="select * from transarrivallist where id='"+id+"'";
 		ResultSet rs=DataJDBCConnection.find(sql);
-		String sql2="select * from transarrivallist where id='"+id+"'";
+		String sql2="select * from transarrivallist_goodinfo where id='"+id+"'";
 		ResultSet rs2=DataJDBCConnection.find(sql2);
 		try {
 			ArrayList<GoodsInfoPO> goodsinfo=new ArrayList<GoodsInfoPO>();

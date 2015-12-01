@@ -20,5 +20,6 @@ public interface StaffDataService extends Remote{
 	public void delete(String id)throws RemoteException;
 	public void update(StaffPO staff)throws RemoteException;
 	public StaffPO find(String id)throws RemoteException;
+	public ArrayList<StaffPO> findbyname(String name)throws RemoteException;
 
 }

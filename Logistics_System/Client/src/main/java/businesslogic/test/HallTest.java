@@ -40,6 +40,6 @@ public class HallTest {
 		//transarrival1.createTransArrivalList(new TransArrivalListVO("02500000001", "01000000001", "025000", "2015-12-01 08:09:10", goodsinfolist, CheckType.UNDERCHECK));
 		//load1.createLoadlist(new LoadListVO("02500000001", "2015-12-01 10:45:30", "025000", "010001201511300001", "南京市鼓楼营业厅", "苏A00000", "王家玮", "汤大业", barcodes,CheckType.UNDERCHECK));
 		//deliverandreceive.createHallArrivalList(new HallArrivalListVO("02500100001", "2015-12-01 10:48:45", "02", "南京市中转中心", GoodsState.COMPLETE, barcodes	, CheckType.UNDERCHECK));
-		deliverandreceive.createDeliveringList(new DeliveringListVO("02500100001", "2015-12-01 12:46:58",barcodes, "三只羊", CheckType.UNDERCHECK));
+		deliverandreceive.createDeliveringList(new DeliveringListVO("02500100001", "2015-12-01 12:46:58",barcodes, "张三", CheckType.UNDERCHECK));
 	}
 }

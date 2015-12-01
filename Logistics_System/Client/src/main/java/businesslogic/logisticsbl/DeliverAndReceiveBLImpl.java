@@ -5,11 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import po.agency.StaffPO;
 import po.list.DeliveringListPO;
 import po.list.HallArrivalListPO;
 import po.list.OrderListPO;
 import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
+import dataservice.agency.StaffDataService;
 import dataservice.list.DeliveringListDataService;
 import dataservice.list.HallArrivalListDataService;
 import dataservice.list.OrderListDataService;
@@ -24,11 +26,13 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 	HallArrivalListDataService service1=null;
 	DeliveringListDataService service2=null;
 	OrderListDataService service3=null;
+	StaffDataService staff=null;
 	CurrentUser user=null;
 	SystemLogDataService system=null;
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public DeliverAndReceiveBLImpl(CurrentUser currentuser){
+		staff=(StaffDataService) RMIHelper.find("StaffDataService");
 		service1=(HallArrivalListDataService)RMIHelper.find("HallArrivalListDataService");
 		service2=(DeliveringListDataService)RMIHelper.find("DeliveringListDataService");
 		service3=(OrderListDataService)RMIHelper.find("OrderListDataService");
@@ -78,7 +82,16 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 			try {
 				OrderListPO orderListPO=service3.find(id);
 				ArrayList<String> orderpath=orderListPO.getPkgState();
-				orderpath.add((String)df.format(new Date())+" 快递正在派件");
+				ArrayList<StaffPO> stafflist=staff.findbyname(deliveringList.getDeliveryMan());
+				StaffPO st=null;
+				for(int i=0;i<stafflist.size();i++){
+					if(stafflist.get(i).getAgencyId().equals(deliveringList.getId().substring(0, 6)))
+						st=stafflist.get(i);
+					
+				}
+				if(st==null)
+					return  new ResultMessage(false, "不存在该快递员信息!");
+				orderpath.add((String)df.format(new Date())+" 快递正在由快递员"+deliveringList.getDeliveryMan()+"派送,电话 "+st.getPhoneNum());
 				orderListPO.setPkgState(orderpath);
 				service3.update(orderListPO);
 			} catch (RemoteException e) {

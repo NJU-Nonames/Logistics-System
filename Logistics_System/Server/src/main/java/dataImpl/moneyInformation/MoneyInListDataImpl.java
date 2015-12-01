@@ -25,7 +25,7 @@ public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInL
 		DataJDBCConnection.update(sql);
 		for(int i=0;i<moneyInList.getBarcode().size();i++)
 		{
-			String sql2="insert into moneyinlist_barcode values ('"+moneyInList.getBarcode().get(i)+"','"+moneyInList.getId()+"')";
+			String sql2="insert into moneyinlist_barcode values (primarykey,'"+moneyInList.getBarcode().get(i)+"','"+moneyInList.getId()+"')";
 			DataJDBCConnection.update(sql2);
 		}
 	}

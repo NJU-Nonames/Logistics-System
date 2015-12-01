@@ -27,7 +27,7 @@ public class HallArrivalListDataImpl extends UnicastRemoteObject implements Hall
 		int num=hallArrivalListPO.getBarCodes().size();
 		for(int i=0;i<num;i++)
 		{
-             String sql2="insert into hallarrivallist_barcode values ('"+hallArrivalListPO.getBarCodes().get(i)+"','"+hallArrivalListPO.getId()+"')";			
+             String sql2="insert into hallarrivallist_barcode values (primarykey,'"+hallArrivalListPO.getBarCodes().get(i)+"','"+hallArrivalListPO.getId()+"')";			
 		     DataJDBCConnection.update(sql2);
 		}
 	}

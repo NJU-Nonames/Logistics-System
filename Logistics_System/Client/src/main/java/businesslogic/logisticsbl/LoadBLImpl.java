@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import po.list.LoadListPO;
 import po.list.OrderListPO;
 import po.system.SystemLogPO;
@@ -14,7 +13,6 @@ import dataservice.list.OrderListDataService;
 import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.LoadListVO;
-import vo.OrderListVO;
 import businesslogic.rmi.RMIHelper;
 import businesslogicservice.logisticsblservice.LoadBLService;
 
@@ -44,7 +42,7 @@ public class LoadBLImpl implements LoadBLService {
 			try{
 				OrderListPO orderListPO=service1.find(id);
 				ArrayList<String> orderpath=orderListPO.getPkgState();
-				orderpath.add((String)df.format(new Date())+" 快递已经装车");
+				orderpath.add((String)df.format(new Date())+" 快递已经装车,正在送往"+loadListVO.getDestination());
 				orderListPO.setPkgState(orderpath);
 				service1.update(orderListPO);
 			}catch(RemoteException e){

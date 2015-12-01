@@ -28,16 +28,16 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 		int num=transShipmentListPO.getBarcodes().size();
 		for(int i=0;i<num;i++)
 		{
-			String sql2="insert into transshipmen_barcode values ('"+transShipmentListPO.getBarcodes().get(i)+"','"+transShipmentListPO.getTransitDocNumber()+"')";
+			String sql2="insert into transshipmentlist_barcode values (primarykey,'"+transShipmentListPO.getBarcodes().get(i)+"','"+transShipmentListPO.getTransitDocNumber()+"')";
 			DataJDBCConnection.update(sql2);
 		}
 		
 	}
 
 	public void delete(String transShipmentListID) throws RemoteException {
-		String sql="delete from transshipment where id='"+transShipmentListID+"'";
+		String sql="delete from transshipmentlist where id='"+transShipmentListID+"'";
 		DataJDBCConnection.update(sql);
-		String sql2="delete from transshipment_barcode where id='"+transShipmentListID+"'";
+		String sql2="delete from transshipmentlist_barcode where id='"+transShipmentListID+"'";
 		DataJDBCConnection.update(sql2);
 		
 	}

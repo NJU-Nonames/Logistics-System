@@ -27,7 +27,7 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 		int num=loadListPO.getBarcodes().size();
 		for(int i=0;i<num;i++)
 		{
-             String sql2="insert into loadlist_barcode values ('"+loadListPO.getBarcodes().get(i)+"','"+loadListPO.getId()+"')";			
+             String sql2="insert into loadlist_barcode values (primarykey,'"+loadListPO.getBarcodes().get(i)+"','"+loadListPO.getId()+"')";			
 		     DataJDBCConnection.update(sql2);
 		}
 

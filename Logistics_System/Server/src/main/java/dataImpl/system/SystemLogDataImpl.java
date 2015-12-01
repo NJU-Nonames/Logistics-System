@@ -44,7 +44,7 @@ public class SystemLogDataImpl extends UnicastRemoteObject implements SystemLogD
 
 	public void add(SystemLogPO systemLog) {
 		System.out.println("连接成功");
-		String sql="insert into systemlog values ('"+systemLog.getTime()+"','"+systemLog.getUser()+"','"+systemLog.getContent()+"')";
+		String sql="insert into systemlog values (`primary`,'"+systemLog.getTime()+"','"+systemLog.getUser()+"','"+systemLog.getContent()+"')";
 		DataJDBCConnection.update(sql);
 		
 	}

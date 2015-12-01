@@ -24,7 +24,7 @@ public class DeliveringListDataImpl extends UnicastRemoteObject implements Deliv
 		String sql="insert into deliveringlist values ('"+deliveringList.getId()+"','"+deliveringList.getDate()+"','"+deliveringList.getDeliveryMan()+"','"+deliveringList.getCheckType()+"')";
 		DataJDBCConnection.update(sql);
 		for(int i=0;i<deliveringList.getBarCode().size();i++){
-			String sql2="insert into deliveringlist_barcode values ('"+deliveringList.getBarCode().get(i)+"','"+deliveringList.getId()+"')";
+			String sql2="insert into deliveringlist_barcode values (primarykey,'"+deliveringList.getBarCode().get(i)+"','"+deliveringList.getId()+"')";
 		    DataJDBCConnection.update(sql2);
 		}
 	}

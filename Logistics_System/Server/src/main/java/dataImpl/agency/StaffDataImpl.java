@@ -56,5 +56,19 @@ public class StaffDataImpl extends UnicastRemoteObject implements StaffDataServi
 		return staff;
 	}
 
+	public ArrayList<StaffPO> findbyname(String name) throws RemoteException {
+		String sql="select * from staff where name='"+name+"'";
+		ResultSet rs2=(ResultSet) DataJDBCConnection.find(sql);
+		ArrayList<StaffPO> staff=new ArrayList<StaffPO>();
+		try {
+			while(rs2.next()){
+				staff.add(new StaffPO(rs2.getString("name"), rs2.getString("sex"),Position.valueOf(rs2.getString("position")), rs2.getString("idNumber"), rs2.getString("workingstarttime"), rs2.getString("phoneNum"), rs2.getString("wage"), rs2.getString("agencyName"), rs2.getString("id"),rs2.getString("agencyid")));
+			}
+		} catch (SQLException e) {
+			return staff;
+		}
+		return staff;
+	}
+
 
 }

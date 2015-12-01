@@ -24,11 +24,12 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 	public void add(OrderListPO orderList) {
 		String sql="insert into orderlist values ('"+orderList.getSenderName()+"','"+orderList.getSenderAddress()+"','"+orderList.getSenderTeleNumber()+"','"+orderList.getReceiverName()+"','"+
 	                orderList.getReceiverAddress()+"','"+orderList.getReceiverTeleNumber()+"',"+orderList.getNumber()+","+orderList.getWeight()+","+orderList.getVolume()+",'"+
-				    orderList.getName()+"','"+orderList.getCategory()+"',"+orderList.getPackPrice()+",'"+orderList.getPkgType()+"','"+orderList.getBarCode()+"','"+orderList.getDepartTime()+"','"+orderList.getArriveTime()+"','"+orderList.getCheckType()+"')";
+				    orderList.getName()+"','"+orderList.getCategory()+"',"+orderList.getPackPrice()+",'"+orderList.getPkgType()+"','"+orderList.getBarCode()+"','"+orderList.getDepartTime()+"','"+orderList.getArriveTime()+"','"+orderList.getCheckType()+"','"+orderList.getRealreceiver()+"','"+orderList.getRealreceivertelenumber()+"')";
+		System.out.println(orderList.getPkgState().size());
 		for(int i=0;i<orderList.getPkgState().size();i++)
 		{
 			String state=orderList.getPkgState().get(i);
-			String sql2="insert into orderpath values ('"+orderList.getBarCode()+"','"+state+"')";
+			String sql2="insert into orderpath values (primarykey,'"+orderList.getBarCode()+"','"+state+"')";
 			DataJDBCConnection.update(sql2);
 		}
 		DataJDBCConnection.update(sql);
@@ -56,10 +57,9 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 			orderList=new OrderListPO(rs.getString("senderName"), rs.getString("senderAddress"), rs.getString("senderTeleNumber"), rs.getString("receiverName"), rs.getString("receiverAddress"), rs.getString("receiverTeleNumber"), rs.getString("number"), rs.getDouble("weight"), rs.getDouble("volume"), rs.getString("name"), ExpressType.valueOf(rs.getString("category")), null, rs.getDouble("packPrice"), rs.getString("barCode"),PkgType.valueOf( rs.getString("PkgType")), rs.getString("departTime"), rs.getString("arriveTime"),CheckType.valueOf(rs.getString("checkstate")),rs.getString("realreceiver"),rs.getString("realreceivertelenumber"));
 			String sql2="select * from orderpath where barcode='"+id+"'";
 			ResultSet rs2=(ResultSet) DataJDBCConnection.find(sql2);
-			ArrayList<String> path=null;
+			ArrayList<String> path=new ArrayList<String>();;
 			while(rs2.next())
 			{
-				path=new ArrayList<String>();
 				path.add(rs2.getString("content"));
 			}
 			orderList.setPkgState(path);
