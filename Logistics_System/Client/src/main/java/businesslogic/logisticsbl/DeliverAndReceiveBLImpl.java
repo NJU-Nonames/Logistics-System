@@ -2,6 +2,7 @@ package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import po.list.DeliveringListPO;
@@ -47,7 +48,9 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 		for(String id:hallArrivalList.getBarCodes()){
 			try {
 				OrderListPO orderListPO=service3.find(id);
-         		orderListPO.getPkgState().add((String)df.format(new Date())+" 快递到达"+user.getAgencyName());
+				ArrayList<String> orderpath=orderListPO.getPkgState();
+				orderpath.add((String)df.format(new Date())+" 快递到达"+user.getAgencyName());
+				orderListPO.setPkgState(orderpath);
 				service3.update(orderListPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -74,7 +77,9 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 		for(String id:deliveringList.getBarCode()){
 			try {
 				OrderListPO orderListPO=service3.find(id);
-				orderListPO.getPkgState().add((String)df.format(new Date())+" 快递正在派件");
+				ArrayList<String> orderpath=orderListPO.getPkgState();
+				orderpath.add((String)df.format(new Date())+" 快递正在派件");
+				orderListPO.setPkgState(orderpath);
 				service3.update(orderListPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();

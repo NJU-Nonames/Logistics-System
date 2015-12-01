@@ -1,8 +1,10 @@
 package po.repertory;
 
+import java.io.Serializable;
+
 import utility.GoodsState;
 
-public class GoodsInfoPO {
+public class GoodsInfoPO implements Serializable{
 	/**
 	 * 货物快递编号
 	 */

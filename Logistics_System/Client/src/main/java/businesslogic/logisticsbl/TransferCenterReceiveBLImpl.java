@@ -38,7 +38,9 @@ public class TransferCenterReceiveBLImpl implements TransferCenterReceiveBLServi
 		try{
 			for(GoodsInfoVO goodvo:transArrivalList.getGoodsInfoVOs()){
 				OrderListPO orderpo=orderlist.find(goodvo.getBarcode());
-				orderpo.getPkgState().add((String)df.format(new Date())+" 快递到达"+user.getAgencyName());
+				ArrayList<String> orderpath=orderpo.getPkgState();
+				orderpath.add((String)df.format(new Date())+" 快递到达"+user.getAgencyName());
+				orderpo.setPkgState(orderpath);
 				orderlist.update(orderpo);
 				goodpo.add(new GoodsInfoPO(goodvo.getBarcode(),goodvo.getState(),goodvo.getDeparturePlace()));
 			}

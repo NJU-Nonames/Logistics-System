@@ -2,6 +2,8 @@ package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import po.list.OrderListPO;
 import presentation.mainui.CurrentUser;
@@ -45,7 +47,9 @@ public class ReceivePkgBLImpl implements ReceivePkgBLService {
 				orderListPO.setArriveTime(receiver.getTime());
 				orderListPO.setRealreceiver(receiver.getName());
 				orderListPO.setRealreceivertelenumber(receiver.telenumber);
-				orderListPO.getPkgState().add(receiver.getTime()+" 订单已经签收,签收人是"+receiver.getName());
+				ArrayList<String> orderpath=orderListPO.getPkgState();
+				orderpath.add((String)df.format(new Date())+" 订单已经签收,签收人是"+receiver.getName());
+				orderListPO.setPkgState(orderpath);
 				service1.update(orderListPO);
 			}
 			} catch (RemoteException e) {

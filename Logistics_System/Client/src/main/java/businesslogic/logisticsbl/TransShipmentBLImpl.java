@@ -2,6 +2,7 @@ package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import po.list.OrderListPO;
@@ -35,7 +36,9 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 		try{
 			for(String barcode:transShipment.getBarcodes()){
 				OrderListPO orderpo=orderlist.find(barcode);
-				orderpo.getPkgState().add(df.format(new Date())+" 快递运出"+user.getAgencyName());
+				ArrayList<String> orderpath=orderpo.getPkgState();
+				orderpath.add((String)df.format(new Date())+" 快递运出"+user.getAgencyName());
+				orderpo.setPkgState(orderpath);
 				orderlist.update(orderpo);
 			 }
 			}catch(RemoteException e){

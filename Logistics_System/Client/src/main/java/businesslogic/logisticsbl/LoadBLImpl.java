@@ -2,6 +2,7 @@ package businesslogic.logisticsbl;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import po.list.LoadListPO;
@@ -42,7 +43,9 @@ public class LoadBLImpl implements LoadBLService {
 		for(String id:loadListVO.getBarcodes()){
 			try{
 				OrderListPO orderListPO=service1.find(id);
-				orderListPO.getPkgState().add((String)df.format(new Date())+" 快递已经装车");
+				ArrayList<String> orderpath=orderListPO.getPkgState();
+				orderpath.add((String)df.format(new Date())+" 快递已经装车");
+				orderListPO.setPkgState(orderpath);
 				service1.update(orderListPO);
 			}catch(RemoteException e){
 				e.printStackTrace();
