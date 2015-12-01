@@ -341,8 +341,12 @@ public class InputRepertory extends JPanel{
 	}
 
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		_orderId.setText("");
+		_destiPlace.setText("");
+		_q.setText("");
+		_p.setText("");
+		_j.setText("");
+		_w.setText("");
 		willprintMessage=false;
 		repaint();
 	}
@@ -373,11 +377,6 @@ public class InputRepertory extends JPanel{
 		
 	}
 	void _cancel(){
-		_orderId.setText("");
-		_destiPlace.setText("");
-		_q.setText("");
-		_p.setText("");
-		_j.setText("");
-		_w.setText("");
+		clear();
 	}
 }

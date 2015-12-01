@@ -10,11 +10,16 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
@@ -40,8 +45,10 @@ public class ViewRepertory extends JPanel{
 	private MyButton goto_OutputRepertory;
 	private MyButton goto_ViewRepertory;
 	private MyButton goto_Inventory;
+	private MyButton search;
 	//详细操作按钮以及其他组件
-
+	private JTextField _time1=new JTextField();
+	private JTextField _time2=new JTextField();
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
@@ -51,7 +58,8 @@ public class ViewRepertory extends JPanel{
         setBackground(Color.WHITE);
         g.drawLine(CenterRepertoryClerkFrame.w/6, 10, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h-10);
         g.drawLine(CenterRepertoryClerkFrame.w/6+10, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
-
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
+        
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterRepertoryClerkFrame.h-50, CenterRepertoryClerkFrame.w, 50, null);
         	
@@ -185,7 +193,21 @@ public class ViewRepertory extends JPanel{
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
         currentusernameLabel.setLocation(CenterRepertoryClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-    	//最基本按钮
+    	
+        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
+        JLabel agencyNameLabel = new JLabel(str);
+        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
+        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
+        
+        Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String time_="时间:   "+format.format(date_);
+		JLabel timeLabel = new JLabel(time_);
+        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
+        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
+        //最基本按钮
     	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
     	_return.setLocation(20,50);
@@ -205,7 +227,9 @@ public class ViewRepertory extends JPanel{
         add(funLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
-    	
+        add(agencyNameLabel);
+        add(timeLabel);
+        
     	add(close);
     	add(min);
     	add(_return);

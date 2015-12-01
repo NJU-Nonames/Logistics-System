@@ -335,8 +335,17 @@ public class TransferCenterReceive extends JPanel{
 	}
 
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		jb1.setSelected(true);
+		id1.setEditable(true);
+		id1.setText("");
+		
+		jb2.setSelected(false);
+		id2.setEditable(false);
+		id2.setText("");
+		
+		j1.setSelected(true);
+		j2.setSelected(false);
+		j3.setSelected(false);
 		willprintMessage=false;
 		repaint();
 	}
@@ -368,16 +377,6 @@ public class TransferCenterReceive extends JPanel{
 	}
 	void _cancel(){
 		//initComponent();
-		jb1.setSelected(true);
-		id1.setEditable(true);
-		id1.setText("");
-		
-		jb2.setSelected(false);
-		id2.setEditable(false);
-		id2.setText("");
-		
-		j1.setSelected(true);
-		j2.setSelected(false);
-		j3.setSelected(false);
+		clear();
 	}
 }

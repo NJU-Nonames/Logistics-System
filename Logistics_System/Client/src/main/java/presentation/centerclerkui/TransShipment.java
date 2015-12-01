@@ -5,7 +5,9 @@
  */
 package presentation.centerclerkui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -20,14 +22,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import presentation.img.Img;
+import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import vo.OrderListVO;
 
 /**
  * @author 谭期友
@@ -48,6 +54,10 @@ public class TransShipment extends JPanel{
 	private MyButton goto_TransferCenterReceive;
 	private MyButton goto_TransShipment;
 	private MyButton goto_InputRepertory;
+	private MyButton add;
+	private MyButton remove;
+	private MyButton confirm;
+	private MyButton cancel;
 	private JRadioButton _plane;
 	private JRadioButton _trains;
 	private JRadioButton _truck;
@@ -55,9 +65,11 @@ public class TransShipment extends JPanel{
 	private JTextField _arrivePlace=new JTextField() ;
 	private JTextField _counterId=new JTextField() ;
 	private JTextField _supervisor=new JTextField() ;
+	private JTextField barCode=new JTextField();
+	private JTextField _price=new JTextField();
 	
-//	private DefaultTableModel orderIdTableModel;//订单表格模型
-//	private JTable orderIdTable;//订单表格
+	private DefaultTableModel barCodeTableModel;
+	private JTable barCodeTable;
 	//详细操作按钮以及其他组件=
 
 	private boolean willprintMessage;//是否将要打印消息
@@ -170,7 +182,52 @@ public class TransShipment extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
+        add = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	add.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_add();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	add.setLocation(CenterClerkFrame.w/6+178,CenterClerkFrame.h/6+278);
+    	remove = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	remove.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_remove();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	remove.setLocation(CenterClerkFrame.w/6+20+180,CenterClerkFrame.h/6+308+150+10);
     	
+    	confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm.setLocation(CenterClerkFrame.w/2,remove.getY()+remove.getHeight()+50);
+    	confirm.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_confirm();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	
+    	cancel=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	cancel.setLocation(CenterClerkFrame.w/3*2,confirm.getY());
+     	cancel.addMouseListener(new MouseListener(){
+ 			public void mouseClicked(MouseEvent arg0) {
+ 				_cancel();
+ 			}
+ 			public void mouseEntered(MouseEvent arg0) {}
+ 			public void mouseExited(MouseEvent arg0) {}
+ 			public void mousePressed(MouseEvent arg0) {}
+ 			public void mouseReleased(MouseEvent arg0) {}
+         });
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
@@ -247,6 +304,41 @@ public class TransShipment extends JPanel{
         supervisor.setSize((int)(16*"监装员:".length()*1.07f), 16);
         supervisor.setFont(new Font("宋体", Font.BOLD, 15));
         supervisor.setLocation(arrivePlace.getX(),128+238);
+        
+        JLabel price = new JLabel("运费:");
+        price.setSize((int)(16*"运费:".length()*1.07f), 16);
+        price.setFont(new Font("宋体", Font.BOLD, 15));
+        price.setLocation(agencyNameLabel.getX()+400+80, CenterClerkFrame.h/6+308+58);
+        
+        //表头
+      	Vector<String> vColumns = new Vector<String>();
+      	vColumns.add("所包含的所有订单编号");
+      
+      	//数据
+      	Vector<String> vData = new Vector<String>();
+  		//模型
+      	barCodeTableModel = new DefaultTableModel(vData, vColumns);
+      	//表格
+     	barCodeTable = new JTable(barCodeTableModel){
+     		private static final long serialVersionUID = 1L;
+
+     		public boolean isCellEditable(int row, int column){
+     			return false;//不能修改
+     		}
+      	};
+      	barCodeTable.setPreferredScrollableViewportSize(new Dimension(380,120));
+      	barCodeTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+     	barCodeTable.setSelectionBackground(Color.YELLOW);
+      	JPanel jp=new JPanel();
+      	JScrollPane scrollPane = new JScrollPane();
+      	scrollPane.getViewport().add(barCodeTable);
+      	barCodeTable.setFillsViewportHeight(true);
+      	jp.setSize(400, 150);
+      	jp.setLocation(agencyNameLabel.getX(), CenterClerkFrame.h/6+308);
+      	jp.setOpaque(false);
+      	jp.add(scrollPane,BorderLayout.CENTER);
+      		
+      		
         //最基本按钮
     	close.setLocation(CenterClerkFrame.w-30,0);
     	min.setLocation(CenterClerkFrame.w-80,0);
@@ -287,15 +379,13 @@ public class TransShipment extends JPanel{
         _supervisor.setSize((int)(120*1.07f), 20);
         _supervisor.setLocation(supervisor.getX()+supervisor.getWidth(),supervisor.getY()-3);
         
-        /*
-         *可复用，画出可以添加删改的订单序列表格
-         */
-//        Vector<String> vColumns = new Vector<String>();
-//        vColumns.add("订单号");
-//        
-//        Vector<String> vColumns = new Vector<String>(); 
+        barCode.setSize(150, 20);
+		barCode.setLocation(add.getX()-barCode.getWidth(),add.getY()+5);
         
-        add(titleLabel);
+		_price.setSize(80,20);
+		_price.setLocation(price.getX()+price.getWidth(), price.getY());
+        
+		add(titleLabel);
         add(funLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
@@ -308,7 +398,7 @@ public class TransShipment extends JPanel{
         add(arrivePlace);
         add(counterId);
         add(supervisor);
-        
+        add(price);
         
         add(_plane);
         add(_trains);
@@ -318,6 +408,8 @@ public class TransShipment extends JPanel{
         add(_arrivePlace);
         add(_counterId);
         add(_supervisor);
+        add(barCode);
+        add(_price);
     	
     	add(close);
     	add(min);
@@ -325,18 +417,78 @@ public class TransShipment extends JPanel{
     	add(goto_TransferCenterReceive);
     	add(goto_TransShipment);
     	add(goto_InputRepertory);
-
+    	add(add);
+    	add(remove);
+    	add(confirm);
+    	add(cancel);
     	
+    	add(jp);
 	}
 
 	private void clear(){
 //		.setText("");
 //		.setText("");
+		_plane.setSelected(true);
+		_trains.setSelected(false);
+		_truck.setSelected(false);
+		_transId.setText("");
+		_arrivePlace.setText("");
+		_counterId.setText("");
+		_supervisor.setText("");
+		barCode.setText("");
+		_price.setText("");
+		while(barCodeTable.getRowCount()!=0)
+			barCodeTableModel.removeRow(0);
 		willprintMessage=false;
 		repaint();
 	}
+	private void _add(){
+		String barCode_s = barCode.getText();
+
+		result = CheckFormat.checkOrderNum(barCode_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		
+//		OrderListVO orderListVO = bl2.searchPkgInformation(barCode_s);
+//		if(orderListVO==null){
+//			printMessage("此订单不存在！", Color.RED);
+//			return;
+//		}
+
+		int i;
+		String s;
+		for(i=0;i<barCodeTable.getRowCount();i++){
+			s=(String) barCodeTable.getValueAt(i, 0);
+			if(s.compareTo(barCode_s)==0){
+				printMessage("不能包含重复订单！", Color.RED);
+				return;
+			}
+		}
+		
+		
+		Vector<String> v = new Vector<String>();
+		v.add(barCode_s);
+		barCodeTableModel.addRow(v);
+		
+		barCode.setText("");
+	}
 	
-	
+	private void _remove(){
+		int index = barCodeTable.getSelectedRow();
+		if(index == -1){
+			printMessage("请选中一个订单！", Color.RED);
+			return;
+		}
+		barCodeTableModel.removeRow(index);
+	}
+	private void _confirm(){
+
+	}
+	private void _cancel(){
+		clear();
+	}
 	private void printMessage(String message, Color c){
 		result=message;
 		co=c;

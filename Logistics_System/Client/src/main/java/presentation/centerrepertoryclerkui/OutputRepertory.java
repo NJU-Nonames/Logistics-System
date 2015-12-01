@@ -308,7 +308,6 @@ public class OutputRepertory extends JPanel{
         add(agencyNameLabel);
         add(timeLabel);
         add(orderId);
-        add(orderId);
         add(destiPlace);
         add(transWays);
         add(transId);
@@ -334,8 +333,12 @@ public class OutputRepertory extends JPanel{
 	}
 
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		_orderId.setText("");
+		_destiPlace.setText("");
+		_transId.setText("");
+		_plane.setSelected(true);
+		_trains.setSelected(false);
+		_truck.setSelected(false);
 		willprintMessage=false;
 		repaint();
 	}
@@ -366,11 +369,6 @@ public class OutputRepertory extends JPanel{
 		
 	}
 	public void _cancel(){
-		_orderId.setText("");
-		_destiPlace.setText("");
-		_transId.setText("");
-		_plane.setSelected(true);
-		_trains.setSelected(false);
-		_truck.setSelected(false);
+		clear();
 	}
 }

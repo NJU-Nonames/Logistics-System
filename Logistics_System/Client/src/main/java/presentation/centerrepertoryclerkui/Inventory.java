@@ -5,16 +5,31 @@
  */
 package presentation.centerrepertoryclerkui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
+import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
@@ -27,6 +42,7 @@ import presentation.mainui.MyButton;
 public class Inventory extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
+	private static final Component searchFiled = null;
 	//private AccountBLService bl;
 	private CenterRepertoryClerkFrame frame;
 	private CurrentUser currentUser;
@@ -40,8 +56,21 @@ public class Inventory extends JPanel{
 	private MyButton goto_OutputRepertory;
 	private MyButton goto_ViewRepertory;
 	private MyButton goto_Inventory;
+	private MyButton search;
+	private MyButton adjust;
+	private MyButton refresh;
 	//详细操作按钮以及其他组件
-
+	private DefaultTableModel repertoryTableModel;
+	private JTable repertoryTable;
+	
+	
+	private JTextField searchField= new JTextField();
+	private JTextField _orderId= new JTextField();
+	private JTextField _q= new JTextField();
+	private JTextField _p= new JTextField();
+	private JTextField _j= new JTextField();
+	private JTextField _w= new JTextField();
+	
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
@@ -51,7 +80,8 @@ public class Inventory extends JPanel{
         setBackground(Color.WHITE);
         g.drawLine(CenterRepertoryClerkFrame.w/6, 10, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h-10);
         g.drawLine(CenterRepertoryClerkFrame.w/6+10, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
-
+        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
+        
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterRepertoryClerkFrame.h-50, CenterRepertoryClerkFrame.w, 50, null);
         	
@@ -160,7 +190,29 @@ public class Inventory extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-    	
+        search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        search.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_search();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+        search.setLocation(CenterClerkFrame.w/3*2+25,128+84);
+        
+        refresh = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        refresh.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_refresh();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+        refresh.setLocation(CenterClerkFrame.w/3*2+25,128+84);
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
@@ -185,7 +237,136 @@ public class Inventory extends JPanel{
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
         currentusernameLabel.setLocation(CenterRepertoryClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-    	//最基本按钮
+    	
+        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
+        JLabel agencyNameLabel = new JLabel(str);
+        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
+        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
+        
+        Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String time_="时间:   "+format.format(date_);
+		JLabel timeLabel = new JLabel(time_);
+        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
+        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
+        
+        JLabel partA = new JLabel("分区A占比：");//要联系逻辑层给的数据
+        partA.setSize((int)(16*"分区A占比：".length()*1.07f), 16);
+        partA.setFont(new Font("宋体", Font.BOLD, 15));
+        partA.setLocation(agencyNameLabel.getX()+10,CenterClerkFrame.h/6+110+300+10);
+        
+        JLabel partB= new JLabel("分区B占比：");//要联系逻辑层给的数据
+        partB.setSize((int)(16*"分区B占比：".length()*1.07f), 16);
+        partB.setFont(new Font("宋体", Font.BOLD, 15));
+        partB.setLocation(partA.getX()+partA.getWidth()+60,partA.getY());
+        
+        JLabel partC = new JLabel("分区C占比：");//要联系逻辑层给的数据
+        partC.setSize((int)(16*"分区C占比：".length()*1.07f), 16);
+        partC.setFont(new Font("宋体", Font.BOLD, 15));
+        partC.setLocation(partB.getX()+partB.getWidth()+60,partA.getY());
+        
+        JLabel partD = new JLabel("分区D占比：");//要联系逻辑层给的数据
+        partD.setSize((int)(16*"分区D占比：".length()*1.07f), 16);
+        partD.setFont(new Font("宋体", Font.BOLD, 15));
+        partD.setLocation(partC.getX()+partC.getWidth()+60,partA.getY());
+        
+        JLabel tiaozhengfenqu = new JLabel("调整分区:");
+        tiaozhengfenqu.setSize((int)(16*"调整分区:".length()*1.07f), 16);
+        tiaozhengfenqu.setFont(new Font("宋体", Font.BOLD, 15));
+        tiaozhengfenqu.setLocation(agencyNameLabel.getX()+10,partA.getY()+30);
+        
+        JLabel orderId = new JLabel("订单");
+        orderId.setSize((int)(16*"订单".length()*1.07f), 16);
+        orderId.setFont(new Font("宋体", Font.BOLD, 15));
+        orderId.setLocation(tiaozhengfenqu.getX()+tiaozhengfenqu.getWidth(),tiaozhengfenqu.getY());
+        
+        _orderId.setSize((int)(200*1.07f), 20);
+        _orderId.setLocation(orderId.getX()+orderId.getWidth(),orderId.getY()-3);
+        
+        JLabel tiaozhengzhi = new JLabel("调整至");
+        tiaozhengzhi.setSize((int)(16*"调整至".length()*1.07f), 16);
+        tiaozhengzhi.setFont(new Font("宋体", Font.BOLD, 15));
+        tiaozhengzhi.setLocation(_orderId.getX()+_orderId.getWidth()+10,_orderId.getY());
+        
+        _q.setSize((int)(20*1.07f), 20);
+        _q.setLocation(tiaozhengzhi.getX()+tiaozhengzhi.getWidth(),tiaozhengzhi.getY()-3);
+        
+        JLabel q=new JLabel("区");
+        q.setSize((int)(16*1.07f),16);
+        q.setFont(new Font("宋体", Font.BOLD, 15));
+        q.setLocation(_q.getX()+_q.getWidth()+10,tiaozhengzhi.getY());
+        
+        _p.setSize((int)(20*1.07f), 20);
+        _p.setLocation(q.getX()+q.getWidth()+20,tiaozhengzhi.getY()-3);
+        
+        JLabel p=new JLabel("排");
+        p.setSize((int)(16*1.07f), 16);
+        p.setFont(new Font("宋体", Font.BOLD, 15));
+        p.setLocation(_p.getX()+_p.getWidth()+10,tiaozhengzhi.getY());
+        
+        _j.setSize((int)(20*1.07f), 20);
+        _j.setLocation(p.getX()+p.getWidth()+20,tiaozhengzhi.getY()-3);
+        
+        JLabel j=new JLabel("架");
+        j.setSize((int)(16*1.07f), 16);
+        j.setFont(new Font("宋体", Font.BOLD, 15));
+        j.setLocation(_j.getX()+_j.getWidth()+10,tiaozhengzhi.getY());
+        
+        _w.setSize((int)(20*1.07f), 20);
+        _w.setLocation(j.getX()+j.getWidth()+20,tiaozhengzhi.getY()-3);
+        
+        JLabel w=new JLabel("位");
+        w.setSize((int)(16*1.07f), 16);
+        w.setFont(new Font("宋体", Font.BOLD, 15));
+        w.setLocation(_w.getX()+_w.getWidth()+10,tiaozhengzhi.getY());
+        
+        adjust = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        adjust.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_adjust();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+        adjust.setLocation(w.getX()+w.getWidth()+20,w.getY()-9);
+        
+        Vector<String> vColumns = new Vector<String>();
+      	vColumns.add("区");
+      	vColumns.add("排");
+      	vColumns.add("架");
+      	vColumns.add("位");
+      	vColumns.add("订单编号");
+      	Vector<String> vData = new Vector<String>();
+      	repertoryTableModel = new DefaultTableModel(vData, vColumns);
+      	repertoryTable = new JTable(repertoryTableModel){
+     		private static final long serialVersionUID = 1L;
+
+     		public boolean isCellEditable(int row, int column){
+     			return false;//不能修改
+     		}
+      	};
+      	
+      	repertoryTable.setPreferredScrollableViewportSize(new Dimension(700,250));
+      	repertoryTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      	repertoryTable.setSelectionBackground(Color.YELLOW);
+      	JPanel jp=new JPanel();
+      	JScrollPane scrollPane = new JScrollPane();
+      	scrollPane.getViewport().add(repertoryTable);
+      	repertoryTable.setFillsViewportHeight(true);
+      	int[] width={25,25,25,25,300};
+      	repertoryTable.setColumnModel(getColumnModel(repertoryTable,width));
+      	repertoryTable.getTableHeader().setReorderingAllowed(false);
+      	repertoryTable.getTableHeader().setResizingAllowed(false);
+      	jp.setSize(800, 300);
+      	jp.setLocation(agencyNameLabel.getX()+10, CenterClerkFrame.h/6+110);
+      	jp.setOpaque(false);
+      	jp.add(scrollPane,BorderLayout.CENTER);
+      	
+      	//最基本按钮
     	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
     	_return.setLocation(20,50);
@@ -196,7 +377,8 @@ public class Inventory extends JPanel{
     	goto_Inventory.setLocation(20,300);
     	
     	//其他组件
-        
+    	searchField.setSize((int)(200*1.07f), 20);
+    	searchField.setLocation(search.getX()-searchField.getWidth()-30,search.getY()+5);
 
 		
 		
@@ -205,6 +387,20 @@ public class Inventory extends JPanel{
         add(funLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
+        add(agencyNameLabel);
+        add(timeLabel);
+        add(partA);
+        add(partB);
+        add(partC);
+        add(partD);
+        add(tiaozhengfenqu);
+        add(orderId);
+        add(tiaozhengzhi);
+        add(q);
+        add(p);
+        add(j);
+        add(w);
+    
     	
     	add(close);
     	add(min);
@@ -213,18 +409,49 @@ public class Inventory extends JPanel{
     	add(goto_OutputRepertory);
     	add(goto_ViewRepertory);
     	add(goto_Inventory);
-
+    	add(search);
+    	add(adjust);
     	
+    	add(searchField);
+    	add(_orderId);
+    	add(_q);
+    	add(_p);
+    	add(_j);
+    	add(_w);
+    	
+    	add(jp);
+	}
+
+	private TableColumnModel getColumnModel(JTable repertoryTable, int[] width) {
+		 TableColumnModel columns = repertoryTable.getColumnModel();  
+		 for (int i = 0; i < width.length; i++) {  
+			 TableColumn column = columns.getColumn(i);  
+		     column.setPreferredWidth(width[i]);  
+		 }  
+		 return columns;
 	}
 
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		searchField.setText("");
+		_orderId.setText("");
+		_q.setText("");
+		_p.setText("");
+		_j.setText("");
+		_w.setText("");
 		willprintMessage=false;
 		repaint();
 	}
-	
-	
+	private void _search(){
+		
+	}
+	private void _adjust() {
+		// TODO 自动生成的方法存根
+		
+	}
+	private void _refresh() {
+		// TODO 自动生成的方法存根
+		
+	}
 	private void printMessage(String message, Color c){
 		result=message;
 		co=c;
