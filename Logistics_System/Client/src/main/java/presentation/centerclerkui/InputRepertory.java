@@ -10,11 +10,16 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import presentation.centerrepertoryclerkui.CenterRepertoryClerkFrame;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
@@ -40,10 +45,19 @@ public class InputRepertory extends JPanel{
 	private MyButton goto_TransShipment;
 	private MyButton goto_InputRepertory;
 	//详细操作按钮以及其他组件
-
+	private JTextField _orderId=new JTextField();
+	private JTextField _destiPlace=new JTextField();
+	private JTextField _q=new JTextField();
+	private JTextField _p=new JTextField();
+	private JTextField _j=new JTextField();
+	private JTextField _w=new JTextField();
+	
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
+	
+	private MyButton confirm;
+	private MyButton cancel;
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -171,25 +185,131 @@ public class InputRepertory extends JPanel{
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
         currentusernameLabel.setLocation(CenterClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-    	//最基本按钮
-    	close.setLocation(CenterClerkFrame.w-30,0);
-    	min.setLocation(CenterClerkFrame.w-80,0);
+        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
+        JLabel agencyNameLabel = new JLabel(str);
+        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
+        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
+        
+        Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		String time_="入库时间:  "+format.format(date_);
+		JLabel timeLabel = new JLabel(time_);
+        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
+        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
+        
+        JLabel orderId=new JLabel("入库订单编号：");
+        orderId.setSize((int)(16*"入库订单编号：".length()*1.07f), 16);
+        orderId.setFont(new Font("宋体", Font.BOLD, 15));
+        orderId.setLocation(agencyNameLabel.getX(),128+120);
+        
+        JLabel destiPlace=new JLabel("目的地:");
+        destiPlace.setSize((int)(16*"目的地:".length()*1.07f), 16);
+        destiPlace.setFont(new Font("宋体", Font.BOLD, 15));
+        destiPlace.setLocation(agencyNameLabel.getX(),128+215);
+        
+        JLabel location=new JLabel("库存位置：");
+        location.setSize((int)(16*"库存位置：".length()*1.07f), 16);
+        location.setFont(new Font("宋体", Font.BOLD, 15));
+        location.setLocation(agencyNameLabel.getX(),128+320);
+        
+        _q.setSize((int)(20*1.07f), 20);
+        _q.setLocation(location.getX()+location.getWidth(),location.getY()-3);
+        
+        JLabel q=new JLabel("区");
+        q.setSize((int)(16*1.07f),16);
+        q.setFont(new Font("宋体", Font.BOLD, 15));
+        q.setLocation(_q.getX()+_q.getWidth()+10,location.getY());
+        
+        _p.setSize((int)(20*1.07f), 20);
+        _p.setLocation(q.getX()+q.getWidth()+30,location.getY()-3);
+        
+        JLabel p=new JLabel("排");
+        p.setSize((int)(16*1.07f), 16);
+        p.setFont(new Font("宋体", Font.BOLD, 15));
+        p.setLocation(_p.getX()+_p.getWidth()+10,location.getY());
+        
+        _j.setSize((int)(20*1.07f), 20);
+        _j.setLocation(p.getX()+p.getWidth()+30,location.getY()-3);
+        
+        JLabel j=new JLabel("架");
+        j.setSize((int)(16*1.07f), 16);
+        j.setFont(new Font("宋体", Font.BOLD, 15));
+        j.setLocation(_j.getX()+_j.getWidth()+10,location.getY());
+        
+        _w.setSize((int)(20*1.07f), 20);
+        _w.setLocation(j.getX()+j.getWidth()+30,location.getY()-3);
+        
+        JLabel w=new JLabel("位");
+        w.setSize((int)(16*1.07f), 16);
+        w.setFont(new Font("宋体", Font.BOLD, 15));
+        w.setLocation(_w.getX()+_w.getWidth()+10,location.getY());
+        
+        confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm.setLocation(CenterClerkFrame.w/2,location.getY()+location.getHeight()+100);
+    	confirm.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_confirm();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	
+    	cancel=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	cancel.setLocation(CenterClerkFrame.w/3*2,confirm.getY());
+     	cancel.addMouseListener(new MouseListener(){
+ 			public void mouseClicked(MouseEvent arg0) {
+ 				_cancel();
+ 			}
+ 			public void mouseEntered(MouseEvent arg0) {}
+ 			public void mouseExited(MouseEvent arg0) {}
+ 			public void mousePressed(MouseEvent arg0) {}
+ 			public void mouseReleased(MouseEvent arg0) {}
+         });
+     	
+        //最基本按钮
+    	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
+    	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
+    	goto_InputRepertory.setLocation(20,250);
     	goto_TransferCenterReceive.setLocation(20,150);
     	goto_TransShipment.setLocation(20,200);
-    	goto_InputRepertory.setLocation(20,250);
     	
     	//其他组件
-        
+    	_orderId.setSize((int)(170*1.07f), 20);
+        _orderId.setLocation(orderId.getX()+orderId.getWidth(),orderId.getY()-3);
 
+        _destiPlace.setSize((int)(170*1.07f), 20);
+        _destiPlace.setLocation(destiPlace.getX()+destiPlace.getWidth(),destiPlace.getY()-3);
 		
-		
-		
+        
+        
+        
         add(titleLabel);
         add(funLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
+        add(agencyNameLabel);
+        add(timeLabel);
+        add(orderId);
+        add(destiPlace);
+        add(location);
+        add(q);
+        add(p);
+        add(j);
+        add(w);
+        
+        add(_orderId);
+        add(_destiPlace);
+        add(_q);
+        add(_p);
+        add(_j);
+        add(_w);
+
     	
     	add(close);
     	add(min);
@@ -197,13 +317,18 @@ public class InputRepertory extends JPanel{
     	add(goto_TransferCenterReceive);
     	add(goto_TransShipment);
     	add(goto_InputRepertory);
-
     	
+    	add(confirm);
+    	add(cancel);
 	}
 
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		_orderId.setText("");
+		_destiPlace.setText("");
+		_q.setText("");
+		_p.setText("");
+		_j.setText("");
+		_w.setText("");
 		willprintMessage=false;
 		repaint();
 	}
@@ -229,5 +354,11 @@ public class InputRepertory extends JPanel{
 				}
 			}).start();
 		}
+	}
+	void _confirm(){
+		
+	}
+	void _cancel(){
+		clear();
 	}
 }

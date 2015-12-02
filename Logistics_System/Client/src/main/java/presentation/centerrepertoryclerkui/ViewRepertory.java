@@ -5,7 +5,9 @@
  */
 package presentation.centerrepertoryclerkui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -13,11 +15,18 @@ import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
@@ -49,6 +58,12 @@ public class ViewRepertory extends JPanel{
 	//详细操作按钮以及其他组件
 	private JTextField _time1=new JTextField();
 	private JTextField _time2=new JTextField();
+	
+	private DefaultTableModel repertoryInTableModel;
+	private JTable repertoryInTable;
+	
+	private DefaultTableModel repertoryOutTableModel;
+	private JTable repertoryOutTable;
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
@@ -207,6 +222,133 @@ public class ViewRepertory extends JPanel{
         timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
         timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
         timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
+        
+        JLabel Stime = new JLabel("起始时间：");
+        Stime.setSize((int)(16*"起始时间：".length()*1.07f), 16);
+        Stime.setFont(new Font("宋体", Font.BOLD, 15));
+        Stime.setLocation(agencyNameLabel.getX()+200,128+100);
+        
+        _time1.setSize((int)(90*1.07f), 20);
+        _time1.setLocation(Stime.getX()+Stime.getWidth(),Stime.getY());
+        
+        JLabel Etime = new JLabel("结束时间：");
+        Etime.setSize((int)(16*"结束时间：".length()*1.07f), 16);
+        Etime.setFont(new Font("宋体", Font.BOLD, 15));
+        Etime.setLocation(_time1.getX()+_time1.getWidth()+20,_time1.getY());
+        
+        _time2.setSize((int)(90*1.07f), 20);
+        _time2.setLocation(Etime.getX()+Etime.getWidth(),Etime.getY());
+        _time2.setText(format.format(date_));
+        
+        search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        search.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_search();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+        search.setLocation(_time2.getX()+_time2.getWidth(),_time2.getY()-5);
+        
+        JLabel in = new JLabel("入库信息表");
+        in.setSize((int)(16*"入库信息表".length()*1.07f), 16);
+        in.setFont(new Font("宋体", Font.BOLD, 15));
+        in.setLocation(agencyNameLabel.getX()+350,128+120);
+        
+        Vector<String> vColumns1 = new Vector<String>();
+      	vColumns1.add("入库时间");
+      	vColumns1.add("订单编号");
+      	vColumns1.add("区");
+      	vColumns1.add("排");
+      	vColumns1.add("架");
+      	vColumns1.add("位");
+      	Vector<String> vData1 = new Vector<String>();
+      	repertoryInTableModel = new DefaultTableModel(vData1, vColumns1);
+      	repertoryInTable = new JTable(repertoryInTableModel){
+     		private static final long serialVersionUID = 1L;
+
+     		public boolean isCellEditable(int row, int column){
+     			return false;//不能修改
+     		}
+      	};
+      	
+      	repertoryInTable.setPreferredScrollableViewportSize(new Dimension(700,100));
+      	repertoryInTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      	repertoryInTable.setSelectionBackground(Color.YELLOW);
+      	JPanel jp1=new JPanel();
+      	JScrollPane scrollPane1 = new JScrollPane();
+      	scrollPane1.getViewport().add(repertoryInTable);
+      	repertoryInTable.setFillsViewportHeight(true);
+      	int[] width1={100,300,25,25,25,25};
+      	repertoryInTable.setColumnModel(getColumnModel(repertoryInTable,width1));
+      	repertoryInTable.getTableHeader().setReorderingAllowed(false);
+      	repertoryInTable.getTableHeader().setResizingAllowed(false);
+      	jp1.setSize(800, 150);
+      	jp1.setLocation(agencyNameLabel.getX()+10, in.getY()+in.getHeight());
+      	jp1.setOpaque(false);
+      	jp1.add(scrollPane1,BorderLayout.CENTER);
+      	
+      	_time2.setSize((int)(90*1.07f), 20);
+        _time2.setLocation(Etime.getX()+Etime.getWidth(),Etime.getY());
+        _time2.setText(format.format(date_));
+        
+        JLabel out = new JLabel("出库信息表");
+        out.setSize((int)(16*"出库信息表".length()*1.07f), 16);
+        out.setFont(new Font("宋体", Font.BOLD, 15));
+        out.setLocation(in.getX(),128+270);
+        
+        Vector<String> vColumns2 = new Vector<String>();
+      	vColumns2.add("出库时间");
+      	vColumns2.add("订单编号");
+      	vColumns2.add("目的地");
+      	vColumns2.add("装运方式");
+      	Vector<String> vData2 = new Vector<String>();
+      	repertoryOutTableModel = new DefaultTableModel(vData2, vColumns2);
+      	repertoryOutTable = new JTable(repertoryOutTableModel){
+     		private static final long serialVersionUID = 1L;
+
+     		public boolean isCellEditable(int row, int column){
+     			return false;//不能修改
+     		}
+      	};
+      	
+      	repertoryOutTable.setPreferredScrollableViewportSize(new Dimension(700,100));
+      	repertoryOutTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      	repertoryOutTable.setSelectionBackground(Color.YELLOW);
+      	JPanel jp2=new JPanel();
+      	JScrollPane scrollPane2 = new JScrollPane();
+      	scrollPane2.getViewport().add(repertoryOutTable);
+      	repertoryInTable.setFillsViewportHeight(true);
+      	int[] width2={100,300,100,50};
+      	repertoryOutTable.setColumnModel(getColumnModel(repertoryOutTable,width2));
+      	repertoryOutTable.getTableHeader().setReorderingAllowed(false);
+      	repertoryOutTable.getTableHeader().setResizingAllowed(false);
+      	jp2.setSize(800, 150);
+      	jp2.setLocation(agencyNameLabel.getX()+10, out.getY()+out.getHeight());
+      	jp2.setOpaque(false);
+      	jp2.add(scrollPane2,BorderLayout.CENTER);
+      	
+      	JLabel inCount = new JLabel("入库数量总计：");//联系逻辑层数据
+      	inCount.setSize((int)(16*"入库数量总计：".length()*1.07f), 16);
+      	inCount.setFont(new Font("宋体", Font.BOLD, 15));
+      	inCount.setLocation(agencyNameLabel.getX()+150,128+440);
+      	
+      	JLabel outCount = new JLabel("出库数量总计：");//联系逻辑层数据
+      	outCount.setSize((int)(16*"出库数量总计：".length()*1.07f), 16);
+      	outCount.setFont(new Font("宋体", Font.BOLD, 15));
+      	outCount.setLocation(inCount.getX()+inCount.getWidth(),inCount.getY());
+      	
+      	JLabel inMoney = new JLabel("入库金额总计：");//联系逻辑层数据
+      	inMoney.setSize((int)(16*"入库金额总计：".length()*1.07f), 16);
+      	inMoney.setFont(new Font("宋体", Font.BOLD, 15));
+      	inMoney.setLocation(inCount.getX(),inCount.getY()+40);
+      	
+      	JLabel outMoney = new JLabel("出库金额总计：");//联系逻辑层数据
+      	outMoney.setSize((int)(16*"出库金额总计：".length()*1.07f), 16);
+      	outMoney.setFont(new Font("宋体", Font.BOLD, 15));
+      	outMoney.setLocation(outCount.getX(),outCount.getY()+40);
         //最基本按钮
     	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
@@ -218,7 +360,6 @@ public class ViewRepertory extends JPanel{
     	goto_Inventory.setLocation(20,300);
     	
     	//其他组件
-        
 
 		
 		
@@ -229,6 +370,14 @@ public class ViewRepertory extends JPanel{
         add(currentusernameLabel);
         add(agencyNameLabel);
         add(timeLabel);
+        add(Stime);
+        add(Etime);
+        add(in);
+        add(out);
+        add(inCount);
+        add(outCount);
+        add(inMoney);
+        add(outMoney);
         
     	add(close);
     	add(min);
@@ -237,10 +386,27 @@ public class ViewRepertory extends JPanel{
     	add(goto_OutputRepertory);
     	add(goto_ViewRepertory);
     	add(goto_Inventory);
+    	add(search);
 
+    	add(_time1);
+    	add(_time2);
     	
+    	add(jp1);
+    	add(jp2);
 	}
-
+	
+	private TableColumnModel getColumnModel(JTable repertoryTable, int[] width) {
+		 TableColumnModel columns = repertoryTable.getColumnModel();  
+		 for (int i = 0; i < width.length; i++) {  
+			 TableColumn column = columns.getColumn(i);  
+		     column.setPreferredWidth(width[i]);  
+		 }  
+		 return columns;
+	}
+	private void _search() {
+		// TODO 自动生成的方法存根
+		
+	}
 	private void clear(){
 //		.setText("");
 //		.setText("");
