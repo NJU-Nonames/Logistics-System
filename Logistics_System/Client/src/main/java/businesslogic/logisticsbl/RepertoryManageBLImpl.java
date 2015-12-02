@@ -1,9 +1,16 @@
 package businesslogic.logisticsbl;
 
+import java.io.FileOutputStream;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import po.repertory.RepertoryInPO;
 import po.repertory.RepertoryInfoPO;
@@ -205,6 +212,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 				repertoryinlist.setFramenumber(repertory.getFrameNumber());
 				repertoryinlist.setPlacenumber(repertory.getPlaceNumber());
 				repertoryin.update(repertoryinlist);
+				system.add(new SystemLogPO((String)df.format(new Date()),"更改"+repertoryinformation.orderId+"号订单在"+user.getAgencyName()+"中的库存位置",user.getAdmin()));
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -215,6 +223,66 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		else
 			return new ResultMessage(true,"位置变更成功!转移仓位已到达报警线，请进行库存调整修改位置。");
 	}
-
-
+	public void exportRepertoryInformation(String repertoryname,String time,ArrayList<RepertoryInformationVO> list,String path){
+		HSSFWorkbook wb=new HSSFWorkbook();
+		HSSFSheet sheet=wb.createSheet("库存信息表");
+		HSSFRow row=sheet.createRow(0);
+		HSSFCellStyle style=wb.createCellStyle();
+		sheet.setDefaultColumnWidth(12);
+		style.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
+		HSSFCell cell=row.createCell(0);
+		cell.setCellValue("快递编号");
+		cell.setCellStyle(style);
+		cell=row.createCell(1);
+		cell.setCellValue("入库日期");
+		cell.setCellStyle(style);
+		cell=row.createCell(2);
+		cell.setCellValue("区号");
+		cell.setCellStyle(style);
+		cell=row.createCell(3);
+		cell.setCellValue("排号");
+		cell.setCellStyle(style);
+		cell=row.createCell(4);
+		cell.setCellValue("架号");
+		cell.setCellStyle(style);
+		cell=row.createCell(5);
+		cell.setCellValue("位号");
+		cell.setCellStyle(style);
+		cell=row.createCell(6);
+		cell.setCellValue("目的地");
+		cell.setCellStyle(style);
+		for(int i=0;i<list.size();i++){
+			row=sheet.createRow(i+1);
+			RepertoryInformationVO vo=list.get(i);
+			cell=row.createCell(0);
+			cell.setCellValue(vo.id);
+			cell.setCellStyle(style);
+			cell=row.createCell(1);
+			cell.setCellValue(vo.time);
+			cell.setCellStyle(style);
+			cell=row.createCell(2);
+			cell.setCellValue(vo.areaNumber);
+			cell.setCellStyle(style);
+			cell=row.createCell(3);
+			cell.setCellValue(vo.rowNumber);
+			cell.setCellStyle(style);
+			cell=row.createCell(4);
+			cell.setCellValue(vo.frameNumber);
+			cell.setCellStyle(style);
+			cell=row.createCell(5);
+			cell.setCellValue(vo.placeNumber);
+			cell.setCellStyle(style);
+			cell=row.createCell(6);
+			cell.setCellValue(vo.destination);
+			cell.setCellStyle(style);	
+		}
+		try{
+			FileOutputStream fout=new FileOutputStream("D:/"+repertoryname+"在"+time+"时间点库存盘点.xls");
+			wb.write(fout);
+			fout.close();
+			wb.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}	
+	}
 }

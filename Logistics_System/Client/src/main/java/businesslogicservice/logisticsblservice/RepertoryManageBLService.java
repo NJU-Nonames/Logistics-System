@@ -6,6 +6,8 @@
 package businesslogicservice.logisticsblservice;
 
 
+import java.util.ArrayList;
+
 import utility.ResultMessage;
 import vo.RepertoryInVO;
 import vo.RepertoryInfoVO;
@@ -48,6 +50,16 @@ public interface RepertoryManageBLService {
 	 * 后置条件：库存中的某区不再报警
 	 */
 	public ResultMessage repertoryAdjust(RepertoryInformationVO repertoryinformation);
+	
+	
+	/**
+	 * 
+	 * @param repertoryname 仓库名称
+	 * @param time 盘点的截止时间点
+	 * @param list 仓库信息list
+	 * @param path 存储路径
+	 */
+	public void exportRepertoryInformation(String repertoryname,String time,ArrayList<RepertoryInformationVO> list,String path);
 	
 	
 }

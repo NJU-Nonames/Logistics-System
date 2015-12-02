@@ -20,6 +20,7 @@ import vo.MoneyInListVO;
 import vo.MoneyInformationListVO;
 import vo.MoneyItemVO;
 import vo.MoneyOutListVO;
+import vo.RepertoryInformationVO;
 import businesslogic.financebl.CostManagementBLImpl;
 import businesslogic.financebl.SettlementManageBLImpl;
 import businesslogic.rmi.RMIHelper;
@@ -197,4 +198,5 @@ public class FormBLImpl implements FormBLService{
 			e.printStackTrace();
 		}	
 	}
+
 }
