@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
@@ -24,16 +23,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
-import businesslogicservice.financeblservice.CostManagementBLService;
 import presentation.img.Img;
-import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
-import utility.CheckType;
-import utility.CostClause;
-import utility.ResultMessage;
-import vo.MoneyOutListVO;
 
 /**成本管理
  * @author 谭期友
@@ -42,7 +35,7 @@ import vo.MoneyOutListVO;
 public class CostManage extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	private CostManagementBLService bl;
+	//private AccountBLService bl;
 	private FinacialStaffFrame frame;
 	private CurrentUser currentUser;
 	
@@ -91,9 +84,9 @@ public class CostManage extends JPanel{
         }
 	}
 	
-	public CostManage(FinacialStaffFrame frame, CostManagementBLService bl, CurrentUser currentUser){
+	public CostManage(FinacialStaffFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		this.bl=bl;
+		//this.bl=bl;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -239,24 +232,18 @@ public class CostManage extends JPanel{
         funLabel.setSize((int)(40*func.length()*1.07f), 40);
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
-
-        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
-        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
-        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
-        currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="财务人员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
+        currentuserLabel.setLocation(FinacialStaffFrame.w/6,128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(FinacialStaffFrame.w/6+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(FinacialStaffFrame.w-30,0);
     	min.setLocation(FinacialStaffFrame.w-80,0);
@@ -275,7 +262,7 @@ public class CostManage extends JPanel{
 		l1.setFont(new Font("宋体", Font.BOLD, 15));
         l1.setLocation(FinacialStaffFrame.w/6+40, 128+80);
         pay_man = new JTextField();
-        pay_man.setSize(150, 20);
+        pay_man.setSize(110, 20);
         pay_man.setLocation(FinacialStaffFrame.w/6+40+(int)(16*5*1.07f),128+80-3);
         
 		JLabel l2 = new JLabel("付款日期：");
@@ -286,7 +273,7 @@ public class CostManage extends JPanel{
 		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		String time=format.format(date_);
 		pay_date = new JTextField(time);
-		pay_date.setSize(150, 20);
+		pay_date.setSize(110, 20);
 		pay_date.setLocation(FinacialStaffFrame.w/6+40+(int)(16*5*1.07f),128+80+50-3);
 
 		JLabel l3 = new JLabel("付款金额：");
@@ -294,7 +281,7 @@ public class CostManage extends JPanel{
 		l3.setFont(new Font("宋体", Font.BOLD, 15));
 		l3.setLocation(FinacialStaffFrame.w/6+40, 128+80+100);
 		money = new JTextField();
-		money.setSize(150, 20);
+		money.setSize(110, 20);
 		money.setLocation(FinacialStaffFrame.w/6+40+(int)(16*5*1.07f),128+80+100-3);
 		
 		JLabel l4 = new JLabel("付款账号：");
@@ -302,7 +289,7 @@ public class CostManage extends JPanel{
 		l4.setFont(new Font("宋体", Font.BOLD, 15));
 		l4.setLocation(FinacialStaffFrame.w/6+40, 128+80+150);
 		bankcard = new JTextField();
-		bankcard.setSize(150, 20);
+		bankcard.setSize(110, 20);
 		bankcard.setLocation(FinacialStaffFrame.w/6+40+(int)(16*5*1.07f),128+80+150-3);
 		
 		JLabel l5 = new JLabel("备注：");
@@ -349,18 +336,13 @@ public class CostManage extends JPanel{
 		buttonGroup.add(salary);
 		buttonGroup.add(reward);
 
-		
-		JLabel l7 = new JLabel("新建付款单：");
-		l7.setSize((int)(16*6*1.07f), 16);
-		l7.setFont(new Font("宋体", Font.BOLD, 15));
-		l7.setLocation(596-30/2-(int)(16*6*1.07f),600+5);
+
     	confirm.setLocation(596-30/2,600);
 		
 		
 		
         add(titleLabel);
         add(funLabel);
-        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
     	
@@ -391,75 +373,15 @@ public class CostManage extends JPanel{
 		add(salary);
 		add(reward);
 		
-		add(l7);
 		add(confirm);
 	}
 
 	private void _create(){
-		String pay_man_s = pay_man.getText();
-		String pay_date_s = pay_date.getText();
-		String money_s = money.getText();
-		String bankcard_s = bankcard.getText();
-		String note_s = note.getText();
-
-		if(pay_man_s.compareTo("")==0){
-			printMessage("没有输入付款人！", Color.RED);
-			return;
-		}
-		result = CheckFormat.checkTime(pay_date_s);
-		if(result.compareTo("格式正确")!=0){
-			printMessage(result, Color.RED);
-			return;
-		}
-		if(money_s.compareTo("")==0){
-			printMessage("没有输入付款金额！", Color.RED);
-			return;
-		}
-		double money_s_double;
-		try{
-			money_s_double = Double.parseDouble(money_s);
-		}catch(NumberFormatException e){
-			printMessage("请输入正确付款金额！", Color.RED);
-			return;
-		}
-		result = CheckFormat.checkBankAccountNum(bankcard_s);
-		if(result.compareTo("格式正确")!=0){
-			printMessage(result, Color.RED);
-			return;
-		}
-		CostClause costClause=null;
-		if(rent.isSelected())
-			costClause=CostClause.rentfare;
-		else if(deli_price.isSelected())
-			costClause=CostClause.shipmentfare;
-		else if(salary.isSelected())
-			costClause=CostClause.salary;
-		else if(reward.isSelected())
-			costClause=CostClause.bonus;
 		
-		
-		MoneyOutListVO moneyOutListVO=new MoneyOutListVO("?", pay_date_s, money_s_double, pay_man_s, bankcard_s, costClause, note_s, CheckType.UNDERCHECK);
-		ResultMessage resultMessage = bl.createMoneyOutlist(moneyOutListVO);
-		if(!resultMessage.isPass()){
-			printMessage(resultMessage.getMessage(), Color.RED);
-			return;
-		}else{
-			printMessage(resultMessage.getMessage(), Color.GREEN);
-		}
-				
-		
-		pay_man.setText("");
-		money.setText("");
-		bankcard.setText("");
-		note.setText("");
-		rent.setSelected(true);
 	}
 	private void clear(){
-		pay_man.setText("");
-		money.setText("");
-		bankcard.setText("");
-		note.setText("");
-		rent.setSelected(true);
+//		.setText("");
+//		.setText("");
 		willprintMessage=false;
 		repaint();
 	}

@@ -198,23 +198,17 @@ public class SearchPkgInformation extends JPanel{
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
 
-        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
-        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
-        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
-        currentuserAgencyNameLabel.setLocation(170,128-30);
-        
         String s="快递员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
+        currentuserLabel.setLocation(CourierFrame.w/6,128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(CourierFrame.w/6+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(CourierFrame.w-30,0);
     	min.setLocation(CourierFrame.w-80,0);
@@ -340,12 +334,12 @@ public class SearchPkgInformation extends JPanel{
 		priceLabel.setForeground(Color.RED);
 		priceLabel.setLocation(CourierFrame.w/6+40+(int)(16*6*1.07f), 128+80+320);
 
-		JLabel l10 = new JLabel("寄件时间：");
+		JLabel l10 = new JLabel("寄件日期：");
 		l10.setSize((int)(16*5*1.07f), 16);
 		l10.setFont(new Font("宋体", Font.BOLD, 15));
 		l10.setLocation(CourierFrame.w/6+40, 128+80+360);
 		senddateLabel = new JLabel();
-		senddateLabel.setSize((int)(16*16*1.07f), 16);
+		senddateLabel.setSize((int)(16*8*1.07f), 16);
 		senddateLabel.setFont(new Font("宋体", Font.BOLD, 15));
 		senddateLabel.setForeground(Color.RED);
 		senddateLabel.setLocation(CourierFrame.w/6+40+(int)(16*5*1.07f), 128+80+360);
@@ -389,7 +383,6 @@ public class SearchPkgInformation extends JPanel{
 		
         add(titleLabel);
         add(funLabel);
-        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
     	

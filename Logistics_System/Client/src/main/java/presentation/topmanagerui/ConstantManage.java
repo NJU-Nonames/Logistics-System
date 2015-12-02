@@ -19,16 +19,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import businesslogicservice.informationchangeblservice.ConstantManageBLService;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
-import utility.PkgType;
-import utility.PriceType;
-import utility.ResultMessage;
-import vo.DistanceChartVO;
-import vo.PriceChartVO;
 
 /**
  * @author 谭期友
@@ -37,7 +31,7 @@ import vo.PriceChartVO;
 public class ConstantManage extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	private ConstantManageBLService bl;
+	//private AccountBLService bl;
 	private TopManagerFrame frame;
 	private CurrentUser currentUser;
 	
@@ -71,7 +65,6 @@ public class ConstantManage extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawImage(Img.p8, -50, 0, 1366, 768, null);
         g.drawLine(TopManagerFrame.w/6, 10, TopManagerFrame.w/6, TopManagerFrame.h-10);
         g.drawLine(TopManagerFrame.w/6+10, TopManagerFrame.h/6, TopManagerFrame.w, TopManagerFrame.h/6);
 
@@ -84,9 +77,9 @@ public class ConstantManage extends JPanel{
         }
 	}
 	
-	public ConstantManage(TopManagerFrame frame, ConstantManageBLService bl, CurrentUser currentUser){
+	public ConstantManage(TopManagerFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		this.bl=bl;
+		//this.bl=bl;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -255,24 +248,18 @@ public class ConstantManage extends JPanel{
         funLabel.setSize((int)(40*func.length()*1.07f), 40);
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
-
-        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
-        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
-        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
-        currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="总经理";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
+        currentuserLabel.setLocation(TopManagerFrame.w/6,128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(TopManagerFrame.w/6+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(TopManagerFrame.w-30,0);
     	min.setLocation(TopManagerFrame.w-80,0);
@@ -286,10 +273,10 @@ public class ConstantManage extends JPanel{
     	goto_SystemLog.setLocation(20,400);
     	
     	//其他组件
-    	priceField = new JTextField(bl.showPriceChart().getEconomic()+"");
+    	priceField = new JTextField("00");
     	priceField.setSize(60, 20);
     	priceField.setLocation(450, 128+80-3);
-    	distanceField = new JTextField("0");
+    	distanceField = new JTextField("00");
     	distanceField.setSize(60, 20);
     	distanceField.setLocation(450, 128+80+250-3);
 		
@@ -306,17 +293,17 @@ public class ConstantManage extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(Price.getSelectedItem().toString().compareTo("经济快递")==0)
-					priceField.setText(bl.showPriceChart().getEconomic()+"");
+					priceField.setText("11");
 				else if(Price.getSelectedItem().toString().compareTo("标准快递")==0)
-					priceField.setText(bl.showPriceChart().getStandard()+"");
+					priceField.setText("22");
 				else if(Price.getSelectedItem().toString().compareTo("次晨特快")==0)
-					priceField.setText(bl.showPriceChart().getExpress()+"");
+					priceField.setText("33");
 				else if(Price.getSelectedItem().toString().compareTo("火车每公里每吨运费价格")==0)
-					priceField.setText(bl.showPriceChart().getTrain_kilo_t()+"");
+					priceField.setText("44");
 				else if(Price.getSelectedItem().toString().compareTo("货车每公里每吨运费价格")==0)
-					priceField.setText(bl.showPriceChart().getTruck_kilo_t()+"");
+					priceField.setText("55");
 				else if(Price.getSelectedItem().toString().compareTo("飞机每公里每吨运费价格")==0)
-					priceField.setText(bl.showPriceChart().getAirplane_kilo_t()+"");
+					priceField.setText("66");
 			}
 		});
 
@@ -338,42 +325,31 @@ public class ConstantManage extends JPanel{
 		l3.setFont(new Font("宋体", Font.BOLD, 15));
 		l3.setLocation(170+100, 128+80+250);
 		city1=new JComboBox<String>();
+		city1.addItem("北京");
+		city1.addItem("北京");
+		city1.addItem("黑龙江");
+		city1.addItem("江苏");
+		city1.addItem("江苏是大大撒环保部");
 		city1.setSize(100, 20);
 		city1.setLocation(170+100+(int)(16*4*1.07f), 128+80+250-3);
+		city1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
     	JLabel l4 = new JLabel("城市2：");
 		l4.setSize((int)(16*4*1.07f), 16);
 		l4.setFont(new Font("宋体", Font.BOLD, 15));
 		l4.setLocation(170+100, 128+80+250+30);
 		city2=new JComboBox<String>();
-		
-		DistanceChartVO distanceChartVO=bl.showDistanceChart();
-		for(int i=1;i<distanceChartVO.getDistanceChart().length;i++){
-			city1.addItem(distanceChartVO.getDistanceChart()[0][i]);
-			city2.addItem(distanceChartVO.getDistanceChart()[0][i]);
-		}
-		
+		city2.addItem("快递员");
 		city2.setSize(100, 20);
 		city2.setLocation(170+100+(int)(16*4*1.07f), 128+80+250-3+30);
 		city2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				String s1 = (String) city1.getSelectedItem();
-				String s2 = (String) city2.getSelectedItem();
-				int i1=0, i2=0;
-				for(;s1.compareTo(bl.showDistanceChart().getDistanceChart()[0][i1])!=0;i1++);
-				for(;s2.compareTo(bl.showDistanceChart().getDistanceChart()[i2][0])!=0;i2++);
-				distanceField.setText(bl.showDistanceChart().getDistanceChart()[i2][i1]);
-			}
-		});
-		city1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO 自动生成的方法存根
-				String s1 = (String) city1.getSelectedItem();
-				String s2 = (String) city2.getSelectedItem();
-				int i1=0, i2=0;
-				for(;s1.compareTo(bl.showDistanceChart().getDistanceChart()[0][i1])!=0;i1++);
-				for(;s2.compareTo(bl.showDistanceChart().getDistanceChart()[i2][0])!=0;i2++);
-				distanceField.setText(bl.showDistanceChart().getDistanceChart()[i2][i1]);
+				
 			}
 		});
     	JLabel l5 = new JLabel("单位：公里");
@@ -395,7 +371,6 @@ public class ConstantManage extends JPanel{
 		
         add(titleLabel);
         add(funLabel);
-        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
     	
@@ -430,84 +405,17 @@ public class ConstantManage extends JPanel{
 	}
 
 	private void _changePrice(){
-		String priceField_s = priceField.getText();
-		double priceField_s_double;
-		try{
-			priceField_s_double = Double.parseDouble(priceField_s);
-		}catch(NumberFormatException e){
-			printMessage("请输入正确价格常量！", Color.RED);
-			return;
-		}
-
 		
-		String s1 = (String) Price.getSelectedItem();
-		PriceType type = PriceType.ECONOMIC;
-		if(s1.compareTo("经济快递")==0){
-			type=PriceType.ECONOMIC;
-		}else if(s1.compareTo("标准快递")==0){
-			type=PriceType.STANDARD;
-		}else if(s1.compareTo("次晨特快")==0){
-			type=PriceType.EXPRESS;
-		}else if(s1.compareTo("火车每公里每吨运费价格")==0){
-			type=PriceType.TRAIN_KILO_T;
-		}else if(s1.compareTo("货车每公里每吨运费价格")==0){
-			type=PriceType.TRUCK_KILO_T;
-		}else if(s1.compareTo("飞机每公里每吨运费价格")==0){
-			type=PriceType.AIRPLANE_KILO_T;
-		}
-		
-		ResultMessage resultMessage = bl.submitPrice(priceField_s_double, type);
-		if(!resultMessage.isPass()){
-			printMessage(resultMessage.getMessage(), Color.RED);
-			return;
-		}else{
-			printMessage(resultMessage.getMessage(), Color.GREEN);
-		}
 	}
 	private void _changeDistance(){
-		String s1 = (String) city1.getSelectedItem();
-		String s2 = (String) city2.getSelectedItem();
 		
-		String distanceField_s = (String) distanceField.getText();
-		double distanceField_s_double;
-		try{
-			distanceField_s_double = Double.parseDouble(distanceField_s);
-		}catch(NumberFormatException e){
-			printMessage("请输入正确距离！", Color.RED);
-			return;
-		}
-
-		ResultMessage resultMessage = bl.submitDistance(distanceField_s, s1, s2);
-		if(!resultMessage.isPass()){
-			printMessage(resultMessage.getMessage(), Color.RED);
-			return;
-		}else{
-			printMessage(resultMessage.getMessage(), Color.GREEN);
-		}
 	}
 	private void _addcity(){
-		String newcity_s = newcity.getText();
 		
-		if(newcity_s.compareTo("")==0){
-			printMessage("没有输入城市！", Color.RED);
-			return;
-		}
-
-		ResultMessage resultMessage = bl.addCity(newcity_s);
-		if(!resultMessage.isPass()){
-			printMessage(resultMessage.getMessage(), Color.RED);
-			return;
-		}else{
-			printMessage(resultMessage.getMessage(), Color.GREEN);
-		}
-		
-		newcity.setText("");
 	}
 	private void clear(){
-		newcity.setText("");
-		Price.setSelectedIndex(0);
-		city1.setSelectedIndex(0);
-		city2.setSelectedIndex(0);
+//		.setText("");
+//		.setText("");
 		willprintMessage=false;
 		repaint();
 	}

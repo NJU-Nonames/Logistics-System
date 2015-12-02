@@ -8,14 +8,6 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import businesslogic.chartbl.FormBLImpl;
-import businesslogic.chartbl.SystemLogBLImpl;
-import businesslogic.informationchangebl.ConstantManageBLImpl;
-import businesslogic.informationchangebl.PeopleAgencyBLImpl;
-import businesslogicservice.chartblservice.FormBLService;
-import businesslogicservice.chartblservice.SystemLogBLService;
-import businesslogicservice.informationchangeblservice.ConstantManageBLService;
-import businesslogicservice.informationchangeblservice.PeopleAgencyBLService;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 
@@ -55,18 +47,18 @@ public class TopManagerFrame extends JFrame{
 	
 	
 
-	SystemLogBLService systemLogBLService;
-	FormBLService formBLService;
-	ConstantManageBLService constantManageBLService;
-	PeopleAgencyBLService peopleAgencyBLService;
+//	AccountBLService accountBLService;
+//	BaseDataSettingBLService baseDataSettingBLService;
+//	CostManagementBLService costManagementBLService;
+//	SettlementManageBLService settlementManageBLService;
 
 	private boolean isDraging;//是否被拖住
 	private int xx;
 	private int yy;
 	
-	public TopManagerFrame(CurrentUser currentUser){
-		this.currentUser=currentUser;
-//		this.currentUser=new CurrentUser("王大锤","南京中转中心","025000","admin");
+	public TopManagerFrame(){
+		//this.currentUser=currentUser;
+		this.currentUser=new CurrentUser("王大锤","南京中转中心","025000","admin");
 		this.setUndecorated(true);
 		this.addMouseListener(new MouseAdapter() { 
 			public void mousePressed(MouseEvent e) { 
@@ -106,17 +98,17 @@ public class TopManagerFrame extends JFrame{
 		this.setIconImage(Img.TopManagerICON);
 		
 
-		systemLogBLService=new SystemLogBLImpl();
-		formBLService=new FormBLImpl(this.currentUser);
-		constantManageBLService=new ConstantManageBLImpl(this.currentUser);
-		peopleAgencyBLService=new PeopleAgencyBLImpl(this.currentUser);
+//		accountBLService=null;
+//		baseDataSettingBLService=null;
+//		costManagementBLService=null;
+//		settlementManageBLService=null;
 		
-		statistic=new Statistic(this, formBLService, currentUser);
+		statistic=new Statistic(this, currentUser);
 		check=new Check(this, currentUser);
-		peopleAgencyManage=new PeopleAgencyManage(this, peopleAgencyBLService, currentUser);
-		salaryStrategy=new SalaryStrategy(this, peopleAgencyBLService, currentUser);
-		constantManage=new ConstantManage(this, constantManageBLService, currentUser);
-		systemLog=new SystemLog(this, systemLogBLService, currentUser);
+		peopleAgencyManage=new PeopleAgencyManage(this, currentUser);
+		salaryStrategy=new SalaryStrategy(this, currentUser);
+		constantManage=new ConstantManage(this, currentUser);
+		systemLog=new SystemLog(this, currentUser);
 
 		j.add(statistic);
 		j.add(check);

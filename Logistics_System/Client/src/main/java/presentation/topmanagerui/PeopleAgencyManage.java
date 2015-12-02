@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -26,18 +25,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import businesslogicservice.informationchangeblservice.PeopleAgencyBLService;
 import presentation.img.Img;
-import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
-import utility.Position;
-import utility.ResultMessage;
 import vo.AgencyVO;
 import vo.StaffVO;
 
@@ -48,7 +41,7 @@ import vo.StaffVO;
 public class PeopleAgencyManage extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	private PeopleAgencyBLService bl;
+	//private AccountBLService bl;
 	private TopManagerFrame frame;
 	private CurrentUser currentUser;
 	
@@ -68,7 +61,7 @@ public class PeopleAgencyManage extends JPanel{
 	private MyButton add;
 	private MyButton remove;
 	private MyButton change;
-//	private MyButton viewPeople;
+	private MyButton viewPeople;
 	
 	private JTextField AgencyField;
 	private DefaultTableModel AgencyTableModel;
@@ -94,14 +87,10 @@ public class PeopleAgencyManage extends JPanel{
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
-	
-	private int index1;
-	private int index2;
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawImage(Img.p17, 0, 0, 1366, 768, null);
         g.drawLine(TopManagerFrame.w/6, 10, TopManagerFrame.w/6, TopManagerFrame.h-10);
         g.drawLine(TopManagerFrame.w/6+10, TopManagerFrame.h/6, TopManagerFrame.w, TopManagerFrame.h/6);
         g.drawLine(596,128+70,596,128+70+270);
@@ -115,16 +104,14 @@ public class PeopleAgencyManage extends JPanel{
         }
 	}
 	
-	public PeopleAgencyManage(TopManagerFrame frame, PeopleAgencyBLService bl, CurrentUser currentUser){
+	public PeopleAgencyManage(TopManagerFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		this.bl=bl;
+		//this.bl=bl;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
 		co=Color.RED;
 		this.setLayout(null);
-		index1=0;
-		index2=0;
 
 		//初始化组件
 		initComponent();
@@ -282,16 +269,16 @@ public class PeopleAgencyManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-//    	viewPeople = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-//    	viewPeople.addMouseListener(new MouseListener(){
-//			public void mouseClicked(MouseEvent arg0) {
-//				_viewPeople();
-//			}
-//			public void mouseEntered(MouseEvent arg0) {}
-//			public void mouseExited(MouseEvent arg0) {}
-//			public void mousePressed(MouseEvent arg0) {}
-//			public void mouseReleased(MouseEvent arg0) {}
-//        });
+    	viewPeople = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	viewPeople.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_viewPeople();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
     	addPeople = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
     	addPeople.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
@@ -325,24 +312,18 @@ public class PeopleAgencyManage extends JPanel{
         funLabel.setSize((int)(40*func.length()*1.07f), 40);
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
-
-        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
-        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
-        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
-        currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="总经理";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
+        currentuserLabel.setLocation(TopManagerFrame.w/6,128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(TopManagerFrame.w/6+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(TopManagerFrame.w-30,0);
     	min.setLocation(TopManagerFrame.w-80,0);
@@ -378,13 +359,14 @@ public class PeopleAgencyManage extends JPanel{
 		Vector<String> vData = new Vector<String>();
 		//模型
 		AgencyTableModel = new DefaultTableModel(vData, vColumns);
-		ArrayList<AgencyVO> arr = bl.showAgency();
-        for(int i =0 ; i<arr.size(); i++){
+		/*ArrayList<BankAccountVO> accountlist = bl.show();
+        for(int i =0 ; i<accountlist.size(); i++){
     		Vector<String> v = new Vector<String>();
-    		v.add(arr.get(i).getAgencyName());
-    		v.add(arr.get(i).getAgencyNum());
-    		AgencyTableModel.addRow(v);
-        }
+    		v.add(accountlist.get(i).getName());
+    		v.add(accountlist.get(i).getNumber());
+    		v.add(""+accountlist.get(i).getMoney());
+        	AccountTableModel.addRow(v);
+        }*/
 		//表格
 		AgencyTable = new JTable(AgencyTableModel){
 			private static final long serialVersionUID = 1L;
@@ -404,7 +386,6 @@ public class PeopleAgencyManage extends JPanel{
 		jp.setLocation(170+20, 128+90);
 		jp.setOpaque(false);
 		jp.add(scrollPane,BorderLayout.CENTER);
-//		AgencyTable.setRowSelectionInterval(0, 0);
 
 
 		JLabel l1 = new JLabel("新机构名：");
@@ -427,32 +408,26 @@ public class PeopleAgencyManage extends JPanel{
     	add.setLocation(170+20, 128+245+20);
     	remove.setLocation(170+20+(int)(16*5*1.07f)+110+10,128+245+20);
     	change.setLocation(170+20,128+245+60);
-//    	viewPeople.setLocation(170+20+(int)(16*5*1.07f)+110+10,128+245+60);
+    	viewPeople.setLocation(170+20+(int)(16*5*1.07f)+110+10,128+245+60);
 
-//    	String tip="提示：若要查看某一机构里的人员，先选中表格一行，点击按钮即可查看。";
-//        JLabel tipLabel = new JLabel(tip);
-//        tipLabel.setSize((int)(16*tip.length()*1.07f), 16);
-//        tipLabel.setFont(new Font("宋体", Font.BOLD, 15));
-//        tipLabel.setForeground(Color.RED);
-//        tipLabel.setLocation(596-(int)(16*tip.length()*1.07f)/2,128+500);
-    	String tip2="提示：若要修改机构名，先选中表格一行，再在“新机构名”里输入新机构名，最后点击修改按钮即可修改。";
+    	String tip="提示：若要修改机构名和编号，先选中表格一行，再在方框里输入新的机构信息，最后点击修改按钮即可修改。";
+        JLabel tipLabel = new JLabel(tip);
+        tipLabel.setSize((int)(16*tip.length()*1.07f), 16);
+        tipLabel.setFont(new Font("宋体", Font.BOLD, 15));
+        tipLabel.setForeground(Color.RED);
+        tipLabel.setLocation(596-(int)(16*tip.length()*1.07f)/2,128+500);
+    	String tip2="提示：若要查看某一机构里的人员，先选中表格一行，点击按钮即可查看。";
         JLabel tipLabel2 = new JLabel(tip2);
         tipLabel2.setSize((int)(16*tip2.length()*1.07f), 16);
         tipLabel2.setFont(new Font("宋体", Font.BOLD, 15));
         tipLabel2.setForeground(Color.RED);
         tipLabel2.setLocation(596-(int)(16*tip2.length()*1.07f)/2,128+500+20);
-    	String tip3="提示：若要修改机构里的人员资料，可以编辑其人员表格，最后点击修改按钮即可修改。(也要求你输入新机构名)";
+    	String tip3="提示：若要修改机构里的人员资料，直接编辑其人员表格，最后点击修改按钮即可修改。(也要求你输入新机构名和编号)";
         JLabel tipLabel3 = new JLabel(tip3);
         tipLabel3.setSize((int)(16*tip3.length()*1.07f), 16);
         tipLabel3.setFont(new Font("宋体", Font.BOLD, 15));
         tipLabel3.setForeground(Color.RED);
         tipLabel3.setLocation(596-(int)(16*tip3.length()*1.07f)/2+40,128+500+40);
-    	String tip4="注意：机构编号不能修改，所以以上两种修改都不要求输入新机构编号。";
-        JLabel tipLabel4 = new JLabel(tip4);
-        tipLabel4.setSize((int)(16*tip4.length()*1.07f), 16);
-        tipLabel4.setFont(new Font("宋体", Font.BOLD, 15));
-        tipLabel4.setForeground(Color.RED);
-        tipLabel4.setLocation(596-(int)(16*tip4.length()*1.07f)/2+40,128+500+60);
 
 
 		//表头
@@ -574,7 +549,6 @@ public class PeopleAgencyManage extends JPanel{
 		
         add(titleLabel);
         add(funLabel);
-        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
     	
@@ -600,15 +574,14 @@ public class PeopleAgencyManage extends JPanel{
 		add(add);
 		add(remove);
 		add(change);
-//		add(viewPeople);
+		add(viewPeople);
 
 		add(jp2);
 		
 
-//		add(tipLabel);
+		add(tipLabel);
 		add(tipLabel2);
 		add(tipLabel3);
-		add(tipLabel4);
 		
     	add(l3);
     	add(name);
@@ -629,313 +602,32 @@ public class PeopleAgencyManage extends JPanel{
     	
     	add(addPeople);
     	add(removePeople);
-    	
-
-		//System.out.println(AgencyTable.getSelectedRow());
-		_viewPeople();
-		new Thread(new Runnable(){
-//	    	int i=0;
-			public void run() {
-				while(true){
-					index2=AgencyTable.getSelectedRow();
-					if(index1!=index2){
-//						System.out.println(index1+":"+index2);
-						index1=index2;
-//						i++;
-//						System.out.println("主线"+i);
-						_viewPeople();
-					}
-				}
-			}
-		}).start();
 	}
 
 	private void _searchAgency(){
-		String AgencyField_s = (String) AgencyField.getText();
-		if(AgencyField_s.length()!=6){
-			printMessage("请输入6位机构编号！", Color.RED);
-			return;
-		}
-		AgencyVO agencyVO = bl.findAgency(AgencyField_s);
-		if(agencyVO==null){
-			printMessage("查无此机构！", Color.RED);
-			return;
-		}
-		int i=0;
-		String s=(String) AgencyTable.getValueAt(0, 1);
-		while(s.compareTo(AgencyField_s)!=0){
-			i++;
-			s=(String) AgencyTable.getValueAt(i, 1);
-		}
-		AgencyTable.setRowSelectionInterval(i, i);
+		
 	}
 	private void _addAgency(){
-		String newAgencyField_s = (String) newAgencyField.getText();
-		String newAgencyNum_s = (String) newAgencyNum.getText();
-		if(newAgencyField_s.compareTo("")==0){
-			printMessage("请输入新机构名！", Color.RED);
-			return;
-		}
-		if(newAgencyNum_s.length()!=6){
-			printMessage("请输入6位机构编号！", Color.RED);
-			return;
-		}
 		
-		AgencyVO agencyVO=new AgencyVO(newAgencyField_s, newAgencyNum_s, null);
-		
-		ResultMessage resultMessage = bl.addAgency(agencyVO);
-		if(!resultMessage.isPass()){
-			printMessage(resultMessage.getMessage(), Color.RED);
-			return;
-		}else{
-			printMessage(resultMessage.getMessage(), Color.GREEN);
-		}
-
-		Vector<String> v = new Vector<String>();
-		v.add(newAgencyField_s);
-		v.add(newAgencyNum_s);
-		AgencyTableModel.addRow(v);
-		
-		newAgencyField.setText("");
-		newAgencyNum.setText("");
 	}
 	private void _removeAgency(){
-		int index = AgencyTable.getSelectedRow();
-		if(index == -1){
-			printMessage("请选中一个机构！", Color.RED);
-			return;
-		}
-		ResultMessage resultMessage = bl.deleteAgency((String) AgencyTable.getValueAt(index, 1));
-		printMessage(resultMessage.getMessage(), Color.GREEN);
 		
-		AgencyTableModel.removeRow(index);//肯定能成功==
 	}
 	private void _changeAgency(){
-		int index = AgencyTable.getSelectedRow();
-		if(index == -1){
-			printMessage("请选中一个机构！", Color.RED);
-			return;
-		}
-
-		String newAgencyField_s = (String) newAgencyField.getText();
-		if(newAgencyField_s.compareTo("")==0){
-			printMessage("请输入新机构名！", Color.RED);
-			return;
-		}
-
 		
-		ArrayList<StaffVO> staffList=new ArrayList<StaffVO>();
-		
-		for(int i=0;i<PeopleTable.getRowCount();i++){
-			String s1 = (String) PeopleTable.getValueAt(i, 2);
-			Position _position_=null;
-			if(s1.compareTo("快递员")==0){
-				_position_=Position.COURIER;
-			}else if(s1.compareTo("营业厅业务员")==0){
-				_position_=Position.BUSINESS_OFFICE_CLERK;
-			}else if(s1.compareTo("中转中心业务员")==0){
-				_position_=Position.CENTER_CLERK;
-			}else if(s1.compareTo("中转中心仓库管理员")==0){
-				_position_=Position.CENTER_REPERTORY_CLERK;
-			}else if(s1.compareTo("低权限财务人员")==0){
-				_position_=Position.FINANCIAL_STAFF_LOW;
-			}else if(s1.compareTo("高权限财务人员")==0){
-				_position_=Position.FINANCIAL_STAFF_HIGH;
-			}else if(s1.compareTo("总经理")==0){
-				_position_=Position.TOP_MANAGER;
-			}else if(s1.compareTo("系统管理员")==0){
-				_position_=Position.ADMIN;
-			}else if(s1.compareTo("司机")==0){
-				_position_=Position.DRIVER;
-			}
-			
-			
-			staffList.add(new StaffVO(
-					(String) PeopleTable.getValueAt(i, 0), 
-					(String) PeopleTable.getValueAt(i, 1), 
-					_position_, 
-					(String) PeopleTable.getValueAt(i, 3), 
-					(String) PeopleTable.getValueAt(i, 4), 
-					(String) PeopleTable.getValueAt(i, 5), 
-					(String) PeopleTable.getValueAt(i, 6), 
-					newAgencyField_s, 
-					(String) PeopleTable.getValueAt(i, 8), 
-					(String) PeopleTable.getValueAt(i, 9)));
-		}
-		
-		AgencyVO agencyVO=new AgencyVO(newAgencyField_s, (String) AgencyTable.getValueAt(index, 1), staffList);
-		ResultMessage resultMessage = bl.updateAgency(agencyVO);
-		if(!resultMessage.isPass()){
-			printMessage(resultMessage.getMessage(), Color.RED);
-			return;
-		}else{
-			printMessage(resultMessage.getMessage(), Color.BLUE);
-		}
-
-		AgencyTable.setValueAt(newAgencyField_s, index, 0);
 	}
 	private void _viewPeople(){
-		int index = AgencyTable.getSelectedRow();
 		
-		while(PeopleTable.getRowCount()!=0)
-			PeopleTableModel.removeRow(0);
-		
-		if(index == -1)return;
-		AgencyVO agencyVO = bl.findAgency((String) AgencyTable.getValueAt(index, 1));
-		
-		while(PeopleTable.getRowCount()!=0)
-			PeopleTableModel.removeRow(0);
-
-		if(agencyVO.getStaffList()==null){
-			printMessage("此机构没有人员！", Color.BLUE);
-			return;
-		}
-		
-        for(int i =0 ; i<agencyVO.getStaffList().size(); i++){
-    		Vector<String> v = new Vector<String>();
-    		v.add(agencyVO.getStaffList().get(i).getName());
-    		v.add(agencyVO.getStaffList().get(i).getSex());
-    		
-
-    		if(agencyVO.getStaffList().get(i).getPostion()==Position.COURIER){
-        		v.add("快递员");
-    		}else if(agencyVO.getStaffList().get(i).getPostion()==Position.BUSINESS_OFFICE_CLERK){
-    			v.add("营业厅业务员");
-    		}else if(agencyVO.getStaffList().get(i).getPostion()==Position.CENTER_CLERK){
-    			v.add("中转中心业务员");
-    		}else if(agencyVO.getStaffList().get(i).getPostion()==Position.CENTER_REPERTORY_CLERK){
-    			v.add("中转中心仓库管理员");
-    		}else if(agencyVO.getStaffList().get(i).getPostion()==Position.FINANCIAL_STAFF_LOW){
-    			v.add("低权限财务人员");
-    		}else if(agencyVO.getStaffList().get(i).getPostion()==Position.FINANCIAL_STAFF_HIGH){
-    			v.add("高权限财务人员");
-    		}else if(agencyVO.getStaffList().get(i).getPostion()==Position.TOP_MANAGER){
-    			v.add("总经理");
-    		}else if(agencyVO.getStaffList().get(i).getPostion()==Position.ADMIN){
-    			v.add("系统管理员");
-    		}else if(agencyVO.getStaffList().get(i).getPostion()==Position.DRIVER){
-    			v.add("司机");
-    		}
-    		
-    		
-    		v.add(agencyVO.getStaffList().get(i).getIDNum());
-    		v.add(agencyVO.getStaffList().get(i).getWorkingstarttime());
-    		v.add(agencyVO.getStaffList().get(i).getPhoneNum());
-    		v.add(agencyVO.getStaffList().get(i).getWage());
-    		v.add(agencyVO.getStaffList().get(i).getAgencyName());
-    		v.add(agencyVO.getStaffList().get(i).getId());
-    		v.add(agencyVO.getStaffList().get(i).getAgencyId());
-    		PeopleTableModel.addRow(v);
-        }
 	}
 	private void _addPeople(){
-		int index = AgencyTable.getSelectedRow();
-		if(index == -1){
-			printMessage("请选中一个机构！", Color.RED);
-			return;
-		}
 		
-		
-		String name_s = (String) name.getText();
-		String sex_s = (String) sex.getText();
-		String IDNum_s = (String) IDNum.getText();
-		String workingstarttime_s = (String) workingstarttime.getText();
-		String phoneNum_s = (String) phoneNum.getText();
-		String wage_s = (String) wage.getText();
-		String id_s = (String) id.getText();
-
-		if(name_s.compareTo("")==0){
-			printMessage("没有输入姓名！", Color.RED);
-			return;
-		}
-		if(sex_s.compareTo("")==0){
-			printMessage("没有输入性别！", Color.RED);
-			return;
-		}
-		result = CheckFormat.checkIDCardNum(IDNum_s);
-		if(result.compareTo("格式正确")!=0){
-			printMessage(result, Color.RED);
-			return;
-		}
-		result = CheckFormat.checkTime(workingstarttime_s);
-		if(result.compareTo("格式正确")!=0){
-			printMessage(result, Color.RED);
-			return;
-		}
-		result = CheckFormat.checkPhoneNum(phoneNum_s);
-		if(result.compareTo("格式正确")!=0){
-			printMessage(result, Color.RED);
-			return;
-		}
-		double wage_s_double;
-		try{
-			wage_s_double = Double.parseDouble(wage_s);
-		}catch(NumberFormatException e){
-			printMessage("请输入正确工资！", Color.RED);
-			return;
-		}
-		if(id_s.compareTo("")==0){
-			printMessage("没有输入编号！", Color.RED);
-			return;
-		}
-
-		int i;
-		String s;
-		for(i=0;i<PeopleTable.getRowCount();i++){
-			s=(String) PeopleTable.getValueAt(i, 3);
-			if(s.compareTo(IDNum_s)==0){
-				printMessage("员工身份证重复！", Color.RED);
-				return;
-			}
-		}
-		for(i=0;i<PeopleTable.getRowCount();i++){
-			s=(String) PeopleTable.getValueAt(i, 5);
-			if(s.compareTo(phoneNum_s)==0){
-				printMessage("员工手机重复！", Color.RED);
-				return;
-			}
-		}
-		for(i=0;i<PeopleTable.getRowCount();i++){
-			s=(String) PeopleTable.getValueAt(i, 8);
-			if(s.compareTo(id_s)==0){
-				printMessage("员工编号重复！", Color.RED);
-				return;
-			}
-		}
-
-		Vector<String> v = new Vector<String>();
-		v.add(name_s);
-		v.add(sex_s);
-		v.add((String) position.getSelectedItem());
-		v.add(IDNum_s);
-		v.add(workingstarttime_s);
-		v.add(phoneNum_s);
-		v.add(wage_s);
-		v.add((String) AgencyTable.getValueAt(index, 0));
-		v.add(id_s);
-		v.add((String) AgencyTable.getValueAt(index, 1));
-		PeopleTableModel.addRow(v);
 	}
 	private void _removePeople(){
-		int index = PeopleTable.getSelectedRow();
-		if(index == -1){
-			printMessage("请选中一个人员！", Color.RED);
-			return;
-		}
-		PeopleTableModel.removeRow(index);
+		
 	}
 	private void clear(){
-		AgencyField.setText("");
-		newAgencyField.setText("");
-		newAgencyNum.setText("");
-		name.setText("");
-		sex.setText("");
-		IDNum.setText("");
-		phoneNum.setText("");
-		wage.setText("");
-		id.setText("");
-		position.setSelectedIndex(0);
-		AgencyTable.setRowSelectionInterval(0, 0);
+//		.setText("");
+//		.setText("");
 		willprintMessage=false;
 		repaint();
 	}

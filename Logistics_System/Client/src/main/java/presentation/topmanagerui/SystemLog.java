@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -27,9 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import businesslogicservice.chartblservice.SystemLogBLService;
 import presentation.img.Img;
-import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
@@ -42,7 +39,7 @@ import vo.SystemLogVO;
 public class SystemLog extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	private SystemLogBLService bl;
+	//private AccountBLService bl;
 	private TopManagerFrame frame;
 	private CurrentUser currentUser;
 	
@@ -72,7 +69,6 @@ public class SystemLog extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawImage(Img.p17, 0, 0, 1366, 768, null);
         g.drawLine(TopManagerFrame.w/6, 10, TopManagerFrame.w/6, TopManagerFrame.h-10);
         g.drawLine(TopManagerFrame.w/6+10, TopManagerFrame.h/6, TopManagerFrame.w, TopManagerFrame.h/6);
 
@@ -85,9 +81,9 @@ public class SystemLog extends JPanel{
         }
 	}
 	
-	public SystemLog(TopManagerFrame frame, SystemLogBLService bl, CurrentUser currentUser){
+	public SystemLog(TopManagerFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		this.bl=bl;
+		//this.bl=bl;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -234,23 +230,17 @@ public class SystemLog extends JPanel{
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
 
-        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
-        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
-        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
-        currentuserAgencyNameLabel.setLocation(170,128-30);
-        
         String s="总经理";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
+        currentuserLabel.setLocation(TopManagerFrame.w/6,128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(TopManagerFrame.w/6+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(TopManagerFrame.w-30,0);
     	min.setLocation(TopManagerFrame.w-80,0);
@@ -300,15 +290,15 @@ public class SystemLog extends JPanel{
 				return false;//不能修改
 			}
 		};
-		SystemLogTable.setPreferredScrollableViewportSize(new Dimension(800,360));
+		SystemLogTable.setPreferredScrollableViewportSize(new Dimension(600,360));
 		SystemLogTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		SystemLogTable.setSelectionBackground(Color.YELLOW);
 		JPanel jp=new JPanel();
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(SystemLogTable);
 		SystemLogTable.setFillsViewportHeight(true);
-		jp.setSize(820, 390);
-		jp.setLocation(596-820/2, 128+80+100);
+		jp.setSize(620, 390);
+		jp.setLocation(596-620/2, 128+80+100);
 		jp.setOpaque(false);
 		jp.add(scrollPane,BorderLayout.CENTER);
 
@@ -317,9 +307,11 @@ public class SystemLog extends JPanel{
     	search.setLocation(596+300, 128+80+20);
         
 
+		
+		
+		
         add(titleLabel);
         add(funLabel);
-        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
     	
@@ -343,41 +335,11 @@ public class SystemLog extends JPanel{
 	}
 
 	private void _search(){
-		String start_date_s = start_date.getText();
-		String end_date_s = end_date.getText();
-
-		result = CheckFormat.checkTime(start_date_s);
-		if(result.compareTo("格式正确")!=0){
-			printMessage(result, Color.RED);
-			return;
-		}
-		result = CheckFormat.checkTime(end_date_s);
-		if(result.compareTo("格式正确")!=0){
-			printMessage(result, Color.RED);
-			return;
-		}
-		ArrayList<SystemLogVO> arr=bl.showAll(start_date_s, end_date_s);
-
-		if(arr==null){
-			printMessage("找不到相关信息！", Color.RED);
-			return;
-		}
-
-		while(SystemLogTable.getRowCount()!=0)//先清空原来的
-			SystemLogTableModel.removeRow(0);
 		
-		for(int i = 0 ; i<arr.size(); i++){
-			Vector<String> v = new Vector<String>();
-    		v.add(arr.get(i).getTime());
-    		v.add(arr.get(i).getUser());
-    		v.add(arr.get(i).getContent());
-    		SystemLogTableModel.addRow(v);
-        }
 	}
 	private void clear(){
-		start_date.setText("");
-		while(SystemLogTable.getRowCount()!=0)
-			SystemLogTableModel.removeRow(0);
+//		.setText("");
+//		.setText("");
 		willprintMessage=false;
 		repaint();
 	}

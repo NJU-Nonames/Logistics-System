@@ -8,7 +8,6 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import businesslogic.logisticsbl.SearchPkgInformationBLImpl;
 import businesslogic.userbl.UserManageBLImpl;
 import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
 import businesslogicservice.userblservice.UserManageBLService;
@@ -96,10 +95,10 @@ public class MainFrame extends JFrame{
 		this.setIconImage(Img.MainICON);
 		
 
-		bl1 = new SearchPkgInformationBLImpl(null);
-//		bl1 = null;
+		//bl1 = new SearchPkgInformationBLImpl();
+		bl1 = null;
 		bl2 = new UserManageBLImpl(null);
-//		bl2 = null;
+		//bl2 = null;
 		mainpanel = new MainPanel(this);
 		searchpanel = new SearchPanel(this, bl1);
 		loginpanel = new LoginPanel(this, bl2);
