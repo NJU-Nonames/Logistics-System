@@ -2,8 +2,6 @@ package businesslogic.chartbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import dataservice.DataFactoryService;
 import dataservice.system.SystemLogDataService;
 import po.system.SystemLogPO;
 import utility.ResultMessage;

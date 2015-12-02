@@ -5,10 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import com.mysql.jdbc.ResultSet;
-
-import po.repertory.GoodsInfoPO;
 import po.repertory.RepertoryInPO;
 import po.repertory.RepertoryInfoPO;
 import po.repertory.RepertoryOutPO;

@@ -15,7 +15,6 @@ import po.moneyInfomation.MoneyInListPO;
 import po.moneyInfomation.MoneyOutListPO;
 import po.repertory.GoodsInfoPO;
 import po.repertory.RepertoryInPO;
-import po.repertory.RepertoryInfoPO;
 import po.repertory.RepertoryOutPO;
 import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;

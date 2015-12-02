@@ -14,15 +14,12 @@ import po.agency.StaffPO;
 import po.system.SystemLogPO;
 import po.system.UserPO;
 import presentation.mainui.CurrentUser;
-import dataservice.DataFactoryService;
 import dataservice.agency.StaffDataService;
 import dataservice.system.SystemLogDataService;
 import dataservice.system.UserDataService;
 import utility.ResultMessage;
-import utility.UserType;
 import vo.StaffVO;
 import vo.UserVO;
-import businesslogic.chartbl.SystemLogBLImpl;
 import businesslogic.rmi.RMIHelper;
 import businesslogicservice.userblservice.UserManageBLService;
 
@@ -53,7 +50,7 @@ public class UserManageBLImpl implements UserManageBLService{
 			userpo=userDataService.findonAdmin(admin);
 			if(userpo!=null && userpo.getPassword().compareTo(password)==0){
 				staffpo=staffDataService.find(userpo.getId());
-				StaffVO staffvo = new StaffVO(staffpo.getName(), staffpo.getSex(), staffpo.getPostion(), staffpo.getIDNum(), staffpo.getWorkingstarttime(), staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId(),staffpo.getAgencyId());
+				StaffVO staffvo = new StaffVO(staffpo.getName(), staffpo.getSex(), staffpo.getPostion(), staffpo.getIDNum(), staffpo.getWorkingtime(), staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId(),staffpo.getAgencyId());
 				return staffvo;
 			}
 		}catch (RemoteException e) {

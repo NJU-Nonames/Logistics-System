@@ -5,13 +5,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import com.mysql.jdbc.ResultSet;
-
 import po.agency.StaffPO;
-import po.system.UserPO;
 import utility.Position;
-import utility.UserType;
 import data.DataJDBCConnection;
 import dataservice.agency.StaffDataService;
 
@@ -51,7 +47,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements StaffDataServi
 		} catch (SQLException e) {
 			e.printStackTrace();
 			//System.out.println("查询失败");
-			//return null;
+			return null;
 		}
 		return staff;
 	}

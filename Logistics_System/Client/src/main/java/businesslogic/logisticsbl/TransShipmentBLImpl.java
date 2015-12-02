@@ -9,7 +9,6 @@ import po.list.OrderListPO;
 import po.list.TransShipmentListPO;
 import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
-import dataservice.list.HallArrivalListDataService;
 import dataservice.list.OrderListDataService;
 import dataservice.list.TransShipmentListDataService;
 import dataservice.system.SystemLogDataService;
