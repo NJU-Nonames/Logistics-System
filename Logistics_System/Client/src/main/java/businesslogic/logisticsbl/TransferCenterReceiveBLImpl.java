@@ -16,6 +16,7 @@ import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.GoodsInfoVO;
 import vo.TransArrivalListVO;
+import vo.TransArrivalVO;
 import businesslogic.rmi.RMIHelper;
 import businesslogicservice.logisticsblservice.TransferCenterReceiveBLService;
 
@@ -59,6 +60,14 @@ public class TransferCenterReceiveBLImpl implements TransferCenterReceiveBLServi
 			e.printStackTrace();
 		}
 		return new ResultMessage(true,"添加中转到达单成功!");
+	}
+	public TransArrivalVO getLoadList(String loadlistid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public TransArrivalVO getTransShipmentList(String transshipmentlistid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

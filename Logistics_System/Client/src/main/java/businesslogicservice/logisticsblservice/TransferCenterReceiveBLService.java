@@ -7,6 +7,7 @@ package businesslogicservice.logisticsblservice;
 
 import utility.ResultMessage;
 import vo.TransArrivalListVO;
+import vo.TransArrivalVO;
 
 public interface TransferCenterReceiveBLService {
 	
@@ -17,6 +18,8 @@ public interface TransferCenterReceiveBLService {
 	 */
 	public ResultMessage createTransArrivalList(TransArrivalListVO transArrivalList);
 	
+	public TransArrivalVO getLoadList(String loadlistid);
 	
+	public TransArrivalVO getTransShipmentList(String transshipmentlistid);
 	
 }

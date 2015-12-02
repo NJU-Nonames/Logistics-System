@@ -12,7 +12,7 @@ import utility.CheckType;
 public class TransArrivalListVO extends ListVO{
 	private String id;
 	/**
-	 * 中转单编号
+	 * 中转单编号/装运单编号
 	 */
 	private String transferNumber;
 	
