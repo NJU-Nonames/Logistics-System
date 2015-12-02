@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -29,11 +30,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import businesslogicservice.logisticsblservice.RepertoryManageBLService;
 import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import vo.RepertoryInfoVO;
+import vo.RepertoryInformationVO;
 
 /**
  * @author 谭期友
@@ -43,7 +47,7 @@ public class Inventory extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
 	private static final Component searchFiled = null;
-	//private AccountBLService bl;
+	private RepertoryManageBLService bl;
 	private CenterRepertoryClerkFrame frame;
 	private CurrentUser currentUser;
 	
@@ -252,23 +256,27 @@ public class Inventory extends JPanel{
         timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
         timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
         
-        JLabel partA = new JLabel("分区A占比：");//要联系逻辑层给的数据
-        partA.setSize((int)(16*"分区A占比：".length()*1.07f), 16);
+        String s1="分区A占比："+bl.showRepertory().percentA;
+        JLabel partA = new JLabel(s1);//要联系逻辑层给的数据
+        partA.setSize((int)(16*s1.length()*1.07f), 16);
         partA.setFont(new Font("宋体", Font.BOLD, 15));
         partA.setLocation(agencyNameLabel.getX()+10,CenterClerkFrame.h/6+110+300+10);
         
-        JLabel partB= new JLabel("分区B占比：");//要联系逻辑层给的数据
-        partB.setSize((int)(16*"分区B占比：".length()*1.07f), 16);
+        String s2="分区B占比："+bl.showRepertory().percentB;
+        JLabel partB= new JLabel(s2);//要联系逻辑层给的数据
+        partB.setSize((int)(16*s2.length()*1.07f), 16);
         partB.setFont(new Font("宋体", Font.BOLD, 15));
         partB.setLocation(partA.getX()+partA.getWidth()+60,partA.getY());
         
-        JLabel partC = new JLabel("分区C占比：");//要联系逻辑层给的数据
-        partC.setSize((int)(16*"分区C占比：".length()*1.07f), 16);
+        String s3="分区C占比："+bl.showRepertory().percentC;
+        JLabel partC = new JLabel(s3);//要联系逻辑层给的数据
+        partC.setSize((int)(16*s3.length()*1.07f), 16);
         partC.setFont(new Font("宋体", Font.BOLD, 15));
         partC.setLocation(partB.getX()+partB.getWidth()+60,partA.getY());
         
-        JLabel partD = new JLabel("分区D占比：");//要联系逻辑层给的数据
-        partD.setSize((int)(16*"分区D占比：".length()*1.07f), 16);
+        String s4="分区D占比："+bl.showRepertory().percentD;
+        JLabel partD = new JLabel(s4);//要联系逻辑层给的数据
+        partD.setSize((int)(16*s4.length()*1.07f), 16);
         partD.setFont(new Font("宋体", Font.BOLD, 15));
         partD.setLocation(partC.getX()+partC.getWidth()+60,partA.getY());
         
@@ -335,6 +343,8 @@ public class Inventory extends JPanel{
         adjust.setLocation(w.getX()+w.getWidth()+20,w.getY()-9);
         
         Vector<String> vColumns = new Vector<String>();
+        vColumns.add("入库日期");
+        vColumns.add("目的地");
       	vColumns.add("区");
       	vColumns.add("排");
       	vColumns.add("架");
@@ -342,6 +352,19 @@ public class Inventory extends JPanel{
       	vColumns.add("订单编号");
       	Vector<String> vData = new Vector<String>();
       	repertoryTableModel = new DefaultTableModel(vData, vColumns);
+      	RepertoryInfoVO repertoryInfoVO = bl.showRepertory();
+      	ArrayList<RepertoryInformationVO> repertoryInfomationList = repertoryInfoVO.repertoryinformation;
+      	for(RepertoryInformationVO info : repertoryInfomationList){
+      		Vector<String> v = new Vector<String>();
+      		v.add(info.areaNumber);//改成入库日期
+      		v.add(info.areaNumber);//改成目的地
+      		v.add(info.areaNumber);
+      		v.add(info.rowNumber);
+      		v.add(info.frameNumber);
+      		v.add(info.placeNumber);
+      		v.add(info.orderId);
+      		repertoryTableModel.addRow(v);
+      	}
       	repertoryTable = new JTable(repertoryTableModel){
      		private static final long serialVersionUID = 1L;
 
@@ -357,7 +380,7 @@ public class Inventory extends JPanel{
       	JScrollPane scrollPane = new JScrollPane();
       	scrollPane.getViewport().add(repertoryTable);
       	repertoryTable.setFillsViewportHeight(true);
-      	int[] width={25,25,25,25,300};
+      	int[] width={100,150,25,25,25,25,300};
       	repertoryTable.setColumnModel(getColumnModel(repertoryTable,width));
       	repertoryTable.getTableHeader().setReorderingAllowed(false);
       	repertoryTable.getTableHeader().setResizingAllowed(false);
@@ -442,7 +465,12 @@ public class Inventory extends JPanel{
 		repaint();
 	}
 	private void _search(){
-		
+		if(searchField.getText().compareTo("")==0){
+			printMessage("未输入订单编号！", Color.RED);
+			return;
+		}
+		String input=searchField.getText();
+		//不高兴写了，今天就写到这里好了
 	}
 	private void _adjust() {
 		// TODO 自动生成的方法存根

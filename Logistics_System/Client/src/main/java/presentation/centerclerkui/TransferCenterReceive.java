@@ -5,7 +5,9 @@
  */
 package presentation.centerclerkui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -13,19 +15,28 @@ import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
+import businesslogic.logisticsbl.TransferCenterReceiveBLImpl;
+import businesslogicservice.logisticsblservice.TransferCenterReceiveBLService;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import vo.TransArrivalListVO;
 
 /**
  * @author 谭期友
@@ -34,7 +45,7 @@ import presentation.mainui.MyButton;
 public class TransferCenterReceive extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private TransferCenterReceiveBLService bl;
 	private CenterClerkFrame frame;
 	private CurrentUser currentUser;
 	
@@ -60,8 +71,13 @@ public class TransferCenterReceive extends JPanel{
 	JRadioButton j2 ;
 	JRadioButton j3 ;
 	
+	MyButton show;
+	MyButton update;
 	MyButton confirm;
 	MyButton cancel;
+	
+	private DefaultTableModel orderTableModel;
+	private JTable orderTable;
 	
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -81,8 +97,8 @@ public class TransferCenterReceive extends JPanel{
 	
 	public TransferCenterReceive(CenterClerkFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
 		this.currentUser=currentUser;
+		//this.bl=new TransferCenterReceiveBLImpl(this.currentUser);
 		willprintMessage=false;
 		result="";
 		co=Color.RED;
@@ -249,31 +265,22 @@ public class TransferCenterReceive extends JPanel{
         id2.setSize((int)(170*1.07f), 20);
         id2.setLocation(jb2.getX()+jb2.getWidth(),128+150);
         
-        JLabel pkgState = new JLabel("货物到达状态："); 
-    	pkgState.setSize((int)(180*1.07f), 16);
-    	pkgState.setFont(new Font("宋体", Font.BOLD, 15));
-    	pkgState.setLocation(agencyNameLabel.getX(),128+300);
-		
-    	j1 = new JRadioButton("完好",true);
-        j2 = new JRadioButton("缺损",false);
-        j3 = new JRadioButton("丢失",false);
-        j1.setSize((int)(100*1.07f), 20);
-        j1.setFont(new Font("宋体", Font.BOLD, 17));
-        j1.setLocation(pkgState.getX()+pkgState.getWidth()-20,pkgState.getY()-3);
-        j1.setOpaque(false);
-        j2.setSize((int)(100*1.07f), 20);
-        j2.setFont(new Font("宋体", Font.BOLD, 17));
-        j2.setLocation(j1.getX()+j1.getWidth(),pkgState.getY()-3);
-        j2.setOpaque(false);
-        j3.setSize((int)(100*1.07f), 20);
-        j3.setFont(new Font("宋体", Font.BOLD, 17));
-        j3.setLocation(j2.getX()+j2.getWidth(),pkgState.getY()-3);
-        j3.setOpaque(false);
-        ButtonGroup group2 = new ButtonGroup();
-        group2.add(j1);group2.add(j2);group2.add(j3);
+        
+        
+        show=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        show.setLocation(id1.getX()+id1.getWidth()+80,id1.getY()+id1.getHeight());
+    	show.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_show();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
         
         confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        confirm.setLocation(CenterClerkFrame.w/2,pkgState.getY()+pkgState.getHeight()+100);
+        confirm.setLocation(CenterClerkFrame.w/2,CenterClerkFrame.w/3*2);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm();
@@ -295,6 +302,70 @@ public class TransferCenterReceive extends JPanel{
  			public void mousePressed(MouseEvent arg0) {}
  			public void mouseReleased(MouseEvent arg0) {}
          });
+     	
+     	 Vector<String> vColumns = new Vector<String>();
+     	 vColumns.add("出发地");
+     	 vColumns.add("订单编号");
+     	 vColumns.add("货物状态");
+     	 Vector<String> vData = new Vector<String>();
+      	 orderTableModel = new DefaultTableModel(vData, vColumns);
+      	 orderTable = new JTable(orderTableModel){
+     		private static final long serialVersionUID = 1L;
+
+     		public boolean isCellEditable(int row, int column){
+     			return false;//不能修改
+     		}
+      	};
+      	orderTable.setPreferredScrollableViewportSize(new Dimension(600,250));
+      	orderTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      	orderTable.setSelectionBackground(Color.YELLOW);
+      	JPanel jp=new JPanel();
+      	JScrollPane scrollPane = new JScrollPane();
+      	scrollPane.getViewport().add(orderTable);
+      	orderTable.setFillsViewportHeight(true);
+      	int[] width={150,300,50};
+      	orderTable.setColumnModel(getColumnModel(orderTable,width));
+      	orderTable.getTableHeader().setReorderingAllowed(false);
+      	orderTable.getTableHeader().setResizingAllowed(false);
+      	jp.setSize(700, 300);
+      	jp.setLocation(agencyNameLabel.getX()-50, jb2.getY()+jb2.getHeight()+10);
+      	jp.setOpaque(false);
+      	jp.add(scrollPane,BorderLayout.CENTER);
+      	
+      	JLabel pkgState = new JLabel("货物到达状态："); 
+    	pkgState.setSize((int)(180*1.07f), 16);
+    	pkgState.setFont(new Font("宋体", Font.BOLD, 15));
+    	pkgState.setLocation(jp.getX()+jp.getWidth()-20,jp.getY()+5);
+		
+    	j1 = new JRadioButton("完好",true);
+        j2 = new JRadioButton("缺损",false);
+        j3 = new JRadioButton("丢失",false);
+        j1.setSize((int)(100*1.07f), 20);
+        j1.setFont(new Font("宋体", Font.BOLD, 17));
+        j1.setLocation(pkgState.getX(),pkgState.getY()+pkgState.getHeight()+10);
+        j1.setOpaque(false);
+        j2.setSize((int)(100*1.07f), 20);
+        j2.setFont(new Font("宋体", Font.BOLD, 17));
+        j2.setLocation(j1.getX(),j1.getY()+j1.getHeight()+10);
+        j2.setOpaque(false);
+        j3.setSize((int)(100*1.07f), 20);
+        j3.setFont(new Font("宋体", Font.BOLD, 17));
+        j3.setLocation(j2.getX(),j2.getY()+j2.getHeight()+10);
+        j3.setOpaque(false);
+        ButtonGroup group2 = new ButtonGroup();
+        group2.add(j1);group2.add(j2);group2.add(j3);
+        
+        update=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        update.setLocation(j3.getX()+j3.getWidth()/5,j3.getY()+j3.getHeight()+20);
+        update.addMouseListener(new MouseListener(){
+ 			public void mouseClicked(MouseEvent arg0) {
+ 				_update();
+ 			}
+			public void mouseEntered(MouseEvent arg0) {}
+ 			public void mouseExited(MouseEvent arg0) {}
+ 			public void mousePressed(MouseEvent arg0) {}
+ 			public void mouseReleased(MouseEvent arg0) {}
+         });
         //最基本按钮
     	close.setLocation(CenterClerkFrame.w-30,0);
     	min.setLocation(CenterClerkFrame.w-80,0);
@@ -304,8 +375,8 @@ public class TransferCenterReceive extends JPanel{
     	goto_TransShipment.setLocation(20,200);
     	goto_InputRepertory.setLocation(20,250);
     	
+    	
     	//其他组件
-        
         
         add(titleLabel);
         add(funLabel);
@@ -323,6 +394,8 @@ public class TransferCenterReceive extends JPanel{
     	add(pkgState);
     	add (confirm);
     	add (cancel);
+    	add(show);
+    	add(update);
     	
     	add(close);
     	add(min);
@@ -331,7 +404,16 @@ public class TransferCenterReceive extends JPanel{
     	add(goto_TransShipment);
     	add(goto_InputRepertory);
 
-    	
+    	add(jp);
+	}
+
+	private TableColumnModel getColumnModel(JTable orderTable2, int[] width) {
+		TableColumnModel columns = orderTable2.getColumnModel();  
+		 for (int i = 0; i < width.length; i++) {  
+			 TableColumn column = columns.getColumn(i);  
+		     column.setPreferredWidth(width[i]);  
+		 }  
+		 return columns;
 	}
 
 	private void clear(){
@@ -373,10 +455,18 @@ public class TransferCenterReceive extends JPanel{
 		}
 	}
 	void _confirm(){
-		
+		//bl.createTransArrivalList(new TransArrivalListVO(null, , currentUser.getAgencyNum(), result, null, null))
 	}
 	void _cancel(){
 		//initComponent();
 		clear();
+	}
+	private void _show() {
+		// TODO 自动生成的方法存根
+		
+	}
+	private void _update() {
+		// TODO 自动生成的方法存根
+		
 	}
 }
