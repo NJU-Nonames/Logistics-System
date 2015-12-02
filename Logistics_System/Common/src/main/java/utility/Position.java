@@ -9,5 +9,8 @@ public enum Position{
     FINANCIAL_STAFF_HIGH,//高权限财务人员
     TOP_MANAGER,//总经理
     ADMIN,//系统管理员
-    DRIVER//司机
+    DRIVER,//司机
+    SUPERGO,//押运员
+    GUARDMAN//监督员
+    
 }

@@ -28,7 +28,7 @@ public class StaffVO {
 	/**
 	 * 工作起始时间
 	 */
-	private String workingstarttime;
+	private String workingtime;
 	
 	/**
 	 * 手机
@@ -52,7 +52,7 @@ public class StaffVO {
 	 * @param phoneNum
 	 * @param wage
 	 */
-	public StaffVO(String name,String sex,Position postion,String IDNum,String workingstarttime,String phoneNum,String wage,String agencyName,String id,String agencyId){
+	public StaffVO(String name,String sex,Position postion,String IDNum,String workingtime,String phoneNum,String wage,String agencyName,String id,String agencyId){
 		this.name = name;
 		this.sex = sex;
 		this.phoneNum = phoneNum;
@@ -60,7 +60,7 @@ public class StaffVO {
 		this.phoneNum = phoneNum;
 		this.postion = postion;
 		this.wage = wage;
-		this.workingstarttime = workingstarttime;
+		this.workingtime = workingtime;
 		this.agencyName=agencyName;
 		this.id=id;
 		this.agencyId=agencyId;
@@ -84,8 +84,8 @@ public class StaffVO {
 		return IDNum;
 	}
 
-	public String getWorkingstarttime() {
-		return workingstarttime;
+	public String getWorkingtime() {
+		return workingtime;
 	}
 
 	public String getPhoneNum() {

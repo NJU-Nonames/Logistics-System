@@ -47,7 +47,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 			if(agencypo==null){
 				ArrayList<StaffPO> list=new ArrayList<StaffPO>();
 				for(StaffVO staffvo:agency.getStaffList()){
-					list.add(new StaffPO(staffvo.getName(),staffvo.getSex(),staffvo.getPostion(),staffvo.getIDNum(),staffvo.getWorkingstarttime(),staffvo.getPhoneNum(),staffvo.getWage(),staffvo.getAgencyName(),staffvo.getId(),staffvo.getAgencyId()));
+					list.add(new StaffPO(staffvo.getName(),staffvo.getSex(),staffvo.getPostion(),staffvo.getIDNum(),staffvo.getWorkingtime(),staffvo.getPhoneNum(),staffvo.getWage(),staffvo.getAgencyName(),staffvo.getId(),staffvo.getAgencyId()));
 				}
 				agencypo=new AgencyPO(agency.getAgencyName(),agency.getAgencyNum(),list);
 				agencydataservice.add(agencypo);
@@ -84,7 +84,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 		if(agencypo!=null){
 			ArrayList<StaffPO> list=new ArrayList<StaffPO>();
 			for(StaffVO staffvo:agency.getStaffList()){
-				list.add(new StaffPO(staffvo.getName(),staffvo.getSex(),staffvo.getPostion(),staffvo.getIDNum(),staffvo.getWorkingstarttime(),staffvo.getPhoneNum(),staffvo.getWage(),staffvo.getAgencyName(),staffvo.getId(),staffvo.getAgencyId()));
+				list.add(new StaffPO(staffvo.getName(),staffvo.getSex(),staffvo.getPostion(),staffvo.getIDNum(),staffvo.getWorkingtime(),staffvo.getPhoneNum(),staffvo.getWage(),staffvo.getAgencyName(),staffvo.getId(),staffvo.getAgencyId()));
 			}
 			agencypo=new AgencyPO(agency.getAgencyName(),agency.getAgencyNum(),list);
 			agencydataservice.update(agencypo);
@@ -109,7 +109,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 				AgencyVO agencyvo;
 				ArrayList<StaffVO> list=new ArrayList<StaffVO>();
 				for(StaffPO staffpo:agencypo.getStaffList()){
-					list.add(new StaffVO(staffpo.getName(),staffpo.getSex(),staffpo.getPostion(),staffpo.getIDNum(),staffpo.getWorkingstarttime(),staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId(),staffpo.getAgencyId()));
+					list.add(new StaffVO(staffpo.getName(),staffpo.getSex(),staffpo.getPostion(),staffpo.getIDNum(),staffpo.getWorkingtime(),staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId(),staffpo.getAgencyId()));
 				}
 				agencyvo=new AgencyVO(agencypo.getAgencyName(),agencypo.getAgencyNum(),list);
 				agencyvolist.add(agencyvo);
@@ -133,7 +133,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 		AgencyVO agencyvo=null;
 		ArrayList<StaffVO> list=new ArrayList<StaffVO>();
 		for(StaffPO staffpo:agencypo.getStaffList()){
-			list.add(new StaffVO(staffpo.getName(),staffpo.getSex(),staffpo.getPostion(),staffpo.getIDNum(),staffpo.getWorkingstarttime(),staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId(),staffpo.getAgencyId()));
+			list.add(new StaffVO(staffpo.getName(),staffpo.getSex(),staffpo.getPostion(),staffpo.getIDNum(),staffpo.getWorkingtime(),staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId(),staffpo.getAgencyId()));
 		}
 		agencyvo=new AgencyVO(agencypo.getAgencyName(),agencypo.getAgencyNum(),list);
 		return agencyvo;

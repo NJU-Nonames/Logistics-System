@@ -6,6 +6,11 @@
 package po.agency;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import po.system.UserPO;
 
@@ -39,7 +44,7 @@ public class DriverPO implements Serializable{
 	/**
 	 * 行驶证期限
 	 */
-	private String drivingLicencePeriod;
+	private String drivingLicencePeriodstarttime;
 	
 	/**
 	 * 构造方法
@@ -52,13 +57,13 @@ public class DriverPO implements Serializable{
 	 * @param drvingLicencePeriod
 	 */
      public DriverPO(String driverNum,String name,String sex,
-    		 String IDNum,String phoneNum,String drivingLicencePeriod){
+    		 String IDNum,String phoneNum,String drivingLicencePeriodstarttime){
     	 this.driverNum = driverNum;
     	 this.name = name;
     	 this.IDNum = IDNum;
     	 this.phoneNum = phoneNum;
     	 this.sex = sex;
-    	 this.drivingLicencePeriod = drivingLicencePeriod;
+    	 this.drivingLicencePeriodstarttime = drivingLicencePeriodstarttime;
      }
 
 	public String getDriverNum() {
@@ -82,6 +87,19 @@ public class DriverPO implements Serializable{
 	}
 
 	public String getDrivingLicencePeriod() {
-		return drivingLicencePeriod;
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date now = null,date1 = null;
+		try {
+			now = df.parse(df.format(Calendar.getInstance().getTime()));
+			date1 = df.parse(drivingLicencePeriodstarttime);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		long day = (now.getTime() - date1.getTime())
+			     / (24 * 60 * 60 * 1000);
+		int year=(int) (day/365);
+		int month=(int) ((day%365)/30);
+		int day1=(int) ((day%365)%30);
+		return year+"年"+month+"月"+day1+"日";
 	}
 }

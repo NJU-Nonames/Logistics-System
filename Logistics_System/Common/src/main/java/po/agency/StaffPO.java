@@ -1,6 +1,11 @@
 package po.agency;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import utility.Position;
 
@@ -91,8 +96,21 @@ public class StaffPO implements Serializable{
 		return IDNum;
 	}
 
-	public String getWorkingstarttime() {
-		return workingstarttime;
+	public String getWorkingtime() {
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date now = null,date1 = null;
+		try {
+			now = df.parse(df.format(Calendar.getInstance().getTime()));
+			date1 = df.parse(workingstarttime);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		long day = (now.getTime() - date1.getTime())
+			     / (24 * 60 * 60 * 1000);
+		int year=(int) (day/365);
+		int month=(int) ((day%365)/30);
+		int day1=(int) ((day%365)%30);
+		return year+"年"+month+"月"+day1+"日";
 	}
 
 	public String getPhoneNum() {
