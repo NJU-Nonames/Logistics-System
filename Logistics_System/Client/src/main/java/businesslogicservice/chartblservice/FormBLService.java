@@ -42,12 +42,20 @@ public interface FormBLService {
 	public ArrayList<MoneyItemVO> getBusinessCircumstanceChart(String start_day, String end_day);
 	
 	/**
-	 * 前置条件：用户已登录，申请打印导出报表
-	 * 后置条件：导出报表至指定路径
-	 * @param strat_day
-	 * @param end_day
-	 * @param path 导出路径
-	 * @param chartType
+	 * 导出成本收益表
+	 * @param 起始日期
+	 * @param 终止日期
+	 * @param 成本收益信息
+	 * @param 路径
 	 */
-	public void exportChart(String strat_day,String end_day,ChartType chartType,String path);
+	public void exportCostandBenefitChart(String start_day,String end_day,ArrayList<MoneyInformationListVO> list,String path);
+	/**
+	 * 导出经营情况表
+	 * @param 起始日期
+	 * @param 终止日期
+	 * @param 经营情况表
+	 * @param 路径
+	 */
+	public void exportBusinessCircumstanceChart(String start_day,String end_day,ArrayList<MoneyItemVO> list,String path);
+	
 }
