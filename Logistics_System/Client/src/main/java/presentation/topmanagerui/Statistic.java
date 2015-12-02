@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -26,12 +27,14 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import businesslogicservice.chartblservice.FormBLService;
 import presentation.img.Img;
+import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
-import vo.ListVO;
 import vo.MoneyInformationListVO;
+import vo.MoneyItemVO;
 
 /**
  * @author 谭期友
@@ -40,7 +43,7 @@ import vo.MoneyInformationListVO;
 public class Statistic extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private FormBLService bl;
 	private TopManagerFrame frame;
 	private CurrentUser currentUser;
 	
@@ -75,6 +78,7 @@ public class Statistic extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
+        g.drawImage(Img.p3, 0, 0, 1366, 768, null);
         g.drawLine(TopManagerFrame.w/6, 10, TopManagerFrame.w/6, TopManagerFrame.h-10);
         g.drawLine(TopManagerFrame.w/6+10, TopManagerFrame.h/6, TopManagerFrame.w, TopManagerFrame.h/6);
 
@@ -87,9 +91,9 @@ public class Statistic extends JPanel{
         }
 	}
 	
-	public Statistic(TopManagerFrame frame, CurrentUser currentUser){
+	public Statistic(TopManagerFrame frame, FormBLService bl, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=bl;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -245,18 +249,24 @@ public class Statistic extends JPanel{
         funLabel.setSize((int)(40*func.length()*1.07f), 40);
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
+
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="总经理";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(TopManagerFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(TopManagerFrame.w/6+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(TopManagerFrame.w-30,0);
     	min.setLocation(TopManagerFrame.w-80,0);
@@ -385,6 +395,7 @@ public class Statistic extends JPanel{
 		
         add(titleLabel);
         add(funLabel);
+        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
     	
@@ -417,14 +428,80 @@ public class Statistic extends JPanel{
 	}
 
 	private void _search(){
+		String start_date_s = start_date.getText();
+		String end_date_s = end_date.getText();
+
+		result = CheckFormat.checkTime(start_date_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		result = CheckFormat.checkTime(end_date_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
 		
+		ArrayList<MoneyInformationListVO> arr=bl.getCostandBenefitChart(start_date_s, end_date_s);
+
+		if(arr==null){
+			printMessage("找不到相关信息！", Color.RED);
+			return;
+		}
+
+		while(CostandBenefitChartTable.getRowCount()!=0)//先清空原来的
+			CostandBenefitChartTableModel.removeRow(0);
+		
+		for(int i = 0 ; i<arr.size(); i++){
+			Vector<String> v = new Vector<String>();
+    		v.add(arr.get(i).getTime());
+    		v.add(arr.get(i).getMoneyIn()+"");
+    		v.add(arr.get(i).getMoneyOut()+"");
+    		v.add(arr.get(i).getProfit()+"");
+    		CostandBenefitChartTableModel.addRow(v);
+        }
 	}
 	private void _search2(){
+		String start_date2_s = start_date2.getText();
+		String end_date2_s = end_date2.getText();
+
+		result = CheckFormat.checkTime(start_date2_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		result = CheckFormat.checkTime(end_date2_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		
+		ArrayList<MoneyItemVO> arr=bl.getBusinessCircumstanceChart(start_date2_s, end_date2_s);
+
+		if(arr==null){
+			printMessage("找不到相关信息！", Color.RED);
+			return;
+		}
+
+		while(BusinessCircumstanceChartTable.getRowCount()!=0)//先清空原来的
+			BusinessCircumstanceChartTableModel.removeRow(0);
+		
+		for(int i = 0 ; i<arr.size(); i++){
+			Vector<String> v = new Vector<String>();
+    		v.add(arr.get(i).getDate());
+    		v.add(arr.get(i).getId());
+    		v.add(arr.get(i).getMoney()+"");
+    		BusinessCircumstanceChartTableModel.addRow(v);
+        }
 		
 	}
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		start_date.setText("");
+		start_date2.setText("");
+		while(CostandBenefitChartTable.getRowCount()!=0)
+			CostandBenefitChartTableModel.removeRow(0);
+		while(BusinessCircumstanceChartTable.getRowCount()!=0)
+			BusinessCircumstanceChartTableModel.removeRow(0);
 		willprintMessage=false;
 		repaint();
 	}

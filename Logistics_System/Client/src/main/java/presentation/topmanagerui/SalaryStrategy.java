@@ -19,10 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businesslogicservice.informationchangeblservice.PeopleAgencyBLService;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.Position;
+import utility.PriceType;
+import utility.ResultMessage;
 
 /**
  * @author 谭期友
@@ -31,7 +35,7 @@ import presentation.mainui.MyButton;
 public class SalaryStrategy extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private PeopleAgencyBLService bl;
 	private TopManagerFrame frame;
 	private CurrentUser currentUser;
 	
@@ -60,6 +64,7 @@ public class SalaryStrategy extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
+        g.drawImage(Img.p13, 0, 0, 1366, 768, null);
         g.drawLine(TopManagerFrame.w/6, 10, TopManagerFrame.w/6, TopManagerFrame.h-10);
         g.drawLine(TopManagerFrame.w/6+10, TopManagerFrame.h/6, TopManagerFrame.w, TopManagerFrame.h/6);
 
@@ -72,9 +77,9 @@ public class SalaryStrategy extends JPanel{
         }
 	}
 	
-	public SalaryStrategy(TopManagerFrame frame, CurrentUser currentUser){
+	public SalaryStrategy(TopManagerFrame frame, PeopleAgencyBLService bl, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=bl;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -221,18 +226,24 @@ public class SalaryStrategy extends JPanel{
         funLabel.setSize((int)(40*func.length()*1.07f), 40);
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
+
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="总经理";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(TopManagerFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(TopManagerFrame.w/6+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(TopManagerFrame.w-30,0);
     	min.setLocation(TopManagerFrame.w-80,0);
@@ -284,11 +295,17 @@ public class SalaryStrategy extends JPanel{
 		ticheng = new JTextField();
 		ticheng.setSize(60, 20);
 		ticheng.setLocation(170+20+(int)(16*5*1.07f),128+80+40+40-3);
+		JLabel l9 = new JLabel("%");
+		l9.setSize((int)(20*1*1.07f), 20);
+		l9.setFont(new Font("宋体", Font.BOLD, 20));
+		l9.setLocation(170+20+(int)(16*5*1.07f)+60, 128+80+40+40-3);
+		add(l9);
 		
 		
 		
         add(titleLabel);
         add(funLabel);
+        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
     	
@@ -313,11 +330,58 @@ public class SalaryStrategy extends JPanel{
 	}
 
 	private void _change(){
+		String meiri_s = (String) meiri.getText();
+		String ticheng_s = (String) ticheng.getText();
+
+		double meiri_s_double;
+		try{
+			meiri_s_double = Double.parseDouble(meiri_s);
+		}catch(NumberFormatException e){
+			printMessage("请输入正确每日工资！", Color.RED);
+			return;
+		}
+		double ticheng_s_double;
+		try{
+			ticheng_s_double = Double.parseDouble(ticheng_s);
+		}catch(NumberFormatException e){
+			printMessage("请输入正确提成！", Color.RED);
+			return;
+		}
+
+		String s1 = (String) position.getSelectedItem();
+		Position _position_=null;
+		if(s1.compareTo("快递员")==0){
+			_position_=Position.COURIER;
+		}else if(s1.compareTo("营业厅业务员")==0){
+			_position_=Position.BUSINESS_OFFICE_CLERK;
+		}else if(s1.compareTo("中转中心业务员")==0){
+			_position_=Position.CENTER_CLERK;
+		}else if(s1.compareTo("中转中心仓库管理员")==0){
+			_position_=Position.CENTER_REPERTORY_CLERK;
+		}else if(s1.compareTo("低权限财务人员")==0){
+			_position_=Position.FINANCIAL_STAFF_LOW;
+		}else if(s1.compareTo("高权限财务人员")==0){
+			_position_=Position.FINANCIAL_STAFF_HIGH;
+		}else if(s1.compareTo("总经理")==0){
+			_position_=Position.TOP_MANAGER;
+		}else if(s1.compareTo("系统管理员")==0){
+			_position_=Position.ADMIN;
+		}else if(s1.compareTo("司机")==0){
+			_position_=Position.DRIVER;
+		}
 		
+		ResultMessage resultMessage = bl.salaryManage(_position_, meiri_s+":"+ticheng_s);
+		if(!resultMessage.isPass()){
+			printMessage(resultMessage.getMessage(), Color.RED);
+			return;
+		}else{
+			printMessage(resultMessage.getMessage(), Color.GREEN);
+		}
 	}
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		meiri.setText("");
+		ticheng.setText("");
+		position.setSelectedIndex(0);
 		willprintMessage=false;
 		repaint();
 	}
