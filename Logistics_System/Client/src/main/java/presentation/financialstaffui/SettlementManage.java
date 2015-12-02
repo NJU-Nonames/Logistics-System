@@ -27,7 +27,9 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import businesslogicservice.financeblservice.SettlementManageBLService;
 import presentation.img.Img;
+import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
@@ -40,7 +42,7 @@ import vo.MoneyInListVO;
 public class SettlementManage extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private SettlementManageBLService bl;
 	private FinacialStaffFrame frame;
 	private CurrentUser currentUser;
 	
@@ -83,9 +85,9 @@ public class SettlementManage extends JPanel{
         }
 	}
 	
-	public SettlementManage(FinacialStaffFrame frame, CurrentUser currentUser){
+	public SettlementManage(FinacialStaffFrame frame, SettlementManageBLService bl, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=bl;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -231,18 +233,24 @@ public class SettlementManage extends JPanel{
         funLabel.setSize((int)(40*func.length()*1.07f), 40);
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
+
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="财务人员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(FinacialStaffFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(FinacialStaffFrame.w/6+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(FinacialStaffFrame.w-30,0);
     	min.setLocation(FinacialStaffFrame.w-80,0);
@@ -285,6 +293,7 @@ public class SettlementManage extends JPanel{
 
 		//表头
 		Vector<String> vColumns = new Vector<String>();
+		vColumns.add("收款快递员工号");
 		vColumns.add("收款单条形码号");
 		vColumns.add("收款日期");
 		vColumns.add("收款金额");
@@ -320,6 +329,7 @@ public class SettlementManage extends JPanel{
 		
         add(titleLabel);
         add(funLabel);
+        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
     	
@@ -345,19 +355,55 @@ public class SettlementManage extends JPanel{
 	}
 
 	private void _search(){
-		/*ArrayList<MoneyInListVO> moneyInList = bl.search();
-        for(int i =0 ; i<moneyInList.size(); i++){
-    		Vector<String> v = new Vector<String>();
-    		v.add(moneyInList.get(i).getName());
-    		v.add(moneyInList.get(i).getNumber());
-    		v.add(""+moneyInList.get(i).getMoney());
+		String officenum_s = officenum.getText();
+		String start_date_s = start_date.getText();
+		String end_date_s = end_date.getText();
+
+		result = CheckFormat.checkTime(start_date_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		result = CheckFormat.checkTime(end_date_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		ArrayList<MoneyInListVO> arr=null;
+		if(officenum_s.compareTo("")==0){
+			arr=bl.search(start_date_s, end_date_s);
+		}else{
+			result = CheckFormat.checkHallNum(officenum_s);
+			if(result.compareTo("格式正确")!=0){
+				printMessage(result, Color.RED);
+				return;
+			}
+			arr=bl.searchbyhall(start_date_s, end_date_s, officenum_s);
+		}
+
+		if(arr==null){
+			printMessage("找不到相关信息！", Color.RED);
+			return;
+		}
+
+		while(MoneyInListTable.getRowCount()!=0)//先清空原来的
+			MoneyInListTableModel.removeRow(0);
+		
+		for(int i = 0 ; i<arr.size(); i++){
+			Vector<String> v = new Vector<String>();
+    		v.add(arr.get(i).getStaffId());
+    		v.add(arr.get(i).getId());
+    		v.add(arr.get(i).getDate());
+    		v.add(arr.get(i).getMoneySum()+"");
     		MoneyInListTableModel.addRow(v);
-        }*/
+        }
 	}
 	
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		officenum.setText("");
+		start_date.setText("");
+		while(MoneyInListTable.getRowCount()!=0)
+			MoneyInListTableModel.removeRow(0);
 		willprintMessage=false;
 		repaint();
 	}

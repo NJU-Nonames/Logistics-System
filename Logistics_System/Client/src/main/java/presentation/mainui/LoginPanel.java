@@ -208,11 +208,11 @@ public class LoginPanel extends JPanel{
 			case DRIVER:break;
 			}
 		}
-//			new FinacialStaffFrame();
-//			new TopManagerFrame();
+//			new FinacialStaffFrame(new CurrentUser("王大锤","南京中转中心","025000","admin"));
+//			new TopManagerFrame(new CurrentUser("王大锤","南京中转中心","025000","admin"));
 //			new BusinessOfficeClerkFrame();
 //			new CenterRepertoryClerkFrame();
-//			new CourierFrame();
+//			new CourierFrame(new CurrentUser("王大锤","南京中转中心","025000","admin"));
 //			new CenterClerkFrame();
 //			new AdminFrame();
 	}

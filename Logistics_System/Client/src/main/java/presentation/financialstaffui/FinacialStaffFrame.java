@@ -15,7 +15,13 @@ import javax.swing.JPanel;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
+import businesslogic.chartbl.FormBLImpl;
+import businesslogic.chartbl.SystemLogBLImpl;
 import businesslogic.financebl.AccountBLImpl;
+import businesslogic.financebl.CostManagementBLImpl;
+import businesslogic.financebl.SettlementManageBLImpl;
+import businesslogicservice.chartblservice.FormBLService;
+import businesslogicservice.chartblservice.SystemLogBLService;
 import businesslogicservice.financeblservice.AccountBLService;
 import businesslogicservice.financeblservice.BaseDataSettingBLService;
 import businesslogicservice.financeblservice.CostManagementBLService;
@@ -65,6 +71,8 @@ public class FinacialStaffFrame extends JFrame{
 	BaseDataSettingBLService baseDataSettingBLService;//期初建账
 	CostManagementBLService costManagementBLService;
 	SettlementManageBLService settlementManageBLService;
+	SystemLogBLService systemLogBLService;
+	FormBLService formBLService;
 
 	private boolean isDraging;//是否被拖住
 	private int xx;
@@ -112,18 +120,19 @@ public class FinacialStaffFrame extends JFrame{
 		this.setIconImage(Img.FinacialStaffICON);
 		
 
-		//accountBLService=null;
 		accountBLService=new AccountBLImpl(this.currentUser);
 		baseDataSettingBLService=null;//期初建账
-		costManagementBLService=null;
-		settlementManageBLService=null;
+		costManagementBLService=new CostManagementBLImpl(this.currentUser);
+		settlementManageBLService=new SettlementManageBLImpl(this.currentUser);
+		systemLogBLService=new SystemLogBLImpl();
+		formBLService=new FormBLImpl(this.currentUser);
 		
 		accountManage=new AccountManage(this, accountBLService, currentUser);
 		baseDataSetting=new BaseDataSetting(this, currentUser);
-		costManage=new CostManage(this, currentUser);
-		settlementManage=new SettlementManage(this, currentUser);
-		statistic=new Statistic(this, currentUser);
-		systemLog=new SystemLog(this, currentUser);
+		costManage=new CostManage(this, costManagementBLService, currentUser);
+		settlementManage=new SettlementManage(this, settlementManageBLService, currentUser);
+		statistic=new Statistic(this, formBLService, currentUser);
+		systemLog=new SystemLog(this, systemLogBLService, currentUser);
 
 		j.add(accountManage);
 		j.add(costManage);

@@ -53,6 +53,7 @@ public class SendPkg extends JPanel{
 	private MyButton goto_ReceivePkg;
 	private MyButton goto_SearchPkgInformation;
 	//详细操作按钮以及其他组件
+	private MyButton review;
 	private MyButton confirm;
 	
 	private JTextField name1;	
@@ -179,6 +180,17 @@ public class SendPkg extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
+        review = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        review.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_review();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+        review.setLocation(CourierFrame.w-80,170+60);
         confirm = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
         confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
@@ -189,6 +201,7 @@ public class SendPkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
+    	confirm.setLocation(CourierFrame.w-80,CourierFrame.h-80);
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
@@ -202,17 +215,23 @@ public class SendPkg extends JPanel{
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
 
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
+        
         String s="快递员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(CourierFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(CourierFrame.w/6+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(CourierFrame.w-30,0);
     	min.setLocation(CourierFrame.w-80,0);
@@ -330,19 +349,18 @@ public class SendPkg extends JPanel{
 		l13.setFont(new Font("宋体", Font.BOLD, 15));
 		l13.setLocation(CourierFrame.w/6+40, 128+80+280+90);
 		expressType=new JComboBox<String>();
-		expressType.addItem("标准");
+		expressType.addItem("标准快递");
 		expressType.addItem("经济快递");
 		expressType.addItem("次晨特快");
 		expressType.setSize(120, 20);
 		expressType.setLocation(CourierFrame.w/6+40+(int)(16*5*1.07f), 128+80+280+90-3);
         
-		JLabel l14 = new JLabel("预计到达日期：");
+		JLabel l14 = new JLabel("预计送达天数：");
 		l14.setSize((int)(16*7*1.07f), 16);
 		l14.setFont(new Font("宋体", Font.BOLD, 15));
 		l14.setLocation(450, 128+80+280+90);
-		String s1="2015-11-22";
-		pre_date = new JLabel(s1);
-		pre_date.setSize((int)(16*s1.length()*1.07f), 16);
+		pre_date = new JLabel();
+		pre_date.setSize((int)(16*16*1.07f), 16);
 		pre_date.setFont(new Font("宋体", Font.BOLD, 15));
 		pre_date.setForeground(Color.RED);
 		pre_date.setLocation(450+(int)(16*7*1.07f), 128+80+280+90);
@@ -351,21 +369,20 @@ public class SendPkg extends JPanel{
 		l15.setSize((int)(16*3*1.07f), 16);
 		l15.setFont(new Font("宋体", Font.BOLD, 15));
 		l15.setLocation(720, 128+80+280+90);
-		String s2=10.12+"元";
-		money = new JLabel(s2);
-		money.setSize((int)(16*s2.length()*1.07f), 16);
+		money = new JLabel();
+		money.setSize((int)(16*8*1.07f), 16);
 		money.setFont(new Font("宋体", Font.BOLD, 15));
 		money.setForeground(Color.RED);
 		money.setLocation(720+(int)(16*3*1.07f), 128+80+280+90);
 		
 
-    	confirm.setLocation(CourierFrame.w-80,CourierFrame.h-80);
 
 		
 		
 		
         add(titleLabel);
         add(funLabel);
+        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
     	
@@ -411,20 +428,65 @@ public class SendPkg extends JPanel{
     	add(l15);
     	add(money);
     	add(confirm);
+    	add(review);
 	}
+	
+	private void _review(){
+		String _address1 = address1.getText();
+		String _address2 = address2.getText();
+		String _weight = weight.getText();
+		if(
+				_address1.compareTo("")==0
+				||_address2.compareTo("")==0
+				||_weight.compareTo("")==0){
+			printMessage("已有信息不够！", Color.RED);
+			return;
+		}
 
-	private void _create(){
-		/*String orderlistId="123456789012345678";
-		ArrayList<String> a=new ArrayList<String>();
-		a.add("2015-10-10 17:10 南京大学离开");
-		a.add("2015-10-11 8:20 到达北京市海淀区");
-		OrderListVO orderListVO=new OrderListVO("张三", "地址1", "15278313639", "李四", "地址2", "15278313638", "1", 50.12, 50.13, "联想笔记本电脑", ExpressType.STANDARD, a, 12.3, orderlistId, PkgType.PLASTIC, "2015-10-10", "2015-10-12", CheckType.UNDERCHECK);
 
-		System.out.println(orderListVO.getPackPrice());
-		System.out.println(orderListVO.getArriveTime());
+		double _weight_double;
+		try{
+			_weight_double = Double.parseDouble(_weight);
+		}catch(NumberFormatException e){
+			printMessage("请输入正确重量！", Color.RED);
+			return;
+		}
+		
+		
+		
+		String s1 = (String) pkgType.getSelectedItem();
+		PkgType type = null;
+		if(s1.compareTo("木箱")==0){
+			type=PkgType.WOODEN;
+		}else if(s1.compareTo("纸箱")==0){
+			type=PkgType.PAPER;
+		}else if(s1.compareTo("纸袋")==0){
+			type=PkgType.PLASTIC;
+		}
+		
+		String s2 = (String) expressType.getSelectedItem();
+		ExpressType category = null;
+		if(s2.compareTo("标准快递")==0){
+			category=ExpressType.STANDARD;
+		}else if(s2.compareTo("经济快递")==0){
+			category=ExpressType.ECONOMIC;
+		}else if(s2.compareTo("次晨特快")==0){
+			category=ExpressType.EXPRESS;
+		}
+		
+		
+		
+		OrderListVO orderListVO = 
+				new OrderListVO("aa", _address1, "aa", 
+						"aa", _address2, "aa", 
+						"aa", _weight_double, 12, "aa", category, 
+						null, 10.0, "111", type, "aa", "aa", CheckType.UNDERCHECK,"-","-");
+
 		bl.createMoneyAndDate(orderListVO);
-		System.out.println(orderListVO.getPackPrice());
-		System.out.println(orderListVO.getArriveTime());*/
+		pre_date.setText(orderListVO.getArriveTime()+"天");
+		money.setText(orderListVO.getPackPrice()+"元");
+	}
+	private void _create(){
 		String _name1 = name1.getText();
 		String _phone1 = phone1.getText();
 		String _address1 = address1.getText();
@@ -500,7 +562,7 @@ public class SendPkg extends JPanel{
 		
 		String s2 = (String) expressType.getSelectedItem();
 		ExpressType category = null;
-		if(s2.compareTo("标准")==0){
+		if(s2.compareTo("标准快递")==0){
 			category=ExpressType.STANDARD;
 		}else if(s2.compareTo("经济快递")==0){
 			category=ExpressType.ECONOMIC;
@@ -514,18 +576,22 @@ public class SendPkg extends JPanel{
 		String time=format.format(date_);
 	    String[] times=time.split(":");
 	    String barCode=currentUser.getAgencyNum()+times[0]+times[1]+times[2]+times[3]+times[4];
-	    System.out.println(barCode);
 		
 		
 		ArrayList<String> pkgState=new ArrayList<String>();//历史轨迹
-		pkgState.add(_date+" 快递已经从"+_address1+"出发");
+		Date date_2=new Date();
+		DateFormat format2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time2=format2.format(date_2);
+		pkgState.add(time2+" 订单开始处理！");
 		
 		
 		OrderListVO orderListVO = 
 				new OrderListVO(_name1, _address1, _phone1, 
 						_name2, _address2, _phone2, 
 						_num, _weight_double, _volume_double, _name, category, 
-						pkgState, 10.0, barCode, type, _date, _date, CheckType.UNDERCHECK);
+						pkgState, 10.0, barCode, type, _date, _date, CheckType.UNDERCHECK,"-","-");
+
+		bl.createMoneyAndDate(orderListVO);//自动改变orderListVO的运费和ArriveTime
 						
 		ResultMessage resultMessage = bl.createOrderList(orderListVO);
 		if(!resultMessage.isPass()){
@@ -544,13 +610,15 @@ public class SendPkg extends JPanel{
 		address2.setText("");
 		weight.setText("");
 		volume.setText("");
-		DateFormat format2=new SimpleDateFormat("yyyy-MM-dd");
-		String time2=format2.format(date_);
-		date.setText(time2);
+		DateFormat format3=new SimpleDateFormat("yyyy-MM-dd");
+		String time3=format3.format(date_);
+		date.setText(time3);
 		num.setText(1+"");
 		name.setText("");
 		pre_date.setText("");
 		money.setText("");
+		pkgType.setSelectedIndex(0);
+		expressType.setSelectedIndex(0);
 						
 	}
 	private void clear(){
@@ -570,6 +638,8 @@ public class SendPkg extends JPanel{
 		name.setText("");
 		pre_date.setText("");
 		money.setText("");
+		pkgType.setSelectedIndex(0);
+		expressType.setSelectedIndex(0);
 		willprintMessage=false;
 		repaint();
 	}

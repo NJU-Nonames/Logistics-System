@@ -24,6 +24,31 @@ public class Img {
 	public static Image BLACK_BG=new ImageIcon("img/Bg/black.png").getImage();
 	public static Image cao1=new ImageIcon("img/Bg/1099285.jpg").getImage();
 	public static Image cao2=new ImageIcon("img/Bg/1245103.jpg").getImage();
+	public static Image p1=new ImageIcon("img/Bg/pic (1).jpg").getImage();
+	public static Image p2=new ImageIcon("img/Bg/pic (2).jpg").getImage();
+	public static Image p3=new ImageIcon("img/Bg/pic (3).jpg").getImage();
+	public static Image p4=new ImageIcon("img/Bg/pic (4).jpg").getImage();
+	public static Image p5=new ImageIcon("img/Bg/pic (5).jpg").getImage();
+	public static Image p6=new ImageIcon("img/Bg/pic (6).jpg").getImage();
+	public static Image p7=new ImageIcon("img/Bg/pic (7).jpg").getImage();
+	public static Image p8=new ImageIcon("img/Bg/pic (8).jpg").getImage();
+	public static Image p9=new ImageIcon("img/Bg/pic (9).jpg").getImage();
+	public static Image p10=new ImageIcon("img/Bg/pic (10).jpg").getImage();
+	public static Image p11=new ImageIcon("img/Bg/pic (11).jpg").getImage();
+	public static Image p12=new ImageIcon("img/Bg/pic (12).jpg").getImage();
+	public static Image p13=new ImageIcon("img/Bg/pic (13).jpg").getImage();
+	public static Image p14=new ImageIcon("img/Bg/pic (14).jpg").getImage();
+	public static Image p15=new ImageIcon("img/Bg/pic (15).jpg").getImage();
+	public static Image p16=new ImageIcon("img/Bg/pic (16).jpg").getImage();
+	public static Image p17=new ImageIcon("img/Bg/pic (17).jpg").getImage();
+	public static Image p18=new ImageIcon("img/Bg/pic (18).jpg").getImage();
+	public static Image p19=new ImageIcon("img/Bg/pic (19).jpg").getImage();
+	public static Image p20=new ImageIcon("img/Bg/pic (20).jpg").getImage();
+	public static Image p21=new ImageIcon("img/Bg/pic (21).jpg").getImage();
+	public static Image p22=new ImageIcon("img/Bg/pic (22).jpg").getImage();
+	public static Image p23=new ImageIcon("img/Bg/pic (23).jpg").getImage();
+	public static Image p24=new ImageIcon("img/Bg/pic (24).jpg").getImage();
+//	public static Image p=new ImageIcon("img/Bg/pic ().jpg").getImage();
 	
 	
 	//按钮
