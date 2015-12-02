@@ -73,6 +73,22 @@ public class RepertoryInPO extends ListPO{
 		return placenumber;
 	}
 
+	public void setAreacode(String areacode) {
+		this.areacode = areacode;
+	}
+
+	public void setRownumber(String rownumber) {
+		this.rownumber = rownumber;
+	}
+
+	public void setFramenumber(String framenumber) {
+		this.framenumber = framenumber;
+	}
+
+	public void setPlacenumber(String placenumber) {
+		this.placenumber = placenumber;
+	}
+
 	public RepertoryInPO(String id,String num, String time, String destination,
 			String areacode, String rownumber, String framenumber,
 			String placenumber,CheckType type) {

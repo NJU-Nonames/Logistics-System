@@ -39,6 +39,27 @@ public interface RepertoryInfoDataService extends Remote{
 	public void delete(RepertoryOutPO repertoryPO)throws RemoteException;
 	
 	/**
+	 * 对货物存放位置进行修改
+	 * @param repertoryInfoPO
+	 * @throws RemoteException
+	 */
+	public void update(RepertoryInfoPO repertoryInfoPO)throws RemoteException;
+	
+	/**
+	 * 通过货物的存放位置找到货物
+	 *
+	 * @return
+	 * @throws RemoteException
+	 */
+	public RepertoryInfoPO findbyPlace(RepertoryInfoPO repertoryInfoPO)throws RemoteException;
+	/**
+	 * 通过货物id查找货物所在位置
+	 * @param id
+	 * @return
+	 * @throws RemoteException
+	 */
+	public RepertoryInfoPO findbyID(String id)throws RemoteException;
+	/**
 	 * 获得库存信息情况
 	 * @return
 	 */

@@ -34,6 +34,42 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 		String sql="delete from repertoryinfo where goodid='"+repertoryPO.getCode()+"'";
 		DataJDBCConnection.update(sql);
 	}
+	
+	public void update(RepertoryInfoPO repertoryInfoPO) throws RemoteException {
+		String sql="delete from repertoryinfo where goodid='"+repertoryInfoPO.getOrderId()+"'";
+		DataJDBCConnection.update(sql);
+		String sql2="insert into repertoryinfo values('"+repertoryInfoPO.getId()+"','"+repertoryInfoPO.getAreaNumber()+"','"+repertoryInfoPO.getRowNumber()
+				+"','"+repertoryInfoPO.getFrameNumber()+"','"+repertoryInfoPO.getPlaceNumber()+"','"+repertoryInfoPO.getOrderId()+"')";
+		DataJDBCConnection.update(sql2);
+		
+	}
+	
+	public RepertoryInfoPO findbyPlace(RepertoryInfoPO repertoryInfoPO){
+		RepertoryInfoPO repertoryinfo=null;
+		String sql="select * from repertoryinfo where id='"+repertoryInfoPO.getId()+"' and areanumber='"+repertoryInfoPO.getAreaNumber()+"' and rownumber='"+repertoryInfoPO.getRowNumber()+"' and framenumber='"+repertoryInfoPO.getFrameNumber()+"' and placenumber='"+repertoryInfoPO.getPlaceNumber()+"'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			rs.next();
+			repertoryinfo=new RepertoryInfoPO(repertoryInfoPO.getId(), rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("orderid"));
+		} catch (SQLException e) {
+		    return null;
+		}
+		return repertoryinfo;
+		
+	}
+	
+	public RepertoryInfoPO findbyID(String id){
+		RepertoryInfoPO repertoryinfo=null;
+		String sql="select * from repertoryinfo where orderid='"+id+"'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			rs.next();
+			repertoryinfo=new RepertoryInfoPO(id, rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("orderid"));
+		} catch (SQLException e) {
+		    return null;
+		}
+		return repertoryinfo;
+	}
 
 	public ArrayList<RepertoryInfoPO> show(String id) {
 		ArrayList<RepertoryInfoPO> repertoryinfo=new ArrayList<RepertoryInfoPO>();
@@ -49,6 +85,7 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 		
 		return repertoryinfo;
 	}
+
 
 
 }

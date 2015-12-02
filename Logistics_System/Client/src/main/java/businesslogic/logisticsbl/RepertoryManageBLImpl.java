@@ -96,7 +96,8 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	        int a=0,b=0,c=0,d=0;
 	        for(int i=0;i<repertoryInfoPO.size();i++)
 	        {
-	        	repertoryInfoVO.add(new RepertoryInformationVO(repertoryInfoPO.get(i).getId(), repertoryInfoPO.get(i).getAreaNumber(), repertoryInfoPO.get(i).getRowNumber(),repertoryInfoPO.get(i).getFrameNumber(), repertoryInfoPO.get(i).getPlaceNumber(), repertoryInfoPO.get(i).getOrderId()));
+	        	RepertoryInPO list=repertoryin.findOnID(repertoryInfoPO.get(i).getId());	
+	        	repertoryInfoVO.add(new RepertoryInformationVO(repertoryInfoPO.get(i).getId(), repertoryInfoPO.get(i).getAreaNumber(), repertoryInfoPO.get(i).getRowNumber(),repertoryInfoPO.get(i).getFrameNumber(), repertoryInfoPO.get(i).getPlaceNumber(),list.getTime(),list.getDestination(), repertoryInfoPO.get(i).getOrderId()));
 	        	switch(Integer.parseInt((repertoryInfoPO.get(i).getAreaNumber()))){
 	        		case 1:a++;break;
 	        		case 2:b++;break;
@@ -178,14 +179,42 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		    return new ResultMessage(isdanger,"仓位预存正常，未到达警戒线");
 	}
 
-	public ResultMessage repertoryAdjust() {
-		// TODO 自动生成的方法存根
-		return null;
+	
+	/* (non-Javadoc)
+	 * 库存更新，库存调整
+	 * @see businesslogicservice.logisticsblservice.RepertoryManageBLService#repertoryAdjust(vo.RepertoryInformationVO)
+	 */
+	public ResultMessage repertoryAdjust(
+			RepertoryInformationVO repertoryinformation) {
+		try {
+			RepertoryInfoPO repertory=new RepertoryInfoPO(repertoryinformation.id, 
+					repertoryinformation.areaNumber, repertoryinformation.rowNumber, repertoryinformation.frameNumber, repertoryinformation.placeNumber, repertoryinformation.orderId);
+			if(repertoryinfo.findbyID(repertoryinformation.orderId)==null)
+				return new ResultMessage(false,"未查询到该订单信息!");
+			else if(repertoryinformation.id!=user.getAgencyNum())
+				return new ResultMessage(false,"该订单不存在于该仓库中!");
+			else if(repertoryinfo.findbyPlace(repertory).getOrderId().equals(repertoryinformation.id))
+				return new ResultMessage(false,"位置没有发生变更!");
+			else if(repertoryinfo.findbyPlace(repertory)!=null)
+				return new ResultMessage(false,"该位置已经存在货物!");
+			else{
+				repertoryinfo.update(repertory);
+				RepertoryInPO repertoryinlist=repertoryin.findOnID(repertoryinformation.orderId);
+				repertoryinlist.setAreacode(repertory.getAreaNumber());
+				repertoryinlist.setRownumber(repertory.getRowNumber());
+				repertoryinlist.setFramenumber(repertory.getFrameNumber());
+				repertoryinlist.setPlacenumber(repertory.getPlaceNumber());
+				repertoryin.update(repertoryinlist);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+			
+		if(this.repertoryAlarm(Integer.parseInt(repertoryinformation.areaNumber)).isPass())
+		    return new ResultMessage(true,"位置变更成功!");
+		else
+			return new ResultMessage(true,"位置变更成功!转移仓位已到达报警线，请进行库存调整修改位置。");
 	}
 
-	public ResultMessage repertoryUpdate() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
 
 }

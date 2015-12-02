@@ -22,17 +22,30 @@ public class RepertoryInformationVO{
 	 */
 	public String placeNumber;
 	/**
+	 * 入库日期
+	 */
+	public String time;
+	/**
+	 * 目的地
+	 */
+	public String destination;
+	/**
 	 * 订单号
 	 */
 	public String orderId;
-	
-	public RepertoryInformationVO(String id,String areaNumber,String rowNumber,String frameNumber,String placeNumber,String orderId){
-		this.id=id;
-		this.areaNumber=areaNumber;
-		this.rowNumber=rowNumber;
-		this.frameNumber=frameNumber;
-		this.placeNumber=placeNumber;
-		this.orderId=orderId;
-		
+	public RepertoryInformationVO(String id, String areaNumber,
+			String rowNumber, String frameNumber, String placeNumber,
+			String time, String destination, String orderId) {
+		super();
+		this.id = id;
+		this.areaNumber = areaNumber;
+		this.rowNumber = rowNumber;
+		this.frameNumber = frameNumber;
+		this.placeNumber = placeNumber;
+		this.time = time;
+		this.destination = destination;
+		this.orderId = orderId;
 	}
+	
+	
 }
