@@ -101,9 +101,10 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 			ArrayList<RepertoryInfoPO> repertoryInfoPO=repertoryinfo.show(user.getAgencyNum());
 			ArrayList<RepertoryInformationVO> repertoryInfoVO=new ArrayList<RepertoryInformationVO>();
 	        int a=0,b=0,c=0,d=0;
+	        System.out.println(repertoryInfoPO.get(0).getAreaNumber());
 	        for(int i=0;i<repertoryInfoPO.size();i++)
 	        {
-	        	RepertoryInPO list=repertoryin.findOnID(repertoryInfoPO.get(i).getId());	
+	        	RepertoryInPO list=repertoryin.findOnID(repertoryInfoPO.get(i).getOrderId());	
 	        	repertoryInfoVO.add(new RepertoryInformationVO(repertoryInfoPO.get(i).getId(), repertoryInfoPO.get(i).getAreaNumber(), repertoryInfoPO.get(i).getRowNumber(),repertoryInfoPO.get(i).getFrameNumber(), repertoryInfoPO.get(i).getPlaceNumber(),list.getTime(),list.getDestination(), repertoryInfoPO.get(i).getOrderId()));
 	        	switch(Integer.parseInt((repertoryInfoPO.get(i).getAreaNumber()))){
 	        		case 1:a++;break;
@@ -196,6 +197,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		try {
 			RepertoryInfoPO repertory=new RepertoryInfoPO(repertoryinformation.id, 
 					repertoryinformation.areaNumber, repertoryinformation.rowNumber, repertoryinformation.frameNumber, repertoryinformation.placeNumber, repertoryinformation.orderId);
+			System.out.println(repertoryinformation.orderId);
 			if(repertoryinfo.findbyID(repertoryinformation.orderId)==null)
 				return new ResultMessage(false,"未查询到该订单信息!");
 			else if(repertoryinformation.id!=user.getAgencyNum())

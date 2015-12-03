@@ -71,6 +71,7 @@ public class SendPkg extends JPanel{
 	private JComboBox<String> expressType;
 	private JLabel pre_date;
 	private JLabel money;
+	private JLabel barCode;
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
@@ -311,10 +312,10 @@ public class SendPkg extends JPanel{
 		l9.setFont(new Font("宋体", Font.BOLD, 15));
 		l9.setLocation(720, 128+80+280);
 		Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time=format.format(date_);
 		date = new JTextField(time);
-		date.setSize(120, 20);
+		date.setSize(150, 20);
 		date.setLocation(720+(int)(16*5*1.07f),128+80-3+280);
 		
 		JLabel l10 = new JLabel("包装类型：");
@@ -520,11 +521,11 @@ public class SendPkg extends JPanel{
 			printMessage(result, Color.RED);
 			return;
 		}
-		result = CheckFormat.checkTime(_date);
-		if(result.compareTo("格式正确")!=0){
-			printMessage(result, Color.RED);
-			return;
-		}
+//		result = CheckFormat.checkTime(_date);
+//		if(result.compareTo("格式正确")!=0){
+//			printMessage(result, Color.RED);
+//			return;
+//		}
 
 		double _weight_double;
 		try{
@@ -589,10 +590,11 @@ public class SendPkg extends JPanel{
 				new OrderListVO(_name1, _address1, _phone1, 
 						_name2, _address2, _phone2, 
 						_num, _weight_double, _volume_double, _name, category, 
-						pkgState, 10.0, barCode, type, _date, _date, CheckType.UNDERCHECK,"-","-");
+						pkgState, 10.0, barCode, type, _date, "2000-1-1 0:00:00", CheckType.UNDERCHECK,"-","-");
 
 		bl.createMoneyAndDate(orderListVO);//自动改变orderListVO的运费和ArriveTime
 						
+		orderListVO.setArriveTime("2000-1-1 0:00:00");
 		ResultMessage resultMessage = bl.createOrderList(orderListVO);
 		if(!resultMessage.isPass()){
 			printMessage(resultMessage.getMessage(), Color.RED);
