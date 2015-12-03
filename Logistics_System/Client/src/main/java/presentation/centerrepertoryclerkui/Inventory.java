@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import businesslogic.logisticsbl.RepertoryManageBLImpl;
 import businesslogicservice.logisticsblservice.RepertoryManageBLService;
 import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
@@ -96,7 +97,7 @@ public class Inventory extends JPanel{
 	
 	public Inventory(CenterRepertoryClerkFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=new RepertoryManageBLImpl(currentUser);
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -360,7 +361,7 @@ public class Inventory extends JPanel{
       		v.add(info.areaNumber);
       		v.add(info.rowNumber);
       		v.add(info.frameNumber);
-      		v.add(info.placeNumber);
+      		v.add(info.placeNumber );
       		v.add(info.orderId);
       		repertoryTableModel.addRow(v);
       	}
