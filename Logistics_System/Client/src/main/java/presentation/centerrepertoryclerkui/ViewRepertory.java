@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -28,11 +29,15 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import businesslogic.logisticsbl.RepertoryManageBLImpl;
 import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
+import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import vo.RepertoryInVO;
+import vo.RepertoryOutVO;
 
 /**
  * @author 谭期友
@@ -41,7 +46,7 @@ import presentation.mainui.MyButton;
 public class ViewRepertory extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private RepertoryManageBLImpl bl;
 	private CenterRepertoryClerkFrame frame;
 	private CurrentUser currentUser;
 	
@@ -54,6 +59,7 @@ public class ViewRepertory extends JPanel{
 	private MyButton goto_OutputRepertory;
 	private MyButton goto_ViewRepertory;
 	private MyButton goto_Inventory;
+	
 	private MyButton search;
 	//详细操作按钮以及其他组件
 	private JTextField _time1=new JTextField();
@@ -64,9 +70,15 @@ public class ViewRepertory extends JPanel{
 	
 	private DefaultTableModel repertoryOutTableModel;
 	private JTable repertoryOutTable;
+	
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
+	
+	JLabel inCount;
+	JLabel inMoney;
+	JLabel outCount;
+	JLabel outMoney;
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -86,7 +98,7 @@ public class ViewRepertory extends JPanel{
 	
 	public ViewRepertory(CenterRepertoryClerkFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=new RepertoryManageBLImpl(currentUser);
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -281,7 +293,7 @@ public class ViewRepertory extends JPanel{
       	JScrollPane scrollPane1 = new JScrollPane();
       	scrollPane1.getViewport().add(repertoryInTable);
       	repertoryInTable.setFillsViewportHeight(true);
-      	int[] width1={100,300,25,25,25,25};
+      	int[] width1={200,200,25,25,25,25};
       	repertoryInTable.setColumnModel(getColumnModel(repertoryInTable,width1));
       	repertoryInTable.getTableHeader().setReorderingAllowed(false);
       	repertoryInTable.getTableHeader().setResizingAllowed(false);
@@ -330,22 +342,22 @@ public class ViewRepertory extends JPanel{
       	jp2.setOpaque(false);
       	jp2.add(scrollPane2,BorderLayout.CENTER);
       	
-      	JLabel inCount = new JLabel("入库数量总计：");//联系逻辑层数据
+      	inCount = new JLabel("入库数量总计：");//联系逻辑层数据
       	inCount.setSize((int)(16*"入库数量总计：".length()*1.07f), 16);
       	inCount.setFont(new Font("宋体", Font.BOLD, 15));
       	inCount.setLocation(agencyNameLabel.getX()+150,128+440);
       	
-      	JLabel outCount = new JLabel("出库数量总计：");//联系逻辑层数据
+      	outCount = new JLabel("出库数量总计：");//联系逻辑层数据
       	outCount.setSize((int)(16*"出库数量总计：".length()*1.07f), 16);
       	outCount.setFont(new Font("宋体", Font.BOLD, 15));
       	outCount.setLocation(inCount.getX()+inCount.getWidth(),inCount.getY());
       	
-      	JLabel inMoney = new JLabel("入库金额总计：");//联系逻辑层数据
+      	inMoney = new JLabel("入库金额总计：");//联系逻辑层数据
       	inMoney.setSize((int)(16*"入库金额总计：".length()*1.07f), 16);
       	inMoney.setFont(new Font("宋体", Font.BOLD, 15));
       	inMoney.setLocation(inCount.getX(),inCount.getY()+40);
       	
-      	JLabel outMoney = new JLabel("出库金额总计：");//联系逻辑层数据
+      	outMoney = new JLabel("出库金额总计：");//联系逻辑层数据
       	outMoney.setSize((int)(16*"出库金额总计：".length()*1.07f), 16);
       	outMoney.setFont(new Font("宋体", Font.BOLD, 15));
       	outMoney.setLocation(outCount.getX(),outCount.getY()+40);
@@ -405,11 +417,49 @@ public class ViewRepertory extends JPanel{
 	}
 	private void _search() {
 		// TODO 自动生成的方法存根
+		String t1=_time1.getText();
+		String t2=_time2.getText();
 		
+		result = CheckFormat.checkTime(t1);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		result = CheckFormat.checkTime(t2);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		
+		inCount.setText(inCount.getText()+bl.searchRepertory(t1, t2).numberIn+"");
+		outCount.setText(outCount.getText()+bl.searchRepertory(t1, t2).numberOut+"");
+		inMoney.setText(inMoney.getText()+bl.searchRepertory(t1, t2).moneyIn+"");
+		outMoney.setText(inCount.getText()+bl.searchRepertory(t1, t2).moneyOut+"");
+	
+		ArrayList<RepertoryInVO> rin = bl.searchRepertory(t1, t2).repertoryin;
+		ArrayList<RepertoryOutVO> rout = bl.searchRepertory(t1, t2).repertoryout;
+		
+		while(repertoryInTableModel.getRowCount()!=0)//先清空原来的
+			repertoryInTableModel.removeRow(0);
+		
+		for(int i = 0 ; i<rin.size(); i++){
+			Vector<String> v = new Vector<String>();
+    		v.add(rin.get(i).getTime());
+    		v.add(rin.get(i).getNum());
+    		v.add(rin.get(i).getAreacode());
+    		v.add(rin.get(i).getRownumber());
+    		v.add(rin.get(i).getFramenumber());
+    		v.add(rin.get(i).getPlacenumber());
+    		repertoryInTableModel.addRow(v);
+        }
 	}
 	private void clear(){
-//		.setText("");
-//		.setText("");
+		_time1.setText("");
+		_time2.setText("");
+		while(repertoryOutTable.getRowCount()!=0)
+			repertoryOutTableModel.removeRow(0);
+		while(repertoryInTable.getRowCount()!=0)
+			repertoryInTableModel.removeRow(0);
 		willprintMessage=false;
 		repaint();
 	}

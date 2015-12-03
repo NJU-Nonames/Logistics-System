@@ -216,7 +216,7 @@ public class Inventory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        refresh.setLocation(CenterClerkFrame.w/3*2+25,128+84);
+        refresh.setLocation(CenterClerkFrame.w/3*2+25,128+184);
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
@@ -380,7 +380,7 @@ public class Inventory extends JPanel{
       	JScrollPane scrollPane = new JScrollPane();
       	scrollPane.getViewport().add(repertoryTable);
       	repertoryTable.setFillsViewportHeight(true);
-      	int[] width={100,150,25,25,25,25,300};
+      	int[] width={200,150,25,25,25,25,200};
       	repertoryTable.setColumnModel(getColumnModel(repertoryTable,width));
       	repertoryTable.getTableHeader().setReorderingAllowed(false);
       	repertoryTable.getTableHeader().setResizingAllowed(false);
@@ -434,6 +434,7 @@ public class Inventory extends JPanel{
     	add(goto_Inventory);
     	add(search);
     	add(adjust);
+    	add(refresh);
     	
     	add(searchField);
     	add(_orderId);
@@ -483,7 +484,7 @@ public class Inventory extends JPanel{
 	
 	private void _adjust() {
 		// TODO 自动生成的方法存根
-		RepertoryInformationVO data = new RepertoryInformationVO(currentUser.getAgencyNum(), _q.getText(), _p.getText(), _j.getText(), _w.getText(), null, null, null);
+		RepertoryInformationVO data = new RepertoryInformationVO(currentUser.getAgencyNum(), _q.getText(), _p.getText(), _j.getText(), _w.getText(), null, null, _orderId.getText());
 		ResultMessage message = bl.repertoryAdjust(data);
 		if(!message.isPass()){
 			 printMessage(message.getMessage(), Color.RED);
