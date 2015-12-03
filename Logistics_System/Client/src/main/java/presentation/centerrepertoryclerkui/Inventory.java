@@ -7,7 +7,6 @@ package presentation.centerrepertoryclerkui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -36,6 +35,7 @@ import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.ResultMessage;
 import vo.RepertoryInfoVO;
 import vo.RepertoryInformationVO;
 
@@ -46,7 +46,6 @@ import vo.RepertoryInformationVO;
 public class Inventory extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	private static final Component searchFiled = null;
 	private RepertoryManageBLService bl;
 	private CenterRepertoryClerkFrame frame;
 	private CurrentUser currentUser;
@@ -356,8 +355,8 @@ public class Inventory extends JPanel{
       	ArrayList<RepertoryInformationVO> repertoryInfomationList = repertoryInfoVO.repertoryinformation;
       	for(RepertoryInformationVO info : repertoryInfomationList){
       		Vector<String> v = new Vector<String>();
-      		v.add(info.areaNumber);//改成入库日期
-      		v.add(info.areaNumber);//改成目的地
+      		v.add(info.time);
+      		v.add(info.destination);
       		v.add(info.areaNumber);
       		v.add(info.rowNumber);
       		v.add(info.frameNumber);
@@ -470,15 +469,34 @@ public class Inventory extends JPanel{
 			return;
 		}
 		String input=searchField.getText();
-		//不高兴写了，今天就写到这里好了
+		int i=0;
+		while(repertoryTable.getValueAt(i, 6)!=null){
+			if(repertoryTable.getValueAt(i, 6).equals(input)){
+				repertoryTable.setRowSelectionInterval(i, i);
+				return;
+			}
+			i++;
+		}
+		printMessage("查无此订单！", Color.RED);
 	}
+	
 	private void _adjust() {
 		// TODO 自动生成的方法存根
-		
+		RepertoryInformationVO data = new RepertoryInformationVO(currentUser.getAgencyNum(), _q.getText(), _p.getText(), _j.getText(), _w.getText(), null, null, null);
+		ResultMessage message = bl.repertoryAdjust(data);
+		if(!message.isPass()){
+			 printMessage(message.getMessage(), Color.RED);
+		}
+		else{
+			printMessage(message.getMessage(), Color.GREEN);
+		}
+	
 	}
+	//不知道对不对
 	private void _refresh() {
 		// TODO 自动生成的方法存根
-		
+		clear();
+		initComponent();
 	}
 	private void printMessage(String message, Color c){
 		result=message;
