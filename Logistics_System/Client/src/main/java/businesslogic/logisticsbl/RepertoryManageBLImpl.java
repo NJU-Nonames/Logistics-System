@@ -1,5 +1,6 @@
 package businesslogic.logisticsbl;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
@@ -40,6 +41,10 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	CurrentUser user=null;
 	SystemLogDataService system=null;
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	public RepertoryManageBLImpl(){
+		
+	}
 	
 	public RepertoryManageBLImpl(CurrentUser currentuser){
 		orderlist=(OrderListDataService) RMIHelper.find("OrderListDataService");
@@ -228,6 +233,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	public void exportRepertoryInformation(String repertoryname,String time,ArrayList<RepertoryInformationVO> list,String path){
 		HSSFWorkbook wb=new HSSFWorkbook();
 		HSSFSheet sheet=wb.createSheet("库存信息表");
+		sheet.setColumnWidth(1, 5000);
 		HSSFRow row=sheet.createRow(0);
 		HSSFCellStyle style=wb.createCellStyle();
 		sheet.setDefaultColumnWidth(12);
@@ -276,10 +282,13 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 			cell.setCellStyle(style);
 			cell=row.createCell(6);
 			cell.setCellValue(vo.destination);
-			cell.setCellStyle(style);	
+			cell.setCellStyle(style);		
 		}
-		try{
-			FileOutputStream fout=new FileOutputStream("D:/"+repertoryname+"在"+time+"时间点库存盘点.xls");
+		String[]s=time.split(" ");
+		String[]date=s[0].split("-");
+		String[]hour=s[1].split(":");
+		try{		
+			FileOutputStream fout=new FileOutputStream("D:/"+repertoryname+"在"+date[0]+"年"+date[1]+"月"+date[2]+"日"+hour[0]+"时"+hour[1]+"分"+hour[2]+"秒"+"库存盘点.xls");
 			wb.write(fout);
 			fout.close();
 			wb.close();
