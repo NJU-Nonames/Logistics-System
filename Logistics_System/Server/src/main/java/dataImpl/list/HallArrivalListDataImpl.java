@@ -78,15 +78,26 @@ public class HallArrivalListDataImpl extends UnicastRemoteObject implements Hall
 			}
 		} catch (SQLException e) {
 			System.out.println("操作失败 未找到");
-			return null;
+			return hallArrivalList;
 		}
 		return hallArrivalList;
 	}
 
 	public ArrayList<HallArrivalListPO> showAllByAgency(String agencyID)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<HallArrivalListPO> hallArrivalList=new ArrayList<HallArrivalListPO>();
+		String sql="select * from hallarrivallist where id like '"+agencyID+"%'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next()){
+				HallArrivalListPO hallArrivallist=this.find(rs.getString("id"));
+				hallArrivalList.add(hallArrivallist);
+			}
+		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
+			return hallArrivalList;
+		}
+		return hallArrivalList;
 	}
 
 	

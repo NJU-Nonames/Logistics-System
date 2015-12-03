@@ -44,9 +44,10 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			repertoryin=new RepertoryInPO(id,rs.getString("orderid") , rs.getString("timee"), rs.getString("destination"), rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), CheckType.valueOf(rs.getString("checkstate")));
+			repertoryin=new RepertoryInPO(id,rs.getString("orderid") , rs.getString("timee"), rs.getString("destination"), rs.getString("arenumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), CheckType.valueOf(rs.getString("checkstate")));
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("出现问题,查找出错");
 			return null;
 		}
@@ -64,7 +65,7 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 			}
 		} catch (SQLException e) {
 			System.out.println("操作未成功");
-			return null;
+			return repertoryin;
 		}
 		
 		return repertoryin;
@@ -82,7 +83,7 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 			}
 		} catch (SQLException e) {
 			System.out.println("操作未成功");
-			return null;
+			return repertoryin;
 		}
 		
 		return repertoryin;
@@ -90,8 +91,21 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 
 	public ArrayList<RepertoryInPO> showAllByAgency(String agencyID)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<RepertoryInPO> repertoryin=new ArrayList<RepertoryInPO>();
+		String sql="select * from repertoryin where id like '"+agencyID+"%'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next())
+			{
+				repertoryin.add(this.findOnID(rs.getString("id")));
+			}
+		} catch (SQLException e) {
+			System.out.println("操作未成功");
+			return repertoryin;
+		}
+		
+		return repertoryin;
 	}
+	
 
 }

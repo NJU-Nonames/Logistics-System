@@ -62,8 +62,9 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 			{
 				barcodes.add(rs2.getString("id"));
 			}
-			transshipmentlist=new TransShipmentListPO(rs.getString("timee"), rs.getString("id"), rs.getString("flightnumber"), rs.getString("departureplace"), rs.getString("destination"), rs.getString("containernumber"), rs.getString("supercargoMan"), barcodes, CheckType.valueOf(rs.getString("checkstate")));
+			transshipmentlist=new TransShipmentListPO(rs.getString("timee"), rs.getString("id"), rs.getString("flightnumber"), rs.getString("departureplace"), rs.getString("destination"), rs.getString("containernumber"), rs.getString("supercargo"), barcodes, CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("查找失败");
 			return null;
 		}
@@ -72,7 +73,7 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 
 	public ArrayList<TransShipmentListPO> showAll(String time1, String time2)
 			throws RemoteException {
-		String sql="select * transshipmentlist where timee<='"+time2+"' and timee>='"+time1+"'";
+		String sql="select * from transshipmentlist where timee<='"+time2+"' and timee>='"+time1+"'";
 		ArrayList<TransShipmentListPO> transshipmentlist=new ArrayList<TransShipmentListPO>();
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
@@ -83,15 +84,27 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 			
 		} catch (SQLException e) {
 			System.out.println("有毒，没操作成");
-			return null;
+			return transshipmentlist;
 		}
 		return transshipmentlist;
 	}
 
 	public ArrayList<TransShipmentListPO> showAllByAgency(String agencyID)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql="select * from transshipmentlist where id like '"+agencyID+"%'";
+		ArrayList<TransShipmentListPO> transshipmentlist=new ArrayList<TransShipmentListPO>();
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next())
+			{
+				transshipmentlist.add(this.find(rs.getString("id")));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("有毒，没操作成");
+			return transshipmentlist;
+		}
+		return transshipmentlist;
 	}
 
 }

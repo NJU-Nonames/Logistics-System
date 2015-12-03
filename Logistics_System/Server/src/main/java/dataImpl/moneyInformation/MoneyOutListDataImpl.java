@@ -75,16 +75,28 @@ public class MoneyOutListDataImpl extends UnicastRemoteObject implements MoneyOu
 				moneyOutList.add(moneyoutlist);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return moneyOutList;
 		}
 		return moneyOutList;
 	}
 
 	public ArrayList<MoneyOutListPO> showAllByAgency(String agencyID)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<MoneyOutListPO> moneyOutList=new ArrayList<MoneyOutListPO>();
+		String sql="select * from moneyoutlist where id like '"+agencyID+"%'";
+		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
+		try {
+			while(rs.next())
+			{
+				MoneyOutListPO moneyoutlist=this.findOnID(rs.getString("id"));
+				moneyOutList.add(moneyoutlist);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return moneyOutList;
+		}
+		return moneyOutList;
 	}
 
 	

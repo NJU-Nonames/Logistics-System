@@ -80,15 +80,27 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 			
 		} catch (SQLException e) {
 			System.out.println("操作失败 未找到");
-			return null;
+			return loadList;
 		}
 		return loadList;
 	}
 
 	public ArrayList<LoadListPO> showAllByAgency(String agencyID)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<LoadListPO> loadList=new ArrayList<LoadListPO>();
+		String sql="select * from loadlist where id like '"+agencyID+"%'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next())
+			{
+				loadList.add(this.find(rs.getString("id")));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
+			return loadList;
+		}
+		return loadList;
 	}
 
 

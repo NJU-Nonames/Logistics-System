@@ -10,7 +10,7 @@ public enum Position{
     TOP_MANAGER,//总经理
     ADMIN,//系统管理员
     DRIVER,//司机
-    SUPERGO,//押运员
+    SUPERGOMAN,//押运员
     GUARDMAN//监督员
     
 }

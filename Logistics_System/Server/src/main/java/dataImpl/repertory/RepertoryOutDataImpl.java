@@ -65,7 +65,9 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 				repertoryout.add(this.findOnID(rs.getString("id")));
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("操作失败");
+			return repertoryout;
 		}
 		
 		return repertoryout;
@@ -82,7 +84,9 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 				repertoryout.add(this.findOnID(rs.getString("id")));
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("操作失败");
+			return repertoryout;
 		}
 		
 		return repertoryout;
@@ -90,8 +94,21 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 
 	public ArrayList<RepertoryOutPO> showAllByAgency(String agencyID)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<RepertoryOutPO> repertoryout=new ArrayList<RepertoryOutPO>();
+		String sql="select * from repertoryout where id like '"+agencyID+"%'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next())
+			{
+				repertoryout.add(this.findOnID(rs.getString("id")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("操作失败");
+			return repertoryout;
+		}
+		
+		return repertoryout;
 	}
 
 }

@@ -73,15 +73,26 @@ public class DeliveringListDataImpl extends UnicastRemoteObject implements Deliv
 			}
 		} catch (SQLException e) {
 			System.out.println("操作失败 未找到");
-			return null;
+			return deliveringList;
 		}
 		return deliveringList;
 	}
 
 	public ArrayList<DeliveringListPO> showAllbyAgency(String agencyId)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<DeliveringListPO> deliveringList=new ArrayList<DeliveringListPO>();
+		String sql="select * from deliveringlist where id like '"+agencyId+"%'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next()){
+				DeliveringListPO deliveringlist=this.find(rs.getString("id"));
+				deliveringList.add(deliveringlist);
+			}
+		} catch (SQLException e) {
+			System.out.println("操作失败 未找到");
+			return deliveringList;
+		}
+		return deliveringList;
 	}
 
 	

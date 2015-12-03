@@ -61,8 +61,10 @@ public class TransArrivalListDataImpl extends UnicastRemoteObject implements Tra
 			{
 				goodsinfo.add(new GoodsInfoPO(rs2.getString("barcode"), GoodsState.valueOf(rs2.getString("state")), rs2.getString("departureplace")));
 			}
+			rs.next();
 			transarrivallist=new TransArrivalListPO(id, rs.getString("transfernumber"), rs.getString("centernumber"), rs.getString("timee"), goodsinfo, CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
+			//e.printStackTrace();
 			System.out.println("操作失败 未找到");
 			return null;
 		}
@@ -81,15 +83,25 @@ public class TransArrivalListDataImpl extends UnicastRemoteObject implements Tra
 			}
 		} catch (SQLException e) {
 			System.out.println("操作失败");
-			return null;
+			return transarrivallist;
 		}
 		return transarrivallist;
 	}
 
 	public ArrayList<TransArrivalListPO> showAllByAgency(String agencyID)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<TransArrivalListPO> transarrivallist=new ArrayList<TransArrivalListPO>();
+		String sql="select * from transarrivallist where  id like '"+agencyID+"%'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			while(rs.next()){
+				transarrivallist.add(this.find(rs.getString("id")));
+			}
+		} catch (SQLException e) {
+			System.out.println("操作失败");
+			return transarrivallist;
+		}
+		return transarrivallist;
 	}
 
 }
