@@ -18,6 +18,8 @@ import vo.MoneyInListVO;
 import vo.MoneyInformationListVO;
 import vo.MoneyItemVO;
 import vo.MoneyOutListVO;
+import businesslogic.financebl.CostManagementBLImpl;
+import businesslogic.financebl.SettlementManageBLImpl;
 import businesslogic.rmi.RMIHelper;
 import businesslogicservice.chartblservice.FormBLService;
 import businesslogicservice.financeblservice.CostManagementBLService;
@@ -30,8 +32,8 @@ public class FormBLImpl implements FormBLService{
 	public FormBLImpl(){	
 	}
 	public FormBLImpl(CurrentUser currentuser){
-		service1=(CostManagementBLService)RMIHelper.find("CostManagementBLService");
-		service2=(SettlementManageBLService)RMIHelper.find("SettlementManageBLService");
+		service1=new CostManagementBLImpl(currentuser);
+		service2=new SettlementManageBLImpl(currentuser);
 		user=currentuser;
 	}
 	

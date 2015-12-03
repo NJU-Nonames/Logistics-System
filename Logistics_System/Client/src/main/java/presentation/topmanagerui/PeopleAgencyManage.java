@@ -819,7 +819,7 @@ public class PeopleAgencyManage extends JPanel{
     		
     		
     		v.add(agencyVO.getStaffList().get(i).getIDNum());
-    		v.add(agencyVO.getStaffList().get(i).getWorkingstarttime());
+    		v.add(agencyVO.getStaffList().get(i).getWorkingtime());
     		v.add(agencyVO.getStaffList().get(i).getPhoneNum());
     		v.add(agencyVO.getStaffList().get(i).getWage());
     		v.add(agencyVO.getStaffList().get(i).getAgencyName());

@@ -46,6 +46,7 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 			agencypo=agencydataservice.find(agency.getAgencyNum());
 			if(agencypo==null){
 				ArrayList<StaffPO> list=new ArrayList<StaffPO>();
+				if(agency.getStaffList()!=null)
 				for(StaffVO staffvo:agency.getStaffList()){
 					list.add(new StaffPO(staffvo.getName(),staffvo.getSex(),staffvo.getPostion(),staffvo.getIDNum(),staffvo.getWorkingtime(),staffvo.getPhoneNum(),staffvo.getWage(),staffvo.getAgencyName(),staffvo.getId(),staffvo.getAgencyId()));
 				}
