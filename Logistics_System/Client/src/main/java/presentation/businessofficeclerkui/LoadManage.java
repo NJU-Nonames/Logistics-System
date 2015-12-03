@@ -73,7 +73,6 @@ public class LoadManage extends JPanel{
 
 	private JTextField date;
 	private JTextField hallNumber;
-	private JTextField transpotationNumber;
 	private JTextField Destination;
 	private JTextField carNumber;
 	private JTextField guardMan;
@@ -81,7 +80,8 @@ public class LoadManage extends JPanel{
 	private JTextField barCode;
 	private DefaultTableModel barCodeTableModel;
 	private JTable barCodeTable;
-
+	private JLabel transportationNumber;
+	
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
@@ -323,13 +323,10 @@ public class LoadManage extends JPanel{
 		hallNumber.setSize(150, 20);
 		hallNumber.setLocation(170+20+(int)(16*7*1.07f),128+80+40-3);
 
-		JLabel l4 = new JLabel("汽运编号：");
-		l4.setSize((int)(16*5*1.07f), 16);
-		l4.setFont(new Font("宋体", Font.BOLD, 15));
-		l4.setLocation(170+20, 128+80+40+40);
-		transpotationNumber = new JTextField();
-		transpotationNumber.setSize(150, 20);
-		transpotationNumber.setLocation(170+20+(int)(16*7*1.07f),128+80+40+40-3);
+	    transportationNumber = new JLabel("汽运编号：   "+bl.createLoadlistId());
+		transportationNumber.setSize((int)(16*29*1.07f), 16);
+		transportationNumber.setFont(new Font("宋体", Font.BOLD, 15));
+		transportationNumber.setLocation(170+20, 128+80+40+40);
 
 		JLabel l6 = new JLabel("到达地：");
 		l6.setSize((int)(16*4*1.07f), 16);
@@ -429,8 +426,8 @@ public class LoadManage extends JPanel{
     	add(date);
     	add(l3);
     	add(hallNumber);
-    	add(l4);
-    	add(transpotationNumber);
+    	add(transportationNumber);
+    
     	add(l6);
     	add(Destination);
     	add(l9);
@@ -493,7 +490,6 @@ public class LoadManage extends JPanel{
 	private void _confirm(){
 		String date_s = date.getText();
 		String hallNumber_s = hallNumber.getText();
-		String transpotationNumber_s = transpotationNumber.getText();
 		String Destination_s = Destination.getText();
 		String carNumber_s = carNumber.getText();
 		String guardMan_s = guardMan.getText();
@@ -507,10 +503,7 @@ public class LoadManage extends JPanel{
 			printMessage(CheckFormat.checkHallNum(hallNumber_s), Color.RED);
 			return;
 		}
-		if(CheckFormat.checkTruckTransNum(transpotationNumber_s).compareTo("格式正确")!=0){
-			printMessage(CheckFormat.checkTruckTransNum(transpotationNumber_s), Color.RED);
-			return;
-		}
+		
 		if(Destination_s.compareTo("")==0){
 			printMessage("没有输入到达地！", Color.RED);
 			return;
@@ -538,7 +531,7 @@ public class LoadManage extends JPanel{
 			_barcodes.add(s);
 		}
 		
-		LoadListVO loadListVO = new LoadListVO( date_s, hallNumber_s, transpotationNumber_s, Destination_s, carNumber_s, guardMan_s, supercargoMan_s, _barcodes, CheckType.UNDERCHECK);
+		LoadListVO loadListVO = new LoadListVO( date_s, hallNumber_s, bl.createLoadlistId(), Destination_s, carNumber_s, guardMan_s, supercargoMan_s, _barcodes, CheckType.UNDERCHECK);
 		ResultMessage resultMessage = bl.createLoadlist(loadListVO);
 		if(!resultMessage.isPass()){
 			printMessage(resultMessage.getMessage(), Color.RED);
@@ -547,17 +540,17 @@ public class LoadManage extends JPanel{
 			printMessage(resultMessage.getMessage(), Color.BLUE);
 		}
 
-		transpotationNumber.setText("");
 		Destination.setText("");
 		carNumber.setText("");
 		guardMan.setText("");
 		supercargoMan.setText("");
 		barCode.setText("");
+		transportationNumber.setText(("汽运编号：   "+bl.createLoadlistId()));
 		while(barCodeTable.getRowCount()!=0)
 			barCodeTableModel.removeRow(0);
 	}
 	private void clear(){
-		transpotationNumber.setText("");
+		transportationNumber.setText("汽运编号：     "+bl.createLoadlistId());
 		Destination.setText("");
 		carNumber.setText("");
 		guardMan.setText("");

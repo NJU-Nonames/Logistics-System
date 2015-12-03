@@ -8,17 +8,21 @@ import java.util.Date;
 import po.agency.StaffPO;
 import po.list.DeliveringListPO;
 import po.list.HallArrivalListPO;
+import po.list.LoadListPO;
 import po.list.OrderListPO;
 import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
+import dataservice.agency.AgencyDataService;
 import dataservice.agency.StaffDataService;
 import dataservice.list.DeliveringListDataService;
 import dataservice.list.HallArrivalListDataService;
+import dataservice.list.LoadListDataService;
 import dataservice.list.OrderListDataService;
 import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.DeliveringListVO;
 import vo.HallArrivalListVO;
+import vo.TransArrivalVO;
 import businesslogic.rmi.RMIHelper;
 import businesslogicservice.logisticsblservice.DeliverAndReceiveBLService;
 
@@ -30,6 +34,8 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 	CurrentUser user=null;
 	SystemLogDataService system=null;
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	LoadListDataService loadlistdataservice=null;
+	AgencyDataService agency=null;
 	
 	public DeliverAndReceiveBLImpl(CurrentUser currentuser){
 		staff=(StaffDataService) RMIHelper.find("StaffDataService");
@@ -38,17 +44,12 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 		service3=(OrderListDataService)RMIHelper.find("OrderListDataService");
 		user=currentuser;
 		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
+		loadlistdataservice=(LoadListDataService)RMIHelper.find("LoadListDataService");
+		agency=(AgencyDataService)RMIHelper.find("AgencyDataService");
 	}
 	public ResultMessage createHallArrivalList(HallArrivalListVO hallArrivalList) {
 		// TODO Auto-generated method stub
 		HallArrivalListPO hallarrivallist=null;
-		try{
-			hallarrivallist=service1.find(hallArrivalList.getId());
-		}catch (RemoteException e) {
-			e.printStackTrace();
-		}	
-		if(hallarrivallist!=null)
-			return new ResultMessage(false,"营业厅到达单已经存在!");
 		for(String id:hallArrivalList.getBarCodes()){
 			try {
 				OrderListPO orderListPO=service3.find(id);
@@ -71,13 +72,6 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 	}
 	public ResultMessage createDeliveringList(DeliveringListVO deliveringList) {
 		DeliveringListPO deliverlistpo=null;
-		try{
-			deliverlistpo=service2.find(deliveringList.getId());
-		}catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		if(deliverlistpo!=null)
-			return new ResultMessage(false,"派件单已经存在!");
 		for(String id:deliveringList.getBarCode()){
 			try {
 				OrderListPO orderListPO=service3.find(id);
@@ -86,8 +80,7 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 				StaffPO st=null;
 				for(int i=0;i<stafflist.size();i++){
 					if(stafflist.get(i).getAgencyId().equals(deliveringList.getId().substring(0, 6)))
-						st=stafflist.get(i);
-					
+						st=stafflist.get(i);			
 				}
 				if(st==null)
 					return  new ResultMessage(false, "不存在该快递员信息!");
@@ -115,7 +108,8 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<5-s.length();i++)
+		int num=s.length();
+		for(int i=0;i<5-num;i++)
 			s="0"+s;
 		return user.getAgencyNum()+s;
 	}
@@ -127,8 +121,28 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<5-s.length();i++)
+		int num=s.length();
+		for(int i=0;i<5-num;i++)
 			s="0"+s;
 		return user.getAgencyNum()+s;
 	}
+	public TransArrivalVO getLoadList(String loadlistid) {
+		// TODO 自动生成的方法存根
+		LoadListPO loadlistpo=null;
+		try{
+			loadlistpo=loadlistdataservice.find(loadlistid);
+			if(loadlistpo==null)
+				return null;
+			else{
+				TransArrivalVO transvo=new TransArrivalVO();
+				transvo.barcodes=loadlistpo.getBarcodes();
+				transvo.depatureplace=agency.find(loadlistpo.getHallNumber()).getAgencyName();
+				return transvo;
+			}
+			}catch(RemoteException e){
+				e.printStackTrace();
+			}
+		return null;
+	}
+	
 }

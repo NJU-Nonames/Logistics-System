@@ -38,7 +38,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 			if(list!=null)
 			for(OrderListPO orderListPO:list){
 				if(orderListPO.getSenderAddress().substring(0, 2).equals(orderListVO.getSenderAddress().substring(0,2))&&
-						orderListPO.getReceiverAddress().substring(0,2).equals(orderListVO.getReceiverAddress().substring(0, 2))&&
+						orderListPO.getReceiverAddress().substring(0,2).equals(orderListVO.getReceiverAddress().substring(0, 2))&&!orderListPO.getRealreceiver().equals("-")&&
 						orderListPO.getCategory().equals(orderListVO.getCategory())){
 					count++;
 					String[] temp=orderListPO.getDepartTime().split(" ");
@@ -128,7 +128,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 	}
 	public String createOrderId() {
 		// TODO 自动生成的方法存根
-		df=new SimpleDateFormat("yyyyMMddHHmm");
-		return user.getAgencyNum()+df.format(new Date());
+		SimpleDateFormat df1=new SimpleDateFormat("yyyyMMddHHmm");
+		return user.getAgencyNum()+df1.format(new Date());
 	}
 }

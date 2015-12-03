@@ -60,17 +60,13 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 		// TODO 自动生成的方法存根
 		MoneyInListPO moneyinpo=null;
 		try{
-			moneyinpo=moneyinlistdataservice.findOnID(moneyin.getId());
-			if(moneyinpo==null){
 				moneyinpo=new MoneyInListPO(moneyin.getId(),moneyin.getDate(),moneyin.getMoneySum(),moneyin.getStaffId(),moneyin.getBarcode(),moneyin.getCheckType());
 				moneyinlistdataservice.add(moneyinpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"创建收款单,单号为"+moneyin.getId(),user.getAdmin()));
-				return new ResultMessage(true,"添加收款单成功!");
-			}
+				system.add(new SystemLogPO((String)df.format(new Date()),"创建收款单,单号为"+moneyin.getId(),user.getAdmin()));			
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return new ResultMessage(false,"收款单已存在!");
+		return new ResultMessage(true,"添加收款单成功!");
 	}
 
 	public String createMoneyInListId() {
@@ -81,7 +77,8 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<5-s.length();i++)
+		int num=s.length();
+		for(int i=0;i<5-num;i++)
 			s="0"+s;
 		return user.getAgencyNum()+s;
 	}

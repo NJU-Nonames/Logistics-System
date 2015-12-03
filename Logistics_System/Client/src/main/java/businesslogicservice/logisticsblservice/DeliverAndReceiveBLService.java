@@ -8,6 +8,7 @@ package businesslogicservice.logisticsblservice;
 import utility.ResultMessage;
 import vo.DeliveringListVO;
 import vo.HallArrivalListVO;
+import vo.TransArrivalVO;
 
 
 
@@ -36,5 +37,11 @@ public interface DeliverAndReceiveBLService {
 	 * @return
 	 */
 	public String createDeliveringListId();
+	/**
+	 * 根据中转中心装车单号来找到这一批ArrayList<String>Barcodes;
+	 * @param loadlistid
+	 * @return
+	 */
+	public TransArrivalVO getLoadList(String loadlistid);
 
 }

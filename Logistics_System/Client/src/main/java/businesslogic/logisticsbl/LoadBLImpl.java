@@ -32,13 +32,6 @@ public class LoadBLImpl implements LoadBLService {
 	}
 	public ResultMessage createLoadlist(LoadListVO loadListVO) {
 		LoadListPO loadlistpo=null;
-		try{
-			loadlistpo=service2.find(loadListVO.getTranspotationNumber());
-		}catch(RemoteException e){
-			e.printStackTrace();
-		}
-		if(loadlistpo!=null)
-			return new ResultMessage(false,"装车单编号已存在!");
 		for(String id:loadListVO.getBarcodes()){
 			try{
 				OrderListPO orderListPO=service1.find(id);
@@ -68,9 +61,10 @@ public class LoadBLImpl implements LoadBLService {
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<5-s.length();i++)
+		int num=s.length();
+		for(int i=0;i<5-num;i++)
 			s="0"+s;
-        df=new SimpleDateFormat("yyyyMMddHHmm");
-		return user.getAgencyNum()+df.format(new Date())+s;
+        SimpleDateFormat df1=new SimpleDateFormat("yyyyMMdd");
+		return user.getAgencyNum()+df1.format(new Date())+s;
 	}
 }

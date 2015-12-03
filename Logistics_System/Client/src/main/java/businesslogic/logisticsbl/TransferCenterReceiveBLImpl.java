@@ -62,9 +62,6 @@ public class TransferCenterReceiveBLImpl implements TransferCenterReceiveBLServi
 		}
 		TransArrivalListPO transpo=null;
 		try{
-			transpo=transarrival.find(transArrivalList.getTransferNumber());
-			if(transpo!=null)
-				return new ResultMessage(false,"中转单已经存在!");
 			transpo=new TransArrivalListPO(transArrivalList.getId(),transArrivalList.getTransferNumber(),transArrivalList.getCenterNumber(),transArrivalList.getDate(),goodpo,transArrivalList.getCheckType());
 			transarrival.update(transpo);
 			system.add(new SystemLogPO((String)df.format(new Date()),"添加中转中心到达单,单号为"+transArrivalList.getId(),user.getAdmin()));
@@ -117,7 +114,8 @@ public class TransferCenterReceiveBLImpl implements TransferCenterReceiveBLServi
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<5-s.length();i++)
+		int num=s.length();
+		for(int i=0;i<5-num;i++)
 			s="0"+s;
 		return user.getAgencyNum()+s;
 	}

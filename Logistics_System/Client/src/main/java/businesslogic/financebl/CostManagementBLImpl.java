@@ -29,17 +29,13 @@ public class CostManagementBLImpl implements CostManagementBLService{
 		// TODO Auto-generated method stub
 		MoneyOutListPO moneyoutpo=null;
 		try{
-			moneyoutpo=moneyoutlistdataservice.findOnID(moneyOut.getId());
-			if(moneyoutpo==null){
 				moneyoutpo=new MoneyOutListPO(moneyOut.getId(),moneyOut.getDate(),moneyOut.getMoney(),moneyOut.getPayer(),moneyOut.getAccountNum(),moneyOut.getClause(),moneyOut.getNote(),moneyOut.getCheckType());
 				moneyoutlistdataservice.add(moneyoutpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"创建付款单,单号为"+moneyOut.getId(),user.getAdmin()));
-				return new ResultMessage(true,"添加付款单成功!");
-			}
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return new ResultMessage(false,"付款单已存在!");
+		return new ResultMessage(true,"添加付款单成功!");
 	}
 	public ArrayList<MoneyOutListVO> search(String start_day, String end_day) {
 		// TODO 自动生成的方法存根
@@ -65,7 +61,8 @@ public class CostManagementBLImpl implements CostManagementBLService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<5-s.length();i++)
+		int num=s.length();
+		for(int i=0;i<5-num;i++)
 			s="0"+s;
 		return user.getAgencyNum()+s;
 	}

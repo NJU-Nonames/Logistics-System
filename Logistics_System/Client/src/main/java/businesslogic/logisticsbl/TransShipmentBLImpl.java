@@ -45,9 +45,6 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 			}
 		TransShipmentListPO transpo=null;
 			try{
-				transpo=transshipment.find(transShipment.getTransitDocNumber());
-				if(transpo!=null)
-					return new ResultMessage(false,"该中转单已经存在!");
 				transpo=new TransShipmentListPO(transShipment.getDate(),transShipment.getTransitDocNumber(),transShipment.getFlightNumber(),transShipment.getDeparturePlace(),transShipment.getDesitination(),transShipment.getContainerNumber(),transShipment.getSupercargoMan(),transShipment.getBarcodes(),transShipment.getCheckType());
 				transshipment.add(transpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"添加中转单,单号为"+transShipment.getTransitDocNumber(),user.getAdmin()));
@@ -64,10 +61,11 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<7-s.length();i++)
+		int num=s.length();
+		for(int i=0;i<7-num;i++)
 			s="0"+s;
-        df=new SimpleDateFormat("yyyyMMddHHmm");
-		return user.getAgencyNum()+df.format(new Date())+s;
+        SimpleDateFormat df1=new SimpleDateFormat("yyyyMMddHHmm");
+		return user.getAgencyNum()+df1.format(new Date())+s;
 	}
 
 }

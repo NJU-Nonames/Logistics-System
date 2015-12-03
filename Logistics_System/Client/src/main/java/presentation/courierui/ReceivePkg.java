@@ -509,6 +509,10 @@ public class ReceivePkg extends JPanel{
 		senddateLabel.setText("");
 	}
 	private void clear(){
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time=format.format(date_);
+		r_date.setText(time);
 		order.setText("");
 		r_name.setText("");	
 		r_phone.setText("");	

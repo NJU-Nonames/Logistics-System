@@ -73,6 +73,7 @@ public class SendPkg extends JPanel{
 	private JLabel money;
 	private JLabel barCode;
 
+
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
@@ -251,6 +252,11 @@ public class SendPkg extends JPanel{
         name1.setSize(80, 20);
         name1.setLocation(CourierFrame.w/6+40+(int)(15*6*1.07f),128+80-3);
         
+        barCode=new JLabel("订单号:"+bl.createOrderId());
+        barCode.setSize((int)(15*18*1.07f), 16);
+        barCode.setFont(new Font("宋体", Font.BOLD, 15));
+        barCode.setLocation(CourierFrame.w/6+500, 128+80);
+        
 		JLabel l2 = new JLabel("手机：");
 		l2.setSize((int)(16*3*1.07f), 16);
 		l2.setFont(new Font("宋体", Font.BOLD, 15));
@@ -396,6 +402,7 @@ public class SendPkg extends JPanel{
 
     	add(l1);
     	add(name1);
+    	add(barCode);
     	add(l2);
     	add(phone1);
     	add(l3);
@@ -571,26 +578,12 @@ public class SendPkg extends JPanel{
 			category=ExpressType.EXPRESS;
 		}
 		
-		//生成条形码
-		Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy:MM:dd:HH:mm");
-		String time=format.format(date_);
-	    String[] times=time.split(":");
-	    String barCode=currentUser.getAgencyNum()+times[0]+times[1]+times[2]+times[3]+times[4];
-		
-		
-		ArrayList<String> pkgState=new ArrayList<String>();//历史轨迹
-		Date date_2=new Date();
-		DateFormat format2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String time2=format2.format(date_2);
-		pkgState.add(time2+" 订单开始处理！");
-		
 		
 		OrderListVO orderListVO = 
 				new OrderListVO(_name1, _address1, _phone1, 
 						_name2, _address2, _phone2, 
 						_num, _weight_double, _volume_double, _name, category, 
-						pkgState, 10.0, barCode, type, _date, "2000-1-1 0:00:00", CheckType.UNDERCHECK,"-","-");
+						null, 10.0, bl.createOrderId(), type, _date, "2000-1-1 0:00:00", CheckType.UNDERCHECK,"-","-");
 
 		bl.createMoneyAndDate(orderListVO);//自动改变orderListVO的运费和ArriveTime
 						
@@ -613,8 +606,8 @@ public class SendPkg extends JPanel{
 		weight.setText("");
 		volume.setText("");
 		DateFormat format3=new SimpleDateFormat("yyyy-MM-dd");
-		String time3=format3.format(date_);
-		date.setText(time3);
+		//String time3=format3.format(date_);
+		//date.setText(time3);
 		num.setText(1+"");
 		name.setText("");
 		pre_date.setText("");
@@ -624,6 +617,7 @@ public class SendPkg extends JPanel{
 						
 	}
 	private void clear(){
+		barCode.setText("订单号:"+bl.createOrderId());
 		name1.setText("");	
 		phone1.setText("");	
 		address1.setText("");
@@ -633,7 +627,7 @@ public class SendPkg extends JPanel{
 		weight.setText("");
 		volume.setText("");	
 		Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time=format.format(date_);
 		date.setText(time);
 		num.setText(1+"");

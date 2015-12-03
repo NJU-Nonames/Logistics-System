@@ -59,9 +59,6 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		// TODO 自动生成的方法存根
 		RepertoryInPO repertoryinpo=null;
 		try{
-			repertoryinpo=repertoryin.findOnID(repertoryIn.getId());
-			if(repertoryinpo!=null)
-				return new ResultMessage(false,"入库单已经存在!");
 				repertoryinpo=new RepertoryInPO(repertoryIn.getId(),repertoryIn.getNum(),repertoryIn.getTime(),repertoryIn.getDestination(),repertoryIn.getAreacode(),repertoryIn.getRownumber(),repertoryIn.getFramenumber(),repertoryIn.getPlacenumber(),repertoryIn.getCheckType());
 				repertoryin.add(repertoryinpo);
 				repertoryinfo.add(repertoryinpo);
@@ -81,9 +78,6 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		// TODO 自动生成的方法存根
 		RepertoryOutPO repertoryoutpo=null;
 		try{
-			repertoryoutpo=repertoryout.findOnID(repertoryOut.getId());
-			if(repertoryoutpo!=null)
-				return new ResultMessage(false,"出库单已经存在!");
 				repertoryoutpo=new RepertoryOutPO(repertoryOut.getId(),repertoryOut.getCode(),repertoryOut.getTime(),repertoryOut.getDestination(),repertoryOut.getTransportation(),repertoryOut.getTransCode(),repertoryOut.getCheckType());
 				repertoryout.add(repertoryoutpo);
 				repertoryinfo.delete(repertoryoutpo);
@@ -305,7 +299,8 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<5-s.length();i++)
+		int num=s.length();
+		for(int i=0;i<5-num;i++)
 			s="0"+s;
 		return user.getAgencyNum()+s;
 	}
@@ -318,7 +313,8 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		for(int i=0;i<5-s.length();i++)
+		int num=s.length();
+		for(int i=0;i<5-num;i++)
 			s="0"+s;
 		return user.getAgencyNum()+s;
 	}
