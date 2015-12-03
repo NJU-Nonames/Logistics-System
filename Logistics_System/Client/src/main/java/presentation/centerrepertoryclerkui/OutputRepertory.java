@@ -233,8 +233,8 @@ public class OutputRepertory extends JPanel{
         transWays.setFont(new Font("宋体", Font.BOLD, 15));
         transWays.setLocation(agencyNameLabel.getX(),destiPlace.getY()+100);
         
-        JLabel transId=new JLabel("中转单编号:");
-        transId.setSize((int)(16*"中转订单编号:".length()*1.07f), 16);
+        JLabel transId=new JLabel("中转单编号/汽运编号:");
+        transId.setSize((int)(16*"中转订单编号/汽运编号:".length()*1.07f), 16);
         transId.setFont(new Font("宋体", Font.BOLD, 15));
         transId.setLocation(agencyNameLabel.getX(),transWays.getY()+100);
     	

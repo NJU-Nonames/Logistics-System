@@ -19,11 +19,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businesslogic.logisticsbl.RepertoryManageBLImpl;
+import businesslogicservice.logisticsblservice.RepertoryManageBLService;
 import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.CheckType;
+import vo.RepertoryInVO;
 
 /**
  * @author 谭期友
@@ -32,7 +36,7 @@ import presentation.mainui.MyButton;
 public class InputRepertory extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private RepertoryManageBLService bl;
 	private CenterRepertoryClerkFrame frame;
 	private CurrentUser currentUser;
 	
@@ -78,7 +82,7 @@ public class InputRepertory extends JPanel{
 	
 	public InputRepertory(CenterRepertoryClerkFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=new RepertoryManageBLImpl(currentUser);
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -374,7 +378,24 @@ public class InputRepertory extends JPanel{
 		}
 	}
 	void _confirm(){
-		
+		String orderId = _orderId.getText();
+		String t="";
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		t=format.format(date_);
+		String desti = _destiPlace.getText();
+		String q=_q.getText();
+		String p=_p.getText();
+		String j=_j.getText();
+		String w=_w.getText();
+		if(orderId.compareTo("")==0||desti.compareTo("")==0||q.compareTo("")==0
+	||p.compareTo("")==0||j.compareTo("")==0||w.compareTo("")==0){
+			printMessage("入库单输入不完整！", Color.RED);
+			return;
+		}
+		RepertoryInVO result = new RepertoryInVO(bl.createRepertoryInId(),orderId,t,desti,q,p,j,w,CheckType.UNDERCHECK);
+		bl.createInputRepertory(result);
+		clear();
 	}
 	void _cancel(){
 		clear();
