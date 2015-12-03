@@ -57,12 +57,13 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 	
 	public RepertoryInfoPO findbyID(String id){
 		RepertoryInfoPO repertoryinfo=null;
-		String sql="select * from repertoryinfo where orderid='"+id+"'";
+		String sql="select * from repertoryinfo where goodid='"+id+"'";
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();
 			repertoryinfo=new RepertoryInfoPO(id, rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("orderid"));
 		} catch (SQLException e) {
+			//e.printStackTrace();
 		    return null;
 		}
 		return repertoryinfo;

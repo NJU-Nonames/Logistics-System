@@ -21,45 +21,45 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 	}
 
 	public void add(LoadListPO loadListPO) throws RemoteException {
-		String sql="insert into loadlist values ('"+loadListPO.getId()+"','"+loadListPO.getDate()+"','"+loadListPO.getHallNumber()+"','"+loadListPO.getTransportationNumber()+"','"+loadListPO.getDestination()
+		String sql="insert into loadlist values ('"+loadListPO.getTransportationNumber()+"','"+loadListPO.getDate()+"','"+loadListPO.getTransportationNumber()+"','"+loadListPO.getDestination()
 				+"','"+loadListPO.getCarNumber()+"','"+loadListPO.getGuardMan()+"','"+loadListPO.getSupercargoMan()+"','"+loadListPO.getCheckType()+"')";
 		DataJDBCConnection.update(sql);
 		int num=loadListPO.getBarcodes().size();
 		for(int i=0;i<num;i++)
 		{
-             String sql2="insert into loadlist_barcode values (primarykey,'"+loadListPO.getBarcodes().get(i)+"','"+loadListPO.getId()+"')";			
+             String sql2="insert into loadlist_barcode values (primarykey,'"+loadListPO.getBarcodes().get(i)+"','"+loadListPO.getTransportationNumber()+"')";			
 		     DataJDBCConnection.update(sql2);
 		}
 
 	}
 
 	public void delete(String ID) throws RemoteException {
-		String sql="delete from loadlist where id='"+ID+"'";
+		String sql="delete from loadlist where transportationNumber='"+ID+"'";
 		DataJDBCConnection.update(sql);
-		String sql2="delete from loadlist_barcode where id="+ID+"'";
+		String sql2="delete from loadlist_barcode where transportationNumber="+ID+"'";
 		DataJDBCConnection.update(sql2);
 		
 	}
 
 	public void update(LoadListPO loadListPO) throws RemoteException {
-		this.delete(loadListPO.getId());
+		this.delete(loadListPO.getTransportationNumber());
 		this.add(loadListPO);
 		
 	}
 
 	public LoadListPO find(String id) throws RemoteException {
-		String sql="select * from loadlist where id='"+id+"'";
+		String sql="select * from loadlist where transportationNumber='"+id+"'";
 		LoadListPO loadlist=null;
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			String sql2="select * from loadlist_barcode where id='"+id+"'";
+			String sql2="select * from loadlist_barcode where transportationNumber='"+id+"'";
 			ResultSet rs2=DataJDBCConnection.find(sql2);
 			ArrayList<String> barcode=new ArrayList<String>();
 			while(rs2.next()){
 				barcode.add(rs2.getString("barcode"));
 			}
-			loadlist=new LoadListPO(id, rs.getString("timee"), rs.getString("hallnumber"), rs.getString("transportationNumber"), rs.getString("destination"), rs.getString("carnumber"), rs.getString("guardman"), rs.getString("supercargoman"), barcode, CheckType.valueOf(rs.getString("checkstate")));
+			loadlist=new LoadListPO(rs.getString("transportationNumber"), rs.getString("timee"), rs.getString("hallnumber"), rs.getString("destination"), rs.getString("carnumber"), rs.getString("guardman"), rs.getString("supercargoman"), barcode, CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
 			System.out.println("操作失败 未找到");
 			return null;
@@ -75,7 +75,7 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 		try {
 			while(rs.next())
 			{
-				loadList.add(this.find(rs.getString("id")));
+				loadList.add(this.find(rs.getString("transportationNumber")));
 			}
 			
 		} catch (SQLException e) {
@@ -88,12 +88,12 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 	public ArrayList<LoadListPO> showAllByAgency(String agencyID)
 			throws RemoteException {
 		ArrayList<LoadListPO> loadList=new ArrayList<LoadListPO>();
-		String sql="select * from loadlist where id like '"+agencyID+"%'";
+		String sql="select * from loadlist where transportationNumber like '"+agencyID+"%'";
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			while(rs.next())
 			{
-				loadList.add(this.find(rs.getString("id")));
+				loadList.add(this.find(rs.getString("transportationNumber")));
 			}
 			
 		} catch (SQLException e) {

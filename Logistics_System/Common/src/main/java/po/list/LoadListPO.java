@@ -9,7 +9,12 @@ import utility.CheckType;
  * 装车单
  */
 public class LoadListPO extends ListPO{
-	private String id;
+
+	/**
+	 * 汽运编号
+	 */
+	private String transportationNumber;
+	
 	/**
 	 * 装车日期
 	 */
@@ -19,11 +24,6 @@ public class LoadListPO extends ListPO{
 	 * 本营业厅编号
 	 */
 	private String hallNumber;
-
-	/**
-	 * 汽运编号
-	 */
-	private String transportationNumber;
 
 	/**
 	 * 目的地
@@ -50,10 +50,9 @@ public class LoadListPO extends ListPO{
 	 */
 	private ArrayList<String> barcodes;
 
-	public LoadListPO(String id,String date, String hallNumber, String transportationNumber, String destination,
+	public LoadListPO(String date, String hallNumber, String transportationNumber, String destination,
 			String carNumber, String guardMan, String supercargoMan, ArrayList<String> barcodes,CheckType type) {
 		super();
-		this.setId(id);
 		this.date = date;
 		this.hallNumber = hallNumber;
 		this.transportationNumber = transportationNumber;
@@ -97,11 +96,4 @@ public class LoadListPO extends ListPO{
 		return barcodes;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 }
