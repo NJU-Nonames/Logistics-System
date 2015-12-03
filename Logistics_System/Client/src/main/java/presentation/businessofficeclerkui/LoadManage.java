@@ -538,7 +538,7 @@ public class LoadManage extends JPanel{
 			_barcodes.add(s);
 		}
 		
-		LoadListVO loadListVO = new LoadListVO("?", date_s, hallNumber_s, transpotationNumber_s, Destination_s, carNumber_s, guardMan_s, supercargoMan_s, _barcodes, CheckType.UNDERCHECK);
+		LoadListVO loadListVO = new LoadListVO( date_s, hallNumber_s, transpotationNumber_s, Destination_s, carNumber_s, guardMan_s, supercargoMan_s, _barcodes, CheckType.UNDERCHECK);
 		ResultMessage resultMessage = bl.createLoadlist(loadListVO);
 		if(!resultMessage.isPass()){
 			printMessage(resultMessage.getMessage(), Color.RED);

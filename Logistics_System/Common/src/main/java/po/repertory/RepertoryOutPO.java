@@ -32,14 +32,10 @@ public class RepertoryOutPO extends ListPO{
 	private TransportationType transportation;
 	
 	/**
-	 * 中转单编号
+	 * 中转单编号或汽运编号
 	 */
 	private String transCode;
 	
-	/**
-	 * 汽运编号
-	 */
-	private String vehicleCode;
 
 	public String getCode() {
 		return code;
@@ -61,13 +57,9 @@ public class RepertoryOutPO extends ListPO{
 		return transCode;
 	}
 
-	public String getVehicleCode() {
-		return vehicleCode;
-	}
 
 	public RepertoryOutPO(String id,String code, String time, String destination,
-			TransportationType transportation, String transCode,
-			String vehicleCode,CheckType type) {
+			TransportationType transportation, String transCode,CheckType type) {
 		super();
 		this.id=id;
 		this.code = code;
@@ -75,7 +67,6 @@ public class RepertoryOutPO extends ListPO{
 		this.destination = destination;
 		this.transportation = transportation;
 		this.transCode = transCode;
-		this.vehicleCode = vehicleCode;
 		this.setCheckType(type);
 	}
 

@@ -114,7 +114,7 @@ public class CheckBLImpl implements CheckBLService {
 				if(repertoryoutpo==null)
 					return null;
 				for(RepertoryOutPO po:repertoryoutpo){
-					repertoryoutvo.add(new RepertoryOutVO(po.getId(), po.getCode(), po.getTime(), po.getDestination(), po.getTransportation(), po.getTransCode(), po.getVehicleCode(), po.getCheckType()));
+					repertoryoutvo.add(new RepertoryOutVO(po.getId(), po.getCode(), po.getTime(), po.getDestination(), po.getTransportation(), po.getTransCode(),  po.getCheckType()));
 				}
 				return repertoryoutvo;
 			case SENDING_NOTE:
@@ -518,7 +518,7 @@ public class CheckBLImpl implements CheckBLService {
 				return true;
 			case OUT_STOREAGE_NOTE:
 				RepertoryOutVO repertoryoutvo=(RepertoryOutVO)listVO;
-				RepertoryOutPO repertoryoutpo=new RepertoryOutPO(repertoryoutvo.getId(),repertoryoutvo.getCode(),repertoryoutvo.getTime(),repertoryoutvo.getDestination(),repertoryoutvo.getTransportation(),repertoryoutvo.getTransCode(),repertoryoutvo.getVehicleCode(),repertoryoutvo.getCheckType());
+				RepertoryOutPO repertoryoutpo=new RepertoryOutPO(repertoryoutvo.getId(),repertoryoutvo.getCode(),repertoryoutvo.getTime(),repertoryoutvo.getDestination(),repertoryoutvo.getTransportation(),repertoryoutvo.getTransCode(),repertoryoutvo.getCheckType());
 				repertoryout.update(repertoryoutpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"改变出库单信息",user.getAdmin()));
 				return true;

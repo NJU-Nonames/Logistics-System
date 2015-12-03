@@ -84,7 +84,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 			repertoryoutpo=repertoryout.findOnID(repertoryOut.getId());
 			if(repertoryoutpo!=null)
 				return new ResultMessage(false,"出库单已经存在!");
-				repertoryoutpo=new RepertoryOutPO(repertoryOut.getId(),repertoryOut.getCode(),repertoryOut.getTime(),repertoryOut.getDestination(),repertoryOut.getTransportation(),repertoryOut.getTransCode(),repertoryOut.getVehicleCode(),repertoryOut.getCheckType());
+				repertoryoutpo=new RepertoryOutPO(repertoryOut.getId(),repertoryOut.getCode(),repertoryOut.getTime(),repertoryOut.getDestination(),repertoryOut.getTransportation(),repertoryOut.getTransCode(),repertoryOut.getCheckType());
 				repertoryout.add(repertoryoutpo);
 				repertoryinfo.delete(repertoryoutpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"添加一条出库单"+repertoryOut.getId(),user.getAdmin()));
@@ -154,7 +154,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		    
 		    for(int i=0;i<arrayout.size();i++)
 		    {
-		    	repertoryout.add(new RepertoryOutVO(arrayout.get(i).getId(), arrayout.get(i).getCode(), arrayout.get(i).getTime(), arrayout.get(i).getDestination(), arrayout.get(i).getTransportation(), arrayout.get(i).getTransCode(), arrayout.get(i).getVehicleCode(), arrayout.get(i).getCheckType()));
+		    	repertoryout.add(new RepertoryOutVO(arrayout.get(i).getId(), arrayout.get(i).getCode(), arrayout.get(i).getTime(), arrayout.get(i).getDestination(), arrayout.get(i).getTransportation(), arrayout.get(i).getTransCode(), arrayout.get(i).getCheckType()));
 		        moneyout+=orderlist.find(arrayout.get(i).getCode()).getPackPrice();
 		    }
 		    

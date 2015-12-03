@@ -22,7 +22,7 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 
 	public void add(RepertoryOutPO repertoryOut) {
 		String sql="insert into repertoryout values ('"+repertoryOut.getId()+"','"+repertoryOut.getCode()+"','"+repertoryOut.getTime()+"','"+repertoryOut.getDestination()+"','"+repertoryOut.getTransportation()
-				+"','"+repertoryOut.getTransCode()+"','"+repertoryOut.getVehicleCode()+"','"+repertoryOut.getCheckType()+"')";
+				+"','"+repertoryOut.getTransCode()+"','"+repertoryOut.getCheckType()+"')";
 		DataJDBCConnection.update(sql);
 		
 	}
@@ -45,7 +45,7 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			repertoryout=new RepertoryOutPO(id, rs.getString("orderid"), rs.getString("timee"), rs.getString("destination"),TransportationType.valueOf(rs.getString("transportation")), rs.getString("transcode"), rs.getString("vehiclecode"), CheckType.valueOf(rs.getString("checkstate")));
+			repertoryout=new RepertoryOutPO(id, rs.getString("orderid"), rs.getString("timee"), rs.getString("destination"),TransportationType.valueOf(rs.getString("transportation")), rs.getString("transcode"),  CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
 			System.out.println("查找失败");
 			return null;
