@@ -107,4 +107,12 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 		}
 		return new ResultMessage(true, "添加派件单成功!");
 	}
+	public String createHallArrivalListId() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+	public String createDeliveringListId() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 }

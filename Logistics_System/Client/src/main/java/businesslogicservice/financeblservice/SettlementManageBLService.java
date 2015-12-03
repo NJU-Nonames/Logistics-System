@@ -26,5 +26,10 @@ public interface SettlementManageBLService {
 	public ArrayList<MoneyInListVO> searchbyhall(String start_day, String end_day,String hall_id);
 	public ArrayList<MoneyInListVO> search(String start_day,String end_day);
 	public ResultMessage createMoneyInList(MoneyInListVO moneyin);
+	/**
+	 * 生成收款单单号
+	 * @return
+	 */
+	public String createMoneyInListId();
 
 }

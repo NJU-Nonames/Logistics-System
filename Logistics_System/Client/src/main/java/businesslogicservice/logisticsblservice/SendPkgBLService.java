@@ -24,6 +24,11 @@ public interface SendPkgBLService {
 	 * @return
 	 */
 	public ResultMessage createOrderList(OrderListVO orderListVO);
+	/**
+	 * 生成订单号
+	 * @return
+	 */
+	public String createOrderId();
 	
 	
 }

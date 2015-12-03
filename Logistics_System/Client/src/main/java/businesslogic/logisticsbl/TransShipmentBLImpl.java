@@ -56,5 +56,9 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 		}
 		return new ResultMessage(true,"中转单添加成功!");
 	}
+	public String createTransShipmentListId() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 
 }

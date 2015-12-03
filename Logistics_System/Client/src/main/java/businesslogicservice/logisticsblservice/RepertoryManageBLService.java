@@ -23,12 +23,22 @@ public interface RepertoryManageBLService {
 	 * @return	入库是否成功
 	 */
 	public ResultMessage createInputRepertory(RepertoryInVO repertoryIn);
+	/**
+	 * 生成入库单编号
+	 * @return
+	 */
+	public String createRepertoryInId();
 	
 	/**仓库管理人员执行出库管理
 	 * @param 	出库单
 	 * @return	出库是否成功
 	 */
 	public ResultMessage createOutputRepertory(RepertoryOutVO repertoryOut);
+	/**
+	 * 生成出库单编号
+	 * @return
+	 */
+	public String createRepertoryOutId();
 	
 	/**仓库管理人员进行库存盘点
 	 * @return	返回一个库存信息的VO里面包含库存的信息类

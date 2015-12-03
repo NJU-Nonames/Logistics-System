@@ -285,4 +285,14 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 			e.printStackTrace();
 		}	
 	}
+
+	public String createRepertoryInId() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public String createRepertoryOutId() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 }

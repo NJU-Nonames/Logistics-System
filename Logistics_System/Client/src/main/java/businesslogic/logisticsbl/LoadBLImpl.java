@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 import po.list.LoadListPO;
 import po.list.OrderListPO;
 import po.system.SystemLogPO;
@@ -58,5 +59,9 @@ public class LoadBLImpl implements LoadBLService {
 			e.printStackTrace();
 		}
 		return new ResultMessage(true, "添加装车单成功!");
+	}
+	public String createLoadlistId() {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 }

@@ -109,5 +109,9 @@ public class TransferCenterReceiveBLImpl implements TransferCenterReceiveBLServi
 		}
 		return null;
 	}
+	public String createTransArrivalListId() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 
 }

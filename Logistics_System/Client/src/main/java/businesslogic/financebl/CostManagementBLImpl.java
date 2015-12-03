@@ -57,5 +57,9 @@ public class CostManagementBLImpl implements CostManagementBLService{
 		}
 		return moneyoutvo;
 	}
+	public String createMoneyOutListId() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 
 }

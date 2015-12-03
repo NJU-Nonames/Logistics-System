@@ -17,6 +17,11 @@ public interface TransferCenterReceiveBLService {
 	 * @return
 	 */
 	public ResultMessage createTransArrivalList(TransArrivalListVO transArrivalList);
+	/**
+	 * 生成中转中心到达单单号
+	 * @return
+	 */
+	public String createTransArrivalListId();
 	
 	public TransArrivalVO getLoadList(String loadlistid);
 	

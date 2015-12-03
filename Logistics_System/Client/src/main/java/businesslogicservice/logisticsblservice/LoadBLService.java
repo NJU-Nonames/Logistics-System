@@ -17,5 +17,10 @@ public interface LoadBLService {
 	 * 后置条件：	系统补足缺省选项之后保存装车单并显示装车单详情
 	 */
 	public ResultMessage createLoadlist(LoadListVO loadListVO);
+	/**
+	 * 生成装车单单号
+	 * @return
+	 */
+	public String createLoadlistId();
 	
 }

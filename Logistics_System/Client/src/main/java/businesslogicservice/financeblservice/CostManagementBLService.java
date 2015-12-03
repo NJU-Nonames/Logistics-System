@@ -25,6 +25,11 @@ public interface CostManagementBLService {
 	 * @return 付款单
 	 */
 	public ResultMessage createMoneyOutlist(MoneyOutListVO moneyOut);
+	/**
+	 * 生成付款单单号
+	 * @return
+	 */
+	public String createMoneyOutListId();
 	
 	public ArrayList<MoneyOutListVO> search(String start_day,String end_day);
 

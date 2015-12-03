@@ -18,5 +18,10 @@ public interface TransShipmentBLService {
 	 * 后置条件：	系统判定输入准确无误之后，保存装运单，修改订单的相关属性
 	 */
 	public ResultMessage createShiplist(TransShipmentListVO transShipment);
+	/**
+	 * 生成中转单编号
+	 * @return
+	 */
+	public String createTransShipmentListId();
 
 }

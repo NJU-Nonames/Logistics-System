@@ -26,5 +26,15 @@ public interface DeliverAndReceiveBLService {
 	 * @return
 	 */
 	public ResultMessage createDeliveringList (DeliveringListVO deliveringList);
+	/**
+	 * 生成营业厅到达单单号
+	 * @return
+	 */
+	public String createHallArrivalListId();
+	/**
+	 * 生成派件单单号
+	 * @return
+	 */
+	public String createDeliveringListId();
 
 }

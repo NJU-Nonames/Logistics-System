@@ -124,4 +124,8 @@ public class SendPkgBLImpl implements SendPkgBLService {
 		}
 		return new ResultMessage(true, "成功保存订单!");
 	}
+	public String createOrderId() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 }

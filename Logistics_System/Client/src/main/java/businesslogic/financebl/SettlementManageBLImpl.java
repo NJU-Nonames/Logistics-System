@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 import po.moneyInfomation.MoneyInListPO;
 import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
@@ -70,6 +71,11 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 			e.printStackTrace();
 		}
 		return new ResultMessage(false,"收款单已存在!");
+	}
+
+	public String createMoneyInListId() {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 }
