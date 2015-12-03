@@ -533,7 +533,7 @@ public class PeopleAgencyManage extends JPanel{
 		IDNum.setSize(120, 20);
 		IDNum.setLocation(596+10+(int)(16*4*1.07f),128+100-3);
 
-		JLabel l7 = new JLabel("工作开始时间：");
+		JLabel l7 = new JLabel("工作时间：");
 		l7.setSize((int)(16*7*1.07f), 16);
 		l7.setFont(new Font("宋体", Font.BOLD, 15));
 		l7.setLocation(596+10+(int)(16*4*1.07f)+120, 128+100);
