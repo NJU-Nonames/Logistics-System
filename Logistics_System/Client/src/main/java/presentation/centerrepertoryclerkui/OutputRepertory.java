@@ -21,11 +21,16 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import businesslogic.logisticsbl.RepertoryManageBLImpl;
+import businesslogicservice.logisticsblservice.RepertoryManageBLService;
 import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.CheckType;
+import utility.TransportationType;
+import vo.RepertoryOutVO;
 
 /**
  * @author 谭期友
@@ -34,7 +39,7 @@ import presentation.mainui.MyButton;
 public class OutputRepertory extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private RepertoryManageBLService bl;
 	private CenterRepertoryClerkFrame frame;
 	private CurrentUser currentUser;
 	
@@ -81,7 +86,7 @@ public class OutputRepertory extends JPanel{
 	
 	public OutputRepertory(CenterRepertoryClerkFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=new RepertoryManageBLImpl(currentUser);
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -92,6 +97,7 @@ public class OutputRepertory extends JPanel{
 		initComponent();
 	}
 	private void initComponent() {
+		
 		//最基本按钮
 		close = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
         close.addMouseListener(new MouseListener(){
@@ -238,6 +244,10 @@ public class OutputRepertory extends JPanel{
         transId.setFont(new Font("宋体", Font.BOLD, 15));
         transId.setLocation(agencyNameLabel.getX(),transWays.getY()+100);
     	
+        JLabel outId=new JLabel("本出库单编号"+bl.createRepertoryOutId());
+        outId.setSize((int)(16*("本出库单编号"+bl.createRepertoryOutId()).length()*1.07f), 16);
+        outId.setFont(new Font("宋体", Font.BOLD, 15));
+        outId.setLocation(agencyNameLabel.getX(),transId.getY()+100);
         //最基本按钮
     	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
@@ -366,7 +376,40 @@ public class OutputRepertory extends JPanel{
 		}
 	}
 	public void _confirm(){
+		String orderId = _orderId.getText();
 		
+		String time  = "";
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		time+=format.format(date_);
+		
+		String desti = _destiPlace.getText();
+		
+		TransportationType type;
+		if(_plane.isSelected()){
+			type=TransportationType.AIRPLANE;
+		}
+		else if(_trains.isSelected()){
+			type=TransportationType.TRAIN;
+		}
+		else{
+			type=TransportationType.TURCK;
+		}
+		String transId=_transId.getText();
+		if(orderId.compareTo("")==0||desti.compareTo("")==0||
+				transId.compareTo("")==0){
+			printMessage("输入信息不完整！", Color.RED);
+			return;
+		}
+		RepertoryOutVO result = new RepertoryOutVO(bl.createRepertoryOutId(),orderId,time,desti,type,transId,CheckType.UNDERCHECK);
+		if(bl.createOutputRepertory(result).getMessage().compareTo("创建出库单成功!")!=0){
+			printMessage(bl.createOutputRepertory(result).getMessage(), Color.RED);
+			return;
+		}
+		else{
+			printMessage(bl.createOutputRepertory(result).getMessage(), Color.GREEN);
+		}
+		clear();
 	}
 	public void _cancel(){
 		clear();

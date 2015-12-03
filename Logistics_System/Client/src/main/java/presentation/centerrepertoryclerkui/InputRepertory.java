@@ -394,8 +394,18 @@ public class InputRepertory extends JPanel{
 			return;
 		}
 		RepertoryInVO result = new RepertoryInVO(bl.createRepertoryInId(),orderId,t,desti,q,p,j,w,CheckType.UNDERCHECK);
-		bl.createInputRepertory(result);
-		clear();
+		String s = bl.createInputRepertory(result).getMessage();
+		if(s.compareTo("创建入库单成功!")==0){
+			printMessage(s, Color.GREEN);
+			clear();
+		}
+		else if(s.compareTo("创建入库单成功!仓位到达报警线，请进行库存调整修改位置。")==0){
+			printMessage(s, Color.YELLOW);
+			clear();
+		}
+		else{
+			printMessage(s, Color.RED);
+		}
 	}
 	void _cancel(){
 		clear();

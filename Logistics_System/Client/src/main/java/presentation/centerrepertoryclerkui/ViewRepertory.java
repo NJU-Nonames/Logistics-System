@@ -350,7 +350,7 @@ public class ViewRepertory extends JPanel{
       	outCount = new JLabel("出库数量总计：");//联系逻辑层数据
       	outCount.setSize((int)(16*"出库数量总计：".length()*1.07f), 16);
       	outCount.setFont(new Font("宋体", Font.BOLD, 15));
-      	outCount.setLocation(inCount.getX()+inCount.getWidth(),inCount.getY());
+      	outCount.setLocation(agencyNameLabel.getX()+150+220,inCount.getY());
       	
       	inMoney = new JLabel("入库金额总计：");//联系逻辑层数据
       	inMoney.setSize((int)(16*"入库金额总计：".length()*1.07f), 16);
@@ -452,10 +452,24 @@ public class ViewRepertory extends JPanel{
     		v.add(rin.get(i).getPlacenumber());
     		repertoryInTableModel.addRow(v);
         }
+		
+		while(repertoryOutTableModel.getRowCount()!=0)//先清空原来的
+			repertoryOutTableModel.removeRow(0);
+		
+		for(int i = 0 ; i<rout.size(); i++){
+			Vector<String> v = new Vector<String>();
+    		v.add(rout.get(i).getTime());
+    		v.add(rout.get(i).getCode());
+    		v.add(rout.get(i).getDestination());
+    		v.add(rout.get(i).getTransportation()+"");
+    		repertoryInTableModel.addRow(v);
+        }
 	}
 	private void clear(){
 		_time1.setText("");
-		_time2.setText("");
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		_time2.setText(format.format(date_));
 		while(repertoryOutTable.getRowCount()!=0)
 			repertoryOutTableModel.removeRow(0);
 		while(repertoryInTable.getRowCount()!=0)

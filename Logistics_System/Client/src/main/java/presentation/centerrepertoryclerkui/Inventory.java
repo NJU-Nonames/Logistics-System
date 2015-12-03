@@ -216,7 +216,7 @@ public class Inventory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        refresh.setLocation(CenterClerkFrame.w/3*2+25,128+184);
+        refresh.setLocation(CenterClerkFrame.w/3*2+125,128+84);
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);

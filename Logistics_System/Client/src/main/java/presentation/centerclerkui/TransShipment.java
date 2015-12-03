@@ -60,7 +60,6 @@ public class TransShipment extends JPanel{
 	private MyButton cancel;
 	private JRadioButton _plane;
 	private JRadioButton _trains;
-	private JRadioButton _truck;
 	private JTextField _transId=new JTextField() ;
 	private JTextField _arrivePlace=new JTextField() ;
 	private JTextField _counterId=new JTextField() ;
@@ -192,7 +191,7 @@ public class TransShipment extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	add.setLocation(CenterClerkFrame.w/6+178,CenterClerkFrame.h/6+278);
+    	add.setLocation(CenterClerkFrame.w/6+265,CenterClerkFrame.h/6+278);
     	remove = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
     	remove.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
@@ -295,8 +294,8 @@ public class TransShipment extends JPanel{
         arrivePlace.setFont(new Font("宋体", Font.BOLD, 15));
         arrivePlace.setLocation(departPlace.getX()+departPlace.getWidth()+80,128+188);
         
-        JLabel counterId = new JLabel("货柜号：");
-        counterId.setSize((int)(16*"货柜号：".length()*1.07f), 16);
+        JLabel counterId = new JLabel("货柜号/车厢号：");
+        counterId.setSize((int)(16*"货柜号/车厢号：".length()*1.07f), 16);
         counterId.setFont(new Font("宋体", Font.BOLD, 15));
         counterId.setLocation(agencyNameLabel.getX(),128+238);
         
@@ -359,13 +358,8 @@ public class TransShipment extends JPanel{
         _trains.setFont(new Font("宋体", Font.BOLD, 17));
         _trains.setLocation(_plane.getX()+_plane.getWidth(),transWays.getY()-3);
         _trains.setOpaque(false);
-        _truck=new JRadioButton("汽运",true);
-        _truck.setSize((int)(100*1.07f), 20);
-        _truck.setFont(new Font("宋体", Font.BOLD, 17));
-        _truck.setLocation(_trains.getX()+_trains.getWidth(),transWays.getY()-3);
-        _truck.setOpaque(false);
         ButtonGroup group1 = new ButtonGroup();
-        group1.add(_plane);group1.add(_trains);group1.add(_truck);
+        group1.add(_plane);group1.add(_trains);
 		
         _transId.setSize((int)(170*1.07f), 20);
         _transId.setLocation(transId.getX()+transId.getWidth(),transId.getY()-3);
@@ -402,7 +396,6 @@ public class TransShipment extends JPanel{
         
         add(_plane);
         add(_trains);
-        add(_truck);
         
         add(_transId);
         add(_arrivePlace);
@@ -430,7 +423,6 @@ public class TransShipment extends JPanel{
 //		.setText("");
 		_plane.setSelected(true);
 		_trains.setSelected(false);
-		_truck.setSelected(false);
 		_transId.setText("");
 		_arrivePlace.setText("");
 		_counterId.setText("");
