@@ -74,10 +74,10 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			repertoryinfo.add(new RepertoryInfoPO(id, rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("orderid")));
+			repertoryinfo.add(new RepertoryInfoPO(id, rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("goodid")));
 		} catch (SQLException e) {
 			System.out.println("查询失败");
-			return null;
+			return repertoryinfo;
 		}
 		
 		return repertoryinfo;

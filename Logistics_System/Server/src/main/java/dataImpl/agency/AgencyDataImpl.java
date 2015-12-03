@@ -61,7 +61,7 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 		try {
 			rs.next();
 			ArrayList<StaffPO> staffList=new ArrayList<StaffPO>();
-			sql="select from staff where agencyId='"+id+"'";
+			sql="select * from staff where agencyId='"+id+"'";
 			ResultSet rs2=(ResultSet) DataJDBCConnection.find(sql);
 			while(rs2.next())
 			{
@@ -69,6 +69,7 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 			}
 			agency=new AgencyPO(rs.getString("agencyName"), rs.getString("agencyId"), staffList);
 		} catch (SQLException e) {
+			System.out.println("未找到该员工");
 			return null;
 		}
 		return agency;
@@ -81,7 +82,8 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 		try {
 			while(rs.next())
 			{
-				agencyList.add(this.find(rs.getString("agencyId")));
+				if(this.find(rs.getString("agencyId"))!=null)
+					agencyList.add(this.find(rs.getString("agencyId")));
 			}
 			
 		} catch (SQLException e) {
