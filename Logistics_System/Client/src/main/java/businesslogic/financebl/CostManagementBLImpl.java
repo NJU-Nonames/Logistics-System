@@ -59,7 +59,15 @@ public class CostManagementBLImpl implements CostManagementBLService{
 	}
 	public String createMoneyOutListId() {
 		// TODO 自动生成的方法存根
-		return null;
+		String s="";
+		try{
+		s=(moneyoutlistdataservice.showAllByAgency(user.getAgencyNum()).size()+1)+"";
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		for(int i=0;i<5-s.length();i++)
+			s="0"+s;
+		return user.getAgencyNum()+s;
 	}
 
 }

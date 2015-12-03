@@ -58,7 +58,16 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 	}
 	public String createTransShipmentListId() {
 		// TODO 自动生成的方法存根
-		return null;
+		String s="";
+		try{
+		s=(transshipment.showAllByAgency(user.getAgencyNum()).size()+1)+"";
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		for(int i=0;i<7-s.length();i++)
+			s="0"+s;
+        df=new SimpleDateFormat("yyyyMMddHHmm");
+		return user.getAgencyNum()+df.format(new Date())+s;
 	}
 
 }

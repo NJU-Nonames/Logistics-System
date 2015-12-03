@@ -31,15 +31,15 @@ public class HallTest {
 	public void test(){
 		ArrayList<String>barcodes=new ArrayList<String>();
 		barcodes.add("010001201511300001");
-		//load.createLoadlist(new LoadListVO("01000100001", "2015-11-30 12:45:30", "010001", "010001201511300001", "南京市", "京A00000", "TFboys", "厂长", barcodes,CheckType.UNDERCHECK));
+		load.createLoadlist(new LoadListVO( "2015-11-30 12:45:30", "010001", "0100012015113000001", "南京市", "京A00000", "TFboys", "厂长", barcodes,CheckType.UNDERCHECK));
 		GoodsInfoVO good=new GoodsInfoVO("010001201511300001", GoodsState.COMPLETE, "北京市");
 		ArrayList<GoodsInfoVO> goodsinfolist=new ArrayList<GoodsInfoVO>();
 		goodsinfolist.add(good);
 		//transarrival.createTransArrivalList(new TransArrivalListVO("01000000001", "01000000001", "010000", "2015-11-30 13:25:29", goodsinfolist, CheckType.UNDERCHECK));
 		//transshipment.createShiplist(new TransShipmentListVO("2015-11-30 14:45:26","01000000001","CE87","北京市","南京市","2","羊驼",barcodes,CheckType.UNDERCHECK));
 		//transarrival1.createTransArrivalList(new TransArrivalListVO("02500000001", "01000000001", "025000", "2015-12-01 08:09:10", goodsinfolist, CheckType.UNDERCHECK));
-		//load1.createLoadlist(new LoadListVO("02500000001", "2015-12-01 10:45:30", "025000", "010001201511300001", "南京市鼓楼营业厅", "苏A00000", "王家玮", "汤大业", barcodes,CheckType.UNDERCHECK));
+		load1.createLoadlist(new LoadListVO( "2015-12-01 10:45:30", "025000", "0100012015113000002", "南京市鼓楼营业厅", "苏A00000", "王家玮", "汤大业", barcodes,CheckType.UNDERCHECK));
 		//deliverandreceive.createHallArrivalList(new HallArrivalListVO("02500100001", "2015-12-01 10:48:45", "02", "南京市中转中心", GoodsState.COMPLETE, barcodes	, CheckType.UNDERCHECK));
-		deliverandreceive.createDeliveringList(new DeliveringListVO("02500100001", "2015-12-01 12:46:58",barcodes, "张三", CheckType.UNDERCHECK));
+		//deliverandreceive.createDeliveringList(new DeliveringListVO("02500100001", "2015-12-01 12:46:58",barcodes, "张三", CheckType.UNDERCHECK));
 	}
 }

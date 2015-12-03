@@ -46,10 +46,6 @@ public class PeopleAgencyBLImpl implements PeopleAgencyBLService {
 			agencypo=agencydataservice.find(agency.getAgencyNum());
 			if(agencypo==null){
 				ArrayList<StaffPO> list=new ArrayList<StaffPO>();
-				if(agency.getStaffList()!=null)
-				for(StaffVO staffvo:agency.getStaffList()){
-					list.add(new StaffPO(staffvo.getName(),staffvo.getSex(),staffvo.getPostion(),staffvo.getIDNum(),staffvo.getWorkingtime(),staffvo.getPhoneNum(),staffvo.getWage(),staffvo.getAgencyName(),staffvo.getId(),staffvo.getAgencyId()));
-				}
 				agencypo=new AgencyPO(agency.getAgencyName(),agency.getAgencyNum(),list);
 				agencydataservice.add(agencypo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"增加机构信息,编号为"+agency.getAgencyNum(),user.getAdmin()));

@@ -33,7 +33,7 @@ public class LoadBLImpl implements LoadBLService {
 	public ResultMessage createLoadlist(LoadListVO loadListVO) {
 		LoadListPO loadlistpo=null;
 		try{
-			loadlistpo=service2.find(loadListVO.getId());
+			loadlistpo=service2.find(loadListVO.getTranspotationNumber());
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -50,11 +50,11 @@ public class LoadBLImpl implements LoadBLService {
 				e.printStackTrace();
 			}
 		}
-		loadlistpo=new LoadListPO(loadListVO.getId(),loadListVO.getDate(),loadListVO.getHallNumber(),loadListVO.getTranspotationNumber(), 
+		loadlistpo=new LoadListPO(loadListVO.getDate(),loadListVO.getHallNumber(),loadListVO.getTranspotationNumber(), 
 				loadListVO.getDestination(),loadListVO.getCarNumber(),loadListVO.getGuardMan(),loadListVO.getSupercargoMan(),loadListVO.getBarcodes(),loadListVO.getCheckType());
 		try{
 			service2.add(loadlistpo);
-			system.add(new SystemLogPO((String)df.format(new Date()),"添加装车单,单号为"+loadListVO.getId(),user.getAdmin()));
+			system.add(new SystemLogPO((String)df.format(new Date()),"添加装车单,汽运编号为"+loadListVO.getTranspotationNumber(),user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
@@ -62,6 +62,15 @@ public class LoadBLImpl implements LoadBLService {
 	}
 	public String createLoadlistId() {
 		// TODO 自动生成的方法存根
-		return null;
+		String s="";
+		try{
+		s=(service2.showAllByAgency(user.getAgencyNum()).size()+1)+"";
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		for(int i=0;i<5-s.length();i++)
+			s="0"+s;
+        df=new SimpleDateFormat("yyyyMMddHHmm");
+		return user.getAgencyNum()+df.format(new Date())+s;
 	}
 }

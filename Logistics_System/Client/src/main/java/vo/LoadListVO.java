@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import utility.CheckType;
 
 public class LoadListVO extends ListVO{
-	private String id;
+	/**
+	 * 汽运编号即Id！
+	 */
+	private String transpotationNumber;
+
 	/**
 	 * 装车日期
 	 */
@@ -21,10 +25,7 @@ public class LoadListVO extends ListVO{
 	 */
 	private String hallNumber;
 
-	/**
-	 * 汽运编号
-	 */
-	private String transpotationNumber;
+	
 
 	/**
 	 * 目的地
@@ -51,10 +52,9 @@ public class LoadListVO extends ListVO{
 	 */
 	private ArrayList<String> barcodes;
 
-	public LoadListVO(String id,String date, String hallNumber, String transpotationNumber, String destination,
+	public LoadListVO(String date, String hallNumber, String transpotationNumber, String destination,
 			String carNumber, String guardMan, String supercargoMan, ArrayList<String> barcodes,CheckType type) {
 		super();
-		this.setId(id);
 		this.date = date;
 		this.hallNumber = hallNumber;
 		this.transpotationNumber = transpotationNumber;
@@ -98,11 +98,5 @@ public class LoadListVO extends ListVO{
 		return barcodes;
 	}
 
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
 }

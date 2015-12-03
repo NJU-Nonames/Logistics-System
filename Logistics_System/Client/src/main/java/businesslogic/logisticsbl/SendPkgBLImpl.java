@@ -112,10 +112,12 @@ public class SendPkgBLImpl implements SendPkgBLService {
 
 	public ResultMessage createOrderList(OrderListVO orderListVO) {
 		// TODO Auto-generated method stub
+	    ArrayList<String> pkgState=new ArrayList<String>();
+	    pkgState.add(orderListVO.getDepartTime()+" 快递已经被揽件，订单号为"+orderListVO.getBarCode());
 		OrderListPO result=new OrderListPO(orderListVO.getSenderName(), orderListVO.getSenderAddress(), orderListVO.getSenderTeleNumber(),
 				orderListVO.getReceiverName(), orderListVO.getReceiverAddress(), orderListVO.getReceiverTeleNumber(),
 				orderListVO.getNumber(),orderListVO.getWeight(),orderListVO.getVolume(),orderListVO.getName(),orderListVO.getCategory()
-				,orderListVO.getPkgState(),orderListVO.getPackPrice(),orderListVO.getBarCode(),orderListVO.getPkgType(),orderListVO.getDepartTime(),orderListVO.getArriveTime(),orderListVO.getCheckType(),orderListVO.realreceiver,orderListVO.realreceivertelenumber);
+				,pkgState,orderListVO.getPackPrice(),orderListVO.getBarCode(),orderListVO.getPkgType(),orderListVO.getDepartTime(),orderListVO.getArriveTime(),orderListVO.getCheckType(),orderListVO.realreceiver,orderListVO.realreceivertelenumber);
 		try{
 			service1.add(result);
 			system.add(new SystemLogPO((String)df.format(new Date()),"添加快递单,单号为"+orderListVO.getBarCode(),user.getAdmin()));
@@ -126,6 +128,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 	}
 	public String createOrderId() {
 		// TODO 自动生成的方法存根
-		return null;
+		df=new SimpleDateFormat("yyyyMMddHHmm");
+		return user.getAgencyNum()+df.format(new Date());
 	}
 }

@@ -44,10 +44,8 @@ public class FormBLImpl implements FormBLService{
 		ArrayList<MoneyInformationListVO> list=new ArrayList<MoneyInformationListVO>();
 		if(moneyitemvo==null)
 			return null;
-		String[] array11=start_day.split(" ");
-		String[] array1=array11[0].split("-");
-		String[] array21=end_day.split(" ");
-		String[] array2=array21[0].split("-");
+		String[] array1=start_day.split("-");
+		String[] array2=end_day.split("-");
 		int[] intarray1=new int[3];
 		int[] intarray2=new int[3];
 		for(int i=0;i<3;i++){
@@ -69,13 +67,14 @@ public class FormBLImpl implements FormBLService{
 			double inMoney=0;
 			double outMoney=0;
 			for(MoneyItemVO vo:moneyitemvo){
-				if(vo.getDate().equals(currentTime)){
+				String[]s=vo.getDate().split(" ");
+				if(format.format(s[0]).equals(currentTime)){
 					if(vo.getClause().equals("付款单"))
 						inMoney+=vo.getMoney();
 					else
 						outMoney+=vo.getMoney();
 				}
-				list.add(new MoneyInformationListVO(vo.getDate(),inMoney,outMoney,inMoney-outMoney));
+				list.add(new MoneyInformationListVO(currentTime,inMoney,outMoney,inMoney-outMoney));
 			}
 			time+=dayTime;
 		}	

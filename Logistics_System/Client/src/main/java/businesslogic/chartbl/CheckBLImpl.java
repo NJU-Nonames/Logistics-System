@@ -132,7 +132,7 @@ public class CheckBLImpl implements CheckBLService {
 				if(loadpo==null)
 					return null;
 				for(LoadListPO po:loadpo){
-					loadvo.add(new LoadListVO(po.getId(), po.getDate(), po.getHallNumber(), po.getTransportationNumber(), po.getDestination(), po.getCarNumber(), po.getGuardMan(), po.getSupercargoMan(), po.getBarcodes(), po.getCheckType()));
+					loadvo.add(new LoadListVO( po.getDate(), po.getHallNumber(), po.getTransportationNumber(), po.getDestination(), po.getCarNumber(), po.getGuardMan(), po.getSupercargoMan(), po.getBarcodes(), po.getCheckType()));
 				}
 				return loadvo;
 			case BUSINESSHALL_ARRIVAL_NOTE:
@@ -344,7 +344,7 @@ public class CheckBLImpl implements CheckBLService {
 			case LOADING_NOTE:
 				ArrayList<LoadListVO> loadvo=(ArrayList<LoadListVO>)listVO;
 				for(LoadListVO vo:loadvo){
-					LoadListPO po=load.find(vo.getId());
+					LoadListPO po=load.find(vo.getTranspotationNumber());
 					po.setCheckType(CheckType.PASS);
 					load.update(po);
 				}
@@ -445,7 +445,7 @@ public class CheckBLImpl implements CheckBLService {
 			case LOADING_NOTE:
 				ArrayList<LoadListVO> loadvo=(ArrayList<LoadListVO>)listVO;
 				for(LoadListVO vo:loadvo){
-					LoadListPO po=load.find(vo.getId());
+					LoadListPO po=load.find(vo.getTranspotationNumber());
 					po.setCheckType(CheckType.NOTPASS);
 					load.update(po);
 				}
@@ -530,7 +530,7 @@ public class CheckBLImpl implements CheckBLService {
 				return true;
 			case LOADING_NOTE:
 				LoadListVO loadvo=(LoadListVO)listVO;
-				LoadListPO loadpo=new LoadListPO(loadvo.getId(),loadvo.getDate(),loadvo.getHallNumber(),loadvo.getTranspotationNumber(),loadvo.getDestination(),loadvo.getCarNumber(),loadvo.getGuardMan(),loadvo.getSupercargoMan(),loadvo.getBarcodes(),loadvo.getCheckType());
+				LoadListPO loadpo=new LoadListPO(loadvo.getDate(),loadvo.getHallNumber(),loadvo.getTranspotationNumber(),loadvo.getDestination(),loadvo.getCarNumber(),loadvo.getGuardMan(),loadvo.getSupercargoMan(),loadvo.getBarcodes(),loadvo.getCheckType());
 				load.update(loadpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"改变装车单信息",user.getAdmin()));
 				return true;
