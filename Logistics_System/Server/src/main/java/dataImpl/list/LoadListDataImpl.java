@@ -21,7 +21,7 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 	}
 
 	public void add(LoadListPO loadListPO) throws RemoteException {
-		String sql="insert into loadlist values ('"+loadListPO.getTransportationNumber()+"','"+loadListPO.getDate()+"','"+loadListPO.getTransportationNumber()+"','"+loadListPO.getDestination()
+		String sql="insert into loadlist values ('"+loadListPO.getTransportationNumber()+"','"+loadListPO.getDate()+"','"+loadListPO.getHallNumber()+"','"+loadListPO.getDestination()
 				+"','"+loadListPO.getCarNumber()+"','"+loadListPO.getGuardMan()+"','"+loadListPO.getSupercargoMan()+"','"+loadListPO.getCheckType()+"')";
 		DataJDBCConnection.update(sql);
 		int num=loadListPO.getBarcodes().size();
