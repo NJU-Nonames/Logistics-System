@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultCaret;
 
 import presentation.adminui.AdminFrame;
 import presentation.businessofficeclerkui.BusinessOfficeClerkFrame;
@@ -204,8 +205,8 @@ public class LoginPanel extends JPanel{
 			case FINANCIAL_STAFF_LOW:
 			case FINANCIAL_STAFF_HIGH:new FinacialStaffFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
 			case TOP_MANAGER:new TopManagerFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
-			case ADMIN:break;
-			case DRIVER:break;
+			case ADMIN:new AdminFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
+			default:break;
 			}
 		}
 //			new FinacialStaffFrame(new CurrentUser("王大锤","南京中转中心","025000","admin"));
