@@ -85,6 +85,12 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 		return loadList;
 	}
 
+	public ArrayList<LoadListPO> showAllByAgency(String agencyID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

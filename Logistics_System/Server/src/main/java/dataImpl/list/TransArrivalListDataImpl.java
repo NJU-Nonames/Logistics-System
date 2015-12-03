@@ -86,4 +86,10 @@ public class TransArrivalListDataImpl extends UnicastRemoteObject implements Tra
 		return transarrivallist;
 	}
 
+	public ArrayList<TransArrivalListPO> showAllByAgency(String agencyID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

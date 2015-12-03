@@ -78,6 +78,12 @@ public class DeliveringListDataImpl extends UnicastRemoteObject implements Deliv
 		return deliveringList;
 	}
 
+	public ArrayList<DeliveringListPO> showAllbyAgency(String agencyId)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

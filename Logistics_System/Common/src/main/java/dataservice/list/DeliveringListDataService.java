@@ -16,5 +16,7 @@ public interface DeliveringListDataService extends Remote{
 	
 	public DeliveringListPO find(String id)throws RemoteException;
 	
+	public ArrayList<DeliveringListPO> showAllbyAgency(String agencyId)throws RemoteException;
+	
 	public ArrayList<DeliveringListPO> showAll(String time1,String time2)throws RemoteException;
 }

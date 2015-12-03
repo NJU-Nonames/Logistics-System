@@ -83,5 +83,11 @@ public class HallArrivalListDataImpl extends UnicastRemoteObject implements Hall
 		return hallArrivalList;
 	}
 
+	public ArrayList<HallArrivalListPO> showAllByAgency(String agencyID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

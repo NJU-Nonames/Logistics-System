@@ -101,6 +101,12 @@ public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInL
 		return moneyInList;
 	}
 
+	public ArrayList<MoneyInListPO> showAllByAgency(String agencyID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 	

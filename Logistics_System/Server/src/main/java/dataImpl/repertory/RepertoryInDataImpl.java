@@ -88,4 +88,10 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 		return repertoryin;
 	}
 
+	public ArrayList<RepertoryInPO> showAllByAgency(String agencyID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,10 +1,8 @@
 package dataservice.moneyInformation;
 
-import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import po.moneyInfomation.MoneyOutListPO;
 
 public interface MoneyOutListDataService extends Remote{
@@ -18,6 +16,8 @@ public interface MoneyOutListDataService extends Remote{
 	public MoneyOutListPO findOnID(String id)throws RemoteException;
 	
 	public MoneyOutListPO findOnTime(String time)throws RemoteException;
+	
+	public ArrayList<MoneyOutListPO> showAllByAgency(String agencyID)throws RemoteException;
 	
 	/**
 	 * 返回付款单PO集合

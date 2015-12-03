@@ -16,5 +16,7 @@ public interface HallArrivalListDataService extends Remote{
 	
 	public HallArrivalListPO find(String id)throws RemoteException;
 	
+	public ArrayList<HallArrivalListPO> showAllByAgency(String agencyID)throws RemoteException;
+	
 	public ArrayList<HallArrivalListPO> showAll(String time1,String time2)throws RemoteException;
 }
