@@ -386,8 +386,8 @@ public class DriverManage extends JPanel{
     	sex.setSize(150, 20);
     	sex.setLocation(170+20+(int)(16*3*1.07f)+150+(int)(16*3*1.07f), 128+290-3+30);
     	
-    	JLabel l6 = new JLabel("行驶证期至：");
-    	l6.setSize((int)(16*6*1.07f), 16);
+    	JLabel l6 = new JLabel("行驶证开始期：");
+    	l6.setSize((int)(16*7*1.07f), 16);
     	l6.setFont(new Font("宋体", Font.BOLD, 15));
     	l6.setLocation(170+20+(int)(16*3*1.07f)+150+(int)(16*3*1.07f)+150, 128+290+30);
     	drivingLicencePeriod = new JTextField();
@@ -502,7 +502,7 @@ public class DriverManage extends JPanel{
 		v.add(IDNum_s);
 		v.add(phoneNum_s);
 		v.add(sex_s);
-		v.add(drivingLicencePeriod_s);
+		v.add(driverVO.getDrivingLicencePeriod());
 		driverTableModel.addRow(v);
 		
 		driverNum.setText("");
@@ -579,7 +579,7 @@ public class DriverManage extends JPanel{
 		driverTable.setValueAt(IDNum_s, index, 2);
 		driverTable.setValueAt(phoneNum_s, index, 3);
 		driverTable.setValueAt(sex_s, index, 4);
-		driverTable.setValueAt(drivingLicencePeriod_s, index, 5);
+		driverTable.setValueAt(driverVO.getDrivingLicencePeriod(), index, 5);
 		
 		driverNum.setText("");
 		name.setText("");

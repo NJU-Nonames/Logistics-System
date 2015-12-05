@@ -99,7 +99,7 @@ public class DriverManageBLImpl implements DriverManageBLService {
 			return new ResultMessage(false, "该司机编号已经存在!");
 		}
 		try {
-			service.add(new DriverPO(driver.getDriverNum(),driver.getName(),driver.getIDNum(),driver.getPhoneNum(),driver.getSex(),driver.getDrivingLicencePeriod()));
+			service.add(new DriverPO(driver.getDriverNum(),driver.getName(),driver.getSex(),driver.getIDNum(),driver.getPhoneNum(),driver.getDrivingLicencePeriod()));
 			system.add(new SystemLogPO((String)df.format(new Date()),"添加司机信息,编号为"+driver.getDriverNum(),user.getAdmin()));
 		} catch (RemoteException e) {
 			e.printStackTrace();

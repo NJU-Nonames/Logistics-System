@@ -430,7 +430,6 @@ public class ViewRepertory extends JPanel{
 			printMessage(result, Color.RED);
 			return;
 		}
-		
 		inCount.setText(inCount.getText()+bl.searchRepertory(t1, t2).numberIn+"");
 		outCount.setText(outCount.getText()+bl.searchRepertory(t1, t2).numberOut+"");
 		inMoney.setText(inMoney.getText()+bl.searchRepertory(t1, t2).moneyIn+"");

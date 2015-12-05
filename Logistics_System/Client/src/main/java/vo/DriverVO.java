@@ -64,7 +64,7 @@ public class DriverVO {
 		this.IDNum=po.getIDNum();
 		this.phoneNum=po.getPhoneNum();
 		this.sex=po.getSex();
-		this.drivingLicencePeriod=po.getDrivingLicencePeriod();
+		this.drivingLicencePeriod=po.getDrivingLicencePeriodstarttime();
 	}
 
 	public String getDriverNum() {

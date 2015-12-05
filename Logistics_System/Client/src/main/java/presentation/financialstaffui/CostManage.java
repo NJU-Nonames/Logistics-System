@@ -60,6 +60,7 @@ public class CostManage extends JPanel{
 	//详细操作按钮以及其他组件
 	private MyButton confirm;
 	
+	private JLabel id;
 	private JTextField pay_man;
 	private JTextField pay_date;
 	private JTextField money;
@@ -270,6 +271,11 @@ public class CostManage extends JPanel{
     	goto_SystemLog.setLocation(20,400);
     	
     	//其他组件
+    	id=new JLabel("付款单单号：   "+bl.createMoneyOutListId());
+    	id.setSize((int)(16*20*1.07f), 16);
+    	id.setFont(new Font("宋体", Font.BOLD, 15));
+    	id.setLocation(FinacialStaffFrame.w/6+40, 128+30);
+    	
     	JLabel l1 = new JLabel("付款人：");
 		l1.setSize((int)(16*4*1.07f), 16);
 		l1.setFont(new Font("宋体", Font.BOLD, 15));
@@ -283,7 +289,7 @@ public class CostManage extends JPanel{
 		l2.setFont(new Font("宋体", Font.BOLD, 15));
 		l2.setLocation(FinacialStaffFrame.w/6+40, 128+80+50);
 		Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time=format.format(date_);
 		pay_date = new JTextField(time);
 		pay_date.setSize(150, 20);
@@ -374,6 +380,7 @@ public class CostManage extends JPanel{
     	add(goto_BaseDataSetting);
     	add(goto_SystemLog);
 
+    	add(id);
     	add(l1);
     	add(pay_man);
     	add(l2);
@@ -406,7 +413,7 @@ public class CostManage extends JPanel{
 			printMessage("没有输入付款人！", Color.RED);
 			return;
 		}
-		result = CheckFormat.checkTime(pay_date_s);
+		result = CheckFormat.checkCreateTime(pay_date_s);
 		if(result.compareTo("格式正确")!=0){
 			printMessage(result, Color.RED);
 			return;
@@ -438,7 +445,7 @@ public class CostManage extends JPanel{
 			costClause=CostClause.bonus;
 		
 		
-		MoneyOutListVO moneyOutListVO=new MoneyOutListVO("?", pay_date_s, money_s_double, pay_man_s, bankcard_s, costClause, note_s, CheckType.UNDERCHECK);
+		MoneyOutListVO moneyOutListVO=new MoneyOutListVO(bl.createMoneyOutListId(), pay_date_s, money_s_double, pay_man_s, bankcard_s, costClause, note_s, CheckType.UNDERCHECK);
 		ResultMessage resultMessage = bl.createMoneyOutlist(moneyOutListVO);
 		if(!resultMessage.isPass()){
 			printMessage(resultMessage.getMessage(), Color.RED);
@@ -455,6 +462,10 @@ public class CostManage extends JPanel{
 		rent.setSelected(true);
 	}
 	private void clear(){
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time=format.format(date_);
+		id.setText("付款单单号：   "+bl.createMoneyOutListId());
 		pay_man.setText("");
 		money.setText("");
 		bankcard.setText("");

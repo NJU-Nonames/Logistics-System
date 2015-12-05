@@ -293,6 +293,7 @@ public class Inventory extends JPanel{
         _orderId.setSize((int)(200*1.07f), 20);
         _orderId.setLocation(orderId.getX()+orderId.getWidth(),orderId.getY()-3);
         
+        
         JLabel tiaozhengzhi = new JLabel("调整至");
         tiaozhengzhi.setSize((int)(16*"调整至".length()*1.07f), 16);
         tiaozhengzhi.setFont(new Font("宋体", Font.BOLD, 15));
