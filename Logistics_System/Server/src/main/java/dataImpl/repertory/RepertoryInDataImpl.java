@@ -40,7 +40,7 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 
 	public RepertoryInPO findOnOrderID(String orderID,String id){
 		RepertoryInPO repertoryin=null;
-		String sql="select * from repertoryin where orderid='"+orderID+"' and id='"+id+"'";
+		String sql="select * from repertoryin where orderid='"+orderID+"' and id like '"+id+"%'";
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();

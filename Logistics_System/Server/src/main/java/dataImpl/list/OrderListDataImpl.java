@@ -66,7 +66,7 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 		} catch (SQLException e) {
 			e.printStackTrace();
 			//System.out.println("操作失败 未找到");
-			//return null;
+			return null;
 		}
 		return orderList;
 	}
