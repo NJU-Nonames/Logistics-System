@@ -103,7 +103,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	        System.out.println(repertoryInfoPO.size());
 	        for(int i=0;i<repertoryInfoPO.size();i++)
 	        {
-	        	RepertoryInPO list=repertoryin.findOnID(repertoryInfoPO.get(i).getId());	
+	        	RepertoryInPO list=repertoryin.findOnOrderID(repertoryInfoPO.get(i).getOrderId(), repertoryInfoPO.get(i).getId());	
 	        	repertoryInfoVO.add(new RepertoryInformationVO(repertoryInfoPO.get(i).getId(), repertoryInfoPO.get(i).getAreaNumber(), repertoryInfoPO.get(i).getRowNumber(),repertoryInfoPO.get(i).getFrameNumber(), repertoryInfoPO.get(i).getPlaceNumber(),list.getTime(),list.getDestination(), repertoryInfoPO.get(i).getOrderId()));
 	        	switch(Integer.parseInt((repertoryInfoPO.get(i).getAreaNumber()))){
 	        		case 1:a++;break;
