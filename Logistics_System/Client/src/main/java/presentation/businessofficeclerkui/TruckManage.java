@@ -303,7 +303,7 @@ public class TruckManage extends JPanel{
     	Vector<String> vColumns = new Vector<String>();
     	vColumns.add("车辆代号");
     	vColumns.add("车牌号");
-    	vColumns.add("服役期至");
+    	vColumns.add("服役时间");
     	//数据
     	Vector<String> vData = new Vector<String>();
     	//模型
@@ -352,7 +352,7 @@ public class TruckManage extends JPanel{
     	platenumber.setSize(150, 20);
     	platenumber.setLocation(170+20+(int)(16*5*1.07f)+150+(int)(16*4*1.07f), 128+290-3);
     	
-    	JLabel l3 = new JLabel("服役期至：");
+    	JLabel l3 = new JLabel("开始服役时间：");
     	l3.setSize((int)(16*5*1.07f), 16);
     	l3.setFont(new Font("宋体", Font.BOLD, 15));
     	l3.setLocation(170+20+(int)(16*5*1.07f)+150+(int)(16*4*1.07f)+150, 128+290);
@@ -416,7 +416,7 @@ public class TruckManage extends JPanel{
 			printMessage("没有输入车辆代号！", Color.RED);
 			return;
 		}
-		result = CheckFormat.checkTruckNum(platenumber_s);
+		result = CheckFormat.checkTruckNum(vehiclecode_s);
 		if(result.compareTo("格式正确")!=0){
 			printMessage(result, Color.RED);
 			return;
@@ -438,7 +438,7 @@ public class TruckManage extends JPanel{
 		Vector<String> v = new Vector<String>();
 		v.add(vehiclecode_s);
 		v.add(platenumber_s);
-		v.add(serviceTimeLimit_s);
+		v.add(truckVO.getServiceTimeLimit());
 		vehicleTableModel.addRow(v);
 		
 		vehiclecode.setText("");

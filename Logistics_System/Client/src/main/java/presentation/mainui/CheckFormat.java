@@ -27,7 +27,83 @@ public class CheckFormat {
 		}
 		return "格式正确";
 	}
-	//检查时间是否合法
+	public static String checkCreateTime(String time){
+		String s="格式正确";
+		if(time.compareTo("")==0){
+			return "时间未输入！";
+		}
+		else{
+			String[] temp2=time.split(" ");
+			String[] temp=temp2[0].split("-");
+			if(temp.length!=3){
+				return "时间格式输入有误！";
+			}
+			else{
+				int year,month,day;
+				year=Integer.parseInt(temp[0]);
+				month=Integer.parseInt(temp[1]);
+				day=Integer.parseInt(temp[2]);
+				boolean isR =(year%400==0)||((year%4==0)&&(year%100!=0));
+				if(month>12||month<=0){
+					return "月份输入有误！";
+				}
+				if(isR){
+					if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+						if(day>31||day<0){
+							return "日期输入有误！";
+						}
+					}
+					else if(month==2){
+						if(day>29||day<0){
+							return "日期输入有误！";
+						}
+					}
+					else{
+						if(day>30||day<0){
+							return "日期输入有误！";
+						}
+					}
+				}
+				else{
+					if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+						if(day>31||day<0){
+							return "日期输入有误！";
+						}
+					}
+					else if(month==2){
+						if(day>28||day<0){
+							return "日期输入有误！";
+						}
+					}
+					else{
+						if(day>30||day<0){
+							return "日期输入有误！";
+						}
+					}
+				}
+				
+			}
+			
+			String[] temp3=temp2[1].split(":");
+			if(temp3.length!=3){
+				return "时间格式输入有误！";
+			}else{
+				int hour=Integer.parseInt(temp3[0]);
+				int minute=Integer.parseInt(temp3[1]);
+				int second=Integer.parseInt(temp3[2]);
+				if(hour>24||hour<0)
+					return "小时输入有误";
+				if(minute>=60||minute<0)
+					return "分钟输入有误";
+				if(second>=60||minute<0)
+					return "秒输入有误";
+			
+			}
+		}
+		return s;
+	}
+	
+	//检查时间是否合法 XXXX-XX-XX
 	public static String checkTime(String time){
 		String s="格式正确";
 		if(time.compareTo("")==0){
@@ -237,8 +313,8 @@ public class CheckFormat {
 	//货车信息管理
 	public static String checkTruckNum(String num){
 		if(num.compareTo("")!=0){
-			if(num.length()!=7){
-				return "请输入7位货车编号！";
+			if(num.length()!=9){
+				return "请输入9位货车编号！";
 			}
 			else{
 				return "格式正确";

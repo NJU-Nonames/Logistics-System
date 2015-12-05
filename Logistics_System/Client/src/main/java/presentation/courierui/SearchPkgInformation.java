@@ -353,7 +353,7 @@ public class SearchPkgInformation extends JPanel{
         JLabel detail = new JLabel("物流详情");
         detail.setSize((int)(22*4*1.07f), 22);
         detail.setFont(new Font("宋体", Font.BOLD, 21));
-        detail.setLocation(750, 128+80+50);
+        detail.setLocation(700, 128+80+50);
         
 		//表头
 		Vector<String> vColumns = new Vector<String>();
@@ -370,15 +370,15 @@ public class SearchPkgInformation extends JPanel{
 				return true;
 			}
 		};
-		detailTable.setPreferredScrollableViewportSize(new Dimension(300,330));
+		detailTable.setPreferredScrollableViewportSize(new Dimension(400,330));
 		detailTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		detailTable.setSelectionBackground(Color.YELLOW);
 		JPanel jp=new JPanel();
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(detailTable);
 		detailTable.setFillsViewportHeight(true);
-		jp.setSize(320, 360);
-		jp.setLocation(640, 128+80+70);
+		jp.setSize(402, 360);
+		jp.setLocation(540, 128+80+70);
 		jp.setOpaque(false);
 		jp.add(scrollPane,BorderLayout.CENTER);
         

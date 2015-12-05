@@ -38,7 +38,7 @@ public class TruckManagementBLImpl implements TruckManageBLService{
 		if(truckpo==null)
 			return null;
 		for(TruckPO po:truckpo){
-			truckvo.add(new TruckVO(po.getVehiclecode(),po.getPlatenumber(),po.getServiceTimeLimit()));
+			truckvo.add(new TruckVO(po.getVehiclecode(),po.getPlatenumber(),po.getServicestarttime()));
 		}
 		return truckvo;
 	}
@@ -86,7 +86,7 @@ public class TruckManagementBLImpl implements TruckManageBLService{
 			if(truckpo!=null)
 				return new ResultMessage(false,"车辆代号已存在!");
 			else{
-				truckpo=new TruckPO(truck.getVehiclecode(),truck.getPlatenumber(),truck.getServiceTimeLimit());
+				truckpo=new TruckPO(truck.getVehiclecode(),truck.getPlatenumber(),truck.getServicestarttime());
 				truckdataservice.add(truckpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"添加车辆信息,车辆代号为"+truck.getVehiclecode(),user.getAdmin()));
 			}
@@ -105,7 +105,7 @@ public class TruckManagementBLImpl implements TruckManageBLService{
 		}
 		if(po==null)
 			return null;
-		TruckVO vo=new TruckVO(po.getVehiclecode(),po.getPlatenumber(),po.getServiceTimeLimit());
+		TruckVO vo=new TruckVO(po.getVehiclecode(),po.getPlatenumber(),po.getServicestarttime());
 		return vo;
 	}
 

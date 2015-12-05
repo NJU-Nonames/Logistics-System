@@ -67,8 +67,8 @@ public class Deliver extends JPanel{
 	private MyButton remove;
 	private MyButton confirm;
 
+	private JLabel id;
 	private JTextField date;
-//	private JTextField DeliveringListNumber;
 	private JTextField DeliveryMan;
 	private JTextField barCode;
 	private DefaultTableModel barCodeTableModel;
@@ -299,18 +299,18 @@ public class Deliver extends JPanel{
     	JLabel l5 = new JLabel("到达日期：");
     	l5.setSize((int)(16*5*1.07f), 16);
     	l5.setFont(new Font("宋体", Font.BOLD, 15));
-    	l5.setLocation(170+20, 128+80);
+    	l5.setLocation(170+20, 128+80+40);
     	Date date_=new Date();
-    	DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+    	DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	String time=format.format(date_);
     	date = new JTextField(time);
     	date.setSize(150, 20);
-    	date.setLocation(170+20+(int)(16*7*1.07f),128+80-3);
+    	date.setLocation(170+20+(int)(16*7*1.07f),128+80+40-3);
         
-//    	JLabel l3 = new JLabel("派件单编号：");
-//    	l3.setSize((int)(16*6*1.07f), 16);
-//    	l3.setFont(new Font("宋体", Font.BOLD, 15));
-//    	l3.setLocation(170+20, 128+80+40);
+    	id = new JLabel("派件单编号：   "+bl.createDeliveringListId());
+    	id.setSize((int)(16*20*1.07f), 16);
+    	id.setFont(new Font("宋体", Font.BOLD, 15));
+    	id.setLocation(170+20, 128+80);
 //    	DeliveringListNumber = new JTextField();
 //    	DeliveringListNumber.setSize(150, 20);
 //    	DeliveringListNumber.setLocation(170+20+(int)(16*7*1.07f),128+80+40-3);
@@ -388,8 +388,7 @@ public class Deliver extends JPanel{
     	
     	add(l5);
     	add(date);
-//    	add(l3);
-//    	add(DeliveringListNumber);
+    	add(id);
     	add(l4);
     	add(DeliveryMan);
     	add(l7);
@@ -447,10 +446,10 @@ public class Deliver extends JPanel{
 		String date_s = date.getText();
 		String DeliveryMan_s = DeliveryMan.getText();
 
-		if(CheckFormat.checkTime(date_s).compareTo("格式正确")!=0){
-			printMessage(CheckFormat.checkTime(date_s), Color.RED);
-			return;
-		}
+//		if(CheckFormat.checkTime(date_s).compareTo("格式正确")!=0){
+//			printMessage(CheckFormat.checkTime(date_s), Color.RED);
+//			return;
+//		}
 		if(DeliveryMan_s.compareTo("")==0){
 			printMessage("没有输入派送员！", Color.RED);
 			return;
@@ -466,7 +465,7 @@ public class Deliver extends JPanel{
 			_barcodes.add(s);
 		}
 		
-		DeliveringListVO deliveringListVO = new DeliveringListVO("?", date_s, _barcodes, DeliveryMan_s, CheckType.UNDERCHECK);
+		DeliveringListVO deliveringListVO = new DeliveringListVO(bl.createDeliveringListId(), date_s, _barcodes, DeliveryMan_s, CheckType.UNDERCHECK);
 		ResultMessage resultMessage = bl.createDeliveringList(deliveringListVO);
 		if(!resultMessage.isPass()){
 			printMessage(resultMessage.getMessage(), Color.RED);
@@ -481,6 +480,12 @@ public class Deliver extends JPanel{
 			barCodeTableModel.removeRow(0);
 	}
 	private void clear(){
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time=format.format(date_);
+		date.setText(time);
+
+		id.setText("派件单编号：   "+bl.createDeliveringListId());
 		DeliveryMan.setText("");
 		barCode.setText("");
 		while(barCodeTable.getRowCount()!=0)

@@ -309,7 +309,7 @@ public class LoadManage extends JPanel{
 		l5.setFont(new Font("宋体", Font.BOLD, 15));
 		l5.setLocation(170+20, 128+80);
 		Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time=format.format(date_);
 		date = new JTextField(time);
 		date.setSize(150, 20);
@@ -495,8 +495,8 @@ public class LoadManage extends JPanel{
 		String guardMan_s = guardMan.getText();
 		String supercargoMan_s = supercargoMan.getText();
 
-		if(CheckFormat.checkTime(date_s).compareTo("格式正确")!=0){
-			printMessage(CheckFormat.checkTime(date_s), Color.RED);
+		if(CheckFormat.checkCreateTime(date_s).compareTo("格式正确")!=0){
+			printMessage(CheckFormat.checkCreateTime(date_s), Color.RED);
 			return;
 		}
 		if(CheckFormat.checkHallNum(hallNumber_s).compareTo("格式正确")!=0){
@@ -550,6 +550,11 @@ public class LoadManage extends JPanel{
 			barCodeTableModel.removeRow(0);
 	}
 	private void clear(){
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time=format.format(date_);
+		date.setText(time);
+
 		transportationNumber.setText("汽运编号：     "+bl.createLoadlistId());
 		Destination.setText("");
 		carNumber.setText("");

@@ -304,7 +304,7 @@ public class CheckList extends JPanel{
 		l5.setFont(new Font("宋体", Font.BOLD, 15));
 		l5.setLocation(170+20, 128+80);
 		Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String time=format.format(date_);
 		date = new JTextField(time);
 		date.setSize(150, 20);
@@ -473,10 +473,10 @@ public class CheckList extends JPanel{
 		String date_s = date.getText();
 		String staffId_s = staffId.getText();
 
-		if(CheckFormat.checkTime(date_s).compareTo("格式正确")!=0){
-			printMessage(CheckFormat.checkTime(date_s), Color.RED);
-			return;
-		}
+//		if(CheckFormat.checkTime(date_s).compareTo("格式正确")!=0){
+//			printMessage(CheckFormat.checkTime(date_s), Color.RED);
+//			return;
+//		}
 		if(staffId_s.compareTo("")==0){
 			printMessage("没有输入快递员工号！", Color.RED);
 			return;
@@ -513,6 +513,11 @@ public class CheckList extends JPanel{
 			barCodeTableModel.removeRow(0);
 	}
 	private void clear(){
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time=format.format(date_);
+		date.setText(time);
+
 		staffId.setText("");
 		barCode.setText("");
 		moneySum.setText(0+"元");
