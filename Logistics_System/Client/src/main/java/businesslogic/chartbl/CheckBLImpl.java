@@ -171,7 +171,7 @@ public class CheckBLImpl implements CheckBLService {
 				if(transshipmentpo==null)
 					return null;
 				for(TransShipmentListPO po:transshipmentpo){
-					transshipmentvo.add(new TransShipmentListVO(po.getDate(), po.getTransitDocNumber(), po.getFlightNumber(), po.getDeparturePlace(), po.getDestination(), po.getContainerNumber(), po.getSupercargoMan(), po.getBarcodes(), po.getCheckType()));
+					transshipmentvo.add(new TransShipmentListVO(po.getDate(), po.getTransitDocNumber(), po.getFlightNumber(), po.getDeparturePlace(), po.getDestination(), po.getContainerNumber(), po.getSupercargoMan(), po.getBarcodes(), po.getPrice(),po.getCheckType()));
 				}
 				return transshipmentvo;		
 			}
@@ -558,7 +558,7 @@ public class CheckBLImpl implements CheckBLService {
 				return true;
 			case TRANSIT_NOTE:
 				TransShipmentListVO transshipmentvo=(TransShipmentListVO)listVO;
-				TransShipmentListPO transshipmentpo=new TransShipmentListPO(transshipmentvo.getDate(),transshipmentvo.getTransitDocNumber(),transshipmentvo.getFlightNumber(),transshipmentvo.getDeparturePlace(),transshipmentvo.getDesitination(),transshipmentvo.getContainerNumber(),transshipmentvo.getSupercargoMan(),transshipmentvo.getBarcodes(),transshipmentvo.getCheckType());
+				TransShipmentListPO transshipmentpo=new TransShipmentListPO(transshipmentvo.getDate(),transshipmentvo.getTransitDocNumber(),transshipmentvo.getFlightNumber(),transshipmentvo.getDeparturePlace(),transshipmentvo.getDesitination(),transshipmentvo.getContainerNumber(),transshipmentvo.getSupercargoMan(),transshipmentvo.getBarcodes(),transshipmentvo.getPrice(),transshipmentvo.getCheckType());
 				transshipment.update(transshipmentpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"改变中转单信息",user.getAdmin()));
 				return true;

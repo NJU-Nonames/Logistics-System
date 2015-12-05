@@ -56,7 +56,7 @@ public class TransShipmentListPO extends ListPO{
 	private double price;
 
 	public TransShipmentListPO(String date, String transitDocNumber, String flightNumber, String departurePlace,
-			String destination, String containerNumber, String supercargoMan, ArrayList<String> barcodes,CheckType type) {
+			String destination, String containerNumber, String supercargoMan, ArrayList<String> barcodes,double price,CheckType type) {
 		super();
 		this.date = date;
 		this.transitDocNumber = transitDocNumber;

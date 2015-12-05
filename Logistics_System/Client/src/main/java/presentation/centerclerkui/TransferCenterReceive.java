@@ -7,6 +7,7 @@ package presentation.centerclerkui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -14,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -36,7 +38,12 @@ import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.CheckType;
+import utility.GoodsState;
+import utility.ResultMessage;
+import vo.GoodsInfoVO;
 import vo.TransArrivalListVO;
+import vo.TransArrivalVO;
 
 /**
  * @author 谭期友
@@ -45,6 +52,7 @@ import vo.TransArrivalListVO;
 public class TransferCenterReceive extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
+	private static final Component recieveId = null;
 	private TransferCenterReceiveBLService bl;
 	private CenterClerkFrame frame;
 	private CurrentUser currentUser;
@@ -98,7 +106,7 @@ public class TransferCenterReceive extends JPanel{
 	public TransferCenterReceive(CenterClerkFrame frame, CurrentUser currentUser){
 		this.frame=frame;
 		this.currentUser=currentUser;
-		//this.bl=new TransferCenterReceiveBLImpl(this.currentUser);
+		this.bl=new TransferCenterReceiveBLImpl(this.currentUser);
 		willprintMessage=false;
 		result="";
 		co=Color.RED;
@@ -366,6 +374,11 @@ public class TransferCenterReceive extends JPanel{
  			public void mousePressed(MouseEvent arg0) {}
  			public void mouseReleased(MouseEvent arg0) {}
          });
+        
+        JLabel receiveId= new JLabel("本中转接收单编号："+bl.createTransArrivalListId()); 
+        receiveId.setSize((int)(("本中转接收单编号："+bl.createTransArrivalListId()).length()*1.07f), 16);
+        receiveId.setFont(new Font("宋体", Font.BOLD, 15));
+        receiveId.setLocation(jp.getX(),jp.getY()+jp.getHeight()+10);
         //最基本按钮
     	close.setLocation(CenterClerkFrame.w-30,0);
     	min.setLocation(CenterClerkFrame.w-80,0);
@@ -384,6 +397,8 @@ public class TransferCenterReceive extends JPanel{
         add(currentusernameLabel);
     	add(agencyNameLabel);
     	add(timeLabel);
+    	add(receiveId);
+    	
     	add(jb1);
     	add(jb2);
     	add(j1);
@@ -428,6 +443,10 @@ public class TransferCenterReceive extends JPanel{
 		j1.setSelected(true);
 		j2.setSelected(false);
 		j3.setSelected(false);
+		
+		while(orderTable.getRowCount()!=0)
+			orderTableModel.removeRow(0);
+		
 		willprintMessage=false;
 		repaint();
 	}
@@ -455,18 +474,114 @@ public class TransferCenterReceive extends JPanel{
 		}
 	}
 	void _confirm(){
-		//bl.createTransArrivalList(new TransArrivalListVO(null, , currentUser.getAgencyNum(), result, null, null))
+		String id=bl.createTransArrivalListId();
+		
+		String transferNumber=id1.getText()+id2.getText();
+		
+		String  centerNumber = currentUser.getAgencyNum();
+		
+		String time="";
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		time=format.format(date_);
+		
+		ArrayList<GoodsInfoVO> GoodsInfoVOs =new ArrayList<GoodsInfoVO>();
+		for(int i=0;i<orderTable.getRowCount();i++){
+			String barcode=orderTable.getValueAt(i, 0)+"";
+			
+			String departurePlace = orderTable.getValueAt(i, 1)+"";
+			
+			GoodsState state = GoodsState.COMPLETE;
+			if(((String)orderTable.getValueAt(i, 2)).compareTo("缺损")==0){
+				state=GoodsState.BREAK;
+			}
+			else if(((String)orderTable.getValueAt(i, 2)).compareTo("丢失")==0){
+				state=GoodsState.LOST;
+			}
+			
+			GoodsInfoVOs.add(new GoodsInfoVO(barcode, state, departurePlace));
+		}
+		
+		if(transferNumber.compareTo("")==0||GoodsInfoVOs.size()==0){
+			printMessage("信息录入不完整！", Color.RED);
+			return;
+		}
+		TransArrivalListVO vo = new TransArrivalListVO(id, transferNumber, centerNumber, time, GoodsInfoVOs, CheckType.UNDERCHECK);
+		ResultMessage message = bl.createTransArrivalList(vo);
+		printMessage(message.getMessage(), Color.GREEN);
+		clear();
 	}
 	void _cancel(){
-		//initComponent();
 		clear();
 	}
 	private void _show() {
 		// TODO 自动生成的方法存根
-		
+		if(jb1.isSelected()){
+			if(id1.getText().compareTo("")!=0){
+				TransArrivalVO vo=bl.getTransShipmentList(id1.getText());
+				if(vo!=null){
+					while(orderTableModel.getRowCount()!=0)//先清空原来的
+						orderTableModel.removeRow(0);
+					for(int i=0;i<vo.barcodes.size();i++){
+						Vector<String> v = new Vector<String>();
+						v.add(vo.depatureplace);
+						v.add(vo.barcodes.get(i));
+						v.add("");
+						orderTableModel.addRow(v);
+					}
+				}
+				else{
+					printMessage("未找到中转单！", Color.RED);
+					return;
+				}
+			}
+			else{
+				printMessage("未输入中转单编号！", Color.RED);
+			}
+		}
+		else{
+			if(id2.getText().compareTo("")!=0){
+				TransArrivalVO vo=bl.getLoadList(id2.getText());
+				if(vo!=null){
+					while(orderTableModel.getRowCount()!=0)//先清空原来的
+						orderTableModel.removeRow(0);
+					for(int i=0;i<vo.barcodes.size();i++){
+						Vector<String> v = new Vector<String>();
+						v.add(vo.depatureplace);
+						v.add(vo.barcodes.get(i));
+						v.add("");
+						orderTableModel.addRow(v);
+					}
+				}
+				else{
+					printMessage("未找到装车单！", Color.RED);
+				}
+			}
+			else{
+				printMessage("未输入装车单编号！", Color.RED);
+			}
+		}
 	}
 	private void _update() {
 		// TODO 自动生成的方法存根
-		
+		int index = orderTable.getSelectedRow();
+		if(index == -1){
+			printMessage("请选中一个订单！", Color.RED);
+			return;
+		}
+		String s="";
+		if(j1.isSelected()){
+			s="完好";
+		}
+		else if(j2.isSelected()){
+			s="缺损";
+		}
+		else{
+			s="丢失";
+		}
+		orderTable.setValueAt(s, index, 2);
+		j1.setSelected(true);
+		j2.setSelected(false);
+		j3.setSelected(false);
 	}
 }

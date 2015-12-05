@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -28,12 +29,17 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import businesslogic.logisticsbl.TransShipmentBLImpl;
+import businesslogicservice.logisticsblservice.TransShipmentBLService;
 import presentation.img.Img;
 import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.CheckType;
+import utility.ResultMessage;
 import vo.OrderListVO;
+import vo.TransShipmentListVO;
 
 /**
  * @author 谭期友
@@ -42,7 +48,7 @@ import vo.OrderListVO;
 public class TransShipment extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private TransShipmentBLService bl;
 	private CenterClerkFrame frame;
 	private CurrentUser currentUser;
 	
@@ -97,7 +103,7 @@ public class TransShipment extends JPanel{
 	
 	public TransShipment(CenterClerkFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=new TransShipmentBLImpl(currentUser);
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -271,6 +277,11 @@ public class TransShipment extends JPanel{
         transWays.setFont(new Font("宋体", Font.BOLD, 15));
         transWays.setLocation(agencyNameLabel.getX(),128+100);
         
+        JLabel shipId=new JLabel("本中转单编号："+bl.createTransShipmentListId());
+        shipId.setSize((int)(16*("本中转单编号："+bl.createTransShipmentListId()).length()*1.07f), 16);
+        shipId.setFont(new Font("宋体", Font.BOLD, 15));
+        shipId.setLocation(transWays.getX()+transWays.getWidth()+20,transWays.getY());
+        
         JLabel transId=new JLabel("运输编号: ");
         transId.setSize((int)(16*"运输编号： ".length()*1.07f), 16);
         transId.setFont(new Font("宋体", Font.BOLD, 15));
@@ -292,7 +303,7 @@ public class TransShipment extends JPanel{
         JLabel arrivePlace = new JLabel("到达地：");
         arrivePlace.setSize((int)(16*"到达地：".length()*1.07f), 16);
         arrivePlace.setFont(new Font("宋体", Font.BOLD, 15));
-        arrivePlace.setLocation(departPlace.getX()+departPlace.getWidth()+80,128+188);
+        arrivePlace.setLocation(departPlace.getX()+departPlace.getWidth()+120,128+188);
         
         JLabel counterId = new JLabel("货柜号/车厢号：");
         counterId.setSize((int)(16*"货柜号/车厢号：".length()*1.07f), 16);
@@ -386,6 +397,7 @@ public class TransShipment extends JPanel{
         add(agencyNameLabel);
         add(timeLabel);
         add(transWays);
+        add(shipId);
         add(transId);
         add(tip1);
         add(departPlace);
@@ -419,8 +431,7 @@ public class TransShipment extends JPanel{
 	}
 
 	private void clear(){
-//		.setText("");
-//		.setText("");
+
 		_plane.setSelected(true);
 		_trains.setSelected(false);
 		_transId.setText("");
@@ -441,14 +452,7 @@ public class TransShipment extends JPanel{
 		if(result.compareTo("格式正确")!=0){
 			printMessage(result, Color.RED);
 			return;
-		}
-		
-//		OrderListVO orderListVO = bl2.searchPkgInformation(barCode_s);
-//		if(orderListVO==null){
-//			printMessage("此订单不存在！", Color.RED);
-//			return;
-//		}
-
+		}		
 		int i;
 		String s;
 		for(i=0;i<barCodeTable.getRowCount();i++){
@@ -476,7 +480,42 @@ public class TransShipment extends JPanel{
 		barCodeTableModel.removeRow(index);
 	}
 	private void _confirm(){
-
+		String time="";
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		time=format.format(date_);
+		
+		String transitDocNumber = bl.createTransShipmentListId();
+		
+		String flightNumber = _transId.getText();
+		
+		String departurePlace = currentUser.getAgencyName();
+		
+		String desitination = _arrivePlace.getText();
+		
+		String containerNumber =_counterId.getText();
+		
+		String supercargoMan = _supervisor.getText();
+		
+		ArrayList<String> barcodes = new ArrayList<String>();
+		for(int i=0;i<barCodeTable.getRowCount();i++){
+			barcodes.add(barCodeTable.getValueAt(i, 0)+"");		
+		}
+		
+		String price = _price.getText();
+		
+		if(flightNumber.compareTo("")==0||desitination.compareTo("")==0
+				||containerNumber.compareTo("")==0||supercargoMan.compareTo("")==0
+				||barcodes.size()==0||price.compareTo("")==0){
+			printMessage("信息录入不完整！", Color.RED);
+			return;
+		}
+		else{
+			TransShipmentListVO vo = new TransShipmentListVO(time, transitDocNumber, flightNumber, departurePlace, desitination, containerNumber, supercargoMan, barcodes,Double.parseDouble(price),CheckType.UNDERCHECK);
+			ResultMessage message = bl.createShiplist(vo);
+			printMessage(message.getMessage(), Color.GREEN);
+			clear();
+		}
 	}
 	private void _cancel(){
 		clear();

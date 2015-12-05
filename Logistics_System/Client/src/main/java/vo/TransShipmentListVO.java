@@ -56,7 +56,7 @@ public class TransShipmentListVO extends ListVO{
 	private double price;
 
 	public TransShipmentListVO(String date, String transitDocNumber, String flightNumber, String departurePlace,
-			String desitination, String containerNumber, String supercargoMan, ArrayList<String> barcodes,CheckType type) {
+			String desitination, String containerNumber, String supercargoMan, ArrayList<String> barcodes,double price,CheckType type) {
 		super();
 		this.date = date;
 		this.transitDocNumber = transitDocNumber;
@@ -66,6 +66,7 @@ public class TransShipmentListVO extends ListVO{
 		this.containerNumber = containerNumber;
 		this.supercargoMan = supercargoMan;
 		this.barcodes = barcodes;
+		this.price = price;
 		this.setCheckType(type);
 	}
 
