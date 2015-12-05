@@ -38,9 +38,25 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 	
 	}
 
+	public RepertoryInPO findOnOrderID(String orderID,String id){
+		RepertoryInPO repertoryin=null;
+		String sql="select * from repertoryin where orderid='"+orderID+"' and id='"+id+"'";
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			rs.next();
+			repertoryin=new RepertoryInPO(id,rs.getString("orderid") , rs.getString("timee"), rs.getString("destination"), rs.getString("arenumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), CheckType.valueOf(rs.getString("checkstate")));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("出现问题,查找出错");
+			return null;
+		}
+		return repertoryin;
+	}
+	
 	public RepertoryInPO findOnID(String id) {
 		RepertoryInPO repertoryin=null;
-		String sql="select * from repertoryin where orderid='"+id+"'";
+		String sql="select * from repertoryin where id='"+id+"'";
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();
@@ -56,11 +72,12 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 
 	public ArrayList<RepertoryInPO> showAllByAgency(String start_day, String end_day,String agencyID) {
 		ArrayList<RepertoryInPO> repertoryin=new ArrayList<RepertoryInPO>();
-		String sql="select * from repertoryin where timee<='"+end_day+"' and timee>="+start_day+"' and id like '%"+agencyID+"%'";
+		String sql="select * from repertoryin where timee<='"+end_day+"' and timee>='"+start_day+"' and id like '"+agencyID+"%'";
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			while(rs.next())
 			{
+				System.out.println(rs.getString("id"));
 				repertoryin.add(this.findOnID(rs.getString("id")));
 			}
 		} catch (SQLException e) {
@@ -74,7 +91,7 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 	
 	public ArrayList<RepertoryInPO> showAll(String start_day, String end_day) {
 		ArrayList<RepertoryInPO> repertoryin=new ArrayList<RepertoryInPO>();
-		String sql="select * from repertoryin where timee<='"+end_day+"' and timee>="+start_day+"'";
+		String sql="select * from repertoryin where timee<='"+end_day+"' and timee>='"+start_day+"'";
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			while(rs.next())

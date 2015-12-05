@@ -74,8 +74,8 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 		String sql="select * from repertoryinfo where id='"+id+"'";
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
-			rs.next();
-			repertoryinfo.add(new RepertoryInfoPO(id, rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("goodid")));
+			while(rs.next())
+				repertoryinfo.add(new RepertoryInfoPO(id, rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("goodid")));
 		} catch (SQLException e) {
 			System.out.println("查询失败");
 			return repertoryinfo;

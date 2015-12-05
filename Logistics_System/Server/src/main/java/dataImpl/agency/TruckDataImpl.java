@@ -20,12 +20,12 @@ public class TruckDataImpl extends UnicastRemoteObject implements TruckDataServi
 	}
 
 	public void add(TruckPO truck) {
-		String sql="insert into truck values ("+truck.getVehiclecode()+",'"+truck.getPlatenumber()+"','"+truck.getServiceTimeLimit()+"')";
+		String sql="insert into truck values ('"+truck.getVehiclecode()+"','"+truck.getPlatenumber()+"','"+truck.getServicestarttime()+"')";
         DataJDBCConnection.update(sql);
 	}
 
 	public void delete(String vehicleCode) {
-		String sql="delete from truck where vehiclecode="+vehicleCode;
+		String sql="delete from truck where vehiclecode='"+vehicleCode+"'";
 		DataJDBCConnection.update(sql);
 	}
 
@@ -36,7 +36,7 @@ public class TruckDataImpl extends UnicastRemoteObject implements TruckDataServi
 
 	public TruckPO find(String num) {
 		TruckPO truck=null;
-		String sql="select * from truck where vehiclecode="+num;
+		String sql="select * from truck where vehiclecode='"+num+"'";
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		try {
 			rs.next();
@@ -48,7 +48,7 @@ public class TruckDataImpl extends UnicastRemoteObject implements TruckDataServi
 	}
 
 	public ArrayList<TruckPO> showAll(String Hall_Num) {
-		String sql="select * from truck";
+		String sql="select * from truck where vehiclecode like '"+Hall_Num+"%'";
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		ArrayList<TruckPO> truckList=new ArrayList<TruckPO>();
 		TruckPO truck;
