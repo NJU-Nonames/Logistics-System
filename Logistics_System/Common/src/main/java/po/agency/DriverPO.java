@@ -63,7 +63,7 @@ public class DriverPO implements Serializable{
     	 this.IDNum = IDNum;
     	 this.phoneNum = phoneNum;
     	 this.sex = sex;
-    	 this.drivingLicencePeriodstarttime = drivingLicencePeriodstarttime;
+    	 this.drivingLicencePeriodstarttime=drivingLicencePeriodstarttime;
      }
 
 	public String getDriverNum() {
@@ -86,20 +86,9 @@ public class DriverPO implements Serializable{
 		return sex;
 	}
 
-	public String getDrivingLicencePeriod() {
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		Date now = null,date1 = null;
-		try {
-			now = df.parse(df.format(Calendar.getInstance().getTime()));
-			date1 = df.parse(drivingLicencePeriodstarttime);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		long day = (now.getTime() - date1.getTime())
-			     / (24 * 60 * 60 * 1000);
-		int year=(int) (day/365);
-		int month=(int) ((day%365)/30);
-		int day1=(int) ((day%365)%30);
-		return year+"年"+month+"月"+day1+"日";
+	public String getDrivingLicencePeriodstarttime() {
+		return drivingLicencePeriodstarttime;
 	}
+
+	
 }
