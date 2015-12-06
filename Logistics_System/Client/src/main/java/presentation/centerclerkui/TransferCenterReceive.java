@@ -72,6 +72,7 @@ public class TransferCenterReceive extends JPanel{
 	private String result;//打印的消息
 	private Color co;//消息的颜色
 	
+    JLabel receiveId;
 	JTextField id1=new JTextField();
 	JTextField id2=new JTextField();
 	JRadioButton jb1 ;
@@ -92,9 +93,7 @@ public class TransferCenterReceive extends JPanel{
         super.paintComponent(g);
         setBackground(Color.WHITE);
         g.drawLine(CenterClerkFrame.w/6, 10, CenterClerkFrame.w/6, CenterClerkFrame.h-10);
-        g.drawLine(CenterClerkFrame.w/6+10, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h/6);
-        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
-        
+        g.drawLine(CenterClerkFrame.w/6+10, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h/6);        
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterClerkFrame.h-50, CenterClerkFrame.w, 50, null);
         	
@@ -218,31 +217,23 @@ public class TransferCenterReceive extends JPanel{
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
 
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
+        
         String s="中转中心业务员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(CenterClerkFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(CenterClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-        
-        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
-        JLabel agencyNameLabel = new JLabel(str);
-        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
-        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
-        
-        Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-		String time_="时间:   "+format.format(date_);
-		JLabel timeLabel = new JLabel(time_);
-        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
-        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
         
 
         
@@ -250,11 +241,11 @@ public class TransferCenterReceive extends JPanel{
         jb2 = new JRadioButton("货物装车单号：",false);
         jb1.setSize((int)(170*1.07f), 20);
         jb1.setFont(new Font("宋体", Font.BOLD, 17));
-        jb1.setLocation(agencyNameLabel.getX(),128+100);
+        jb1.setLocation(CenterClerkFrame.w/6+20,128+100);
         jb1.setOpaque(false);
         jb2.setSize((int)(170*1.07f), 20);
         jb2.setFont(new Font("宋体", Font.BOLD, 17));
-        jb2.setLocation(agencyNameLabel.getX(),128+150);
+        jb2.setLocation(CenterClerkFrame.w/6+20,128+150);
         jb2.setOpaque(false);
         ButtonGroup group = new ButtonGroup();
         group.add(jb1);group.add(jb2);
@@ -302,7 +293,7 @@ public class TransferCenterReceive extends JPanel{
         });
         
         confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        confirm.setLocation(CenterClerkFrame.w/2,CenterClerkFrame.w/3*2);
+        confirm.setLocation(CenterClerkFrame.w/2,CenterClerkFrame.w/3*2-50);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm();
@@ -350,7 +341,7 @@ public class TransferCenterReceive extends JPanel{
       	orderTable.getTableHeader().setReorderingAllowed(false);
       	orderTable.getTableHeader().setResizingAllowed(false);
       	jp.setSize(700, 300);
-      	jp.setLocation(agencyNameLabel.getX()-50, jb2.getY()+jb2.getHeight()+10);
+      	jp.setLocation(CenterClerkFrame.w/6+20-50, jb2.getY()+jb2.getHeight()+10);
       	jp.setOpaque(false);
       	jp.add(scrollPane,BorderLayout.CENTER);
       	
@@ -389,10 +380,10 @@ public class TransferCenterReceive extends JPanel{
  			public void mouseReleased(MouseEvent arg0) {}
          });
         
-        JLabel receiveId= new JLabel("本中转接收单编号："+bl.createTransArrivalListId()); 
-        receiveId.setSize((int)(("本中转接收单编号："+bl.createTransArrivalListId()).length()*1.07f), 16);
+        receiveId = new JLabel("本中转接收单编号："+bl.createTransArrivalListId()); 
+        receiveId.setSize((int)(16*("本中转接收单编号："+bl.createTransArrivalListId()).length()*1.07f), 16);
         receiveId.setFont(new Font("宋体", Font.BOLD, 15));
-        receiveId.setLocation(jp.getX(),jp.getY()+jp.getHeight()+10);
+        receiveId.setLocation(jp.getX()+50,128+55);
         //最基本按钮
     	close.setLocation(CenterClerkFrame.w-30,0);
     	min.setLocation(CenterClerkFrame.w-80,0);
@@ -407,10 +398,9 @@ public class TransferCenterReceive extends JPanel{
         
         add(titleLabel);
         add(funLabel);
+        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
-    	add(agencyNameLabel);
-    	add(timeLabel);
     	add(receiveId);
     	
     	add(jb1);
@@ -462,6 +452,8 @@ public class TransferCenterReceive extends JPanel{
 		while(orderTable.getRowCount()!=0)
 			orderTableModel.removeRow(0);
 		
+        receiveId.setText("本中转接收单编号："+bl.createTransArrivalListId()); 
+
 		willprintMessage=false;
 		repaint();
 	}

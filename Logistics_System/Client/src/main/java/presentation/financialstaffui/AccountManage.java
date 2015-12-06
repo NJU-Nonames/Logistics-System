@@ -343,6 +343,8 @@ public class AccountManage extends JPanel{
 		JPanel jp=new JPanel();
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(AccountTable);
+		AccountTable.getTableHeader().setReorderingAllowed(false);
+		AccountTable.getTableHeader().setResizingAllowed(false);
 		AccountTable.setFillsViewportHeight(true);
 		jp.setSize(500, 180);
 		jp.setLocation(596-500/2, 128+120);

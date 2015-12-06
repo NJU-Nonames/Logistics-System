@@ -29,6 +29,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import businesslogicservice.informationchangeblservice.PeopleAgencyBLService;
 import presentation.img.Img;
@@ -399,6 +401,8 @@ public class PeopleAgencyManage extends JPanel{
 		JPanel jp=new JPanel();
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(AgencyTable);
+		AgencyTable.getTableHeader().setReorderingAllowed(false);
+		AgencyTable.getTableHeader().setResizingAllowed(false);
 		AgencyTable.setFillsViewportHeight(true);
 		jp.setSize(400, 150);
 		jp.setLocation(170+20, 128+90);
@@ -485,6 +489,10 @@ public class PeopleAgencyManage extends JPanel{
 		JPanel jp2=new JPanel();
 		JScrollPane scrollPane2 = new JScrollPane();
 		scrollPane2.getViewport().add(PeopleTable);
+		int[] width={50,50,250,250,150,150,150,200,150,100};
+		PeopleTable.setColumnModel(getColumnModel(PeopleTable,width));
+		PeopleTable.getTableHeader().setReorderingAllowed(false);
+		PeopleTable.getTableHeader().setResizingAllowed(false);
 		PeopleTable.setFillsViewportHeight(true);
 		jp2.setSize(850, 150);
 		jp2.setLocation(596-850/2, 128+245+60+40);
@@ -648,6 +656,15 @@ public class PeopleAgencyManage extends JPanel{
 				}
 			}
 		}).start();
+	}
+
+	private TableColumnModel getColumnModel(JTable peopleTable2, int[] width) {
+		 TableColumnModel columns = PeopleTable.getColumnModel();  
+		 for (int i = 0; i < width.length; i++) {  
+			 TableColumn column = columns.getColumn(i);  
+		     column.setPreferredWidth(width[i]);  
+		 }  
+		 return columns;
 	}
 
 	private void _searchAgency(){

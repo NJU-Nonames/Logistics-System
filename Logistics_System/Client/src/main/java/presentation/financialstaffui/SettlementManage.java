@@ -315,6 +315,8 @@ public class SettlementManage extends JPanel{
 		JPanel jp=new JPanel();
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(MoneyInListTable);
+		MoneyInListTable.getTableHeader().setReorderingAllowed(false);
+		MoneyInListTable.getTableHeader().setResizingAllowed(false);
 		MoneyInListTable.setFillsViewportHeight(true);
 		jp.setSize(620, 390);
 		jp.setLocation(596-620/2, 128+80+100);

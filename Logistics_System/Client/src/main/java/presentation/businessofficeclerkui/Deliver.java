@@ -354,6 +354,8 @@ public class Deliver extends JPanel{
     	JScrollPane scrollPane = new JScrollPane();
     	scrollPane.getViewport().add(barCodeTable);
     	barCodeTable.setFillsViewportHeight(true);
+    	barCodeTable.getTableHeader().setReorderingAllowed(false);
+		barCodeTable.getTableHeader().setResizingAllowed(false);
     	jp.setSize(400, 150);
     	jp.setLocation(596+20, 128+80);
     	jp.setOpaque(false);

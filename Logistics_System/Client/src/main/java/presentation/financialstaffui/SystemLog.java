@@ -306,6 +306,8 @@ public class SystemLog extends JPanel{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(SystemLogTable);
 		SystemLogTable.setFillsViewportHeight(true);
+		SystemLogTable.getTableHeader().setReorderingAllowed(false);
+		SystemLogTable.getTableHeader().setResizingAllowed(false);
 		jp.setSize(820, 390);
 		jp.setLocation(596-820/2, 128+80+100);
 		jp.setOpaque(false);

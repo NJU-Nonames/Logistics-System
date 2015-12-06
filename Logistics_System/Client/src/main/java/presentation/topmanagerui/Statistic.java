@@ -323,6 +323,8 @@ public class Statistic extends JPanel{
 		JPanel jp=new JPanel();
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(CostandBenefitChartTable);
+		CostandBenefitChartTable.getTableHeader().setReorderingAllowed(false);
+		CostandBenefitChartTable.getTableHeader().setResizingAllowed(false);
 		CostandBenefitChartTable.setFillsViewportHeight(true);
 		jp.setSize(620, 210);
 		jp.setLocation(596-620/2, 128+80+20);
@@ -370,6 +372,8 @@ public class Statistic extends JPanel{
 		JPanel jp2=new JPanel();
 		JScrollPane scrollPane2 = new JScrollPane();
 		scrollPane2.getViewport().add(BusinessCircumstanceChartTable);
+		BusinessCircumstanceChartTable.getTableHeader().setReorderingAllowed(false);
+		BusinessCircumstanceChartTable.getTableHeader().setResizingAllowed(false);
 		BusinessCircumstanceChartTable.setFillsViewportHeight(true);
 		jp2.setSize(620, 210);
 		jp2.setLocation(596-620/2, 128+80+250+20);

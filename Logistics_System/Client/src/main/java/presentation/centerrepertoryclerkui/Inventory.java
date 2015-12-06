@@ -84,7 +84,6 @@ public class Inventory extends JPanel{
         setBackground(Color.WHITE);
         g.drawLine(CenterRepertoryClerkFrame.w/6, 10, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h-10);
         g.drawLine(CenterRepertoryClerkFrame.w/6+10, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
-        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
         
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterRepertoryClerkFrame.h-50, CenterRepertoryClerkFrame.w, 50, null);
@@ -204,7 +203,7 @@ public class Inventory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        search.setLocation(CenterClerkFrame.w/3*2+25,128+84);
+        search.setLocation(CenterClerkFrame.w/3*2+25,128+84-20);
         
         refresh = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
         refresh.addMouseListener(new MouseListener(){
@@ -216,7 +215,7 @@ public class Inventory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        refresh.setLocation(CenterClerkFrame.w/3*2+125,128+84);
+        refresh.setLocation(CenterClerkFrame.w/3*2+125,128+84-20);
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
@@ -230,37 +229,30 @@ public class Inventory extends JPanel{
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
 
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
+        
         String s="仓库管理员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(CenterRepertoryClerkFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(CenterRepertoryClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-    	
-        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
-        JLabel agencyNameLabel = new JLabel(str);
-        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
-        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
         
-        Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-		String time_="时间:   "+format.format(date_);
-		JLabel timeLabel = new JLabel(time_);
-        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
-        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
         
         String s1="分区A占比："+bl.showRepertory().percentA;
         JLabel partA = new JLabel(s1);//要联系逻辑层给的数据
         partA.setSize((int)(16*s1.length()*1.07f), 16);
         partA.setFont(new Font("宋体", Font.BOLD, 15));
-        partA.setLocation(agencyNameLabel.getX()+10,CenterClerkFrame.h/6+110+300+10);
+        partA.setLocation(CenterRepertoryClerkFrame.w/6+20+10,CenterClerkFrame.h/6+110+300+10-20);
         
         String s2="分区B占比："+bl.showRepertory().percentB;
         JLabel partB= new JLabel(s2);//要联系逻辑层给的数据
@@ -283,7 +275,7 @@ public class Inventory extends JPanel{
         JLabel tiaozhengfenqu = new JLabel("调整分区:");
         tiaozhengfenqu.setSize((int)(16*"调整分区:".length()*1.07f), 16);
         tiaozhengfenqu.setFont(new Font("宋体", Font.BOLD, 15));
-        tiaozhengfenqu.setLocation(agencyNameLabel.getX()+10,partA.getY()+30);
+        tiaozhengfenqu.setLocation(CenterRepertoryClerkFrame.w/6+20+10,partA.getY()+30);
         
         JLabel orderId = new JLabel("订单");
         orderId.setSize((int)(16*"订单".length()*1.07f), 16);
@@ -386,7 +378,7 @@ public class Inventory extends JPanel{
       	repertoryTable.getTableHeader().setReorderingAllowed(false);
       	repertoryTable.getTableHeader().setResizingAllowed(false);
       	jp.setSize(800, 300);
-      	jp.setLocation(agencyNameLabel.getX()+10, CenterClerkFrame.h/6+110);
+      	jp.setLocation(CenterRepertoryClerkFrame.w/6+20+10, CenterClerkFrame.h/6+110-20);
       	jp.setOpaque(false);
       	jp.add(scrollPane,BorderLayout.CENTER);
       	
@@ -409,10 +401,9 @@ public class Inventory extends JPanel{
 		
         add(titleLabel);
         add(funLabel);
+        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
-        add(agencyNameLabel);
-        add(timeLabel);
         add(partA);
         add(partB);
         add(partC);

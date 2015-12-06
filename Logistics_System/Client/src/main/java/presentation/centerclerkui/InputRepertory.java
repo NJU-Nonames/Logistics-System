@@ -50,6 +50,7 @@ public class InputRepertory extends JPanel{
 	private MyButton goto_InputRepertory;
 	private MyButton goto_LoadManage;
 	//详细操作按钮以及其他组件
+    JLabel inId;
 	private JTextField _orderId=new JTextField();
 	private JTextField _destiPlace=new JTextField();
 	private JTextField _q=new JTextField();
@@ -192,46 +193,40 @@ public class InputRepertory extends JPanel{
         funLabel.setSize((int)(40*func.length()*1.07f), 40);
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
-
+        
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
+        
         String s="中转中心业务员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(CenterClerkFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(CenterClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
-        JLabel agencyNameLabel = new JLabel(str);
-        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
-        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
         
-        Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-		String time_="入库时间:  "+format.format(date_);
-		JLabel timeLabel = new JLabel(time_);
-        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
-        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
         
         JLabel orderId=new JLabel("入库订单编号：");
         orderId.setSize((int)(16*"入库订单编号：".length()*1.07f), 16);
         orderId.setFont(new Font("宋体", Font.BOLD, 15));
-        orderId.setLocation(agencyNameLabel.getX(),128+120);
+        orderId.setLocation(CenterClerkFrame.w/6+20,128+70);
         
         JLabel destiPlace=new JLabel("目的地:");
         destiPlace.setSize((int)(16*"目的地:".length()*1.07f), 16);
         destiPlace.setFont(new Font("宋体", Font.BOLD, 15));
-        destiPlace.setLocation(agencyNameLabel.getX(),128+215);
+        destiPlace.setLocation(CenterClerkFrame.w/6+20,128+165);
         
         JLabel location=new JLabel("库存位置：");
         location.setSize((int)(16*"库存位置：".length()*1.07f), 16);
         location.setFont(new Font("宋体", Font.BOLD, 15));
-        location.setLocation(agencyNameLabel.getX(),128+320);
+        location.setLocation(CenterClerkFrame.w/6+20,128+270);
         
         _q.setSize((int)(20*1.07f), 20);
         _q.setLocation(location.getX()+location.getWidth(),location.getY()-3);
@@ -265,13 +260,13 @@ public class InputRepertory extends JPanel{
         w.setFont(new Font("宋体", Font.BOLD, 15));
         w.setLocation(_w.getX()+_w.getWidth()+10,location.getY());
         
-        JLabel inId=new JLabel("本入库单编号："+bl.createRepertoryInId());
+        inId=new JLabel("本入库单编号："+bl.createRepertoryInId());
         inId.setSize((int)(16*("本入库单编号："+bl.createRepertoryInId()).length()*1.07f), 16);
         inId.setFont(new Font("宋体", Font.BOLD, 15));
-        inId.setLocation(location.getX(),location.getY()+location.getHeight()+10);
+        inId.setLocation(location.getX(),location.getY()+location.getHeight()+90);
         
         confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        confirm.setLocation(CenterClerkFrame.w/2,location.getY()+location.getHeight()+100);
+        confirm.setLocation(CenterClerkFrame.w/2,location.getY()+location.getHeight()+160);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm();
@@ -316,10 +311,10 @@ public class InputRepertory extends JPanel{
         
         add(titleLabel);
         add(funLabel);
+        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
-        add(agencyNameLabel);
-        add(timeLabel);
+        
         add(orderId);
         add(destiPlace);
         add(location);
@@ -327,6 +322,7 @@ public class InputRepertory extends JPanel{
         add(p);
         add(j);
         add(w);
+        add(inId);
         
         add(_orderId);
         add(_destiPlace);
@@ -356,6 +352,7 @@ public class InputRepertory extends JPanel{
 		_j.setText("");
 		_w.setText("");
 		willprintMessage=false;
+		inId.setText("本入库单编号："+bl.createRepertoryInId());
 		repaint();
 	}
 	

@@ -85,7 +85,6 @@ public class ViewRepertory extends JPanel{
         setBackground(Color.WHITE);
         g.drawLine(CenterRepertoryClerkFrame.w/6, 10, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h-10);
         g.drawLine(CenterRepertoryClerkFrame.w/6+10, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
-        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
         
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterRepertoryClerkFrame.h-50, CenterRepertoryClerkFrame.w, 50, null);
@@ -209,36 +208,28 @@ public class ViewRepertory extends JPanel{
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
 
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
+        
         String s="仓库管理员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(CenterRepertoryClerkFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(CenterRepertoryClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-    	
-        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
-        JLabel agencyNameLabel = new JLabel(str);
-        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
-        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
-        
-        Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-		String time_="时间:   "+format.format(date_);
-		JLabel timeLabel = new JLabel(time_);
-        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
-        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
         
         JLabel Stime = new JLabel("起始时间：");
         Stime.setSize((int)(16*"起始时间：".length()*1.07f), 16);
         Stime.setFont(new Font("宋体", Font.BOLD, 15));
-        Stime.setLocation(agencyNameLabel.getX()+200,128+100);
+        Stime.setLocation(CenterRepertoryClerkFrame.w/6+20+200,128+75);
         
         _time1.setSize((int)(90*1.07f), 20);
         _time1.setLocation(Stime.getX()+Stime.getWidth(),Stime.getY());
@@ -250,6 +241,8 @@ public class ViewRepertory extends JPanel{
         
         _time2.setSize((int)(90*1.07f), 20);
         _time2.setLocation(Etime.getX()+Etime.getWidth(),Etime.getY());
+    	Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
         _time2.setText(format.format(date_));
         
         search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
@@ -267,7 +260,7 @@ public class ViewRepertory extends JPanel{
         JLabel in = new JLabel("入库信息表");
         in.setSize((int)(16*"入库信息表".length()*1.07f), 16);
         in.setFont(new Font("宋体", Font.BOLD, 15));
-        in.setLocation(agencyNameLabel.getX()+350,128+120);
+        in.setLocation(CenterRepertoryClerkFrame.w/6+20+350,128+120);
         
         Vector<String> vColumns1 = new Vector<String>();
       	vColumns1.add("入库时间");
@@ -298,13 +291,9 @@ public class ViewRepertory extends JPanel{
       	repertoryInTable.getTableHeader().setReorderingAllowed(false);
       	repertoryInTable.getTableHeader().setResizingAllowed(false);
       	jp1.setSize(800, 150);
-      	jp1.setLocation(agencyNameLabel.getX()+10, in.getY()+in.getHeight());
+      	jp1.setLocation(CenterRepertoryClerkFrame.w/6+20+10, in.getY()+in.getHeight());
       	jp1.setOpaque(false);
       	jp1.add(scrollPane1,BorderLayout.CENTER);
-      	
-      	_time2.setSize((int)(90*1.07f), 20);
-        _time2.setLocation(Etime.getX()+Etime.getWidth(),Etime.getY());
-        _time2.setText(format.format(date_));
         
         JLabel out = new JLabel("出库信息表");
         out.setSize((int)(16*"出库信息表".length()*1.07f), 16);
@@ -338,19 +327,19 @@ public class ViewRepertory extends JPanel{
       	repertoryOutTable.getTableHeader().setReorderingAllowed(false);
       	repertoryOutTable.getTableHeader().setResizingAllowed(false);
       	jp2.setSize(800, 150);
-      	jp2.setLocation(agencyNameLabel.getX()+10, out.getY()+out.getHeight());
+      	jp2.setLocation(CenterRepertoryClerkFrame.w/6+20+10, out.getY()+out.getHeight());
       	jp2.setOpaque(false);
       	jp2.add(scrollPane2,BorderLayout.CENTER);
       	
       	inCount = new JLabel("入库数量总计：");//联系逻辑层数据
       	inCount.setSize((int)(16*"入库数量总计：".length()*1.07f), 16);
       	inCount.setFont(new Font("宋体", Font.BOLD, 15));
-      	inCount.setLocation(agencyNameLabel.getX()+150,128+440);
+      	inCount.setLocation(CenterRepertoryClerkFrame.w/6+20+150,128+440);
       	
       	outCount = new JLabel("出库数量总计：");//联系逻辑层数据
       	outCount.setSize((int)(16*"出库数量总计：".length()*1.07f), 16);
       	outCount.setFont(new Font("宋体", Font.BOLD, 15));
-      	outCount.setLocation(agencyNameLabel.getX()+150+220,inCount.getY());
+      	outCount.setLocation(CenterRepertoryClerkFrame.w/6+20+150+220,inCount.getY());
       	
       	inMoney = new JLabel("入库金额总计：");//联系逻辑层数据
       	inMoney.setSize((int)(16*"入库金额总计：".length()*1.07f), 16);
@@ -378,10 +367,10 @@ public class ViewRepertory extends JPanel{
 		
         add(titleLabel);
         add(funLabel);
+        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
-        add(agencyNameLabel);
-        add(timeLabel);
+        
         add(Stime);
         add(Etime);
         add(in);

@@ -376,6 +376,8 @@ public class SearchPkgInformation extends JPanel{
 		JPanel jp=new JPanel();
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(detailTable);
+		detailTable.getTableHeader().setReorderingAllowed(false);
+		detailTable.getTableHeader().setResizingAllowed(false);
 		detailTable.setFillsViewportHeight(true);
 		jp.setSize(402, 360);
 		jp.setLocation(540, 128+80+70);

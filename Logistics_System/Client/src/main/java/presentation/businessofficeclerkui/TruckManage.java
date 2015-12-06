@@ -331,6 +331,8 @@ public class TruckManage extends JPanel{
     	JScrollPane scrollPane = new JScrollPane();
     	scrollPane.getViewport().add(vehicleTable);
     	vehicleTable.setFillsViewportHeight(true);
+    	vehicleTable.getTableHeader().setReorderingAllowed(false);
+    	vehicleTable.getTableHeader().setResizingAllowed(false);
 		jp.setSize(500, 180);
 		jp.setLocation(596-500/2, 128+80);
     	jp.setOpaque(false);
@@ -353,12 +355,12 @@ public class TruckManage extends JPanel{
     	platenumber.setLocation(170+20+(int)(16*5*1.07f)+150+(int)(16*4*1.07f), 128+290-3);
     	
     	JLabel l3 = new JLabel("开始服役时间：");
-    	l3.setSize((int)(16*5*1.07f), 16);
+    	l3.setSize((int)(16*7*1.07f), 16);
     	l3.setFont(new Font("宋体", Font.BOLD, 15));
     	l3.setLocation(170+20+(int)(16*5*1.07f)+150+(int)(16*4*1.07f)+150, 128+290);
     	serviceTimeLimit = new JTextField();
     	serviceTimeLimit.setSize(150, 20);
-    	serviceTimeLimit.setLocation(170+20+(int)(16*5*1.07f)+150+(int)(16*4*1.07f)+150+(int)(16*5*1.07f), 128+290-3);
+    	serviceTimeLimit.setLocation(170+20+(int)(16*7*1.07f)+150+(int)(16*4*1.07f)+150+(int)(16*5*1.07f), 128+290-3);
 
     	String tip="查找：“车辆代号”里输入代号，再点击按钮即可查找";
         JLabel tipLabel = new JLabel(tip);

@@ -29,6 +29,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import businesslogicservice.financeblservice.SettlementManageBLService;
 import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
@@ -360,6 +362,10 @@ public class CheckList extends JPanel{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(barCodeTable);
 		barCodeTable.setFillsViewportHeight(true);
+		int[] width={100,100};
+		barCodeTable.setColumnModel(getColumnModel(barCodeTable,width));
+		barCodeTable.getTableHeader().setReorderingAllowed(false);
+		barCodeTable.getTableHeader().setResizingAllowed(false);
 		jp.setSize(400, 150);
 		jp.setLocation(596+20, 128+80);
 		jp.setOpaque(false);
@@ -527,6 +533,14 @@ public class CheckList extends JPanel{
 		repaint();
 	}
 	
+	private TableColumnModel getColumnModel(JTable repertoryTable, int[] width) {
+		 TableColumnModel columns = repertoryTable.getColumnModel();  
+		 for (int i = 0; i < width.length; i++) {  
+			 TableColumn column = columns.getColumn(i);  
+		     column.setPreferredWidth(width[i]);  
+		 }  
+		 return columns;
+	}
 	
 	private void printMessage(String message, Color c){
 		result=message;

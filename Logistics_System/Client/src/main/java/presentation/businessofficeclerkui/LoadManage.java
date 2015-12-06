@@ -29,6 +29,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import businesslogicservice.logisticsblservice.LoadBLService;
 import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
@@ -323,7 +325,7 @@ public class LoadManage extends JPanel{
 		hallNumber.setSize(150, 20);
 		hallNumber.setLocation(170+20+(int)(16*7*1.07f),128+80+40-3);
 
-	    transportationNumber = new JLabel("汽运编号：   "+bl.createLoadlistId());
+	    transportationNumber = new JLabel("汽运编号：    "+bl.createLoadlistId());
 		transportationNumber.setSize((int)(16*29*1.07f), 16);
 		transportationNumber.setFont(new Font("宋体", Font.BOLD, 15));
 		transportationNumber.setLocation(170+20, 128+80+40+40);
@@ -391,6 +393,8 @@ public class LoadManage extends JPanel{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(barCodeTable);
 		barCodeTable.setFillsViewportHeight(true);
+		barCodeTable.getTableHeader().setReorderingAllowed(false);
+		barCodeTable.getTableHeader().setResizingAllowed(false);
 		jp.setSize(400, 150);
 		jp.setLocation(596+20, 128+80);
 		jp.setOpaque(false);
@@ -545,7 +549,7 @@ public class LoadManage extends JPanel{
 		guardMan.setText("");
 		supercargoMan.setText("");
 		barCode.setText("");
-		transportationNumber.setText(("汽运编号：   "+bl.createLoadlistId()));
+		transportationNumber.setText("汽运编号：    "+bl.createLoadlistId());
 		while(barCodeTable.getRowCount()!=0)
 			barCodeTableModel.removeRow(0);
 	}
@@ -555,7 +559,7 @@ public class LoadManage extends JPanel{
 		String time=format.format(date_);
 		date.setText(time);
 
-		transportationNumber.setText("汽运编号：     "+bl.createLoadlistId());
+		transportationNumber.setText("汽运编号：    "+bl.createLoadlistId());
 		Destination.setText("");
 		carNumber.setText("");
 		guardMan.setText("");

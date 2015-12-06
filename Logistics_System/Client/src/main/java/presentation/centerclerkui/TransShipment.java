@@ -57,6 +57,7 @@ public class TransShipment extends JPanel{
 	private MyButton min;
 	private MyButton _return;
 	//功能按钮
+	private JLabel shipId;
 	private MyButton goto_TransferCenterReceive;
 	private MyButton goto_TransShipment;
 	private MyButton goto_InputRepertory;
@@ -88,7 +89,6 @@ public class TransShipment extends JPanel{
         setBackground(Color.WHITE);
         g.drawLine(CenterClerkFrame.w/6, 10, CenterClerkFrame.w/6, CenterClerkFrame.h-10);
         g.drawLine(CenterClerkFrame.w/6+10, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h/6);
-        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
         g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+168, CenterClerkFrame.w-100, CenterClerkFrame.h/6+168);
         g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+218, CenterClerkFrame.w-100, CenterClerkFrame.h/6+218);
         g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+268, CenterClerkFrame.w-100, CenterClerkFrame.h/6+268);
@@ -260,46 +260,38 @@ public class TransShipment extends JPanel{
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
 
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
+        
         String s="中转中心业务员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(CenterClerkFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(CenterClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
-    	
-        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
-        JLabel agencyNameLabel = new JLabel(str);
-        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
-        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
-        
-        Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-		String time_="时间:   "+format.format(date_);
-		JLabel timeLabel = new JLabel(time_);
-        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
-        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
        
         JLabel transWays=new JLabel("装运方式:");
         transWays.setSize((int)(16*"装运方式:".length()*1.07f), 16);
         transWays.setFont(new Font("宋体", Font.BOLD, 15));
-        transWays.setLocation(agencyNameLabel.getX(),128+100);
+        transWays.setLocation(CenterClerkFrame.w/6+20,128+100);
         
-        JLabel shipId=new JLabel("本中转单编号："+bl.createTransShipmentListId());
+        shipId=new JLabel("本中转单编号："+bl.createTransShipmentListId());
         shipId.setSize((int)(16*("本中转单编号："+bl.createTransShipmentListId()).length()*1.07f), 16);
         shipId.setFont(new Font("宋体", Font.BOLD, 15));
-        shipId.setLocation(transWays.getX()+transWays.getWidth()+20,transWays.getY());
+        shipId.setLocation(CenterClerkFrame.w/6+20,128+60);
         
         JLabel transId=new JLabel("运输编号: ");
         transId.setSize((int)(16*"运输编号： ".length()*1.07f), 16);
         transId.setFont(new Font("宋体", Font.BOLD, 15));
-        transId.setLocation(agencyNameLabel.getX(),128+140);
+        transId.setLocation(CenterClerkFrame.w/6+20,128+140);
         
         String _tip1="提示：请在此输入相应的运输编号，如航运则输入航运编号";
         JLabel tip1=new JLabel(_tip1);
@@ -312,7 +304,7 @@ public class TransShipment extends JPanel{
         JLabel departPlace=new JLabel(_departPlace);
         departPlace.setSize((int)(16*_departPlace.length()*1.07f), 16);
         departPlace.setFont(new Font("宋体", Font.BOLD, 15));
-        departPlace.setLocation(agencyNameLabel.getX(),128+188);
+        departPlace.setLocation(CenterClerkFrame.w/6+20,128+188);
         
         JLabel arrivePlace = new JLabel("到达地：");
         arrivePlace.setSize((int)(16*"到达地：".length()*1.07f), 16);
@@ -322,7 +314,7 @@ public class TransShipment extends JPanel{
         JLabel counterId = new JLabel("货柜号/车厢号：");
         counterId.setSize((int)(16*"货柜号/车厢号：".length()*1.07f), 16);
         counterId.setFont(new Font("宋体", Font.BOLD, 15));
-        counterId.setLocation(agencyNameLabel.getX(),128+238);
+        counterId.setLocation(CenterClerkFrame.w/6+20,128+238);
         
         JLabel supervisor = new JLabel("监装员:");
         supervisor.setSize((int)(16*"监装员:".length()*1.07f), 16);
@@ -332,7 +324,7 @@ public class TransShipment extends JPanel{
         JLabel price = new JLabel("运费:");
         price.setSize((int)(16*"运费:".length()*1.07f), 16);
         price.setFont(new Font("宋体", Font.BOLD, 15));
-        price.setLocation(agencyNameLabel.getX()+400+80, CenterClerkFrame.h/6+308+58);
+        price.setLocation(CenterClerkFrame.w/6+20+400+80, CenterClerkFrame.h/6+308+58);
         
         //表头
       	Vector<String> vColumns = new Vector<String>();
@@ -358,7 +350,7 @@ public class TransShipment extends JPanel{
       	scrollPane.getViewport().add(barCodeTable);
       	barCodeTable.setFillsViewportHeight(true);
       	jp.setSize(400, 150);
-      	jp.setLocation(agencyNameLabel.getX(), CenterClerkFrame.h/6+308);
+      	jp.setLocation(CenterClerkFrame.w/6+20, CenterClerkFrame.h/6+308);
       	jp.setOpaque(false);
       	jp.add(scrollPane,BorderLayout.CENTER);
       		
@@ -406,10 +398,9 @@ public class TransShipment extends JPanel{
         
 		add(titleLabel);
         add(funLabel);
+        add(currentuserAgencyNameLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
-        add(agencyNameLabel);
-        add(timeLabel);
         add(transWays);
         add(shipId);
         add(transId);
@@ -455,6 +446,7 @@ public class TransShipment extends JPanel{
 		_supervisor.setText("");
 		barCode.setText("");
 		_price.setText("");
+        shipId.setText("本中转单编号："+bl.createTransShipmentListId());
 		while(barCodeTable.getRowCount()!=0)
 			barCodeTableModel.removeRow(0);
 		willprintMessage=false;

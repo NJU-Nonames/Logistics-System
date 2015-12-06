@@ -56,6 +56,7 @@ public class OutputRepertory extends JPanel{
 	private JRadioButton _trains;
 	private JRadioButton _truck;
 	//详细操作按钮以及其他组件
+	private JLabel outId;
 	private JTextField _orderId=new JTextField();
 	private JTextField _destiPlace=new JTextField();
 	private JTextField _transId=new JTextField() ;
@@ -73,7 +74,6 @@ public class OutputRepertory extends JPanel{
         setBackground(Color.WHITE);
         g.drawLine(CenterRepertoryClerkFrame.w/6, 10, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h-10);
         g.drawLine(CenterRepertoryClerkFrame.w/6+10, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
-        g.drawLine(CenterClerkFrame.w/6+100, CenterClerkFrame.h/6+80, CenterClerkFrame.w-100, CenterClerkFrame.h/6+80);
         
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterRepertoryClerkFrame.h-50, CenterRepertoryClerkFrame.w, 50, null);
@@ -198,56 +198,49 @@ public class OutputRepertory extends JPanel{
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
         funLabel.setLocation(596-(int)(40*func.length()*1.07f)/2,128+10);
 
+        JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
+        currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
+        currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
+        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setLocation(170,128-30);
+        
         String s="仓库管理员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
         currentuserLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserLabel.setLocation(CenterRepertoryClerkFrame.w/6,128-30);
+        currentuserLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f),128-30);
         
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
         currentusernameLabel.setForeground(Color.RED);
-        currentusernameLabel.setLocation(CenterRepertoryClerkFrame.w/6+(int)(30*s.length()*1.07f),128-30);
+        currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
         
-        String str=currentUser.getAgencyName()+"       "+"编号："+currentUser.getAgencyNum();
-        JLabel agencyNameLabel = new JLabel(str);
-        agencyNameLabel.setSize((int)(16*str.length()*1.07f), 16);
-        agencyNameLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        agencyNameLabel.setLocation(CenterClerkFrame.w/6+20,128+50);
-        
-        Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-		String time_="出库时间:  "+format.format(date_);
-		JLabel timeLabel = new JLabel(time_);
-        timeLabel.setSize((int)(16*time_.length()*1.07f), 16);
-        timeLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        timeLabel.setLocation(CenterClerkFrame.w-timeLabel.getWidth()+80,128+50); 
         
         JLabel orderId=new JLabel("出库订单编号：");
         orderId.setSize((int)(16*"出库订单编号：".length()*1.07f), 16);
         orderId.setFont(new Font("宋体", Font.BOLD, 15));
-        orderId.setLocation(agencyNameLabel.getX(),128+100);
+        orderId.setLocation(CenterRepertoryClerkFrame.w/6+20,128+70);
         
         JLabel destiPlace=new JLabel("目的地：");
         destiPlace.setSize((int)(16*"目的地：".length()*1.07f), 16);
         destiPlace.setFont(new Font("宋体", Font.BOLD, 15));
-        destiPlace.setLocation(agencyNameLabel.getX(),orderId.getY()+100);
+        destiPlace.setLocation(CenterRepertoryClerkFrame.w/6+20,orderId.getY()+100);
         
         JLabel transWays=new JLabel("装运方式: ");
         transWays.setSize((int)(16*"装运方式： ".length()*1.07f), 16);
         transWays.setFont(new Font("宋体", Font.BOLD, 15));
-        transWays.setLocation(agencyNameLabel.getX(),destiPlace.getY()+100);
+        transWays.setLocation(CenterRepertoryClerkFrame.w/6+20,destiPlace.getY()+100);
         
         JLabel transId=new JLabel("中转单编号/汽运编号:");
         transId.setSize((int)(16*"中转订单编号/汽运编号:".length()*1.07f), 16);
         transId.setFont(new Font("宋体", Font.BOLD, 15));
-        transId.setLocation(agencyNameLabel.getX(),transWays.getY()+100);
+        transId.setLocation(CenterRepertoryClerkFrame.w/6+20,transWays.getY()+100);
     	
-        JLabel outId=new JLabel("本出库单编号："+bl.createRepertoryOutId());
+        outId=new JLabel("本出库单编号："+bl.createRepertoryOutId());
         outId.setSize((int)(16*("本出库单编号："+bl.createRepertoryOutId()).length()*1.07f), 16);
         outId.setFont(new Font("宋体", Font.BOLD, 15));
-        outId.setLocation(agencyNameLabel.getX(),transId.getY()+100);
+        outId.setLocation(CenterRepertoryClerkFrame.w/6+20,transId.getY()+100);
         //最基本按钮
     	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
@@ -315,8 +308,7 @@ public class OutputRepertory extends JPanel{
         add(funLabel);
         add(currentuserLabel);
         add(currentusernameLabel);
-        add(agencyNameLabel);
-        add(timeLabel);
+        add(currentuserAgencyNameLabel);
         add(orderId);
         add(destiPlace);
         add(transWays);
@@ -350,6 +342,7 @@ public class OutputRepertory extends JPanel{
 		_plane.setSelected(true);
 		_trains.setSelected(false);
 		_truck.setSelected(false);
+		outId.setText("本出库单编号："+bl.createRepertoryOutId());
 		willprintMessage=false;
 		repaint();
 	}
@@ -381,7 +374,7 @@ public class OutputRepertory extends JPanel{
 		
 		String time  = "";
 		Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		time+=format.format(date_);
 		
 		String desti = _destiPlace.getText();

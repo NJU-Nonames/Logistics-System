@@ -341,6 +341,8 @@ public class DriverManage extends JPanel{
     	JScrollPane scrollPane = new JScrollPane();
     	scrollPane.getViewport().add(driverTable);
     	driverTable.setFillsViewportHeight(true);
+    	driverTable.getTableHeader().setReorderingAllowed(false);
+    	driverTable.getTableHeader().setResizingAllowed(false);
 		jp.setSize(850, 180);
 		jp.setLocation(596-850/2, 128+80);
     	jp.setOpaque(false);
