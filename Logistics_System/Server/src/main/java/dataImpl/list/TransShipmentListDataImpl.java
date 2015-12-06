@@ -23,7 +23,7 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 	public void add(TransShipmentListPO transShipmentListPO)
 			throws RemoteException {
 		String sql="insert into transshipmentlist values ('"+transShipmentListPO.getTransitDocNumber()+"','"+transShipmentListPO.getDate()+"','"+transShipmentListPO.getFlightNumber()+"','"+transShipmentListPO.getDeparturePlace()+"','"+
-			transShipmentListPO.getDestination()+"','"+transShipmentListPO.getContainerNumber()+"','"+transShipmentListPO.getSupercargoMan()+"','"+transShipmentListPO.getCheckType()+"')";
+			transShipmentListPO.getDestination()+"','"+transShipmentListPO.getContainerNumber()+"','"+transShipmentListPO.getSupercargoMan()+"',"+transShipmentListPO.getPrice()+",'"+transShipmentListPO.getCheckType()+"')";
 		DataJDBCConnection.update(sql);
 		int num=transShipmentListPO.getBarcodes().size();
 		for(int i=0;i<num;i++)
@@ -62,7 +62,7 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 			{
 				barcodes.add(rs2.getString("id"));
 			}
-			transshipmentlist=new TransShipmentListPO(rs.getString("timee"), rs.getString("id"), rs.getString("flightnumber"), rs.getString("departureplace"), rs.getString("destination"), rs.getString("containernumber"), rs.getString("supercargo"), barcodes, CheckType.valueOf(rs.getString("checkstate")));
+			transshipmentlist=new TransShipmentListPO(rs.getString("timee"), rs.getString("id"), rs.getString("flightnumber"), rs.getString("departureplace"), rs.getString("destination"), rs.getString("containernumber"), rs.getString("supercargo"), barcodes, rs.getDouble("price"),CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("查找失败");

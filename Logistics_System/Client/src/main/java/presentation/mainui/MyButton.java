@@ -26,6 +26,16 @@ public class MyButton extends JPanel implements MouseListener{
 	private int w, h;
 	private Image Exited, Entered, Pressed;
 	
+	public int getW() {
+		return w;
+	}
+
+
+	public int getH() {
+		return h;
+	}
+
+
 	public MyButton(int w, int h, Image Exited, Image Entered, Image Pressed){
 		this.w=w;
 		this.h=h;
@@ -52,7 +62,6 @@ public class MyButton extends JPanel implements MouseListener{
 	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 	 */
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO 自动生成的方法存根
 		
 	}
 

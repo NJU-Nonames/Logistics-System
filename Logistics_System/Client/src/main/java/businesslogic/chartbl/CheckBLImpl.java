@@ -77,12 +77,12 @@ public class CheckBLImpl implements CheckBLService {
 	}
 	
 
-	public ArrayList<? extends ListVO> getAll(DocType docType, String time) {
+	public ArrayList<? extends ListVO> getAll(DocType docType, String time1,String time2) {
 		// TODO Auto-generated method stub
 		try{
 			switch(docType){
 			case MONEY_IN_NOTE:
-				ArrayList<MoneyInListPO> moneyinpo=moneyin.showAll(time, time);
+				ArrayList<MoneyInListPO> moneyinpo=moneyin.showAll(time1, time2);
 				ArrayList<MoneyInListVO> moneyinvo=new ArrayList<MoneyInListVO>();
 				if(moneyinpo==null)
 					return null;
@@ -91,7 +91,7 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				return moneyinvo;
 			case MONET_OUT_NOTE:
-				ArrayList<MoneyOutListPO> moneyoutpo=moneyout.showAll(time, time);
+				ArrayList<MoneyOutListPO> moneyoutpo=moneyout.showAll(time1, time2);
 				ArrayList<MoneyOutListVO> moneyoutvo=new ArrayList<MoneyOutListVO>();
 				if(moneyoutpo==null)
 					return null;
@@ -100,7 +100,7 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				return moneyoutvo;
 			case IN_STOREAGE_NOTE:
-				ArrayList<RepertoryInPO> repertoryinpo=repertoryin.showAll(time, time);
+				ArrayList<RepertoryInPO> repertoryinpo=repertoryin.showAll(time1, time2);
 				ArrayList<RepertoryInVO> repertoryinvo=new ArrayList<RepertoryInVO>();
 				if(repertoryinpo==null)
 					return null;
@@ -109,7 +109,7 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				return repertoryinvo;
 			case OUT_STOREAGE_NOTE:
-				ArrayList<RepertoryOutPO> repertoryoutpo=repertoryout.showAll(time, time);
+				ArrayList<RepertoryOutPO> repertoryoutpo=repertoryout.showAll(time1, time2);
 				ArrayList<RepertoryOutVO> repertoryoutvo=new ArrayList<RepertoryOutVO>();
 				if(repertoryoutpo==null)
 					return null;
@@ -118,7 +118,7 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				return repertoryoutvo;
 			case SENDING_NOTE:
-				ArrayList<OrderListPO> orderpo=order.showAll(time, time);
+				ArrayList<OrderListPO> orderpo=order.showAll(time1, time2);
 				ArrayList<OrderListVO> ordervo=new ArrayList<OrderListVO>();
 				if(orderpo==null)
 					return null;
@@ -127,7 +127,7 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				return ordervo;
 			case LOADING_NOTE:
-				ArrayList<LoadListPO> loadpo=load.showAll(time, time);
+				ArrayList<LoadListPO> loadpo=load.showAll(time1, time2);
 				ArrayList<LoadListVO> loadvo=new ArrayList<LoadListVO>();
 				if(loadpo==null)
 					return null;
@@ -136,7 +136,7 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				return loadvo;
 			case BUSINESSHALL_ARRIVAL_NOTE:
-				ArrayList<HallArrivalListPO> hallarrivalpo=hallarrival.showAll(time, time);
+				ArrayList<HallArrivalListPO> hallarrivalpo=hallarrival.showAll(time1, time2);
 				ArrayList<HallArrivalListVO> hallarrivalvo=new ArrayList<HallArrivalListVO>();
 				if(hallarrivalpo==null)
 					return null;
@@ -145,7 +145,7 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				return hallarrivalvo;
 			case DELIVERYING_NOTE:
-				ArrayList<DeliveringListPO> deliverlistpo=deliver.showAll(time, time);
+				ArrayList<DeliveringListPO> deliverlistpo=deliver.showAll(time1, time2);
 				ArrayList<DeliveringListVO> deliverlistvo=new ArrayList<DeliveringListVO>();
 				if(deliverlistpo==null)
 					return null;
@@ -154,7 +154,7 @@ public class CheckBLImpl implements CheckBLService {
 		        }
 		        return deliverlistvo;
 			case CENTER_ARRIVAL_NOTE:
-				ArrayList<TransArrivalListPO> transarrivalpo=transarrival.showAll(time, time);
+				ArrayList<TransArrivalListPO> transarrivalpo=transarrival.showAll(time1, time2);
 				ArrayList<TransArrivalListVO> transarrivalvo=new ArrayList<TransArrivalListVO>();
 				if(transarrivalpo==null)
 					return null;
@@ -166,7 +166,7 @@ public class CheckBLImpl implements CheckBLService {
 				}
 				return transarrivalvo;
 			case TRANSIT_NOTE:
-				ArrayList<TransShipmentListPO> transshipmentpo=transshipment.showAll(time, time);
+				ArrayList<TransShipmentListPO> transshipmentpo=transshipment.showAll(time1, time2);
 				ArrayList<TransShipmentListVO> transshipmentvo=new ArrayList<TransShipmentListVO>();
 				if(transshipmentpo==null)
 					return null;

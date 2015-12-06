@@ -56,7 +56,7 @@ public class RMIstart {
 	/**
 	 * 服务器ip地址
 	 */
-	private static final String IP="172.26.197.151";
+	private static final String IP="172.26.107.225";
 	
 	
 	

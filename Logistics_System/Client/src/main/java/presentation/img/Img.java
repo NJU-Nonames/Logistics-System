@@ -50,11 +50,47 @@ public class Img {
 	public static Image p24=new ImageIcon("img/Bg/pic (24).jpg").getImage();
 //	public static Image p=new ImageIcon("img/Bg/pic ().jpg").getImage();
 	
+	//主界面最上面标题
+	public static Image UPLINE=new ImageIcon("img/Bg/主界面标题.png").getImage();
 	
-	//按钮
+	//按钮：登录用户登录界面
+	public static Image GOTO_LOGIN_0=new ImageIcon("img/Button/用户登录_0.png").getImage();
+	public static Image GOTO_LOGIN_1=new ImageIcon("img/Button/用户登录_1.png").getImage();
+	public static Image GOTO_LOGIN_2=new ImageIcon("img/Button/用户登录_2.png").getImage();
+	
+	//按钮：登录查询物流订单界面
+	public static Image GOTO_SEARCH_0=new ImageIcon("img/Button/订单查询_0.png").getImage();
+	public static Image GOTO_SEARCH_1=new ImageIcon("img/Button/订单查询_1.png").getImage();
+	public static Image GOTO_SEARCH_2=new ImageIcon("img/Button/订单查询_2.png").getImage();
+	
+	//按钮:关闭
+	public static Image CLOSE1_0=new ImageIcon("img/Button/close1_0.png").getImage();
 	public static Image CLOSE_0=new ImageIcon("img/Button/close_0.png").getImage();
 	public static Image CLOSE_1=new ImageIcon("img/Button/close_1.png").getImage();
 	public static Image CLOSE_2=new ImageIcon("img/Button/close_2.png").getImage();
+	
+	//按钮:最小化
+	public static Image MINI1_0=new ImageIcon("img/Button/mini1_0.png").getImage();
+	public static Image MINI_0=new ImageIcon("img/Button/mini_0.png").getImage();
+	public static Image MINI_1=new ImageIcon("img/Button/mini_1.png").getImage();
+	public static Image MINI_2=new ImageIcon("img/Button/mini_2.png").getImage();
+	
+	//按钮:返回
+	
+	//按钮:确定
+	
+	//按钮:取消
+	
+	//按钮:添加
+	
+	//按钮:删除
+	
+	//按钮:更改
+	
+	//按钮:查找
+	
+	
+	
 	public static Image MIN_0=new ImageIcon("img/背景.png").getImage();
 	public static Image MIN_1=new ImageIcon("img/界面/系统图标.png").getImage();
 	public static Image MIN_2=new ImageIcon("img/背景.png").getImage();

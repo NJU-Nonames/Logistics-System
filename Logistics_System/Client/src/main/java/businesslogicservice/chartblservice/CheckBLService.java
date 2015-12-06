@@ -22,7 +22,7 @@ public interface CheckBLService {
 	 * @param arr
 	 * @return 操作是否成功
 	 */
-	public ArrayList<? extends ListVO> getAll(DocType docType,String time);
+	public ArrayList<? extends ListVO> getAll(DocType docType,String time1,String time2);
 	
 	/**总经理审批一个状态下全部单据
 	 * @param docType

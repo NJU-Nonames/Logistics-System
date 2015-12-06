@@ -47,7 +47,7 @@ public class LoginPanel extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawImage(Img.BG, 0, 0, MainFrame.w, MainFrame.h/2, null);
+        g.drawImage(Img.UPLINE, 0, 0, MainFrame.w, MainFrame.h/2, null);
         
         if(Invalid){
         	g.drawImage(Img.BLACK_BG, 0, MainFrame.h-50, MainFrame.w, 50, null);
@@ -69,7 +69,7 @@ public class LoginPanel extends JPanel{
 		initComponent();
 	}
 	private void initComponent() {
-		close = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+		close = new MyButton(30, 30, Img.CLOSE1_0, Img.CLOSE_1, Img.CLOSE_2);
         close.addMouseListener(new MouseListener(){		//( new 接口(){重写的方法} )
 			public void mouseClicked(MouseEvent arg0) {
 				System.exit(0);
@@ -79,7 +79,7 @@ public class LoginPanel extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        min = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        min = new MyButton(30, 30, Img.MINI1_0, Img.MINI_1, Img.MINI_2);
         min.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				mf.setExtendedState(JFrame.ICONIFIED);
