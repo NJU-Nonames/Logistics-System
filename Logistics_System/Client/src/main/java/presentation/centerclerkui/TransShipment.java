@@ -60,6 +60,7 @@ public class TransShipment extends JPanel{
 	private MyButton goto_TransferCenterReceive;
 	private MyButton goto_TransShipment;
 	private MyButton goto_InputRepertory;
+	private MyButton goto_LoadManage;
 	private MyButton add;
 	private MyButton remove;
 	private MyButton confirm;
@@ -179,6 +180,19 @@ public class TransShipment extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(3);
+				frame.setChanged(true);
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+        goto_LoadManage=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_InputRepertory.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				clear();
+				frame.setStated(frame.getState());
+				frame.setState(4);
 				frame.setChanged(true);
 			}
 			public void mouseEntered(MouseEvent arg0) {}
@@ -357,7 +371,7 @@ public class TransShipment extends JPanel{
     	goto_TransferCenterReceive.setLocation(20,150);
     	goto_TransShipment.setLocation(20,200);
     	goto_InputRepertory.setLocation(20,250);
-    	
+    	goto_LoadManage.setLocation(20,300);
     	//其他组件
         _plane=new JRadioButton("航运",true);
         _plane.setSize((int)(100*1.07f), 20);
@@ -422,6 +436,7 @@ public class TransShipment extends JPanel{
     	add(goto_TransferCenterReceive);
     	add(goto_TransShipment);
     	add(goto_InputRepertory);
+    	add(goto_LoadManage);
     	add(add);
     	add(remove);
     	add(confirm);

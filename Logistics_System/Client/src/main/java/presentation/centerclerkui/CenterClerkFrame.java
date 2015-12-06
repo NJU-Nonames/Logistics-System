@@ -41,6 +41,7 @@ public class CenterClerkFrame extends JFrame{
 	TransferCenterReceive transferCenterReceive;//中转接收
 	TransShipment transShipment;//装运管理
 	InputRepertory inputRepertory;//入库管理
+	LoadManage loadManage;
 	
 	
 
@@ -103,10 +104,12 @@ public class CenterClerkFrame extends JFrame{
 		transferCenterReceive=new TransferCenterReceive(this, currentUser);
 		transShipment=new TransShipment(this, currentUser);
 		inputRepertory=new InputRepertory(this, currentUser);
+		loadManage=new LoadManage(this,currentUser);
 
 		j.add(transferCenterReceive);
 		j.add(transShipment);
 		j.add(inputRepertory);
+		j.add(loadManage);
 		
 		new Thread(new Runnable(){
 			public void run() {
@@ -117,7 +120,7 @@ public class CenterClerkFrame extends JFrame{
 						if(state-stated>0)
 							a=state-stated;
 						else
-							a=state+3-stated;
+							a=state+4-stated;
 						for(int i=0;i<a;i++)
 							card.next(j);
 						

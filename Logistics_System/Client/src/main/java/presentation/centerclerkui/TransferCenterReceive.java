@@ -65,6 +65,7 @@ public class TransferCenterReceive extends JPanel{
 	private MyButton goto_TransferCenterReceive;
 	private MyButton goto_TransShipment;
 	private MyButton goto_InputRepertory;
+	private MyButton goto_LoadManage;
 	//详细操作按钮以及其他组件
 
 	private boolean willprintMessage;//是否将要打印消息
@@ -181,6 +182,19 @@ public class TransferCenterReceive extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(3);
+				frame.setChanged(true);
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+        goto_LoadManage=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_InputRepertory.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				clear();
+				frame.setStated(frame.getState());
+				frame.setState(4);
 				frame.setChanged(true);
 			}
 			public void mouseEntered(MouseEvent arg0) {}
@@ -387,7 +401,7 @@ public class TransferCenterReceive extends JPanel{
     	goto_TransferCenterReceive.setLocation(20,150);
     	goto_TransShipment.setLocation(20,200);
     	goto_InputRepertory.setLocation(20,250);
-    	
+    	goto_LoadManage.setLocation(20,300);
     	
     	//其他组件
         
@@ -418,6 +432,7 @@ public class TransferCenterReceive extends JPanel{
     	add(goto_TransferCenterReceive);
     	add(goto_TransShipment);
     	add(goto_InputRepertory);
+    	add(goto_LoadManage);
 
     	add(jp);
 	}

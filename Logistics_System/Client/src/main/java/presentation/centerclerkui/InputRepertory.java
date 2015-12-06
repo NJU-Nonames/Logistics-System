@@ -19,11 +19,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import businesslogic.logisticsbl.RepertoryManageBLImpl;
+import businesslogicservice.logisticsblservice.RepertoryManageBLService;
 import presentation.centerrepertoryclerkui.CenterRepertoryClerkFrame;
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.CheckType;
+import vo.RepertoryInVO;
 
 /**
  * @author 谭期友
@@ -32,7 +36,7 @@ import presentation.mainui.MyButton;
 public class InputRepertory extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	//private AccountBLService bl;
+	private RepertoryManageBLService bl;
 	private CenterClerkFrame frame;
 	private CurrentUser currentUser;
 	
@@ -44,6 +48,7 @@ public class InputRepertory extends JPanel{
 	private MyButton goto_TransferCenterReceive;
 	private MyButton goto_TransShipment;
 	private MyButton goto_InputRepertory;
+	private MyButton goto_LoadManage;
 	//详细操作按钮以及其他组件
 	private JTextField _orderId=new JTextField();
 	private JTextField _destiPlace=new JTextField();
@@ -76,7 +81,7 @@ public class InputRepertory extends JPanel{
 	
 	public InputRepertory(CenterClerkFrame frame, CurrentUser currentUser){
 		this.frame=frame;
-		//this.bl=bl;
+		this.bl=new RepertoryManageBLImpl(currentUser);
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
@@ -152,6 +157,19 @@ public class InputRepertory extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(3);
+				frame.setChanged(true);
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+        goto_LoadManage=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_InputRepertory.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				clear();
+				frame.setStated(frame.getState());
+				frame.setState(4);
 				frame.setChanged(true);
 			}
 			public void mouseEntered(MouseEvent arg0) {}
@@ -246,6 +264,11 @@ public class InputRepertory extends JPanel{
         w.setFont(new Font("宋体", Font.BOLD, 15));
         w.setLocation(_w.getX()+_w.getWidth()+10,location.getY());
         
+        JLabel inId=new JLabel("本入库单编号"+bl.createRepertoryInId());
+        inId.setSize((int)(("本入库单编号"+bl.createRepertoryInId()).length()*1.07f), 16);
+        inId.setFont(new Font("宋体", Font.BOLD, 15));
+        inId.setLocation(location.getX(),location.getY()+location.getHeight()+10);
+        
         confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
         confirm.setLocation(CenterClerkFrame.w/2,location.getY()+location.getHeight()+100);
     	confirm.addMouseListener(new MouseListener(){
@@ -278,6 +301,7 @@ public class InputRepertory extends JPanel{
     	goto_InputRepertory.setLocation(20,250);
     	goto_TransferCenterReceive.setLocation(20,150);
     	goto_TransShipment.setLocation(20,200);
+    	goto_LoadManage.setLocation(20,300);
     	
     	//其他组件
     	_orderId.setSize((int)(170*1.07f), 20);
@@ -317,6 +341,7 @@ public class InputRepertory extends JPanel{
     	add(goto_TransferCenterReceive);
     	add(goto_TransShipment);
     	add(goto_InputRepertory);
+    	add(goto_LoadManage);
     	
     	add(confirm);
     	add(cancel);
@@ -356,6 +381,36 @@ public class InputRepertory extends JPanel{
 		}
 	}
 	void _confirm(){
+
+		String orderId = _orderId.getText();
+		String t="";
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		t=format.format(date_);
+		String desti = _destiPlace.getText();
+		String q=_q.getText();
+		String p=_p.getText();
+		String j=_j.getText();
+		String w=_w.getText();
+		if(orderId.compareTo("")==0||desti.compareTo("")==0||q.compareTo("")==0
+	||p.compareTo("")==0||j.compareTo("")==0||w.compareTo("")==0){
+			printMessage("入库单输入不完整！", Color.RED);
+			return;
+		}
+		RepertoryInVO result = new RepertoryInVO(bl.createRepertoryInId(),orderId,t,desti,q,p,j,w,CheckType.UNDERCHECK);
+		String s = bl.createInputRepertory(result).getMessage();
+		if(s.compareTo("创建入库单成功!")==0){
+			printMessage(s, Color.GREEN);
+			clear();
+		}
+		else if(s.compareTo("创建入库单成功!仓位到达报警线，请进行库存调整修改位置。")==0){
+			printMessage(s, Color.YELLOW);
+			clear();
+		}
+		else{
+			printMessage(s, Color.RED);
+		}
+	
 		
 	}
 	void _cancel(){
