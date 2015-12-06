@@ -244,8 +244,8 @@ public class OutputRepertory extends JPanel{
         transId.setFont(new Font("宋体", Font.BOLD, 15));
         transId.setLocation(agencyNameLabel.getX(),transWays.getY()+100);
     	
-        JLabel outId=new JLabel("本出库单编号"+bl.createRepertoryOutId());
-        outId.setSize((int)(16*("本出库单编号"+bl.createRepertoryOutId()).length()*1.07f), 16);
+        JLabel outId=new JLabel("本出库单编号："+bl.createRepertoryOutId());
+        outId.setSize((int)(16*("本出库单编号："+bl.createRepertoryOutId()).length()*1.07f), 16);
         outId.setFont(new Font("宋体", Font.BOLD, 15));
         outId.setLocation(agencyNameLabel.getX(),transId.getY()+100);
         //最基本按钮
@@ -321,6 +321,7 @@ public class OutputRepertory extends JPanel{
         add(destiPlace);
         add(transWays);
         add(transId);
+        add(outId);
         
         add(_plane);
         add(_trains);

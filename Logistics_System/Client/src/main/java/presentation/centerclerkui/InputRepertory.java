@@ -164,8 +164,9 @@ public class InputRepertory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
+        
         goto_LoadManage=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        goto_InputRepertory.addMouseListener(new MouseListener(){
+        goto_LoadManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
@@ -264,8 +265,8 @@ public class InputRepertory extends JPanel{
         w.setFont(new Font("宋体", Font.BOLD, 15));
         w.setLocation(_w.getX()+_w.getWidth()+10,location.getY());
         
-        JLabel inId=new JLabel("本入库单编号"+bl.createRepertoryInId());
-        inId.setSize((int)(("本入库单编号"+bl.createRepertoryInId()).length()*1.07f), 16);
+        JLabel inId=new JLabel("本入库单编号："+bl.createRepertoryInId());
+        inId.setSize((int)(16*("本入库单编号："+bl.createRepertoryInId()).length()*1.07f), 16);
         inId.setFont(new Font("宋体", Font.BOLD, 15));
         inId.setLocation(location.getX(),location.getY()+location.getHeight()+10);
         

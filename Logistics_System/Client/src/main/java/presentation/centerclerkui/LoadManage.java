@@ -188,7 +188,7 @@ public class LoadManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         goto_LoadManage=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        goto_InputRepertory.addMouseListener(new MouseListener(){
+        goto_LoadManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());

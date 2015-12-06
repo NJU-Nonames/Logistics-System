@@ -222,17 +222,17 @@ public class InputRepertory extends JPanel{
         JLabel orderId=new JLabel("入库订单编号：");
         orderId.setSize((int)(16*"入库订单编号：".length()*1.07f), 16);
         orderId.setFont(new Font("宋体", Font.BOLD, 15));
-        orderId.setLocation(agencyNameLabel.getX(),128+120);
+        orderId.setLocation(agencyNameLabel.getX(),128+110);
         
         JLabel destiPlace=new JLabel("目的地:");
         destiPlace.setSize((int)(16*"目的地:".length()*1.07f), 16);
         destiPlace.setFont(new Font("宋体", Font.BOLD, 15));
-        destiPlace.setLocation(agencyNameLabel.getX(),128+215);
+        destiPlace.setLocation(agencyNameLabel.getX(),orderId.getY()+orderId.getHeight()+80);
         
         JLabel location=new JLabel("库存位置：");
         location.setSize((int)(16*"库存位置：".length()*1.07f), 16);
         location.setFont(new Font("宋体", Font.BOLD, 15));
-        location.setLocation(agencyNameLabel.getX(),128+320);
+        location.setLocation(agencyNameLabel.getX(),destiPlace.getY()+destiPlace.getHeight()+80);
         
         _q.setSize((int)(20*1.07f), 20);
         _q.setLocation(location.getX()+location.getWidth(),location.getY()-3);
@@ -266,13 +266,13 @@ public class InputRepertory extends JPanel{
         w.setFont(new Font("宋体", Font.BOLD, 15));
         w.setLocation(_w.getX()+_w.getWidth()+10,location.getY());
         
-        JLabel inId=new JLabel("本入库单编号"+bl.createRepertoryInId());
-        inId.setSize((int)(("本入库单编号"+bl.createRepertoryInId()).length()*1.07f), 16);
+        JLabel inId=new JLabel("本入库单编号："+bl.createRepertoryInId());
+        inId.setSize((int)(16*("本入库单编号："+bl.createRepertoryInId()).length()*1.07f), 16);
         inId.setFont(new Font("宋体", Font.BOLD, 15));
-        inId.setLocation(location.getX(),location.getY()+location.getHeight()+10);
+        inId.setLocation(location.getX(),location.getY()+location.getHeight()+80);
         
         confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        confirm.setLocation(CenterClerkFrame.w/2,location.getY()+location.getHeight()+100);
+        confirm.setLocation(CenterClerkFrame.w/2,location.getY()+location.getHeight()+130);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm();
