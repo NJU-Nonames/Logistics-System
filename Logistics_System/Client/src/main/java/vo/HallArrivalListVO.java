@@ -1,9 +1,8 @@
 package vo;
 
 import java.util.ArrayList;
-
 import utility.CheckType;
-import utility.GoodsState;
+
 
 
 
@@ -12,41 +11,31 @@ import utility.GoodsState;
  *营业厅到达单
  */
 public class HallArrivalListVO extends ListVO{
-	private String id;
+	public String id;
 	/**
 	 * 到达日期
 	 */
-	private String date;
+	public String date;
 
 	/**
-	 * 中转单编号（装车单编号）
+	 * 装车单编号
 	 */
-	private String TransferNumber;
+	public String TransferNumber;
+	
 	
 	/**
-	 * 出发地
+	 * 货物到达信息状态
 	 */
-	private String from;
-	
-	/**
-	 * 到达状态
-	 */
-	private GoodsState state;
+	public ArrayList<GoodsInfoVO> goodsInfoVO;
 
-	/**
-	 * 货物托运条形码
-	 */
-	private ArrayList<String> barCodes;
-
-	public HallArrivalListVO(String id,String date, String transferNumber, String from, GoodsState state,
-			ArrayList<String> barCodes,CheckType type) {
+	public HallArrivalListVO(String id,String date, String transferNumber,
+			ArrayList<GoodsInfoVO> goodsInfoVO,CheckType type) {
+		
 		super();
 		this.id=id;
 		this.date = date;
 		TransferNumber = transferNumber;
-		this.from = from;
-		this.state = state;
-		this.barCodes = barCodes;
+		this.goodsInfoVO=goodsInfoVO;
 		this.setCheckType(type);
 	}
 
@@ -58,25 +47,16 @@ public class HallArrivalListVO extends ListVO{
 		return TransferNumber;
 	}
 
-	public String getFrom() {
-		return from;
-	}
-
-	public GoodsState getState() {
-		return state;
-	}
-
-	public ArrayList<String> getBarCodes() {
-		return barCodes;
-	}
+	
 
 	public String getId() {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 
+	public ArrayList<GoodsInfoVO> getGoodsInfoVO() {
+		return goodsInfoVO;
+	}
 }
 

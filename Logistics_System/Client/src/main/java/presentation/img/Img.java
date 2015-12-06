@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
  * 图片类 包含系统内所有图片
  */
 public class Img {
+	private Img(){}
+	
 	//图标
 	public static Image MainICON=new ImageIcon("img/Icon/MainFrame.png").getImage();
 	public static Image AdminICON=new ImageIcon("img/Icon/AdminFrame.png").getImage();
@@ -75,6 +77,8 @@ public class Img {
 	public static Image MINI_1=new ImageIcon("img/Button/mini_1.png").getImage();
 	public static Image MINI_2=new ImageIcon("img/Button/mini_2.png").getImage();
 	
+	//按钮:登录
+	
 	//按钮:返回
 	
 	//按钮:确定
@@ -87,8 +91,7 @@ public class Img {
 	
 	//按钮:更改
 	
-	//按钮:查找
-	
+	//按钮:查询
 	
 	
 	public static Image MIN_0=new ImageIcon("img/背景.png").getImage();

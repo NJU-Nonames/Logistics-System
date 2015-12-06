@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.mysql.jdbc.ResultSet;
 
 import po.list.HallArrivalListPO;
+import po.repertory.GoodsInfoPO;
 import utility.CheckType;
 import utility.GoodsState;
 import data.DataJDBCConnection;
@@ -22,12 +23,12 @@ public class HallArrivalListDataImpl extends UnicastRemoteObject implements Hall
 
 	public void add(HallArrivalListPO hallArrivalListPO) throws RemoteException {
 		String sql="insert into hallarrivallist values ('"+hallArrivalListPO.getId()+"','"+hallArrivalListPO.getDate()+"','"+hallArrivalListPO.getTransferNumber()+"','"+
-	     hallArrivalListPO.getFrom()+"','"+hallArrivalListPO.getState()+"','"+hallArrivalListPO.getCheckType()+"')";
+	    hallArrivalListPO.getCheckType()+"')";
 		DataJDBCConnection.update(sql);
-		int num=hallArrivalListPO.getBarCodes().size();
+		int num=hallArrivalListPO.getGoodsInfoPO().size();
 		for(int i=0;i<num;i++)
 		{
-             String sql2="insert into hallarrivallist_barcode values (primarykey,'"+hallArrivalListPO.getBarCodes().get(i)+"','"+hallArrivalListPO.getId()+"')";			
+             String sql2="insert into hallarrivallist_goodinfo values (primarykey,'"+hallArrivalListPO.getGoodsInfoPO().get(i).getBarcode()+"','"+hallArrivalListPO.getGoodsInfoPO().get(i).getState()+"','"+hallArrivalListPO.getGoodsInfoPO().get(i).getDeparturePlace()+"','"+hallArrivalListPO.getId()+"')";			
 		     DataJDBCConnection.update(sql2);
 		}
 	}
@@ -35,7 +36,7 @@ public class HallArrivalListDataImpl extends UnicastRemoteObject implements Hall
 	public void delete(String hallArrivalListID) throws RemoteException {
 		String sql="delete from hallarrivallist where id='"+hallArrivalListID+"'";
 		DataJDBCConnection.update(sql);
-		String sql2="delete from hallarrivallist_barcode where id='"+hallArrivalListID+"'";
+		String sql2="delete from hallarrivallist_goodinfo where id='"+hallArrivalListID+"'";
 		DataJDBCConnection.update(sql2);
 	}
 
@@ -52,13 +53,13 @@ public class HallArrivalListDataImpl extends UnicastRemoteObject implements Hall
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			String sql2="select * from hallarrivallist_barcode where id='"+id+"'";
+			String sql2="select * from hallarrivallist_goodinfo where id='"+id+"'";
 			ResultSet rs2=DataJDBCConnection.find(sql2);
-			ArrayList<String> barcode=new ArrayList<String>();
+			ArrayList<GoodsInfoPO> barcode=new ArrayList<GoodsInfoPO>();
 			while(rs2.next()){
-				barcode.add(rs2.getString("barcode"));
+				barcode.add(new GoodsInfoPO(rs2.getString("barcode"),GoodsState.valueOf(rs2.getString("state")),rs2.getString("departureplace")));
 			}
-			hallarrivallist=new HallArrivalListPO(id, rs.getString("timee"), rs.getString("transfernumber"), rs.getString("fromplace"), GoodsState.valueOf(rs.getString("state")), barcode, CheckType.valueOf(rs.getString("checkstate")));
+			hallarrivallist=new HallArrivalListPO(id, rs.getString("timee"), rs.getString("transfernumber"), barcode, CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
 			System.out.println("操作失败 未找到");
 			return null;
