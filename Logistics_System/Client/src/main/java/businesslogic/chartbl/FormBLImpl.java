@@ -53,12 +53,12 @@ public class FormBLImpl implements FormBLService{
 			intarray2[i]=Integer.parseInt(array2[i]);	
 		}
 		Calendar start=Calendar.getInstance();
-		start.set(intarray1[0], intarray1[1],intarray1[2]);
+		start.set(intarray1[0], intarray1[1]-1,intarray1[2]);
 		long startTime=start.getTimeInMillis();
 		Calendar end=Calendar.getInstance();
-		end.set(intarray2[0], intarray2[1],intarray2[2]);
+		end.set(intarray2[0], intarray2[1]-1,intarray2[2]);
 		long endTime=end.getTimeInMillis();
-		long dayTime=24*60*60l;
+		long dayTime=1000*24*60*60l;
 		long time=startTime;
 		while(time<=endTime){
 			Date day=new Date(time);
@@ -68,7 +68,11 @@ public class FormBLImpl implements FormBLService{
 			double outMoney=0;
 			for(MoneyItemVO vo:moneyitemvo){
 				String[]s=vo.getDate().split(" ");
-				if(format.format(s[0]).equals(currentTime)){
+				String[]s1=s[0].split("-");
+				Calendar Itemday=Calendar.getInstance();
+				Itemday.set(Integer.parseInt(s1[0]), Integer.parseInt(s1[1])-1,Integer.parseInt(s1[2]));
+				Date d=new Date(Itemday.getTimeInMillis());
+				if(format.format(d).equals(currentTime)){
 					if(vo.getClause().equals("付款单"))
 						inMoney+=vo.getMoney();
 					else
