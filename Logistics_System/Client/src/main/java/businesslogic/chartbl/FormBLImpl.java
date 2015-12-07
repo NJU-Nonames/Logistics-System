@@ -62,8 +62,8 @@ public class FormBLImpl implements FormBLService{
 		long time=startTime;
 		while(time<=endTime){
 			Date day=new Date(time);
-			DateFormat format=new SimpleDateFormat("yyyy-M-d");
-			String currentTime=(String)format.format(day);
+			DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+			String currentTime=format.format(day);
 			double inMoney=0;
 			double outMoney=0;
 			for(MoneyItemVO vo:moneyitemvo){
@@ -77,11 +77,18 @@ public class FormBLImpl implements FormBLService{
 						inMoney+=vo.getMoney();
 					else
 						outMoney+=vo.getMoney();
-				}
-				list.add(new MoneyInformationListVO(currentTime,inMoney,outMoney,inMoney-outMoney));
+				}	
 			}
+			if(inMoney!=0||outMoney!=0)
+			list.add(new MoneyInformationListVO(currentTime,inMoney,outMoney,inMoney-outMoney));
 			time+=dayTime;
 		}	
+		double inTotal=0,outTotal=0;
+		for(MoneyInformationListVO moneyinformationvo:list){
+			inTotal+=moneyinformationvo.getMoneyIn();
+			outTotal+=moneyinformationvo.getMoneyOut();
+		}
+		list.add(new MoneyInformationListVO("总计", inTotal, outTotal, inTotal-outTotal));
 		return list;
 	}
 
