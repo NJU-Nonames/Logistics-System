@@ -89,7 +89,7 @@ public class LoginPanel extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        login = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        login = new MyButton(100, 35, Img.LOGIN_0, Img.LOGIN_1, Img.LOGIN_2);
         login.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				userlogin();
@@ -99,7 +99,7 @@ public class LoginPanel extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(100, 35, Img.RETURNING_0, Img.RETURNING_1, Img.RETURNING_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();//清空文本域和错误提示

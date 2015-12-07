@@ -81,11 +81,19 @@ public class Img {
 	public static Image MINI_2=new ImageIcon("img/Button/mini_2.png").getImage();
 	
 	//按钮:登录
+	public static Image LOGIN_0=new ImageIcon("img/Button/用户登录_0.png").getImage();
+	public static Image LOGIN_1=new ImageIcon("img/Button/用户登录_1.png").getImage();
+	public static Image LOGIN_2=new ImageIcon("img/Button/用户登录_2.png").getImage();
 	
-	//按钮:返回
+	//按钮:返回(图标)
 	public static Image RETURN_0=new ImageIcon("img/Button/return_0.png").getImage();
 	public static Image RETURN_1=new ImageIcon("img/Button/return_1.png").getImage();
 	public static Image RETURN_2=new ImageIcon("img/Button/return_2.png").getImage();
+	
+	//按钮:返回(文字)
+	public static Image RETURNING_0=new ImageIcon("img/Button/返回_0.png").getImage();
+	public static Image RETURNING_1=new ImageIcon("img/Button/返回_1.png").getImage();
+	public static Image RETURNING_2=new ImageIcon("img/Button/返回_2.png").getImage();
 	
 	//按钮:确定
 	public static Image CONFIRM_0=new ImageIcon("img/Button/确定_0.png").getImage();
@@ -93,14 +101,35 @@ public class Img {
 	public static Image CONFIRM_2=new ImageIcon("img/Button/确定_2.png").getImage();
 	
 	//按钮:取消
+	public static Image CANCEL_0=new ImageIcon("img/Button/取消_0.png").getImage();
+	public static Image CANCEL_1=new ImageIcon("img/Button/取消_1.png").getImage();
+	public static Image CANCEL_2=new ImageIcon("img/Button/取消_2.png").getImage();
 	
 	//按钮:添加
+	public static Image ADD_0=new ImageIcon("img/Button/add_0.png").getImage();
+	public static Image ADD_1=new ImageIcon("img/Button/add_1.png").getImage();
+	public static Image ADD_2=new ImageIcon("img/Button/add_2.png").getImage();
 	
 	//按钮:删除
+	public static Image delete_0=new ImageIcon("img/Button/delete_0.png").getImage();
+	public static Image delete_1=new ImageIcon("img/Button/delete_1.png").getImage();
+	public static Image delete_2=new ImageIcon("img/Button/delete_2.png").getImage();
 	
 	//按钮:更改
+	public static Image UPDATE_0=new ImageIcon("img/Button/update_0.png").getImage();
+	public static Image UPDATE_1=new ImageIcon("img/Button/update_1.png").getImage();
+	public static Image UPDATE_2=new ImageIcon("img/Button/update_2.png").getImage();
 	
 	//按钮:查询
+	public static Image FIND_0=new ImageIcon("img/Button/find_0.png").getImage();
+	public static Image FIND_1=new ImageIcon("img/Button/find_1.png").getImage();
+	public static Image FIND_2=new ImageIcon("img/Button/find_2.png").getImage();
+	
+	//按钮:查找
+	public static Image SEARCH_0=new ImageIcon("img/Button/查找_0.png").getImage();
+	public static Image SEARCH_1=new ImageIcon("img/Button/查找_1.png").getImage();
+	public static Image SEARCH_2=new ImageIcon("img/Button/查找_2.png").getImage();
+	
 	
 	
 	public static Image MIN_0=new ImageIcon("img/背景.png").getImage();

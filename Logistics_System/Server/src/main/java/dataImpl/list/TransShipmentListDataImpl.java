@@ -60,7 +60,7 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 			ArrayList<String> barcodes=new ArrayList<String>();
 			while(rs2.next())
 			{
-				barcodes.add(rs2.getString("id"));
+				barcodes.add(rs2.getString("barcode"));
 			}
 			transshipmentlist=new TransShipmentListPO(rs.getString("timee"), rs.getString("id"), rs.getString("flightnumber"), rs.getString("departureplace"), rs.getString("destination"), rs.getString("containernumber"), rs.getString("supercargo"), barcodes, rs.getDouble("price"),CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
