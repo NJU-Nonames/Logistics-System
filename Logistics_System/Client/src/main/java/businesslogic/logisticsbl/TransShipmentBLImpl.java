@@ -64,7 +64,7 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 		int num=s.length();
 		for(int i=0;i<7-num;i++)
 			s="0"+s;
-        SimpleDateFormat df1=new SimpleDateFormat("yyyyMMddHHmm");
+        SimpleDateFormat df1=new SimpleDateFormat("yyyyMMdd");
 		return user.getAgencyNum()+df1.format(new Date())+s;
 	}
 

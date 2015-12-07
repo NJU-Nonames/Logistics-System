@@ -527,9 +527,8 @@ public class TransferCenterReceive extends JPanel{
 		
 		TransArrivalListVO vo = new TransArrivalListVO(id, transferNumber, centerNumber, time, GoodsInfoVOs,departureplace, CheckType.UNDERCHECK);
 		ResultMessage message = bl.createTransArrivalList(vo);
-		//System.out.println(message.getMessage());
-		printMessage(message.getMessage(), Color.GREEN);
 		clear();
+		printMessage(message.getMessage(), Color.GREEN);
 	}
 	void _cancel(){
 		clear();

@@ -520,8 +520,8 @@ public class TransShipment extends JPanel{
 		else{
 			TransShipmentListVO vo = new TransShipmentListVO(time, transitDocNumber, flightNumber, departurePlace, desitination, containerNumber, supercargoMan, barcodes,Double.parseDouble(price),CheckType.UNDERCHECK);
 			ResultMessage message = bl.createShiplist(vo);
-			printMessage(message.getMessage(), Color.GREEN);
 			clear();
+			printMessage(message.getMessage(), Color.GREEN);
 		}
 	}
 	private void _cancel(){

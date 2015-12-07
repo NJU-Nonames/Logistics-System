@@ -169,12 +169,7 @@ public class CheckFormat {
 				return "请输入6位营业厅编号！";
 			}
 			else{
-				if(num.substring(3,6).compareTo("000")!=0){
 					return "格式正确";
-				}
-				else{
-					return "营业厅编号输入错误！";
-				}
 			}
 		}
 		else{

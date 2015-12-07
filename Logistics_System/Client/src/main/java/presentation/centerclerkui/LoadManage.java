@@ -284,8 +284,8 @@ public class LoadManage extends JPanel{
 		date.setSize(150, 20);
 		date.setLocation(170+20+(int)(16*7*1.07f),128+80-3);
 
-		JLabel l3 = new JLabel("本营业厅编号：");
-		l3.setSize((int)(16*7*1.07f), 16);
+		JLabel l3 = new JLabel("中转中心编号：");
+		l3.setSize((int)(16*8*1.07f), 16);
 		l3.setFont(new Font("宋体", Font.BOLD, 15));
 		l3.setLocation(170+20, 128+80+40);
 		hallNumber = new JTextField(currentUser.getAgencyNum());
@@ -504,12 +504,6 @@ public class LoadManage extends JPanel{
 		
 		LoadListVO loadListVO = new LoadListVO( date_s, hallNumber_s, bl.createLoadlistId(), Destination_s, carNumber_s, guardMan_s, supercargoMan_s, _barcodes, CheckType.UNDERCHECK);
 		ResultMessage resultMessage = bl.createLoadlist(loadListVO);
-		if(!resultMessage.isPass()){
-			printMessage(resultMessage.getMessage(), Color.RED);
-			return;
-		}else{
-			printMessage(resultMessage.getMessage(), Color.BLUE);
-		}
 
 		Destination.setText("");
 		carNumber.setText("");
@@ -519,6 +513,13 @@ public class LoadManage extends JPanel{
 		transportationNumber.setText("汽运编号：    "+bl.createLoadlistId());
 		while(barCodeTable.getRowCount()!=0)
 			barCodeTableModel.removeRow(0);
+		
+		if(!resultMessage.isPass()){
+			printMessage(resultMessage.getMessage(), Color.RED);
+			return;
+		}else{
+			printMessage(resultMessage.getMessage(), Color.BLUE);
+		}
 	}
 	private void clear(){
 		Date date_=new Date();
