@@ -31,6 +31,7 @@ import dataservice.repertory.RepertoryOutDataService;
 import dataservice.system.SystemLogDataService;
 import utility.CheckType;
 import utility.DocType;
+import utility.ResultMessage;
 import vo.DeliveringListVO;
 import vo.GoodsInfoVO;
 import vo.HallArrivalListVO;
@@ -576,6 +577,18 @@ public class CheckBLImpl implements CheckBLService {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+
+	public ResultMessage passAllSelected(DocType docType, ArrayList<String> id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage failAllSelected(DocType docType, ArrayList<String> id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

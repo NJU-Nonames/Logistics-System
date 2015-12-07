@@ -8,6 +8,7 @@ package businesslogicservice.chartblservice;
 import java.util.ArrayList;
 
 import utility.DocType;
+import utility.ResultMessage;
 import vo.ListVO;
 
 
@@ -23,6 +24,22 @@ public interface CheckBLService {
 	 * @return 操作是否成功
 	 */
 	public ArrayList<? extends ListVO> getAll(DocType docType,String time1,String time2);
+	
+	/**
+	 * 传入一个arraylist里面含有被选中的id和该id类型，pass所有id
+	 * @param docType
+	 * @param id
+	 * @return
+	 */
+	public ResultMessage passAllSelected(DocType docType,ArrayList<String> id);
+	
+	/**
+	 * 传入一个arraylist里面含有被选中的id和该id类型，fail所有id
+	 * @param docType
+	 * @param id
+	 * @return
+	 */
+	public ResultMessage failAllSelected(DocType docType,ArrayList<String> id);
 	
 	/**总经理审批一个状态下全部单据
 	 * @param docType
