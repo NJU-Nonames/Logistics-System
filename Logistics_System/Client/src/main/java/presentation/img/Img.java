@@ -55,6 +55,9 @@ public class Img {
 	//主界面最上面标题
 	public static Image UPLINE=new ImageIcon("img/Bg/主界面标题.png").getImage();
 	
+	//界面背景
+	public static Image BACKGROUND=new ImageIcon("img/Bg/背景.png").getImage();
+	
 	//按钮：登录用户登录界面
 	public static Image GOTO_LOGIN_0=new ImageIcon("img/Button/用户登录_0.png").getImage();
 	public static Image GOTO_LOGIN_1=new ImageIcon("img/Button/用户登录_1.png").getImage();
@@ -85,6 +88,9 @@ public class Img {
 	public static Image RETURN_2=new ImageIcon("img/Button/return_2.png").getImage();
 	
 	//按钮:确定
+	public static Image CONFIRM_0=new ImageIcon("img/Button/确定_0.png").getImage();
+	public static Image CONFIRM_1=new ImageIcon("img/Button/确定_1.png").getImage();
+	public static Image CONFIRM_2=new ImageIcon("img/Button/确定_2.png").getImage();
 	
 	//按钮:取消
 	

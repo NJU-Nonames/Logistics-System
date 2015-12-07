@@ -82,7 +82,7 @@ public class ReceivePkg extends JPanel{
         g.drawLine(CourierFrame.w/6+20, 128+80+150+30, CourierFrame.w-20, 128+80+150+30);
 
         if(willprintMessage){
-        	g.drawImage(Img.BLACK_BG, 0, CourierFrame.h-50, CourierFrame.w, 50, null);
+        	g.drawImage(Img.BACKGROUND, CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h, null);
         	
             g.setColor(co);
             g.setFont(new Font("宋体", Font.BOLD, 26));
@@ -115,7 +115,7 @@ public class ReceivePkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        min = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        min = new MyButton(30, 30, Img.MINI_0, Img.MINI_1, Img.MINI_2);
         min.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.setExtendedState(JFrame.ICONIFIED);
@@ -125,7 +125,7 @@ public class ReceivePkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(30, 30, Img.RETURN_0, Img.RETURN_1, Img.RETURN_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.dispose();
@@ -187,7 +187,7 @@ public class ReceivePkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        confirm = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm = new MyButton(30, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				receive();
