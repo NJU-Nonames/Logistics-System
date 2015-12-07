@@ -72,19 +72,19 @@ public class TransferCenterReceive extends JPanel{
 	private String result;//打印的消息
 	private Color co;//消息的颜色
 	
-    JLabel receiveId;
-	JTextField id1=new JTextField();
-	JTextField id2=new JTextField();
-	JRadioButton jb1 ;
-	JRadioButton jb2 ;
-	JRadioButton j1 ;
-	JRadioButton j2 ;
-	JRadioButton j3 ;
+	private JLabel receiveId;
+	private JTextField id1=new JTextField();
+	private JTextField id2=new JTextField();
+	private JRadioButton jb1 ;
+	private JRadioButton jb2 ;
+	private JRadioButton j1 ;
+	private JRadioButton j2 ;
+	private JRadioButton j3 ;
 	
-	MyButton show;
-	MyButton update;
-	MyButton confirm;
-	MyButton cancel;
+	private MyButton show;
+	private MyButton update;
+	private MyButton confirm;
+	private MyButton cancel;
 	
 	private DefaultTableModel orderTableModel;
 	private JTable orderTable;
@@ -317,7 +317,6 @@ public class TransferCenterReceive extends JPanel{
          });
      	
      	 Vector<String> vColumns = new Vector<String>();
-     	 vColumns.add("出发地");
      	 vColumns.add("订单编号");
      	 vColumns.add("货物状态");
      	 Vector<String> vData = new Vector<String>();
@@ -336,7 +335,7 @@ public class TransferCenterReceive extends JPanel{
       	JScrollPane scrollPane = new JScrollPane();
       	scrollPane.getViewport().add(orderTable);
       	orderTable.setFillsViewportHeight(true);
-      	int[] width={150,300,50};
+      	int[] width={350,150};
       	orderTable.setColumnModel(getColumnModel(orderTable,width));
       	orderTable.getTableHeader().setReorderingAllowed(false);
       	orderTable.getTableHeader().setResizingAllowed(false);
@@ -496,8 +495,6 @@ public class TransferCenterReceive extends JPanel{
 		for(int i=0;i<orderTable.getRowCount();i++){
 			String barcode=orderTable.getValueAt(i, 0)+"";
 			
-			String departurePlace = orderTable.getValueAt(i, 1)+"";
-			
 			GoodsState state = GoodsState.COMPLETE;
 			if(((String)orderTable.getValueAt(i, 2)).compareTo("缺损")==0){
 				state=GoodsState.BREAK;
@@ -506,14 +503,17 @@ public class TransferCenterReceive extends JPanel{
 				state=GoodsState.LOST;
 			}
 			
-			GoodsInfoVOs.add(new GoodsInfoVO(barcode, state, departurePlace));
+			GoodsInfoVOs.add(new GoodsInfoVO(barcode, state));
 		}
+		
+		String departurePlace = orderTable.getValueAt(0, 1)+"";
 		
 		if(transferNumber.compareTo("")==0||GoodsInfoVOs.size()==0){
 			printMessage("信息录入不完整！", Color.RED);
 			return;
 		}
-		TransArrivalListVO vo = new TransArrivalListVO(id, transferNumber, centerNumber, time, GoodsInfoVOs, CheckType.UNDERCHECK);
+		
+		TransArrivalListVO vo = new TransArrivalListVO(id, transferNumber, centerNumber, time, GoodsInfoVOs,departurePlace, CheckType.UNDERCHECK);
 		ResultMessage message = bl.createTransArrivalList(vo);
 		printMessage(message.getMessage(), Color.GREEN);
 		clear();
@@ -531,7 +531,6 @@ public class TransferCenterReceive extends JPanel{
 						orderTableModel.removeRow(0);
 					for(int i=0;i<vo.barcodes.size();i++){
 						Vector<String> v = new Vector<String>();
-						v.add(vo.depatureplace);
 						v.add(vo.barcodes.get(i));
 						v.add("");
 						orderTableModel.addRow(v);
