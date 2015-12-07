@@ -19,13 +19,17 @@ public class HallArrivalListPO extends ListPO{
 	 */
 	private String TransferNumber;
 	
+	/**
+	 * 货物出发地
+	 */
+	private String departureplace;
 	
 	/**
 	 * 货物到达信息状态
 	 */
 	private ArrayList<GoodsInfoPO> goodsInfoPO;
 
-	public HallArrivalListPO(String id,String date, String transferNumber,
+	public HallArrivalListPO(String id,String date, String transferNumber,String departureplace,
 			ArrayList<GoodsInfoPO> goodsInfoPO,CheckType type) {
 		
 		super();
@@ -55,7 +59,10 @@ public class HallArrivalListPO extends ListPO{
 	public ArrayList<GoodsInfoPO> getGoodsInfoPO() {
 		return goodsInfoPO;
 	}
-
+	
+	public String getDepartureplace() {
+		return departureplace;
+	}
 	
 
 }

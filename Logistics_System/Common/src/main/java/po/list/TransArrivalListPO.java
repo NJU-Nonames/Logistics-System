@@ -30,15 +30,20 @@ public class TransArrivalListPO extends ListPO implements Serializable{
 	private String date;
 	
 	/**
+	 * 货物出发地
+	 */
+	private String departureplace;
+	
+	/**
 	 * 货物状态信息
 	 */
 	private ArrayList<GoodsInfoPO> GoodsInfoPOs;
 
 	
-	public TransArrivalListPO(String id,String transferNumber, String centerNumber, String date,
+	public TransArrivalListPO(String id,String transferNumber, String centerNumber, String date,String departureplace,
 			ArrayList<GoodsInfoPO> goodsInfoPOs,CheckType type) {
 		super();
-		this.setId(id);
+		this.id=id;
 		this.transferNumber = transferNumber;
 		this.centerNumber = centerNumber;
 		this.date = date;
@@ -66,7 +71,8 @@ public class TransArrivalListPO extends ListPO implements Serializable{
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public String getDepartureplace() {
+		return departureplace;
 	}
+
 }

@@ -23,12 +23,12 @@ public class TransArrivalListDataImpl extends UnicastRemoteObject implements Tra
 
 	public void add(TransArrivalListPO transArrivalListPO)
 			throws RemoteException {
-		String sql="insert into transarrivallist values ('"+transArrivalListPO.getId()+"','"+transArrivalListPO.getTransferNumber()+"','"+transArrivalListPO.getCenterNumber()+"','"+transArrivalListPO.getDate()+"','"+transArrivalListPO.getCheckType()+"')";
+		String sql="insert into transarrivallist values ('"+transArrivalListPO.getId()+"','"+transArrivalListPO.getTransferNumber()+"','"+transArrivalListPO.getCenterNumber()+"','"+transArrivalListPO.getDate()+"','"+transArrivalListPO.getDepartureplace()+"','"+transArrivalListPO.getCheckType()+"')";
 		DataJDBCConnection.update(sql);
 		int num=transArrivalListPO.getGoodsInfoPOs().size();
 		for(int i=0;i<num;i++){
 			GoodsInfoPO good=transArrivalListPO.getGoodsInfoPOs().get(i);
-			String sql2="insert into transarrivallist_goodinfo values (primarykey,'"+good.getBarcode()+"','"+good.getState()+"','"+good.getDeparturePlace()+"','"+transArrivalListPO.getId()+"')";
+			String sql2="insert into transarrivallist_goodinfo values (primarykey,'"+good.getBarcode()+"','"+good.getState()+"','"+transArrivalListPO.getId()+"')";
 			DataJDBCConnection.update(sql2);
 		
 		}
@@ -59,10 +59,10 @@ public class TransArrivalListDataImpl extends UnicastRemoteObject implements Tra
 			ArrayList<GoodsInfoPO> goodsinfo=new ArrayList<GoodsInfoPO>();
 			while(rs2.next())
 			{
-				goodsinfo.add(new GoodsInfoPO(rs2.getString("barcode"), GoodsState.valueOf(rs2.getString("state")), rs2.getString("departureplace")));
+				goodsinfo.add(new GoodsInfoPO(rs2.getString("barcode"), GoodsState.valueOf(rs2.getString("state"))));
 			}
 			rs.next();
-			transarrivallist=new TransArrivalListPO(id, rs.getString("transfernumber"), rs.getString("centernumber"), rs.getString("timee"), goodsinfo, CheckType.valueOf(rs.getString("checkstate")));
+			transarrivallist=new TransArrivalListPO(id, rs.getString("transfernumber"), rs.getString("centernumber"), rs.getString("timee"),rs.getString("departureplace"), goodsinfo, CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
 			//e.printStackTrace();
 			System.out.println("操作失败 未找到");

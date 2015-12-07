@@ -15,16 +15,12 @@ public class GoodsInfoPO implements Serializable{
 	 */
 	private GoodsState state;
 
-	/**
-	 * 货物出发地
-	 */
-	private String departurePlace;
+	
 
-	public GoodsInfoPO(String barcode, GoodsState state, String departurePlace) {
+	public GoodsInfoPO(String barcode, GoodsState state) {
 		super();
 		this.barcode = barcode;
 		this.state = state;
-		this.departurePlace = departurePlace;
 	}
 
 	public String getBarcode() {
@@ -35,7 +31,5 @@ public class GoodsInfoPO implements Serializable{
 		return state;
 	}
 
-	public String getDeparturePlace() {
-		return departurePlace;
-	}
+
 }
