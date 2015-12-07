@@ -63,7 +63,7 @@ public class TransferCenterReceiveBLImpl implements TransferCenterReceiveBLServi
 		TransArrivalListPO transpo=null;
 		try{
 			transpo=new TransArrivalListPO(transArrivalList.getId(),transArrivalList.getTransferNumber(),transArrivalList.getCenterNumber(),transArrivalList.getDate(),transArrivalList.getDepartureplace(),goodpo,transArrivalList.getCheckType());
-			transarrival.update(transpo);
+			transarrival.add(transpo);
 			system.add(new SystemLogPO((String)df.format(new Date()),"添加中转中心到达单,单号为"+transArrivalList.getId(),user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();

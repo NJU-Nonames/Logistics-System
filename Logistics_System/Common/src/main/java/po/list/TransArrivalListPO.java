@@ -47,6 +47,7 @@ public class TransArrivalListPO extends ListPO implements Serializable{
 		this.transferNumber = transferNumber;
 		this.centerNumber = centerNumber;
 		this.date = date;
+		this.departureplace=departureplace;
 		GoodsInfoPOs = goodsInfoPOs;
 		this.setCheckType(type);
 	}

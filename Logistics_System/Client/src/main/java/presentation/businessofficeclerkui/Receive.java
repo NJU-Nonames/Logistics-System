@@ -505,7 +505,7 @@ public class Receive extends JPanel{
 			_barcodes.add(s);
 		}
 		
-		HallArrivalListVO hallArrivalList = new HallArrivalListVO("?", date_s, TransferNumber_s, from_s, goodsState, _barcodes, CheckType.UNDERCHECK);
+		HallArrivalListVO hallArrivalList = new HallArrivalListVO("?", date_s, TransferNumber_s, from_s, null, CheckType.UNDERCHECK);
 		ResultMessage resultMessage = bl.createHallArrivalList(hallArrivalList);
 		if(!resultMessage.isPass()){
 			printMessage(resultMessage.getMessage(), Color.RED);

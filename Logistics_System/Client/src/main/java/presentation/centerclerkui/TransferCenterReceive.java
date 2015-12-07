@@ -57,6 +57,7 @@ public class TransferCenterReceive extends JPanel{
 	private CenterClerkFrame frame;
 	private CurrentUser currentUser;
 	
+	
 	//最基本按钮
 	private MyButton close;
 	private MyButton min;
@@ -70,6 +71,7 @@ public class TransferCenterReceive extends JPanel{
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
+    private String departureplace;
 	private Color co;//消息的颜色
 	
 	private JLabel receiveId;
@@ -248,6 +250,13 @@ public class TransferCenterReceive extends JPanel{
         jb2.setFont(new Font("宋体", Font.BOLD, 17));
         jb2.setLocation(CenterClerkFrame.w/6+20,128+150);
         jb2.setOpaque(false);
+        
+        placeName=new JLabel("货物出发地：");
+        placeName.setSize((int)(16*20*1.07f), 16);
+        placeName.setFont(new Font("宋体", Font.BOLD, 15));
+        placeName.setLocation(CenterClerkFrame.w/6+20,128+200);
+        
+        
         ButtonGroup group = new ButtonGroup();
         group.add(jb1);group.add(jb2);
         jb1.addMouseListener(new MouseListener(){
@@ -341,14 +350,10 @@ public class TransferCenterReceive extends JPanel{
       	orderTable.getTableHeader().setReorderingAllowed(false);
       	orderTable.getTableHeader().setResizingAllowed(false);
       	jp.setSize(700, 300);
-      	jp.setLocation(CenterClerkFrame.w/6+20-50, jb2.getY()+jb2.getHeight()+10);
+      	jp.setLocation(CenterClerkFrame.w/6+20-50, jb2.getY()+jb2.getHeight()+60);
       	jp.setOpaque(false);
       	jp.add(scrollPane,BorderLayout.CENTER);
-      	
-      	JLabel placeName = new JLabel("货物出发地："); 
-      	placeName.setSize((int)(350*1.07f), 16);
-      	placeName.setFont(new Font("宋体", Font.BOLD, 15));
-      	placeName.setLocation(jp.getX()+50,jp.getY()+jp.getHeight()+5);
+     
     	
       	JLabel pkgState = new JLabel("货物到达状态："); 
     	pkgState.setSize((int)(180*1.07f), 16);
@@ -360,7 +365,7 @@ public class TransferCenterReceive extends JPanel{
         j3 = new JRadioButton("丢失",false);
         j1.setSize((int)(100*1.07f), 20);
         j1.setFont(new Font("宋体", Font.BOLD, 17));
-        j1.setLocation(pkgState.getX(),pkgState.getY()+pkgState.getHeight()+10);
+        j1.setLocation(pkgState.getX(),pkgState.getY()+pkgState.getHeight()+60);
         j1.setOpaque(false);
         j2.setSize((int)(100*1.07f), 20);
         j2.setFont(new Font("宋体", Font.BOLD, 17));
@@ -389,6 +394,7 @@ public class TransferCenterReceive extends JPanel{
         receiveId.setSize((int)(16*("本中转接收单编号："+bl.createTransArrivalListId()).length()*1.07f), 16);
         receiveId.setFont(new Font("宋体", Font.BOLD, 15));
         receiveId.setLocation(jp.getX()+50,128+55);
+        
         //最基本按钮
     	close.setLocation(CenterClerkFrame.w-30,0);
     	min.setLocation(CenterClerkFrame.w-80,0);
@@ -504,25 +510,24 @@ public class TransferCenterReceive extends JPanel{
 			String barcode=orderTable.getValueAt(i, 0)+"";
 			
 			GoodsState state = GoodsState.COMPLETE;
-			if(((String)orderTable.getValueAt(i, 2)).compareTo("缺损")==0){
+			if(((String)orderTable.getValueAt(i, 1)).compareTo("缺损")==0){
 				state=GoodsState.BREAK;
 			}
-			else if(((String)orderTable.getValueAt(i, 2)).compareTo("丢失")==0){
+			else if(((String)orderTable.getValueAt(i, 1)).compareTo("丢失")==0){
 				state=GoodsState.LOST;
 			}
 			
 			GoodsInfoVOs.add(new GoodsInfoVO(barcode, state));
 		}
-		
-		String departurePlace = orderTable.getValueAt(0, 1)+"";
-		
+				
 		if(transferNumber.compareTo("")==0||GoodsInfoVOs.size()==0){
 			printMessage("信息录入不完整！", Color.RED);
 			return;
 		}
 		
-		TransArrivalListVO vo = new TransArrivalListVO(id, transferNumber, centerNumber, time, GoodsInfoVOs,departurePlace, CheckType.UNDERCHECK);
+		TransArrivalListVO vo = new TransArrivalListVO(id, transferNumber, centerNumber, time, GoodsInfoVOs,departureplace, CheckType.UNDERCHECK);
 		ResultMessage message = bl.createTransArrivalList(vo);
+		//System.out.println(message.getMessage());
 		printMessage(message.getMessage(), Color.GREEN);
 		clear();
 	}
@@ -531,31 +536,10 @@ public class TransferCenterReceive extends JPanel{
 	}
 	private void _show() {
 		// TODO 自动生成的方法存根
+		TransArrivalVO vo = null;
 		if(jb1.isSelected()){
 			if(id1.getText().compareTo("")!=0){
-				TransArrivalVO vo=bl.getTransShipmentList(id1.getText());
-				if(vo!=null){
-					while(orderTableModel.getRowCount()!=0)//先清空原来的
-						orderTableModel.removeRow(0);
-					for(int i=0;i<vo.barcodes.size();i++){
-						Vector<String> v = new Vector<String>();
-						v.add(vo.barcodes.get(i));
-						v.add("");
-						orderTableModel.addRow(v);
-					}
-				}
-				else{
-					printMessage("未找到中转单！", Color.RED);
-					return;
-				}
-			}
-			else{
-				printMessage("未输入中转单编号！", Color.RED);
-			}
-		}
-		else{
-			if(id2.getText().compareTo("")!=0){
-				TransArrivalVO vo=bl.getLoadList(id2.getText());
+				vo=bl.getTransShipmentList(id1.getText());
 				if(vo!=null){
 					while(orderTableModel.getRowCount()!=0)//先清空原来的
 						orderTableModel.removeRow(0);
@@ -568,6 +552,30 @@ public class TransferCenterReceive extends JPanel{
 					placeName.setText("货物出发地："+vo.depatureplace);
 				}
 				else{
+					printMessage("未找到中转单！", Color.RED);
+					return;
+				}
+			}
+			else{
+				printMessage("未输入中转单编号！", Color.RED);
+			}
+		}
+		else{
+			if(id2.getText().compareTo("")!=0){
+				vo=bl.getLoadList(id2.getText());
+				if(vo!=null){
+					while(orderTableModel.getRowCount()!=0)//先清空原来的
+						orderTableModel.removeRow(0);
+					for(int i=0;i<vo.barcodes.size();i++){
+						Vector<String> v = new Vector<String>();
+						v.add(vo.barcodes.get(i));
+						v.add("");
+						orderTableModel.addRow(v);
+					}
+					System.out.println(vo.depatureplace);
+					placeName.setText("货物出发地："+vo.depatureplace);
+				}
+				else{
 					printMessage("未找到装车单！", Color.RED);
 				}
 			}
@@ -575,6 +583,7 @@ public class TransferCenterReceive extends JPanel{
 				printMessage("未输入装车单编号！", Color.RED);
 			}
 		}
+		departureplace=vo.depatureplace;
 	}
 	private void _update() {
 		// TODO 自动生成的方法存根
@@ -593,7 +602,7 @@ public class TransferCenterReceive extends JPanel{
 		else{
 			s="丢失";
 		}
-		orderTable.setValueAt(s, index, 2);
+		orderTable.setValueAt(s, index, 1);
 		j1.setSelected(true);
 		j2.setSelected(false);
 		j3.setSelected(false);

@@ -75,7 +75,7 @@ public class ReceivePkg extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawImage(Img.cao2, -200, 0, 1366, 768, null);
+        g.drawImage(Img.BACKGROUND, CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h, null);
         g.drawLine(CourierFrame.w/6, 10, CourierFrame.w/6, CourierFrame.h-10);
         g.drawLine(CourierFrame.w/6+10, CourierFrame.h/6, CourierFrame.w, CourierFrame.h/6);
         g.drawLine(CourierFrame.w/6+20, 128+80+30, CourierFrame.w-20, 128+80+30);
@@ -187,7 +187,7 @@ public class ReceivePkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        confirm = new MyButton(30, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
+        confirm = new MyButton(100, 35, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				receive();
@@ -382,7 +382,7 @@ public class ReceivePkg extends JPanel{
 		senddateLabel.setLocation(CourierFrame.w/6+40+(int)(16*5*1.07f), 128+80+150+300);
 		
 		selected.setLocation(480,128+80-5);
-    	confirm.setLocation(CourierFrame.w-80,CourierFrame.h-80);
+    	confirm.setLocation(CourierFrame.w-150,CourierFrame.h-80);
 		
 		
         add(titleLabel);
