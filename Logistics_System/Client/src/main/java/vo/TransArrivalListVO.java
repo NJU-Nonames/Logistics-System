@@ -25,6 +25,10 @@ public class TransArrivalListVO extends ListVO{
 	 * 货物到达日期
 	 */
 	private String date;
+	/**
+	 * 货物出发地
+	 */
+	private String departureplace;
 	
 	/**
 	 * 货物状态信息
@@ -32,13 +36,14 @@ public class TransArrivalListVO extends ListVO{
 	private ArrayList<GoodsInfoVO> GoodsInfoVOs;
 
 	public TransArrivalListVO(String id,String transferNumber, String centerNumber, String date,
-			ArrayList<GoodsInfoVO> goodsInfoVOs,CheckType type) {
+			ArrayList<GoodsInfoVO> goodsInfoVOs,String departureplace,CheckType type) {
 		super();
 		this.setId(id);
 		this.transferNumber = transferNumber;
 		this.centerNumber = centerNumber;
 		this.date = date;
 		GoodsInfoVOs = goodsInfoVOs;
+		this.departureplace=departureplace;
 		this.setCheckType(type);
 	}
 
@@ -64,5 +69,8 @@ public class TransArrivalListVO extends ListVO{
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getDepartureplace() {
+		return departureplace;
 	}
 }

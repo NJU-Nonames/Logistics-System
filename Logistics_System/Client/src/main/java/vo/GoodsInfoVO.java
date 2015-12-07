@@ -13,16 +13,10 @@ public class GoodsInfoVO {
 	 */
 	private GoodsState state;
 
-	/**
-	 * 货物出发地
-	 */
-	private String departurePlace;
-
-	public GoodsInfoVO(String barcode, GoodsState state, String departurePlace) {
+	public GoodsInfoVO(String barcode, GoodsState state) {
 		super();
 		this.barcode = barcode;
 		this.state = state;
-		this.departurePlace = departurePlace;
 	}
 
 	public String getBarcode() {
@@ -33,7 +27,4 @@ public class GoodsInfoVO {
 		return state;
 	}
 
-	public String getDeparturePlace() {
-		return departurePlace;
-	}
 }

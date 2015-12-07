@@ -10,6 +10,7 @@ import po.list.DeliveringListPO;
 import po.list.HallArrivalListPO;
 import po.list.LoadListPO;
 import po.list.OrderListPO;
+import po.repertory.GoodsInfoPO;
 import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
 import dataservice.agency.AgencyDataService;
@@ -21,6 +22,7 @@ import dataservice.list.OrderListDataService;
 import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.DeliveringListVO;
+import vo.GoodsInfoVO;
 import vo.HallArrivalListVO;
 import vo.TransArrivalVO;
 import businesslogic.rmi.RMIHelper;
@@ -50,9 +52,12 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 	public ResultMessage createHallArrivalList(HallArrivalListVO hallArrivalList) {
 		// TODO Auto-generated method stub
 		HallArrivalListPO hallarrivallist=null;
-		for(String id:hallArrivalList.getBarCodes()){
+		ArrayList<GoodsInfoVO> goodsvolist=hallArrivalList.getGoodsInfoVO();
+		ArrayList<GoodsInfoPO> goodspolist=new ArrayList<GoodsInfoPO>();
+		for(GoodsInfoVO goodsvo:goodsvolist){
 			try {
-				OrderListPO orderListPO=service3.find(id);
+				goodspolist.add(new GoodsInfoPO(goodsvo.getBarcode(),goodsvo.getState()));
+				OrderListPO orderListPO=service3.find(goodsvo.getBarcode());
 				ArrayList<String> orderpath=orderListPO.getPkgState();
 				orderpath.add((String)df.format(new Date())+" 快递到达"+user.getAgencyName());
 				orderListPO.setPkgState(orderpath);
@@ -61,7 +66,8 @@ public class DeliverAndReceiveBLImpl implements DeliverAndReceiveBLService {
 				e.printStackTrace();
 			}		
 		}
-		hallarrivallist=new HallArrivalListPO(hallArrivalList.getId(),hallArrivalList.getDate(),hallArrivalList.getTransferNumber(),hallArrivalList.getFrom(),hallArrivalList.getState(),hallArrivalList.getBarCodes(),hallArrivalList.getCheckType());
+
+		hallarrivallist=new HallArrivalListPO(hallArrivalList.getId(),hallArrivalList.getDate(),hallArrivalList.getTransferNumber(),hallArrivalList.getDepartureplace(),goodspolist,hallArrivalList.getCheckType());
 		try {
 			service1.add(hallarrivallist);
 			system.add(new SystemLogPO((String)df.format(new Date()),"添加营业厅到达单,单号为"+hallarrivallist.getId(),user.getAdmin()));

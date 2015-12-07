@@ -1,6 +1,7 @@
 package vo;
 
 import java.util.ArrayList;
+
 import utility.CheckType;
 
 
@@ -21,6 +22,10 @@ public class HallArrivalListVO extends ListVO{
 	 * 装车单编号
 	 */
 	public String TransferNumber;
+	/**
+	 * 货物出发地
+	 */
+	private String departureplace;
 	
 	
 	/**
@@ -28,7 +33,7 @@ public class HallArrivalListVO extends ListVO{
 	 */
 	public ArrayList<GoodsInfoVO> goodsInfoVO;
 
-	public HallArrivalListVO(String id,String date, String transferNumber,
+	public HallArrivalListVO(String id,String date, String transferNumber,String departureplace,
 			ArrayList<GoodsInfoVO> goodsInfoVO,CheckType type) {
 		
 		super();
@@ -36,6 +41,7 @@ public class HallArrivalListVO extends ListVO{
 		this.date = date;
 		TransferNumber = transferNumber;
 		this.goodsInfoVO=goodsInfoVO;
+		this.departureplace=departureplace;
 		this.setCheckType(type);
 	}
 
@@ -57,6 +63,9 @@ public class HallArrivalListVO extends ListVO{
 
 	public ArrayList<GoodsInfoVO> getGoodsInfoVO() {
 		return goodsInfoVO;
+	}
+	public String getDepartureplace() {
+		return departureplace;
 	}
 }
 

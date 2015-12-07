@@ -141,7 +141,11 @@ public class CheckBLImpl implements CheckBLService {
 				if(hallarrivalpo==null)
 					return null;
 				for(HallArrivalListPO po:hallarrivalpo){
-					hallarrivalvo.add(new HallArrivalListVO(po.getId(), po.getDate(), po.getTransferNumber(), po.getFrom(), po.getState(), po.getBarCodes(),po.getCheckType()));
+					ArrayList<GoodsInfoVO> goodsvolist=new ArrayList<GoodsInfoVO>();
+					for(GoodsInfoPO goodspo:po.getGoodsInfoPO()){
+						goodsvolist.add(new GoodsInfoVO(goodspo.getBarcode(),goodspo.getState()));
+					}
+					hallarrivalvo.add(new HallArrivalListVO(po.getId(), po.getDate(), po.getTransferNumber(), po.getDepartureplace(),goodsvolist,po.getCheckType()));
 				}
 				return hallarrivalvo;
 			case DELIVERYING_NOTE:
@@ -160,9 +164,10 @@ public class CheckBLImpl implements CheckBLService {
 					return null;
 				for(TransArrivalListPO po:transarrivalpo){
 				ArrayList<GoodsInfoVO> goodvo=new ArrayList<GoodsInfoVO>();
-					for(GoodsInfoPO goods:po.getGoodsInfoPOs())
-						goodvo.add(new GoodsInfoVO(goods.getBarcode(), goods.getState(),goods.getDeparturePlace()));
-					transarrivalvo.add(new TransArrivalListVO( po.getId(),po.getTransferNumber(), po.getCenterNumber(), po.getDate(), goodvo, po.getCheckType()));
+					for(GoodsInfoPO goods:po.getGoodsInfoPOs()){
+						goodvo.add(new GoodsInfoVO(goods.getBarcode(), goods.getState()));
+					}
+					transarrivalvo.add(new TransArrivalListVO( po.getId(),po.getTransferNumber(), po.getCenterNumber(), po.getDate(), goodvo,po.getDepartureplace(), po.getCheckType()));
 				}
 				return transarrivalvo;
 			case TRANSIT_NOTE:
@@ -536,7 +541,11 @@ public class CheckBLImpl implements CheckBLService {
 				return true;
 			case BUSINESSHALL_ARRIVAL_NOTE:
 				HallArrivalListVO hallarrivalvo=(HallArrivalListVO)listVO;
-				HallArrivalListPO hallarrivalpo=new HallArrivalListPO(hallarrivalvo.getId(),hallarrivalvo.getDate(),hallarrivalvo.getTransferNumber(),hallarrivalvo.getFrom(),hallarrivalvo.getState(),hallarrivalvo.getBarCodes(),hallarrivalvo.getCheckType());
+				ArrayList<GoodsInfoPO> goodspolist=new ArrayList<GoodsInfoPO>();
+				for(GoodsInfoVO goodspo:hallarrivalvo.getGoodsInfoVO()){
+					goodspolist.add(new GoodsInfoPO(goodspo.getBarcode(),goodspo.getState()));
+				}
+				HallArrivalListPO hallarrivalpo=new HallArrivalListPO(hallarrivalvo.getId(),hallarrivalvo.getDate(),hallarrivalvo.getTransferNumber(),hallarrivalvo.getDepartureplace(),goodspolist,hallarrivalvo.getCheckType());
 				hallarrival.update(hallarrivalpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"改变营业厅到达单信息",user.getAdmin()));
 				return true;
@@ -550,9 +559,9 @@ public class CheckBLImpl implements CheckBLService {
 				TransArrivalListVO transarrivalvo=(TransArrivalListVO)listVO;
 				ArrayList<GoodsInfoPO> goodpo=new ArrayList<GoodsInfoPO>();
 				for(GoodsInfoVO goodvo:transarrivalvo.getGoodsInfoVOs()){
-					goodpo.add(new GoodsInfoPO(goodvo.getBarcode(), goodvo.getState(), goodvo.getDeparturePlace()));
+					goodpo.add(new GoodsInfoPO(goodvo.getBarcode(), goodvo.getState()));
 				}
-				TransArrivalListPO transarrivalpo=new TransArrivalListPO(transarrivalvo.getId(),transarrivalvo.getTransferNumber(),transarrivalvo.getCenterNumber(),transarrivalvo.getDate(),goodpo,transarrivalvo.getCheckType());
+				TransArrivalListPO transarrivalpo=new TransArrivalListPO(transarrivalvo.getId(),transarrivalvo.getTransferNumber(),transarrivalvo.getCenterNumber(),transarrivalvo.getDate(),transarrivalvo.getDepartureplace(),goodpo,transarrivalvo.getCheckType());
 				transarrival.update(transarrivalpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"改变中转中心到达单信息",user.getAdmin()));
 				return true;

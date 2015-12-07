@@ -55,14 +55,14 @@ public class TransferCenterReceiveBLImpl implements TransferCenterReceiveBLServi
 				orderpath.add((String)df.format(new Date())+" 快递到达"+user.getAgencyName());
 				orderpo.setPkgState(orderpath);
 				orderlist.update(orderpo);
-				goodpo.add(new GoodsInfoPO(goodvo.getBarcode(),goodvo.getState(),goodvo.getDeparturePlace()));
+				goodpo.add(new GoodsInfoPO(goodvo.getBarcode(),goodvo.getState()));
 			}
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
 		TransArrivalListPO transpo=null;
 		try{
-			transpo=new TransArrivalListPO(transArrivalList.getId(),transArrivalList.getTransferNumber(),transArrivalList.getCenterNumber(),transArrivalList.getDate(),goodpo,transArrivalList.getCheckType());
+			transpo=new TransArrivalListPO(transArrivalList.getId(),transArrivalList.getTransferNumber(),transArrivalList.getCenterNumber(),transArrivalList.getDate(),transArrivalList.getDepartureplace(),goodpo,transArrivalList.getCheckType());
 			transarrival.update(transpo);
 			system.add(new SystemLogPO((String)df.format(new Date()),"添加中转中心到达单,单号为"+transArrivalList.getId(),user.getAdmin()));
 		}catch(RemoteException e){
