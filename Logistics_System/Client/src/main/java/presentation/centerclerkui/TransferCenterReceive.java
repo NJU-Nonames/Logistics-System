@@ -553,7 +553,6 @@ public class TransferCenterReceive extends JPanel{
 						orderTableModel.removeRow(0);
 					for(int i=0;i<vo.barcodes.size();i++){
 						Vector<String> v = new Vector<String>();
-						v.add(vo.depatureplace);
 						v.add(vo.barcodes.get(i));
 						v.add("");
 						orderTableModel.addRow(v);
