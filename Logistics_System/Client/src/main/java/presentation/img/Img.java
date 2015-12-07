@@ -81,9 +81,9 @@ public class Img {
 	public static Image MINI_2=new ImageIcon("img/Button/mini_2.png").getImage();
 	
 	//按钮:登录
-	public static Image LOGIN_0=new ImageIcon("img/Button/用户登录_0.png").getImage();
-	public static Image LOGIN_1=new ImageIcon("img/Button/用户登录_1.png").getImage();
-	public static Image LOGIN_2=new ImageIcon("img/Button/用户登录_2.png").getImage();
+	public static Image LOGIN_0=new ImageIcon("img/Button/login_0.png").getImage();
+	public static Image LOGIN_1=new ImageIcon("img/Button/login_1.png").getImage();
+	public static Image LOGIN_2=new ImageIcon("img/Button/login_2.png").getImage();
 	
 	//按钮:返回(图标)
 	public static Image RETURN_0=new ImageIcon("img/Button/return_0.png").getImage();
