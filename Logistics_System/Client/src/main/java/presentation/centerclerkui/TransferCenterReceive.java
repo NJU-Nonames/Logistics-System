@@ -73,6 +73,7 @@ public class TransferCenterReceive extends JPanel{
 	private Color co;//消息的颜色
 	
 	private JLabel receiveId;
+	private JLabel placeName;
 	private JTextField id1=new JTextField();
 	private JTextField id2=new JTextField();
 	private JRadioButton jb1 ;
@@ -344,6 +345,11 @@ public class TransferCenterReceive extends JPanel{
       	jp.setOpaque(false);
       	jp.add(scrollPane,BorderLayout.CENTER);
       	
+      	JLabel placeName = new JLabel("货物出发地："); 
+      	placeName.setSize((int)(350*1.07f), 16);
+      	placeName.setFont(new Font("宋体", Font.BOLD, 15));
+      	placeName.setLocation(jp.getX()+50,jp.getY()+jp.getHeight()+5);
+    	
       	JLabel pkgState = new JLabel("货物到达状态："); 
     	pkgState.setSize((int)(180*1.07f), 16);
     	pkgState.setFont(new Font("宋体", Font.BOLD, 15));
@@ -401,6 +407,8 @@ public class TransferCenterReceive extends JPanel{
         add(currentuserLabel);
         add(currentusernameLabel);
     	add(receiveId);
+    	add(placeName);
+    
     	
     	add(jb1);
     	add(jb2);
@@ -452,7 +460,7 @@ public class TransferCenterReceive extends JPanel{
 			orderTableModel.removeRow(0);
 		
         receiveId.setText("本中转接收单编号："+bl.createTransArrivalListId()); 
-
+        placeName.setText("货物出发地：");
 		willprintMessage=false;
 		repaint();
 	}
@@ -557,6 +565,7 @@ public class TransferCenterReceive extends JPanel{
 						v.add("");
 						orderTableModel.addRow(v);
 					}
+					placeName.setText("货物出发地："+vo.depatureplace);
 				}
 				else{
 					printMessage("未找到装车单！", Color.RED);
