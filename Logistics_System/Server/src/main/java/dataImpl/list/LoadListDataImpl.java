@@ -59,7 +59,7 @@ public class LoadListDataImpl extends UnicastRemoteObject implements LoadListDat
 			while(rs2.next()){
 				barcode.add(rs2.getString("barcode"));
 			}
-			loadlist=new LoadListPO(rs.getString("transportationNumber"), rs.getString("timee"), rs.getString("hallnumber"), rs.getString("destination"), rs.getString("carnumber"), rs.getString("guardman"), rs.getString("supercargoman"), barcode, CheckType.valueOf(rs.getString("checkstate")));
+			loadlist=new LoadListPO(rs.getString("timee"),rs.getString("hallnumber"), rs.getString("transportationNumber"), rs.getString("destination"), rs.getString("carnumber"), rs.getString("guardman"), rs.getString("supercargoman"), barcode, CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
 			System.out.println("操作失败 未找到");
 			return null;

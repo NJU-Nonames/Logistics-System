@@ -80,6 +80,9 @@ public class Img {
 	//按钮:登录
 	
 	//按钮:返回
+	public static Image RETURN_0=new ImageIcon("img/Button/return_0.png").getImage();
+	public static Image RETURN_1=new ImageIcon("img/Button/return_1.png").getImage();
+	public static Image RETURN_2=new ImageIcon("img/Button/return_2.png").getImage();
 	
 	//按钮:确定
 	
