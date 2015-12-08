@@ -132,7 +132,10 @@ public class Img {
 	public static Image SEARCH_1=new ImageIcon("img/Button/查找_1.png").getImage();
 	public static Image SEARCH_2=new ImageIcon("img/Button/查找_2.png").getImage();
 	
-	
+	//按钮：gotoreceive
+	public static Image GOTORECEIVE_0=new ImageIcon("img/Button/goreceive_0.png").getImage();
+	public static Image GOTORECEIVE_1=new ImageIcon("img/Button/goreceive_1.png").getImage();
+	public static Image GOTORECEIVE_2=new ImageIcon("img/Button/goreceive_2.png").getImage();
 	
 	public static Image MIN_0=new ImageIcon("img/背景.png").getImage();
 	public static Image MIN_1=new ImageIcon("img/界面/系统图标.png").getImage();
