@@ -582,12 +582,184 @@ public class CheckBLImpl implements CheckBLService {
 
 	public ResultMessage passAllSelected(DocType docType, ArrayList<String> id) {
 		// TODO Auto-generated method stub
+		try{
+			switch(docType){
+			case MONEY_IN_NOTE:
+				for(String Id:id){
+				MoneyInListPO moneyinpo=moneyin.findOnID(Id);
+				moneyinpo.setCheckType(CheckType.PASS);
+				moneyin.update(moneyinpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有收款单",user.getAdmin()));
+				return new ResultMessage(true,"审核通过所有收款单!");
+			case MONET_OUT_NOTE:
+				for(String Id:id){
+				MoneyOutListPO moneyoutpo=moneyout.findOnID(Id);
+				moneyoutpo.setCheckType(CheckType.PASS);
+				moneyout.update(moneyoutpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有付款单",user.getAdmin()));
+				return new ResultMessage(true, "审核通过所有付款单!");
+			case IN_STOREAGE_NOTE:
+				for(String Id:id){
+				RepertoryInPO repertoryinpo=repertoryin.findOnID(Id);
+				repertoryinpo.setCheckType(CheckType.PASS);
+				repertoryin.update(repertoryinpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有入库单",user.getAdmin()));
+				return new ResultMessage(true,"审核通过所有入库单!");
+			case OUT_STOREAGE_NOTE:
+				for(String Id:id){
+				RepertoryOutPO repertoryoutpo=repertoryout.findOnID(Id);
+				repertoryoutpo.setCheckType(CheckType.PASS);
+				repertoryout.update(repertoryoutpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有出库单",user.getAdmin()));
+				return new ResultMessage(true,"审核通过所有出库单!");
+			case SENDING_NOTE:
+				for(String Id:id){
+				OrderListPO orderpo=order.find(Id);
+				orderpo.setCheckType(CheckType.PASS);
+				order.update(orderpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有快递单",user.getAdmin()));
+				return new ResultMessage(true,"审核通过所有快递单!");
+			case LOADING_NOTE:
+				for(String Id:id){
+				LoadListPO loadpo=load.find(Id);
+				loadpo.setCheckType(CheckType.PASS);
+				load.update(loadpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有装车单",user.getAdmin()));
+				return new ResultMessage(true,"审核通过所有装车单!");
+			case BUSINESSHALL_ARRIVAL_NOTE:
+				for(String Id:id){
+				HallArrivalListPO hallarrivalpo=hallarrival.find(Id);
+				hallarrivalpo.setCheckType(CheckType.PASS);
+				hallarrival.update(hallarrivalpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有营业厅到达单",user.getAdmin()));
+				return new ResultMessage(true, "审核通过所有营业厅到达单!");
+			case DELIVERYING_NOTE:
+				for(String Id:id){
+				DeliveringListPO deliverpo=deliver.find(Id);
+				deliverpo.setCheckType(CheckType.PASS);
+				deliver.update(deliverpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有派件单",user.getAdmin()));
+				return new ResultMessage(true, "审核通过所有派件单!");
+			case CENTER_ARRIVAL_NOTE:
+				for(String Id:id){
+				TransArrivalListPO transarrivalpo=transarrival.find(Id);
+				transarrivalpo.setCheckType(CheckType.PASS);
+				transarrival.update(transarrivalpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有中转中心到达单",user.getAdmin()));
+				return new ResultMessage(true,"审核通过所有中转中心到达单!");
+			case TRANSIT_NOTE:
+				for(String Id:id){
+				TransShipmentListPO transshipmentpo=transshipment.find(Id);
+				transshipmentpo.setCheckType(CheckType.PASS);
+				transshipment.update(transshipmentpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有中转单",user.getAdmin()));
+				return new ResultMessage(true,"审核通过所有中转单!");
+			}
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 
 	public ResultMessage failAllSelected(DocType docType, ArrayList<String> id) {
 		// TODO Auto-generated method stub
+		try{
+			switch(docType){
+			case MONEY_IN_NOTE:
+				for(String Id:id){
+				MoneyInListPO moneyinpo=moneyin.findOnID(Id);
+				moneyinpo.setCheckType(CheckType.NOTPASS);
+				moneyin.update(moneyinpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有收款单",user.getAdmin()));
+				return new ResultMessage(true,"审核未通过所有收款单!");
+			case MONET_OUT_NOTE:
+				for(String Id:id){
+				MoneyOutListPO moneyoutpo=moneyout.findOnID(Id);
+				moneyoutpo.setCheckType(CheckType.NOTPASS);
+				moneyout.update(moneyoutpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有付款单",user.getAdmin()));
+				return new ResultMessage(true, "审核未通过所有付款单!");
+			case IN_STOREAGE_NOTE:
+				for(String Id:id){
+				RepertoryInPO repertoryinpo=repertoryin.findOnID(Id);
+				repertoryinpo.setCheckType(CheckType.NOTPASS);
+				repertoryin.update(repertoryinpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有入库单",user.getAdmin()));
+				return new ResultMessage(true,"审核未通过所有入库单!");
+			case OUT_STOREAGE_NOTE:
+				for(String Id:id){
+				RepertoryOutPO repertoryoutpo=repertoryout.findOnID(Id);
+				repertoryoutpo.setCheckType(CheckType.NOTPASS);
+				repertoryout.update(repertoryoutpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有出库单",user.getAdmin()));
+				return new ResultMessage(true,"审核未通过所有出库单!");
+			case SENDING_NOTE:
+				for(String Id:id){
+				OrderListPO orderpo=order.find(Id);
+				orderpo.setCheckType(CheckType.NOTPASS);
+				order.update(orderpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有快递单",user.getAdmin()));
+				return new ResultMessage(true,"审核未通过所有快递单!");
+			case LOADING_NOTE:
+				for(String Id:id){
+				LoadListPO loadpo=load.find(Id);
+				loadpo.setCheckType(CheckType.NOTPASS);
+				load.update(loadpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有装车单",user.getAdmin()));
+				return new ResultMessage(true,"审核未通过所有装车单!");
+			case BUSINESSHALL_ARRIVAL_NOTE:
+				for(String Id:id){
+				HallArrivalListPO hallarrivalpo=hallarrival.find(Id);
+				hallarrivalpo.setCheckType(CheckType.NOTPASS);
+				hallarrival.update(hallarrivalpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有营业厅到达单",user.getAdmin()));
+				return new ResultMessage(true, "审核未通过所有营业厅到达单!");
+			case DELIVERYING_NOTE:
+				for(String Id:id){
+				DeliveringListPO deliverpo=deliver.find(Id);
+				deliverpo.setCheckType(CheckType.NOTPASS);
+				deliver.update(deliverpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有派件单",user.getAdmin()));
+				return new ResultMessage(true, "审核未通过所有派件单!");
+			case CENTER_ARRIVAL_NOTE:
+				for(String Id:id){
+				TransArrivalListPO transarrivalpo=transarrival.find(Id);
+				transarrivalpo.setCheckType(CheckType.NOTPASS);
+				transarrival.update(transarrivalpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有中转中心到达单",user.getAdmin()));
+				return new ResultMessage(true,"审核未通过所有中转中心到达单!");
+			case TRANSIT_NOTE:
+				for(String Id:id){
+				TransShipmentListPO transshipmentpo=transshipment.find(Id);
+				transshipmentpo.setCheckType(CheckType.NOTPASS);
+				transshipment.update(transshipmentpo);
+				}
+				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有中转单",user.getAdmin()));
+				return new ResultMessage(true,"审核未通过所有中转单!");
+			}
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
 		return null;
 	}
 
