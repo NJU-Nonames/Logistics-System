@@ -8,10 +8,12 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import businesslogic.chartbl.CheckBLImpl;
 import businesslogic.chartbl.FormBLImpl;
 import businesslogic.chartbl.SystemLogBLImpl;
 import businesslogic.informationchangebl.ConstantManageBLImpl;
 import businesslogic.informationchangebl.PeopleAgencyBLImpl;
+import businesslogicservice.chartblservice.CheckBLService;
 import businesslogicservice.chartblservice.FormBLService;
 import businesslogicservice.chartblservice.SystemLogBLService;
 import businesslogicservice.informationchangeblservice.ConstantManageBLService;
@@ -59,6 +61,7 @@ public class TopManagerFrame extends JFrame{
 	FormBLService formBLService;
 	ConstantManageBLService constantManageBLService;
 	PeopleAgencyBLService peopleAgencyBLService;
+	CheckBLService checkBLService;
 
 	private boolean isDraging;//是否被拖住
 	private int xx;
@@ -110,9 +113,10 @@ public class TopManagerFrame extends JFrame{
 		formBLService=new FormBLImpl(this.currentUser);
 		constantManageBLService=new ConstantManageBLImpl(this.currentUser);
 		peopleAgencyBLService=new PeopleAgencyBLImpl(this.currentUser);
+		checkBLService=new CheckBLImpl(this.currentUser);
 		
 		statistic=new Statistic(this, formBLService, currentUser);
-		check=new Check(this, currentUser);
+		check=new Check(this, checkBLService, currentUser);
 		peopleAgencyManage=new PeopleAgencyManage(this, peopleAgencyBLService, currentUser);
 		salaryStrategy=new SalaryStrategy(this, peopleAgencyBLService, currentUser);
 		constantManage=new ConstantManage(this, constantManageBLService, currentUser);

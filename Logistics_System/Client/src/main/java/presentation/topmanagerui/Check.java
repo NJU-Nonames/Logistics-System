@@ -501,9 +501,9 @@ public class Check extends JPanel{
 			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column){
-				if(column==0||column==ListTable.getColumnCount()-1)
+//				if(column==0||column==ListTable.getColumnCount()-1)
 					return false;//不能修改
-				return true;
+//				return true;
 			}
 		};
 		ListTable.setPreferredScrollableViewportSize(new Dimension(800,260));
@@ -550,6 +550,10 @@ public class Check extends JPanel{
 		JScrollPane scrollPane2 = new JScrollPane();
 		scrollPane2.getViewport().add(ListTable2);
 		ListTable2.setFillsViewportHeight(true);
+	  	int[] width2={170,150,100,80,150,60,60,30};//时间150，银行150，钱100，人名80
+	  	ListTable2.setColumnModel(getColumnModel(ListTable2,width2));
+      	ListTable2.getTableHeader().setReorderingAllowed(false);
+      	ListTable2.getTableHeader().setResizingAllowed(false);
 		jp2.setOpaque(false);
 		jp2.add(scrollPane2,BorderLayout.CENTER);
 		j.add(jp2);
@@ -560,10 +564,10 @@ public class Check extends JPanel{
 		vColumns3.add("快递编号");
 		vColumns3.add("入库时间");
 		vColumns3.add("目的地");
-		vColumns3.add("区号");
-		vColumns3.add("排号");
-		vColumns3.add("架号");
-		vColumns3.add("位号");
+		vColumns3.add("区");
+		vColumns3.add("排");
+		vColumns3.add("架");
+		vColumns3.add("位");
 		vColumns3.add("审批状态");
 		vColumns3.add("选中");
 		//数据
@@ -585,6 +589,10 @@ public class Check extends JPanel{
 		JScrollPane scrollPane3 = new JScrollPane();
 		scrollPane3.getViewport().add(ListTable3);
 		ListTable3.setFillsViewportHeight(true);
+	  	int[] width3={90,145,145,250,20,20,20,20,60,30};//时间150，银行150，钱100，人名80
+	  	ListTable3.setColumnModel(getColumnModel(ListTable3,width3));
+      	ListTable3.getTableHeader().setReorderingAllowed(false);
+      	ListTable3.getTableHeader().setResizingAllowed(false);
 		jp3.setOpaque(false);
 		jp3.add(scrollPane3,BorderLayout.CENTER);
 		j.add(jp3);
@@ -617,6 +625,10 @@ public class Check extends JPanel{
 		JScrollPane scrollPane4 = new JScrollPane();
 		scrollPane4.getViewport().add(ListTable4);
 		ListTable4.setFillsViewportHeight(true);
+	  	int[] width4={90,145,145,190,60,180,60,30};//时间150，银行150，钱100，人名80
+	  	ListTable4.setColumnModel(getColumnModel(ListTable4,width4));
+      	ListTable4.getTableHeader().setReorderingAllowed(false);
+      	ListTable4.getTableHeader().setResizingAllowed(false);
 		jp4.setOpaque(false);
 		jp4.add(scrollPane4,BorderLayout.CENTER);
 		j.add(jp4);
@@ -649,6 +661,10 @@ public class Check extends JPanel{
 		JScrollPane scrollPane5 = new JScrollPane();
 		scrollPane5.getViewport().add(ListTable5);
 		ListTable5.setFillsViewportHeight(true);
+	  	int[] width5={150,80,100,370,60,50,60,30};
+	  	ListTable5.setColumnModel(getColumnModel(ListTable5,width5));
+      	ListTable5.getTableHeader().setReorderingAllowed(false);
+      	ListTable5.getTableHeader().setResizingAllowed(false);
 		jp5.setOpaque(false);
 		jp5.add(scrollPane5,BorderLayout.CENTER);
 		j.add(jp5);
@@ -682,6 +698,10 @@ public class Check extends JPanel{
 		JScrollPane scrollPane6 = new JScrollPane();
 		scrollPane6.getViewport().add(ListTable6);
 		ListTable6.setFillsViewportHeight(true);
+	  	int[] width6={150,150,80,130,80,60,60,60,30};
+	  	ListTable6.setColumnModel(getColumnModel(ListTable6,width6));
+      	ListTable6.getTableHeader().setReorderingAllowed(false);
+      	ListTable6.getTableHeader().setResizingAllowed(false);
 		jp6.setOpaque(false);
 		jp6.add(scrollPane6,BorderLayout.CENTER);
 		j.add(jp6);
@@ -712,6 +732,10 @@ public class Check extends JPanel{
 		JScrollPane scrollPane7 = new JScrollPane();
 		scrollPane7.getViewport().add(ListTable7);
 		ListTable7.setFillsViewportHeight(true);
+	  	int[] width7={150,150,180,230,60,30};
+	  	ListTable7.setColumnModel(getColumnModel(ListTable7,width7));
+      	ListTable7.getTableHeader().setReorderingAllowed(false);
+      	ListTable7.getTableHeader().setResizingAllowed(false);
 		jp7.setOpaque(false);
 		jp7.add(scrollPane7,BorderLayout.CENTER);
 		j.add(jp7);
@@ -773,6 +797,10 @@ public class Check extends JPanel{
 		JScrollPane scrollPane9 = new JScrollPane();
 		scrollPane9.getViewport().add(ListTable9);
 		ListTable9.setFillsViewportHeight(true);
+	  	int[] width9={180,190,180,160,60,30};
+	  	ListTable9.setColumnModel(getColumnModel(ListTable9,width9));
+      	ListTable9.getTableHeader().setReorderingAllowed(false);
+      	ListTable9.getTableHeader().setResizingAllowed(false);
 		jp9.setOpaque(false);
 		jp9.add(scrollPane9,BorderLayout.CENTER);
 		j.add(jp9);
@@ -807,6 +835,10 @@ public class Check extends JPanel{
 		JScrollPane scrollPane10 = new JScrollPane();
 		scrollPane10.getViewport().add(ListTable10);
 		ListTable10.setFillsViewportHeight(true);
+	  	int[] width10={160,140,50,105,105,50,50,50,60,30};
+	  	ListTable10.setColumnModel(getColumnModel(ListTable10,width10));
+      	ListTable10.getTableHeader().setReorderingAllowed(false);
+      	ListTable10.getTableHeader().setResizingAllowed(false);
 		jp10.setOpaque(false);
 		jp10.add(scrollPane10,BorderLayout.CENTER);
 		j.add(jp10);
@@ -816,7 +848,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable.getRowCount()!=0){
+				if (clickCount == 1 && ListTable.getRowCount()!=0 && ListTable.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable.getValueAt(ListTable.getSelectedRow(), ListTable.getColumnCount()-1)  )==0)
 						ListTable.setValueAt("是", ListTable.getSelectedRow(), ListTable.getColumnCount()-1);
 					else
@@ -832,7 +864,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable2.getRowCount()!=0){
+				if (clickCount == 1 && ListTable2.getRowCount()!=0 && ListTable2.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable2.getValueAt(ListTable2.getSelectedRow(), ListTable2.getColumnCount()-1)  )==0)
 						ListTable2.setValueAt("是", ListTable2.getSelectedRow(), ListTable2.getColumnCount()-1);
 					else
@@ -848,7 +880,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable3.getRowCount()!=0){
+				if (clickCount == 1 && ListTable3.getRowCount()!=0 && ListTable3.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable3.getValueAt(ListTable3.getSelectedRow(), ListTable3.getColumnCount()-1)  )==0)
 						ListTable3.setValueAt("是", ListTable3.getSelectedRow(), ListTable3.getColumnCount()-1);
 					else
@@ -864,7 +896,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable4.getRowCount()!=0){
+				if (clickCount == 1 && ListTable4.getRowCount()!=0 && ListTable4.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable4.getValueAt(ListTable4.getSelectedRow(), ListTable4.getColumnCount()-1)  )==0)
 						ListTable4.setValueAt("是", ListTable4.getSelectedRow(), ListTable4.getColumnCount()-1);
 					else
@@ -880,7 +912,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable5.getRowCount()!=0){
+				if (clickCount == 1 && ListTable5.getRowCount()!=0 && ListTable5.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable5.getValueAt(ListTable5.getSelectedRow(), ListTable5.getColumnCount()-1)  )==0)
 						ListTable5.setValueAt("是", ListTable5.getSelectedRow(), ListTable5.getColumnCount()-1);
 					else
@@ -896,7 +928,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable6.getRowCount()!=0){
+				if (clickCount == 1 && ListTable6.getRowCount()!=0 && ListTable6.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable6.getValueAt(ListTable6.getSelectedRow(), ListTable6.getColumnCount()-1)  )==0)
 						ListTable6.setValueAt("是", ListTable6.getSelectedRow(), ListTable6.getColumnCount()-1);
 					else
@@ -912,7 +944,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable7.getRowCount()!=0){
+				if (clickCount == 1 && ListTable7.getRowCount()!=0 && ListTable7.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable7.getValueAt(ListTable7.getSelectedRow(), ListTable7.getColumnCount()-1)  )==0)
 						ListTable7.setValueAt("是", ListTable7.getSelectedRow(), ListTable7.getColumnCount()-1);
 					else
@@ -928,7 +960,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable8.getRowCount()!=0){
+				if (clickCount == 1 && ListTable8.getRowCount()!=0 && ListTable8.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable8.getValueAt(ListTable8.getSelectedRow(), ListTable8.getColumnCount()-1)  )==0)
 						ListTable8.setValueAt("是", ListTable8.getSelectedRow(), ListTable8.getColumnCount()-1);
 					else
@@ -944,7 +976,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable9.getRowCount()!=0){
+				if (clickCount == 1 && ListTable9.getRowCount()!=0 && ListTable9.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable9.getValueAt(ListTable9.getSelectedRow(), ListTable9.getColumnCount()-1)  )==0)
 						ListTable9.setValueAt("是", ListTable9.getSelectedRow(), ListTable9.getColumnCount()-1);
 					else
@@ -960,7 +992,7 @@ public class Check extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				// TODO 自动生成的方法存根
 				int clickCount = e.getClickCount();
-				if (clickCount == 1 && ListTable10.getRowCount()!=0){
+				if (clickCount == 1 && ListTable10.getRowCount()!=0 && ListTable10.getSelectedRow()!=-1){
 					if("否".compareTo(  (String) ListTable10.getValueAt(ListTable10.getSelectedRow(), ListTable10.getColumnCount()-1)  )==0)
 						ListTable10.setValueAt("是", ListTable10.getSelectedRow(), ListTable10.getColumnCount()-1);
 					else
