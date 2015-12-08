@@ -75,15 +75,23 @@ public class ReceivePkg extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawImage(Img.BACKGROUND, CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h, null);
-        g.drawLine(CourierFrame.w/6, 10, CourierFrame.w/6, CourierFrame.h-10);
-        g.drawLine(CourierFrame.w/6+10, CourierFrame.h/6, CourierFrame.w, CourierFrame.h/6);
-        g.drawLine(CourierFrame.w/6+20, 128+80+30, CourierFrame.w-20, 128+80+30);
-        g.drawLine(CourierFrame.w/6+20, 128+80+150+30, CourierFrame.w-20, 128+80+150+30);
+        g.drawImage(Img.BACKGROUND2, CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, CourierFrame.w/6, 0, CourierFrame.w, CourierFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, CourierFrame.w/6, CourierFrame.h, null);
+        g.drawLine(CourierFrame.w/6-1, 0, CourierFrame.w/6-1, CourierFrame.h);
+        g.drawLine(CourierFrame.w/6, 0, CourierFrame.w/6, CourierFrame.h);
+        g.drawLine(CourierFrame.w/6+1, 0, CourierFrame.w/6+1, CourierFrame.h);
+        
+        g.drawLine(CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h/6);
+        g.drawLine(CourierFrame.w/6, CourierFrame.h/6+1, CourierFrame.w, CourierFrame.h/6+1);
+        
+        g.drawLine(CourierFrame.w/6+15, 128+80+30, CourierFrame.w-15, 128+80+30);
+        g.drawLine(CourierFrame.w/6+15, 128+80+150+30, CourierFrame.w-15, 128+80+150+30);
 
         if(willprintMessage){
-        	g.drawImage(Img.BACKGROUND, CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h, null);
-        	
+        	g.drawImage(Img.BACKGROUND2, CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h, null);
+            g.drawImage(Img.BACKGROUND1, CourierFrame.w/6, 0, CourierFrame.w, CourierFrame.h/6, null);
+            g.drawImage(Img.BACKGROUND0, 0, 0, CourierFrame.w/6, CourierFrame.h, null);
             g.setColor(co);
             g.setFont(new Font("宋体", Font.BOLD, 26));
             g.drawString(result, -result.length()*13+CourierFrame.w/2, 13+CourierFrame.h-30);
@@ -97,7 +105,7 @@ public class ReceivePkg extends JPanel{
 		willprintMessage=false;
 		result="";
 		orderlist="";
-		co=Color.RED;
+		co=Color.lightGray;
 		this.setLayout(null);
 
 		//初始化组件
@@ -150,7 +158,7 @@ public class ReceivePkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_ReceivePkg = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_ReceivePkg = new MyButton(frame.WIDTH/6, 30, Img.GOTORECEIVE_0, Img.GOTORECEIVE_1, Img.GOTORECEIVE_2);
         goto_ReceivePkg.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -160,7 +168,9 @@ public class ReceivePkg extends JPanel{
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
-			public void mousePressed(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {
+				goto_ReceivePkg.setState(2);
+			}
 			public void mouseReleased(MouseEvent arg0) {}
         });
         goto_SearchPkgInformation = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
@@ -177,7 +187,7 @@ public class ReceivePkg extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-        selected = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        selected = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         selected.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				selecte();
@@ -187,7 +197,7 @@ public class ReceivePkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        confirm = new MyButton(100, 35, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
+        confirm = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				receive();
@@ -202,7 +212,7 @@ public class ReceivePkg extends JPanel{
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
+        titleLabel.setForeground(Color.BLACK);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="收件";
@@ -214,7 +224,7 @@ public class ReceivePkg extends JPanel{
         JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
         currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
         currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setForeground(Color.DARK_GRAY);
         currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="快递员";
@@ -226,7 +236,7 @@ public class ReceivePkg extends JPanel{
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentusernameLabel.setForeground(Color.RED);
+        currentusernameLabel.setForeground(Color.DARK_GRAY);
         currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(CourierFrame.w-30,0);
@@ -277,7 +287,7 @@ public class ReceivePkg extends JPanel{
         JLabel tipLabel = new JLabel(tip);
         tipLabel.setSize((int)(16*tip.length()*1.07f), 16);
         tipLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        tipLabel.setForeground(Color.RED);
+        tipLabel.setForeground(Color.DARK_GRAY);
         tipLabel.setLocation(470,128+80+150);
         
         JLabel l21 = new JLabel("寄件人姓名：");
@@ -381,7 +391,7 @@ public class ReceivePkg extends JPanel{
 		senddateLabel.setForeground(Color.RED);
 		senddateLabel.setLocation(CourierFrame.w/6+40+(int)(16*5*1.07f), 128+80+150+300);
 		
-		selected.setLocation(480,128+80-5);
+		selected.setLocation(480,128+80-7);
     	confirm.setLocation(CourierFrame.w-150,CourierFrame.h-80);
 		
 		

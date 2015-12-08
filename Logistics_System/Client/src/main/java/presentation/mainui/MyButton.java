@@ -34,6 +34,11 @@ public class MyButton extends JPanel implements MouseListener{
 	public int getH() {
 		return h;
 	}
+	
+	public void setState(int num){
+		this.state=num;
+		repaint();
+	}
 
 
 	public MyButton(int w, int h, Image Exited, Image Entered, Image Pressed){

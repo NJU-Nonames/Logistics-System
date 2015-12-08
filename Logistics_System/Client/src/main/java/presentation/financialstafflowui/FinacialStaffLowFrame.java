@@ -3,7 +3,7 @@
  *author:
  *description:
  */
-package presentation.financialstaffui;
+package presentation.financialstafflowui;
 
 import java.awt.CardLayout;
 import java.awt.event.MouseAdapter;
@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
+import utility.Position;
 import businesslogic.chartbl.FormBLImpl;
 import businesslogic.chartbl.SystemLogBLImpl;
 import businesslogic.financebl.AccountBLImpl;
@@ -31,7 +32,7 @@ import businesslogicservice.financeblservice.SettlementManageBLService;
  * @author 谭期友
  *
  */
-public class FinacialStaffFrame extends JFrame{
+public class FinacialStaffLowFrame extends JFrame{
 	
 	private static final long serialVersionUID = 4881080784503653011L;
 	public static final int w = 1024;
@@ -58,7 +59,6 @@ public class FinacialStaffFrame extends JFrame{
 	CardLayout card;
 
 	//面板对象
-	AccountManage accountManage;//账户管理
 	CostManage costManage;//成本管理
 	SettlementManage settlementManage;//结算管理
 	Statistic statistic;//统计报表
@@ -67,7 +67,6 @@ public class FinacialStaffFrame extends JFrame{
 	
 	
 
-	AccountBLService accountBLService;
 	BaseDataSettingBLService baseDataSettingBLService;//期初建账
 	CostManagementBLService costManagementBLService;
 	SettlementManageBLService settlementManageBLService;
@@ -78,7 +77,7 @@ public class FinacialStaffFrame extends JFrame{
 	private int xx;
 	private int yy;
 	
-	public FinacialStaffFrame(CurrentUser currentUser){
+	public FinacialStaffLowFrame(CurrentUser currentUser){
 		this.currentUser=currentUser;
 //		this.currentUser=new CurrentUser("王大锤","南京中转中心","025000","admin");
 		this.setUndecorated(true);
@@ -120,21 +119,20 @@ public class FinacialStaffFrame extends JFrame{
 		this.setIconImage(Img.FinacialStaffICON);
 		
 
-		accountBLService=new AccountBLImpl(this.currentUser);
 		baseDataSettingBLService=null;//期初建账
 		costManagementBLService=new CostManagementBLImpl(this.currentUser);
 		settlementManageBLService=new SettlementManageBLImpl(this.currentUser);
 		systemLogBLService=new SystemLogBLImpl();
 		formBLService=new FormBLImpl(this.currentUser);
 		
-		accountManage=new AccountManage(this, accountBLService, currentUser);
+
 		baseDataSetting=new BaseDataSetting(this, currentUser);
 		costManage=new CostManage(this, costManagementBLService, currentUser);
 		settlementManage=new SettlementManage(this, settlementManageBLService, currentUser);
 		statistic=new Statistic(this, formBLService, currentUser);
 		systemLog=new SystemLog(this, systemLogBLService, currentUser);
+        
 
-		j.add(accountManage);
 		j.add(costManage);
 		j.add(settlementManage);
 		j.add(statistic);
@@ -150,7 +148,7 @@ public class FinacialStaffFrame extends JFrame{
 						if(state-stated>0)
 							a=state-stated;
 						else
-							a=state+6-stated;
+							a=state+5-stated;
 						for(int i=0;i<a;i++)
 							card.next(j);
 						

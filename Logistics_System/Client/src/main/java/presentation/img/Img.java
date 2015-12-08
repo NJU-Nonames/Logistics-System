@@ -56,7 +56,9 @@ public class Img {
 	public static Image UPLINE=new ImageIcon("img/Bg/主界面标题.png").getImage();
 	
 	//界面背景
-	public static Image BACKGROUND=new ImageIcon("img/Bg/背景.png").getImage();
+	public static Image BACKGROUND0=new ImageIcon("img/Bg/最深.png").getImage();
+	public static Image BACKGROUND1=new ImageIcon("img/Bg/深.png").getImage();
+	public static Image BACKGROUND2=new ImageIcon("img/Bg/中.png").getImage();
 	
 	//按钮：登录用户登录界面
 	public static Image GOTO_LOGIN_0=new ImageIcon("img/Button/用户登录_0.png").getImage();
@@ -130,7 +132,10 @@ public class Img {
 	public static Image SEARCH_1=new ImageIcon("img/Button/查找_1.png").getImage();
 	public static Image SEARCH_2=new ImageIcon("img/Button/查找_2.png").getImage();
 	
-	
+	//按钮：gotoreceive
+	public static Image GOTORECEIVE_0=new ImageIcon("img/Button/goreceive_0.png").getImage();
+	public static Image GOTORECEIVE_1=new ImageIcon("img/Button/goreceive_1.png").getImage();
+	public static Image GOTORECEIVE_2=new ImageIcon("img/Button/goreceive_2.png").getImage();
 	
 	public static Image MIN_0=new ImageIcon("img/背景.png").getImage();
 	public static Image MIN_1=new ImageIcon("img/界面/系统图标.png").getImage();

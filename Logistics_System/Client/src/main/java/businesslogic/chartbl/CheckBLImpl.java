@@ -591,7 +591,7 @@ public class CheckBLImpl implements CheckBLService {
 				moneyin.update(moneyinpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有收款单",user.getAdmin()));
-				return new ResultMessage(true,"审核通过所有收款单!");
+				return new ResultMessage(true,"审核通过所有选中的收款单!");
 			case MONET_OUT_NOTE:
 				for(String Id:id){
 				MoneyOutListPO moneyoutpo=moneyout.findOnID(Id);
@@ -599,7 +599,7 @@ public class CheckBLImpl implements CheckBLService {
 				moneyout.update(moneyoutpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有付款单",user.getAdmin()));
-				return new ResultMessage(true, "审核通过所有付款单!");
+				return new ResultMessage(true, "审核通过所有选中的付款单!");
 			case IN_STOREAGE_NOTE:
 				for(String Id:id){
 				RepertoryInPO repertoryinpo=repertoryin.findOnID(Id);
@@ -607,7 +607,7 @@ public class CheckBLImpl implements CheckBLService {
 				repertoryin.update(repertoryinpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有入库单",user.getAdmin()));
-				return new ResultMessage(true,"审核通过所有入库单!");
+				return new ResultMessage(true,"审核通过所有选中的入库单!");
 			case OUT_STOREAGE_NOTE:
 				for(String Id:id){
 				RepertoryOutPO repertoryoutpo=repertoryout.findOnID(Id);
@@ -615,7 +615,7 @@ public class CheckBLImpl implements CheckBLService {
 				repertoryout.update(repertoryoutpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有出库单",user.getAdmin()));
-				return new ResultMessage(true,"审核通过所有出库单!");
+				return new ResultMessage(true,"审核通过所有选中的出库单!");
 			case SENDING_NOTE:
 				for(String Id:id){
 				OrderListPO orderpo=order.find(Id);
@@ -623,7 +623,7 @@ public class CheckBLImpl implements CheckBLService {
 				order.update(orderpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有快递单",user.getAdmin()));
-				return new ResultMessage(true,"审核通过所有快递单!");
+				return new ResultMessage(true,"审核通过所有选中的快递单!");
 			case LOADING_NOTE:
 				for(String Id:id){
 				LoadListPO loadpo=load.find(Id);
@@ -631,7 +631,7 @@ public class CheckBLImpl implements CheckBLService {
 				load.update(loadpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有装车单",user.getAdmin()));
-				return new ResultMessage(true,"审核通过所有装车单!");
+				return new ResultMessage(true,"审核通过所有选中的装车单!");
 			case BUSINESSHALL_ARRIVAL_NOTE:
 				for(String Id:id){
 				HallArrivalListPO hallarrivalpo=hallarrival.find(Id);
@@ -639,7 +639,7 @@ public class CheckBLImpl implements CheckBLService {
 				hallarrival.update(hallarrivalpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有营业厅到达单",user.getAdmin()));
-				return new ResultMessage(true, "审核通过所有营业厅到达单!");
+				return new ResultMessage(true, "审核通过所有选中的营业厅到达单!");
 			case DELIVERYING_NOTE:
 				for(String Id:id){
 				DeliveringListPO deliverpo=deliver.find(Id);
@@ -647,7 +647,7 @@ public class CheckBLImpl implements CheckBLService {
 				deliver.update(deliverpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有派件单",user.getAdmin()));
-				return new ResultMessage(true, "审核通过所有派件单!");
+				return new ResultMessage(true, "审核通过所有选中的派件单!");
 			case CENTER_ARRIVAL_NOTE:
 				for(String Id:id){
 				TransArrivalListPO transarrivalpo=transarrival.find(Id);
@@ -655,7 +655,7 @@ public class CheckBLImpl implements CheckBLService {
 				transarrival.update(transarrivalpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有中转中心到达单",user.getAdmin()));
-				return new ResultMessage(true,"审核通过所有中转中心到达单!");
+				return new ResultMessage(true,"审核通过所有选中的中转中心到达单!");
 			case TRANSIT_NOTE:
 				for(String Id:id){
 				TransShipmentListPO transshipmentpo=transshipment.find(Id);
@@ -663,7 +663,7 @@ public class CheckBLImpl implements CheckBLService {
 				transshipment.update(transshipmentpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核通过所有中转单",user.getAdmin()));
-				return new ResultMessage(true,"审核通过所有中转单!");
+				return new ResultMessage(true,"审核通过所有选中的中转单!");
 			}
 		}catch(RemoteException e){
 			e.printStackTrace();
@@ -683,7 +683,7 @@ public class CheckBLImpl implements CheckBLService {
 				moneyin.update(moneyinpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有收款单",user.getAdmin()));
-				return new ResultMessage(true,"审核未通过所有收款单!");
+				return new ResultMessage(true,"审核未通过所有选中的收款单!");
 			case MONET_OUT_NOTE:
 				for(String Id:id){
 				MoneyOutListPO moneyoutpo=moneyout.findOnID(Id);
@@ -691,7 +691,7 @@ public class CheckBLImpl implements CheckBLService {
 				moneyout.update(moneyoutpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有付款单",user.getAdmin()));
-				return new ResultMessage(true, "审核未通过所有付款单!");
+				return new ResultMessage(true, "审核未通过所有选中的付款单!");
 			case IN_STOREAGE_NOTE:
 				for(String Id:id){
 				RepertoryInPO repertoryinpo=repertoryin.findOnID(Id);
@@ -699,7 +699,7 @@ public class CheckBLImpl implements CheckBLService {
 				repertoryin.update(repertoryinpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有入库单",user.getAdmin()));
-				return new ResultMessage(true,"审核未通过所有入库单!");
+				return new ResultMessage(true,"审核未通过所有选中的入库单!");
 			case OUT_STOREAGE_NOTE:
 				for(String Id:id){
 				RepertoryOutPO repertoryoutpo=repertoryout.findOnID(Id);
@@ -707,7 +707,7 @@ public class CheckBLImpl implements CheckBLService {
 				repertoryout.update(repertoryoutpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有出库单",user.getAdmin()));
-				return new ResultMessage(true,"审核未通过所有出库单!");
+				return new ResultMessage(true,"审核未通过所有选中的出库单!");
 			case SENDING_NOTE:
 				for(String Id:id){
 				OrderListPO orderpo=order.find(Id);
@@ -715,7 +715,7 @@ public class CheckBLImpl implements CheckBLService {
 				order.update(orderpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有快递单",user.getAdmin()));
-				return new ResultMessage(true,"审核未通过所有快递单!");
+				return new ResultMessage(true,"审核未通过所有选中的快递单!");
 			case LOADING_NOTE:
 				for(String Id:id){
 				LoadListPO loadpo=load.find(Id);
@@ -723,7 +723,7 @@ public class CheckBLImpl implements CheckBLService {
 				load.update(loadpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有装车单",user.getAdmin()));
-				return new ResultMessage(true,"审核未通过所有装车单!");
+				return new ResultMessage(true,"审核未通过所有选中的装车单!");
 			case BUSINESSHALL_ARRIVAL_NOTE:
 				for(String Id:id){
 				HallArrivalListPO hallarrivalpo=hallarrival.find(Id);
@@ -731,7 +731,7 @@ public class CheckBLImpl implements CheckBLService {
 				hallarrival.update(hallarrivalpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有营业厅到达单",user.getAdmin()));
-				return new ResultMessage(true, "审核未通过所有营业厅到达单!");
+				return new ResultMessage(true, "审核未通过所有选中的营业厅到达单!");
 			case DELIVERYING_NOTE:
 				for(String Id:id){
 				DeliveringListPO deliverpo=deliver.find(Id);
@@ -739,7 +739,7 @@ public class CheckBLImpl implements CheckBLService {
 				deliver.update(deliverpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有派件单",user.getAdmin()));
-				return new ResultMessage(true, "审核未通过所有派件单!");
+				return new ResultMessage(true, "审核未通过所有选中的派件单!");
 			case CENTER_ARRIVAL_NOTE:
 				for(String Id:id){
 				TransArrivalListPO transarrivalpo=transarrival.find(Id);
@@ -747,7 +747,7 @@ public class CheckBLImpl implements CheckBLService {
 				transarrival.update(transarrivalpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有中转中心到达单",user.getAdmin()));
-				return new ResultMessage(true,"审核未通过所有中转中心到达单!");
+				return new ResultMessage(true,"审核未通过所有选中的中转中心到达单!");
 			case TRANSIT_NOTE:
 				for(String Id:id){
 				TransShipmentListPO transshipmentpo=transshipment.find(Id);
@@ -755,7 +755,7 @@ public class CheckBLImpl implements CheckBLService {
 				transshipment.update(transshipmentpo);
 				}
 				system.add(new SystemLogPO((String)df.format(new Date()),"审核未通过所有中转单",user.getAdmin()));
-				return new ResultMessage(true,"审核未通过所有中转单!");
+				return new ResultMessage(true,"审核未通过所有选中的中转单!");
 			}
 		}catch(RemoteException e){
 			e.printStackTrace();
