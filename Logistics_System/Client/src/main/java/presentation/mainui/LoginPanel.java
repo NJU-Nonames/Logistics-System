@@ -202,8 +202,8 @@ public class LoginPanel extends JPanel{
 			case BUSINESS_OFFICE_CLERK:new BusinessOfficeClerkFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
 			case CENTER_CLERK:new CenterClerkFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
 			case CENTER_REPERTORY_CLERK:new CenterRepertoryClerkFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
-			case FINANCIAL_STAFF_LOW:
-			case FINANCIAL_STAFF_HIGH:new FinacialStaffFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
+			case FINANCIAL_STAFF_LOW:new FinacialStaffFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username),vo.getPostion());break;
+			case FINANCIAL_STAFF_HIGH:new FinacialStaffFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username),vo.getPostion());break;
 			case TOP_MANAGER:new TopManagerFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
 			case ADMIN:new AdminFrame(new CurrentUser(vo.getName(), vo.getAgencyName(), vo.getAgencyId(), username));break;
 			default:break;

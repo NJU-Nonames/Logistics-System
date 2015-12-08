@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
+import utility.Position;
 import businesslogic.chartbl.FormBLImpl;
 import businesslogic.chartbl.SystemLogBLImpl;
 import businesslogic.financebl.AccountBLImpl;
@@ -39,6 +40,7 @@ public class FinacialStaffFrame extends JFrame{
 	
 	
 	private CurrentUser currentUser;
+	private Position position;
 	private int state;//1表示账户管理，2表示成本管理,3表示结算管理，4表示统计报表，5表示期初建帐,6表示查看系统日志
 	private int stated;//以前的状态
 	boolean changed;
@@ -78,7 +80,8 @@ public class FinacialStaffFrame extends JFrame{
 	private int xx;
 	private int yy;
 	
-	public FinacialStaffFrame(CurrentUser currentUser){
+	public FinacialStaffFrame(CurrentUser currentUser,Position position){
+		this.position=position;
 		this.currentUser=currentUser;
 //		this.currentUser=new CurrentUser("王大锤","南京中转中心","025000","admin");
 		this.setUndecorated(true);
@@ -133,7 +136,8 @@ public class FinacialStaffFrame extends JFrame{
 		settlementManage=new SettlementManage(this, settlementManageBLService, currentUser);
 		statistic=new Statistic(this, formBLService, currentUser);
 		systemLog=new SystemLog(this, systemLogBLService, currentUser);
-
+        
+		if(position==Position.FINANCIAL_STAFF_HIGH)
 		j.add(accountManage);
 		j.add(costManage);
 		j.add(settlementManage);
