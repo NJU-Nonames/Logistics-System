@@ -3,46 +3,47 @@
  *author:
  *description:
  */
-package presentation.financialstaffui;
+package presentation.financialstaffhighui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Vector;
+import java.util.Date;
 
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextArea;
 
+import businesslogicservice.financeblservice.CostManagementBLService;
 import presentation.img.Img;
 import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
+import utility.CheckType;
+import utility.CostClause;
 import utility.ResultMessage;
-import vo.BankAccountVO;
-import businesslogicservice.financeblservice.AccountBLService;
+import vo.MoneyOutListVO;
 
-/**账户管理
+/**成本管理
  * @author 谭期友
  *
  */
-public class AccountManage extends JPanel{
+public class CostManage extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	private AccountBLService bl;
-	private FinacialStaffFrame frame;
+	private CostManagementBLService bl;
+	private FinacialStaffHighFrame frame;
 	private CurrentUser currentUser;
 	
 	//最基本按钮
@@ -57,19 +58,20 @@ public class AccountManage extends JPanel{
 	private MyButton goto_BaseDataSetting;//期初建账
 	private MyButton goto_SystemLog;//查看系统日志
 	//详细操作按钮以及其他组件
-	private MyButton search;
-	private MyButton add;
-	private MyButton remove;
-	private MyButton change;
+	private MyButton confirm;
 	
-	
-	private JTextField AccountField;//查找账户
-	private DefaultTableModel AccountTableModel;//账户表格模型
-	private JTable AccountTable;//账户表格
-	private JTextField newAccountField;//新账户
-	private JTextField newAccountBank;//新账户银行卡
-	private JTextField yueField;//余额
-	
+	private JLabel id;
+	private JTextField pay_man;
+	private JTextField pay_date;
+	private JTextField money;
+	private JTextField bankcard;
+	private JTextArea note;
+	private JRadioButton rent;
+	private JRadioButton deli_price;
+	private JRadioButton salary;
+	private JRadioButton reward;
+	private ButtonGroup buttonGroup;
+
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
 	private Color co;//消息的颜色
@@ -77,20 +79,20 @@ public class AccountManage extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        //g.drawImage(Img.BG, FinacialStaffFrame.w/6, 0, FinacialStaffFrame.w*5/6, FinacialStaffFrame.h, null);
-        g.drawLine(FinacialStaffFrame.w/6, 10, FinacialStaffFrame.w/6, FinacialStaffFrame.h-10);
-        g.drawLine(FinacialStaffFrame.w/6+10, FinacialStaffFrame.h/6, FinacialStaffFrame.w, FinacialStaffFrame.h/6);
+        //g.drawImage(Img.cao2, -200, 0, 1366, 768, null);
+        g.drawLine(FinacialStaffHighFrame.w/6, 10, FinacialStaffHighFrame.w/6, FinacialStaffHighFrame.h-10);
+        g.drawLine(FinacialStaffHighFrame.w/6+10, FinacialStaffHighFrame.h/6, FinacialStaffHighFrame.w, FinacialStaffHighFrame.h/6);
 
         if(willprintMessage){
-        	g.drawImage(Img.BLACK_BG, 0, FinacialStaffFrame.h-50, FinacialStaffFrame.w, 50, null);
+        	g.drawImage(Img.BLACK_BG, 0, FinacialStaffHighFrame.h-50, FinacialStaffHighFrame.w, 50, null);
         	
             g.setColor(co);
             g.setFont(new Font("宋体", Font.BOLD, 26));
-            g.drawString(result, -result.length()*13+FinacialStaffFrame.w/2, 13+FinacialStaffFrame.h-30);
+            g.drawString(result, -result.length()*13+FinacialStaffHighFrame.w/2, 13+FinacialStaffHighFrame.h-30);
         }
 	}
 	
-	public AccountManage(FinacialStaffFrame frame, AccountBLService bl, CurrentUser currentUser){
+	public CostManage(FinacialStaffHighFrame frame, CostManagementBLService bl, CurrentUser currentUser){
 		this.frame=frame;
 		this.bl=bl;
 		this.currentUser=currentUser;
@@ -215,46 +217,17 @@ public class AccountManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-    	search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	search.addMouseListener(new MouseListener(){
+        confirm = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
-				_search();
+				_create();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	add = new MyButton(30, 30, Img.BG, Img.CLOSE_1, Img.CLOSE_2);
-    	add.addMouseListener(new MouseListener(){
-			public void mouseClicked(MouseEvent arg0) {
-				_add();
-			}
-			public void mouseEntered(MouseEvent arg0) {}
-			public void mouseExited(MouseEvent arg0) {}
-			public void mousePressed(MouseEvent arg0) {}
-			public void mouseReleased(MouseEvent arg0) {}
-        });
-    	remove = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	remove.addMouseListener(new MouseListener(){
-			public void mouseClicked(MouseEvent arg0) {
-				_remove();
-			}
-			public void mouseEntered(MouseEvent arg0) {}
-			public void mouseExited(MouseEvent arg0) {}
-			public void mousePressed(MouseEvent arg0) {}
-			public void mouseReleased(MouseEvent arg0) {}
-        });
-    	change = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	change.addMouseListener(new MouseListener(){
-			public void mouseClicked(MouseEvent arg0) {
-				_change();
-			}
-			public void mouseEntered(MouseEvent arg0) {}
-			public void mouseExited(MouseEvent arg0) {}
-			public void mousePressed(MouseEvent arg0) {}
-			public void mouseReleased(MouseEvent arg0) {}
-        });
+    	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
@@ -262,7 +235,7 @@ public class AccountManage extends JPanel{
         titleLabel.setForeground(Color.BLUE);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
-        String func="账户管理";
+        String func="成本管理";
         JLabel funLabel = new JLabel(func);
         funLabel.setSize((int)(40*func.length()*1.07f), 40);
         funLabel.setFont(new Font("宋体", Font.BOLD, 40));
@@ -286,8 +259,8 @@ public class AccountManage extends JPanel{
         currentusernameLabel.setForeground(Color.RED);
         currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
-    	close.setLocation(FinacialStaffFrame.w-30,0);
-    	min.setLocation(FinacialStaffFrame.w-80,0);
+    	close.setLocation(FinacialStaffHighFrame.w-30,0);
+    	min.setLocation(FinacialStaffHighFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
     	goto_AccountManage.setLocation(20,150);
@@ -298,97 +271,96 @@ public class AccountManage extends JPanel{
     	goto_SystemLog.setLocation(20,400);
     	
     	//其他组件
-        JLabel AccountLabel = new JLabel("账户：");
-        AccountLabel.setSize((int)(30*3*1.07f), 30);
-        AccountLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        AccountLabel.setLocation(596-150,128+60);
-        
-        AccountField = new JTextField();
-        AccountField.setSize(150, 30);
-        AccountField.setLocation(596-50,128+60);
-        
-        search.setLocation(596+150,128+60);
-        
-
-        
-		
-		//表头
-		Vector<String> vColumns = new Vector<String>();
-		vColumns.add("用户名");
-		vColumns.add("银行账号");
-		vColumns.add("余额");
-		//数据
-		Vector<String> vData = new Vector<String>();
-		//模型
-		AccountTableModel = new DefaultTableModel(vData, vColumns);
-		ArrayList<BankAccountVO> accountlist = bl.show();
-        for(int i =0 ; i<accountlist.size(); i++){
-    		Vector<String> v = new Vector<String>();
-    		v.add(accountlist.get(i).getName());
-    		v.add(accountlist.get(i).getNumber());
-    		v.add(""+accountlist.get(i).getMoney());
-        	AccountTableModel.addRow(v);
-        }
-		//表格
-        AccountTable = new JTable(AccountTableModel){
-			private static final long serialVersionUID = 1L;
-
-			public boolean isCellEditable(int row, int column){
-				return false;//不能修改
-			}
-		};
-		AccountTable.setPreferredScrollableViewportSize(new Dimension(480,150));
-		AccountTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		AccountTable.setSelectionBackground(Color.YELLOW);
-		JPanel jp=new JPanel();
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.getViewport().add(AccountTable);
-		AccountTable.getTableHeader().setReorderingAllowed(false);
-		AccountTable.getTableHeader().setResizingAllowed(false);
-		AccountTable.setFillsViewportHeight(true);
-		jp.setSize(500, 180);
-		jp.setLocation(596-500/2, 128+120);
-		jp.setOpaque(false);
-		jp.add(scrollPane,BorderLayout.CENTER);
-
-		JLabel l1 = new JLabel("新账户：");
-		l1.setFont(new Font("宋体", Font.BOLD, 15));
-        l1.setForeground(Color.BLACK);
-		newAccountField = new JTextField(4);
-		
-		JLabel l2 = new JLabel("新卡号：");
-		l2.setFont(new Font("宋体", Font.BOLD, 15));
-        l2.setForeground(Color.BLACK);
-		newAccountBank = new JTextField(14);
-		
-		JLabel l3 = new JLabel("余额：");
-		l3.setFont(new Font("宋体", Font.BOLD, 15));
-        l3.setForeground(Color.BLACK);
-		yueField = new JTextField(8);
-		
-		JPanel jp2 = new JPanel();
-		jp2.setLayout(new FlowLayout(FlowLayout.LEFT));
-		jp2.add(l1);
-		jp2.add(newAccountField);
-		jp2.add(l2);
-		jp2.add(newAccountBank);
-		jp2.add(l3);
-		jp2.add(yueField);
-		jp2.setOpaque(false);
-		jp2.setSize(520, 30);
-		jp2.setLocation(596-520/2, 128+340);
-
-    	add.setLocation(596-15-200,128+420);
-    	remove.setLocation(596-15,128+420);
-    	change.setLocation(596-15+200,128+420);
+    	id=new JLabel("付款单单号：   "+bl.createMoneyOutListId());
+    	id.setSize((int)(16*20*1.07f), 16);
+    	id.setFont(new Font("宋体", Font.BOLD, 15));
+    	id.setLocation(FinacialStaffHighFrame.w/6+40, 128+30);
     	
-    	String tip="提示：若要修改账户，先选中表格一行，再在“新账户”里填入新账户名，最后点击按钮即可修改。";
-        JLabel tipLabel = new JLabel(tip);
-        tipLabel.setSize((int)(16*tip.length()*1.07f), 16);
-        tipLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        tipLabel.setForeground(Color.RED);
-        tipLabel.setLocation(596-(int)(15*tip.length()*1.07f)/2,128+490);
+    	JLabel l1 = new JLabel("付款人：");
+		l1.setSize((int)(16*4*1.07f), 16);
+		l1.setFont(new Font("宋体", Font.BOLD, 15));
+        l1.setLocation(FinacialStaffHighFrame.w/6+40, 128+80);
+        pay_man = new JTextField();
+        pay_man.setSize(150, 20);
+        pay_man.setLocation(FinacialStaffHighFrame.w/6+40+(int)(16*5*1.07f),128+80-3);
+        
+		JLabel l2 = new JLabel("付款日期：");
+		l2.setSize((int)(16*5*1.07f), 16);
+		l2.setFont(new Font("宋体", Font.BOLD, 15));
+		l2.setLocation(FinacialStaffHighFrame.w/6+40, 128+80+50);
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time=format.format(date_);
+		pay_date = new JTextField(time);
+		pay_date.setSize(150, 20);
+		pay_date.setLocation(FinacialStaffHighFrame.w/6+40+(int)(16*5*1.07f),128+80+50-3);
 
+		JLabel l3 = new JLabel("付款金额：");
+		l3.setSize((int)(16*5*1.07f), 16);
+		l3.setFont(new Font("宋体", Font.BOLD, 15));
+		l3.setLocation(FinacialStaffHighFrame.w/6+40, 128+80+100);
+		money = new JTextField();
+		money.setSize(150, 20);
+		money.setLocation(FinacialStaffHighFrame.w/6+40+(int)(16*5*1.07f),128+80+100-3);
+		
+		JLabel l4 = new JLabel("付款账号：");
+		l4.setSize((int)(16*5*1.07f), 16);
+		l4.setFont(new Font("宋体", Font.BOLD, 15));
+		l4.setLocation(FinacialStaffHighFrame.w/6+40, 128+80+150);
+		bankcard = new JTextField();
+		bankcard.setSize(150, 20);
+		bankcard.setLocation(FinacialStaffHighFrame.w/6+40+(int)(16*5*1.07f),128+80+150-3);
+		
+		JLabel l5 = new JLabel("备注：");
+		l5.setSize((int)(16*3*1.07f), 16);
+		l5.setFont(new Font("宋体", Font.BOLD, 15));
+		l5.setLocation(FinacialStaffHighFrame.w/6+40, 128+80+200);
+		note = new JTextArea();
+		note.setSize(200, 100);
+		note.setBorder(BorderFactory.createEtchedBorder());
+		note.setLocation(FinacialStaffHighFrame.w/6+40+(int)(16*5*1.07f),128+80+200-3);
+		
+		JLabel l6 = new JLabel("付款条目：");
+		l6.setSize((int)(16*5*1.07f), 16);
+		l6.setFont(new Font("宋体", Font.BOLD, 15));
+		l6.setLocation(600, 128+80);
+
+		rent=new JRadioButton("租金", true);
+		rent.setSize((int)(20*3*1.07f), 20);
+		rent.setFont(new Font("宋体", Font.BOLD, 16));
+		rent.setLocation(600+(int)(16*5*1.07f), 128+80);
+		rent.setOpaque(false);
+		
+		deli_price=new JRadioButton("运费", false);
+		deli_price.setSize((int)(20*3*1.07f), 20);
+		deli_price.setFont(new Font("宋体", Font.BOLD, 16));
+		deli_price.setLocation(600+(int)(16*5*1.07f), 128+80+30);
+		deli_price.setOpaque(false);
+		
+		salary=new JRadioButton("人员工资", false);
+		salary.setSize((int)(20*5*1.07f), 20);
+		salary.setFont(new Font("宋体", Font.BOLD, 16));
+		salary.setLocation(600+(int)(16*5*1.07f), 128+80+60);
+		salary.setOpaque(false);
+		
+		reward=new JRadioButton("奖励", false);
+		reward.setSize((int)(20*3*1.07f), 20);
+		reward.setFont(new Font("宋体", Font.BOLD, 16));
+		reward.setLocation(600+(int)(16*5*1.07f), 128+80+90);
+		reward.setOpaque(false);
+		
+		buttonGroup=new ButtonGroup();
+		buttonGroup.add(rent);
+		buttonGroup.add(deli_price);
+		buttonGroup.add(salary);
+		buttonGroup.add(reward);
+
+		
+		JLabel l7 = new JLabel("新建付款单：");
+		l7.setSize((int)(16*6*1.07f), 16);
+		l7.setFont(new Font("宋体", Font.BOLD, 15));
+		l7.setLocation(596-30/2-(int)(16*6*1.07f),600+5);
+    	confirm.setLocation(596-30/2,600);
 		
 		
 		
@@ -408,120 +380,100 @@ public class AccountManage extends JPanel{
     	add(goto_BaseDataSetting);
     	add(goto_SystemLog);
 
-    	add(AccountLabel);
-    	add(AccountField);
-    	add(search);
-		add(jp);
-		add(jp2);
-		add(add);
-		add(remove);
-		add(change);
-		add(tipLabel);
+    	add(id);
+    	add(l1);
+    	add(pay_man);
+    	add(l2);
+    	add(pay_date);
+    	add(l3);
+    	add(money);
+    	add(l4);
+    	add(bankcard);
+    	add(l5);
+    	add(note);
+    	add(l6);
+
+    	add(rent);
+		add(deli_price);
+		add(salary);
+		add(reward);
+		
+		add(l7);
+		add(confirm);
 	}
 
-	private void clear(){
-		AccountField.setText("");
-		newAccountField.setText("");
-		newAccountBank.setText("");
-		yueField.setText("");
-		willprintMessage=false;
-		repaint();
-	}
-	private void _search(){
-		if(AccountField.getText().compareTo("")==0){
-			printMessage("未输入账户！", Color.RED);
+	private void _create(){
+		String pay_man_s = pay_man.getText();
+		String pay_date_s = pay_date.getText();
+		String money_s = money.getText();
+		String bankcard_s = bankcard.getText();
+		String note_s = note.getText();
+
+		if(pay_man_s.compareTo("")==0){
+			printMessage("没有输入付款人！", Color.RED);
 			return;
 		}
-		String Account = AccountField.getText();
-		BankAccountVO bankAccountVO = bl.searchCount(Account);
-		if(bankAccountVO==null){
-			printMessage("查无此账户！", Color.RED);
-			return;
-		}
-		int i=0;
-		String s=(String) AccountTable.getValueAt(0, 0);
-		while(s.compareTo(Account)!=0){
-			i++;
-			s=(String) AccountTable.getValueAt(i, 0);
-		}
-		AccountTable.setRowSelectionInterval(i, i);
-	}
-	private void _add(){
-		String new_Account = newAccountField.getText();
-		String new_AccountBank = newAccountBank.getText();
-		double yue;
-		try{
-			yue = Double.parseDouble(yueField.getText());
-		}catch(NumberFormatException e){
-			printMessage("请输入正确余额！", Color.RED);
-			return;
-		}//接收数据完毕
-		
-		//格式检查
-		result = CheckFormat.checkBankAccountNum(new_AccountBank);
+		result = CheckFormat.checkCreateTime(pay_date_s);
 		if(result.compareTo("格式正确")!=0){
 			printMessage(result, Color.RED);
 			return;
 		}
+		if(money_s.compareTo("")==0){
+			printMessage("没有输入付款金额！", Color.RED);
+			return;
+		}
+		double money_s_double;
+		try{
+			money_s_double = Double.parseDouble(money_s);
+		}catch(NumberFormatException e){
+			printMessage("请输入正确付款金额！", Color.RED);
+			return;
+		}
+		result = CheckFormat.checkBankAccountNum(bankcard_s);
+		if(result.compareTo("格式正确")!=0){
+			printMessage(result, Color.RED);
+			return;
+		}
+		CostClause costClause=null;
+		if(rent.isSelected())
+			costClause=CostClause.rentfare;
+		else if(deli_price.isSelected())
+			costClause=CostClause.shipmentfare;
+		else if(salary.isSelected())
+			costClause=CostClause.salary;
+		else if(reward.isSelected())
+			costClause=CostClause.bonus;
 		
-		//ResultMessage检查
-		BankAccountVO bankAccountVO=new BankAccountVO(new_Account, new_AccountBank, yue);
-		ResultMessage resultMessage = bl.createCount(bankAccountVO);//已经写入数据库
+		
+		MoneyOutListVO moneyOutListVO=new MoneyOutListVO(bl.createMoneyOutListId(), pay_date_s, money_s_double, pay_man_s, bankcard_s, costClause, note_s, CheckType.UNDERCHECK);
+		ResultMessage resultMessage = bl.createMoneyOutlist(moneyOutListVO);
 		if(!resultMessage.isPass()){
 			printMessage(resultMessage.getMessage(), Color.RED);
 			return;
 		}else{
-			printMessage(resultMessage.getMessage(), Color.BLUE);
+			printMessage(resultMessage.getMessage(), Color.GREEN);
 		}
-
-
-		Vector<String> v = new Vector<String>();
-		v.add(new_Account);
-		v.add(new_AccountBank);
-		v.add(yueField.getText());
-		AccountTableModel.addRow(v);
+				
 		
-		newAccountField.setText("");
-		newAccountBank.setText("");
-		yueField.setText("");
+		pay_man.setText("");
+		money.setText("");
+		bankcard.setText("");
+		note.setText("");
+		rent.setSelected(true);
 	}
-	private void _remove(){
-		int index = AccountTable.getSelectedRow();
-		if(index == -1){
-			printMessage("请选中一个账户！", Color.RED);
-			return;
-		}
-		ResultMessage resultMessage = bl.removeCount((String) AccountTable.getValueAt(index, 0));
-		printMessage(resultMessage.getMessage(), Color.GREEN);
-		
-		AccountTableModel.removeRow(index);//肯定能成功==
+	private void clear(){
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time=format.format(date_);
+		id.setText("付款单单号：   "+bl.createMoneyOutListId());
+		pay_man.setText("");
+		money.setText("");
+		bankcard.setText("");
+		note.setText("");
+		rent.setSelected(true);
+		willprintMessage=false;
+		repaint();
 	}
-	private void _change(){
-		int index = AccountTable.getSelectedRow();
-		if(index == -1){
-			printMessage("请选中一个账户！", Color.RED);
-			return;
-		}
-		if(newAccountField.getText().compareTo("")==0){
-			printMessage("未输入新账户名！", Color.RED);
-			return;
-		}
-		BankAccountVO countVo=new BankAccountVO(
-				newAccountField.getText(),
-				(String) AccountTable.getValueAt(index, 1),
-				Double.parseDouble((String) AccountTable.getValueAt(index, 2)));
-		ResultMessage resultMessage = bl.updateCount(countVo);//已更改
-		printMessage(resultMessage.getMessage(), Color.GREEN);
-
-		AccountTable.setValueAt((String)newAccountField.getText(), index, 0);
-		newAccountField.setText("");
-		newAccountBank.setText("");
-		yueField.setText("");
-	}
-	
-	
-	
-	
 	
 	
 	private void printMessage(String message, Color c){
