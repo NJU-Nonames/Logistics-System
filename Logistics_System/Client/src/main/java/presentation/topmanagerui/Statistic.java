@@ -557,7 +557,7 @@ public class Statistic extends JPanel{
 			printMessage("成本收益表未初始化！", Color.RED);
 			return;
 		}
-		bl.exportCostandBenefitChart(time1, time2, null, "D:/");
+		bl.exportCostandBenefitChart(time1, time2,  "D:/");
 		printMessage("成本收益表已导出！", Color.GREEN);
 	}
 	private void _confirm2(){
@@ -565,7 +565,7 @@ public class Statistic extends JPanel{
 			printMessage("经营情况表未初始化！", Color.RED);
 			return;
 		}
-		bl.exportBusinessCircumstanceChart(time3, time4, null, "D:/");
+		bl.exportBusinessCircumstanceChart(time3, time4,  "D:/");
 		printMessage("经营情况表已导出！", Color.GREEN);
 	}
 	private void clear(){

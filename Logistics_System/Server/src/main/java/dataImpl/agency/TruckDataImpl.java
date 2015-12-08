@@ -58,7 +58,7 @@ public class TruckDataImpl extends UnicastRemoteObject implements TruckDataServi
 			    truckList.add(truck);
 			}
 		} catch (SQLException e) {
-			return null;
+			return truckList;
 		}
 		return truckList;
 	}

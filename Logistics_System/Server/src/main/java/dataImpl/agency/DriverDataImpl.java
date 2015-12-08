@@ -68,7 +68,7 @@ public class DriverDataImpl extends UnicastRemoteObject implements DriverDataSer
 			    driverList.add(driver);
 			}
 		} catch (SQLException e) {
-			return null;
+			return driverList;
 		}
 		
 		
