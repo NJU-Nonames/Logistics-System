@@ -158,19 +158,18 @@ public class ReceivePkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_ReceivePkg = new MyButton(frame.WIDTH/6, 30, Img.GOTORECEIVE_0, Img.GOTORECEIVE_1, Img.GOTORECEIVE_2);
+        goto_ReceivePkg = new MyButton(frame.getWidth()/6, 30, Img.GOTORECEIVE_2, Img.GOTORECEIVE_2, Img.GOTORECEIVE_2);
         goto_ReceivePkg.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(2);
 				frame.setChanged(true);
+				goto_ReceivePkg.setState(2);
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
-			public void mousePressed(MouseEvent arg0) {
-				goto_ReceivePkg.setState(2);
-			}
+			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
         goto_SearchPkgInformation = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
@@ -244,7 +243,7 @@ public class ReceivePkg extends JPanel{
     	_return.setLocation(20,50);
     	//功能按钮
     	goto_SendPkg.setLocation(20,150);
-    	goto_ReceivePkg.setLocation(20,200);
+    	goto_ReceivePkg.setLocation(0,200);
     	goto_SearchPkgInformation.setLocation(20,250);
     	
     	//其他组件
