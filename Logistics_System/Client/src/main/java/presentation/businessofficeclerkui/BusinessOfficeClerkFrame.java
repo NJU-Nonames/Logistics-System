@@ -128,7 +128,7 @@ public class BusinessOfficeClerkFrame extends JFrame{
 		driverManageBLService=new DriverManageBLImpl(this.currentUser);
 		
 		loadManage=new LoadManage(this, loadBLService, searchPkgInformationBLService, currentUser);
-		receive=new Receive(this, deliverAndReceiveBLService, searchPkgInformationBLService, currentUser);
+		receive=new Receive(this, deliverAndReceiveBLService, currentUser);
 		deliver=new Deliver(this, deliverAndReceiveBLService, searchPkgInformationBLService, currentUser);
 		checkList=new CheckList(this, settlementManageBLService, searchPkgInformationBLService, currentUser);
 		truckManage=new TruckManage(this, truckManageBLService, currentUser);

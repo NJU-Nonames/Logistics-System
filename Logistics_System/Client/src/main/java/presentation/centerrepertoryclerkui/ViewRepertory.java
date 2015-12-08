@@ -83,9 +83,14 @@ public class ViewRepertory extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawLine(CenterRepertoryClerkFrame.w/6, 10, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h-10);
-        g.drawLine(CenterRepertoryClerkFrame.w/6+10, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
-        
+        g.drawImage(Img.BACKGROUND2, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, CenterRepertoryClerkFrame.w/6, 0, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h, null);
+        g.drawLine(CenterRepertoryClerkFrame.w/6-1, 0, CenterRepertoryClerkFrame.w/6-1, CenterRepertoryClerkFrame.h);
+        g.drawLine(CenterRepertoryClerkFrame.w/6, 0, CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h);
+        g.drawLine(CenterRepertoryClerkFrame.w/6+1, 0, CenterRepertoryClerkFrame.w/6+1, CenterRepertoryClerkFrame.h);
+        g.drawLine(CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h/6, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6);
+        g.drawLine(CenterRepertoryClerkFrame.w/6, CenterRepertoryClerkFrame.h/6+1, CenterRepertoryClerkFrame.w, CenterRepertoryClerkFrame.h/6+1);
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterRepertoryClerkFrame.h-50, CenterRepertoryClerkFrame.w, 50, null);
         	

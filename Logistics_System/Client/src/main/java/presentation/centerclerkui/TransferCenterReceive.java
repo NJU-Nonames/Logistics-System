@@ -7,7 +7,6 @@ package presentation.centerclerkui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -52,7 +51,6 @@ import vo.TransArrivalVO;
 public class TransferCenterReceive extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
-	private static final Component recieveId = null;
 	private TransferCenterReceiveBLService bl;
 	private CenterClerkFrame frame;
 	private CurrentUser currentUser;
@@ -95,8 +93,16 @@ public class TransferCenterReceive extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawLine(CenterClerkFrame.w/6, 10, CenterClerkFrame.w/6, CenterClerkFrame.h-10);
-        g.drawLine(CenterClerkFrame.w/6+10, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h/6);        
+        g.drawImage(Img.BACKGROUND2, CenterClerkFrame.w/6, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, CenterClerkFrame.w/6, 0, CenterClerkFrame.w, CenterClerkFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, CenterClerkFrame.w/6, CenterClerkFrame.h, null);
+        g.drawLine(CenterClerkFrame.w/6-1, 0, CenterClerkFrame.w/6-1, CenterClerkFrame.h);
+        g.drawLine(CenterClerkFrame.w/6, 0, CenterClerkFrame.w/6, CenterClerkFrame.h);
+        g.drawLine(CenterClerkFrame.w/6+1, 0, CenterClerkFrame.w/6+1, CenterClerkFrame.h);
+        g.drawLine(CenterClerkFrame.w/6, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h/6);
+        g.drawLine(CenterClerkFrame.w/6, CenterClerkFrame.h/6+1, CenterClerkFrame.w, CenterClerkFrame.h/6+1);
+       
+        
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterClerkFrame.h-50, CenterClerkFrame.w, 50, null);
         	

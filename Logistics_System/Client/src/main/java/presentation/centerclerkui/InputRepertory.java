@@ -68,9 +68,15 @@ public class InputRepertory extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawLine(CenterClerkFrame.w/6, 10, CenterClerkFrame.w/6, CenterClerkFrame.h-10);
-        g.drawLine(CenterClerkFrame.w/6+10, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h/6);
-
+        g.drawImage(Img.BACKGROUND2, CenterClerkFrame.w/6, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, CenterClerkFrame.w/6, 0, CenterClerkFrame.w, CenterClerkFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, CenterClerkFrame.w/6, CenterClerkFrame.h, null);
+        g.drawLine(CenterClerkFrame.w/6-1, 0, CenterClerkFrame.w/6-1, CenterClerkFrame.h);
+        g.drawLine(CenterClerkFrame.w/6, 0, CenterClerkFrame.w/6, CenterClerkFrame.h);
+        g.drawLine(CenterClerkFrame.w/6+1, 0, CenterClerkFrame.w/6+1, CenterClerkFrame.h);
+        g.drawLine(CenterClerkFrame.w/6, CenterClerkFrame.h/6, CenterClerkFrame.w, CenterClerkFrame.h/6);
+        g.drawLine(CenterClerkFrame.w/6, CenterClerkFrame.h/6+1, CenterClerkFrame.w, CenterClerkFrame.h/6+1);
+       
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, CenterClerkFrame.h-50, CenterClerkFrame.w, 50, null);
         	

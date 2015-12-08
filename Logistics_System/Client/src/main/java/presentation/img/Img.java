@@ -23,7 +23,6 @@ public class Img {
 	
 	//图片
 	public static Image BG=new ImageIcon("img/Bg/bg.jpg").getImage();
-	public static Image BLACK_BG=new ImageIcon("img/Bg/black.png").getImage();
 	public static Image cao1=new ImageIcon("img/Bg/1099285.jpg").getImage();
 	public static Image cao2=new ImageIcon("img/Bg/1245103.jpg").getImage();
 	public static Image p1=new ImageIcon("img/Bg/pic (1).jpg").getImage();
@@ -54,6 +53,9 @@ public class Img {
 	
 	//主界面最上面标题
 	public static Image UPLINE=new ImageIcon("img/Bg/主界面标题.png").getImage();
+	
+	//printMessageBG
+	public static Image BLACK_BG=new ImageIcon("img/Bg/最深.png").getImage();
 	
 	//界面背景
 	public static Image BACKGROUND0=new ImageIcon("img/Bg/最深.png").getImage();

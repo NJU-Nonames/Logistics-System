@@ -81,9 +81,17 @@ public class SendPkg extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawImage(Img.cao2, 0, -50, 1366, 768, null);
-        g.drawLine(CourierFrame.w/6, 10, CourierFrame.w/6, CourierFrame.h-10);
-        g.drawLine(CourierFrame.w/6+10, CourierFrame.h/6, CourierFrame.w, CourierFrame.h/6);
+        //背景界面
+        g.drawImage(Img.BACKGROUND2, CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, CourierFrame.w/6, 0, CourierFrame.w, CourierFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, CourierFrame.w/6, CourierFrame.h, null);
+        g.drawLine(CourierFrame.w/6-1, 0, CourierFrame.w/6-1, CourierFrame.h);
+        g.drawLine(CourierFrame.w/6, 0, CourierFrame.w/6, CourierFrame.h);
+        g.drawLine(CourierFrame.w/6+1, 0, CourierFrame.w/6+1, CourierFrame.h);
+        g.drawLine(CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h/6);
+        g.drawLine(CourierFrame.w/6, CourierFrame.h/6+1, CourierFrame.w, CourierFrame.h/6+1);
+        
+        
         g.drawLine(CourierFrame.w/6+20, 128+80+100, CourierFrame.w-20, 128+80+100);
         g.drawLine(CourierFrame.w/6+20, 128+80+240, CourierFrame.w-20, 128+80+240);
 

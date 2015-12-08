@@ -1,37 +1,48 @@
 package businesslogic.financebl;
 
+import java.util.ArrayList;
+
 import utility.ResultMessage;
 import vo.AgencyVO;
 import vo.BankAccountVO;
-import vo.RepertoryInfoVO;
+import vo.BaseAgencyVO;
+import vo.RepertoryInformationVO;
+import vo.StaffVO;
 import vo.TruckVO;
 import businesslogicservice.financeblservice.BaseDataSettingBLService;
 
 public class BaseDataSettingBLImpl implements BaseDataSettingBLService {
 
-	public ResultMessage restart() {
+	public ResultMessage init() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ResultMessage addInstitutionInfo(AgencyVO agencyVO) {
+	public ArrayList<BankAccountVO> findBaseAccount() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ResultMessage addCommodityInfo(RepertoryInfoVO repertoryVO) {
+	public ArrayList<BaseAgencyVO> findBaseAgency() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ResultMessage addTruckInfo(TruckVO truck) {
+	public ArrayList<StaffVO> findBaseStaff() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ResultMessage addFinanceInfo(BankAccountVO bankAccountVO) {
+	public ArrayList<TruckVO> findBaseTruck() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ArrayList<RepertoryInformationVO> findBaseRepertory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

@@ -77,9 +77,15 @@ public class DriverManage extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawLine(BusinessOfficeClerkFrame.w/6, 10, BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h-10);
-        g.drawLine(BusinessOfficeClerkFrame.w/6+10, BusinessOfficeClerkFrame.h/6, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h/6);
-
+      //画出界面背景图
+        g.drawImage(Img.BACKGROUND2, BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h/6, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, BusinessOfficeClerkFrame.w/6, 0, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h, null);
+        g.drawLine(BusinessOfficeClerkFrame.w/6-1, 0, BusinessOfficeClerkFrame.w/6-1, BusinessOfficeClerkFrame.h);
+        g.drawLine(BusinessOfficeClerkFrame.w/6, 0, BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h);
+        g.drawLine(BusinessOfficeClerkFrame.w/6+1, 0, BusinessOfficeClerkFrame.w/6+1, BusinessOfficeClerkFrame.h);
+        g.drawLine(BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h/6, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h/6);
+        g.drawLine(BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h/6+1, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h/6+1);
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, BusinessOfficeClerkFrame.h-50, BusinessOfficeClerkFrame.w, 50, null);
         	

@@ -75,6 +75,7 @@ public class ReceivePkg extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
+        //背景界面
         g.drawImage(Img.BACKGROUND2, CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h, null);
         g.drawImage(Img.BACKGROUND1, CourierFrame.w/6, 0, CourierFrame.w, CourierFrame.h/6, null);
         g.drawImage(Img.BACKGROUND0, 0, 0, CourierFrame.w/6, CourierFrame.h, null);
@@ -89,10 +90,9 @@ public class ReceivePkg extends JPanel{
         g.drawLine(CourierFrame.w/6+15, 128+80+150+30, CourierFrame.w-15, 128+80+150+30);
 
         if(willprintMessage){
-        	g.drawImage(Img.BACKGROUND2, CourierFrame.w/6, CourierFrame.h/6, CourierFrame.w, CourierFrame.h, null);
-            g.drawImage(Img.BACKGROUND1, CourierFrame.w/6, 0, CourierFrame.w, CourierFrame.h/6, null);
-            g.drawImage(Img.BACKGROUND0, 0, 0, CourierFrame.w/6, CourierFrame.h, null);
-            g.setColor(co);
+        	g.drawImage(Img.BLACK_BG, 0, CourierFrame.h-50, CourierFrame.w, 50, null);
+            
+        	g.setColor(co);
             g.setFont(new Font("宋体", Font.BOLD, 26));
             g.drawString(result, -result.length()*13+CourierFrame.w/2, 13+CourierFrame.h-30);
         }

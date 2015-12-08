@@ -10,8 +10,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
@@ -21,7 +19,6 @@ import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,20 +32,16 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import businesslogicservice.logisticsblservice.DeliverAndReceiveBLService;
-import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
 import presentation.centerclerkui.CenterClerkFrame;
 import presentation.img.Img;
-import presentation.mainui.CheckFormat;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
 import utility.CheckType;
 import utility.GoodsState;
-import utility.PkgType;
 import utility.ResultMessage;
 import vo.GoodsInfoVO;
 import vo.HallArrivalListVO;
-import vo.OrderListVO;
 import vo.TransArrivalVO;
 
 /**
@@ -59,7 +52,6 @@ public class Receive extends JPanel{
 
 	private static final long serialVersionUID = -1194559040892610991L;
 	private DeliverAndReceiveBLService bl;
-	private SearchPkgInformationBLService bl2;
 	private BusinessOfficeClerkFrame frame;
 	private CurrentUser currentUser;
 	
@@ -98,9 +90,15 @@ public class Receive extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawLine(BusinessOfficeClerkFrame.w/6, 10, BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h-10);
-        g.drawLine(BusinessOfficeClerkFrame.w/6+10, BusinessOfficeClerkFrame.h/6, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h/6);
-
+      //画出界面背景图
+        g.drawImage(Img.BACKGROUND2, BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h/6, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, BusinessOfficeClerkFrame.w/6, 0, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h, null);
+        g.drawLine(BusinessOfficeClerkFrame.w/6-1, 0, BusinessOfficeClerkFrame.w/6-1, BusinessOfficeClerkFrame.h);
+        g.drawLine(BusinessOfficeClerkFrame.w/6, 0, BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h);
+        g.drawLine(BusinessOfficeClerkFrame.w/6+1, 0, BusinessOfficeClerkFrame.w/6+1, BusinessOfficeClerkFrame.h);
+        g.drawLine(BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h/6, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h/6);
+        g.drawLine(BusinessOfficeClerkFrame.w/6, BusinessOfficeClerkFrame.h/6+1, BusinessOfficeClerkFrame.w, BusinessOfficeClerkFrame.h/6+1);
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, BusinessOfficeClerkFrame.h-50, BusinessOfficeClerkFrame.w, 50, null);
         	
@@ -110,10 +108,9 @@ public class Receive extends JPanel{
         }
 	}
 	
-	public Receive(BusinessOfficeClerkFrame frame, DeliverAndReceiveBLService bl, SearchPkgInformationBLService bl2, CurrentUser currentUser){
+	public Receive(BusinessOfficeClerkFrame frame, DeliverAndReceiveBLService bl, CurrentUser currentUser){
 		this.frame=frame;
 		this.bl=bl;
-		this.bl2=bl2;
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";

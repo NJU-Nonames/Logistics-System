@@ -1,48 +1,50 @@
 package businesslogicservice.financeblservice;
 
+import java.util.ArrayList;
+
 import utility.ResultMessage;
 import vo.AgencyVO;
 import vo.BankAccountVO;
-import vo.RepertoryInfoVO;
+import vo.BaseAgencyVO;
+import vo.RepertoryInformationVO;
+import vo.StaffVO;
 import vo.TruckVO;
 
 
 public interface BaseDataSettingBLService {
-	/**
-	 * 期初建账，输入全新的机构，库存，财务信息
-	 * 
-	 * @return
-	 */
-	public ResultMessage restart();
+	
 	
 	/**
-	 * 财务人员开始期初建账操作，输入机构信息
-	 * 
-	 * @param institutionVO
+	 * 期初建账，点击以后进行建账
 	 * @return
 	 */
-	public ResultMessage addInstitutionInfo(AgencyVO agencyVO);
+	public ResultMessage init();
 	
 	/**
-	 * 期初建账操作，输入库存信息
-	 * 
-	 * @param commodityInfoVO
+	 * 查看期初银行账户信息
 	 * @return
 	 */
-	public ResultMessage addCommodityInfo(RepertoryInfoVO repertoryVO);
+	public ArrayList<BankAccountVO> findBaseAccount();
 	
-	/**
-	 * 期初建账，输入车辆信息
-	 * @param truck
+	/**查看期初人员机构信息
 	 * @return
 	 */
-	public ResultMessage addTruckInfo(TruckVO truck);
+	public ArrayList<BaseAgencyVO> findBaseAgency();
 	
-	/**
-	 * 无基础期初建账操作，输入财务信息
-	 * 
-	 * @param financeInfoVO
+	/**查看期初人员信息
 	 * @return
 	 */
-	public ResultMessage addFinanceInfo(BankAccountVO bankAccountVO);
+	public ArrayList<StaffVO> findBaseStaff();
+	
+	/**查看期初车辆信息
+	 * @return
+	 */
+	public ArrayList<TruckVO> findBaseTruck();
+	
+	/**查看期初库存信息
+	 * @return
+	 */
+	public ArrayList<RepertoryInformationVO> findBaseRepertory();
+	
+	
 }

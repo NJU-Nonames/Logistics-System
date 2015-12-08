@@ -14,7 +14,6 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
@@ -51,9 +50,15 @@ public class BaseDataSetting extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawLine(FinacialStaffLowFrame.w/6, 10, FinacialStaffLowFrame.w/6, FinacialStaffLowFrame.h-10);
-        g.drawLine(FinacialStaffLowFrame.w/6+10, FinacialStaffLowFrame.h/6, FinacialStaffLowFrame.w, FinacialStaffLowFrame.h/6);
-
+        g.drawImage(Img.BACKGROUND2, FinacialStaffLowFrame.w/6, FinacialStaffLowFrame.h/6, FinacialStaffLowFrame.w, FinacialStaffLowFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, FinacialStaffLowFrame.w/6, 0, FinacialStaffLowFrame.w, FinacialStaffLowFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, FinacialStaffLowFrame.w/6, FinacialStaffLowFrame.h, null);
+        g.drawLine(FinacialStaffLowFrame.w/6-1, 0, FinacialStaffLowFrame.w/6-1, FinacialStaffLowFrame.h);
+        g.drawLine(FinacialStaffLowFrame.w/6, 0, FinacialStaffLowFrame.w/6, FinacialStaffLowFrame.h);
+        g.drawLine(FinacialStaffLowFrame.w/6+1, 0, FinacialStaffLowFrame.w/6+1, FinacialStaffLowFrame.h);
+        g.drawLine(FinacialStaffLowFrame.w/6, FinacialStaffLowFrame.h/6, FinacialStaffLowFrame.w, FinacialStaffLowFrame.h/6);
+        g.drawLine(FinacialStaffLowFrame.w/6, FinacialStaffLowFrame.h/6+1, FinacialStaffLowFrame.w, FinacialStaffLowFrame.h/6+1);
+        
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, FinacialStaffLowFrame.h-50, FinacialStaffLowFrame.w, 50, null);
         	

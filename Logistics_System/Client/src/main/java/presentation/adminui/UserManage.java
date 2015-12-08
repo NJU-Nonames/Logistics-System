@@ -14,7 +14,6 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import presentation.img.Img;
 import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
@@ -46,8 +45,14 @@ public class UserManage extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawLine(AdminFrame.w/6, 10, AdminFrame.w/6, AdminFrame.h-10);
-        g.drawLine(AdminFrame.w/6+10, AdminFrame.h/6, AdminFrame.w, AdminFrame.h/6);
+        g.drawImage(Img.BACKGROUND2, AdminFrame.w/6, AdminFrame.h/6, AdminFrame.w, AdminFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, AdminFrame.w/6, 0, AdminFrame.w, AdminFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, AdminFrame.w/6, AdminFrame.h, null);
+        g.drawLine(AdminFrame.w/6-1, 0, AdminFrame.w/6-1, AdminFrame.h);
+        g.drawLine(AdminFrame.w/6, 0, AdminFrame.w/6, AdminFrame.h);
+        g.drawLine(AdminFrame.w/6+1, 0, AdminFrame.w/6+1, AdminFrame.h);
+        g.drawLine(AdminFrame.w/6, AdminFrame.h/6, AdminFrame.w, AdminFrame.h/6);
+        g.drawLine(AdminFrame.w/6, AdminFrame.h/6+1, AdminFrame.w, AdminFrame.h/6+1);
 
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, AdminFrame.h-50, AdminFrame.w, 50, null);

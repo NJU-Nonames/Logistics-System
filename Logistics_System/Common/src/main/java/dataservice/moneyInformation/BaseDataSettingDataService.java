@@ -1,55 +1,44 @@
 package dataservice.moneyInformation;
 
-import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-
+import java.util.ArrayList;
 import po.agency.AgencyPO;
 import po.agency.BankAccountPO;
 import po.agency.TruckPO;
-import po.moneyInfomation.BaseDataSettingPO;
 import po.repertory.RepertoryInfoPO;
+import utility.ResultMessage;
 
 
 
 
 public interface BaseDataSettingDataService extends Remote{
-	
-	
 	/**
-	 * 财务人员开始期初建账操作，输入机构信息
-	 * 
-	 * @param institutionPO
+	 * 期初建账，点击以后进行建账
 	 * @return
 	 */
-	public boolean addInstitutionInfo(AgencyPO agencyPO)throws RemoteException;
+	public void init()throws RemoteException;
 	
 	/**
-	 * 期初建账操作，输入库存信息
-	 * 
-	 * @param commodityInfoPO
+	 * 查看期初银行账户信息
 	 * @return
 	 */
-	public boolean addCommodityInfo(RepertoryInfoPO repertoryPO)throws RemoteException;
+	public ArrayList<BankAccountPO> findBaseAccount()throws RemoteException;
 	
-	/**
-	 * 期初建账，输入车辆信息
-	 * @param truck
+	/**查看期初人员机构信息
 	 * @return
 	 */
-	public boolean addTruckInfo(TruckPO truck)throws RemoteException;
+	public ArrayList<AgencyPO> findBaseAgency()throws RemoteException;
+
 	
-	/**
-	 * 无基础期初建账操作，输入财务信息
-	 * 
-	 * @param financeInfoPO
+	/**查看期初车辆信息
 	 * @return
 	 */
-	public boolean addFinanceInfo(BankAccountPO bankAccountPO)throws RemoteException;
+	public ArrayList<TruckPO> findBaseTruck()throws RemoteException;
 	
-	/**
-	 * 显示最近一次期初建账信息
+	/**查看期初库存信息
 	 * @return
 	 */
-	public BaseDataSettingPO show()throws RemoteException;
+	public ArrayList<RepertoryInfoPO> findBaseRepertory()throws RemoteException;
+	
 }

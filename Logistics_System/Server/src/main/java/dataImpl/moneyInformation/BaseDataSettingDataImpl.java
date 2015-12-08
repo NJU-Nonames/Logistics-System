@@ -3,6 +3,7 @@ package dataImpl.moneyInformation;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import po.agency.AgencyPO;
 import po.agency.BankAccountPO;
@@ -18,29 +19,32 @@ public class BaseDataSettingDataImpl extends UnicastRemoteObject implements Base
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean addInstitutionInfo(AgencyPO agencyPO) {
+	public void init() throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
-	public boolean addCommodityInfo(RepertoryInfoPO repertoryPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean addTruckInfo(TruckPO truck) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean addFinanceInfo(BankAccountPO bankAccountPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public BaseDataSettingPO show() {
+	public ArrayList<BankAccountPO> findBaseAccount() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ArrayList<AgencyPO> findBaseAgency() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<TruckPO> findBaseTruck() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<RepertoryInfoPO> findBaseRepertory()
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

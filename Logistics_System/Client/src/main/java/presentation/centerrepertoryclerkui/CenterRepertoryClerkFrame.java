@@ -44,12 +44,6 @@ public class CenterRepertoryClerkFrame extends JFrame{
 	Inventory inventory;//库存盘点
 	
 	
-
-//	AccountBLService accountBLService;
-//	BaseDataSettingBLService baseDataSettingBLService;
-//	CostManagementBLService costManagementBLService;
-//	SettlementManageBLService settlementManageBLService;
-
 	private boolean isDraging;//是否被拖住
 	private int xx;
 	private int yy;

@@ -72,9 +72,15 @@ public class SystemLog extends JPanel{
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        g.drawLine(FinacialStaffHighFrame.w/6, 10, FinacialStaffHighFrame.w/6, FinacialStaffHighFrame.h-10);
-        g.drawLine(FinacialStaffHighFrame.w/6+10, FinacialStaffHighFrame.h/6, FinacialStaffHighFrame.w, FinacialStaffHighFrame.h/6);
-
+        g.drawImage(Img.BACKGROUND2, FinacialStaffHighFrame.w/6, FinacialStaffHighFrame.h/6, FinacialStaffHighFrame.w, FinacialStaffHighFrame.h, null);
+        g.drawImage(Img.BACKGROUND1, FinacialStaffHighFrame.w/6, 0, FinacialStaffHighFrame.w, FinacialStaffHighFrame.h/6, null);
+        g.drawImage(Img.BACKGROUND0, 0, 0, FinacialStaffHighFrame.w/6, FinacialStaffHighFrame.h, null);
+        g.drawLine(FinacialStaffHighFrame.w/6-1, 0, FinacialStaffHighFrame.w/6-1, FinacialStaffHighFrame.h);
+        g.drawLine(FinacialStaffHighFrame.w/6, 0, FinacialStaffHighFrame.w/6, FinacialStaffHighFrame.h);
+        g.drawLine(FinacialStaffHighFrame.w/6+1, 0, FinacialStaffHighFrame.w/6+1, FinacialStaffHighFrame.h);
+        g.drawLine(FinacialStaffHighFrame.w/6, FinacialStaffHighFrame.h/6, FinacialStaffHighFrame.w, FinacialStaffHighFrame.h/6);
+        g.drawLine(FinacialStaffHighFrame.w/6, FinacialStaffHighFrame.h/6+1, FinacialStaffHighFrame.w, FinacialStaffHighFrame.h/6+1);
+        
         if(willprintMessage){
         	g.drawImage(Img.BLACK_BG, 0, FinacialStaffHighFrame.h-50, FinacialStaffHighFrame.w, 50, null);
         	
