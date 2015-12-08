@@ -69,7 +69,7 @@ public interface RepertoryManageBLService {
 	 * @param list 仓库信息list
 	 * @param path 存储路径
 	 */
-	public void exportRepertoryInformation(String repertoryname,String time,ArrayList<RepertoryInformationVO> list,String path);
+	public void exportRepertoryInformation(String repertoryname,String time,String path);
 	
 	
 }

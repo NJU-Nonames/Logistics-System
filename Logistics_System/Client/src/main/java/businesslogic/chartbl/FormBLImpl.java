@@ -109,8 +109,9 @@ public class FormBLImpl implements FormBLService{
 			   return list;
 	}
 
-	public void exportCostandBenefitChart(String start_day,String end_day,ArrayList<MoneyInformationListVO> list,String path) {
+	public void exportCostandBenefitChart(String start_day,String end_day,String path) {
 		// TODO 自动生成的方法存根
+		ArrayList<MoneyInformationListVO> list=getCostandBenefitChart(start_day, end_day);
 		HSSFWorkbook wb=new HSSFWorkbook();
 		HSSFSheet sheet=wb.createSheet("成本收益表");
 		HSSFRow row=sheet.createRow(0);
@@ -162,8 +163,9 @@ public class FormBLImpl implements FormBLService{
 		}	
 	}
 
-	public void exportBusinessCircumstanceChart(String start_day,String end_day,ArrayList<MoneyItemVO> list,String path) {
+	public void exportBusinessCircumstanceChart(String start_day,String end_day,String path) {
 		// TODO 自动生成的方法存根
+		ArrayList<MoneyItemVO>list=getBusinessCircumstanceChart(start_day, end_day);
 		HSSFWorkbook wb=new HSSFWorkbook();
 		HSSFSheet sheet=wb.createSheet("经营情况表");
 		HSSFRow row=sheet.createRow(0);

@@ -224,7 +224,8 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		else
 			return new ResultMessage(true,"位置变更成功!转移仓位已到达报警线，请进行库存调整修改位置。");
 	}
-	public void exportRepertoryInformation(String repertoryname,String time,ArrayList<RepertoryInformationVO> list,String path){
+	public void exportRepertoryInformation(String repertoryname,String time,String path){
+		ArrayList<RepertoryInformationVO> list=showRepertory().repertoryinformation;
 		HSSFWorkbook wb=new HSSFWorkbook();
 		HSSFSheet sheet=wb.createSheet("库存信息表");
 		sheet.setColumnWidth(1, 5000);

@@ -45,17 +45,15 @@ public interface FormBLService {
 	 * 导出成本收益表
 	 * @param 起始日期
 	 * @param 终止日期
-	 * @param 成本收益信息
 	 * @param 路径
 	 */
-	public void exportCostandBenefitChart(String start_day,String end_day,ArrayList<MoneyInformationListVO> list,String path);
+	public void exportCostandBenefitChart(String start_day,String end_day,String path);
 	/**
 	 * 导出经营情况表
 	 * @param 起始日期
 	 * @param 终止日期
-	 * @param 经营情况表
 	 * @param 路径
 	 */
-	public void exportBusinessCircumstanceChart(String start_day,String end_day,ArrayList<MoneyItemVO> list,String path);
+	public void exportBusinessCircumstanceChart(String start_day,String end_day,String path);
 	
 }
