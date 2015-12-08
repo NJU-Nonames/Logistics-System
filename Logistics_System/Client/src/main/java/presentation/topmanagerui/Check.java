@@ -163,6 +163,10 @@ public class Check extends JPanel{
 		//初始化组件
 		initComponent();
 	}
+	public Check(TopManagerFrame topManagerFrame, CurrentUser currentUser2) {
+		// TODO 自动生成的构造函数存根
+	}
+
 	private void initComponent() {
 		//最基本按钮
 		close = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);

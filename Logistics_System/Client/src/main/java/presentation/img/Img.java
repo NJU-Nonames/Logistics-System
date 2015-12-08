@@ -56,9 +56,9 @@ public class Img {
 	public static Image UPLINE=new ImageIcon("img/Bg/主界面标题.png").getImage();
 	
 	//界面背景
-	public static Image BACKGROUND0=new ImageIcon("img/Bg/背景0.png").getImage();
-	public static Image BACKGROUND1=new ImageIcon("img/Bg/背景1.png").getImage();
-	public static Image BACKGROUND2=new ImageIcon("img/Bg/背景2.png").getImage();
+	public static Image BACKGROUND0=new ImageIcon("img/Bg/最深.png").getImage();
+	public static Image BACKGROUND1=new ImageIcon("img/Bg/深.png").getImage();
+	public static Image BACKGROUND2=new ImageIcon("img/Bg/中.png").getImage();
 	
 	//按钮：登录用户登录界面
 	public static Image GOTO_LOGIN_0=new ImageIcon("img/Button/用户登录_0.png").getImage();

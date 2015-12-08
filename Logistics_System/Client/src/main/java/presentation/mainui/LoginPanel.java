@@ -89,7 +89,7 @@ public class LoginPanel extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        login = new MyButton(100, 35, Img.LOGIN_0, Img.LOGIN_1, Img.LOGIN_2);
+        login = new MyButton(90, 30, Img.LOGIN_0, Img.LOGIN_1, Img.LOGIN_2);
         login.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				userlogin();
@@ -99,7 +99,7 @@ public class LoginPanel extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(100, 35, Img.RETURNING_0, Img.RETURNING_1, Img.RETURNING_2);
+        _return = new MyButton(90, 30, Img.RETURNING_0, Img.RETURNING_1, Img.RETURNING_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();//清空文本域和错误提示
@@ -113,25 +113,25 @@ public class LoginPanel extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         JLabel userLabel = new JLabel("账号：");
-        userLabel.setSize(60, 20);
-        userLabel.setFont(new Font("楷体", Font.BOLD, 18));
+        userLabel.setSize(80, 27);
+        userLabel.setFont(new Font("楷体", Font.BOLD, 25));
         userField = new JTextField();
-        userField.setSize(100, 20);
+        userField.setSize(150, 27);
         JLabel passwordLabel = new JLabel("密码：");
-        passwordLabel.setFont(new Font("楷体", Font.BOLD, 18));
-        passwordLabel.setSize(60, 20);
+        passwordLabel.setFont(new Font("楷体", Font.BOLD, 25));
+        passwordLabel.setSize(80, 27);
         passwordField = new JTextField();
-        passwordField.setSize(100, 20);
+        passwordField.setSize(150, 27);
 
         
-        userLabel.setLocation(MainFrame.w/2-100,MainFrame.h*3/4-60);
-        userField.setLocation(MainFrame.w/2-50,MainFrame.h*3/4-60);
-        passwordLabel.setLocation(MainFrame.w/2-100,MainFrame.h*3/4-30);
-        passwordField.setLocation(MainFrame.w/2-50,MainFrame.h*3/4-30);
+        userLabel.setLocation(MainFrame.w/2-160,MainFrame.h*3/4-60);
+        userField.setLocation(MainFrame.w/2-75,MainFrame.h*3/4-60);
+        passwordLabel.setLocation(MainFrame.w/2-160,MainFrame.h*3/4-10);
+        passwordField.setLocation(MainFrame.w/2-75,MainFrame.h*3/4-10);
     	close.setLocation(MainFrame.w-30,0);
     	min.setLocation(MainFrame.w-80,0);
-    	login.setLocation(MainFrame.w-100,MainFrame.h*3/4-60);
-    	_return.setLocation(MainFrame.w-100,MainFrame.h*3/4-30);
+    	login.setLocation(MainFrame.w-150,MainFrame.h*3/4-63);
+    	_return.setLocation(MainFrame.w-150,MainFrame.h*3/4-13);
     	
     	
     	add(userLabel);
