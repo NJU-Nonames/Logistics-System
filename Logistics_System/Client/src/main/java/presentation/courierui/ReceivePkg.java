@@ -158,7 +158,7 @@ public class ReceivePkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_ReceivePkg = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_ReceivePkg = new MyButton(frame.WIDTH/6, 30, Img.GOTORECEIVE_0, Img.GOTORECEIVE_1, Img.GOTORECEIVE_2);
         goto_ReceivePkg.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -168,7 +168,9 @@ public class ReceivePkg extends JPanel{
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
-			public void mousePressed(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {
+				goto_ReceivePkg.setState(2);
+			}
 			public void mouseReleased(MouseEvent arg0) {}
         });
         goto_SearchPkgInformation = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
