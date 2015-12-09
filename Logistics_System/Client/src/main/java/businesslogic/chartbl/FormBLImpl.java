@@ -110,102 +110,102 @@ public class FormBLImpl implements FormBLService{
 	}
 
 	public void exportCostandBenefitChart(String start_day,String end_day,String path) {
-		// TODO 自动生成的方法存根
-		ArrayList<MoneyInformationListVO> list=getCostandBenefitChart(start_day, end_day);
-		HSSFWorkbook wb=new HSSFWorkbook();
-		HSSFSheet sheet=wb.createSheet("成本收益表");
-		HSSFRow row=sheet.createRow(0);
-		HSSFCellStyle style=wb.createCellStyle();
-		sheet.setDefaultColumnWidth(12);
-		style.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
-		HSSFCell cell=row.createCell(0);
-		cell.setCellValue("成本收益日期");
-		cell.setCellStyle(style);
-		cell=row.createCell(1);
-		cell.setCellValue("当日收入");
-		cell.setCellStyle(style);
-		cell=row.createCell(2);
-		cell.setCellValue("当日支出");
-		cell.setCellStyle(style);
-		cell=row.createCell(3);
-		cell.setCellValue("当日利润");
-		cell.setCellStyle(style);
-		double moneyin=0;
-		double moneyout=0;
-		double profit=0;
-		for(int i=0;i<list.size();i++){
-			row=sheet.createRow(i+1);
-			MoneyInformationListVO money=list.get(i);
-			cell=row.createCell(0);
-			cell.setCellValue(money.getTime());
-			cell.setCellStyle(style);
-			moneyin+=money.getMoneyIn();
-			moneyout+=money.getMoneyOut();
-			profit+=money.getProfit();
-			row.createCell(1).setCellValue((double)money.getMoneyIn());
-			row.createCell(2).setCellValue((double)money.getMoneyOut());
-			row.createCell(3).setCellValue((double)money.getProfit());
-		}
-		row=sheet.createRow(list.size()+1);
-		cell=row.createCell(0);
-		cell.setCellValue("总计");
-		cell.setCellStyle(style);
-		row.createCell(1).setCellValue((double)moneyin);
-		row.createCell(2).setCellValue((double)moneyout);
-		row.createCell(3).setCellValue((double)profit);
-		try{
-			FileOutputStream fout=new FileOutputStream("D:/"+start_day+"至"+end_day+"日成本收益表.xls");
-			wb.write(fout);
-			fout.close();
-			wb.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}	
+//		// TODO 自动生成的方法存根
+//		ArrayList<MoneyInformationListVO> list=getCostandBenefitChart(start_day, end_day);
+//		HSSFWorkbook wb=new HSSFWorkbook();
+//		HSSFSheet sheet=wb.createSheet("成本收益表");
+//		HSSFRow row=sheet.createRow(0);
+//		HSSFCellStyle style=wb.createCellStyle();
+//		sheet.setDefaultColumnWidth(12);
+//		style.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
+//		HSSFCell cell=row.createCell(0);
+//		cell.setCellValue("成本收益日期");
+//		cell.setCellStyle(style);
+//		cell=row.createCell(1);
+//		cell.setCellValue("当日收入");
+//		cell.setCellStyle(style);
+//		cell=row.createCell(2);
+//		cell.setCellValue("当日支出");
+//		cell.setCellStyle(style);
+//		cell=row.createCell(3);
+//		cell.setCellValue("当日利润");
+//		cell.setCellStyle(style);
+//		double moneyin=0;
+//		double moneyout=0;
+//		double profit=0;
+//		for(int i=0;i<list.size();i++){
+//			row=sheet.createRow(i+1);
+//			MoneyInformationListVO money=list.get(i);
+//			cell=row.createCell(0);
+//			cell.setCellValue(money.getTime());
+//			cell.setCellStyle(style);
+//			moneyin+=money.getMoneyIn();
+//			moneyout+=money.getMoneyOut();
+//			profit+=money.getProfit();
+//			row.createCell(1).setCellValue((double)money.getMoneyIn());
+//			row.createCell(2).setCellValue((double)money.getMoneyOut());
+//			row.createCell(3).setCellValue((double)money.getProfit());
+//		}
+//		row=sheet.createRow(list.size()+1);
+//		cell=row.createCell(0);
+//		cell.setCellValue("总计");
+//		cell.setCellStyle(style);
+//		row.createCell(1).setCellValue((double)moneyin);
+//		row.createCell(2).setCellValue((double)moneyout);
+//		row.createCell(3).setCellValue((double)profit);
+//		try{
+//			FileOutputStream fout=new FileOutputStream("D:/"+start_day+"至"+end_day+"日成本收益表.xls");
+//			wb.write(fout);
+//			fout.close();
+//			wb.close();
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}	
 	}
 
 	public void exportBusinessCircumstanceChart(String start_day,String end_day,String path) {
 		// TODO 自动生成的方法存根
-		ArrayList<MoneyItemVO>list=getBusinessCircumstanceChart(start_day, end_day);
-		HSSFWorkbook wb=new HSSFWorkbook();
-		HSSFSheet sheet=wb.createSheet("经营情况表");
-		HSSFRow row=sheet.createRow(0);
-		HSSFCellStyle style=wb.createCellStyle();
-		sheet.setDefaultColumnWidth(12);
-		style.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
-		HSSFCell cell=row.createCell(0);
-		cell.setCellValue("日期");
-		cell.setCellStyle(style);
-		cell=row.createCell(1);
-		cell.setCellValue("编号");
-		cell.setCellStyle(style);
-		cell=row.createCell(2);
-		cell.setCellValue("金额");
-		cell.setCellStyle(style);
-		cell=row.createCell(3);
-		cell.setCellValue("条目");
-		cell.setCellStyle(style);
-		for(int i=0;i<list.size();i++){
-			row=sheet.createRow(i+1);
-			MoneyItemVO money=list.get(i);
-			cell=row.createCell(0);
-			cell.setCellValue(money.getDate());
-			cell.setCellStyle(style);
-			cell=row.createCell(1);
-			cell.setCellValue(money.getId());
-			cell.setCellStyle(style);
-			row.createCell(2).setCellValue((double)money.getMoney());
-			cell=row.createCell(3);
-			cell.setCellValue(money.getClause());
-			cell.setCellStyle(style);
-		}
-		try{
-			FileOutputStream fout=new FileOutputStream("D:/"+start_day+"至"+end_day+"日经营情况表.xls");
-			wb.write(fout);
-			fout.close();
-			wb.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}	
+//		ArrayList<MoneyItemVO>list=getBusinessCircumstanceChart(start_day, end_day);
+//		HSSFWorkbook wb=new HSSFWorkbook();
+//		HSSFSheet sheet=wb.createSheet("经营情况表");
+//		HSSFRow row=sheet.createRow(0);
+//		HSSFCellStyle style=wb.createCellStyle();
+//		sheet.setDefaultColumnWidth(12);
+//		style.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
+//		HSSFCell cell=row.createCell(0);
+//		cell.setCellValue("日期");
+//		cell.setCellStyle(style);
+//		cell=row.createCell(1);
+//		cell.setCellValue("编号");
+//		cell.setCellStyle(style);
+//		cell=row.createCell(2);
+//		cell.setCellValue("金额");
+//		cell.setCellStyle(style);
+//		cell=row.createCell(3);
+//		cell.setCellValue("条目");
+//		cell.setCellStyle(style);
+//		for(int i=0;i<list.size();i++){
+//			row=sheet.createRow(i+1);
+//			MoneyItemVO money=list.get(i);
+//			cell=row.createCell(0);
+//			cell.setCellValue(money.getDate());
+//			cell.setCellStyle(style);
+//			cell=row.createCell(1);
+//			cell.setCellValue(money.getId());
+//			cell.setCellStyle(style);
+//			row.createCell(2).setCellValue((double)money.getMoney());
+//			cell=row.createCell(3);
+//			cell.setCellValue(money.getClause());
+//			cell.setCellStyle(style);
+//		}
+//		try{
+//			FileOutputStream fout=new FileOutputStream("D:/"+start_day+"至"+end_day+"日经营情况表.xls");
+//			wb.write(fout);
+//			fout.close();
+//			wb.close();
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}	
 	}
 
 }
