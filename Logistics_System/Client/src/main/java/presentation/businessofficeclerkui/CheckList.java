@@ -303,14 +303,7 @@ public class CheckList extends JPanel{
     	goto_DriverManage.setLocation(20,400);
     	
     	//其他组件
-    	JLabel accountNumLabel=new JLabel("收款账户");
-        accountNumLabel.setSize((int)(30*4*1.07f),30);
-        accountNumLabel.setFont(new Font("宋体",Font.BOLD,30));
-        accountNumLabel.setLocation(arg0, arg1);
-        accountNum=new JTextField();
-        accountNum.setSize(arg0);
-        accountNum.setLocation(arg0);
-         
+    	
 		JLabel l5 = new JLabel("收款日期：");
 		l5.setSize((int)(16*6*1.07f), 16);
 		l5.setFont(new Font("宋体", Font.BOLD, 15));
@@ -336,12 +329,21 @@ public class CheckList extends JPanel{
 		l7.setLocation(170+20, 128+80+40+40);
 		barCode = new JTextField();
 		barCode.setSize(150, 20);
-		barCode.setLocation(170+20+(int)(16*7*1.07f),128+80+40+40-3);		
+		barCode.setLocation(170+20+(int)(16*7*1.07f),128+80+40+40-3);	
+		
+		JLabel accountNumLabel=new JLabel("收款账户");
+        accountNumLabel.setSize((int)(30*4*1.07f),30);
+        accountNumLabel.setFont(new Font("宋体",Font.BOLD,30));
+        accountNumLabel.setLocation(120+80,120+80+40+40+40);
+        accountNum=new JTextField();
+        accountNum.setSize(150,20);
+        accountNum.setLocation(170+20+(int)(16*7*1.07f),120+80+40+40+40-3);
+         
 
 		JLabel l4 = new JLabel("总额：");
 		l4.setSize((int)(16*3*1.07f), 16);
 		l4.setFont(new Font("宋体", Font.BOLD, 15));
-		l4.setLocation(170+20, 128+80+40+40+40);
+		l4.setLocation(170+20, 128+80+40+40+40+40);
 		moneySum = new JLabel(0+"元");
 		moneySum.setSize((int)(16*8*1.07f), 16);
 		moneySum.setFont(new Font("宋体", Font.BOLD, 15));
