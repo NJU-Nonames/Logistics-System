@@ -8,10 +8,11 @@
   <artifactId>Server</artifactId>
   <dependencies>
     <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>5.1.6</version>
-    </dependency>
+   		 <groupId>mysql</groupId>
+   		 <artifactId>mysql-connector-java</artifactId>
+    	 <version>5.0.8</version>
+	</dependency>
+    
     <dependency>
         <groupId>com.Nonames</groupId>
     	<artifactId>Common</artifactId>
