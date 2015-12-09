@@ -39,5 +39,8 @@ public class BankAccountPO implements Serializable{
 		this.name = name;
 		this.money = money;
 	}
+	public void setMoney(double money){
+		this.money=money;
+	}
 
 }

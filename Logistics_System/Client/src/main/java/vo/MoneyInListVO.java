@@ -39,6 +39,10 @@ public class MoneyInListVO extends ListVO{
 	 *条形码
 	 */
 	private ArrayList<String> barcode;
+	/**
+	 * 银行账号
+	 */
+	private String accountNum;
 	
 
 
