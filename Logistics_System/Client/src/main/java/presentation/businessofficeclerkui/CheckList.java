@@ -331,10 +331,10 @@ public class CheckList extends JPanel{
 		barCode.setSize(150, 20);
 		barCode.setLocation(170+20+(int)(16*7*1.07f),128+80+40+40-3);	
 		
-		JLabel accountNumLabel=new JLabel("收款账户");
-        accountNumLabel.setSize((int)(30*4*1.07f),30);
-        accountNumLabel.setFont(new Font("宋体",Font.BOLD,30));
-        accountNumLabel.setLocation(120+80,120+80+40+40+40);
+		JLabel accountNumLabel=new JLabel("收款账户:");
+        accountNumLabel.setSize((int)(16*5*1.07f),16);
+        accountNumLabel.setFont(new Font("宋体",Font.BOLD,15));
+        accountNumLabel.setLocation(170+20,120+80+40+40+40);
         accountNum=new JTextField();
         accountNum.setSize(150,20);
         accountNum.setLocation(170+20+(int)(16*7*1.07f),120+80+40+40+40-3);
@@ -348,7 +348,7 @@ public class CheckList extends JPanel{
 		moneySum.setSize((int)(16*8*1.07f), 16);
 		moneySum.setFont(new Font("宋体", Font.BOLD, 15));
 		moneySum.setForeground(Color.RED);
-		moneySum.setLocation(170+20+(int)(16*3*1.07f), 128+80+40+40+40);
+		moneySum.setLocation(170+20+(int)(16*3*1.07f), 128+80+40+40+40+40);
 		
 
 		//表头
