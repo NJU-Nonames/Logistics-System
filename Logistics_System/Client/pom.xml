@@ -6,6 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>Client</artifactId>
+  
+   <properties>
+    <preoject.build.sourceEncoding>UTF-8</preoject.build.sourceEncoding>
+  </properties>
+  
   <dependencies>
     <dependency>
         <groupId>com.Nonames</groupId>

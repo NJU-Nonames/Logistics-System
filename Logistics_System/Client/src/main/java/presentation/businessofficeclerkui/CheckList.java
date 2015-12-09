@@ -306,10 +306,10 @@ public class CheckList extends JPanel{
     	JLabel accountNumLabel=new JLabel("收款账户");
         accountNumLabel.setSize((int)(30*4*1.07f),30);
         accountNumLabel.setFont(new Font("宋体",Font.BOLD,30));
-        accountNumLabel.setLocation(arg0, arg1);
+       // accountNumLabel.setLocation(arg0, arg1);
         accountNum=new JTextField();
-        accountNum.setSize(arg0);
-        accountNum.setLocation(arg0);
+       // accountNum.setSize(arg0);
+       // accountNum.setLocation(arg0);
          
 		JLabel l5 = new JLabel("收款日期：");
 		l5.setSize((int)(16*6*1.07f), 16);
