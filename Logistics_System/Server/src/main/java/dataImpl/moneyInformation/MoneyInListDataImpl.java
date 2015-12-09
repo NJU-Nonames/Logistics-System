@@ -21,7 +21,7 @@ public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInL
 	}
 
 	public void add(MoneyInListPO moneyInList) throws RemoteException {
-		String sql="insert into moneyinlist values ('"+moneyInList.getId()+"','"+moneyInList.getDate()+"',"+moneyInList.getMoneySum()+",'"+moneyInList.getStaffId()+"','"+moneyInList.getCheckType()+"')";
+		String sql="insert into moneyinlist values ('"+moneyInList.getId()+"','"+moneyInList.getDate()+"',"+moneyInList.getMoneySum()+",'"+moneyInList.getStaffId()+"','"+moneyInList.getAccountNum()+"','"+moneyInList.getCheckType()+"')";
 		DataJDBCConnection.update(sql);
 		for(int i=0;i<moneyInList.getBarcode().size();i++)
 		{
@@ -56,7 +56,7 @@ public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInL
 			{
 				barcode.add(rs2.getString("barcode"));
 			}
-			moneyInList=new MoneyInListPO(id, rs.getString("timee"), rs.getDouble("moneySum"), rs.getString("staffId"), barcode,CheckType.valueOf(rs.getString("checkstate")));
+			moneyInList=new MoneyInListPO(id, rs.getString("timee"), rs.getDouble("moneySum"), rs.getString("staffId"), barcode,rs.getString("accountnum"),CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
 			return null;
 		}
@@ -77,7 +77,7 @@ public class MoneyInListDataImpl extends UnicastRemoteObject implements MoneyInL
 			{
 				barcode.add(rs2.getString("barcode"));
 			}
-			moneyInList=new MoneyInListPO(rs.getString("id"), time, rs.getDouble("moneySum"), rs.getString("staffId"), barcode,CheckType.valueOf(rs.getString("checkstate")));
+			moneyInList=new MoneyInListPO(rs.getString("id"), time, rs.getDouble("moneySum"), rs.getString("staffId"), barcode,rs.getString("accountnum"),CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
 			return null;
 		}

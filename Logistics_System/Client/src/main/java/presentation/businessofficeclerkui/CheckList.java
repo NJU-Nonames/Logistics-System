@@ -71,6 +71,7 @@ public class CheckList extends JPanel{
 	private JTextField date;
 	private JTextField staffId;
 	private JTextField barCode;
+	private JTextField accountNum;
 	private DefaultTableModel barCodeTableModel;
 	private JTable barCodeTable;
 	private JLabel moneySum;
@@ -302,6 +303,14 @@ public class CheckList extends JPanel{
     	goto_DriverManage.setLocation(20,400);
     	
     	//其他组件
+    	JLabel accountNumLabel=new JLabel("收款账户");
+        accountNumLabel.setSize((int)(30*4*1.07f),30);
+        accountNumLabel.setFont(new Font("宋体",Font.BOLD,30));
+       // accountNumLabel.setLocation(arg0, arg1);
+        accountNum=new JTextField();
+       // accountNum.setSize(arg0);
+       // accountNum.setLocation(arg0);
+         
 		JLabel l5 = new JLabel("收款日期：");
 		l5.setSize((int)(16*6*1.07f), 16);
 		l5.setFont(new Font("宋体", Font.BOLD, 15));
@@ -400,6 +409,8 @@ public class CheckList extends JPanel{
 
     	add(l5);
     	add(date);
+    	add(accountNumLabel);
+    	add(accountNum);
     	add(l3);
     	add(staffId);
     	add(l7);
@@ -479,6 +490,7 @@ public class CheckList extends JPanel{
 	private void _confirm(){
 		String date_s = date.getText();
 		String staffId_s = staffId.getText();
+		String accountNum_s=accountNum.getText();
 
 //		if(CheckFormat.checkTime(date_s).compareTo("格式正确")!=0){
 //			printMessage(CheckFormat.checkTime(date_s), Color.RED);
@@ -490,6 +502,10 @@ public class CheckList extends JPanel{
 		}
 		if(barCodeTable.getRowCount()==0){
 			printMessage("未包含订单！", Color.RED);
+			return;
+		}
+		if(accountNum_s.compareTo("")==0){
+			printMessage("没有输入收款的银行账号!", Color.red);
 			return;
 		}
 		
@@ -504,7 +520,7 @@ public class CheckList extends JPanel{
 			_barcodes.add(s);
 		}
 		
-		MoneyInListVO moneyInListVO=new MoneyInListVO("?", date_s, sum, staffId_s, _barcodes, CheckType.UNDERCHECK);
+		MoneyInListVO moneyInListVO=new MoneyInListVO("?", date_s, sum, staffId_s, _barcodes,accountNum_s, CheckType.UNDERCHECK);
 		ResultMessage resultMessage = bl.createMoneyInList(moneyInListVO);
 		if(!resultMessage.isPass()){
 			printMessage(resultMessage.getMessage(), Color.RED);
@@ -515,6 +531,7 @@ public class CheckList extends JPanel{
 
 		staffId.setText("");
 		barCode.setText("");
+		accountNum.setText("");
 		moneySum.setText(0+"元");
 		while(barCodeTable.getRowCount()!=0)
 			barCodeTableModel.removeRow(0);
@@ -527,6 +544,7 @@ public class CheckList extends JPanel{
 
 		staffId.setText("");
 		barCode.setText("");
+		accountNum.setText("");
 		moneySum.setText(0+"元");
 		while(barCodeTable.getRowCount()!=0)
 			barCodeTableModel.removeRow(0);

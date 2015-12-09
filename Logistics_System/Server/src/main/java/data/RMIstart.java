@@ -56,7 +56,7 @@ public class RMIstart {
 	/**
 	 * 服务器ip地址
 	 */
-	private static final String IP="114.212.43.215";
+	private static final String IP="172.26.221.12";
 	
 	
 	
@@ -64,6 +64,7 @@ public class RMIstart {
 
 		
 		try {
+			System.out.println(IP);
 			//注册RMI通信服务器端
 			System.setProperty("java.rmi.server.hostname",IP);
 			//注册通讯端口

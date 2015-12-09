@@ -39,11 +39,15 @@ public class MoneyInListVO extends ListVO{
 	 *条形码
 	 */
 	private ArrayList<String> barcode;
+	/**
+	 * 银行账号
+	 */
+	private String accountNum;
 	
 
 
 	public MoneyInListVO(String id,String date, double moneySum, String staffId,
-			ArrayList<String> barcode,CheckType type) {
+			ArrayList<String> barcode,String accountNum,CheckType type) {
 		super();
 		this.id=id;
 		this.date = date;
@@ -51,6 +55,7 @@ public class MoneyInListVO extends ListVO{
 		this.staffId = staffId;
 		this.barcode = barcode;
 		this.setCheckType(type);
+		this.accountNum=accountNum;
 	}
     public String getId(){
 	    return id;
@@ -69,5 +74,8 @@ public class MoneyInListVO extends ListVO{
 
 	public ArrayList<String> getBarcode() {
 		return barcode;
+	}
+	public String getAccountNum(){
+		return accountNum;
 	}
 }

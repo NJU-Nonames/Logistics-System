@@ -5,9 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import po.agency.BankAccountPO;
 import po.moneyInfomation.MoneyInListPO;
 import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
+import dataservice.agency.BankAccountDataService;
 import dataservice.moneyInformation.MoneyInListDataService;
 import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
@@ -19,9 +21,11 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
     MoneyInListDataService moneyinlistdataservice=null;
     CurrentUser user=null;
 	SystemLogDataService system=null;
+	BankAccountDataService bankaccount=null;
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public SettlementManageBLImpl(CurrentUser currentuser){
     	this.moneyinlistdataservice=(MoneyInListDataService)RMIHelper.find("MoneyInListDataService");
+    	this.bankaccount=(BankAccountDataService)RMIHelper.find("BankAccountDataService");
     	user=currentuser;
 		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
     }
@@ -51,7 +55,7 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 		if(moneyinpo==null)
 			return null;
 		for(MoneyInListPO po:moneyinpo){
-			moneyinvo.add(new MoneyInListVO(po.getId(),po.getDate(),po.getMoneySum(),po.getStaffId(),po.getBarcode(),po.getCheckType()));
+			moneyinvo.add(new MoneyInListVO(po.getId(),po.getDate(),po.getMoneySum(),po.getStaffId(),po.getBarcode(),po.getAccountNum(),po.getCheckType()));
 		}
 		return moneyinvo;
 	
@@ -60,9 +64,14 @@ public class SettlementManageBLImpl implements SettlementManageBLService {
 		// TODO 自动生成的方法存根
 		MoneyInListPO moneyinpo=null;
 		try{
-				moneyinpo=new MoneyInListPO(moneyin.getId(),moneyin.getDate(),moneyin.getMoneySum(),moneyin.getStaffId(),moneyin.getBarcode(),moneyin.getCheckType());
-				moneyinlistdataservice.add(moneyinpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"创建收款单,单号为"+moneyin.getId(),user.getAdmin()));			
+			BankAccountPO bankaccountpo=bankaccount.find(moneyin.getAccountNum());
+			if(bankaccountpo==null)
+				return new ResultMessage(false,"要收款的银行账户不存在!");
+			bankaccountpo.setMoney(bankaccountpo.getMoney()+moneyin.getMoneySum());
+			bankaccount.update(bankaccountpo);
+			moneyinpo=new MoneyInListPO(moneyin.getId(),moneyin.getDate(),moneyin.getMoneySum(),moneyin.getStaffId(),moneyin.getBarcode(),moneyin.getAccountNum(),moneyin.getCheckType());
+			moneyinlistdataservice.add(moneyinpo);
+			system.add(new SystemLogPO((String)df.format(new Date()),"创建收款单,单号为"+moneyin.getId(),user.getAdmin()));			
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
