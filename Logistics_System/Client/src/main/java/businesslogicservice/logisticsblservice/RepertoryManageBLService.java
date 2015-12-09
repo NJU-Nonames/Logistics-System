@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 import utility.ResultMessage;
 import vo.RepertoryInVO;
-import vo.RepertoryInfoVO;
-import vo.RepertoryInformationVO;
+import vo.RepertoryShowVO;
+import vo.RepertoryOrderVO;
 import vo.RepertoryOutVO;
 import vo.RepertorySearch;
 
@@ -43,7 +43,7 @@ public interface RepertoryManageBLService {
 	/**仓库管理人员进行库存盘点
 	 * @return	返回一个库存信息的VO里面包含库存的信息类
 	 */
-	public RepertoryInfoVO  showRepertory();
+	public RepertoryShowVO  showRepertory();
 	
 	/**
 	 * 库存查看
@@ -59,7 +59,7 @@ public interface RepertoryManageBLService {
 	 * 前置条件：库存中某一个区已经报警
 	 * 后置条件：库存中的某区不再报警
 	 */
-	public ResultMessage repertoryAdjust(RepertoryInformationVO repertoryinformation);
+	public ResultMessage repertoryAdjust(RepertoryOrderVO repertoryinformation);
 	
 	
 	/**

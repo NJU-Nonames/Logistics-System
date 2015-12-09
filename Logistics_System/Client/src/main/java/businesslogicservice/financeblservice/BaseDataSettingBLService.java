@@ -6,7 +6,8 @@ import utility.ResultMessage;
 import vo.AgencyVO;
 import vo.BankAccountVO;
 import vo.BaseAgencyVO;
-import vo.RepertoryInformationVO;
+import vo.RepertoryInfoVO;
+import vo.RepertoryOrderVO;
 import vo.StaffVO;
 import vo.TruckVO;
 
@@ -44,7 +45,7 @@ public interface BaseDataSettingBLService {
 	/**查看期初库存信息
 	 * @return
 	 */
-	public ArrayList<RepertoryInformationVO> findBaseRepertory();
+	public ArrayList<RepertoryInfoVO> findBaseRepertory();
 	
 	
 }

@@ -37,8 +37,8 @@ import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
 import utility.ResultMessage;
-import vo.RepertoryInfoVO;
-import vo.RepertoryInformationVO;
+import vo.RepertoryShowVO;
+import vo.RepertoryOrderVO;
 
 /**
  * @author 谭期友
@@ -351,9 +351,9 @@ public class Inventory extends JPanel{
       	vColumns.add("订单编号");
       	Vector<String> vData = new Vector<String>();
       	repertoryTableModel = new DefaultTableModel(vData, vColumns);
-      	RepertoryInfoVO repertoryInfoVO = bl.showRepertory();
-      	ArrayList<RepertoryInformationVO> repertoryInfomationList = repertoryInfoVO.repertoryinformation;
-      	for(RepertoryInformationVO info : repertoryInfomationList){
+      	RepertoryShowVO repertoryInfoVO = bl.showRepertory();
+      	ArrayList<RepertoryOrderVO> repertoryInfomationList = repertoryInfoVO.repertoryinformation;
+      	for(RepertoryOrderVO info : repertoryInfomationList){
       		Vector<String> v = new Vector<String>();
       		v.add(info.time);
       		v.add(info.destination);
@@ -482,7 +482,7 @@ public class Inventory extends JPanel{
 	
 	private void _adjust() {
 		// TODO 自动生成的方法存根
-		RepertoryInformationVO data = new RepertoryInformationVO(currentUser.getAgencyNum(), _q.getText(), _p.getText(), _j.getText(), _w.getText(), null, null, _orderId.getText());
+		RepertoryOrderVO data = new RepertoryOrderVO(currentUser.getAgencyNum(), _q.getText(), _p.getText(), _j.getText(), _w.getText(), null, null, _orderId.getText());
 		ResultMessage message = bl.repertoryAdjust(data);
 		if(!message.isPass()){
 			 printMessage(message.getMessage(), Color.RED);

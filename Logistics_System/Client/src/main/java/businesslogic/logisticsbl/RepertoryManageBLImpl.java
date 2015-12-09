@@ -25,8 +25,8 @@ import dataservice.repertory.RepertoryOutDataService;
 import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
 import vo.RepertoryInVO;
-import vo.RepertoryInfoVO;
-import vo.RepertoryInformationVO;
+import vo.RepertoryShowVO;
+import vo.RepertoryOrderVO;
 import vo.RepertoryOutVO;
 import vo.RepertorySearch;
 import businesslogic.rmi.RMIHelper;
@@ -94,17 +94,17 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	 * 库存盘点
 	 * @see businesslogicservice.logisticsblservice.RepertoryManageBLService#showRepertory()
 	 */
-	public RepertoryInfoVO showRepertory() {
-		RepertoryInfoVO repertoryInfo=new RepertoryInfoVO();
+	public RepertoryShowVO showRepertory() {
+		RepertoryShowVO repertoryInfo=new RepertoryShowVO();
 		try {
 			ArrayList<RepertoryInfoPO> repertoryInfoPO=repertoryinfo.show(user.getAgencyNum());
-			ArrayList<RepertoryInformationVO> repertoryInfoVO=new ArrayList<RepertoryInformationVO>();
+			ArrayList<RepertoryOrderVO> repertoryInfoVO=new ArrayList<RepertoryOrderVO>();
 	        int a=0,b=0,c=0,d=0;
 	        System.out.println(repertoryInfoPO.size());
 	        for(int i=0;i<repertoryInfoPO.size();i++)
 	        {
 	        	RepertoryInPO list=repertoryin.findOnOrderID(repertoryInfoPO.get(i).getOrderId(), repertoryInfoPO.get(i).getId());	
-	        	repertoryInfoVO.add(new RepertoryInformationVO(repertoryInfoPO.get(i).getId(), repertoryInfoPO.get(i).getAreaNumber(), repertoryInfoPO.get(i).getRowNumber(),repertoryInfoPO.get(i).getFrameNumber(), repertoryInfoPO.get(i).getPlaceNumber(),list.getTime(),list.getDestination(), repertoryInfoPO.get(i).getOrderId()));
+	        	repertoryInfoVO.add(new RepertoryOrderVO(repertoryInfoPO.get(i).getId(), repertoryInfoPO.get(i).getAreaNumber(), repertoryInfoPO.get(i).getRowNumber(),repertoryInfoPO.get(i).getFrameNumber(), repertoryInfoPO.get(i).getPlaceNumber(),list.getTime(),list.getDestination(), repertoryInfoPO.get(i).getOrderId()));
 	        	switch(Integer.parseInt((repertoryInfoPO.get(i).getAreaNumber()))){
 	        		case 1:a++;break;
 	        		case 2:b++;break;
@@ -192,7 +192,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	 * @see businesslogicservice.logisticsblservice.RepertoryManageBLService#repertoryAdjust(vo.RepertoryInformationVO)
 	 */
 	public ResultMessage repertoryAdjust(
-			RepertoryInformationVO repertoryinformation) {
+			RepertoryOrderVO repertoryinformation) {
 		try {
 			RepertoryInfoPO repertory=new RepertoryInfoPO(repertoryinformation.id, 
 					repertoryinformation.areaNumber, repertoryinformation.rowNumber, repertoryinformation.frameNumber, repertoryinformation.placeNumber, repertoryinformation.orderId);
@@ -225,7 +225,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 			return new ResultMessage(true,"位置变更成功!转移仓位已到达报警线，请进行库存调整修改位置。");
 	}
 	public void exportRepertoryInformation(String repertoryname,String time,String path){
-		ArrayList<RepertoryInformationVO> list=showRepertory().repertoryinformation;
+		ArrayList<RepertoryOrderVO> list=showRepertory().repertoryinformation;
 		HSSFWorkbook wb=new HSSFWorkbook();
 		HSSFSheet sheet=wb.createSheet("库存信息表");
 		sheet.setColumnWidth(1, 5000);
@@ -256,7 +256,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		cell.setCellStyle(style);
 		for(int i=0;i<list.size();i++){
 			row=sheet.createRow(i+1);
-			RepertoryInformationVO vo=list.get(i);
+			RepertoryOrderVO vo=list.get(i);
 			cell=row.createCell(0);
 			cell.setCellValue(vo.id);
 			cell.setCellStyle(style);

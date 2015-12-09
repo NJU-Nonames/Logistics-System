@@ -1,6 +1,7 @@
 package vo;
 
-public class RepertoryInformationVO{
+public class RepertoryOrderVO{
+	//包含仓库中所有的订单信息
 	/**
 	 * 仓库号
 	 */
@@ -33,7 +34,7 @@ public class RepertoryInformationVO{
 	 * 订单号
 	 */
 	public String orderId;
-	public RepertoryInformationVO(String id, String areaNumber,
+	public RepertoryOrderVO(String id, String areaNumber,
 			String rowNumber, String frameNumber, String placeNumber,
 			String time, String destination, String orderId) {
 		super();
