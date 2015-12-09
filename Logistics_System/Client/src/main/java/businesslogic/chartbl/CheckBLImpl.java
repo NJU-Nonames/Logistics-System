@@ -88,7 +88,7 @@ public class CheckBLImpl implements CheckBLService {
 				if(moneyinpo==null)
 					return null;
 				for(MoneyInListPO po:moneyinpo){
-					moneyinvo.add(new MoneyInListVO(po.getId(), po.getDate(), po.getMoneySum(), po.getStaffId(), po.getBarcode(), po.getCheckType()));
+					moneyinvo.add(new MoneyInListVO(po.getId(), po.getDate(), po.getMoneySum(), po.getStaffId(), po.getBarcode(),po.getAccountNum(), po.getCheckType()));
 				}
 				return moneyinvo;
 			case MONET_OUT_NOTE:
@@ -506,7 +506,7 @@ public class CheckBLImpl implements CheckBLService {
 			switch(docType){
 			case MONEY_IN_NOTE:
 				MoneyInListVO moneyinvo=(MoneyInListVO)listVO;
-				MoneyInListPO moneyinpo=new MoneyInListPO(moneyinvo.getId(),moneyinvo.getDate(),moneyinvo.getMoneySum(),moneyinvo.getStaffId(),moneyinvo.getBarcode(),moneyinvo.getCheckType());
+				MoneyInListPO moneyinpo=new MoneyInListPO(moneyinvo.getId(),moneyinvo.getDate(),moneyinvo.getMoneySum(),moneyinvo.getStaffId(),moneyinvo.getBarcode(),moneyinvo.getAccountNum(),moneyinvo.getCheckType());
 				moneyin.update(moneyinpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"改变收款单信息",user.getAdmin()));
 				return true;

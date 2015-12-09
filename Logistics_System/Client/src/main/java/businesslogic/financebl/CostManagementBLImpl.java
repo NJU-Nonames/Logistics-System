@@ -5,9 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import po.agency.BankAccountPO;
 import po.moneyInfomation.MoneyOutListPO;
 import po.system.SystemLogPO;
 import presentation.mainui.CurrentUser;
+import dataservice.agency.BankAccountDataService;
 import dataservice.moneyInformation.MoneyOutListDataService;
 import dataservice.system.SystemLogDataService;
 import utility.ResultMessage;
@@ -19,19 +21,28 @@ public class CostManagementBLImpl implements CostManagementBLService{
     MoneyOutListDataService moneyoutlistdataservice=null;
     CurrentUser user=null;
 	SystemLogDataService system=null;
+	BankAccountDataService bankaccount=null;
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public CostManagementBLImpl(CurrentUser currentuser){
     	this.moneyoutlistdataservice=(MoneyOutListDataService)RMIHelper.find("MoneyOutListDataService");
+    	this.bankaccount=(BankAccountDataService)RMIHelper.find("BankAccountDataService");
     	user=currentuser;
 		system=(SystemLogDataService)RMIHelper.find("SystemLogDataService");
     }
 	public ResultMessage createMoneyOutlist(MoneyOutListVO moneyOut) {
 		// TODO Auto-generated method stub
 		MoneyOutListPO moneyoutpo=null;
-		try{
-				moneyoutpo=new MoneyOutListPO(moneyOut.getId(),moneyOut.getDate(),moneyOut.getMoney(),moneyOut.getPayer(),moneyOut.getAccountNum(),moneyOut.getClause(),moneyOut.getNote(),moneyOut.getCheckType());
-				moneyoutlistdataservice.add(moneyoutpo);
-				system.add(new SystemLogPO((String)df.format(new Date()),"创建付款单,单号为"+moneyOut.getId(),user.getAdmin()));
+		try{    
+			BankAccountPO bankaccountpo=bankaccount.find(moneyoutpo.getAccountNum());
+			if(bankaccountpo==null)
+				return new ResultMessage(false,"要付款的银行账户不存在!");
+			if(bankaccountpo.getMoney()-moneyOut.getMoney()<0)
+				return new ResultMessage(false, "该账户余额不足,无法创建付款单!");
+			bankaccountpo.setMoney(bankaccountpo.getMoney()-moneyOut.getMoney());
+			bankaccount.update(bankaccountpo);
+			moneyoutpo=new MoneyOutListPO(moneyOut.getId(),moneyOut.getDate(),moneyOut.getMoney(),moneyOut.getPayer(),moneyOut.getAccountNum(),moneyOut.getClause(),moneyOut.getNote(),moneyOut.getCheckType());
+			moneyoutlistdataservice.add(moneyoutpo);
+			system.add(new SystemLogPO((String)df.format(new Date()),"创建付款单,单号为"+moneyOut.getId(),user.getAdmin()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
