@@ -20,6 +20,12 @@ public interface BaseDataSettingBLService {
 	public ResultMessage init();
 	
 	/**
+	 * 返回期初建账时间
+	 * @return
+	 */
+	public String getInitTime();
+	
+	/**
 	 * 查看期初银行账户信息
 	 * @return
 	 */

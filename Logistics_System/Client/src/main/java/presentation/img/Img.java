@@ -115,9 +115,9 @@ public class Img {
 	public static Image ADD_2=new ImageIcon("img/Button/add_2.png").getImage();
 	
 	//按钮:删除
-	public static Image Delete_0=new ImageIcon("img/Button/delete_0.png").getImage();
-	public static Image Delete_1=new ImageIcon("img/Button/delete_1.png").getImage();
-	public static Image Delete_2=new ImageIcon("img/Button/delete_2.png").getImage();
+	public static Image DELETE_0=new ImageIcon("img/Button/delete_0.png").getImage();
+	public static Image DELETE_1=new ImageIcon("img/Button/delete_1.png").getImage();
+	public static Image DELETE_2=new ImageIcon("img/Button/delete_2.png").getImage();
 	
 	//按钮:更改
 	public static Image UPDATE_0=new ImageIcon("img/Button/update_0.png").getImage();

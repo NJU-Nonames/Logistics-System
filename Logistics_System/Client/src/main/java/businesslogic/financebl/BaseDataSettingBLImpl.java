@@ -115,6 +115,11 @@ public class BaseDataSettingBLImpl implements BaseDataSettingBLService {
 		return list;
 	}
 
+	public String getInitTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }
