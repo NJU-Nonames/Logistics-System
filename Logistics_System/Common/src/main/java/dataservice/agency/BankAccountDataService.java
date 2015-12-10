@@ -32,6 +32,8 @@ public interface BankAccountDataService extends Remote{
 	 * @return 操作是否成功
 	 */
 	public void delete(String name)throws RemoteException;
+	
+	public void deletebyId(String id) throws RemoteException;
 	/**
 	 * 更新账户
 	 * @param name

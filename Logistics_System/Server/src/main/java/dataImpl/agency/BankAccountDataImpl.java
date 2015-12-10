@@ -27,9 +27,11 @@ public class BankAccountDataImpl  extends UnicastRemoteObject implements BankAcc
 		String sql="delete from bankaccount where name='"+name+"'";
 		DataJDBCConnection.update(sql);
 	}
+	
+	
 
 	public void update(BankAccountPO countpo) {
-		this.delete(countpo.getName());
+		this.deletebyId(countpo.getNumber());
 		this.add(countpo);
 	}
 
@@ -39,7 +41,7 @@ public class BankAccountDataImpl  extends UnicastRemoteObject implements BankAcc
 		if(keyword.charAt(0)<='9'&&keyword.charAt(0)>='0')
 		     sql="select * from bankaccount where number='"+keyword+"'";
 		else
-			sql="select * from bankaccount where name like '%"+keyword+"%'";
+			sql="select * from bankaccount where name like '%"+keyword+"%' or name like '"+keyword+"%'";
 		
 		ResultSet rs=(ResultSet) DataJDBCConnection.find(sql);
 		try {
@@ -68,6 +70,12 @@ public class BankAccountDataImpl  extends UnicastRemoteObject implements BankAcc
 			return null;
 		}
 		return accountlist;
+	}
+
+	public void deletebyId(String id) {
+		String sql="delete from bankaccount where number='"+id+"'";
+		DataJDBCConnection.update(sql);
+		
 	}
 
 }

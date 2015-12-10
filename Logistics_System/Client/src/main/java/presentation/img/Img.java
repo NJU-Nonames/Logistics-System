@@ -149,9 +149,38 @@ public class Img {
 	public static Image GOSEARCH_1=new ImageIcon("img/Button/物流信息_1.png").getImage();
 	public static Image GOSEARCH_2=new ImageIcon("img/Button/物流信息_2.png").getImage();
 	
-	public static Image MIN_0=new ImageIcon("img/背景.png").getImage();
-	public static Image MIN_1=new ImageIcon("img/界面/系统图标.png").getImage();
-	public static Image MIN_2=new ImageIcon("img/背景.png").getImage();
-	//public static Image ICON=new ImageIcon("img/系统图标.png").getImage();
+	//按钮：进入接受
+	public static Image GORECEIVE_0=new ImageIcon("img/Button/gotojieshou_0.png").getImage();
+	public static Image GORECEIVE_1=new ImageIcon("img/Button/gotojieshou_1.png").getImage();
+	public static Image GORECEIVE_2=new ImageIcon("img/Button/gotojieshou_2.png").getImage();
+	
+	//按钮：进入派件
+	public static Image GODELIVER_0=new ImageIcon("img/Button/gotopaijian_0.png").getImage();
+	public static Image GODELIVER_1=new ImageIcon("img/Button/gotopaijian_1.png").getImage();
+	public static Image GODELIVER_2=new ImageIcon("img/Button/gotopaijian_2.png").getImage();
+		
+	//按钮：进入装车
+	public static Image GOLOAD_0=new ImageIcon("img/Button/gotozhuangche_0.png").getImage();
+	public static Image GOLOAD_1=new ImageIcon("img/Button/gotozhuangche_1.png").getImage();
+	public static Image GOLOAD_2=new ImageIcon("img/Button/gotozhuangche_2.png").getImage();
+	
+	//按钮：进入司机信息
+	public static Image GODRIVER_0=new ImageIcon("img/Button/gotodriver_0.png").getImage();
+	public static Image GODRIVER_1=new ImageIcon("img/Button/gotodriver_1.png").getImage();
+	public static Image GODRIVER_2=new ImageIcon("img/Button/gotodriver_2.png").getImage();
+	
+	//按钮：进入车辆信息
+	public static Image GOTRUCK_0=new ImageIcon("img/Button/gototruck_0.png").getImage();
+	public static Image GOTRUCK_1=new ImageIcon("img/Button/gototruck_1.png").getImage();
+	public static Image GOTRUCK_2=new ImageIcon("img/Button/gototruck_2.png").getImage();
+	
+	//按钮：进入收款
+	public static Image GOGETMONEY_0=new ImageIcon("img/Button/gotoshoukuan_0.png").getImage();
+	public static Image GOGETMONEY_1=new ImageIcon("img/Button/gotoshoukuan_1.png").getImage();
+	public static Image GOGETMONEY_2=new ImageIcon("img/Button/gotoshoukuan_2.png").getImage();
+	
+	
+	
+	
 
 }
