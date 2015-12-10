@@ -141,8 +141,8 @@ public class Img {
 	
 	//按钮：gotsendpkg
 	public static Image GOSENDPKG_0=new ImageIcon("img/Button/寄件_0.png").getImage();
-	public static Image GOSENDPKG_1=new ImageIcon("img/Button/寄件_0.png").getImage();
-	public static Image GOSENDPKG_2=new ImageIcon("img/Button/寄件_0.png").getImage();
+	public static Image GOSENDPKG_1=new ImageIcon("img/Button/寄件_1.png").getImage();
+	public static Image GOSENDPKG_2=new ImageIcon("img/Button/寄件_2.png").getImage();
 	
 	//按钮：进入查询物流信息
 	public static Image GOSEARCH_0=new ImageIcon("img/Button/物流信息_0.png").getImage();

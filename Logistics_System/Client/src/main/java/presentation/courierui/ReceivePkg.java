@@ -145,7 +145,7 @@ public class ReceivePkg extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_SendPkg = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_SendPkg = new MyButton(frame.getWidth()/6, 30, Img.GOSENDPKG_0, Img.GOSENDPKG_1, Img.GOSENDPKG_2);
         goto_SendPkg.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -172,7 +172,7 @@ public class ReceivePkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_SearchPkgInformation = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_SearchPkgInformation = new MyButton(frame.getWidth()/6, 30, Img.GOSEARCH_0, Img.GOSEARCH_1, Img.GOSEARCH_2);
         goto_SearchPkgInformation.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -242,9 +242,9 @@ public class ReceivePkg extends JPanel{
     	min.setLocation(CourierFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
-    	goto_SendPkg.setLocation(20,150);
+    	goto_SendPkg.setLocation(0,150);
     	goto_ReceivePkg.setLocation(0,200);
-    	goto_SearchPkgInformation.setLocation(20,250);
+    	goto_SearchPkgInformation.setLocation(0,250);
     	
     	//其他组件
 		JLabel ordernum = new JLabel("订单编号：");
