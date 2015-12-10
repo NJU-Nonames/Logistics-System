@@ -1,7 +1,9 @@
 package businesslogic.financebl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.agency.AgencyPO;
 import po.agency.BankAccountPO;
@@ -22,6 +24,7 @@ import businesslogicservice.financeblservice.BaseDataSettingBLService;
 
 public class BaseDataSettingBLImpl implements BaseDataSettingBLService {
 	BaseDataSettingDataService basedatasetting=null;
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public BaseDataSettingBLImpl(){
 		basedatasetting=(BaseDataSettingDataService)RMIHelper.find("BaseDataSettingDataService");
 	}
@@ -29,7 +32,7 @@ public class BaseDataSettingBLImpl implements BaseDataSettingBLService {
 	public ResultMessage init() {
 		// TODO Auto-generated method stub
 		try{
-			basedatasetting.init();
+			basedatasetting.init(df.format(new Date()));
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
