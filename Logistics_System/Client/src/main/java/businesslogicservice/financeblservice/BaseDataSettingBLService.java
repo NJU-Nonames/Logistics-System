@@ -3,11 +3,9 @@ package businesslogicservice.financeblservice;
 import java.util.ArrayList;
 
 import utility.ResultMessage;
-import vo.AgencyVO;
 import vo.BankAccountVO;
 import vo.BaseAgencyVO;
 import vo.RepertoryInfoVO;
-import vo.RepertoryOrderVO;
 import vo.StaffVO;
 import vo.TruckVO;
 

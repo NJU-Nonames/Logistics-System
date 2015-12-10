@@ -37,9 +37,12 @@ public class BaseDataSettingDataImpl extends UnicastRemoteObject implements Base
 		DataJDBCConnection.update(sql);
 		sql="truncate table truck_init";
 		//复制新表的内容和旧表一致
+		
 		sql="insert into agency_init select * from agency";
 		DataJDBCConnection.update(sql);
 		sql="insert into staff_init select * from staff";
+		DataJDBCConnection.update(sql);
+		sql="insert into bankaccount_init select * from bankaccount";
 		DataJDBCConnection.update(sql);
 		sql="insert into repertoryinfo_init select * from repertoryinfo";
 		DataJDBCConnection.update(sql);

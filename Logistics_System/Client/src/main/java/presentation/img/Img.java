@@ -115,9 +115,9 @@ public class Img {
 	public static Image ADD_2=new ImageIcon("img/Button/add_2.png").getImage();
 	
 	//按钮:删除
-	public static Image delete_0=new ImageIcon("img/Button/delete_0.png").getImage();
-	public static Image delete_1=new ImageIcon("img/Button/delete_1.png").getImage();
-	public static Image delete_2=new ImageIcon("img/Button/delete_2.png").getImage();
+	public static Image Delete_0=new ImageIcon("img/Button/delete_0.png").getImage();
+	public static Image Delete_1=new ImageIcon("img/Button/delete_1.png").getImage();
+	public static Image Delete_2=new ImageIcon("img/Button/delete_2.png").getImage();
 	
 	//按钮:更改
 	public static Image UPDATE_0=new ImageIcon("img/Button/update_0.png").getImage();
@@ -138,6 +138,16 @@ public class Img {
 	public static Image GOTORECEIVE_0=new ImageIcon("img/Button/goreceive_0.png").getImage();
 	public static Image GOTORECEIVE_1=new ImageIcon("img/Button/goreceive_1.png").getImage();
 	public static Image GOTORECEIVE_2=new ImageIcon("img/Button/goreceive_2.png").getImage();
+	
+	//按钮：gotsendpkg
+	public static Image GOSENDPKG_0=new ImageIcon("img/Button/寄件_0.png").getImage();
+	public static Image GOSENDPKG_1=new ImageIcon("img/Button/寄件_0.png").getImage();
+	public static Image GOSENDPKG_2=new ImageIcon("img/Button/寄件_0.png").getImage();
+	
+	//按钮：进入查询物流信息
+	public static Image GOSEARCH_0=new ImageIcon("img/Button/物流信息_0.png").getImage();
+	public static Image GOSEARCH_1=new ImageIcon("img/Button/物流信息_1.png").getImage();
+	public static Image GOSEARCH_2=new ImageIcon("img/Button/物流信息_2.png").getImage();
 	
 	public static Image MIN_0=new ImageIcon("img/背景.png").getImage();
 	public static Image MIN_1=new ImageIcon("img/界面/系统图标.png").getImage();
