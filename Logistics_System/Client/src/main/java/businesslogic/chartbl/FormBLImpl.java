@@ -133,7 +133,7 @@ public class FormBLImpl implements FormBLService{
 		double moneyin=0;
 		double moneyout=0;
 		double profit=0;
-		for(int i=0;i<list.size();i++){
+		for(int i=0;i<list.size()-1;i++){
 			row=sheet.createRow(i+1);
 			MoneyInformationListVO money=list.get(i);
 			cell=row.createCell(0);
@@ -146,7 +146,7 @@ public class FormBLImpl implements FormBLService{
 			row.createCell(2).setCellValue((double)money.getMoneyOut());
 			row.createCell(3).setCellValue((double)money.getProfit());
 		}
-		row=sheet.createRow(list.size()+1);
+		row=sheet.createRow(list.size());
 		cell=row.createCell(0);
 		cell.setCellValue("总计");
 		cell.setCellStyle(style);
