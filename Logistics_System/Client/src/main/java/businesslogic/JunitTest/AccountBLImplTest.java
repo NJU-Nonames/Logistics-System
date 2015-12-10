@@ -12,34 +12,19 @@ import vo.BankAccountVO;
 
 public class AccountBLImplTest {
 	AccountBLImpl accountbl=new AccountBLImpl(new CurrentUser("上官","快递中心","000000","shangguan"));
-
-	
-	@Test
-	public void testCreateCount() {
-		BankAccountVO bankaccountvo=new BankAccountVO("银行账户测试1", "0000000000000000099", 100);
-		assertEquals(new ResultMessage(true, "添加账户成功!"), accountbl.createCount(bankaccountvo));
-		assertEquals(new ResultMessage(false, "账户已存在!"), accountbl.createCount(bankaccountvo));
-	}
+	BankAccountVO bankaccountvo=new BankAccountVO("银行账户测试1", "0000000000000000099", 100);
 
 	@Test
-	public void testRemoveCount() {
-		assertEquals(new ResultMessage(false, "删除账户成功!"), accountbl.removeCount("0000000000000000099"));
-		assertEquals(new ResultMessage(false, "要删除的账户不存在!"), accountbl.removeCount("0000000000000000099"));
+	public void testCount() {
+		assertTrue( "添加账户成功!".equals(accountbl.createCount(bankaccountvo).getMessage()));
+		assertTrue( "账户已存在!".equals(accountbl.createCount(bankaccountvo).getMessage()));
+		assertTrue("删除账户成功!".equals(accountbl.removeCount("银行账户测试1").getMessage()));
+		assertTrue( "要删除的账户不存在!".equals(accountbl.removeCount("银行账户测试1").getMessage()));
+		accountbl.createCount(bankaccountvo);
+		assertTrue("更新账户信息成功!".equals(accountbl.updateCount(new BankAccountVO("银行账户测试", "0000000000000000099", 100)).getMessage()));
+		assertTrue("要更新的账户不存在!".equals(accountbl.updateCount(new BankAccountVO("银行账户测试", "0000000000000000098", 100)).getMessage()));
+		assertTrue("银行账户测试".equals(accountbl.searchCount("银行")));
+		assertTrue("银行账户测试".equals(accountbl.searchCount("账户")));
+		assertTrue("银行账户测试".equals(accountbl.searchCount("0000000000000000099")));
 	}
-
-	@Test
-	public void testUpdateCount() {
-		fail("尚未实现");
-	}
-
-	@Test
-	public void testSearchCount() {
-		fail("尚未实现");
-	}
-
-	@Test
-	public void testShow() {
-		fail("尚未实现");
-	}
-
 }

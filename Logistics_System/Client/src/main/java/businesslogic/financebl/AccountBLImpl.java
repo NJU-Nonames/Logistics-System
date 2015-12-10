@@ -51,7 +51,7 @@ public class AccountBLImpl implements AccountBLService {
 			if(bankpo!=null){
 				bankaccountdataservice.delete(name);
 				system.add(new SystemLogPO((String)df.format(new Date()),"删除银行账户,账号为"+bankpo.getNumber(),user.getAdmin()));
-				return new ResultMessage(true,"账户删除成功!");
+				return new ResultMessage(true,"删除账户成功!");
 			}
 		}catch(RemoteException e){
 			e.printStackTrace();

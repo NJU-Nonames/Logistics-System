@@ -128,7 +128,7 @@ public class SendPkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        min = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        min = new MyButton(30, 30, Img.MINI_0, Img.MINI_1, Img.MINI_2);
         min.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.setExtendedState(JFrame.ICONIFIED);
@@ -138,7 +138,7 @@ public class SendPkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(30, 30, Img.RETURN_0, Img.RETURN_1, Img.RETURN_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.dispose();
@@ -150,7 +150,7 @@ public class SendPkg extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_SendPkg = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_SendPkg = new MyButton(frame.getWidth()/6, 30, Img.GOSENDPKG_2, Img.GOSENDPKG_2, Img.GOSENDPKG_2);
         goto_SendPkg.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -178,7 +178,7 @@ public class SendPkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_SearchPkgInformation = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_SearchPkgInformation = new MyButton(frame.getWidth()/6, 30, Img.GOSEARCH_0, Img.GOSEARCH_1, Img.GOSEARCH_2);
         goto_SearchPkgInformation.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -218,7 +218,7 @@ public class SendPkg extends JPanel{
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
+        titleLabel.setForeground(Color.BLACK);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="寄件";
@@ -230,7 +230,7 @@ public class SendPkg extends JPanel{
         JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
         currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
         currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setForeground(Color.DARK_GRAY);
         currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="快递员";
@@ -242,16 +242,16 @@ public class SendPkg extends JPanel{
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentusernameLabel.setForeground(Color.RED);
+        currentusernameLabel.setForeground(Color.DARK_GRAY);
         currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(CourierFrame.w-30,0);
     	min.setLocation(CourierFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
-    	goto_SendPkg.setLocation(20,150);
-    	goto_ReceivePkg.setLocation(20,200);
-    	goto_SearchPkgInformation.setLocation(20,250);
+    	goto_SendPkg.setLocation(0,150);
+    	goto_ReceivePkg.setLocation(0,200);
+    	goto_SearchPkgInformation.setLocation(0,250);
     	
     	//其他组件
 		JLabel l1 = new JLabel("寄件人姓名：");
