@@ -61,6 +61,12 @@ public class Statistic extends JPanel{
 	//详细操作按钮以及其他组件
 	private MyButton search;
 	private MyButton search2;
+	private MyButton confirm1;
+	private MyButton confirm2;
+	private String time1;
+	private String time2;
+	private String time3;
+	private String time4;
 	
 	private JTextField start_date;
 	private JTextField end_date;
@@ -102,6 +108,10 @@ public class Statistic extends JPanel{
 		this.currentUser=currentUser;
 		willprintMessage=false;
 		result="";
+		time1="";
+		time2="";
+		time3="";
+		time4="";
 		co=Color.RED;
 		this.setLayout(null);
 
@@ -241,6 +251,41 @@ public class Statistic extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
+    	
+        confirm1 = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm1.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_confirm1();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	confirm1.setLocation(170+20+(int)(16*8*1.07f),690);
+        confirm2 = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm2.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_confirm2();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	confirm2.setLocation(596+(int)(16*8*1.07f),690);
+    	add(confirm1);
+    	add(confirm2);
+		JLabel l11 = new JLabel("导出成本收益表：");
+		l11.setSize((int)(16*8*1.07f), 16);
+		l11.setFont(new Font("宋体", Font.BOLD, 15));
+        l11.setLocation(170+20, 690+7);
+        add(l11);
+		JLabel l22 = new JLabel("导出经营情况表：");
+		l22.setSize((int)(16*8*1.07f), 16);
+		l22.setFont(new Font("宋体", Font.BOLD, 15));
+        l22.setLocation(596, 690+7);
+        add(l22);
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
@@ -457,7 +502,8 @@ public class Statistic extends JPanel{
 			printMessage("找不到相关信息！", Color.RED);
 			return;
 		}
-
+		time1=start_date_s;
+		time2=end_date_s;
 		while(CostandBenefitChartTable.getRowCount()!=0)//先清空原来的
 			CostandBenefitChartTableModel.removeRow(0);
 		
@@ -492,6 +538,8 @@ public class Statistic extends JPanel{
 			return;
 		}
 
+		time3=start_date2_s;
+		time4=end_date2_s;
 		while(BusinessCircumstanceChartTable.getRowCount()!=0)//先清空原来的
 			BusinessCircumstanceChartTableModel.removeRow(0);
 		
@@ -504,7 +552,28 @@ public class Statistic extends JPanel{
         }
 		
 	}
+	private void _confirm1(){
+		if(time1.compareTo("")==0){
+			printMessage("成本收益表未初始化！", Color.RED);
+			return;
+		}
+		bl.exportCostandBenefitChart(time1, time2,  "D:/");
+		printMessage("成本收益表已导出！", Color.GREEN);
+	}
+	private void _confirm2(){
+		if(time3.compareTo("")==0){
+			printMessage("经营情况表未初始化！", Color.RED);
+			return;
+		}
+		bl.exportBusinessCircumstanceChart(time3, time4,  "D:/");
+		printMessage("经营情况表已导出！", Color.GREEN);
+	}
 	private void clear(){
+		time1="";
+		time2="";
+		time3="";
+		time4="";
+		
 		start_date.setText("");
 		start_date2.setText("");
 		while(CostandBenefitChartTable.getRowCount()!=0)

@@ -19,6 +19,7 @@ import utility.Position;
 import businesslogic.chartbl.FormBLImpl;
 import businesslogic.chartbl.SystemLogBLImpl;
 import businesslogic.financebl.AccountBLImpl;
+import businesslogic.financebl.BaseDataSettingBLImpl;
 import businesslogic.financebl.CostManagementBLImpl;
 import businesslogic.financebl.SettlementManageBLImpl;
 import businesslogicservice.chartblservice.FormBLService;
@@ -122,14 +123,14 @@ public class FinacialStaffHighFrame extends JFrame{
 		
 
 		accountBLService=new AccountBLImpl(this.currentUser);
-		baseDataSettingBLService=null;//期初建账
+		baseDataSettingBLService=new BaseDataSettingBLImpl();//期初建账
 		costManagementBLService=new CostManagementBLImpl(this.currentUser);
 		settlementManageBLService=new SettlementManageBLImpl(this.currentUser);
 		systemLogBLService=new SystemLogBLImpl();
 		formBLService=new FormBLImpl(this.currentUser);
 		
 		accountManage=new AccountManage(this, accountBLService, currentUser);
-		baseDataSetting=new BaseDataSetting(this, currentUser);
+		baseDataSetting=new BaseDataSetting(this, baseDataSettingBLService, currentUser);
 		costManage=new CostManage(this, costManagementBLService, currentUser);
 		settlementManage=new SettlementManage(this, settlementManageBLService, currentUser);
 		statistic=new Statistic(this, formBLService, currentUser);
