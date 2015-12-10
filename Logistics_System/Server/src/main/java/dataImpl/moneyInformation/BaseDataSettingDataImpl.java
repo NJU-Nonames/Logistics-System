@@ -5,14 +5,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import com.mysql.jdbc.ResultSet;
-
 import po.agency.AgencyPO;
 import po.agency.BankAccountPO;
 import po.agency.StaffPO;
 import po.agency.TruckPO;
-import po.moneyInfomation.BaseDataSettingPO;
 import po.repertory.RepertoryInfoPO;
 import data.DataJDBCConnection;
 import dataImpl.agency.StaffDataImpl;
@@ -25,7 +22,7 @@ public class BaseDataSettingDataImpl extends UnicastRemoteObject implements Base
 		// TODO Auto-generated constructor stub
 	}
 
-	public void init() throws RemoteException {
+	public void init(String time) throws RemoteException {
 		//清空原始表单信息
 		String sql="truncate table agency_init";
 		DataJDBCConnection.update(sql);
@@ -47,6 +44,11 @@ public class BaseDataSettingDataImpl extends UnicastRemoteObject implements Base
 		sql="insert into repertoryinfo_init select * from repertoryinfo";
 		DataJDBCConnection.update(sql);
 		sql="insert into truck_init select * from truck";
+		DataJDBCConnection.update(sql);
+		
+		sql="truncate table inittime";
+		DataJDBCConnection.update(sql);
+		sql="insert into inittime values (countt,'"+time+"')";
 		DataJDBCConnection.update(sql);
 	}
 
@@ -138,6 +140,20 @@ public class BaseDataSettingDataImpl extends UnicastRemoteObject implements Base
 		}
 		
 		return repertoryinfo;
+	}
+
+	public String getTime() throws RemoteException {
+		String sql="select * from inittime";
+		String result=null;
+		ResultSet rs=DataJDBCConnection.find(sql);
+		try {
+			rs.next();
+			result=rs.getString("timee");
+		} catch (SQLException e) {
+			return null;
+			//e.printStackTrace();
+		}
+		return result;
 	}
 
 	

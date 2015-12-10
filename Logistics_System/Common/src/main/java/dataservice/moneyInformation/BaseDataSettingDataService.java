@@ -17,7 +17,14 @@ public interface BaseDataSettingDataService extends Remote{
 	 * 期初建账，点击以后进行建账
 	 * @return
 	 */
-	public void init()throws RemoteException;
+	public void init(String time)throws RemoteException;
+	
+	/**
+	 * 获取时间
+	 * @return
+	 * @throws RemoteException
+	 */
+	public String getTime()throws RemoteException;
 	
 	/**
 	 * 查看期初银行账户信息
