@@ -198,7 +198,7 @@ public class SearchPkgInformation extends JPanel{
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
+        titleLabel.setForeground(Color.BLACK);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="快递信息查询";

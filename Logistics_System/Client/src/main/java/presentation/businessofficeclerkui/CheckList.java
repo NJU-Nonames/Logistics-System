@@ -125,7 +125,7 @@ public class CheckList extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        min = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        min = new MyButton(30, 30, Img.MINI_0, Img.MINI_1, Img.MINI_2);
         min.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.setExtendedState(JFrame.ICONIFIED);
@@ -135,7 +135,7 @@ public class CheckList extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(30, 30, Img.RETURN_0, Img.RETURN_1, Img.RETURN_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.dispose();
@@ -147,7 +147,7 @@ public class CheckList extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_LoadManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_LoadManage = new MyButton(frame.getWidth()/6, 30, Img.GOLOAD_0,  Img.GOLOAD_1,  Img.GOLOAD_2);
         goto_LoadManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -160,7 +160,7 @@ public class CheckList extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_Receive = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_Receive = new MyButton(frame.getWidth()/6, 30, Img.GORECEIVE_0, Img.GORECEIVE_1, Img.GORECEIVE_2);
         goto_Receive.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -173,7 +173,7 @@ public class CheckList extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_Deliver = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_Deliver = new MyButton(frame.getWidth()/6, 30, Img.GODELIVER_0, Img.GODELIVER_1, Img.GODELIVER_2);
         goto_Deliver.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -186,7 +186,7 @@ public class CheckList extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_CheckList = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_CheckList = new MyButton(frame.getWidth()/6, 30, Img.GOGETMONEY_2, Img.GOGETMONEY_2, Img.GOGETMONEY_2);
         goto_CheckList.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -199,7 +199,7 @@ public class CheckList extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_TruckManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_TruckManage = new MyButton(frame.getWidth()/6, 30, Img.GOTRUCK_0, Img.GOTRUCK_1, Img.GOTRUCK_2);
         goto_TruckManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -212,7 +212,7 @@ public class CheckList extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_DriverManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_DriverManage = new MyButton(frame.getWidth()/6, 30, Img.GODELIVER_0, Img.GODELIVER_1, Img.GODELIVER_2);
     	goto_DriverManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -264,7 +264,7 @@ public class CheckList extends JPanel{
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
+        titleLabel.setForeground(Color.BLACK);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="核对收款单";
@@ -276,7 +276,7 @@ public class CheckList extends JPanel{
         JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
         currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
         currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setForeground(Color.DARK_GRAY);
         currentuserAgencyNameLabel.setLocation(170,128-30);
 
         String s="营业厅业务员";
@@ -288,19 +288,19 @@ public class CheckList extends JPanel{
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentusernameLabel.setForeground(Color.RED);
+        currentusernameLabel.setForeground(Color.DARK_GRAY);
         currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(BusinessOfficeClerkFrame.w-30,0);
     	min.setLocation(BusinessOfficeClerkFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
-    	goto_LoadManage.setLocation(20,150);
-    	goto_Receive.setLocation(20,200);
-    	goto_Deliver.setLocation(20,250);
-    	goto_CheckList.setLocation(20,300);
-    	goto_TruckManage.setLocation(20,350);
-    	goto_DriverManage.setLocation(20,400);
+    	goto_LoadManage.setLocation(0,150);
+    	goto_Receive.setLocation(0,200);
+    	goto_Deliver.setLocation(0,250);
+    	goto_CheckList.setLocation(0,300);
+    	goto_TruckManage.setLocation(0,350);
+    	goto_DriverManage.setLocation(0,400);
     	
     	//其他组件
     	
