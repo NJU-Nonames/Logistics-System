@@ -158,6 +158,11 @@ public class Img {
 	public static Image GODELIVER_0=new ImageIcon("img/Button/gotopaijian_0.png").getImage();
 	public static Image GODELIVER_1=new ImageIcon("img/Button/gotopaijian_1.png").getImage();
 	public static Image GODELIVER_2=new ImageIcon("img/Button/gotopaijian_2.png").getImage();
+	
+	//按钮：进入收款
+	public static Image GOGETMONEY_0=new ImageIcon("img/Button/gotoshoukuan_0.png").getImage();
+	public static Image GOGETMONEY_1=new ImageIcon("img/Button/gotoshoukuan_1.png").getImage();
+	public static Image GOGETMONEY_2=new ImageIcon("img/Button/gotoshoukuan_2.png").getImage();
 		
 	//按钮：进入装车
 	public static Image GOLOAD_0=new ImageIcon("img/Button/gotozhuangche_0.png").getImage();
@@ -174,13 +179,64 @@ public class Img {
 	public static Image GOTRUCK_1=new ImageIcon("img/Button/gototruck_1.png").getImage();
 	public static Image GOTRUCK_2=new ImageIcon("img/Button/gototruck_2.png").getImage();
 	
-	//按钮：进入收款
-	public static Image GOGETMONEY_0=new ImageIcon("img/Button/gotoshoukuan_0.png").getImage();
-	public static Image GOGETMONEY_1=new ImageIcon("img/Button/gotoshoukuan_1.png").getImage();
-	public static Image GOGETMONEY_2=new ImageIcon("img/Button/gotoshoukuan_2.png").getImage();
+	//按钮：进入库存查看
+	public static Image GOKUCUNCHAKAN_0=new ImageIcon("img/Button/gotochakan_0.png").getImage();
+	public static Image GOKUCUNCHAKAN_1=new ImageIcon("img/Button/gotochakan_1.png").getImage();
+	public static Image GOKUCUNCHAKAN_2=new ImageIcon("img/Button/gotochakan_2.png").getImage();
 	
+	//按钮：进入库存盘点
+	public static Image GOKUCUNPANDIAN_0=new ImageIcon("img/Button/gotopandian_0.png").getImage();
+	public static Image GOKUCUNPANDIAN_1=new ImageIcon("img/Button/gotopandian_1.png").getImage();
+	public static Image GOKUCUNPANDIAN_2=new ImageIcon("img/Button/gotopandian_2.png").getImage();
 	
+	//按钮：进入入库
+	public static Image GORUKU_0=new ImageIcon("img/Button/gotoruku_0.png").getImage();
+	public static Image GORUKU_1=new ImageIcon("img/Button/gotoruku_1.png").getImage();
+	public static Image GORUKU_2=new ImageIcon("img/Button/gotoruku_2.png").getImage();
 	
+	//按钮：进入出库
+	public static Image GOCHUKU_0=new ImageIcon("img/Button/gotochuku_0.png").getImage();
+	public static Image GOCHUKU_1=new ImageIcon("img/Button/gotochuku_1.png").getImage();
+	public static Image GOCHUKU_2=new ImageIcon("img/Button/gotochuku_2.png").getImage();
 	
+	//按钮：进入成本管理
+	public static Image GOCHENGBEN_0=new ImageIcon("img/Button/gotochengben_0.png").getImage();
+	public static Image GOCHENGBEN_1=new ImageIcon("img/Button/gotochengben_1.png").getImage();
+	public static Image GOCHENGBEN_2=new ImageIcon("img/Button/gotochengben_2.png").getImage();
+	
+	//按钮：进入结算管理
+	public static Image GOJIESUAN_0=new ImageIcon("img/Button/gotojiesuan_0.png").getImage();
+	public static Image GOJIESUAN_1=new ImageIcon("img/Button/gotojiesuan_1.png").getImage();
+	public static Image GOJIESUAN_2=new ImageIcon("img/Button/gotojiesuan_2.png").getImage();
+	
+	//按钮：进入人员机构管理
+	public static Image GORENYUAN_0=new ImageIcon("img/Button/gotojigou_0.png").getImage();
+	public static Image GORENYUAN_1=new ImageIcon("img/Button/gotojigou_1.png").getImage();
+	public static Image GORENYUAN_2=new ImageIcon("img/Button/gotojigou_2.png").getImage();
+	
+	//按钮：进入系统日志
+	public static Image GOXITONG_0=new ImageIcon("img/Button/gotorizhi_0.png").getImage();
+	public static Image GOXITONG_1=new ImageIcon("img/Button/gotorizhi_1.png").getImage();
+	public static Image GOXITONG_2=new ImageIcon("img/Button/gotorizhi_2.png").getImage();
+	
+	//按钮：进入统计报表
+	public static Image GOTONGJIBAOBIAO_0=new ImageIcon("img/Button/gototongji_0.png").getImage();
+	public static Image GOTONGJIBAOBIAO_1=new ImageIcon("img/Button/gototongji_1.png").getImage();
+	public static Image GOTONGJIBAOBIAO_2=new ImageIcon("img/Button/gototongji_2.png").getImage();
+	
+	//按钮：进入中转接收
+	public static Image GOZHONGZHUAN_0=new ImageIcon("img/Button/gotozhongzhuan_0.png").getImage();
+	public static Image GOZHONGZHUAN_1=new ImageIcon("img/Button/gotozhongzhuan_1.png").getImage();
+	public static Image GOZHONGZHUAN_2=new ImageIcon("img/Button/gotozhongzhuan_2.png").getImage();
+	
+	//按钮：进入装运管理
+	public static Image GOZHUANGYUN_0=new ImageIcon("img/Button/gotozhuangyun_0.png").getImage();
+	public static Image GOZHUANGYUN_1=new ImageIcon("img/Button/gotozhuangyun_1.png").getImage();
+	public static Image GOZHUANGYUN_2=new ImageIcon("img/Button/gotozhuangyun_2.png").getImage();
+
+	//按钮：进入账户管理
+	public static Image GOZHANGHU_0=new ImageIcon("img/Button/gotozhanghu_0.png").getImage();
+	public static Image GOZHANGHU_1=new ImageIcon("img/Button/gotozhanghu_1.png").getImage();
+	public static Image GOZHANGHU_2=new ImageIcon("img/Button/gotozhanghu_2.png").getImage();
 
 }
