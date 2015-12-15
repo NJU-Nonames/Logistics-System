@@ -187,7 +187,7 @@ public class ConstantManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	goto_ConstantManage = new MyButton(frame.getWidth()/6, 30, Img.GOCHANGLIANG_0, Img.GOCHANGLIANG_1, Img.GOCHANGLIANG_2);
+    	goto_ConstantManage = new MyButton(frame.getWidth()/6, 30, Img.GOCHANGLIANG_2, Img.GOCHANGLIANG_2, Img.GOCHANGLIANG_2);
     	goto_ConstantManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();

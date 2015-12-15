@@ -219,7 +219,7 @@ public class Check extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_Check = new MyButton(frame.getWidth()/6, 30, Img.GOSHENPAN_0, Img.GOSHENPAN_1, Img.GOSHENPAN_2);
+        goto_Check = new MyButton(frame.getWidth()/6, 30, Img.GOSHENPAN_2, Img.GOSHENPAN_2, Img.GOSHENPAN_2);
         goto_Check.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();

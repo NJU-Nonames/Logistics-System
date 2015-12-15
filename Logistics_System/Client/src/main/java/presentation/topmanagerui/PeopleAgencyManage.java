@@ -197,7 +197,7 @@ public class PeopleAgencyManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_PeopleAgencyManage = new MyButton(frame.getWidth()/6, 30, Img.GORENYUAN_0, Img.GORENYUAN_1, Img.GORENYUAN_2);
+        goto_PeopleAgencyManage = new MyButton(frame.getWidth()/6, 30, Img.GORENYUAN_2, Img.GORENYUAN_2, Img.GORENYUAN_2);
         goto_PeopleAgencyManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();

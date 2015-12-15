@@ -152,7 +152,7 @@ public class Statistic extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_Statistic = new MyButton(frame.getWidth()/6, 30, Img.GOTONGJIBAOBIAO_0, Img.GOTONGJIBAOBIAO_1, Img.GOTONGJIBAOBIAO_2);
+        goto_Statistic = new MyButton(frame.getWidth()/6, 30, Img.GOTONGJIBAOBIAO_2, Img.GOTONGJIBAOBIAO_2, Img.GOTONGJIBAOBIAO_2);
         goto_Statistic.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();

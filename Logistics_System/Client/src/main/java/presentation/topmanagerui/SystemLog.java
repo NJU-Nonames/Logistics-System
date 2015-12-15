@@ -201,7 +201,7 @@ public class SystemLog extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	goto_SystemLog = new MyButton(frame.getWidth()/6, 30, Img.GOXITONG_0, Img.GOXITONG_1, Img.GOXITONG_2);
+    	goto_SystemLog = new MyButton(frame.getWidth()/6, 30, Img.GOXITONG_2, Img.GOXITONG_2, Img.GOXITONG_2);
     	goto_SystemLog.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();

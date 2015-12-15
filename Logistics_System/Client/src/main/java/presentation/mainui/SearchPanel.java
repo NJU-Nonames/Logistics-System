@@ -50,7 +50,6 @@ public class SearchPanel extends JPanel{
         	
             g.setColor(Color.RED);
             g.setFont(new Font("楷体", Font.BOLD, 26));
-            //g.drawString(result, -result.length()*13, 13);
             g.drawString(result, -result.length()*13+MainFrame.w/2, 13+MainFrame.h-30);
         }
 	}

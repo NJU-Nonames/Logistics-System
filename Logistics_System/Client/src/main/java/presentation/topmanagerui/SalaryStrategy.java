@@ -167,7 +167,7 @@ public class SalaryStrategy extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_SalaryStrategy = new MyButton(frame.getWidth()/6, 30, Img.GOXINSHUI_0, Img.GOXINSHUI_1, Img.GOXINSHUI_2);
+        goto_SalaryStrategy = new MyButton(frame.getWidth()/6, 30, Img.GOXINSHUI_2, Img.GOXINSHUI_2, Img.GOXINSHUI_2);
         goto_SalaryStrategy.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
