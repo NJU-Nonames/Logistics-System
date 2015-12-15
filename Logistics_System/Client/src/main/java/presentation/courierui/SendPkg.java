@@ -192,7 +192,7 @@ public class SendPkg extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-        review = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        review = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         review.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_review();
@@ -202,8 +202,8 @@ public class SendPkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        review.setLocation(CourierFrame.w-80,170+60);
-        confirm = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        review.setLocation(CourierFrame.w/6+20,CourierFrame.h-80);
+        confirm = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CLOSE_2);
         confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_create();
@@ -213,7 +213,7 @@ public class SendPkg extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	confirm.setLocation(CourierFrame.w-80,CourierFrame.h-80);
+    	confirm.setLocation(CourierFrame.w-150,CourierFrame.h-80);
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);

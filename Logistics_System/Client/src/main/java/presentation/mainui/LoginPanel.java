@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
@@ -40,7 +41,7 @@ public class LoginPanel extends JPanel{
 	private MyButton _return;
 	
 	private JTextField userField;
-	private JTextField passwordField;
+	private JPasswordField passwordField;
 	
 	private boolean Invalid;//输入是否非法
 	private String result;
@@ -121,7 +122,7 @@ public class LoginPanel extends JPanel{
         JLabel passwordLabel = new JLabel("密码：");
         passwordLabel.setFont(new Font("楷体", Font.BOLD, 25));
         passwordLabel.setSize(80, 27);
-        passwordField = new JTextField();
+        passwordField = new JPasswordField();
         passwordField.setSize(150, 27);
 
         
@@ -153,7 +154,7 @@ public class LoginPanel extends JPanel{
 	}
 	private void userlogin(){
 		String username = userField.getText();
-		String paw = passwordField.getText();
+		String paw = new String(passwordField.getPassword());
 
 //		result = CheckFormat.checkUserNum(username);
 //		if(result.compareTo("格式正确")!=0){
