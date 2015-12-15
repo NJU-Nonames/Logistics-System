@@ -238,5 +238,30 @@ public class Img {
 	public static Image GOZHANGHU_0=new ImageIcon("img/Button/gotozhanghu_0.png").getImage();
 	public static Image GOZHANGHU_1=new ImageIcon("img/Button/gotozhanghu_1.png").getImage();
 	public static Image GOZHANGHU_2=new ImageIcon("img/Button/gotozhanghu_2.png").getImage();
+	
+	//按钮：进入制定价格常量
+	public static Image GOCHANGLIANG_0=new ImageIcon("img/Button/gotozhiding_0.png").getImage();
+	public static Image GOCHANGLIANG_1=new ImageIcon("img/Button/gotozhiding_1.png").getImage();
+	public static Image GOCHANGLIANG_2=new ImageIcon("img/Button/gotozhiding_2.png").getImage();
+	
+	//按钮：进入用户管理
+	public static Image GOYONGHU_0=new ImageIcon("img/Button/gotoyonghu_0.png").getImage();
+	public static Image GOYONGHU_1=new ImageIcon("img/Button/gotoyonghu_1.png").getImage();
+	public static Image GOYONGHU_2=new ImageIcon("img/Button/gotoyonghu_2.png").getImage();
+	
+	//按钮：进入审判单据
+	public static Image GOSHENPAN_0=new ImageIcon("img/Button/gotoshenpan_0.png").getImage();
+	public static Image GOSHENPAN_1=new ImageIcon("img/Button/gotoshenpan_1.png").getImage();
+	public static Image GOSHENPAN_2=new ImageIcon("img/Button/gotoshenpan_2.png").getImage();
+	
+	//按钮：进入薪水策略
+	public static Image GOXINSHUI_0=new ImageIcon("img/Button/gotoxinshui_0.png").getImage();
+	public static Image GOXINSHUI_1=new ImageIcon("img/Button/gotoxinshui_1.png").getImage();
+	public static Image GOXINSHUI_2=new ImageIcon("img/Button/gotoxinshui_2.png").getImage();
+	
+	//按钮：进入期初建账
+	public static Image GOQICHU_0=new ImageIcon("img/Button/gotoqichu_0.png").getImage();
+	public static Image GOQICHU_1=new ImageIcon("img/Button/gotoqichu_1.png").getImage();
+	public static Image GOQICHU_2=new ImageIcon("img/Button/gotoqichu_2.png").getImage();
 
 }
