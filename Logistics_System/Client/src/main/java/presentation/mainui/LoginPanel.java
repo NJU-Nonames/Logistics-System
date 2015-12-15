@@ -125,13 +125,13 @@ public class LoginPanel extends JPanel{
         passwordField.setSize(150, 27);
 
         
-        userLabel.setLocation(MainFrame.w/2-160,MainFrame.h*3/4-60);
-        userField.setLocation(MainFrame.w/2-75,MainFrame.h*3/4-60);
+        userLabel.setLocation(MainFrame.w/2-160,MainFrame.h*3/4-50);
+        userField.setLocation(MainFrame.w/2-75,MainFrame.h*3/4-50);
         passwordLabel.setLocation(MainFrame.w/2-160,MainFrame.h*3/4-10);
         passwordField.setLocation(MainFrame.w/2-75,MainFrame.h*3/4-10);
     	close.setLocation(MainFrame.w-30,0);
     	min.setLocation(MainFrame.w-80,0);
-    	login.setLocation(MainFrame.w-150,MainFrame.h*3/4-63);
+    	login.setLocation(MainFrame.w-150,MainFrame.h*3/4-53);
     	_return.setLocation(MainFrame.w-150,MainFrame.h*3/4-13);
     	
     	

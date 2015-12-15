@@ -448,19 +448,16 @@ public class PeopleAgencyManage extends JPanel{
         JLabel tipLabel2 = new JLabel(tip2);
         tipLabel2.setSize((int)(16*tip2.length()*1.07f), 16);
         tipLabel2.setFont(new Font("宋体", Font.BOLD, 15));
-        tipLabel2.setForeground(Color.RED);
         tipLabel2.setLocation(596-(int)(16*tip2.length()*1.07f)/2,128+500+20);
     	String tip3="提示：若要修改机构里的人员资料，可以编辑其人员表格，最后点击修改按钮即可修改。(也要求你输入新机构名)";
         JLabel tipLabel3 = new JLabel(tip3);
         tipLabel3.setSize((int)(16*tip3.length()*1.07f), 16);
         tipLabel3.setFont(new Font("宋体", Font.BOLD, 15));
-        tipLabel3.setForeground(Color.RED);
         tipLabel3.setLocation(596-(int)(16*tip3.length()*1.07f)/2+40,128+500+40);
     	String tip4="注意：机构编号不能修改，所以以上两种修改都不要求输入新机构编号。";
         JLabel tipLabel4 = new JLabel(tip4);
         tipLabel4.setSize((int)(16*tip4.length()*1.07f), 16);
         tipLabel4.setFont(new Font("宋体", Font.BOLD, 15));
-        tipLabel4.setForeground(Color.RED);
         tipLabel4.setLocation(596-(int)(16*tip4.length()*1.07f)/2+40,128+500+60);
 
 

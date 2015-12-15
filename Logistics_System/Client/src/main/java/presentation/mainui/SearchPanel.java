@@ -48,7 +48,7 @@ public class SearchPanel extends JPanel{
         if(Invalid){
         	g.drawImage(Img.BLACK_BG, 0, MainFrame.h-50, MainFrame.w, 50, null);
         	
-            g.setColor(Color.RED);
+            g.setColor(Color.BLACK);
             g.setFont(new Font("楷体", Font.BOLD, 26));
             g.drawString(result, -result.length()*13+MainFrame.w/2, 13+MainFrame.h-30);
         }
@@ -85,7 +85,7 @@ public class SearchPanel extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        search = new MyButton(90, 30, Img.SEARCH_0, Img.SEARCH_1, Img.SEARCH_2);
         search.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				searchInf();
@@ -95,7 +95,7 @@ public class SearchPanel extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(90, 30, Img.RETURNING_0, Img.RETURNING_1, Img.RETURNING_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();//清空文本域和错误提示
@@ -109,18 +109,18 @@ public class SearchPanel extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         JLabel orderLabel = new JLabel("订单号：");
-        orderLabel.setSize(80, 20);
-        orderLabel.setFont(new Font("楷体", Font.BOLD, 18));
+        orderLabel.setSize(160, 30);
+        orderLabel.setFont(new Font("楷体", Font.BOLD, 29));
         orderField = new JTextField();
-        orderField.setSize(150, 20);
+        orderField.setSize(220, 30);
 
         
-        orderLabel.setLocation(MainFrame.w/2-120,MainFrame.h*3/4-60);
-        orderField.setLocation(MainFrame.w/2-50,MainFrame.h*3/4-60);
+        orderLabel.setLocation(MainFrame.w/2-210,MainFrame.h*3/4-45);
+        orderField.setLocation(MainFrame.w/2-90,MainFrame.h*3/4-45);
     	close.setLocation(MainFrame.w-30,0);
     	min.setLocation(MainFrame.w-80,0);
-    	search.setLocation(MainFrame.w-100,MainFrame.h*3/4-60);
-    	_return.setLocation(MainFrame.w-100,MainFrame.h*3/4-30);
+    	search.setLocation(MainFrame.w-370,MainFrame.h*3/4+30);
+    	_return.setLocation(MainFrame.w-210,MainFrame.h*3/4+30);
     	
     	
     	add(orderLabel);
