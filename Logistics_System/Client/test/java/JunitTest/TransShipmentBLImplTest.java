@@ -6,16 +6,7 @@ import org.junit.Test;
 
 public class TransShipmentBLImplTest {
 
-	@Test
-	public void testTransShipmentBLImpl() {
-		fail("尚未实现");
-	}
-
-	@Test
-	public void testCreateShiplist() {
-		fail("尚未实现");
-	}
-
+	//测试获得本次中转单单号
 	@Test
 	public void testCreateTransShipmentListId() {
 		fail("尚未实现");

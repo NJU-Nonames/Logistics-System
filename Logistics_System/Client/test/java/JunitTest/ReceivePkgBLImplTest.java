@@ -5,19 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class ReceivePkgBLImplTest {
-
-	@Test
-	public void testReceivePkgBLImpl() {
-		fail("尚未实现");
-	}
-
+    //测试获得订单信息
 	@Test
 	public void testFindOrderlist() {
-		fail("尚未实现");
-	}
-
-	@Test
-	public void testConfirmRecieve() {
 		fail("尚未实现");
 	}
 

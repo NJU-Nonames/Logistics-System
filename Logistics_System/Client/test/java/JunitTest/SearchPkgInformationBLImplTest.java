@@ -5,12 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class SearchPkgInformationBLImplTest {
-
-	@Test
-	public void testSearchPkgInformationBLImpl() {
-		fail("尚未实现");
-	}
-
+    //测试获得订单轨迹
 	@Test
 	public void testSearchPkgInformation() {
 		fail("尚未实现");

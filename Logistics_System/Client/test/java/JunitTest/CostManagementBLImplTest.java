@@ -5,22 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CostManagementBLImplTest {
-
-	@Test
-	public void testCostManagementBLImpl() {
-		fail("尚未实现");
-	}
-
-	@Test
-	public void testCreateMoneyOutlist() {
-		fail("尚未实现");
-	}
-
+    //测试获得两个日期之间的付款单
 	@Test
 	public void testSearch() {
 		fail("尚未实现");
 	}
-
+    //测试获得本次付款单单号
 	@Test
 	public void testCreateMoneyOutListId() {
 		fail("尚未实现");

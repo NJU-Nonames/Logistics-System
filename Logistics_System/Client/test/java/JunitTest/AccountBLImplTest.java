@@ -1,30 +1,19 @@
-package businesslogic.JunitTest;
+package businesslogic.financebl;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import businesslogic.financebl.AccountBLImpl;
-import po.agency.BankAccountPO;
-import presentation.mainui.CurrentUser;
-import utility.ResultMessage;
-import vo.BankAccountVO;
-
 public class AccountBLImplTest {
-	AccountBLImpl accountbl=new AccountBLImpl(new CurrentUser("上官","快递中心","000000","shangguan"));
-	BankAccountVO bankaccountvo=new BankAccountVO("银行账户测试1", "0000000000000000099", 100);
-
+    //测试根据账户名和账号模糊查找账户信息
 	@Test
-	public void testCount() {
-		assertTrue( "添加账户成功!".equals(accountbl.createCount(bankaccountvo).getMessage()));
-		assertTrue( "账户已存在!".equals(accountbl.createCount(bankaccountvo).getMessage()));
-		assertTrue("删除账户成功!".equals(accountbl.removeCount("银行账户测试1").getMessage()));
-		assertTrue( "要删除的账户不存在!".equals(accountbl.removeCount("银行账户测试1").getMessage()));
-		accountbl.createCount(bankaccountvo);
-		assertTrue("更新账户信息成功!".equals(accountbl.updateCount(new BankAccountVO("银行账户测试", "0000000000000000099", 100)).getMessage()));
-		assertTrue("要更新的账户不存在!".equals(accountbl.updateCount(new BankAccountVO("银行账户测试", "0000000000000000098", 100)).getMessage()));
-		assertTrue("银行账户测试".equals(accountbl.searchCount("银行")));
-		assertTrue("银行账户测试".equals(accountbl.searchCount("账户")));
-		assertTrue("银行账户测试".equals(accountbl.searchCount("0000000000000000099")));
+	public void testSearchCount() {
+		fail("Not yet implemented");
 	}
+    //测试显示所有账户信息
+	@Test
+	public void testShow() {
+		fail("Not yet implemented");
+	}
+
 }
