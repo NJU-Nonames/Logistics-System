@@ -129,7 +129,7 @@ public class LoadManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        min = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        min = new MyButton(30, 30, Img.MINI_0, Img.MINI_1, Img.MINI_2);
         min.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.setExtendedState(JFrame.ICONIFIED);
@@ -139,7 +139,7 @@ public class LoadManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(30, 30, Img.RETURN_0, Img.RETURN_1, Img.RETURN_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.dispose();
@@ -151,7 +151,7 @@ public class LoadManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_TransferCenterReceive = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_TransferCenterReceive = new MyButton(frame.getWidth()/6, 30, Img.GOZHONGZHUAN_0, Img.GOZHONGZHUAN_1, Img.GOZHONGZHUAN_2);
         goto_TransferCenterReceive.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -164,7 +164,7 @@ public class LoadManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_TransShipment = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_TransShipment = new MyButton(frame.getWidth()/6, 30, Img.GOZHUANGYUN_0, Img.GOZHUANGYUN_1, Img.GOZHUANGYUN_2);
         goto_TransShipment.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -177,7 +177,7 @@ public class LoadManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_InputRepertory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_InputRepertory = new MyButton(frame.getWidth()/6, 30, Img.GORUKU_0, Img.GORUKU_1, Img.GORUKU_2);
         goto_InputRepertory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -190,7 +190,8 @@ public class LoadManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_LoadManage=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        
+        goto_LoadManage=new MyButton(frame.getWidth()/6, 30, Img.GOLOAD_2, Img.GOLOAD_2, Img.GOLOAD_2);
         goto_LoadManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -204,7 +205,7 @@ public class LoadManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-    	add = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	add = new MyButton(90, 30, Img.ADD_0, Img.ADD_1, Img.ADD_2);
     	add.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_add();
@@ -214,8 +215,8 @@ public class LoadManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	add.setLocation(170+20+330,128+80+40+40+40+40+120-7);
-    	remove = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	add.setLocation(170+20+300,128+80+40+40+40+40+120-7);
+    	remove = new MyButton(90, 30, Img.DELETE_0, Img.DELETE_1, Img.DELETE_2);
     	remove.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_remove();
@@ -225,8 +226,8 @@ public class LoadManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	remove.setLocation(596+220,128+80+40+40+40+40-7);
-    	confirm = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	remove.setLocation(596+180,128+80+40+40+40+40-7);
+    	confirm = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm();
@@ -236,14 +237,13 @@ public class LoadManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	confirm.setLocation(596-15,128+80+40+40+40+160+50);
+    	confirm.setLocation(596-15-20,128+80+40+40+40+160+50);
     	
     	//最基本元素
-        JLabel titleLabel = new JLabel("物流信息管理系统");
-        titleLabel.setSize((int)(50*8*1.07f), 50);
-        titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
-        titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
+    	 JLabel titleLabel = new JLabel("物流信息管理系统");
+         titleLabel.setSize((int)(50*8*1.07f), 50);
+         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
+         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="车辆装车管理";
         JLabel funLabel = new JLabel(func);
@@ -254,9 +254,9 @@ public class LoadManage extends JPanel{
         JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
         currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
         currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setForeground(Color.DARK_GRAY);
         currentuserAgencyNameLabel.setLocation(170,128-30);
-
+        
         String s="中转中心业务员";
         JLabel currentuserLabel = new JLabel(s);
         currentuserLabel.setSize((int)(30*s.length()*1.07f), 30);
@@ -266,7 +266,7 @@ public class LoadManage extends JPanel{
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentusernameLabel.setForeground(Color.RED);
+        currentusernameLabel.setForeground(Color.DARK_GRAY);
         currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(CenterClerkFrame.w-30,0);
@@ -372,12 +372,12 @@ public class LoadManage extends JPanel{
 		JLabel l8 = new JLabel("生成装车单：");
 		l8.setSize((int)(16*9*1.07f), 16);
 		l8.setFont(new Font("宋体", Font.BOLD, 15));
-		l8.setLocation(596-250,128+80+40+40+40+160+50+7);
+		l8.setLocation(596-250+50,128+80+40+40+40+160+50+7);
         
-		goto_InputRepertory.setLocation(20,250);
-    	goto_TransferCenterReceive.setLocation(20,150);
-    	goto_TransShipment.setLocation(20,200);
-    	goto_LoadManage.setLocation(20,300);
+		goto_InputRepertory.setLocation(0,250);
+    	goto_TransferCenterReceive.setLocation(0,150);
+    	goto_TransShipment.setLocation(0,200);
+    	goto_LoadManage.setLocation(0,300);
 		
 		
 		

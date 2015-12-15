@@ -204,7 +204,7 @@ public class TruckManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_DriverManage = new MyButton(frame.getWidth()/6, 30,Img.GODELIVER_0, Img.GODELIVER_1,Img.GODELIVER_2);
+        goto_DriverManage = new MyButton(frame.getWidth()/6, 30, Img.GODRIVER_0, Img.GODRIVER_1, Img.GODRIVER_2);
     	goto_DriverManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -218,7 +218,7 @@ public class TruckManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-    	add = new MyButton(30, 30, Img.BG, Img.CLOSE_1, Img.CLOSE_2);
+    	add = new MyButton(90, 30, Img.ADD_0, Img.ADD_1, Img.ADD_2);
     	add.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_add();
@@ -228,7 +228,7 @@ public class TruckManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	remove = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	remove = new MyButton(90, 30, Img.DELETE_0, Img.DELETE_1, Img.DELETE_2);
     	remove.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_remove();
@@ -238,7 +238,7 @@ public class TruckManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	change = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	change = new MyButton(90, 30, Img.UPDATE_0, Img.UPDATE_1, Img.UPDATE_2);
     	change.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_change();
@@ -248,7 +248,7 @@ public class TruckManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	search = new MyButton(90, 30, Img.SEARCH_0, Img.SEARCH_1, Img.SEARCH_2);
     	search.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_search();

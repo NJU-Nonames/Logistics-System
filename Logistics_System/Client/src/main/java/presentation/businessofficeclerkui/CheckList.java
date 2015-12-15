@@ -212,7 +212,7 @@ public class CheckList extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_DriverManage = new MyButton(frame.getWidth()/6, 30, Img.GODELIVER_0, Img.GODELIVER_1, Img.GODELIVER_2);
+        goto_DriverManage = new MyButton(frame.getWidth()/6, 30, Img.GODRIVER_0, Img.GODRIVER_1, Img.GODRIVER_2);
     	goto_DriverManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -226,7 +226,7 @@ public class CheckList extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-    	add = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	add = new MyButton(90, 30, Img.ADD_0, Img.ADD_1, Img.ADD_2);
     	add.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_add();
@@ -237,7 +237,7 @@ public class CheckList extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	add.setLocation(170+20+330,128+80+40+40-7);
-    	remove = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	remove = new MyButton(90, 30, Img.DELETE_0, Img.DELETE_1, Img.DELETE_2);
     	remove.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_remove();
@@ -248,7 +248,7 @@ public class CheckList extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	remove.setLocation(596+220,128+80+40+40+40+40-7);
-    	confirm = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	confirm = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm();

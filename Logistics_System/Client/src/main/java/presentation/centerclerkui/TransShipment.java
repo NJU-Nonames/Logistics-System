@@ -134,7 +134,7 @@ public class TransShipment extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        min = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        min = new MyButton(30, 30, Img.MINI_0, Img.MINI_1, Img.MINI_2);
         min.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.setExtendedState(JFrame.ICONIFIED);
@@ -144,7 +144,7 @@ public class TransShipment extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(30, 30, Img.RETURN_0, Img.RETURN_1, Img.RETURN_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.dispose();
@@ -156,7 +156,7 @@ public class TransShipment extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_TransferCenterReceive = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_TransferCenterReceive = new MyButton(frame.getWidth()/6, 30, Img.GOZHONGZHUAN_0, Img.GOZHONGZHUAN_1, Img.GOZHONGZHUAN_2);
         goto_TransferCenterReceive.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -169,7 +169,7 @@ public class TransShipment extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_TransShipment = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_TransShipment = new MyButton(frame.getWidth()/6, 30, Img.GOZHUANGYUN_2, Img.GOZHUANGYUN_2, Img.GOZHUANGYUN_2);
         goto_TransShipment.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -182,7 +182,7 @@ public class TransShipment extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_InputRepertory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_InputRepertory = new MyButton(frame.getWidth()/6, 30, Img.GORUKU_0, Img.GORUKU_1, Img.GORUKU_2);
         goto_InputRepertory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -195,7 +195,8 @@ public class TransShipment extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_LoadManage=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        
+        goto_LoadManage=new MyButton(frame.getWidth()/6, 30, Img.GOLOAD_0, Img.GOLOAD_1, Img.GOLOAD_2);
         goto_LoadManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -209,7 +210,7 @@ public class TransShipment extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-        add = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        add = new MyButton(90, 30, Img.ADD_0, Img.ADD_1, Img.ADD_2);
     	add.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_add();
@@ -219,8 +220,8 @@ public class TransShipment extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	add.setLocation(CenterClerkFrame.w/6+265,CenterClerkFrame.h/6+278);
-    	remove = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	add.setLocation(CenterClerkFrame.w/6+265+50,CenterClerkFrame.h/6+278);
+    	remove = new MyButton(90, 30, Img.DELETE_0, Img.DELETE_1, Img.DELETE_2);
     	remove.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_remove();
@@ -230,10 +231,10 @@ public class TransShipment extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	remove.setLocation(CenterClerkFrame.w/6+20+180,CenterClerkFrame.h/6+308+150+10);
+    	remove.setLocation(CenterClerkFrame.w/6+20+190,CenterClerkFrame.h/6+308+150+10);
     	
-    	confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        confirm.setLocation(CenterClerkFrame.w/2,remove.getY()+remove.getHeight()+50);
+    	confirm=new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
+        confirm.setLocation(CenterClerkFrame.w/2-50,remove.getY()+remove.getHeight()+50);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm();
@@ -244,8 +245,8 @@ public class TransShipment extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	
-    	cancel=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	cancel.setLocation(CenterClerkFrame.w/3*2,confirm.getY());
+    	cancel=new MyButton(90, 30, Img.CANCEL_0, Img.CANCEL_1, Img.CANCEL_2);
+    	cancel.setLocation(CenterClerkFrame.w/3*2-50,confirm.getY());
      	cancel.addMouseListener(new MouseListener(){
  			public void mouseClicked(MouseEvent arg0) {
  				_cancel();
@@ -259,7 +260,6 @@ public class TransShipment extends JPanel{
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="装运管理";
@@ -271,7 +271,7 @@ public class TransShipment extends JPanel{
         JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
         currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
         currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setForeground(Color.DARK_GRAY);
         currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="中转中心业务员";
@@ -283,7 +283,7 @@ public class TransShipment extends JPanel{
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentusernameLabel.setForeground(Color.RED);
+        currentusernameLabel.setForeground(Color.DARK_GRAY);
         currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
        
         JLabel transWays=new JLabel("装运方式:");
@@ -332,7 +332,7 @@ public class TransShipment extends JPanel{
         JLabel price = new JLabel("运费:");
         price.setSize((int)(16*"运费:".length()*1.07f), 16);
         price.setFont(new Font("宋体", Font.BOLD, 15));
-        price.setLocation(CenterClerkFrame.w/6+20+400+80, CenterClerkFrame.h/6+308+58);
+        price.setLocation(CenterClerkFrame.w/6+20+400+80+30, CenterClerkFrame.h/6+308+58);
         
         //表头
       	Vector<String> vColumns = new Vector<String>();
@@ -350,14 +350,14 @@ public class TransShipment extends JPanel{
      			return false;//不能修改
      		}
       	};
-      	barCodeTable.setPreferredScrollableViewportSize(new Dimension(380,120));
+      	barCodeTable.setPreferredScrollableViewportSize(new Dimension(450,120));
       	barCodeTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
      	barCodeTable.setSelectionBackground(Color.YELLOW);
       	JPanel jp=new JPanel();
       	JScrollPane scrollPane = new JScrollPane();
       	scrollPane.getViewport().add(barCodeTable);
       	barCodeTable.setFillsViewportHeight(true);
-      	jp.setSize(400, 150);
+      	jp.setSize(500, 150);
       	jp.setLocation(CenterClerkFrame.w/6+20, CenterClerkFrame.h/6+308);
       	jp.setOpaque(false);
       	jp.add(scrollPane,BorderLayout.CENTER);
@@ -368,10 +368,10 @@ public class TransShipment extends JPanel{
     	min.setLocation(CenterClerkFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
-    	goto_TransferCenterReceive.setLocation(20,150);
-    	goto_TransShipment.setLocation(20,200);
-    	goto_InputRepertory.setLocation(20,250);
-    	goto_LoadManage.setLocation(20,300);
+    	goto_InputRepertory.setLocation(0,250);
+    	goto_TransferCenterReceive.setLocation(0,150);
+    	goto_TransShipment.setLocation(0,200);
+    	goto_LoadManage.setLocation(0,300);
     	//其他组件
         _plane=new JRadioButton("航运",true);
         _plane.setSize((int)(100*1.07f), 20);
@@ -399,7 +399,7 @@ public class TransShipment extends JPanel{
         _supervisor.setLocation(supervisor.getX()+supervisor.getWidth(),supervisor.getY()-3);
         
         barCode.setSize(150, 20);
-		barCode.setLocation(add.getX()-barCode.getWidth(),add.getY()+5);
+		barCode.setLocation(add.getX()-barCode.getWidth()-30,add.getY()+5);
         
 		_price.setSize(80,20);
 		_price.setLocation(price.getX()+price.getWidth(), price.getY());

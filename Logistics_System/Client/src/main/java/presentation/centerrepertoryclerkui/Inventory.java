@@ -124,7 +124,7 @@ public class Inventory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        min = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        min = new MyButton(30, 30, Img.MINI_0, Img.MINI_1, Img.MINI_2);
         min.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.setExtendedState(JFrame.ICONIFIED);
@@ -134,7 +134,7 @@ public class Inventory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(30, 30, Img.RETURN_0, Img.RETURN_1, Img.RETURN_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.dispose();
@@ -146,7 +146,7 @@ public class Inventory extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_InputRepertory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_InputRepertory = new MyButton(170, 30, Img.GORUKU_0, Img.GORUKU_1, Img.GORUKU_2);
         goto_InputRepertory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -159,7 +159,7 @@ public class Inventory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_OutputRepertory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_OutputRepertory = new MyButton(170, 30, Img.GOCHUKU_0, Img.GOCHUKU_1, Img.GOCHUKU_2);
         goto_OutputRepertory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -172,7 +172,7 @@ public class Inventory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_ViewRepertory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_ViewRepertory = new MyButton(170, 30, Img.GOKUCUNCHAKAN_0, Img.GOKUCUNCHAKAN_1, Img.GOKUCUNCHAKAN_2);
         goto_ViewRepertory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -185,7 +185,7 @@ public class Inventory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_Inventory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_Inventory = new MyButton(170, 30, Img.GOKUCUNPANDIAN_2, Img.GOKUCUNPANDIAN_2, Img.GOKUCUNPANDIAN_2);
         goto_Inventory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -199,7 +199,7 @@ public class Inventory extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-        search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        search = new MyButton(90, 30, Img.SEARCH_0, Img.SEARCH_1, Img.SEARCH_2);
         search.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_search();
@@ -211,7 +211,7 @@ public class Inventory extends JPanel{
         });
         search.setLocation(CenterClerkFrame.w/3*2+25,128+84-20);
         
-        refresh = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        refresh = new MyButton(90, 30, Img.REFRESH_0, Img.REFRESH_1, Img.REFRESH_2);
         refresh.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_refresh();
@@ -226,7 +226,6 @@ public class Inventory extends JPanel{
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="库存盘点";
@@ -238,7 +237,7 @@ public class Inventory extends JPanel{
         JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
         currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
         currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setForeground(Color.DARK_GRAY);
         currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="仓库管理员";
@@ -250,7 +249,7 @@ public class Inventory extends JPanel{
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentusernameLabel.setForeground(Color.RED);
+        currentusernameLabel.setForeground(Color.DARK_GRAY);
         currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
         
         
@@ -329,7 +328,7 @@ public class Inventory extends JPanel{
         w.setFont(new Font("宋体", Font.BOLD, 15));
         w.setLocation(_w.getX()+_w.getWidth()+10,tiaozhengzhi.getY());
         
-        adjust = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        adjust = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         adjust.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_adjust();
@@ -393,10 +392,10 @@ public class Inventory extends JPanel{
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
-    	goto_InputRepertory.setLocation(20,150);
-    	goto_OutputRepertory.setLocation(20,200);
-    	goto_ViewRepertory.setLocation(20,250);
-    	goto_Inventory.setLocation(20,300);
+    	goto_InputRepertory.setLocation(0,150);
+    	goto_OutputRepertory.setLocation(0,200);
+    	goto_ViewRepertory.setLocation(0,250);
+    	goto_Inventory.setLocation(0,300);
     	
     	//其他组件
     	searchField.setSize((int)(200*1.07f), 20);

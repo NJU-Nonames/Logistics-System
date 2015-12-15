@@ -219,7 +219,7 @@ public class Receive extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_DriverManage = new MyButton(frame.getWidth()/6, 30, Img.GODELIVER_0, Img.GODELIVER_1, Img.GODELIVER_2);
+        goto_DriverManage = new MyButton(frame.getWidth()/6, 30, Img.GODRIVER_0, Img.GODRIVER_1, Img.GODRIVER_2);
     	goto_DriverManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -278,7 +278,7 @@ public class Receive extends JPanel{
         _loadId.setSize((int)(170*1.07f), 20);
         _loadId.setLocation(loadId.getX()+loadId.getWidth(),loadId.getY());
         
-        show=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        show=new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         show.setLocation(_loadId.getX()+_loadId.getWidth()+50,_loadId.getY()-6);
     	show.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
@@ -358,7 +358,7 @@ public class Receive extends JPanel{
         placeName.setFont(new Font("宋体", Font.BOLD, 15));
         placeName.setLocation(CenterClerkFrame.w/6+20,128+170);
         
-        confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm=new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm.setLocation(CenterClerkFrame.w/2,CenterClerkFrame.w/3*2-50);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
@@ -370,7 +370,7 @@ public class Receive extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	
-    	cancel=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	cancel=new MyButton(90, 30, Img.CANCEL_0, Img.CANCEL_1, Img.CANCEL_2);
     	cancel.setLocation(CenterClerkFrame.w/3*2,confirm.getY());
      	cancel.addMouseListener(new MouseListener(){
  			public void mouseClicked(MouseEvent arg0) {

@@ -114,7 +114,7 @@ public class OutputRepertory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        min = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        min = new MyButton(30, 30, Img.MINI_0, Img.MINI_1, Img.MINI_2);
         min.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.setExtendedState(JFrame.ICONIFIED);
@@ -124,7 +124,7 @@ public class OutputRepertory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(30, 30, Img.RETURN_0, Img.RETURN_1, Img.RETURN_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.dispose();
@@ -136,7 +136,7 @@ public class OutputRepertory extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_InputRepertory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_InputRepertory = new MyButton(170, 30, Img.GORUKU_0, Img.GORUKU_1, Img.GORUKU_2);
         goto_InputRepertory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -149,7 +149,7 @@ public class OutputRepertory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_OutputRepertory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_OutputRepertory = new MyButton(170, 30, Img.GOCHUKU_2, Img.GOCHUKU_2, Img.GOCHUKU_2);
         goto_OutputRepertory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -162,7 +162,7 @@ public class OutputRepertory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_ViewRepertory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_ViewRepertory = new MyButton(170, 30, Img.GOKUCUNCHAKAN_0, Img.GOKUCUNCHAKAN_1, Img.GOKUCUNCHAKAN_2);
         goto_ViewRepertory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -175,7 +175,7 @@ public class OutputRepertory extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        goto_Inventory = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_Inventory = new MyButton(170, 30, Img.GOKUCUNPANDIAN_0, Img.GOKUCUNPANDIAN_1, Img.GOKUCUNPANDIAN_2);
         goto_Inventory.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
@@ -194,7 +194,6 @@ public class OutputRepertory extends JPanel{
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="出库管理";
@@ -206,7 +205,7 @@ public class OutputRepertory extends JPanel{
         JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
         currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
         currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setForeground(Color.DARK_GRAY);
         currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="仓库管理员";
@@ -218,7 +217,7 @@ public class OutputRepertory extends JPanel{
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentusernameLabel.setForeground(Color.RED);
+        currentusernameLabel.setForeground(Color.DARK_GRAY);
         currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
         
         
@@ -251,10 +250,10 @@ public class OutputRepertory extends JPanel{
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
-    	goto_InputRepertory.setLocation(20,150);
-    	goto_OutputRepertory.setLocation(20,200);
-    	goto_ViewRepertory.setLocation(20,250);
-    	goto_Inventory.setLocation(20,300);
+    	goto_InputRepertory.setLocation(0,150);
+    	goto_OutputRepertory.setLocation(0,200);
+    	goto_ViewRepertory.setLocation(0,250);
+    	goto_Inventory.setLocation(0,300);
     	
     	//其他组件
     	_plane=new JRadioButton("航运",true);
@@ -284,8 +283,8 @@ public class OutputRepertory extends JPanel{
         _orderId.setSize((int)(170*1.07f), 20);
         _orderId.setLocation(orderId.getX()+orderId.getWidth(),orderId.getY());
 		
-        confirm=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        confirm.setLocation(CenterClerkFrame.w/2,transId.getY()+transId.getHeight()+100);
+        confirm=new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
+        confirm.setLocation(CenterClerkFrame.w/2-50,transId.getY()+transId.getHeight()+120);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm();
@@ -296,8 +295,8 @@ public class OutputRepertory extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	
-    	cancel=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	cancel.setLocation(CenterClerkFrame.w/3*2,confirm.getY());
+    	cancel=new MyButton(90, 30, Img.CANCEL_0, Img.CANCEL_1, Img.CANCEL_2);
+    	cancel.setLocation(CenterClerkFrame.w/3*2-50,confirm.getY());
      	cancel.addMouseListener(new MouseListener(){
  			public void mouseClicked(MouseEvent arg0) {
  				_cancel();

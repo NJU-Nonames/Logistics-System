@@ -140,7 +140,7 @@ public class UserManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_UserManage = new MyButton(30, 30, Img.GOYONGHU_2, Img.GOYONGHU_2, Img.GOYONGHU_2);
+        goto_UserManage = new MyButton(170, 30, Img.GOYONGHU_2, Img.GOYONGHU_2, Img.GOYONGHU_2);
     	//详细操作按钮
     	
     	//最基本元素
