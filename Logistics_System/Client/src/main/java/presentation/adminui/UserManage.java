@@ -140,14 +140,14 @@ public class UserManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-        goto_UserManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        goto_UserManage = new MyButton(frame.getWidth()/6, 30, Img.GOZHANGHU_2,  Img.GOZHANGHU_2,  Img.GOZHANGHU_2);
     	//详细操作按钮
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
+        titleLabel.setForeground(Color.BLACK);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="用户管理";
@@ -165,14 +165,14 @@ public class UserManage extends JPanel{
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentusernameLabel.setForeground(Color.RED);
+        currentusernameLabel.setForeground(Color.DARK_GRAY);
         currentusernameLabel.setLocation(AdminFrame.w/6+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(AdminFrame.w-30,0);
     	min.setLocation(AdminFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
-    	goto_UserManage.setLocation(20,150);
+    	goto_UserManage.setLocation(0,150);
     	
     	//其他组件
     	searchField.setSize(150, 20);

@@ -119,7 +119,7 @@ public class Statistic extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        min = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        min = new MyButton(30, 30, Img.MINI_0, Img.MINI_1, Img.MINI_2);
         min.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.setExtendedState(JFrame.ICONIFIED);
@@ -129,7 +129,7 @@ public class Statistic extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        _return = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        _return = new MyButton(30, 30, Img.RETURN_0, Img.RETURN_1, Img.RETURN_2);
         _return.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				frame.dispose();
@@ -141,8 +141,21 @@ public class Statistic extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         //功能按钮
-    	goto_CostManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	goto_CostManage = new MyButton(frame.getWidth()/6, 30, Img.GOCHENGBEN_0, Img.GOCHENGBEN_1, Img.GOCHENGBEN_2);
     	goto_CostManage.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				clear();
+				frame.setStated(frame.getState());
+				frame.setState(1);
+				frame.setChanged(true);
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+    	goto_SettlementManage = new MyButton(frame.getWidth()/6, 30, Img.GOJIESUAN_0, Img.GOJIESUAN_1, Img.GOJIESUAN_2);
+    	goto_SettlementManage.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
@@ -154,8 +167,8 @@ public class Statistic extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	goto_SettlementManage = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	goto_SettlementManage.addMouseListener(new MouseListener(){
+    	goto_Statistic = new MyButton(frame.getWidth()/6, 30, Img.GOTONGJIBAOBIAO_2,Img.GOTONGJIBAOBIAO_2,Img.GOTONGJIBAOBIAO_2);
+    	goto_Statistic.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
@@ -167,8 +180,8 @@ public class Statistic extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	goto_Statistic = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	goto_Statistic.addMouseListener(new MouseListener(){
+    	goto_BaseDataSetting = new MyButton(frame.getWidth()/6, 30, Img.GOQICHU_0, Img.GOQICHU_1, Img.GOQICHU_2);
+    	goto_BaseDataSetting.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
@@ -180,25 +193,12 @@ public class Statistic extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	goto_BaseDataSetting = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-    	goto_BaseDataSetting.addMouseListener(new MouseListener(){
-			public void mouseClicked(MouseEvent arg0) {
-				clear();
-				frame.setStated(frame.getState());
-				frame.setState(5);
-				frame.setChanged(true);
-			}
-			public void mouseEntered(MouseEvent arg0) {}
-			public void mouseExited(MouseEvent arg0) {}
-			public void mousePressed(MouseEvent arg0) {}
-			public void mouseReleased(MouseEvent arg0) {}
-        });
-    	goto_SystemLog = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	goto_SystemLog = new MyButton(frame.getWidth()/6, 30, Img.GOXITONG_0, Img.GOXITONG_1, Img.GOXITONG_2);
     	goto_SystemLog.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				clear();
 				frame.setStated(frame.getState());
-				frame.setState(6);
+				frame.setState(5);
 				frame.setChanged(true);
 			}
 			public void mouseEntered(MouseEvent arg0) {}
@@ -232,7 +232,7 @@ public class Statistic extends JPanel{
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
         titleLabel.setFont(new Font("宋体", Font.BOLD, 50));
-        titleLabel.setForeground(Color.BLUE);
+        titleLabel.setForeground(Color.BLACK);
         titleLabel.setLocation(596-(int)(50*8*1.07f)/2,20);
 
         String func="统计报表";
@@ -244,7 +244,7 @@ public class Statistic extends JPanel{
         JLabel currentuserAgencyNameLabel = new JLabel(currentUser.getAgencyName());
         currentuserAgencyNameLabel.setSize((int)(30*currentUser.getAgencyName().length()*1.07f), 30);
         currentuserAgencyNameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentuserAgencyNameLabel.setForeground(Color.RED);
+        currentuserAgencyNameLabel.setForeground(Color.DARK_GRAY);
         currentuserAgencyNameLabel.setLocation(170,128-30);
         
         String s="财务人员";
@@ -256,18 +256,18 @@ public class Statistic extends JPanel{
         JLabel currentusernameLabel = new JLabel(currentUser.getname());
         currentusernameLabel.setSize((int)(30*currentUser.getname().length()*1.07f), 30);
         currentusernameLabel.setFont(new Font("宋体", Font.BOLD, 30));
-        currentusernameLabel.setForeground(Color.RED);
+        currentusernameLabel.setForeground(Color.DARK_GRAY);
         currentusernameLabel.setLocation(170+(int)(30*currentUser.getAgencyName().length()*1.07f)+(int)(30*s.length()*1.07f),128-30);
     	//最基本按钮
     	close.setLocation(FinacialStaffLowFrame.w-30,0);
     	min.setLocation(FinacialStaffLowFrame.w-80,0);
     	_return.setLocation(20,50);
     	//功能按钮
-    	goto_CostManage.setLocation(20,200);
-    	goto_SettlementManage.setLocation(20,250);
-    	goto_Statistic.setLocation(20,300);
-    	goto_BaseDataSetting.setLocation(20,350);
-    	goto_SystemLog.setLocation(20,400);
+    	goto_CostManage.setLocation(0,150);
+    	goto_SettlementManage.setLocation(0,200);
+    	goto_Statistic.setLocation(0,250);
+    	goto_BaseDataSetting.setLocation(0,300);
+    	goto_SystemLog.setLocation(0,350);
     	
     	//其他组件
 		JLabel l1 = new JLabel("起始日期：");
