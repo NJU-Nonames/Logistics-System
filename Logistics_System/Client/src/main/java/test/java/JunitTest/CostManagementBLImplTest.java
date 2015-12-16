@@ -1,4 +1,4 @@
-package businesslogic.JunitTest;
+package test.java.JunitTest;
 
 import static org.junit.Assert.*;
 
