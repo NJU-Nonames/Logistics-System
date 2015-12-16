@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
+import config.IPconfig;
 import dataImpl.agency.AgencyDataImpl;
 import dataImpl.agency.BankAccountDataImpl;
 import dataImpl.agency.DriverDataImpl;
@@ -56,13 +57,17 @@ public class RMIstart {
 	/**
 	 * 服务器ip地址
 	 */
-	private static final String IP="172.26.107.225";
+	private static final String IP=IPconfig.ipgetter();
 
 	
 	
 	
 	public static void init(){
 
+		if(IP==null){
+			System.out.println("error IP config!Please set your ip.");
+		    System.exit(0);	
+		}
 		
 		try {
 			//注册RMI通信服务器端

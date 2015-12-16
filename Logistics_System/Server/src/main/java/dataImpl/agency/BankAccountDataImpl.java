@@ -48,6 +48,7 @@ public class BankAccountDataImpl  extends UnicastRemoteObject implements BankAcc
 			rs.next();
 			bankAccount=new BankAccountPO(rs.getString("name"), rs.getString("number"), Double.parseDouble(rs.getString("money")));
 		} catch (SQLException e) {
+			System.out.println("未找到账户");
 			return null;
 		}
 		
@@ -67,7 +68,8 @@ public class BankAccountDataImpl  extends UnicastRemoteObject implements BankAcc
 			}
 
 		} catch (SQLException e) {
-			return null;
+			System.out.println("未找到");
+			return accountlist;
 		}
 		return accountlist;
 	}

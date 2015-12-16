@@ -45,8 +45,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements StaffDataServi
 			staff=new StaffPO(rs2.getString("name"), rs2.getString("sex"),Position.valueOf(rs2.getString("position")), rs2.getString("idNumber"), rs2.getString("workingstarttime"), rs2.getString("phoneNum"), rs2.getString("wage"), rs2.getString("agencyName"), rs2.getString("id"),rs2.getString("agencyid"));
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-			//System.out.println("查询失败");
+			System.out.println("查询失败");
 			return null;
 		}
 		return staff;

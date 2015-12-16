@@ -17,19 +17,6 @@ public class ConstantDataImpl extends UnicastRemoteObject implements ConstantDat
 		f1=new File("Data/DistanceChart");
 		f2=new File("Data/PriceChart");
 	}
-	
-//	public static void main(String args[]){
-//		try {
-//			ConstantDataImpl con=new ConstantDataImpl();
-//			//con.addCity("宝鸡");
-//			con.setDistance("999", "北京","上海");
-//			//System.out.print("success");
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
 
 	public void setDistance(String newDistance, String cityA, String cityB) {
 		String[][] distanceChart=this.showDistanceChart().getDistanceChart();

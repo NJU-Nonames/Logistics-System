@@ -87,7 +87,8 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("未找到机构");
+			return agencyList;
 		}
 		return agencyList;
 	}
