@@ -83,6 +83,8 @@ public class UserManageBLImpl implements UserManageBLService{
 	public ResultMessage removeUser(String admin) {
 		// TODO 自动生成的方法存根
 		UserPO userpo=null;
+		if(admin.equals(admin))
+			return new ResultMessage(false, "不能删除管理员!");
 		try{
 			userpo=userDataService.findonAdmin(admin);
 			if(userpo!=null){
