@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 import config.IPconfig;
+import config.XMLReader;
 import dataImpl.agency.AgencyDataImpl;
 import dataImpl.agency.BankAccountDataImpl;
 import dataImpl.agency.DriverDataImpl;
@@ -52,12 +53,12 @@ public class RMIstart {
 	/**
 	 * 端口号
 	 */
-	private static final int PORT=40000;
+	private static final int PORT=XMLReader.loadconfig().getPORT();
 	
 	/**
 	 * 服务器ip地址
 	 */
-	private static final String IP=IPconfig.ipgetter();
+	private static final String IP=XMLReader.loadconfig().getIP();
 
 	
 	

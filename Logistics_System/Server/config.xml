@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+	<IPconfig>
+		<!-- IP连接设置 -->
+		<IPaddress>127.0.0.1</IPaddress>
+        <Port>40000</Port>
+	</IPconfig>
+</CONFIG> 

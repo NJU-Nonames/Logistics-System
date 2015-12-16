@@ -2,6 +2,7 @@ package businesslogic.rmi;
 import java.rmi.Naming;
 
 import config.IPconfig;
+import config.XMLReader;
 
 
 /**
@@ -14,9 +15,10 @@ import config.IPconfig;
  */
 public class RMIHelper {
 
-    private static final String IP = IPconfig.ipgetter(); //Can be read from config file
-    private static final String PORT="40000";//端口号
+    private static final String IP = XMLReader.loadconfig().getIP(); //Can be read from config file
+    private static final int PORT=XMLReader.loadconfig().getPORT();//端口号
 
+    
     public static Object find(String serviceName){
     	if(IP==null){
     		System.out.println("error.Ip is not found!");
