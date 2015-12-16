@@ -65,8 +65,8 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 				repertoryout.add(this.findOnID(rs.getString("id")));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("操作失败");
+			//e.printStackTrace();
+			System.out.println("未找到");
 			return repertoryout;
 		}
 		
@@ -84,8 +84,8 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 				repertoryout.add(this.findOnID(rs.getString("id")));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("操作失败");
+			//e.printStackTrace();
+			System.out.println("未找到");
 			return repertoryout;
 		}
 		
@@ -103,8 +103,8 @@ public class RepertoryOutDataImpl extends UnicastRemoteObject implements Reperto
 				repertoryout.add(this.findOnID(rs.getString("id")));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("操作失败");
+			//e.printStackTrace();
+			System.out.println("操作失败未找到");
 			return repertoryout;
 		}
 		

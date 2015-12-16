@@ -47,7 +47,7 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 			repertoryin=new RepertoryInPO(id,rs.getString("orderid") , rs.getString("timee"), rs.getString("destination"), rs.getString("arenumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), CheckType.valueOf(rs.getString("checkstate")));
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("出现问题,查找出错");
 			return null;
 		}
@@ -63,7 +63,7 @@ public class RepertoryInDataImpl extends UnicastRemoteObject implements Repertor
 			repertoryin=new RepertoryInPO(id,rs.getString("orderid") , rs.getString("timee"), rs.getString("destination"), rs.getString("arenumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), CheckType.valueOf(rs.getString("checkstate")));
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("出现问题,查找出错");
 			return null;
 		}

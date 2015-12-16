@@ -37,7 +37,9 @@ public class SystemLogDataImpl extends UnicastRemoteObject implements SystemLogD
 				list.add(systemLog);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("未找到。");
+			return list;
+			//e.printStackTrace();
 		}
 	    return list;
 	}

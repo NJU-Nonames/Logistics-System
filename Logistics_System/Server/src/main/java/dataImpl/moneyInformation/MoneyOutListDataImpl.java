@@ -75,7 +75,8 @@ public class MoneyOutListDataImpl extends UnicastRemoteObject implements MoneyOu
 				moneyOutList.add(moneyoutlist);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("未找到。");
 			return moneyOutList;
 		}
 		return moneyOutList;
@@ -93,7 +94,8 @@ public class MoneyOutListDataImpl extends UnicastRemoteObject implements MoneyOu
 				moneyOutList.add(moneyoutlist);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("未找到。");
 			return moneyOutList;
 		}
 		return moneyOutList;

@@ -5,7 +5,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import com.mysql.jdbc.ResultSet;
+
 import po.repertory.RepertoryInPO;
 import po.repertory.RepertoryInfoPO;
 import po.repertory.RepertoryOutPO;
@@ -49,6 +51,7 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 			rs.next();
 			repertoryinfo=new RepertoryInfoPO(repertoryInfoPO.getId(), rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("orderid"));
 		} catch (SQLException e) {
+			System.out.println("未找到。");
 		    return null;
 		}
 		return repertoryinfo;
@@ -64,6 +67,7 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 			repertoryinfo=new RepertoryInfoPO(id, rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("orderid"));
 		} catch (SQLException e) {
 			//e.printStackTrace();
+			System.out.println("未找到。");
 		    return null;
 		}
 		return repertoryinfo;

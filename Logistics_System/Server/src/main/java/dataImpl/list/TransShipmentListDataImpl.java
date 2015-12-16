@@ -64,7 +64,7 @@ public class TransShipmentListDataImpl extends UnicastRemoteObject implements Tr
 			}
 			transshipmentlist=new TransShipmentListPO(rs.getString("timee"), rs.getString("id"), rs.getString("flightnumber"), rs.getString("departureplace"), rs.getString("destination"), rs.getString("containernumber"), rs.getString("supercargo"), barcodes, rs.getDouble("price"),CheckType.valueOf(rs.getString("checkstate")));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("查找失败");
 			return null;
 		}

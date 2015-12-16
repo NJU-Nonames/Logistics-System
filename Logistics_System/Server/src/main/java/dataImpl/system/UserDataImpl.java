@@ -34,21 +34,6 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	 * 因为UserDataService接口继承了Serializable接口才有这个
 	 */
 	private static final long serialVersionUID = -2473929898619936668L;
-
-	//test 测试
-//	public static void main(String args[]){
-//		UserDataService userdata;
-//		try {
-//			userdata = new UserDataImpl();
-//			//userdata.add(new UserPO("tangdaye","1343223",UserType.CENTER_CLERK,"123332214"));
-//			//userdata.delete("123332212");
-//			//userdata.update(new UserPO("tangdaye","133323",UserType.CENTER_CLERK,"1000032214"));
-//			System.out.println(userdata.showAll().get(2).getId());
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 	
 	public void add(UserPO user) {
 		String operate="insert into User values ("+user.getId()+",'"+user.getAdmin()+"','"+user.getPassword()+"','"+user.getPosition()+"');";

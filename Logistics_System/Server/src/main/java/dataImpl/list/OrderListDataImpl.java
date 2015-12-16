@@ -64,8 +64,8 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 			}
 			orderList.setPkgState(path);
 		} catch (SQLException e) {
-			e.printStackTrace();
-			//System.out.println("操作失败 未找到");
+			//e.printStackTrace();
+			System.out.println("操作失败 未找到该订单");
 			return null;
 		}
 		return orderList;
@@ -82,9 +82,9 @@ public class OrderListDataImpl extends UnicastRemoteObject implements OrderListD
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-			//System.out.println("操作失败 未找到");
-			//return null;
+			//e.printStackTrace();
+			System.out.println("操作失败 未找到该时段订单");
+			return orderlist;
 		}
 		return orderlist;
 	}
