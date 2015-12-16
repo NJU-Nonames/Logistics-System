@@ -4,31 +4,36 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import presentation.mainui.CurrentUser;
+import businesslogic.financebl.BaseDataSettingBLImpl;
+import businesslogicservice.financeblservice.BaseDataSettingBLService;
+
 public class BaseDataSettingBLImplTest {
+	BaseDataSettingBLService basedatasetting=new BaseDataSettingBLImpl();
     //查找获得期初银行账户信息
 	@Test
 	public void testFindBaseAccount() {
-		fail("尚未实现");
+		assertTrue(basedatasetting.findBaseAccount().size()==5);
 	}
     //测试期初机构信息
 	@Test
 	public void testFindBaseAgency() {
-		fail("尚未实现");
+		assertTrue(basedatasetting.findBaseAgency().size()==5);
 	}
     //测试获得期初员工信息
 	@Test
 	public void testFindBaseStaff() {
-		fail("尚未实现");
+		assertTrue(basedatasetting.findBaseStaff().size()==5);
 	}
     //测试获得期初货车信息
 	@Test
 	public void testFindBaseTruck() {
-		fail("尚未实现");
+		assertTrue(basedatasetting.findBaseTruck().size()==5);
 	}
     //测试获得期初库存信息
 	@Test
 	public void testFindBaseRepertory() {
-		fail("尚未实现");
+		assertTrue(basedatasetting.findBaseTruck().size()==5);
 	}
 
 }
