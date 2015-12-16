@@ -100,7 +100,6 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 			ArrayList<RepertoryInfoPO> repertoryInfoPO=repertoryinfo.show(user.getAgencyNum());
 			ArrayList<RepertoryOrderVO> repertoryInfoVO=new ArrayList<RepertoryOrderVO>();
 	        int a=0,b=0,c=0,d=0;
-	        System.out.println(repertoryInfoPO.size());
 	        for(int i=0;i<repertoryInfoPO.size();i++)
 	        {
 	        	RepertoryInPO list=repertoryin.findOnOrderID(repertoryInfoPO.get(i).getOrderId(), repertoryInfoPO.get(i).getId());	
