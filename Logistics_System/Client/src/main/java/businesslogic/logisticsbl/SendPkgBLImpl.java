@@ -56,35 +56,22 @@ public class SendPkgBLImpl implements SendPkgBLService {
 			}
 			orderListVO.setArriveTime(days+"");
 			//估计时间完成
-			String cityName1=orderListVO.getSenderAddress();
-			String cityName2=orderListVO.getReceiverAddress();
-			for(int i=0;i<cityName1.length();i++){
-				if(cityName1.charAt(i)=='市'){
-					cityName1=cityName1.substring(0,i+1);
-					break;
-				}
-			}
-			for(int i=0;i<cityName2.length();i++){
-				if(cityName2.charAt(i)=='市'){
-					cityName2=cityName2.substring(0,i+1);
-					break;
-				}
-			}
+			String cityName1=orderListVO.getSenderAddress().substring(0, 2);
+			String cityName2=orderListVO.getReceiverAddress().substring(0,2);
 			DistanceChartPO distanceChart=service2.showDistanceChart();
 			String[][] chart = distanceChart.getDistanceChart();
 			int distance=0;
 			for(int i=0;i<chart.length;i++){
-				if(chart[0][i]==cityName1){
+				if(chart[0][i].equals(cityName1)){
 					for(int j=0;j<chart.length;j++){
-						if(chart[j][0]==cityName2){
+						if(chart[j][0].equals(cityName2)){
 							distance=Integer.parseInt(chart[i][j]);
 							break;
 						}
 					}
 					break;
 				}
-			}
-			
+			}	
 			double price_kiloGram=0.0;
 			switch(orderListVO.getCategory()){
 				case STANDARD:price_kiloGram=service2.showPriceChart().getStandard();break;

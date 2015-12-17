@@ -37,8 +37,8 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 	public ResultMessage createShiplist(TransShipmentListVO transShipment) {
 		// TODO 自动生成的方法存根
 		double weight=0;
-		String departurePlace=user.getAgencyName().substring(0,3);
-		String arrivalplace=transShipment.getDesitination().substring(0,3);
+		String departurePlace=user.getAgencyName().substring(0,2);
+		String arrivalplace=transShipment.getDesitination().substring(0,2);
 		String[][] chart=null;
 		try{
 			chart=constant.showDistanceChart().getDistanceChart(); 
@@ -47,9 +47,9 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 		}
 		int distance=0;
 		for(int i=0;i<chart.length;i++){
-			if(chart[0][i]==departurePlace){
+			if(chart[0][i].equals(departurePlace)){
 				for(int j=0;j<chart.length;j++){
-					if(chart[j][0]==arrivalplace){
+					if(chart[j][0].equals(arrivalplace)){
 						distance=Integer.parseInt(chart[i][j]);
 						break;
 					}
