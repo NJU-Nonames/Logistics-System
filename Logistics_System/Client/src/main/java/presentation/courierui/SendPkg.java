@@ -192,7 +192,7 @@ public class SendPkg extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-        review = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
+        review = new MyButton(90, 30, Img.REVIEW_0, Img.REVIEW_1, Img.REVIEW_2);
         review.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_review();
@@ -203,7 +203,7 @@ public class SendPkg extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         review.setLocation(CourierFrame.w/6+20,CourierFrame.h-80);
-        confirm = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CLOSE_2);
+        confirm = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_create();

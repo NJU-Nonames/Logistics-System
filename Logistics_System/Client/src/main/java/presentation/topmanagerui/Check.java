@@ -285,7 +285,7 @@ public class Check extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-    	search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	search = new MyButton(90, 30, Img.SEARCH_0, Img.SEARCH_1, Img.SEARCH_2);
     	search.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_search();
@@ -295,7 +295,7 @@ public class Check extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-        confirm1 = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm1 = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm1.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm1();
@@ -306,7 +306,7 @@ public class Check extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	confirm1.setLocation(170+120,570);
-        confirm2 = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm2 = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm2.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm2();
@@ -317,7 +317,7 @@ public class Check extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	confirm2.setLocation(170+120,570+40);
-        confirm3 = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm3 = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm3.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm3();
@@ -328,7 +328,7 @@ public class Check extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	confirm3.setLocation(1024-100,570);
-        confirm4 = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm4 = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm4.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm4();

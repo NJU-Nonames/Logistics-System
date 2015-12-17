@@ -214,7 +214,7 @@ public class ConstantManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-    	changePrice = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	changePrice = new MyButton(90, 30, Img.UPDATE_0, Img.UPDATE_1, Img.UPDATE_2);
     	changePrice.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_changePrice();
@@ -224,7 +224,7 @@ public class ConstantManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	changeDistance = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	changeDistance = new MyButton(90, 30, Img.UPDATE_0, Img.UPDATE_1, Img.UPDATE_2);
     	changeDistance.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_changeDistance();
@@ -234,7 +234,7 @@ public class ConstantManage extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	addcity = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	addcity = new MyButton(90, 30, Img.ADD_0, Img.ADD_1, Img.ADD_2);
     	addcity.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_addcity();
