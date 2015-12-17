@@ -208,7 +208,7 @@ public class CostManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-        confirm = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+        confirm = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
         confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_create();

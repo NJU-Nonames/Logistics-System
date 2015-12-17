@@ -236,7 +236,7 @@ public class Deliver extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	add.setLocation(170+20+330,128+80+40+40+40-7);
+    	add.setLocation(170+20+300,128+80+40+40+40-7);
     	remove = new MyButton(90, 30, Img.DELETE_0, Img.DELETE_1, Img.DELETE_2);
     	remove.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
@@ -247,7 +247,7 @@ public class Deliver extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	remove.setLocation(596+220,128+80+40+40+40+40-7);
+    	remove.setLocation(596+180,128+80+40+40+40+40-7);
     	confirm = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
@@ -258,7 +258,7 @@ public class Deliver extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	confirm.setLocation(596-15,128+80+40+40+40+160);
+    	confirm.setLocation(596-55,128+80+40+40+40+160);
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");

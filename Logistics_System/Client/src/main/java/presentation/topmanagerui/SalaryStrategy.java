@@ -207,7 +207,7 @@ public class SalaryStrategy extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-    	change = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	change = new MyButton(90, 30, Img.UPDATE_0, Img.UPDATE_1, Img.UPDATE_2);
     	change.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_change();

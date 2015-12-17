@@ -202,7 +202,7 @@ public class SettlementManage extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
     	//详细操作按钮
-    	search = new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
+    	search = new MyButton(90, 30, Img.SEARCH_0, Img.SEARCH_1, Img.SEARCH_2);
     	search.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_search();

@@ -341,8 +341,8 @@ public class Receive extends JPanel{
         ButtonGroup group2 = new ButtonGroup();
         group2.add(j1);group2.add(j2);group2.add(j3);
         
-        update=new MyButton(30, 30, Img.CLOSE_0, Img.CLOSE_1, Img.CLOSE_2);
-        update.setLocation(j3.getX()+j3.getWidth()/5,j3.getY()+j3.getHeight()+20);
+        update=new MyButton(90, 30, Img.UPDATE_0, Img.UPDATE_1, Img.UPDATE_2);
+        update.setLocation(j3.getX()+j3.getWidth()/5-30,j3.getY()+j3.getHeight()+20);
         update.addMouseListener(new MouseListener(){
  			public void mouseClicked(MouseEvent arg0) {
  				_update();
@@ -359,7 +359,7 @@ public class Receive extends JPanel{
         placeName.setLocation(CenterClerkFrame.w/6+20,128+170);
         
         confirm=new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
-        confirm.setLocation(CenterClerkFrame.w/2,CenterClerkFrame.w/3*2-50);
+        confirm.setLocation(CenterClerkFrame.w/2-50,CenterClerkFrame.w/3*2-50);
     	confirm.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {
 				_confirm();
@@ -371,7 +371,7 @@ public class Receive extends JPanel{
         });
     	
     	cancel=new MyButton(90, 30, Img.CANCEL_0, Img.CANCEL_1, Img.CANCEL_2);
-    	cancel.setLocation(CenterClerkFrame.w/3*2,confirm.getY());
+    	cancel.setLocation(CenterClerkFrame.w/3*2-50,confirm.getY());
      	cancel.addMouseListener(new MouseListener(){
  			public void mouseClicked(MouseEvent arg0) {
  				_cancel();
