@@ -25,6 +25,7 @@ import dataImpl.moneyInformation.MoneyOutListDataImpl;
 import dataImpl.repertory.RepertoryInDataImpl;
 import dataImpl.repertory.RepertoryInfoDataImpl;
 import dataImpl.repertory.RepertoryOutDataImpl;
+import dataImpl.system.ConnectedDataImpl;
 import dataImpl.system.SystemLogDataImpl;
 import dataImpl.system.UserDataImpl;
 import dataservice.agency.AgencyDataService;
@@ -45,6 +46,7 @@ import dataservice.moneyInformation.MoneyOutListDataService;
 import dataservice.repertory.RepertoryInDataService;
 import dataservice.repertory.RepertoryInfoDataService;
 import dataservice.repertory.RepertoryOutDataService;
+import dataservice.system.ConnectedDataService;
 import dataservice.system.SystemLogDataService;
 import dataservice.system.UserDataService;
 
@@ -76,6 +78,7 @@ public class RMIstart {
 			//注册通讯端口
 			LocateRegistry.createRegistry(PORT);
 			//创建实现类
+			ConnectedDataService ConnectedDataImpl=new ConnectedDataImpl();
 			AgencyDataService AgencyDataImpl=new AgencyDataImpl();
 			BankAccountDataService BankAccountDataImpl=new BankAccountDataImpl();
 			DriverDataService DriverDataImpl=new DriverDataImpl();
@@ -97,6 +100,7 @@ public class RMIstart {
 			UserDataService UserDataImpl=new UserDataImpl();
 			SystemLogDataService SystemLogDataImpl=new SystemLogDataImpl();
 			//注册通讯路径，把所有的Impl实现类注册到RMI服务器上
+			Naming.rebind("rmi://"+IP+":"+PORT+"/ConnectedDataService", ConnectedDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/UserDataService", UserDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/AgencyDataService", AgencyDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/SystemLogDataService", SystemLogDataImpl);

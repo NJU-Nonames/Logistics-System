@@ -8,6 +8,8 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import businesslogic.logisticsbl.SearchPkgInformationBLImpl;
 import businesslogic.userbl.UserManageBLImpl;
 import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
@@ -47,16 +49,13 @@ public class MainFrame extends JFrame{
 	SearchPanel searchpanel;
 	LoginPanel loginpanel;
 	
-	
-
-	SearchPkgInformationBLService bl1;
-	UserManageBLService bl2;
 
 	private boolean isDraging;//是否被拖住
 	private int xx;
 	private int yy;
 	
 	public MainFrame(){
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setUndecorated(true);
 		this.addMouseListener(new MouseAdapter() { 
 			public void mousePressed(MouseEvent e) { 
@@ -94,15 +93,10 @@ public class MainFrame extends JFrame{
         add(j);
 		
 		this.setIconImage(Img.MainICON);
-		
 
-		bl1 = new SearchPkgInformationBLImpl(null);
-//		bl1 = null;
-		bl2 = new UserManageBLImpl(null);
-//		bl2 = null;
 		mainpanel = new MainPanel(this);
-		searchpanel = new SearchPanel(this, bl1);
-		loginpanel = new LoginPanel(this, bl2);
+		searchpanel = new SearchPanel(this);
+		loginpanel = new LoginPanel(this);
 		j.add(mainpanel);
 		j.add(searchpanel);
 		j.add(loginpanel);

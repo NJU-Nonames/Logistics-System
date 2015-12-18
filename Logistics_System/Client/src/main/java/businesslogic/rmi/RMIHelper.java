@@ -1,7 +1,13 @@
 package businesslogic.rmi;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
-import config.IPconfig;
+import javax.management.remote.rmi.RMIConnection;
+import javax.management.remote.rmi.RMIConnectionImpl;
+
+import presentation.mainui.MessagerFrame;
 import config.XMLReader;
 
 
@@ -13,11 +19,12 @@ import config.XMLReader;
  * 2.得到一个service引用，调用该service中的方法即可
  * 
  */
-public class RMIHelper {
-
-    private static final String IP = XMLReader.loadconfig().getIP(); //Can be read from config file
-    private static final int PORT=XMLReader.loadconfig().getPORT();//端口号
-
+public class RMIHelper implements Runnable{
+    
+	public static final String IP = XMLReader.loadconfig().getIP(); //Can be read from config file
+    public static final int PORT=XMLReader.loadconfig().getPORT();//端口号
+    public static boolean isConnected=true;
+    static MessagerFrame messageeFrame;
     
     public static Object find(String serviceName){
     	if(IP==null){
@@ -28,10 +35,29 @@ public class RMIHelper {
              Object service = (Object) Naming.lookup("rmi://"+IP+":"+PORT+"/"+serviceName);
              return service;
          } catch (Exception e) {
-             e.printStackTrace();
+        	 isConnected=false;
+        	 messageeFrame=new MessagerFrame();
+        	 new RMIHelper().run();
+        	 return RMIHelper.find(serviceName);
          }
-		return null;
     }
+
+
+	@Override
+	public void run() {
+		while(!isConnected)
+		{
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		messageeFrame.setVisible(false);
+		
+	}
+    
+    
   
 }
 

@@ -84,6 +84,11 @@ public class Img {
 	public static Image MINI_1=new ImageIcon("img/Button/mini_1.png").getImage();
 	public static Image MINI_2=new ImageIcon("img/Button/mini_2.png").getImage();
 	
+	//按钮:重连
+	public static Image RECONNECTED_0=new ImageIcon("img/Button/reconnected_0.png").getImage();
+	public static Image RECONNECTED_1=new ImageIcon("img/Button/reconnected_1.png").getImage();
+	public static Image RECONNECTED_2=new ImageIcon("img/Button/reconnected_2.png").getImage();
+	
 	//按钮:登录
 	public static Image LOGIN_0=new ImageIcon("img/Button/login_0.png").getImage();
 	public static Image LOGIN_1=new ImageIcon("img/Button/login_1.png").getImage();

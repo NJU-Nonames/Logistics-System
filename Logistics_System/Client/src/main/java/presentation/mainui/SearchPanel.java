@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 import presentation.img.Img;
 import vo.OrderListVO;
+import businesslogic.logisticsbl.SearchPkgInformationBLImpl;
 import businesslogicservice.logisticsblservice.SearchPkgInformationBLService;
 
 /**
@@ -54,9 +55,9 @@ public class SearchPanel extends JPanel{
         }
 	}
 	
-	public SearchPanel(MainFrame mf, SearchPkgInformationBLService bl){
+	public SearchPanel(MainFrame mf){
 		this.mf=mf;
-		this.bl=bl;
+		//this.bl=new SearchPkgInformationBLImpl(null);
 		Invalid=false;
 		result="";
 		this.setLayout(null);
@@ -137,6 +138,10 @@ public class SearchPanel extends JPanel{
 		repaint();
 	}
 	private void searchInf(){
+		//若未初始化则初始化
+		if(this.bl==null)
+			this.bl=new SearchPkgInformationBLImpl(null);
+		
 		String order = orderField.getText();
 		result = CheckFormat.checkOrderNum(order);
 		if(result.compareTo("格式正确")!=0){

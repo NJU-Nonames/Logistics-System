@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.text.DefaultCaret;
 
 import presentation.adminui.AdminFrame;
 import presentation.businessofficeclerkui.BusinessOfficeClerkFrame;
@@ -22,11 +21,8 @@ import presentation.financialstaffhighui.FinacialStaffHighFrame;
 import presentation.financialstafflowui.FinacialStaffLowFrame;
 import presentation.img.Img;
 import presentation.topmanagerui.TopManagerFrame;
-import utility.ExpressType;
-import utility.UserType;
-import utility.Position;
 import vo.StaffVO;
-import vo.UserVO;
+import businesslogic.userbl.UserManageBLImpl;
 import businesslogicservice.userblservice.UserManageBLService;
 
 public class LoginPanel extends JPanel{
@@ -60,9 +56,9 @@ public class LoginPanel extends JPanel{
         }
 	}
 	
-	public LoginPanel(MainFrame mf, UserManageBLService bl){
+	public LoginPanel(MainFrame mf){
 		this.mf=mf;
-		this.bl=bl;
+	   // this.bl=new UserManageBLImpl(null);
 		Invalid=false;
 		result="";
 		this.setLayout(null);
@@ -153,30 +149,12 @@ public class LoginPanel extends JPanel{
 		repaint();
 	}
 	private void userlogin(){
+		if(this.bl==null)
+		   this.bl=new UserManageBLImpl(null);
+		
 		String username = userField.getText();
 		String paw = new String(passwordField.getPassword());
 
-//		result = CheckFormat.checkUserNum(username);
-//		if(result.compareTo("格式正确")!=0){
-//			if(!Invalid){
-//				Invalid=true;
-//				repaint();
-//				new Thread(new Runnable(){
-//					public void run() {
-//						try {
-//							Thread.sleep(3000);
-//						} catch (InterruptedException e) {
-//							// TODO 自动生成的 catch 块
-//							e.printStackTrace();
-//						}
-//						
-//						Invalid=false;
-//						repaint();
-//					}
-//				}).start();
-//			}
-//			return;
-//		}
 		
 
 		StaffVO vo = bl.login(username, paw);

@@ -15,7 +15,7 @@ public class ConstantManageBLImplTest {
 	public void testShowDistanceChart() {
 		String[][]chart=constant.showDistanceChart().getDistanceChart();
 		assertTrue(Integer.parseInt(chart[1][1])==0);
-		assertTrue(Integer.parseInt(chart[1][2])==1);
+		assertTrue(Integer.parseInt(chart[1][2])==999);
 		assertTrue(chart[0][1].equals(""));
 	}
     //测试获得价格常量信息
