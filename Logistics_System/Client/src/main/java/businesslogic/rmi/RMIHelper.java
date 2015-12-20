@@ -33,7 +33,13 @@ public class RMIHelper{
              Object service = (Object) Naming.lookup("rmi://"+IP+":"+PORT+"/"+serviceName);
              return service;
          } catch (Exception e) {
-        	 new ReconnectedFrame().run();
+        	// new ReconnectedFrame().run();
+        	 try {
+				e.wait(5000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         	 return RMIHelper.find(serviceName);
          }
     }

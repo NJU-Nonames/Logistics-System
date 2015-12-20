@@ -155,6 +155,8 @@ public class ReconnectedFrame extends JFrame implements Runnable{
 			
 		}
 		this.setVisible(false);
+		Connection c=new Connection();
+		c.run();
 		
 	}
 	

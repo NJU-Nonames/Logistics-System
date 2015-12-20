@@ -7,7 +7,7 @@ import org.junit.Test;
 import presentation.mainui.CurrentUser;
 import businesslogic.financebl.BaseDataSettingBLImpl;
 import businesslogicservice.financeblservice.BaseDataSettingBLService;
-
+//completed
 public class BaseDataSettingBLImplTest {
 	BaseDataSettingBLService basedatasetting=new BaseDataSettingBLImpl();
     //查找获得期初银行账户信息

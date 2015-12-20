@@ -7,15 +7,15 @@ import org.junit.Test;
 import presentation.mainui.CurrentUser;
 import businesslogic.userbl.UserManageBLImpl;
 import businesslogicservice.userblservice.UserManageBLService;
-
+//completed
 public class UserManageBLImplTest {
-	UserManageBLService usermanage=new UserManageBLImpl(new CurrentUser("", "快递中心", "000000", "admin"));
+	UserManageBLService usermanage=new UserManageBLImpl(new CurrentUser("亮亮", "快递中心", "000000", "admin"));
 	
 	//测试根据账号查找用户信息
 	@Test
 	public void testFindonAdmin() {
 		//找到
-		assertTrue("".equals(usermanage.findonAdmin("lisi").getId()));
+		assertTrue("025001101".equals(usermanage.findonAdmin("lisi").getId()));
 		//未找到
 		assertTrue(usermanage.findonAdmin("xiaoliu")==null);
 	}
@@ -23,9 +23,9 @@ public class UserManageBLImplTest {
 	@Test
 	public void testFindonId() {
 		//找到
-		assertTrue("".equals(usermanage.findonId("").getAdmin()));
+		assertTrue("lisi".equals(usermanage.findonId("025001101").getAdmin()));
 		//未找到
-		assertTrue(usermanage.findonId("")==null);
+		assertTrue(usermanage.findonId("025001001")==null);
 	}
 
 }
