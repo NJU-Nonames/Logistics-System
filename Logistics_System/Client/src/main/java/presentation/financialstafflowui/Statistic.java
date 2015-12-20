@@ -344,6 +344,7 @@ public class Statistic extends JPanel{
 		vColumns2.add("日期");
 		vColumns2.add("单号");
 		vColumns2.add("金额");
+		vColumns2.add("条目");		
 		//数据
 		Vector<String> vData2 = new Vector<String>();
 		//模型
@@ -484,6 +485,7 @@ public class Statistic extends JPanel{
     		v.add(arr.get(i).getDate());
     		v.add(arr.get(i).getId());
     		v.add(arr.get(i).getMoney()+"");
+    		v.add(arr.get(i).getClause());
     		BusinessCircumstanceChartTableModel.addRow(v);
         }
 		
