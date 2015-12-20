@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import javax.management.remote.rmi.RMIConnection;
 import javax.management.remote.rmi.RMIConnectionImpl;
 
-import presentation.mainui.MessagerFrame;
+import presentation.mainui.ReconnectedFrame;
 import config.XMLReader;
 
 
@@ -19,12 +19,10 @@ import config.XMLReader;
  * 2.得到一个service引用，调用该service中的方法即可
  * 
  */
-public class RMIHelper implements Runnable{
+public class RMIHelper{
     
 	public static final String IP = XMLReader.loadconfig().getIP(); //Can be read from config file
     public static final int PORT=XMLReader.loadconfig().getPORT();//端口号
-    public static boolean isConnected=true;
-    static MessagerFrame messageeFrame;
     
     public static Object find(String serviceName){
     	if(IP==null){
@@ -35,28 +33,13 @@ public class RMIHelper implements Runnable{
              Object service = (Object) Naming.lookup("rmi://"+IP+":"+PORT+"/"+serviceName);
              return service;
          } catch (Exception e) {
-        	 isConnected=false;
-        	 messageeFrame=new MessagerFrame();
-        	 new RMIHelper().run();
+        	 new ReconnectedFrame().run();
         	 return RMIHelper.find(serviceName);
          }
     }
 
 
-	@Override
-	public void run() {
-		while(!isConnected)
-		{
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		messageeFrame.setVisible(false);
-		
-	}
-    
+	
     
   
 }

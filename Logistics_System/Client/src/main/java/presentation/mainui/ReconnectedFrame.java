@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import businesslogic.rmi.RMIHelper;
 import presentation.img.Img;
 
-public class MessagerFrame extends JFrame{
+public class ReconnectedFrame extends JFrame implements Runnable{
 	
 	private static final int w = 256;
 	private static final int h = 192;
@@ -25,9 +25,11 @@ public class MessagerFrame extends JFrame{
 	private int xx;
 	private int yy;
 	
+	
+	public static boolean isConnected=false;//是否连接
 	MessagePanel message=null;
 	
-	public MessagerFrame(){
+	public ReconnectedFrame(){
 		this.setUndecorated(true);
 		this.setSize(w,h);
 		this.setLocationRelativeTo(null);
@@ -70,12 +72,13 @@ public class MessagerFrame extends JFrame{
 			connected=new MyButton(90, 30, Img.RECONNECTED_0,Img.RECONNECTED_1, Img.RECONNECTED_2);
 			connected.addMouseListener(new MouseListener() {
 				public void mouseClicked(MouseEvent arg0) {
-					state.setText("正在尝试重新连接...");
 					MessagePanel.this.reconnected();
 				}
 				public void mouseEntered(MouseEvent arg0) {}
 				public void mouseExited(MouseEvent arg0) {}
-				public void mousePressed(MouseEvent arg0) {}
+				public void mousePressed(MouseEvent arg0) {
+					state.setText("正在尝试重新连接...");
+				}
 				public void mouseReleased(MouseEvent arg0) {}
 			});
 			connected.setLocation(256/2-45,150);
@@ -130,12 +133,28 @@ public class MessagerFrame extends JFrame{
 			}catch(Exception e){}
 			
 			if(Connection){
-				RMIHelper.isConnected=true;
+				ReconnectedFrame.isConnected=true;
 			    state.setText("连接成功！");
 			}else{
 				state.setText("连接失败.请重试..");
 			}
 		}
+
+		
+	}
+
+	@Override
+	public void run() {
+		while(!isConnected)
+		{
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		this.setVisible(false);
 		
 	}
 	
