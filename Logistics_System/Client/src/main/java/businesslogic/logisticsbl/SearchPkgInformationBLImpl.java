@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 
 import po.list.OrderListPO;
 import presentation.mainui.CurrentUser;
+import presentation.mainui.ReconnectedFrame;
 import dataservice.list.OrderListDataService;
 import dataservice.system.SystemLogDataService;
 import vo.OrderListVO;
@@ -44,7 +45,8 @@ public class SearchPkgInformationBLImpl implements SearchPkgInformationBLService
 				orderListVO=new OrderListVO(orderListPO);
 			}
 		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
+			//new ReconnectedFrame().run();
+			//return this.searchPkgInformation(orderlistId);
 			e.printStackTrace();
 		}	
 		return orderListVO;

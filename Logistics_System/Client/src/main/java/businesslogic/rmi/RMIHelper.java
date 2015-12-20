@@ -33,15 +33,23 @@ public class RMIHelper{
              Object service = (Object) Naming.lookup("rmi://"+IP+":"+PORT+"/"+serviceName);
              return service;
          } catch (Exception e) {
-        	// new ReconnectedFrame().run();
+        	//new Thread(new ReconnectedFrame()).start();
         	 try {
-				e.wait(5000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
+				// TODO 自动生成的 catch 块
 				e1.printStackTrace();
 			}
         	 return RMIHelper.find(serviceName);
          }
+    }
+    
+    public static void init(){
+    	System.setProperty("sun.rmi.transport.tcp.responseTimeout", "2000"); 
+    	System.setProperty("sun.rmi.transport.tcp.readTimeout", "2000"); 
+    	System.setProperty("sun.rmi.transport.connectionTimeout", "2000"); 
+    	System.setProperty("sun.rmi.transport.proxy.connectTimeout", "2000"); 
+    	System.setProperty("sun.rmi.transport.tcp.handshakeTimeout", "2000");
     }
 
 

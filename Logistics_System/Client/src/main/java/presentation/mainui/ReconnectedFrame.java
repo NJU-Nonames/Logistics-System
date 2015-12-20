@@ -135,6 +135,7 @@ public class ReconnectedFrame extends JFrame implements Runnable{
 			if(Connection){
 				ReconnectedFrame.isConnected=true;
 			    state.setText("连接成功！");
+			    new Connection("Frame");
 			}else{
 				state.setText("连接失败.请重试..");
 			}
@@ -152,12 +153,9 @@ public class ReconnectedFrame extends JFrame implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+			System.out.println("finish");
 		}
 		this.setVisible(false);
-		Connection c=new Connection();
-		c.run();
-		
 	}
 	
 }
