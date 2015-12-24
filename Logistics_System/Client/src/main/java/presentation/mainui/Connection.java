@@ -5,16 +5,16 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import dataservice.system.ConnectedDataService;
 import businesslogic.rmi.RMIHelper;
 
 public class Connection implements Runnable{
 
 	private TestConnection test;
 	
-	public Connection(String creater){
-		System.out.println(creater);
-		number=0;
-		test=new TestConnection(creater);
+	public Connection(){
+		Connection.number=0;
+		test=new TestConnection();
 		new Thread(this).start();
 		new Thread(test).start();
 	}
@@ -24,7 +24,6 @@ public class Connection implements Runnable{
 		System.out.println("create_connection");
 		while(true){
 			try {
-				System.out.println("running");
 				Thread.sleep(1000);
 				Object service = (Object) Naming.lookup("rmi://"+RMIHelper.IP+":"+RMIHelper.PORT+"/"+"ConnectedDataService");
 				number++;
@@ -46,8 +45,7 @@ public class Connection implements Runnable{
 		 int testnumber=0;
 		 boolean isopen;
 		 ReconnectedFrame frame;
-		public TestConnection(String creater){
-			System.out.println(creater);
+		public TestConnection(){
 			isopen=true;
 			testnumber=0;
 		}
@@ -56,7 +54,6 @@ public class Connection implements Runnable{
 			System.out.println("createTest");
 			while(true){
 				try {
-					System.out.println("ok");
 					Thread.sleep(1000);
 					testnumber=Connection.number;
 					Thread.sleep(3000);

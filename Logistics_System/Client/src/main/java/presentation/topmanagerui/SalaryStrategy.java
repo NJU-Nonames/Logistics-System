@@ -56,6 +56,7 @@ public class SalaryStrategy extends JPanel{
 	private JComboBox<String> position;
 	private JTextField meiri;
 	private JTextField ticheng;
+	private JTextField base;
 
 	private boolean willprintMessage;//是否将要打印消息
 	private String result;//打印的消息
@@ -217,7 +218,7 @@ public class SalaryStrategy extends JPanel{
 			public void mousePressed(MouseEvent arg0) {}
 			public void mouseReleased(MouseEvent arg0) {}
         });
-    	change.setLocation(170+20,128+80+40+40+40);
+    	change.setLocation(170+20,128+80+40+40+40+40);
     	
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
@@ -283,22 +284,30 @@ public class SalaryStrategy extends JPanel{
 				
 			}
 		});
+		JLabel l2=new JLabel("基础工资:");
+		l2.setSize((int)(16*5*1.07f), 16);
+		l2.setFont(new Font("宋体", Font.BOLD, 15));
+		l2.setLocation(170+20,120+80+40);
+		base=new JTextField();
+		base.setSize(60, 20);
+		base.setLocation(170+20+(int)(16*5*1.07f),128+80+40-3);
+		
         
 		JLabel l3 = new JLabel("每日工资：");
 		l3.setSize((int)(16*5*1.07f), 16);
 		l3.setFont(new Font("宋体", Font.BOLD, 15));
-		l3.setLocation(170+20, 128+80+40);
+		l3.setLocation(170+20, 128+80+40+40);
 		meiri = new JTextField();
 		meiri.setSize(60, 20);
-		meiri.setLocation(170+20+(int)(16*5*1.07f),128+80+40-3);
+		meiri.setLocation(170+20+(int)(16*5*1.07f),128+80+40+40-3);
 
 		JLabel l4 = new JLabel("提成比例：");
 		l4.setSize((int)(16*5*1.07f), 16);
 		l4.setFont(new Font("宋体", Font.BOLD, 15));
-		l4.setLocation(170+20, 128+80+40+40);
+		l4.setLocation(170+20, 128+80+40+40+40);
 		ticheng = new JTextField();
 		ticheng.setSize(60, 20);
-		ticheng.setLocation(170+20+(int)(16*5*1.07f),128+80+40+40-3);
+		ticheng.setLocation(170+20+(int)(16*5*1.07f),128+80+40+40+40-3);
 		JLabel l9 = new JLabel("%");
 		l9.setSize((int)(20*1*1.07f), 20);
 		l9.setFont(new Font("宋体", Font.BOLD, 20));
@@ -325,6 +334,8 @@ public class SalaryStrategy extends JPanel{
 
     	add(l5);
     	add(position);
+    	add(l2);
+    	add(base);
     	add(l3);
     	add(meiri);
     	add(l4);
@@ -336,7 +347,15 @@ public class SalaryStrategy extends JPanel{
 	private void _change(){
 		String meiri_s = (String) meiri.getText();
 		String ticheng_s = (String) ticheng.getText();
+		String base_s=(String)base.getText();
 
+		double base_s_double;
+		try{
+			base_s_double=Double.parseDouble(base_s);
+		}catch(NumberFormatException e){
+			printMessage("请输入正确基础工资!",Color.RED);
+			return;
+		}
 		double meiri_s_double;
 		try{
 			meiri_s_double = Double.parseDouble(meiri_s);
@@ -374,7 +393,7 @@ public class SalaryStrategy extends JPanel{
 			_position_=Position.DRIVER;
 		}
 		
-		ResultMessage resultMessage = bl.salaryManage(_position_, meiri_s+":"+ticheng_s);
+		ResultMessage resultMessage = bl.salaryManage(_position_,base_s+"-"+ meiri_s+"-"+ticheng_s);
 		if(!resultMessage.isPass()){
 			printMessage(resultMessage.getMessage(), Color.RED);
 			return;
@@ -383,6 +402,7 @@ public class SalaryStrategy extends JPanel{
 		}
 	}
 	private void clear(){
+		base.setText("");
 		meiri.setText("");
 		ticheng.setText("");
 		position.setSelectedIndex(0);
