@@ -13,7 +13,7 @@ public class LoadBLImplTest {
     //测试获得本次装车单号
 	@Test
 	public void testCreateLoadlistId() {
-		assertTrue("0250012015122000003".equals(load.createLoadlistId()));
+		assertTrue(load.createLoadlistId().charAt(load.createLoadlistId().length()-1)+1-'1'==3);
 	}
 
 }

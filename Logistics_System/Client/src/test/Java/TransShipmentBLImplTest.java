@@ -14,7 +14,7 @@ public class TransShipmentBLImplTest {
 	//测试获得本次中转单单号
 	@Test
 	public void testCreateTransShipmentListId() {
-		assertTrue("025000201512200000002".equals(trans.createTransShipmentListId()));
+		assertTrue(trans.createTransShipmentListId().charAt(trans.createTransShipmentListId().length()-1)+1-'1'==2);
 	}
 
 }

@@ -287,7 +287,7 @@ public class SalaryStrategy extends JPanel{
 		JLabel l2=new JLabel("基础工资:");
 		l2.setSize((int)(16*5*1.07f), 16);
 		l2.setFont(new Font("宋体", Font.BOLD, 15));
-		l2.setLocation(170+20,120+80+40);
+		l2.setLocation(170+20,120+80+40-3);
 		base=new JTextField();
 		base.setSize(60, 20);
 		base.setLocation(170+20+(int)(16*5*1.07f),128+80+40-3);
@@ -311,7 +311,7 @@ public class SalaryStrategy extends JPanel{
 		JLabel l9 = new JLabel("%");
 		l9.setSize((int)(20*1*1.07f), 20);
 		l9.setFont(new Font("宋体", Font.BOLD, 20));
-		l9.setLocation(170+20+(int)(16*5*1.07f)+60, 128+80+40+40-3);
+		l9.setLocation(170+20+(int)(16*5*1.07f)+60, 128+80+40+40+40-3);
 		add(l9);
 		
 		
