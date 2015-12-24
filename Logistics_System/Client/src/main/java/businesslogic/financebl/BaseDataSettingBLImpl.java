@@ -119,8 +119,13 @@ public class BaseDataSettingBLImpl implements BaseDataSettingBLService {
 	}
 
 	public String getInitTime() {
-		// TODO Auto-generated method stub
+		try{
+			return basedatasetting.getTime();
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
 		return null;
+		
 	}
 
 	

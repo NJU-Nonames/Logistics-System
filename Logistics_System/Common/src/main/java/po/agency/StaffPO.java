@@ -134,6 +134,9 @@ public class StaffPO implements Serializable{
 	public String getAgencyId() {
 		return agencyId;
 	}
+	public void setWage(String wage){
+		this.wage=wage;
+	}
 
 
 }
