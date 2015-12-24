@@ -6,16 +6,30 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>Client</artifactId>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
   <dependencies>
+   
     <dependency>
         <groupId>com.Nonames</groupId>
     	<artifactId>Common</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     </dependency>
+    
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+       <groupId>junit</groupId>
+       <artifactId>junit</artifactId>
     </dependency>
+    
+    <dependency>
+       <groupId>org.apache.poi</groupId>
+       <artifactId>poi-scratchpad</artifactId>
+       <version>3.11</version>
+    </dependency>
+    
     
   </dependencies>
 </project>

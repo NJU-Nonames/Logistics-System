@@ -6,11 +6,21 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>Server</artifactId>
+ 
+   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
   <dependencies>
     <dependency>
         <groupId>com.Nonames</groupId>
     	<artifactId>Common</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.0.8</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
