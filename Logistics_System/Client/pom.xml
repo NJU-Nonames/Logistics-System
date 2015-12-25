@@ -6,6 +6,60 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>Client</artifactId>
+ 
+ 
+  <build>
+  	<pluginManagement>
+  		<plugins>
+  			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>presentation.mainui.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>assembly</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	 </pluginManagement>
+	
+<resources>
+	<resource>
+		<directory>src/main/java</directory>
+		<includes>
+			<include>src/main/resources/config.xml</include>
+		</includes>
+		<!-- 是否替换资源中的属性-->
+		<filtering>false</filtering>
+	</resource>
+	<resource>
+		<directory>src/main/resources</directory>
+		<includes><include>src/main/resources/config.xml</include></includes>
+		<filtering>true</filtering>
+		<!--
+			<includes> <include>**/*.properties</include>
+			<include>**/*.xml</include> </includes> 
+		-->
+	</resource>
+</resources>
+	 
+	</build>
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,7 +85,9 @@
        <artifactId>poi-scratchpad</artifactId>
        <version>3.11</version>
     </dependency>
-    
-    
   </dependencies>
+  
 </project>
+
+
+

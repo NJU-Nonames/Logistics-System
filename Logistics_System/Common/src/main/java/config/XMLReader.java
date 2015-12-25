@@ -12,7 +12,7 @@ import org.dom4j.io.SAXReader;
  */
 public class XMLReader {
 	// 配置文件名
-	private static String filename = "config.xml";
+	private static String filename = "src/main/resources/config.xml";
 	private static IPconfig config;
 
 	/**

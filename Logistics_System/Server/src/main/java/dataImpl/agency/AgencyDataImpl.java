@@ -23,7 +23,7 @@ public class AgencyDataImpl  extends UnicastRemoteObject implements AgencyDataSe
 
 	public void salaryManage(Position position, String salary)
 			throws RemoteException {
-		String sql="update staff set wage='"+salary+"' where postion='"+position+"'";
+		String sql="update staff set wage='"+salary+"' where position='"+position+"'";
 		DataJDBCConnection.update(sql);
 		
 	}
