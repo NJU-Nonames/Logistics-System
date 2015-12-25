@@ -151,7 +151,7 @@ public class ReceivePkg extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(1);
-				frame.setChanged(true);
+				frame.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -164,7 +164,7 @@ public class ReceivePkg extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(2);
-				frame.setChanged(true);
+				frame.change();
 				goto_ReceivePkg.setState(2);
 			}
 			public void mouseEntered(MouseEvent arg0) {}
@@ -178,7 +178,7 @@ public class ReceivePkg extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(3);
-				frame.setChanged(true);
+				frame.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}

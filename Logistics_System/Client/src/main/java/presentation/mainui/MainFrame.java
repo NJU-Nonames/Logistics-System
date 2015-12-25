@@ -29,7 +29,7 @@ public class MainFrame extends JFrame{
 	
 	private int state;//0表示主，1表示查询订单，2表示登陆
 	private int stated;//以前的状态
-	boolean changed;
+	
 	public void setState(int x){
 		state=x;
 	}
@@ -39,9 +39,7 @@ public class MainFrame extends JFrame{
 	public void setStated(int x){
 		stated=x;
 	}
-	public void setChanged(boolean x){
-		changed=x;
-	}
+	
 	JPanel j;
 	CardLayout card;
 	
@@ -84,7 +82,6 @@ public class MainFrame extends JFrame{
 		this.setVisible(true);
 		state=0;
 		stated=0;
-		changed=false;
 		isDraging=false;
 		
 		card=new CardLayout();
@@ -99,24 +96,17 @@ public class MainFrame extends JFrame{
 		loginpanel = new LoginPanel(this);
 		j.add(mainpanel);
 		j.add(searchpanel);
-		j.add(loginpanel);
+		j.add(loginpanel);		
 		
-		new Thread(new Runnable(){
-			public void run() {
-				while(true){
-					if(changed){
-						changed=false;
-						int a;
-						if(state-stated>0)
-							a=state-stated;
-						else
-							a=state+3-stated;
-						for(int i=0;i<a;i++)
-							card.next(j);
-						
-					}
-				}
-			}
-		}).start();
+	}
+	
+	public void change(){
+		int a;
+		if(state-stated>0)
+			a=state-stated;
+		else
+			a=state+3-stated;
+		for(int i=0;i<a;i++)
+			card.next(j);
 	}
 }

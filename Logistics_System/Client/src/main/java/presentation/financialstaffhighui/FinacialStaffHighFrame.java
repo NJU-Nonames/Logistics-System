@@ -43,7 +43,6 @@ public class FinacialStaffHighFrame extends JFrame{
 	private CurrentUser currentUser;
 	private int state;//1表示账户管理，2表示成本管理,3表示结算管理，4表示统计报表，5表示期初建帐,6表示查看系统日志
 	private int stated;//以前的状态
-	boolean changed;
 	public void setState(int x){
 		state=x;
 	}
@@ -53,9 +52,7 @@ public class FinacialStaffHighFrame extends JFrame{
 	public void setStated(int x){
 		stated=x;
 	}
-	public void setChanged(boolean x){
-		changed=x;
-	}
+	
 	JPanel j;
 	CardLayout card;
 
@@ -111,7 +108,6 @@ public class FinacialStaffHighFrame extends JFrame{
 		this.setVisible(true);
 		state=1;
 		stated=1;
-		changed=false;
 		isDraging=false;
 		
 		card=new CardLayout();
@@ -144,22 +140,16 @@ public class FinacialStaffHighFrame extends JFrame{
 		j.add(baseDataSetting);
 		j.add(systemLog);
 		
-		new Thread(new Runnable(){
-			public void run() {
-				while(true){
-					if(changed){
-						changed=false;
-						int a;
-						if(state-stated>0)
-							a=state-stated;
-						else
-							a=state+6-stated;
-						for(int i=0;i<a;i++)
-							card.next(j);
-						
-					}
-				}
-			}
-		}).start();
+		
+	}
+	
+	public void change(){
+		int a;
+		if(state-stated>0)
+			a=state-stated;
+		else
+			a=state+6-stated;
+		for(int i=0;i<a;i++)
+			card.next(j);
 	}
 }

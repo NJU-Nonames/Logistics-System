@@ -60,7 +60,7 @@ public class MainPanel extends JPanel{
 			public void mouseClicked(MouseEvent arg0) {
 				mf.setStated(mf.getState());
 				mf.setState(1);
-				mf.setChanged(true);
+				mf.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -73,7 +73,7 @@ public class MainPanel extends JPanel{
 			public void mouseClicked(MouseEvent arg0) {
 				mf.setStated(mf.getState());
 				mf.setState(2);
-				mf.setChanged(true);
+				mf.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
