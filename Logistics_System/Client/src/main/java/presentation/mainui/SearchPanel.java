@@ -102,7 +102,7 @@ public class SearchPanel extends JPanel{
 				clear();//清空文本域和错误提示
 				mf.setStated(mf.getState());
 				mf.setState(0);
-				mf.setChanged(true);
+				mf.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
