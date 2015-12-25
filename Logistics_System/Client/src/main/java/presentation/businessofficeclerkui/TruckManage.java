@@ -145,7 +145,7 @@ public class TruckManage extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(1);
-				frame.setChanged(true);
+				frame.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -158,7 +158,7 @@ public class TruckManage extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(2);
-				frame.setChanged(true);
+				frame.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -171,7 +171,7 @@ public class TruckManage extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(3);
-				frame.setChanged(true);
+				frame.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -184,7 +184,7 @@ public class TruckManage extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(4);
-				frame.setChanged(true);
+				frame.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -197,7 +197,7 @@ public class TruckManage extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(5);
-				frame.setChanged(true);
+				frame.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -210,7 +210,7 @@ public class TruckManage extends JPanel{
 				clear();
 				frame.setStated(frame.getState());
 				frame.setState(6);
-				frame.setChanged(true);
+				frame.change();
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
