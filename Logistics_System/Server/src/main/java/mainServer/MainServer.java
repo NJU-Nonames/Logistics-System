@@ -1,5 +1,7 @@
 package mainServer;
 
+import config.IPconfig;
+import config.XMLReader;
 import data.DataJDBCConnection;
 import data.RMIstart;
 
@@ -18,7 +20,7 @@ public class MainServer {
 		
 		DataJDBCConnection.init();
 			
-     	System.out.println("Server start!");
+     	System.out.println("Server start! IP:"+XMLReader.loadconfig().getIP());
 			
    
 	}
