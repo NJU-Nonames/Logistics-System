@@ -2,17 +2,21 @@ package data;
 
 import java.sql.*;
 
+import mainServer.ServerFrame;
+
 import com.mysql.jdbc.ResultSet;
+
+import config.XMLReader;
 
 public class DataJDBCConnection {
 	
-	private static final String PORT="3306";
+	private static final String PORT=XMLReader.loadjdbcconfig().getPort();
 	
-	private static final String NAME="logistics";
+	private static final String NAME=XMLReader.loadjdbcconfig().getName();
 	
-	private static final String ADMIN="root";
+	private static final String ADMIN=XMLReader.loadjdbcconfig().getAdmin();
 	
-	private static final String PASSWORD="";
+	private static final String PASSWORD=XMLReader.loadjdbcconfig().getPassword();
 	
 	private static Connection connect;
 	
@@ -34,11 +38,10 @@ public class DataJDBCConnection {
 	          
 	          connect = DriverManager.getConnection( "jdbc:mysql://localhost:"+PORT+"/"+NAME+"?useUnicode=true&characterEncoding=UTF-8",ADMIN,PASSWORD);
 	          
-	         System.out.println("Success loading Mysql Driver!");
+	          ServerFrame.getFrame().myPanel.add("Success loading Mysql Driver!\n");
 	        }
 	        catch (Exception e) {
-	          System.out.print("Error loading Mysql Driver!");
-	          e.printStackTrace();
+	          ServerFrame.getFrame().myPanel.add("Error load Mysql Driver!\n");
 	        }
 		return connect;
 	

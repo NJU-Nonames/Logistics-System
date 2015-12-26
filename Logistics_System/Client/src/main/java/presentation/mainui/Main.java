@@ -9,7 +9,7 @@ public class Main {
 		new MainFrame();
 		RMIHelper.init();
 	    new Connection();
-		System.out.println("IP:"+XMLReader.loadconfig().getIP());
+		System.out.println("IP:"+XMLReader.loadipconfig().getIP());
 	}
 	
 }

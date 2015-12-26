@@ -1,13 +1,5 @@
 package businesslogic.rmi;
-import java.net.MalformedURLException;
 import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-
-import javax.management.remote.rmi.RMIConnection;
-import javax.management.remote.rmi.RMIConnectionImpl;
-
-import presentation.mainui.ReconnectedFrame;
 import config.XMLReader;
 
 
@@ -21,8 +13,8 @@ import config.XMLReader;
  */
 public class RMIHelper{
     
-	public static final String IP = XMLReader.loadconfig().getIP(); //Can be read from config file
-    public static final int PORT=XMLReader.loadconfig().getPORT();//端口号
+	public static final String IP = XMLReader.loadipconfig().getIP(); //Can be read from config file
+    public static final int PORT=XMLReader.loadipconfig().getPORT();//端口号
     
     public static Object find(String serviceName){
     	if(IP==null){

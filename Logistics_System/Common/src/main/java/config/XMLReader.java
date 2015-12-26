@@ -13,7 +13,8 @@ import org.dom4j.io.SAXReader;
 public class XMLReader {
 	// 配置文件名
 	private static String filename = "src/main/resources/config.xml";
-	private static IPconfig config;
+	private static IPconfig ipconfig;
+	private static JDBCconfig jdbcconfig;
 
 	/**
 	 * 从配置文件中读取参数并保存到Config类中,
@@ -23,10 +24,16 @@ public class XMLReader {
 	 * 
 	 * @return
 	 */
-	public static IPconfig loadconfig() {
-		if (config == null)
-			config = getconfig();
-		return config;
+	public static IPconfig loadipconfig() {
+		if (ipconfig == null)
+			ipconfig = getconfig();
+		return ipconfig;
+	}
+	
+	public static JDBCconfig loadjdbcconfig(){
+		if(jdbcconfig == null)
+			jdbcconfig = getjdbcconfig();
+		return jdbcconfig;
 	}
 
 	private static IPconfig getconfig() {
@@ -34,7 +41,7 @@ public class XMLReader {
 		try {
 			File f = new File(filename);
 			if (!f.exists()) {
-				System.out.println("  Error : Config file doesn't exist!");
+				System.out.println("  Error : IPConfig file doesn't exist!");
 				System.exit(1);
 			}
 			SAXReader reader = new SAXReader();
@@ -53,5 +60,32 @@ public class XMLReader {
 		return config;
 
 	}
+    
+    private static JDBCconfig getjdbcconfig(){
+    	JDBCconfig config = new JDBCconfig();
+		try {
+			File f = new File(filename);
+			if (!f.exists()) {
+				System.out.println("  Error : JDBCConfig file doesn't exist!");
+				System.exit(1);
+			}
+			SAXReader reader = new SAXReader();
+			Document doc = reader.read(f);
+			Element root = doc.getRootElement();
+			Element data;
+			Iterator<?> itr = root.elementIterator("JDBCconfig");
+			data = (Element) itr.next();
+
+			
+			config.port = data.elementText("Port").trim();
+			config.name = data.elementText("Name").trim();
+			config.admin = data.elementText("Admin").trim();
+			config.password = data.elementText("Password").trim();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return config;
+    }
 }
 

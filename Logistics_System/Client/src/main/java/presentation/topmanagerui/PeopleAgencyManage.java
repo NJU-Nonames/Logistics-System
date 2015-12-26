@@ -99,6 +99,7 @@ public class PeopleAgencyManage extends JPanel{
 	
 	private int index1;
 	private int index2;
+	private Thread h1;
 
 	protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -178,6 +179,7 @@ public class PeopleAgencyManage extends JPanel{
 				frame.setStated(frame.getState());
 				frame.setState(1);
 				frame.change();
+				h1=null;
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -191,6 +193,7 @@ public class PeopleAgencyManage extends JPanel{
 				frame.setStated(frame.getState());
 				frame.setState(2);
 				frame.change();
+				h1=null;
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -217,6 +220,7 @@ public class PeopleAgencyManage extends JPanel{
 				frame.setStated(frame.getState());
 				frame.setState(4);
 				frame.change();
+				h1=null;
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -230,6 +234,7 @@ public class PeopleAgencyManage extends JPanel{
 				frame.setStated(frame.getState());
 				frame.setState(5);
 				frame.change();
+				h1=null;
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -243,6 +248,7 @@ public class PeopleAgencyManage extends JPanel{
 				frame.setStated(frame.getState());
 				frame.setState(6);
 				frame.change();
+				h1=null;
 			}
 			public void mouseEntered(MouseEvent arg0) {}
 			public void mouseExited(MouseEvent arg0) {}
@@ -643,21 +649,24 @@ public class PeopleAgencyManage extends JPanel{
 
 		//System.out.println(AgencyTable.getSelectedRow());
 		_viewPeople();
-		new Thread(new Runnable(){
-//	    	int i=0;
+		h1=new Thread(new Runnable(){
 			public void run() {
 				while(true){
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					index2=AgencyTable.getSelectedRow();
 					if(index1!=index2){
-//						System.out.println(index1+":"+index2);
 						index1=index2;
-//						i++;
-//						System.out.println("主线"+i);
 						_viewPeople();
 					}
 				}
 			}
-		}).start();
+		});
+		h1.start();
 	}
 
 	private TableColumnModel getColumnModel(JTable peopleTable2, int[] width) {
@@ -956,6 +965,24 @@ public class PeopleAgencyManage extends JPanel{
 		position.setSelectedIndex(0);
 		AgencyTable.setRowSelectionInterval(0, 0);
 		willprintMessage=false;
+		h1=new Thread(new Runnable(){
+			public void run() {
+				while(true){
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					index2=AgencyTable.getSelectedRow();
+					if(index1!=index2){
+						index1=index2;
+						_viewPeople();
+					}
+				}
+			}
+		});
+		h1.start();
 		repaint();
 	}
 	

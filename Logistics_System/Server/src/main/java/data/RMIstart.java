@@ -55,12 +55,12 @@ public class RMIstart {
 	/**
 	 * 端口号
 	 */
-	private static final int PORT=XMLReader.loadconfig().getPORT();
+	private static final int PORT=XMLReader.loadipconfig().getPORT();
 	
 	/**
 	 * 服务器ip地址
 	 */
-	private static final String IP=XMLReader.loadconfig().getIP();
+	private static final String IP=XMLReader.loadipconfig().getIP();
 
 	
 	
