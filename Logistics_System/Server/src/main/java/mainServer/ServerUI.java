@@ -10,13 +10,14 @@ import javax.swing.JTextArea;
 
 import config.XMLReader;
 
-public class ServerFrame extends JFrame{
+public class ServerUI extends JFrame{
 	
-	private static ServerFrame serverFrame;
+	private static ServerUI serverFrame;
 	public ServerPanel myPanel;
 	
-	private ServerFrame(){
+	private ServerUI(){
 		myPanel=new ServerPanel();
+		this.setTitle("Logistics Server");
 		this.setContentPane(myPanel);
 		this.setSize(400,255);
 		this.setLocationRelativeTo(null);
@@ -25,9 +26,9 @@ public class ServerFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public static ServerFrame getFrame(){
+	public static ServerUI getFrame(){
 		if(serverFrame==null)
-			serverFrame=new ServerFrame();
+			serverFrame=new ServerUI();
 		return serverFrame;
 	}
 	
