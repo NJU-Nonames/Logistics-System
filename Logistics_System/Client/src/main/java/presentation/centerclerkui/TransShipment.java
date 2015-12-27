@@ -401,6 +401,7 @@ public class TransShipment extends JPanel{
         barCode.setSize(150, 20);
 		barCode.setLocation(add.getX()-barCode.getWidth()-30,add.getY()+5);
         
+		_price.setText("0");
 		_price.setSize(80,20);
 		_price.setLocation(price.getX()+price.getWidth(), price.getY());
         
@@ -453,7 +454,7 @@ public class TransShipment extends JPanel{
 		_counterId.setText("");
 		_supervisor.setText("");
 		barCode.setText("");
-		_price.setText("");
+		_price.setText("0");
         shipId.setText("本中转单编号："+bl.createTransShipmentListId());
 		while(barCodeTable.getRowCount()!=0)
 			barCodeTableModel.removeRow(0);
@@ -482,6 +483,7 @@ public class TransShipment extends JPanel{
 		Vector<String> v = new Vector<String>();
 		v.add(barCode_s);
 		barCodeTableModel.addRow(v);
+		_price.setText(Double.parseDouble(_price.getText())+bl.createOrderFare(barCode_s)+"");
 		
 		barCode.setText("");
 	}
@@ -493,6 +495,8 @@ public class TransShipment extends JPanel{
 			return;
 		}
 		barCodeTableModel.removeRow(index);
+		String barCode_s=(String) barCodeTable.getValueAt(index, 0);
+		_price.setText(Double.parseDouble(_price.getText())-bl.createOrderFare(barCode_s)+"");
 	}
 	private void _confirm(){
 		String time="";

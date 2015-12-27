@@ -23,5 +23,11 @@ public interface TransShipmentBLService {
 	 * @return
 	 */
 	public String createTransShipmentListId();
+	/**
+	 * 生成订单的运费
+	 * @param barcode
+	 * @return
+	 */
+	public double createOrderFare(String barcode);
 
 }

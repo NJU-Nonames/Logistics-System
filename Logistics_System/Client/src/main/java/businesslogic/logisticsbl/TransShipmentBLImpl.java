@@ -36,38 +36,9 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 	}
 	public ResultMessage createShiplist(TransShipmentListVO transShipment) {
 		// TODO 自动生成的方法存根
-		double weight=0;
-		String departurePlace=user.getAgencyName().substring(0,2);
-		String arrivalplace=transShipment.getDesitination().substring(0,2);
-		String[][] chart=null;
-		try{
-			chart=constant.showDistanceChart().getDistanceChart(); 
-		}catch(RemoteException e){
-			e.printStackTrace();
-		}
-		int distance=0;
-		for(int i=0;i<chart.length;i++){
-			if(chart[0][i].equals(departurePlace)){
-				for(int j=0;j<chart.length;j++){
-					if(chart[j][0].equals(arrivalplace)){
-						distance=Integer.parseInt(chart[i][j]);
-						break;
-					}
-				}
-				break;
-			}
-		}
-		double price=0;
 		try{
 			for(String barcode:transShipment.getBarcodes()){
 				OrderListPO orderpo=orderlist.find(barcode);
-				switch(orderpo.getCategory()){
-				case STANDARD:price=constant.showPriceChart().getTruck_kilo_t();break;
-				case ECONOMIC:price=constant.showPriceChart().getTrain_kilo_t();break; 
-				case EXPRESS:price=constant.showPriceChart().getAirplane_kilo_t();break;
-				default:break;
-			}
-				weight+=orderpo.getWeight();
 				ArrayList<String> orderpath=orderpo.getPkgState();
 				orderpath.add((String)df.format(new Date())+" 快递运出"+user.getAgencyName());
 				orderpo.setPkgState(orderpath);
@@ -76,10 +47,9 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 			}catch(RemoteException e){
 				e.printStackTrace();
 			}
-		price=price*distance*weight/1000;
 		TransShipmentListPO transpo=null;
 			try{
-				transpo=new TransShipmentListPO(transShipment.getDate(),transShipment.getTransitDocNumber(),transShipment.getFlightNumber(),transShipment.getDeparturePlace(),transShipment.getDesitination(),transShipment.getContainerNumber(),transShipment.getSupercargoMan(),transShipment.getBarcodes(),price,transShipment.getCheckType());
+				transpo=new TransShipmentListPO(transShipment.getDate(),transShipment.getTransitDocNumber(),transShipment.getFlightNumber(),transShipment.getDeparturePlace(),transShipment.getDesitination(),transShipment.getContainerNumber(),transShipment.getSupercargoMan(),transShipment.getBarcodes(),transShipment.getPrice(),transShipment.getCheckType());
 				transshipment.add(transpo);
 				system.add(new SystemLogPO((String)df.format(new Date()),"添加中转单,单号为"+transShipment.getTransitDocNumber(),user.getAdmin()));
 			}catch(RemoteException e){
@@ -101,5 +71,47 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
         SimpleDateFormat df1=new SimpleDateFormat("yyyyMMdd");
 		return user.getAgencyNum()+df1.format(new Date())+s;
 	}
-
+	@Override
+	public double createOrderFare(String barcode) {
+		// TODO 自动生成的方法存根
+		OrderListPO orderpo=null;
+		try{
+		orderpo=orderlist.find(barcode);
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		String departurePlace=orderpo.getSenderAddress().substring(0,2);
+		String arrivalPlace=orderpo.getRealreceiver().substring(0,2);
+		String[][] chart=null;
+		try{
+			chart=constant.showDistanceChart().getDistanceChart(); 
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		int distance=0;
+		for(int i=0;i<chart.length;i++)
+			if(chart[0][i].equals(departurePlace)){
+				for(int j=0;j<chart.length;j++)
+					if(chart[j][0].equals(arrivalPlace)){
+						distance=Integer.parseInt(chart[i][j]);
+						break;
+					}
+				break;
+			}
+			double price=0;
+			try{
+					switch(orderpo.getCategory()){
+					case STANDARD:price=constant.showPriceChart().getTruck_kilo_t();break;
+					case ECONOMIC:price=constant.showPriceChart().getTrain_kilo_t();break; 
+					case EXPRESS:price=constant.showPriceChart().getAirplane_kilo_t();break;
+					default:break;
+				}
+			}catch(RemoteException e){
+					e.printStackTrace();
+				}
+			price=price*distance*orderpo.getWeight()/1000;
+			return price;
+	}
+	
 }
+	
