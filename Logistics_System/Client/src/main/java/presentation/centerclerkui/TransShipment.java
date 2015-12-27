@@ -504,7 +504,6 @@ public class TransShipment extends JPanel{
 	
 	private void _remove(){
 		int index = barCodeTable.getSelectedRow();
-		System.out.println(index);
 		if(index == -1){
 			printMessage("请选中一个订单！", Color.RED);
 			return;
