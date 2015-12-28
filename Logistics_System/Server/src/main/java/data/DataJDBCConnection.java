@@ -2,7 +2,7 @@ package data;
 
 import java.sql.*;
 
-import mainServer.ServerFrame;
+import mainServer.ServerUI;
 
 import com.mysql.jdbc.ResultSet;
 
@@ -38,10 +38,10 @@ public class DataJDBCConnection {
 	          
 	          connect = DriverManager.getConnection( "jdbc:mysql://localhost:"+PORT+"/"+NAME+"?useUnicode=true&characterEncoding=UTF-8",ADMIN,PASSWORD);
 	          
-	          ServerFrame.getFrame().myPanel.add("Success loading Mysql Driver!\n");
+	          ServerUI.getFrame().myPanel.add("Success loading Mysql Driver!\n");
 	        }
 	        catch (Exception e) {
-	          ServerFrame.getFrame().myPanel.add("Error load Mysql Driver!\n");
+	          ServerUI.getFrame().myPanel.add("Error load Mysql Driver!\n");
 	        }
 		return connect;
 	
