@@ -111,7 +111,7 @@ public class SendPkgBLImpl implements SendPkgBLService {
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return new ResultMessage(true, "成功保存订单!!订单号为"+orderListVO.getBarCode());
+		return new ResultMessage(true, "成功保存订单!");
 	}
 	public String createOrderId() {
 		// TODO 自动生成的方法存根

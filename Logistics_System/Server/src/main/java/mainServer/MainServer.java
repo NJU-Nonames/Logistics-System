@@ -17,7 +17,7 @@ public class MainServer {
 		
 		DataJDBCConnection.init();
 		
-		ServerUI.getFrame();
+		ServerFrame.getFrame();
 			
 			
    
