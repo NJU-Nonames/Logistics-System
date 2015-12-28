@@ -1,5 +1,7 @@
 package mainServer;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,6 +17,7 @@ public class ServerUI extends JFrame{
 	
 	private ServerUI(){
 		myPanel=new ServerPanel();
+		this.setTitle("Logistics Server");
 		this.setContentPane(myPanel);
 		this.setSize(400,255);
 		this.setLocationRelativeTo(null);

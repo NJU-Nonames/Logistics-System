@@ -153,7 +153,6 @@ public class ReconnectedUI extends JFrame implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("finish");
 		}
 		this.setVisible(false);
 	}

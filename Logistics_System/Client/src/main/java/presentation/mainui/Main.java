@@ -1,6 +1,5 @@
 package presentation.mainui;
 
-import config.XMLReader;
 import businesslogic.rmi.RMIHelper;
 
 public class Main {
@@ -9,7 +8,6 @@ public class Main {
 		new MainFrame();
 		RMIHelper.init();
 	    new Connection();
-		System.out.println("IP:"+XMLReader.loadipconfig().getIP());
 	}
 	
 }

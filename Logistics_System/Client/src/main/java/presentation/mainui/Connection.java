@@ -33,7 +33,7 @@ public class Connection implements Runnable{
 				   
 				}
 			} catch (InterruptedException | MalformedURLException | RemoteException | NotBoundException e) {
-
+				System.out.println("end_connection");
 				break;
 			}
 		}
@@ -51,7 +51,7 @@ public class Connection implements Runnable{
 		}
 		@Override
 		public void run() {
-
+		
 			while(true){
 				try {
 					Thread.sleep(1000);
@@ -63,7 +63,7 @@ public class Connection implements Runnable{
 					e.printStackTrace();
 				}
 			}
-
+	
 			isopen=false;
 			frame=new ReconnectedUI();
 			frame.setVisible(true);
