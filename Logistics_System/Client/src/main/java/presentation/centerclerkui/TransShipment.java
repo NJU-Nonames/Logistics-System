@@ -69,7 +69,7 @@ public class TransShipment extends JPanel{
 	private MyButton cancel;
 	private JRadioButton _plane;
 	private JRadioButton _trains;
-	private JRadioButton _trucks;
+	private  JRadioButton _trucks;
 	private JTextField _transId=new JTextField() ;
 	private JTextField _arrivePlace=new JTextField() ;
 	private JTextField _counterId=new JTextField() ;
