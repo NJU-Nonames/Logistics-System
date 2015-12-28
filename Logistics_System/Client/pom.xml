@@ -7,7 +7,7 @@
   </parent>
   <artifactId>Client</artifactId>
  
- <!-- maven打包配置 调用assembly:assembly-->
+ 
   <build>
   	<pluginManagement>
   	  <plugins>
@@ -20,11 +20,11 @@
 				<descriptorRefs>
 					<descriptorRef>jar-with-dependencies</descriptorRef>
 				</descriptorRefs>
-			<archive>
-				<manifest>
-					<mainClass>presentation.mainui.Main</mainClass>
-				</manifest>
-			</archive>
+				<archive>
+					<manifest>
+						<mainClass>presentation.mainui.Main</mainClass>
+					</manifest>
+				</archive>
 			</configuration>
 			<executions>
 				<execution>
@@ -39,7 +39,15 @@
 	</plugins>
  </pluginManagement>
 	
- <resources>
+<resources>
+	<resource>
+		<directory>src/main/java</directory>
+		<includes>
+			<include>*.xml</include>
+		</includes>
+		<!-- 是否替换资源中的属性-->
+		<filtering>false</filtering>
+	</resource>
 	<resource>
 		<directory>src/main/resources</directory>
 		<includes><include>*.xml</include></includes>
@@ -49,15 +57,16 @@
 			<include>**/*.xml</include> </includes> 
 		-->
 	</resource>
- </resources>
-</build>
+</resources>
+	 
+	</build>
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
   <dependencies>
-  
+   
     <dependency>
         <groupId>com.Nonames</groupId>
     	<artifactId>Common</artifactId>

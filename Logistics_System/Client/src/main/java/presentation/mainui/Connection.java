@@ -21,7 +21,7 @@ public class Connection implements Runnable{
 	public static int number=0;
 	@Override
 	public void run() {
-
+		System.out.println("create_connection");
 		while(true){
 			try {
 				Thread.sleep(1000);
@@ -44,14 +44,14 @@ public class Connection implements Runnable{
 		
 		 int testnumber=0;
 		 boolean isopen;
-		 ReconnectedUI frame;
+		 ReconnectedFrame frame;
 		public TestConnection(){
 			isopen=true;
 			testnumber=0;
 		}
 		@Override
 		public void run() {
-		
+			System.out.println("createTest");
 			while(true){
 				try {
 					Thread.sleep(1000);
@@ -63,9 +63,9 @@ public class Connection implements Runnable{
 					e.printStackTrace();
 				}
 			}
-	
+			System.out.println("end_test");
 			isopen=false;
-			frame=new ReconnectedUI();
+			frame=new ReconnectedFrame();
 			frame.setVisible(true);
 			new Thread(frame).start();
 		}
