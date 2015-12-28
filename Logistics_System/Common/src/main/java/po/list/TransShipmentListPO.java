@@ -66,6 +66,7 @@ public class TransShipmentListPO extends ListPO{
 		this.containerNumber = containerNumber;
 		this.supercargoMan = supercargoMan;
 		this.barcodes = barcodes;
+		this.price=price;
 		this.setCheckType(type);
 	}
 
