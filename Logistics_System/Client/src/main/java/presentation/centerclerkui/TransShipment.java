@@ -13,7 +13,6 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -69,7 +68,6 @@ public class TransShipment extends JPanel{
 	private MyButton cancel;
 	private JRadioButton _plane;
 	private JRadioButton _trains;
-	private  JRadioButton _trucks;
 	private JTextField _transId=new JTextField() ;
 	private JTextField _arrivePlace=new JTextField() ;
 	private JTextField _counterId=new JTextField() ;
@@ -385,14 +383,8 @@ public class TransShipment extends JPanel{
         _trains.setFont(new Font("宋体", Font.BOLD, 17));
         _trains.setLocation(_plane.getX()+_plane.getWidth(),transWays.getY()-3);
         _trains.setOpaque(false);
-        _trucks=new JRadioButton("汽运",true);
-        _trucks.setSize((int)(100*1.07f), 20);
-        _trucks.setFont(new Font("宋体", Font.BOLD, 17));
-        _trucks.setLocation(_trains.getX()+_trains.getWidth(),transWays.getY()-3);
-        _trucks.setOpaque(false);
-        
         ButtonGroup group1 = new ButtonGroup();
-        group1.add(_plane);group1.add(_trains);group1.add(_trucks);
+        group1.add(_plane);group1.add(_trains);
 		
         _transId.setSize((int)(170*1.07f), 20);
         _transId.setLocation(transId.getX()+transId.getWidth(),transId.getY()-3);
@@ -430,7 +422,6 @@ public class TransShipment extends JPanel{
         
         add(_plane);
         add(_trains);
-        add(_trucks);
         
         add(_transId);
         add(_arrivePlace);
@@ -458,7 +449,6 @@ public class TransShipment extends JPanel{
 
 		_plane.setSelected(true);
 		_trains.setSelected(false);
-		_trucks.setSelected(false);
 		_transId.setText("");
 		_arrivePlace.setText("");
 		_counterId.setText("");
@@ -489,10 +479,6 @@ public class TransShipment extends JPanel{
 			}
 		}
 		
-		if(bl.createOrderFare(barCode_s)==0){
-			printMessage("该订单不存在!",Color.red);
-			return;
-		}
 		
 		Vector<String> v = new Vector<String>();
 		v.add(barCode_s);
@@ -504,17 +490,13 @@ public class TransShipment extends JPanel{
 	
 	private void _remove(){
 		int index = barCodeTable.getSelectedRow();
-		System.out.println(index);
 		if(index == -1){
 			printMessage("请选中一个订单！", Color.RED);
 			return;
 		}
-		String barCode_s=(String) barCodeTable.getValueAt(index, 0);
-		NumberFormat f=NumberFormat.getInstance();
-		f.setMaximumFractionDigits(1);
-		String price=f.format(Double.parseDouble(_price.getText())-bl.createOrderFare(barCode_s));
-		_price.setText(price);
 		barCodeTableModel.removeRow(index);
+		String barCode_s=(String) barCodeTable.getValueAt(index, 0);
+		_price.setText(Double.parseDouble(_price.getText())-bl.createOrderFare(barCode_s)+"");
 	}
 	private void _confirm(){
 		String time="";

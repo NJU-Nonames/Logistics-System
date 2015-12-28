@@ -80,10 +80,8 @@ public class TransShipmentBLImpl implements TransShipmentBLService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		if(orderpo==null)
-			return 0;
 		String departurePlace=orderpo.getSenderAddress().substring(0,2);
-		String arrivalPlace=orderpo.getReceiverAddress().substring(0,2);
+		String arrivalPlace=orderpo.getRealreceiver().substring(0,2);
 		String[][] chart=null;
 		try{
 			chart=constant.showDistanceChart().getDistanceChart(); 
