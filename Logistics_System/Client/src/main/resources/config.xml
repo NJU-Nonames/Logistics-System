@@ -2,7 +2,7 @@
 <CONFIG>
 	<IPconfig>
 		<!-- IP连接设置 -->
-		<IPaddress>172.26.107.225</IPaddress>
+		<IPaddress>127.0.0.1</IPaddress>
         <Port>40000</Port>
 	</IPconfig>
 </CONFIG> 

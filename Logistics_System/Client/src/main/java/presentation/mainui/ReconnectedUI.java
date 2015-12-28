@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import businesslogic.rmi.RMIHelper;
 import presentation.img.Img;
 
-public class ReconnectedFrame extends JFrame implements Runnable{
+public class ReconnectedUI extends JFrame implements Runnable{
 	
 	private static final int w = 256;
 	private static final int h = 192;
@@ -29,7 +29,7 @@ public class ReconnectedFrame extends JFrame implements Runnable{
 	public static boolean isConnected=false;//是否连接
 	MessagePanel message=null;
 	
-	public ReconnectedFrame(){
+	public ReconnectedUI(){
 		this.setUndecorated(true);
 		this.setSize(w,h);
 		this.setLocationRelativeTo(null);
@@ -133,7 +133,7 @@ public class ReconnectedFrame extends JFrame implements Runnable{
 			}catch(Exception e){}
 			
 			if(Connection){
-				ReconnectedFrame.isConnected=true;
+				ReconnectedUI.isConnected=true;
 			    state.setText("连接成功！");
 			    new Connection();
 			}else{

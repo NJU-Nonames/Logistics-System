@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 
 import po.list.OrderListPO;
 import presentation.mainui.CurrentUser;
-import presentation.mainui.ReconnectedFrame;
+import presentation.mainui.ReconnectedUI;
 import dataservice.list.OrderListDataService;
 import dataservice.system.SystemLogDataService;
 import vo.OrderListVO;
