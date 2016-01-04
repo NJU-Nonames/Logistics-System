@@ -380,7 +380,7 @@ public class ViewRepertory extends JPanel{
         add(Etime);
         add(in);
         add(out);
-        add(daochu);
+      //  add(daochu);
         add(inCount);
         add(outCount);
         add(inMoney);
@@ -394,7 +394,7 @@ public class ViewRepertory extends JPanel{
     	add(goto_ViewRepertory);
     	add(goto_Inventory);
     	add(search);
-    	add(export);
+    	//add(export);
     	
 
     	add(_time1);
@@ -430,7 +430,7 @@ public class ViewRepertory extends JPanel{
 		inCount.setText(inCount.getText()+bl.searchRepertory(t1, t2).numberIn+"");
 		outCount.setText(outCount.getText()+bl.searchRepertory(t1, t2).numberOut+"");
 		inMoney.setText(inMoney.getText()+bl.searchRepertory(t1, t2).moneyIn+"");
-		outMoney.setText(inCount.getText()+bl.searchRepertory(t1, t2).moneyOut+"");
+		outMoney.setText(outMoney.getText()+bl.searchRepertory(t1, t2).moneyOut+"");
 	
 		ArrayList<RepertoryInVO> rin = bl.searchRepertory(t1, t2).repertoryin;
 		ArrayList<RepertoryOutVO> rout = bl.searchRepertory(t1, t2).repertoryout;
@@ -458,7 +458,7 @@ public class ViewRepertory extends JPanel{
     		v.add(rout.get(i).getCode());
     		v.add(rout.get(i).getDestination());
     		v.add(rout.get(i).getTransportation()+"");
-    		repertoryInTableModel.addRow(v);
+    		repertoryOutTableModel.addRow(v);
         }
 	}
 	private void clear(){
