@@ -461,6 +461,17 @@ public class Inventory extends JPanel{
 		_w.setText("");
 		willprintMessage=false;
 		repaint();
+		String s1="分区A占比："+bl.showRepertory().percentA;
+        partA.setText(s1);;//要联系逻辑层给的数据
+       
+        String s2="分区B占比："+bl.showRepertory().percentB;
+        partB.setText(s2);//要联系逻辑层给的数据
+       
+        String s3="分区C占比："+bl.showRepertory().percentC;
+        partC.setText(s3);//要联系逻辑层给的数据
+        
+        String s4="分区D占比："+bl.showRepertory().percentD;
+        partD .setText(s4);
 	}
 	private void _search(){
 		if(searchField.getText().compareTo("")==0){
@@ -512,17 +523,7 @@ public class Inventory extends JPanel{
       		v.add(info.orderId);
       		repertoryTableModel.addRow(v);
       	}
-      	String s1="分区A占比："+bl.showRepertory().percentA;
-        partA.setText(s1);;//要联系逻辑层给的数据
-       
-        String s2="分区B占比："+bl.showRepertory().percentB;
-        partB.setText(s2);//要联系逻辑层给的数据
-       
-        String s3="分区C占比："+bl.showRepertory().percentC;
-        partC.setText(s3);//要联系逻辑层给的数据
-        
-        String s4="分区D占比："+bl.showRepertory().percentD;
-        partD .setText(s4);
+      	
 	}
 	
 	private void printMessage(String message, Color c){
