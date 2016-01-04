@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+	<IPconfig>
+		<!-- IP连接设置 -->
+		<IPaddress>172.26.107.225</IPaddress>
+        <Port>40000</Port>
+	</IPconfig>
+	<JDBCconfig>
+	    <Port>3306</Port>
+	    <Name>logistics</Name>
+	    <Admin>root</Admin>
+	    <Password></Password>
+	</JDBCconfig>
+</CONFIG> 
