@@ -547,7 +547,7 @@ public class Inventory extends JPanel{
 	}
 	private void _export(){
 		Date date_=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time=format.format(date_);
 		bl.exportRepertoryInformation(currentUser.getAgencyName(), time, "D:/");
 		clear();
