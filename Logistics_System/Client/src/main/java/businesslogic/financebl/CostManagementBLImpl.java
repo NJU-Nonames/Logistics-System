@@ -33,7 +33,7 @@ public class CostManagementBLImpl implements CostManagementBLService{
 		// TODO Auto-generated method stub
 		MoneyOutListPO moneyoutpo=null;
 		try{    
-			BankAccountPO bankaccountpo=bankaccount.find(moneyoutpo.getAccountNum());
+			BankAccountPO bankaccountpo=bankaccount.find(moneyOut.getAccountNum());
 			if(bankaccountpo==null)
 				return new ResultMessage(false,"要付款的银行账户不存在!");
 			if(bankaccountpo.getMoney()-moneyOut.getMoney()<0)

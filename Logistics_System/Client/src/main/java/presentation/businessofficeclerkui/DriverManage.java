@@ -316,7 +316,7 @@ public class DriverManage extends JPanel{
     	vColumns.add("身份证号");
     	vColumns.add("手机");
     	vColumns.add("性别");
-    	vColumns.add("行驶证期至");
+    	vColumns.add("行驶证期开始时");
     	//数据
     	Vector<String> vData = new Vector<String>();
     	//模型
@@ -406,13 +406,13 @@ public class DriverManage extends JPanel{
         JLabel tipLabel = new JLabel(tip);
         tipLabel.setSize((int)(16*tip.length()*1.07f), 16);
         tipLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        tipLabel.setForeground(Color.RED);
+        tipLabel.setForeground(Color.BLACK);
         tipLabel.setLocation(596-(int)(15*tip.length()*1.07f)/2,128+290+120+30);
     	String tip2="修改：先选中一行，在除“司机编号”的5个方框里输入新信息，再点击按钮即可修改";
         JLabel tipLabel2 = new JLabel(tip2);
         tipLabel2.setSize((int)(16*tip2.length()*1.07f), 16);
         tipLabel2.setFont(new Font("宋体", Font.BOLD, 15));
-        tipLabel2.setForeground(Color.RED);
+        tipLabel2.setForeground(Color.BLACK);
         tipLabel2.setLocation(596-(int)(15*tip2.length()*1.07f)/2,128+290+120+40+30);
         
 
