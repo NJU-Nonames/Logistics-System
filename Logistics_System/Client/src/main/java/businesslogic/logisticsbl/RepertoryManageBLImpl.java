@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -131,8 +132,19 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	public RepertorySearch searchRepertory(String start_time, String end_time) {
 		RepertorySearch repertorySearch=new RepertorySearch();
 		try {
-			ArrayList<RepertoryInPO> arrayin=repertoryin.showAllByAgency(start_time, end_time, user.getAgencyNum());
-			ArrayList<RepertoryOutPO> arrayout=repertoryout.showByAgency(start_time, end_time, user.getAgencyNum());
+			String []array=end_time.split("-");
+			int []timeArray=new int[3];
+			for(int i=0;i<3;i++)
+				timeArray[i]=Integer.parseInt(array[i]);
+			Calendar end=Calendar.getInstance();
+			end.set(timeArray[0], timeArray[1],timeArray[2]);
+			long endTime=end.getTimeInMillis();
+			long day=1000*24*60*60l;
+			endTime+=day;
+			Date date=new Date(endTime);
+			String time=df.format(date);
+			ArrayList<RepertoryInPO> arrayin=repertoryin.showAllByAgency(start_time, time, user.getAgencyNum());
+			ArrayList<RepertoryOutPO> arrayout=repertoryout.showByAgency(start_time, time, user.getAgencyNum());
 		    repertorySearch.numberIn=arrayin.size()+"";
 		    repertorySearch.numberOut=arrayout.size()+"";
 		    ArrayList<RepertoryInVO> repertoryin=new ArrayList<RepertoryInVO>();
