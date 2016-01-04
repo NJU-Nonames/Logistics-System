@@ -19,7 +19,7 @@ public class StaffDataImpl extends UnicastRemoteObject implements StaffDataServi
 
 	public void add(StaffPO staff) throws RemoteException {
 		String sql="insert into staff values('"+staff.getId()+"','"+staff.getName()+"','"+staff.getSex()+"','"+staff.getPostion()
-				+"','"+staff.getIDNum()+"','"+staff.getWorkingtime()+"','"+staff.getPhoneNum()+"','"+staff.getWage()+"',"+staff.getAgencyName()+"','"+staff.getAgencyId()+"')";
+				+"','"+staff.getIDNum()+"','"+staff.getworkingStartTime()+"','"+staff.getPhoneNum()+"','"+staff.getWage()+"','"+staff.getAgencyName()+"','"+staff.getAgencyId()+"')";
 		DataJDBCConnection.update(sql);
 		
 	}

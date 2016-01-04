@@ -66,7 +66,7 @@ public class Inventory extends JPanel{
 	//详细操作按钮以及其他组件
 	private DefaultTableModel repertoryTableModel;
 	private JTable repertoryTable;
-	
+	private JLabel partA,partB,partC,partD;
 	
 	private JTextField searchField= new JTextField();
 	private JTextField _orderId= new JTextField();
@@ -254,28 +254,28 @@ public class Inventory extends JPanel{
         
         
         String s1="分区A占比："+bl.showRepertory().percentA;
-        JLabel partA = new JLabel(s1);//要联系逻辑层给的数据
+        partA = new JLabel(s1);//要联系逻辑层给的数据
         partA.setSize((int)(16*s1.length()*1.07f), 16);
         partA.setFont(new Font("宋体", Font.BOLD, 15));
         partA.setLocation(CenterRepertoryClerkFrame.w/6+20+10,CenterClerkFrame.h/6+110+300+10-20);
         
         String s2="分区B占比："+bl.showRepertory().percentB;
-        JLabel partB= new JLabel(s2);//要联系逻辑层给的数据
+        partB= new JLabel(s2);//要联系逻辑层给的数据
         partB.setSize((int)(16*s2.length()*1.07f), 16);
         partB.setFont(new Font("宋体", Font.BOLD, 15));
-        partB.setLocation(partA.getX()+partA.getWidth()+60,partA.getY());
+        partB.setLocation(partA.getX()+partA.getWidth()+30,partA.getY());
         
         String s3="分区C占比："+bl.showRepertory().percentC;
-        JLabel partC = new JLabel(s3);//要联系逻辑层给的数据
+        partC = new JLabel(s3);//要联系逻辑层给的数据
         partC.setSize((int)(16*s3.length()*1.07f), 16);
         partC.setFont(new Font("宋体", Font.BOLD, 15));
-        partC.setLocation(partB.getX()+partB.getWidth()+60,partA.getY());
+        partC.setLocation(partB.getX()+partB.getWidth()+30,partA.getY());
         
         String s4="分区D占比："+bl.showRepertory().percentD;
-        JLabel partD = new JLabel(s4);//要联系逻辑层给的数据
+        partD = new JLabel(s4);//要联系逻辑层给的数据
         partD.setSize((int)(16*s4.length()*1.07f), 16);
         partD.setFont(new Font("宋体", Font.BOLD, 15));
-        partD.setLocation(partC.getX()+partC.getWidth()+60,partA.getY());
+        partD.setLocation(partC.getX()+partC.getWidth()+30,partA.getY());
         
         JLabel tiaozhengfenqu = new JLabel("调整分区:");
         tiaozhengfenqu.setSize((int)(16*"调整分区:".length()*1.07f), 16);
@@ -489,6 +489,7 @@ public class Inventory extends JPanel{
 		else{
 			printMessage(message.getMessage(), Color.GREEN);
 		}
+		this._refresh();
 	
 	}
 	//不知道对不对
@@ -511,6 +512,17 @@ public class Inventory extends JPanel{
       		v.add(info.orderId);
       		repertoryTableModel.addRow(v);
       	}
+      	String s1="分区A占比："+bl.showRepertory().percentA;
+        partA.setText(s1);;//要联系逻辑层给的数据
+       
+        String s2="分区B占比："+bl.showRepertory().percentB;
+        partB.setText(s2);//要联系逻辑层给的数据
+       
+        String s3="分区C占比："+bl.showRepertory().percentC;
+        partC.setText(s3);//要联系逻辑层给的数据
+        
+        String s4="分区D占比："+bl.showRepertory().percentD;
+        partD .setText(s4);
 	}
 	
 	private void printMessage(String message, Color c){

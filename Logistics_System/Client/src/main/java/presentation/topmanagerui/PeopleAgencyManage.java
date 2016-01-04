@@ -895,13 +895,7 @@ public class PeopleAgencyManage extends JPanel{
 			printMessage(result, Color.RED);
 			return;
 		}
-		double wage_s_double;
-		try{
-			wage_s_double = Double.parseDouble(wage_s);
-		}catch(NumberFormatException e){
-			printMessage("请输入正确工资！", Color.RED);
-			return;
-		}
+
 		if(id_s.compareTo("")==0){
 			printMessage("没有输入编号！", Color.RED);
 			return;

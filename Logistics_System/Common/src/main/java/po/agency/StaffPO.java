@@ -113,6 +113,10 @@ public class StaffPO implements Serializable{
 		return year+"年"+month+"月"+day1+"日";
 	}
 
+	public String getworkingStartTime(){
+		return workingstarttime;
+	}
+	
 	public String getPhoneNum() {
 		return phoneNum;
 	}

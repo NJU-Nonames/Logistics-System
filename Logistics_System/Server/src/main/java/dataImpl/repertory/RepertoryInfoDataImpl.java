@@ -49,9 +49,10 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			repertoryinfo=new RepertoryInfoPO(repertoryInfoPO.getId(), rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("orderid"));
+			repertoryinfo=new RepertoryInfoPO(repertoryInfoPO.getId(), rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("goodid"));
 		} catch (SQLException e) {
-			System.out.println("未找到。");
+			//e.printStackTrace();
+			//System.out.println("未找到。");
 		    return null;
 		}
 		return repertoryinfo;
@@ -64,9 +65,9 @@ public class RepertoryInfoDataImpl extends UnicastRemoteObject implements Repert
 		ResultSet rs=DataJDBCConnection.find(sql);
 		try {
 			rs.next();
-			repertoryinfo=new RepertoryInfoPO(id, rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("orderid"));
+			repertoryinfo=new RepertoryInfoPO(id, rs.getString("areanumber"), rs.getString("rownumber"), rs.getString("framenumber"), rs.getString("placenumber"), rs.getString("goodid"));
 		} catch (SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			System.out.println("未找到。");
 		    return null;
 		}

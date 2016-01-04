@@ -68,7 +68,8 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 			e.printStackTrace();
 		}
 		ResultMessage rs=this.repertoryAlarm(Integer.parseInt(repertoryinpo.getAreacode()));
-		if(rs.isPass())
+		System.out.println(rs.isPass());
+		if(!rs.isPass())
 		   return new ResultMessage(true,"创建入库单成功!");
 		else 
 			return new ResultMessage(true,"创建入库单成功!仓位到达报警线，请进行库存调整修改位置。");
@@ -191,10 +192,11 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 		
 		}
 		boolean isdanger=CaculateRepertory.isdangerous(percent);
+		
 		if(isdanger)
-			return new ResultMessage(isdanger,"仓位已经到达警告线，请调整仓位");
+			return new ResultMessage(true,"仓位已经到达警告线，请调整仓位");
 		else
-		    return new ResultMessage(isdanger,"仓位预存正常，未到达警戒线");
+		    return new ResultMessage(false,"仓位预存正常，未到达警戒线");
 	}
 
 	
@@ -212,13 +214,13 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 				return new ResultMessage(false,"未查询到该订单信息!");
 			else if(repertoryinformation.id!=user.getAgencyNum())
 				return new ResultMessage(false,"该订单不存在于该仓库中!");
-			else if(repertoryinfo.findbyPlace(repertory).getOrderId().equals(repertoryinformation.id))
+			else if(repertoryinfo.findbyPlace(repertory)!=null&&repertoryinfo.findbyPlace(repertory).getOrderId().equals(repertoryinformation.id))
 				return new ResultMessage(false,"位置没有发生变更!");
 			else if(repertoryinfo.findbyPlace(repertory)!=null)
 				return new ResultMessage(false,"该位置已经存在货物!");
 			else{
 				repertoryinfo.update(repertory);
-				RepertoryInPO repertoryinlist=repertoryin.findOnID(repertoryinformation.orderId);
+				RepertoryInPO repertoryinlist=repertoryin.findOnOrderID(repertoryinformation.orderId,user.getAgencyNum());
 				repertoryinlist.setAreacode(repertory.getAreaNumber());
 				repertoryinlist.setRownumber(repertory.getRowNumber());
 				repertoryinlist.setFramenumber(repertory.getFrameNumber());
@@ -230,7 +232,7 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 			e.printStackTrace();
 		}
 			
-		if(this.repertoryAlarm(Integer.parseInt(repertoryinformation.areaNumber)).isPass())
+		if(!this.repertoryAlarm(Integer.parseInt(repertoryinformation.areaNumber)).isPass())
 		    return new ResultMessage(true,"位置变更成功!");
 		else
 			return new ResultMessage(true,"位置变更成功!转移仓位已到达报警线，请进行库存调整修改位置。");
