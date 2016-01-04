@@ -50,6 +50,8 @@ public class UserManageBLImpl implements UserManageBLService{
 			userpo=userDataService.findonAdmin(admin);
 			if(userpo!=null && userpo.getPassword().compareTo(password)==0){
 				staffpo=staffDataService.find(userpo.getId());
+				if(staffpo==null)
+					return null;
 				StaffVO staffvo = new StaffVO(staffpo.getName(), staffpo.getSex(), staffpo.getPostion(), staffpo.getIDNum(), staffpo.getWorkingtime(), staffpo.getPhoneNum(),staffpo.getWage(),staffpo.getAgencyName(),staffpo.getId(),staffpo.getAgencyId());
 				return staffvo;
 			}

@@ -1,6 +1,5 @@
 package businesslogic.logisticsbl;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
@@ -182,12 +181,13 @@ public class RepertoryManageBLImpl implements RepertoryManageBLService{
 	 */
 	public ResultMessage repertoryAlarm(int num) {
 		double percent=0;
+		RepertoryShowVO rsVO=this.showRepertory();
 		switch(num)
 		{
-		case 1: percent=Double.parseDouble(this.showRepertory().percentA);break;
-		case 2: percent=Double.parseDouble(this.showRepertory().percentB);break;
-		case 3: percent=Double.parseDouble(this.showRepertory().percentC);break;
-		case 4: percent=Double.parseDouble(this.showRepertory().percentD);break;
+		case 1: percent=Double.parseDouble(rsVO.percentA);break;
+		case 2: percent=Double.parseDouble(rsVO.percentB);break;
+		case 3: percent=Double.parseDouble(rsVO.percentC);break;
+		case 4: percent=Double.parseDouble(rsVO.percentD);break;
 		
 		}
 		boolean isdanger=CaculateRepertory.isdangerous(percent);

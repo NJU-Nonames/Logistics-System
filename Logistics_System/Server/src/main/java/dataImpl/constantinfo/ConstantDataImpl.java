@@ -14,8 +14,8 @@ public class ConstantDataImpl extends UnicastRemoteObject implements ConstantDat
 	File f2;
 	public ConstantDataImpl() throws RemoteException {
 		super();
-		f1=new File("Data/DistanceChart");
-		f2=new File("Data/PriceChart");
+		f1=new File("Data/DistanceChart.txt");
+		f2=new File("Data/PriceChart.txt");
 	}
 
 	public void setDistance(String newDistance, String cityA, String cityB) {
