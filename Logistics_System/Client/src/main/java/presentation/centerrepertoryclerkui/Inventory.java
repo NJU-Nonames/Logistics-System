@@ -63,6 +63,7 @@ public class Inventory extends JPanel{
 	private MyButton search;
 	private MyButton adjust;
 	private MyButton refresh;
+	private MyButton export;
 	//详细操作按钮以及其他组件
 	private DefaultTableModel repertoryTableModel;
 	private JTable repertoryTable;
@@ -222,6 +223,23 @@ public class Inventory extends JPanel{
 			public void mouseReleased(MouseEvent arg0) {}
         });
         refresh.setLocation(CenterClerkFrame.w/3*2+125,128+84-20);
+        
+        export = new MyButton(90, 30, Img.CONFIRM_0, Img.CONFIRM_1, Img.CONFIRM_2);
+        export.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				_export();
+			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
+        });
+        export.setLocation(CenterClerkFrame.w/3*2-140,CenterClerkFrame.h-150-7);
+        
+        JLabel daochu = new JLabel("导出:");
+        daochu.setSize((int)(48*1.07f), 16);
+        daochu.setFont(new Font("宋体", Font.BOLD, 15));
+        daochu.setLocation(CenterClerkFrame.w/3*2-200,CenterClerkFrame.h-150);
     	//最基本元素
         JLabel titleLabel = new JLabel("物流信息管理系统");
         titleLabel.setSize((int)(50*8*1.07f), 50);
@@ -416,6 +434,7 @@ public class Inventory extends JPanel{
         add(tiaozhengfenqu);
         add(orderId);
         add(tiaozhengzhi);
+        add(daochu);
         add(q);
         add(p);
         add(j);
@@ -432,6 +451,7 @@ public class Inventory extends JPanel{
     	add(search);
     	add(adjust);
     	add(refresh);
+    	add(export);
     	
     	add(searchField);
     	add(_orderId);
@@ -525,7 +545,14 @@ public class Inventory extends JPanel{
       	}
       	
 	}
-	
+	private void _export(){
+		Date date_=new Date();
+		DateFormat format=new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		String time=format.format(date_);
+		bl.exportRepertoryInformation(currentUser.getAgencyName(), time, "D:/");
+		clear();
+		printMessage("已导出至D盘目录下！",Color.GREEN);
+	}
 	private void printMessage(String message, Color c){
 		result=message;
 		co=c;
