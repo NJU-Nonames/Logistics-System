@@ -369,6 +369,7 @@ public class UserManage extends JPanel{
 			return;
 		}
 		if(bl.findonAdmin(admin)!=null){
+			clear();
 			printMessage("该账号已存在，无法添加！", Color.RED);
 			return;
 		}
@@ -403,8 +404,8 @@ public class UserManage extends JPanel{
 			return;
 		}
 		ResultMessage resultMessage = bl.removeUser((String)userTable.getValueAt(index, 0));
-		printMessage(resultMessage.getMessage(), Color.GREEN);
 		clear();
+		printMessage(resultMessage.getMessage(), Color.GREEN);
 		userTableModel.removeRow(index);
 	}
 	private void _update(){
@@ -446,8 +447,8 @@ public class UserManage extends JPanel{
 		default :printMessage("职务输入有误，请重新输入！", Color.RED);return;
 		}		
 		ResultMessage resultMessage = bl.updateUser(new UserVO(admin, password, type, id));
-		printMessage(resultMessage.getMessage(), Color.GREEN);
 		clear();
+		printMessage(resultMessage.getMessage(), Color.GREEN);
 		int index=0;
 		while(((String)userTable.getValueAt(index, 0)).compareTo(admin)!=0){
 			index++;
@@ -470,9 +471,11 @@ public class UserManage extends JPanel{
 				String s=(String) userTable.getValueAt(i, 0);
 				if(s.compareTo(admin)==0){
 					userTable.setRowSelectionInterval(i, i);
+					
 					return;
 				}
 			}
+			clear();
 			printMessage("未搜索到该账号", Color.RED);
 		}
 	}

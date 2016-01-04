@@ -495,8 +495,24 @@ public class Inventory extends JPanel{
 	private void _refresh() {
 		// TODO 自动生成的方法存根
 		clear();
-		initComponent();
+		while(repertoryTableModel.getRowCount()!=0)//先清空原来的
+			repertoryTableModel.removeRow(0);
+		
+		RepertoryShowVO repertoryInfoVO = bl.showRepertory();
+      	ArrayList<RepertoryOrderVO> repertoryInfomationList = repertoryInfoVO.repertoryinformation;
+      	for(RepertoryOrderVO info : repertoryInfomationList){
+      		Vector<String> v = new Vector<String>();
+      		v.add(info.time);
+      		v.add(info.destination);
+      		v.add(info.areaNumber);
+      		v.add(info.rowNumber);
+      		v.add(info.frameNumber);
+      		v.add(info.placeNumber );
+      		v.add(info.orderId);
+      		repertoryTableModel.addRow(v);
+      	}
 	}
+	
 	private void printMessage(String message, Color c){
 		result=message;
 		co=c;

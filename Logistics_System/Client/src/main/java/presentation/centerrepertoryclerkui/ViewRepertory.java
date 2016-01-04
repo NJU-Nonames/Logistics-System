@@ -59,7 +59,7 @@ public class ViewRepertory extends JPanel{
 	private MyButton goto_OutputRepertory;
 	private MyButton goto_ViewRepertory;
 	private MyButton goto_Inventory;
-	
+
 	private MyButton search;
 	//详细操作按钮以及其他组件
 	private JTextField _time1=new JTextField();
@@ -336,24 +336,25 @@ public class ViewRepertory extends JPanel{
       	jp2.add(scrollPane2,BorderLayout.CENTER);
       	
       	inCount = new JLabel("入库数量总计：");//联系逻辑层数据
-      	inCount.setSize((int)(16*"入库数量总计：".length()*1.07f), 16);
+      	inCount.setSize((int)(16*"入库数量总计：			".length()*1.07f), 16);
       	inCount.setFont(new Font("宋体", Font.BOLD, 15));
       	inCount.setLocation(CenterRepertoryClerkFrame.w/6+20+150,128+440);
       	
       	outCount = new JLabel("出库数量总计：");//联系逻辑层数据
-      	outCount.setSize((int)(16*"出库数量总计：".length()*1.07f), 16);
+      	outCount.setSize((int)(16*"出库数量总计：		".length()*1.07f), 16);
       	outCount.setFont(new Font("宋体", Font.BOLD, 15));
       	outCount.setLocation(CenterRepertoryClerkFrame.w/6+20+150+220,inCount.getY());
       	
       	inMoney = new JLabel("入库金额总计：");//联系逻辑层数据
-      	inMoney.setSize((int)(16*"入库金额总计：".length()*1.07f), 16);
+      	inMoney.setSize((int)(16*"入库金额总计：			".length()*1.07f), 16);
       	inMoney.setFont(new Font("宋体", Font.BOLD, 15));
       	inMoney.setLocation(inCount.getX(),inCount.getY()+40);
       	
       	outMoney = new JLabel("出库金额总计：");//联系逻辑层数据
-      	outMoney.setSize((int)(16*"出库金额总计：".length()*1.07f), 16);
+      	outMoney.setSize((int)(16*"出库金额总计：		".length()*1.07f), 16);
       	outMoney.setFont(new Font("宋体", Font.BOLD, 15));
       	outMoney.setLocation(outCount.getX(),outCount.getY()+40);
+      
         //最基本按钮
     	close.setLocation(CenterRepertoryClerkFrame.w-30,0);
     	min.setLocation(CenterRepertoryClerkFrame.w-80,0);
@@ -379,6 +380,7 @@ public class ViewRepertory extends JPanel{
         add(Etime);
         add(in);
         add(out);
+        add(daochu);
         add(inCount);
         add(outCount);
         add(inMoney);
@@ -392,6 +394,8 @@ public class ViewRepertory extends JPanel{
     	add(goto_ViewRepertory);
     	add(goto_Inventory);
     	add(search);
+    	add(export);
+    	
 
     	add(_time1);
     	add(_time2);
@@ -462,6 +466,11 @@ public class ViewRepertory extends JPanel{
 		Date date_=new Date();
 		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		_time2.setText(format.format(date_));
+		
+		inCount.setText("入库数量统计：");
+		inMoney.setText("入库金额统计：");
+		outCount.setText("出库数量统计：");
+		outMoney.setText("出库金额统计：");
 		while(repertoryOutTable.getRowCount()!=0)
 			repertoryOutTableModel.removeRow(0);
 		while(repertoryInTable.getRowCount()!=0)
@@ -469,8 +478,6 @@ public class ViewRepertory extends JPanel{
 		willprintMessage=false;
 		repaint();
 	}
-	
-	
 	private void printMessage(String message, Color c){
 		result=message;
 		co=c;

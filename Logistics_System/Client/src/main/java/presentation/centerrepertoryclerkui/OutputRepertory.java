@@ -29,6 +29,7 @@ import presentation.mainui.CurrentUser;
 import presentation.mainui.MainFrame;
 import presentation.mainui.MyButton;
 import utility.CheckType;
+import utility.ResultMessage;
 import utility.TransportationType;
 import vo.RepertoryOutVO;
 
@@ -400,14 +401,18 @@ public class OutputRepertory extends JPanel{
 			return;
 		}
 		RepertoryOutVO result = new RepertoryOutVO(bl.createRepertoryOutId(),orderId,time,desti,type,transId,CheckType.UNDERCHECK);
-		if(bl.createOutputRepertory(result).getMessage().compareTo("创建出库单成功!")!=0){
-			printMessage(bl.createOutputRepertory(result).getMessage(), Color.RED);
+		ResultMessage message=bl.createOutputRepertory(result);
+		if(!message.isPass()){
+			printMessage(message.getMessage(), Color.RED);
+			//System.out.println("1234");
 			return;
 		}
 		else{
-			printMessage(bl.createOutputRepertory(result).getMessage(), Color.GREEN);
+			clear();
+			printMessage(message.getMessage(), Color.GREEN);
+			//System.out.println("12345678");
 		}
-		clear();
+		
 	}
 	public void _cancel(){
 		clear();
