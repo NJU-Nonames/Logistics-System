@@ -15,7 +15,8 @@ public class XMLReader {
 	private static String filename = "src/main/resources/config.xml";
 	private static IPconfig ipconfig;
 	private static JDBCconfig jdbcconfig;
-
+    private static Repertoryconfig repertoryconfig;
+	
 	/**
 	 * 从配置文件中读取参数并保存到Config类中,
 	 * 很多时候程序中会多次使用到配置中的参数, 
@@ -34,6 +35,37 @@ public class XMLReader {
 		if(jdbcconfig == null)
 			jdbcconfig = getjdbcconfig();
 		return jdbcconfig;
+	}
+	
+	public static Repertoryconfig loadrepertoryconfig(){
+		if(repertoryconfig==null)
+			repertoryconfig=getrepertoryconfig();
+		return repertoryconfig;
+		
+	}
+	
+	private static Repertoryconfig getrepertoryconfig(){
+		Repertoryconfig config = new Repertoryconfig();
+		try {
+			File f = new File(filename);
+			if (!f.exists()) {
+				System.out.println("  Error : IPConfig file doesn't exist!");
+				System.exit(1);
+			}
+			SAXReader reader = new SAXReader();
+			Document doc = reader.read(f);
+			Element root = doc.getRootElement();
+			Element data;
+			Iterator<?> itr = root.elementIterator("Repertoryconfig");
+			data = (Element) itr.next();
+
+			config.capacity = Integer.parseInt(data.elementText("capacity").trim());
+			config.percent = Double.parseDouble(data.elementText("percent").trim());
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return config;
 	}
 
 	private static IPconfig getconfig() {

@@ -5,4 +5,8 @@
 		<IPaddress>172.26.107.225</IPaddress>
         <Port>40000</Port>
 	</IPconfig>
+	<Repertoryconfig>
+	    <capacity>100</capacity>
+	    <percent>0.9</percent>
+	</Repertoryconfig>
 </CONFIG> 

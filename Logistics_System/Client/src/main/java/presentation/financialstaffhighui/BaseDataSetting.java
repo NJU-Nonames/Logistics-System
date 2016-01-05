@@ -626,7 +626,7 @@ public class BaseDataSetting extends JPanel{
 		}else{
 			printMessage(resultMessage.getMessage(), Color.GREEN);
 		}
-		this.initComponent();
+
 	}
 	private void clear(){
 //		.setText("");
